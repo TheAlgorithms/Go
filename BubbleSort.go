@@ -4,12 +4,6 @@ import (
 	"fmt"
 )
 
-func swap(arrayzor []int, i, j int) {
-	tmp := arrayzor[j]
-	arrayzor[j] = arrayzor[i]
-	arrayzor[i] = tmp
-}
-
 func bubbleSort(arrayzor []int) {
 
 	swapped := true;
