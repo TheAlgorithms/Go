@@ -13,8 +13,15 @@ type node struct {
 	right *node
 }
 
-type tree struct {
+type btree struct {
 	root *node
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func newNode(val int) *node {
@@ -75,14 +82,27 @@ func bst_delete(root *node, val int) *node {
 	return root
 }
 
+// helper function for t.depth
+func _calculate_depth(n *node, depth int) int {
+	if n == nil {
+		return depth
+	}
+	return max(_calculate_depth(n.left, depth+1), _calculate_depth(n.right, depth+1))
+}
+
+func (t *btree) depth() int {
+	return _calculate_depth(t.root, 0)
+}
+
 /*
 func main() {
-	t := &tree{nil}
+	t := &btree{nil}
 	inorder(t.root)
 	t.root = insert(t.root, 10)
 	t.root = insert(t.root, 20)
 	t.root = insert(t.root, 15)
 	t.root = insert(t.root, 30)
+	fmt.Print(t.depth(), "\n")
 	inorder(t.root)
 	fmt.Print("\n")
 	t.root = bst_delete(t.root, 10)
@@ -97,5 +117,6 @@ func main() {
 	t.root = bst_delete(t.root, 20)
 	inorder(t.root)
 	fmt.Print("\n")
+	fmt.Print(t.depth(), "\n")
 }
 */
