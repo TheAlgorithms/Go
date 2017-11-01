@@ -6,16 +6,16 @@ import (
 
 func bubbleSort(arrayzor []int) {
 
-	swapped := true;
+	swapped := true
 	for swapped {
 		swapped = false
-		for i := 0; i < len(arrayzor) - 1; i++ {
-			if arrayzor[i + 1] < arrayzor[i] {
-				Swap(arrayzor, i, i + 1)
+		for i := 0; i < len(arrayzor)-1; i++ {
+			if arrayzor[i+1] < arrayzor[i] {
+				Swap(arrayzor, i, i+1)
 				swapped = true
 			}
 		}
-	}	
+	}
 }
 
 func Swap(arrayzor []int, i, j int) {
