@@ -1,4 +1,4 @@
-package tree
+package vEBTree
 
 import (
 	"math/rand"
