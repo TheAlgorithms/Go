@@ -3,7 +3,6 @@ package vEBTree
 import (
 	"testing"
 	"fmt"
-	"algorithms/tree"
 	"math/rand"
 	"sort"
 )
