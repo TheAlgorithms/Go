@@ -11,17 +11,11 @@ func bubbleSort(arrayzor []int) {
 		swapped = false
 		for i := 0; i < len(arrayzor) - 1; i++ {
 			if arrayzor[i + 1] < arrayzor[i] {
-				Swap(arrayzor, i, i + 1)
+				arrayzor[i], arrayzor[i+1] = arrayzor[i+1], arrayzor[i]
 				swapped = true
 			}
 		}
 	}	
-}
-
-func Swap(arrayzor []int, i, j int) {
-	tmp := arrayzor[j]
-	arrayzor[j] = arrayzor[i]
-	arrayzor[i] = tmp
 }
 
 func main() {
