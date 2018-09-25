@@ -81,8 +81,8 @@ func (b *Board) Solve(i, j int) bool {
 	return false
 }
 
-// Runner | run this in main to check the working
-func Runner() {
+// SudokuSolver | run this in main to check the working
+func SudokuSolver() {
 	board := NewBoard(9)
 	board.Value = [][]int{
 		{5, 3, 0, 0, 7, 0, 0, 0, 0},
