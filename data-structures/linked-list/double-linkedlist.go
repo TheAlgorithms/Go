@@ -1,24 +1,24 @@
 // demonstration of doubly linked list in golang
 
-package doublelinkedlist
+package linkedlist
 
 // package main
 
 import "fmt"
 
-type node struct {
+type doublenode struct {
 	val  int
-	next *node
-	prev *node
+	next *doublenode
+	prev *doublenode
 }
 
 type doublelinkedlist struct {
-	head *node
+	head *doublenode
 }
 
-// to avoid mistakes when using pointer vs struct for new node creation
-func newNode(val int) *node {
-	n := &node{}
+// to avoid mistakes when using pointer vs struct for new doublenode creation
+func newDoubleNode(val int) *doublenode {
+	n := &doublenode{}
 	n.val = val
 	n.next = nil
 	n.prev = nil
@@ -26,13 +26,13 @@ func newNode(val int) *node {
 }
 
 func (ll *doublelinkedlist) addAtBeg(val int) {
-	n := newNode(val)
+	n := newDoubleNode(val)
 	n.next = ll.head
 	ll.head = n
 }
 
 func (ll *doublelinkedlist) addAtEnd(val int) {
-	n := newNode(val)
+	n := newDoubleNode(val)
 
 	if ll.head == nil {
 		ll.head = n
@@ -93,7 +93,7 @@ func (ll *doublelinkedlist) count() int {
 }
 
 func (ll *doublelinkedlist) reverse() {
-	var prev, next *node
+	var prev, next *doublenode
 	cur := ll.head
 
 	for cur != nil {
@@ -119,7 +119,7 @@ func (ll *doublelinkedlist) displayReverse() {
 	if ll.head == nil {
 		return
 	}
-	var cur *node
+	var cur *doublenode
 	for cur = ll.head; cur.next != nil; cur = cur.next {
 	}
 

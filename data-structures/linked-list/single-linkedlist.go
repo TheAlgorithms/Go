@@ -1,33 +1,31 @@
 // demonstration of singly linked list in golang
 
-package singlelinkedlist
-
-// package main
+package linkedlist 
 
 import "fmt"
 
-type node struct {
+type singlenode struct {
 	val  int
-	next *node
+	next *singlenode
 }
 
 type singlelinkedlist struct {
-	head *node
+	head *singlenode
 }
 
-// to avoid mistakes when using pointer vs struct for new node creation
-func newNode(val int) *node {
-	return &node{val, nil}
+// to avoid mistakes when using pointer vs struct for new singlenode creation
+func newSingleNode(val int) *singlenode {
+	return &singlenode{val, nil}
 }
 
-func (ll *singlelinkedlist) addAtBeg(val int) {
-	n := newNode(val)
+func (ll *singlelinkedlist) addFirst(val int) {
+	n := newSingleNode(val)
 	n.next = ll.head
 	ll.head = n
 }
 
-func (ll *singlelinkedlist) addAtEnd(val int) {
-	n := newNode(val)
+func (ll *singlelinkedlist) addLast(val int) {
+	n := newSingleNode(val)
 
 	if ll.head == nil {
 		ll.head = n
@@ -40,7 +38,7 @@ func (ll *singlelinkedlist) addAtEnd(val int) {
 	cur.next = n
 }
 
-func (ll *singlelinkedlist) delAtBeg() int {
+func (ll *singlelinkedlist) removeFirst() int {
 	if ll.head == nil {
 		return -1
 	}
@@ -51,13 +49,13 @@ func (ll *singlelinkedlist) delAtBeg() int {
 	return cur.val
 }
 
-func (ll *singlelinkedlist) delAtEnd() int {
+func (ll *singlelinkedlist) removeLast() int {
 	if ll.head == nil {
 		return -1
 	}
 
 	if ll.head.next == nil {
-		return ll.delAtBeg()
+		return ll.removeFirst()
 	}
 
 	cur := ll.head
@@ -82,7 +80,7 @@ func (ll *singlelinkedlist) count() int {
 }
 
 func (ll *singlelinkedlist) reverse() {
-	var prev, next *node
+	var prev, next *singlenode
 	cur := ll.head
 
 	for cur != nil {
@@ -103,21 +101,26 @@ func (ll *singlelinkedlist) display() {
 	fmt.Print("\n")
 }
 
-// func main() {
-// 	ll := singlelinkedlist{}
+/*
+func main() {
+ 	ll := singlelinkedlist{}
 
-// 	ll.addAtBeg(10)
-// 	ll.addAtEnd(20)
-// 	ll.display()
-// 	ll.addAtBeg(30)
-// 	ll.display()
-// 	ll.reverse()
-// 	ll.display()
+ 	ll.addFirst(10)
+ 	ll.addLast(20)
+	ll.display()
 
-// 	fmt.Print(ll.delAtBeg(), "\n")
-// 	ll.display()
+	fmt.Print("Adding item '30' at the beginning...\n") 
+ 	ll.addFirst(30)
+	ll.display()
+	
+	fmt.Print("Reversing linkedlist...\n")
+ 	ll.reverse()
+ 	ll.display()
 
-// 	fmt.Print(ll.delAtEnd(), "\n")
-// 	ll.display()
+ 	fmt.Print("Removing '", ll.removeFirst(), "'\n")
+ 	ll.display()
 
-// }
+ 	fmt.Print("Removing '", ll.removeLast(), "'\n")
+ 	ll.display()
+}
+*/
