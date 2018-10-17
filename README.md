@@ -83,6 +83,16 @@ __Properties__
 
 ###### View the algorithm in [action][shell-toptal]
 
+### Radix
+
+From [Wikipedia][radix-wiki]: Radix sort is a non-comparative integer sorting algorithm that sorts data with integer keys by grouping keys by the individual digits which share the same significant position and value. A positional notation is required, but because integers can represent strings of characters (e.g., names or dates) and specially formatted floating point numbers, radix sort is not limited to integers.
+
+__Properties__
+* Worst case performance O(n*d)
+* Best case performance O(n) (when d is constant)
+* Both stable sorting algorithm and in-place sorting algorithm.
+
+
 ### Time-Compexity Graphs
 
 Comparing the complexity of sorting algorithms (Bubble Sort, Insertion Sort, Selection Sort)
@@ -156,6 +166,8 @@ Mathematically a bijective function is used on the characters' positions to encr
 [shell-toptal]: https://www.toptal.com/developers/sorting-algorithms/shell-sort
 [shell-wiki]: https://en.wikipedia.org/wiki/Shellsort
 [shell-image]: https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif "Shell Sort"
+
+[radix-wiki]: https://en.wikipedia.org/wiki/Radix_sort
 
 [linear-wiki]: https://en.wikipedia.org/wiki/Linear_search
 [linear-image]: http://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif
