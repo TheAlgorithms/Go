@@ -116,6 +116,17 @@ __Properties__
 * Average case performance	O(log n)
 * Worst case space complexity	O(1) 
 
+### Cocktail 
+![alt text][cocktail-image]
+
+From [Wikipedia][cocktail-wiki]: Cocktail sort also known as cocktail shaker sort, bidirectional bubble sort, shaker sort, ripple sort, shuffle sort, or shuttle sort, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort.
+The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
+
+__Properties__
+* Worst case performance	O(n^2)
+* Best case performance	O(n)
+* Average case performance	O(n^2)
+* Worst case space complexity	O(1) 
 ----------------------------------------------------------------------------------------------------------------------
 
 ## Ciphers
@@ -163,5 +174,7 @@ Mathematically a bijective function is used on the characters' positions to encr
 [binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
 
+[cocktail-wiki]: https://en.wikipedia.org/wiki/Cocktail_shaker_sort
+[cocktail-image]: https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif
 
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
