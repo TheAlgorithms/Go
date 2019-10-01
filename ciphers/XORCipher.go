@@ -9,11 +9,11 @@ func encryptdecrypt(input, key string) (output string) {
 func main(){
 	key:="KEY"
 	data:="Sample Data"
-
-	encrypted_string := encryptdecrypt(data)
+	//fill these accordingly
+	encrypted_string := encryptdecrypt(key,data)
 	fmt.Println("Encrypted:",encrypted_string)
 
-	decrypted_string := encryptdecrypt(data)
+	decrypted_string := encryptdecrypt(key,data)
 	fmt.Println("Decrypted:",decrypted_string)
 
 }
