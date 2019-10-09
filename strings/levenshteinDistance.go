@@ -1,6 +1,6 @@
 /*
 This algorithm calculates the distance between two strings.
-Parameters: two strings to compare
+Parameters: two strings to compare and weights of insertion, substitution and deletion.
 Output: distance between both strings
 */
 
@@ -59,8 +59,15 @@ func main() {
 	str1 := "stingy"
 	str2 := "ring"
 
-	strDistance := levenshteinDistance(str1, str2, 1, 1, 1)
-	fmt.Printf("Distance between %s and %s is: %d.", str1, str2, strDistance)
+	// Using weight 1 for insertion, substitution and deletion
+	strDistance1 := levenshteinDistance(str1, str2, 1, 1, 1)
+	fmt.Printf("Distance between \"%s\" and \"%s\" is: %d.\n", str1, str2, strDistance1)
+	// Output: Distance between "stingy" and "ring" is: 3.
+
+	// Using weight 1 for insertion/substitution and weight 3 for deletion
+	strDistance2 := levenshteinDistance(str1, str2, 1, 1, 3)
+	fmt.Printf("Distance between \"%s\" and \"%s\" is: %d.\n", str1, str2, strDistance2)
+	// Output: Distance between "stingy" and "ring" is: 7.
 
 	return
 }
