@@ -3,7 +3,6 @@ import (
 	"fmt"
 	"math"
 )
-// Part of Cosmos by OpenGenus Foundation
 func jumpSearch(arr []int, x int) int {
 	var left, right int
 	length := len(arr)

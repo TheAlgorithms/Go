@@ -2,7 +2,6 @@ package main
 import (
   "fmt"
 )
-// Part of Cosmos by OpenGenus Foundation
 func ternarySearch(data []int, left int, right int, value int) int {
   if right >= left {
     mid1 := left + (right-left)/3
