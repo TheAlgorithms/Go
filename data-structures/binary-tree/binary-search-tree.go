@@ -5,7 +5,10 @@ package binarySearchTree
 
 // package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type node struct {
 	val   int
@@ -94,6 +97,22 @@ func (t *btree) depth() int {
 	return _calculate_depth(t.root, 0)
 }
 
+func isValidBSTHelper(root *Node, min, max int) bool {
+	if root == nil {
+		return true
+	}
+	if root.Val > min && root.Val < max {
+		return isValidBSTHelper(root.Left, min, root.Val) &&
+			isValidBSTHelper(root.Right, root.Val, max)
+	}
+	return false
+}
+
+// checks whether the given binary search tree is valid or not
+func isValidBST(root *Node) bool {
+	return isValidBSTHelper(root, math.MinInt64, math.MaxInt64)
+}
+
 /*
 func main() {
 	t := &btree{nil}
@@ -118,5 +137,7 @@ func main() {
 	inorder(t.root)
 	fmt.Print("\n")
 	fmt.Print(t.depth(), "\n")
+	valid := isValidBST(t.root)
+	fmt.Print("Is the binary search tree valid ? : ", valid)
 }
 */
