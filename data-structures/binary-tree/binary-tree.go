@@ -55,6 +55,31 @@ func postorder(n *node) {
 	fmt.Print(n.val, " ")
 }
 
+// Uses Morris Traversal Algorithm
+// https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+func iterative_inorder(n *node) {
+	cur := n
+	for cur != nil {
+		if cur.left == nil {
+			fmt.Print(cur.val, " ")
+			cur = cur.right
+		} else {
+			predecessor := cur.left
+			for predecessor.right != nil && predecessor.right != cur {
+				predecessor = predecessor.right
+			}
+			if predecessor.right == nil {
+				predecessor.right = cur
+				cur = cur.left
+			} else {
+				predecessor.right = nil
+				fmt.Print(cur.val, " ")
+				cur = cur.right
+			}
+		}
+	}
+}
+
 func levelorder(root *node) {
 	var q []*node // queue
 	var n *node   // temporary node
