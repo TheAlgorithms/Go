@@ -7,7 +7,7 @@ jobs:
     steps:
     - uses: actions/setup-go@v1
     - uses: actions/checkout@v1
-    - run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s latest
+    - run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.21.0
     - run: |
         ./bin/golangci-lint --version
         ./bin/golangci-lint run --no-config
