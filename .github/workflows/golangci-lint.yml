@@ -13,10 +13,9 @@ jobs:
     - run: |
         go version ; ./bin/golangci-lint --version
         ./bin/golangci-lint run --no-config                        || true    
-    - run: ./bin/golangci-lint run --no-config ciphers
+    - run: ./bin/golangci-lint run --no-config ciphers strings
     - run: ./bin/golangci-lint run --no-config data-structures     || true
     - run: ./bin/golangci-lint run --no-config dynamic-programming || true
     - run: ./bin/golangci-lint run --no-config other               || true
     - run: ./bin/golangci-lint run --no-config searches            || true
     - run: ./bin/golangci-lint run --no-config sorts               || true
-    - run: ./bin/golangci-lint run --no-config strings
