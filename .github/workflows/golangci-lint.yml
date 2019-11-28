@@ -12,11 +12,11 @@ jobs:
     - run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.21.0
     - run: |
         go version ; ./bin/golangci-lint --version
-        ./bin/golangci-lint run --no-config                     || true
-        ./bin/golangci-lint run --no-config ciphers             || true
-        ./bin/golangci-lint run --no-config data-structures     || true
-        ./bin/golangci-lint run --no-config dynamic-programming || true
-        ./bin/golangci-lint run --no-config other               || true
-        ./bin/golangci-lint run --no-config searches            || true
-        ./bin/golangci-lint run --no-config sorts               || true
-        ./bin/golangci-lint run --no-config strings             || true
+        ./bin/golangci-lint run --no-config                        || true    
+    - run: ./bin/golangci-lint run --no-config ciphers             || true
+    - run: ./bin/golangci-lint run --no-config data-structures     || true
+    - run: ./bin/golangci-lint run --no-config dynamic-programming || true
+    - run: ./bin/golangci-lint run --no-config other               || true
+    - run: ./bin/golangci-lint run --no-config searches            || true
+    - run: ./bin/golangci-lint run --no-config sorts               || true
+    - run: ./bin/golangci-lint run --no-config strings             || true
