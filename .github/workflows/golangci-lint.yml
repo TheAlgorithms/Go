@@ -13,4 +13,5 @@ jobs:
     - run: |
         go version
         ./bin/golangci-lint --version
-        ./bin/golangci-lint run --no-config
+        ./bin/golangci-lint run --no-config binarySearchTree
+        ./bin/golangci-lint run --no-config binarytree
