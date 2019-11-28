@@ -34,8 +34,7 @@ func naivePatternSearch(text string, pattern string) []int {
 func main() {  
     text := "ABAAABCDBBABCDDEBCABC"
     pattern := "ABC"
-    var positions []int
-    positions = naivePatternSearch(text, pattern)
+    var positions []int = naivePatternSearch(text, pattern)
     if len(positions) == 0 {
         fmt.Printf("Pattern not found in given text!")
     } else {
