@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-go@v1
+      with:
+        go-version: 1.13
     - uses: actions/checkout@v1
     - run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.21.0
     - run: |
