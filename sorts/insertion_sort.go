@@ -1,10 +1,7 @@
-package main
+//Package sorts a package for demonstrating sorting algorithms in Go
+package sorts
 
-import "fmt"
-
-func main() {
-	arr := [9]int{2, 1, 4, 3, 5, 9, 7, 6, 8}
-
+func insertionSort(arr []int) {
 	for out := 1; out < len(arr); out++ {
 		temp := arr[out]
 		in := out
@@ -14,8 +11,5 @@ func main() {
 		}
 		arr[in] = temp
 	}
-
-	for _, sortedvals := range arr {
-		fmt.Println(sortedvals)
-	}
+	return arr
 }

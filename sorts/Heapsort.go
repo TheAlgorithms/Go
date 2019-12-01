@@ -1,8 +1,9 @@
-package main
+//Package sorts a package for demonstrating sorting algorithms in Go
+package sorts
 
-import "fmt"
-import "math/rand"
-import "time"
+import (
+	"fmt"
+)
 
 type MaxHeap struct {
 	slice    []int
@@ -51,22 +52,4 @@ func heapSort(slice []int) []int {
 		}
 	}
 	return h.slice
-}
-
-func main() {
-	s1 := rand.NewSource(time.Now().UnixNano())
-	r1 := rand.New(s1)
-	s := make([]int, 20)
-	for index, _ := range s {
-		s[index] = r1.Intn(400)
-	}
-	fmt.Println("Randomly generated array:")
-	fmt.Println(s)
-	h := BuildMaxHeap(s)
-	fmt.Println("\nInital Heap: ")
-	fmt.Println(h.slice, "\n")
-
-	s = heapSort(s)
-	fmt.Println("\nFinal List:")
-	fmt.Println(s)
 }
