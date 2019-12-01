@@ -1,8 +1,6 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-import "fmt"
-
 func merge(a []int, b []int) []int {
 
 	var r = make([]int, len(a)+len(b))
@@ -45,11 +43,5 @@ func Mergesort(items []int) []int {
 	var a = Mergesort(items[:middle])
 	var b = Mergesort(items[middle:])
 	return merge(a, b)
-
-}
-
-func main() {
-
-	fmt.Print(Mergesort([]int{10, 9, 8, 4, 5, 6, 7, 3, 2, 1}), "\n")
 
 }
