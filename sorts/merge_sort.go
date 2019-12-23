@@ -32,6 +32,7 @@ func merge(a []int, b []int) []int {
 
 }
 
+//Mergesort Perform mergesort on a slice of ints
 func Mergesort(items []int) []int {
 
 	if len(items) < 2 {
