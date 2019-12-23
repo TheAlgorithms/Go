@@ -18,4 +18,4 @@ jobs:
     - run: ./bin/golangci-lint run --no-config dynamic-programming || true
     - run: ./bin/golangci-lint run --no-config other               || true
     - run: ./bin/golangci-lint run --no-config searches            || true
-    - run: ./bin/golangci-lint run --no-config sorts               || true
+    - run: ./bin/golangci-lint run --no-config sorts
