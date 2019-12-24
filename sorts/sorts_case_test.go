@@ -13,7 +13,7 @@ type sortTest struct {
 	name     string
 }
 
-var arr []int = makeRandArray(1_000_000)
+var arr []int = makeRandArray(500_000)
 
 var sortTests = []sortTest{
 	//Sorted slice
@@ -26,7 +26,7 @@ var sortTests = []sortTest{
 	{[]int{}, []int{}, "Empty"},
 	//Single-entry slice
 	{[]int{1}, []int{1}, "Singleton"},
-	//1M values sort
+	//500k values sort
 	{arr, getSortedVersion(arr), "Large Random"},
 }
 
