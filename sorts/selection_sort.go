@@ -1,7 +1,7 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func selectionSort(arr []int) {
+func selectionSort(arr []int) []int {
 	var min int = 0
 	var tmp int = 0
 
@@ -17,4 +17,5 @@ func selectionSort(arr []int) {
 		arr[i] = arr[min]
 		arr[min] = tmp
 	}
+	return arr
 }
