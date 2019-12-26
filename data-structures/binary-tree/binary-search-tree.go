@@ -75,7 +75,6 @@ func bst_delete(root *node, val int) *node {
 		} else {
 			// node with two children
 			d := inorderSuccessor(root)
-			root.val = d.val
 			root.right = bst_delete(root.right, d.val)
 		}
 	}
