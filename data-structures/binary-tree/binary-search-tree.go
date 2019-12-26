@@ -66,16 +66,16 @@ func bst_delete(root *node, val int) *node {
 		root.right = bst_delete(root.right, val)
 	} else {
 		// this is the node to delete
-
 		// node with one child
 		if root.left == nil {
-			root = root.right
+			return root.right
 		} else if root.right == nil {
-			root = root.left
+			return root.left
 		} else {
-			// node with two children
-			d := inorderSuccessor(root)
-			root.right = bst_delete(root.right, d.val)
+			n := root.right
+			d := inorderSuccessor(n)
+			d.left = root.left
+			return root.right
 		}
 	}
 	return root
@@ -93,14 +93,19 @@ func (t *btree) depth() int {
 	return _calculate_depth(t.root, 0)
 }
 
-/*
+
 func main() {
 	t := &btree{nil}
 	inorder(t.root)
-	t.root = insert(t.root, 10)
+	t.root = insert(t.root, 30)
+
 	t.root = insert(t.root, 20)
 	t.root = insert(t.root, 15)
-	t.root = insert(t.root, 30)
+	t.root = insert(t.root, 10)
+	t.root = insert(t.root, 12)
+	t.root = insert(t.root, 9)
+	t.root = insert(t.root, 11)
+	t.root = insert(t.root, 17)
 	fmt.Print(t.depth(), "\n")
 	inorder(t.root)
 	fmt.Print("\n")
@@ -118,4 +123,4 @@ func main() {
 	fmt.Print("\n")
 	fmt.Print(t.depth(), "\n")
 }
-*/
+
