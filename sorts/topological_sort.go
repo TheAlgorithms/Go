@@ -1,8 +1,5 @@
-package main
-
-import (
-	"fmt"
-)
+//Package sorts a package for demonstrating sorting algorithms in Go
+package sorts
 
 type Dependency struct {
 	nodeId   int
@@ -86,7 +83,7 @@ func topologicalSort(input []Edge) ([]int, [][]int) {
 	return res, levels
 }
 
-func main() {
+/*func main() {
 	var edges []Edge
 	edges = append(edges, Edge{1, 2})
 	edges = append(edges, Edge{2, 3})
@@ -112,4 +109,4 @@ func main() {
 	fmt.Println("result: ", order)
 	fmt.Println("levels: ", levels)
 
-}
+}*/
