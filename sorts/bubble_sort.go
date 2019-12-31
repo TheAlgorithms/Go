@@ -3,6 +3,7 @@ package sorts
 
 func bubbleSort(arrayzor []int) []int {
 
+
 	swapped := true
 	for swapped {
 		swapped = false
