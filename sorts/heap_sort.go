@@ -1,10 +1,6 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-import (
-	"fmt"
-)
-
 type MaxHeap struct {
 	slice    []int
 	heapSize int
@@ -44,12 +40,12 @@ func heapSort(slice []int) []int {
 		h.slice[0], h.slice[i] = h.slice[i], h.slice[0]
 		h.heapSize--
 		h.MaxHeapify(0)
-		if i == len(h.slice)-1 || i == len(h.slice)-3 || i == len(h.slice)-5 {
+		/*if i == len(h.slice)-1 || i == len(h.slice)-3 || i == len(h.slice)-5 {
 			element := (i - len(h.slice)) * -1
 			fmt.Println("Heap after removing ", element, " elements")
 			fmt.Println(h.slice)
 
-		}
+		}*/
 	}
 	return h.slice
 }

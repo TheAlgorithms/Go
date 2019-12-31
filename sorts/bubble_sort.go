@@ -1,7 +1,8 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func bubbleSort(arrayzor []int) {
+func bubbleSort(arrayzor []int) []int {
+
 
 	swapped := true
 	for swapped {
@@ -13,6 +14,7 @@ func bubbleSort(arrayzor []int) {
 			}
 		}
 	}
+	return arrayzor
 }
 
 func swap(arrayzor []int, i, j int) {
