@@ -2,6 +2,7 @@
 package sorts
 
 func selectionSort(arr []int) []int {
+
 	var min int = 0
 	var tmp int = 0
 
