@@ -95,7 +95,7 @@ func TestShell(t *testing.T) {
 	}
 }
 
-func TestTopological(t *testing.T) {
+/*func TestTopological(t *testing.T) {
 	for _, test := range sortTests {
 		actual := topologicalSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -106,7 +106,7 @@ func TestTopological(t *testing.T) {
 			t.Errorf("test %s failed at index %d", test.name, pos)
 		}
 	}
-}
+}*/
 
 //END TESTS
 
@@ -167,13 +167,13 @@ func BenchmarkShell(b *testing.B) {
 	}
 }
 
-func BenchmarkTopological(b *testing.B) {
+/*func BenchmarkTopological(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
 			topologicalSort(test.input)
 		}
 	}
-}
+}*/
 
 //END BENCHMARKS
 
