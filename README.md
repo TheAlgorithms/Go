@@ -1,8 +1,10 @@
 # The Algorithms - Go
 
-### All algorithms implemented in Go (for education)
+### Algorithms implemented in Go (for education)
 
-These are for demonstration purposes only. There are many implementations of sorts in the Go standard library that are much better for performance reasons.
+These algorithms are for demonstration purposes only. There are many sort implementations in the Go standard library that may have better performance.
+
+For a full list of all algorithms, please see: [DIRECTORY.md](https://github.com/TheAlgorithms/Go/blob/master/DIRECTORY.md)
 
 ## Sort Algorithms
 
