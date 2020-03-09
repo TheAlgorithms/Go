@@ -28,9 +28,10 @@ func main(){
 			for(arr[i] != num){
 				i=i-1
 			}
-      fmt.Print("Element found at Location ",i+1)	
+      		  fmt.Print("Element found at Location ",i+1)	
 			break
 		}
 		i=i+int(jump)
 	}
+	fmt.Print("Element not found")
 }
