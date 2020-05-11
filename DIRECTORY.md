@@ -6,6 +6,8 @@
   * Binary-Tree
     * [Binary-Search-Tree](https://github.com/TheAlgorithms/Go/blob/master/data-structures/binary-tree/binary-search-tree.go)
     * [Binary-Tree](https://github.com/TheAlgorithms/Go/blob/master/data-structures/binary-tree/binary-tree.go)
+  * Dynamic-Array
+    * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data-structures/dynamic-array/dynamic_array.go)
   * Linked-List
     * [Double-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/double-linkedlist.go)
     * [Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/Linkedlist.go)
