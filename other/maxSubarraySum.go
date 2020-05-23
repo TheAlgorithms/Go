@@ -17,8 +17,8 @@ func Max(x int, y int) int {
 func maxSubarraySum(array []int) int {
     var currentMax int = 0
     var maxTillNow int = 0
-    for i := 0; i < len(array); i++ {
-	    currentMax = Max(array[i], currentMax + array[i])
+	for _,v :=range array{
+	    currentMax = Max(v, currentMax + v)
 	    maxTillNow = Max(maxTillNow, currentMax)
 	}
 	return maxTillNow
