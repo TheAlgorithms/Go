@@ -1,21 +1,24 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func bubbleSort(array []int)[]int{
-	for a:=0; a<len(array)-1;a++{
-		for i:=a;i<len(array)-1;i++{
-			j:=i+1
-			array =swap(array, i,j)
+func bubbleSort(arrayzor []int) []int {
+
+
+	swapped := true
+	for swapped {
+		swapped = false
+		for i := 0; i < len(arrayzor)-1; i++ {
+			if arrayzor[i+1] < arrayzor[i] {
+				swap(arrayzor, i, i+1)
+				swapped = true
+			}
 		}
 	}
-	return array
-
+	return arrayzor
 }
 
-func swap(array []int, i int, j int)[]int{
-	if array[i]>array[j]{
-		array[i],array[j] =array[j],array[i]
-	}
-	return array
-
+func swap(arrayzor []int, i, j int) {
+	tmp := arrayzor[j]
+	arrayzor[j] = arrayzor[i]
+	arrayzor[i] = tmp
 }
