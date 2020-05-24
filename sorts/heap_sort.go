@@ -1,20 +1,20 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-type MaxHeap struct {
+type maxHeap struct {
 	slice    []int
 	heapSize int
 }
 
-func BuildMaxHeap(slice []int) MaxHeap {
-	h := MaxHeap{slice: slice, heapSize: len(slice)}
+func buildMaxHeap(slice []int) maxHeap {
+	h := maxHeap{slice: slice, heapSize: len(slice)}
 	for i := len(slice) / 2; i >= 0; i-- {
 		h.MaxHeapify(i)
 	}
 	return h
 }
 
-func (h MaxHeap) MaxHeapify(i int) {
+func (h maxHeap) MaxHeapify(i int) {
 	l, r := 2*i+1, 2*i+2
 	max := i
 
@@ -31,10 +31,10 @@ func (h MaxHeap) MaxHeapify(i int) {
 	}
 }
 
-func (h MaxHeap) size() int { return h.heapSize } // ???
+func (h maxHeap) size() int { return h.heapSize } // ???
 
 func heapSort(slice []int) []int {
-	h := BuildMaxHeap(slice)
+	h := buildMaxHeap(slice)
 	//log.Println(slice)
 	for i := len(h.slice) - 1; i >= 1; i-- {
 		h.slice[0], h.slice[i] = h.slice[i], h.slice[0]
