@@ -13,26 +13,26 @@ func quickSort(arr []int) []int {
 
 	median := arr[rand.Intn(len(arr))]
 
-	low_part := make([]int, 0, len(arr))
-	high_part := make([]int, 0, len(arr))
-	middle_part := make([]int, 0, len(arr))
+	lowPart := make([]int, 0, len(arr))
+	highPart := make([]int, 0, len(arr))
+	middlePart := make([]int, 0, len(arr))
 
 	for _, item := range arr {
 		switch {
 		case item < median:
-			low_part = append(low_part, item)
+			lowPart = append(lowPart, item)
 		case item == median:
-			middle_part = append(middle_part, item)
+			middlePart = append(middlePart, item)
 		case item > median:
-			high_part = append(high_part, item)
+			highPart = append(highPart, item)
 		}
 	}
 
-	low_part = quickSort(low_part)
-	high_part = quickSort(high_part)
+	lowPart = quickSort(lowPart)
+	highPart = quickSort(highPart)
 
-	low_part = append(low_part, middle_part...)
-	low_part = append(low_part, high_part...)
+	lowPart = append(lowPart, middlePart...)
+	lowPart = append(lowPart, highPart...)
 
-	return low_part
+	return lowPart
 }
