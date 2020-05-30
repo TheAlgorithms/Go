@@ -24,11 +24,18 @@ func decodeToString(slice []int)(str string){
 	}
 	return
 }
-
+func toASCII(slice []rune)[]int{
+	var converted []int
+	for _,v:= range slice{
+		converted = append(converted, int(v))
+	}
+	return converted
+}
 func main(){
-	//string = hello world
+	str := "hello world"
 	key :=97
-	message:=[]int{72,101,108,108,111,32,119,111,114,108,100}
+	temp:= []rune(str)
+	message:=toASCII(temp)
 	encrypted:=encrypt(key,message)
 	decrypted:=decrypt(key,encrypted)
 	plaintext:=decodeToString(decrypted)
