@@ -16,7 +16,7 @@ func generatePrimes(limit int)int{
 	primes:= prime(limit)
 	var choice []int
 	choice = append(choice, 1,7,11,13,17,19,23,29)
-	for{	
+	for{
 		k:=rand.Intn(int(limit/30))
 		i:=choice[rand.Intn(len(choice))]
 		c:=30*k+i
@@ -137,36 +137,38 @@ func toRune(slice []int)string{
 	}
 	return str
 }
-	
+
 
 func main(){
 	rand.Seed(time.Now().UTC().UnixNano())
-	bits:=15
-	
+	bits:=17
+
 	p:= generatePrimes(1<<bits)
 	q:= generatePrimes(1<<bits)
 	for p==q{
 		q = generatePrimes(1<<bits)
-	} 
-	
+	}
+
 	n:= p*q
-	
+
 	delta:=lcm(p-1,q-1)
-	
+
 	e:=generatePrimes(delta)
 	d:=modularMultiplicativeInverse(e,delta)
 
 	fmt.Printf("%v \n%v \n%v \n%v\n",p,q,e,d)
-	
+
 
 	str:="I think RSA is really great"
 	message := []rune(str)
 	asciiSlice :=toASCII(message)
 
-	fmt.Printf("asciiSlice :%v \n",asciiSlice)
+	fmt.Printf("asciiSlice : %v \n",asciiSlice)
 	encrypted := encryptRSA(asciiSlice,e,n)
-	fmt.Printf("encrypted :%v \n",encrypted)
+	fmt.Printf("encrypted : %v \n",encrypted)
 	decrypted := decryptRSA(encrypted,d,n)
 	fmt.Printf("decrypted : %v \n",decrypted)
 	fmt.Printf("cleartext : %v \n",toRune(decrypted))
+	//switched to atom
+
 }
