@@ -63,7 +63,7 @@ func prime(limit int)(primes []int){
 	return
 }
 func lcm (a int, b int)int{
-	//complexity depende
+	//complexity depends on gcd
 	return int((a*b)/gcd(a,b))
 
 }
