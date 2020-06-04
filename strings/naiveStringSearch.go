@@ -16,14 +16,14 @@ import (
 
 func naivePatternSearch(text string, pattern string) []int { 
     var positions []int 
-    for i := 0; i < len(text); i++ {
+    for i := 0; i < len(text)-len(pattern); i++ {
         var match bool = true
-        for j := 0; j < len(pattern); j++ {
-            if text[i+j] != pattern[j] {
+        j := i +(len(pattern))
+        if text[i+j] != pattern[j] {
                 match = false
                 break
             }
-        }
+        
         if match {
             positions = append(positions, i)
         }
