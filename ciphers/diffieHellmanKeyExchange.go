@@ -12,8 +12,7 @@ func main(){
 	p should ideally be a large prime number but any integer works
 	g should be a small integer, 2,3 works fine
 
-	PS: Note that the secret keys are never send over
-	the network
+	PS: Note that the secret keys are never send over the network
 	*/
 
 	p:=2+rand.Intn(1<<bit)
@@ -37,8 +36,7 @@ func main(){
 	fmt.Printf("Bob sends to Alice: %v\n",BobSends)
 
 	//Both parties calculate the shared secret key from the value send
-	//(value_sent^secret_key)%p
-	//Both calculations end up with same value despite the different inputs
+
 	AliceComputes :=modularExponentiation(BobSends,AliceSecret,p)
 	BobComputes := modularExponentiation(AliceSends,BobSecret,p)
 
@@ -50,11 +48,8 @@ func main(){
 		sharedKey:=AliceComputes
 		fmt.Println("Voila, shared key is ",sharedKey)
 	}
-
-
-
-
 }
+
 func modularExponentiation(b int, e int, mod int)int{
 	//runs in O(log(n)) where n = e
 	//uses exponentiation by squaring to speed up the process

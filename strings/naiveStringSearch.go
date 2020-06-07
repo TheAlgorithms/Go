@@ -17,13 +17,12 @@ import (
 func naivePatternSearch(text string, pattern string) []int { 
     var positions []int 
     for i := 0; i < len(text)-len(pattern); i++ {
-        var match bool = true
+        var match = true
         j := i +(len(pattern))
-        if text[i+j] != pattern[j] {
+        if text[i:j] != pattern {
                 match = false
-                break
-            }
-        
+                continue
+            }        
         if match {
             positions = append(positions, i)
         }
@@ -34,11 +33,12 @@ func naivePatternSearch(text string, pattern string) []int {
 func main() {  
     text := "ABAAABCDBBABCDDEBCABC"
     pattern := "ABC"
-    var positions []int = naivePatternSearch(text, pattern)
+    positions := naivePatternSearch(text, pattern)
     if len(positions) == 0 {
-        fmt.Printf("Pattern not found in given text!")
+        fmt.Println("Pattern not found in given text!")
     } else {
-        fmt.Printf("Pattern found in following position:\n")
-        fmt.Printf("%v", positions)
+        fmt.Println("Pattern found in following position(s):")
+        fmt.Printf("%v \n", positions)
+        fmt.Println("Note that position is zero indexed :)")
     }
 }

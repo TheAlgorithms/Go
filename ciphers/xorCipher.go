@@ -37,6 +37,7 @@ func main(){
 	temp:= []rune(str)
 	message:=toASCII(temp)
 	encrypted:=encrypt(key,message)
+	//ciphertext:=decodeToString(key,message)
 	decrypted:=decrypt(key,encrypted)
 	plaintext:=decodeToString(decrypted)
 	fmt.Println(plaintext)
