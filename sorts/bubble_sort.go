@@ -18,7 +18,5 @@ func bubbleSort(arrayzor []int) []int {
 }
 
 func swap(arrayzor []int, i, j int) {
-	tmp := arrayzor[j]
-	arrayzor[j] = arrayzor[i]
-	arrayzor[i] = tmp
+	arrayzor[i],arrayzor[j] = arrayzor[j],arrayzor[i]
 }
