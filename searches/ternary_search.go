@@ -1,9 +1,9 @@
 /*
 	Ternary search implementation in Go
 
-	    Worst-case performance	Θ(log3(N))
+	    Worst-case performance	Θ(log(N))
  		Best-case performance	Θ(1)
- 		Average performance	    Θ(log3(N))
+ 		Average performance	    Θ(log(N))
 */
 package main
 
@@ -39,7 +39,7 @@ func ternarySearchAux(array []int, target int, lowIndex int, highIndex int) int 
 	if target == array[mid1] {
 		// Value found in first boundary position
 		return mid1
-	} else if target == array[mid1] {
+	} else if target == array[mid2] {
 		// Value found in second boundary position
 		return mid2
 	} else if target < array[mid1] {
