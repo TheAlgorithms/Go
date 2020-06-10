@@ -19,7 +19,7 @@ import (
 )
 
 func isBalanced(input string) string {
-	if len(input)%2 == 0{
+	if len(input)%2 != 0{
 		return input + "is not balanced."
 	if len(input) > 0 {
 		var stack []byte
