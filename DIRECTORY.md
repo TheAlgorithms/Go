@@ -51,4 +51,12 @@
   * [Topological Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/topological_sort.go)
 
 ## Strings
+  * Multiple String Matching
+    * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/ac.go)
+    * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/adac.go)
+    * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/sbom.go)
   * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naiveStringSearch.go)
+  * Single String Matching
+    * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/bom.go)
+    * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/horspool.go)
+    * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/kmp.go)
