@@ -1,4 +1,4 @@
-package hash_map
+package hashmap
 
 import (
 	"fmt"
@@ -125,22 +125,3 @@ func (hm *HashMap) hash(key interface{}) uint64 {
 
 	return (hm.capacity - 1) & (hashValue ^ (hashValue >> 16))
 }
-
-// func main() {
-// 	HashMap := New()
-
-// 	HashMap.Put("test-1", 10)
-// 	fmt.Println(HashMap.Get("test-1"))
-
-// 	HashMap.Put("test-1", 20)
-// 	HashMap.Put("test-2", 30)
-// 	HashMap.Put(1, 40)
-
-// 	fmt.Println(HashMap.Get("test-1"))
-// 	fmt.Println(HashMap.Get("test-2"))
-// 	fmt.Println(HashMap.Get(1))
-
-// 	fmt.Println(HashMap.Contains(2))
-// 	fmt.Println(HashMap.Contains(1))
-// 	fmt.Println(HashMap.Contains("test-1"))
-// }
