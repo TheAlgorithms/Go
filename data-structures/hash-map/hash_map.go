@@ -1,4 +1,4 @@
-package data-structures
+package hash_map
 
 import (
 	"fmt"
@@ -13,20 +13,23 @@ type node struct {
 	next  *node
 }
 
-type hashMap struct {
+// HashMap is golang implementation of hashmap
+type HashMap struct {
 	capacity uint64
 	size     uint64
 	table    []*node
 }
 
-func newHashMap() *hashMap {
-	return &hashMap{
+// New return new HashMap instance
+func New() *HashMap {
+	return &HashMap{
 		capacity: defaultCapacity,
 		table:    make([]*node, defaultCapacity),
 	}
 }
 
-func (hm *hashMap) get(key interface{}) interface{} {
+// Get returns value associated with given key
+func (hm *HashMap) Get(key interface{}) interface{} {
 	node := hm.getNodeByHash(hm.hash(key))
 
 	if node != nil {
@@ -36,11 +39,23 @@ func (hm *hashMap) get(key interface{}) interface{} {
 	return nil
 }
 
-func (hm *hashMap) put(key interface{}, value interface{}) interface{} {
+// Put puts new key value in hashmap
+func (hm *HashMap) Put(key interface{}, value interface{}) interface{} {
 	return hm.putValue(hm.hash(key), key, value)
 }
 
-func (hm *hashMap) putValue(hash uint64, key interface{}, value interface{}) interface{} {
+// Contains checks if given key is stored in hashmap
+func (hm *HashMap) Contains(key interface{}) bool {
+	node := hm.getNodeByHash(hm.hash(key))
+
+	if node != nil {
+		return true
+	}
+
+	return false
+}
+
+func (hm *HashMap) putValue(hash uint64, key interface{}, value interface{}) interface{} {
 	if hm.capacity == 0 {
 		hm.capacity = defaultCapacity
 		hm.table = make([]*node, defaultCapacity)
@@ -66,21 +81,11 @@ func (hm *hashMap) putValue(hash uint64, key interface{}, value interface{}) int
 
 }
 
-func (hm *hashMap) contains(key interface{}) bool {
-	node := hm.getNodeByHash(hm.hash(key))
-
-	if node != nil {
-		return true
-	}
-
-	return false
-}
-
-func (hm *hashMap) getNodeByHash(hash uint64) *node {
+func (hm *HashMap) getNodeByHash(hash uint64) *node {
 	return hm.table[hash]
 }
 
-func (hm *hashMap) resize() {
+func (hm *HashMap) resize() {
 	hm.capacity <<= 1
 
 	tempTable := hm.table
@@ -112,9 +117,9 @@ func newNodeWithNext(key interface{}, value interface{}, next *node) *node {
 	}
 }
 
-func (hm *hashMap) hash(key interface{}) uint64 {
+func (hm *HashMap) hash(key interface{}) uint64 {
 	h := fnv.New64a()
-	h.Write([]byte(fmt.Sprintf("%v", key)))
+	_, _ = h.Write([]byte(fmt.Sprintf("%v", key)))
 
 	hashValue := h.Sum64()
 
@@ -122,20 +127,20 @@ func (hm *hashMap) hash(key interface{}) uint64 {
 }
 
 // func main() {
-// 	hashMap := newHashMap()
+// 	HashMap := New()
 
-// 	hashMap.put("test-1", 10)
-// 	fmt.Println(hashMap.get("test-1"))
+// 	HashMap.Put("test-1", 10)
+// 	fmt.Println(HashMap.Get("test-1"))
 
-// 	hashMap.put("test-1", 20)
-// 	hashMap.put("test-2", 30)
-// 	hashMap.put(1, 40)
+// 	HashMap.Put("test-1", 20)
+// 	HashMap.Put("test-2", 30)
+// 	HashMap.Put(1, 40)
 
-// 	fmt.Println(hashMap.get("test-1"))
-// 	fmt.Println(hashMap.get("test-2"))
-// 	fmt.Println(hashMap.get(1))
+// 	fmt.Println(HashMap.Get("test-1"))
+// 	fmt.Println(HashMap.Get("test-2"))
+// 	fmt.Println(HashMap.Get(1))
 
-// 	fmt.Println(hashMap.contains(2))
-// 	fmt.Println(hashMap.contains(1))
-// 	fmt.Println(hashMap.contains("test-1"))
+// 	fmt.Println(HashMap.Contains(2))
+// 	fmt.Println(HashMap.Contains(1))
+// 	fmt.Println(HashMap.Contains("test-1"))
 // }
