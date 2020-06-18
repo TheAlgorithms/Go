@@ -5,17 +5,19 @@ jobs:
   golangci-lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-go@v1
-      with:
-        go-version: 1.13
-    - uses: actions/checkout@v1
-    - run: curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.21.0
-    - run: |
-        go version ; ./bin/golangci-lint --version
-        ./bin/golangci-lint run --no-config                        || true    
-    - run: ./bin/golangci-lint run --no-config ciphers strings
-    - run: ./bin/golangci-lint run --no-config data-structures     || true
-    - run: ./bin/golangci-lint run --no-config dynamic-programming || true
-    - run: ./bin/golangci-lint run --no-config other               || true
-    - run: ./bin/golangci-lint run --no-config searches            || true
-    - run: ./bin/golangci-lint run --no-config sorts
+      - uses: actions/checkout@v2
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v1
+        with:
+          # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
+          version: v1.27
+          args: --issues-exit-code=0  # Someday we can remove this...
+      - run: |
+          go version ; golangci-lint --version
+          # golangci-lint run --no-config                      || true    
+      - run: golangci-lint run --no-config ciphers strings
+      - run: golangci-lint run --no-config data-structures     || true
+      - run: golangci-lint run --no-config dynamic-programming || true
+      - run: golangci-lint run --no-config other               || true
+      - run: golangci-lint run --no-config searches            || true
+      - run: golangci-lint run --no-config sorts
