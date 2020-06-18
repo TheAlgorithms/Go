@@ -18,13 +18,17 @@ jobs:
           # Only show new issues if this is a pull request...
           # only-new-issues: true
       - run: echo "::set-env name=PATH::/home/runner/golangci-lint-1.27.0-linux-amd64:$PATH"
-      - run: |
-          go version ; golangci-lint --version
-          # golangci-lint run --no-config                      || true
-      - run: golangci-lint run --no-config ciphers             || true
-      - run: golangci-lint run --no-config data-structures     || true
-      - run: golangci-lint run --no-config dynamic-programming || true
-      - run: golangci-lint run --no-config other               || true
-      - run: golangci-lint run --no-config searches            || true
+      - run: go version ; golangci-lint --version  # Fix the following and remove || true
+      - run: golangci-lint run --no-config ciphers                            || true
+      - run: golangci-lint run --no-config data-structures/binary-tree        || true
+      - run: golangci-lint run --no-config data-structures/dynamic-array      || true
+      - run: golangci-lint run --no-config data-structures/hash-map           || true
+      - run: golangci-lint run --no-config data-structures/linked-list        || true
+      - run: golangci-lint run --no-config data-structures/trie               || true
+      - run: golangci-lint run --no-config dynamic-programming                || true
+      - run: golangci-lint run --no-config other                              || true
+      - run: golangci-lint run --no-config searches                           || true
       - run: golangci-lint run --no-config sorts
       - run: golangci-lint run --no-config strings
+      - run: golangci-lint run --no-config "strings/multiple string matching" || true
+      - run: golangci-lint run --no-config "strings/single string matching"   || true
