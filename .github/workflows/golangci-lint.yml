@@ -13,7 +13,7 @@ jobs:
         with:
           # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
           version: v1.27
-          # working-directory: sorts
+          working-directory: sorts
           # args: --issues-exit-code=0  # Hopefully someday we can remove this...
           # Only show new issues if this is a pull request...
           only-new-issues: true
