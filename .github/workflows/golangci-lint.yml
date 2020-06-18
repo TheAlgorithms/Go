@@ -14,7 +14,7 @@ jobs:
           args: --issues-exit-code=0  # Someday we can remove this...
       - run: |
           go version ; golangci-lint --version
-          golangci-lint run --no-config                        || true    
+          # golangci-lint run --no-config                      || true    
       - run: golangci-lint run --no-config ciphers strings
       - run: golangci-lint run --no-config data-structures     || true
       - run: golangci-lint run --no-config dynamic-programming || true
