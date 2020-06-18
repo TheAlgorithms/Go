@@ -13,8 +13,9 @@ jobs:
           version: v1.27
           working-directory: sorts
           args: --issues-exit-code=0  # Hopefully someday we can remove this...
-      - run: set-env PATH="/home/runner/golangci-lint-1.27.0-linux-amd64:$PATH"
+      - run: echo "::set-env name=PATH::/home/runner/golangci-lint-1.27.0-linux-amd64:$PATH"
       - run: |
+          echo $PATH
           go version ; golangci-lint --version
           # golangci-lint run --no-config                      || true    
       - run: golangci-lint run --no-config ciphers strings
