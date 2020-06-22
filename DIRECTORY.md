@@ -40,6 +40,7 @@
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Go/blob/master/searches/binary_search.go)
   * [Linear Search](https://github.com/TheAlgorithms/Go/blob/master/searches/linear_search.go)
+  * [Search Test](https://github.com/TheAlgorithms/Go/blob/master/searches/search_test.go)
 
 ## Sorts
   * [Bubble Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubble_sort.go)
