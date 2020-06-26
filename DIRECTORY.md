@@ -39,6 +39,8 @@
 
 ## Searches
   * [Binary Search](https://github.com/TheAlgorithms/Go/blob/master/searches/binary_search.go)
+  * [Breadth First Search](https://github.com/TheAlgorithms/Go/blob/master/searches/breadth_first_search.go)
+  * [Depth First Search](https://github.com/TheAlgorithms/Go/blob/master/searches/depth_first_search.go)
   * [Linear Search](https://github.com/TheAlgorithms/Go/blob/master/searches/linear_search.go)
   * [Search Test](https://github.com/TheAlgorithms/Go/blob/master/searches/search_test.go)
 
