@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// getIdx return target node index
 func getIdx(target int, nodes []int) int {
 	for i := 0; i < len(nodes); i++ {
 		if nodes[i] == target {
@@ -21,7 +20,6 @@ func notExist(target int, slice []int) bool {
 	return true
 }
 
-// bfs return whether start reach end or not.
 func bfs(start, end int, nodes []int, edges [][]bool) bool {
 	var route []int
 	var queue []int
@@ -30,7 +28,6 @@ func bfs(start, end int, nodes []int, edges [][]bool) bool {
 	for len(queue) > 0 {
 		now := queue[0]
 		route = append(route, nodes[now])
-		// update queue
 		if len(queue) > 1 {
 			queue = queue[1:]
 		} else {
@@ -51,7 +48,6 @@ func bfs(start, end int, nodes []int, edges [][]bool) bool {
 }
 
 func main() {
-	// show graph as node 1-demensional matrix, edge 2-demensional matrix
 	nodes := []int{
 		1, 2, 3, 4, 5, 6,
 	}

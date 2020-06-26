@@ -2,7 +2,6 @@ package main
 
 import "fmt"
 
-// getIdx return target node index
 func getIdx(target int, nodes []int) int {
 	for i := 0; i < len(nodes); i++ {
 		if nodes[i] == target {
@@ -21,7 +20,6 @@ func notExist(target int, slice []int) bool {
 	return true
 }
 
-// dfs return route, whether reach end or not
 func dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
 	var route []int
 	var stack []int
@@ -30,14 +28,12 @@ func dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
 	for len(stack) > 0 {
 		now := stack[len(stack)-1]
 		route = append(route, nodes[now])
-		// update stack
 		if len(stack) > 1 {
 			stack = stack[:len(stack)-1]
 		} else {
 			stack = stack[:len(stack)-1]
 		}
 		for i := 0; i < len(edges[now]); i++ {
-			// exist edge
 			if edges[now][i] && notExist(i, stack) {
 				stack = append(stack, i)
 			}
@@ -52,7 +48,6 @@ func dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
 }
 
 func main() {
-	// show graph as node 1-demensional matrix, edge 2-demensional matrix
 	nodes := []int{
 		1, 2, 3, 4, 5, 6,
 	}
