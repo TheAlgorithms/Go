@@ -68,6 +68,7 @@
   * [Topological Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/topological_sort.go)
 
 ## Strings
+  * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteinDistance.go)
   * Multiple String Matching
     * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/ac.go)
     * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/adac.go)
