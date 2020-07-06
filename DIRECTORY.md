@@ -34,6 +34,9 @@
 
 ## Other
   * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/maxSubarraySum.go)
+  * Monte Carlo Pi
+    * [Monte Carlo Pi](https://github.com/TheAlgorithms/Go/blob/master/other/monte_carlo_pi/monte_carlo_pi.go)
+    * [Monte Carlo Pi Test](https://github.com/TheAlgorithms/Go/blob/master/other/monte_carlo_pi/monte_carlo_pi_test.go)
   * [Nestedbrackets](https://github.com/TheAlgorithms/Go/blob/master/other/NestedBrackets.go)
   * [Passwordgenerator](https://github.com/TheAlgorithms/Go/blob/master/other/PasswordGenerator.go)
   * [Prime Numbers](https://github.com/TheAlgorithms/Go/blob/master/other/prime_numbers.go)
