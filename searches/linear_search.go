@@ -12,7 +12,7 @@ func linearSearch(array []int, query int) int {
 }
 
 func main() {
-	
+
 	fmt.Println("Linear search:")
 	array := []int{0, 2, 4, 6, 8, 10, 12, 14, 16, 18}
 	index := linearSearch(array, 10)

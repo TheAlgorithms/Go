@@ -7,6 +7,7 @@
 // For example, the string "()()[()]" is properly nested but "[(()]" is not.
 // The function called isBalanced takes as input a string which is a sequence of brackets and
 // returns true if input is nested and false otherwise.
+//note that only an even number of brackets can be properly nested
 
 package main
 
@@ -18,7 +19,8 @@ import (
 )
 
 func isBalanced(input string) string {
-
+	if len(input)%2 != 0{
+		return input + "is not balanced."
 	if len(input) > 0 {
 		var stack []byte
 		for i := 0; i < len(input); i++ {
