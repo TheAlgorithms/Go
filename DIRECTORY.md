@@ -49,6 +49,7 @@
 
 ## Sorts
   * [Bubble Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubble_sort.go)
+  * [Counting Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/counting_sort.go)
   * [Heap Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heap_sort.go)
   * [Insertion Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertion_sort.go)
   * [Merge Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/merge_sort.go)
