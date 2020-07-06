@@ -23,6 +23,7 @@
     * [Trie Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/trie/trie_test.go)
 
 ## Dynamic-Programming
+  * [Binomial-Coeffecient](https://github.com/TheAlgorithms/Go/blob/master/dynamic-programming/binomial-coeffecient.go)
   * [Knapsack](https://github.com/TheAlgorithms/Go/blob/master/dynamic-programming/knapsack.go)
   * [Longest-Palindromic-Subsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic-programming/longest-palindromic-subsequence.go)
   * [Longestcommonsubsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic-programming/longestCommonSubsequence.go)
