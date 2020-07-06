@@ -30,7 +30,7 @@
   * [Rod-Cutting](https://github.com/TheAlgorithms/Go/blob/master/dynamic-programming/rod-cutting.go)
 
 ## Graphs
-  * [Floyd-Warshall algorithm](https://github.com/TheAlgorithms/Go/blob/master/graphs/floyd_warshall.go)
+  * [Floyd Warshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floyd_warshall.go)
 
 ## Other
   * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/maxSubarraySum.go)
