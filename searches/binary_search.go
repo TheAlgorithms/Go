@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 	Binary search implementation in Go
 */
@@ -33,3 +34,5 @@ func iterBinarySearch(array []int, target int, lowIndex int, highIndex int) int 
 	}
 	return -1
 }
+=======
+>>>>>>> master
