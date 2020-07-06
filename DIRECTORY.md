@@ -33,6 +33,9 @@
 ## Graphs
   * [Floyd Warshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floyd_warshall.go)
 
+## Math
+  * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/fastExponent.go)
+
 ## Other
   * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/maxSubarraySum.go)
   * Monte Carlo Pi
