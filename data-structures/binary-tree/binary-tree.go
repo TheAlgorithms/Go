@@ -42,16 +42,16 @@ func preorder(n *node) {
 		return
 	}
 	fmt.Print(n.val, " ")
-	inorder(n.left)
-	inorder(n.right)
+	preorder(n.left)
+	preorder(n.right)
 }
 
 func postorder(n *node) {
 	if n == nil {
 		return
 	}
-	inorder(n.left)
-	inorder(n.right)
+	postorder(n.left)
+	postorder(n.right)
 	fmt.Print(n.val, " ")
 }
 
