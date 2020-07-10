@@ -48,12 +48,14 @@ func levenshteinDistance(str1, str2 string, icost, scost, dcost int) int {
 	return row1[len(row1)-1]
 }
 
+/*
 func min(str1, str2 int) int {
 	if str1 < str2 {
 		return str1
 	}
 	return str2
 }
+*/
 
 func main() {
 	str1 := "stingy"
