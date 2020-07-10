@@ -32,6 +32,7 @@ func naivePatternSearch(text string, pattern string) []int {
 	return positions
 }
 
+/*
 func main() {
 	text := "ABAAABCDBBABCDDEBCABC"
 	pattern := "ABC"
@@ -43,3 +44,4 @@ func main() {
 		fmt.Printf("%v", positions)
 	}
 }
+*/
