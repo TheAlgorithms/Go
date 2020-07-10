@@ -71,5 +71,4 @@ func main() {
 	fmt.Printf("Distance between \"%s\" and \"%s\" is: %d.\n", str1, str2, strDistance2)
 	// Output: Distance between "stingy" and "ring" is: 7.
 
-	return
 }
