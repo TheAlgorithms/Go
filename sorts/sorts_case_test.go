@@ -13,7 +13,7 @@ type sortTest struct {
 	name     string
 }
 
-var arr []= makeRandArray(500_000)
+var arr = makeRandArray(500_000)
 
 var sortTests = []sortTest{
 	//Sorted slice
