@@ -10,9 +10,11 @@ Time Complexity : O(n*m)
 
 package main
 
+/*
 import (
 	"fmt"
 )
+*/
 
 func naivePatternSearch(text string, pattern string) []int {
 	var positions []int
