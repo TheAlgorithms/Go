@@ -1,3 +1,14 @@
+/*
+Simple multithreaded algorithm to show how the 4 phases of a genetic
+algorithm works (Evaluation, Selection, Crossover and Mutation)
+https://en.wikipedia.org/wiki/Genetic_algorithm
+
+Link to the same algorithm implemented in python:
+https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_string.py
+
+Author: D4rkia
+*/
+
 package main
 
 import (
@@ -16,19 +27,26 @@ type populationItem struct {
 	Value float64
 }
 
-func main() {
-	// Define a random seed
+func genetic_string(target string, charmap []rune) (int, int, string) {
+	// Define parameters
+	// Maximum size of the population.  bigger could be faster but is more memory expensive
+	populationNum := 200
+	// Number of elements selected in every generation for evolution the selection takes
+	// place from the best to the worst of that generation must be smaller than N_POPULATION
+	selectionNum := 50
+	// Probability that an element of a generation can mutate changing one of its genes this
+	// guarantees that all genes will be used during evolution
+	mutationProb := .4
+	// Just a seed to improve randomness required by the algorithm
 	rand.Seed(time.Now().UnixNano())
 
-	// Define parameters
-	sentence := string("This is a genetic algorithm to evaluate, combine, evolve  mutate a string!")
-	charmap := []rune(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\")
-	populationNum := 200
-	selectionNum := 50
-	mutationProb := .1
-
-	// Verify the presence of all char in sentence
-	for position, r := range []rune(sentence) {
+	// Verify if 'populationNum' s bigger than 'selectionNum'
+	if populationNum < selectionNum {
+		fmt.Println(errors.New("PopulationNum must be bigger tha selectionNum "))
+		os.Exit(1)
+	}
+	// Verify that the target contains no genes besides the ones inside genes variable.
+	for position, r := range []rune(target) {
 		find := func() bool {
 			for _, n := range charmap {
 				if n == r {
@@ -43,61 +61,97 @@ func main() {
 		}
 	}
 
-	// Generate random population
+	// Generate random starting population
 	pop := make([]populationItem, populationNum, populationNum)
 	for i := 0; i < populationNum; i++ {
 		key := ""
-		for x := 0; x < utf8.RuneCountInString(sentence); x++ {
+		for x := 0; x < utf8.RuneCountInString(target); x++ {
 			choice := rand.Intn(len(charmap))
 			key += string(charmap[choice])
 		}
 		pop[i] = populationItem{key, 0}
 	}
 
-	for gen, generatedPop := 1, 0; ; gen++ {
+	// Just some logs to know what the algorithms is doing
+	gen, generatedPop := 0, 0
+
+	// This loop will end when we will find a perfect match for our target
+	for {
+		gen += 1
 		generatedPop += len(pop)
 
 		// Random population created now it's time to evaluate
 		for i, item := range pop {
-			itemKey, sentenceRune := []rune(item.Key), []rune(sentence)
-			for x := 0; x < len(sentence); x++ {
-				if itemKey[x] == sentenceRune[x] {
+			pop[i].Value = 0
+			itemKey, targetRune := []rune(item.Key), []rune(target)
+			for x := 0; x < len(target); x++ {
+				if itemKey[x] == targetRune[x] {
 					pop[i].Value++
 				}
 			}
-			pop[i].Value = pop[i].Value / float64(len(sentenceRune))
+			pop[i].Value = pop[i].Value / float64(len(targetRune))
 		}
-		// Check if there is a right evolution
 		sort.SliceStable(pop, func(i, j int) bool { return pop[i].Value > pop[j].Value })
-		if pop[0].Key == sentence {
-			fmt.Println("Generation:", strconv.Itoa(gen), "Analyzed:", generatedPop, "Best:", pop[0])
+
+		// Check if there is a matching evolution
+		if pop[0].Key == target {
 			break
 		}
-		// Print the best result
-		if gen%1000 == 0 {
+		// Print the best resultPrint the Best result every 10 generations
+		// just to know that the algorithm is working
+		if gen%10 == 0 {
 			fmt.Println("Generation:", strconv.Itoa(gen), "Analyzed:", generatedPop, "Best:", pop[0])
 		}
-		// Combine, Evolve and Mutate
+
+		// Generate a new population vector keeping some of the best evolutions
+		// Keeping this avoid regression of evolution
 		var popChildren []populationItem
+		popChildren = append(popChildren, pop[0:int(selectionNum/3)]...)
+
+		// This is Selection
 		for i := 0; i < int(selectionNum); i++ {
 			parent1 := pop[i]
-			parent2 := pop[i+1]
-			split := rand.Intn(utf8.RuneCountInString(sentence))
-
-			// Save Children 1
-			child := append([]rune(parent1.Key)[:split], []rune(parent2.Key)[split:]...)
-			if rand.Float64() > mutationProb {
-				child[rand.Intn(len(child))] = charmap[rand.Intn(len(charmap))]
+			// Generate more child proportionally to the fitness score
+			child_n := (parent1.Value * 100) + 1
+			if child_n >= 10 {
+				child_n = 10
 			}
-			popChildren = append(popChildren, populationItem{string(child), 0})
+			for x := 0.0; x < child_n; x++ {
+				parent2 := pop[rand.Intn(selectionNum)]
+				// Crossover
+				split := rand.Intn(utf8.RuneCountInString(target))
+				child1 := append([]rune(parent1.Key)[:split], []rune(parent2.Key)[split:]...)
+				child2 := append([]rune(parent2.Key)[:split], []rune(parent1.Key)[split:]...)
+				//Clean fitness value
+				// Mutate
+				if rand.Float64() < mutationProb {
+					child1[rand.Intn(len(child1))] = charmap[rand.Intn(len(charmap))]
+				}
+				if rand.Float64() < mutationProb {
+					child2[rand.Intn(len(child2))] = charmap[rand.Intn(len(charmap))]
+				}
+				// Push into 'popChildren'
+				popChildren = append(popChildren, populationItem{string(child1), 0})
+				popChildren = append(popChildren, populationItem{string(child2), 0})
 
-			// Save Children 2
-			child = append([]rune(parent2.Key)[:split], []rune(parent1.Key)[split:]...)
-			if rand.Float64() > mutationProb {
-				child[rand.Intn(len(child))] = charmap[rand.Intn(len(charmap))]
+				// Check if the population has already reached the maximum value and if so,
+				// break the cycle. If this check is disabled the algorithm will take
+				// forever to compute large strings but will also calculate small string in
+				// a lot fewer generationsù
+				if len(popChildren) >= selectionNum {
+					break
+				}
 			}
-			popChildren = append(popChildren, populationItem{string(child), 0})
 		}
 		pop = popChildren
 	}
+	return gen, generatedPop, pop[0].Key
+}
+
+func main() {
+	// Define parameters
+	target := string("This is a genetic algorithm to evaluate, combine, evolve and mutate a string!")
+	charmap := []rune(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\")
+	gen, generatedPop, best := genetic_string(target, charmap)
+	fmt.Println("Generation:", strconv.Itoa(gen), "Analyzed:", generatedPop, "Best:", best)
 }
