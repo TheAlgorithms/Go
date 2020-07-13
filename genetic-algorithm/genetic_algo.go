@@ -27,7 +27,7 @@ type populationItem struct {
 	Value float64
 }
 
-func genetic_string(target string, charmap []rune) (int, int, string) {
+func geneticString(target string, charmap []rune) (int, int, string) {
 	// Define parameters
 	// Maximum size of the population.  bigger could be faster but is more memory expensive
 	populationNum := 200
@@ -77,7 +77,7 @@ func genetic_string(target string, charmap []rune) (int, int, string) {
 
 	// This loop will end when we will find a perfect match for our target
 	for {
-		gen += 1
+		gen++
 		generatedPop += len(pop)
 
 		// Random population created now it's time to evaluate
@@ -112,11 +112,11 @@ func genetic_string(target string, charmap []rune) (int, int, string) {
 		for i := 0; i < int(selectionNum); i++ {
 			parent1 := pop[i]
 			// Generate more child proportionally to the fitness score
-			child_n := (parent1.Value * 100) + 1
-			if child_n >= 10 {
-				child_n = 10
+			nChild := (parent1.Value * 100) + 1
+			if nChild >= 10 {
+				nChild = 10
 			}
-			for x := 0.0; x < child_n; x++ {
+			for x := 0.0; x < nChild; x++ {
 				parent2 := pop[rand.Intn(selectionNum)]
 				// Crossover
 				split := rand.Intn(utf8.RuneCountInString(target))
@@ -152,6 +152,6 @@ func main() {
 	// Define parameters
 	target := string("This is a genetic algorithm to evaluate, combine, evolve and mutate a string!")
 	charmap := []rune(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\")
-	gen, generatedPop, best := genetic_string(target, charmap)
+	gen, generatedPop, best := geneticString(target, charmap)
 	fmt.Println("Generation:", strconv.Itoa(gen), "Analyzed:", generatedPop, "Best:", best)
 }
