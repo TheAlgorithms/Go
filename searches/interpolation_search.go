@@ -1,3 +1,10 @@
+/*
+	interpolation search is a search algorithm that works best for sorted
+	uniformly distributed arrays.
+	best case time complexity is O(log(log(n))
+	worst case time complexity is O(n)
+*/
+
 package main
 
 import "fmt"
