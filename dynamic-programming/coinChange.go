@@ -2,9 +2,9 @@
 1. Finding the total number of combination that can be achived with the given number of coins to get the specified sum.
 */
 
-package Coinchange
+package main
 
-// import "fmt"
+import "fmt"
 
 func coin_change_count(coins []int, sum int) int {
 	if sum < 1 {
@@ -20,8 +20,6 @@ func coin_change_count(coins []int, sum int) int {
 	return arr[sum]
 }
 
-/*
 func main() {
         fmt.Println(coin_change_count([]int {1,2}, 4)) // Expected output will be 3
 }
-*/
