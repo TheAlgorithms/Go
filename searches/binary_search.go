@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 	Binary search implementation in Go
 */
@@ -7,7 +8,7 @@ func binarySearch(array []int, target int, lowIndex int, highIndex int) int {
 	if highIndex < lowIndex {
 		return -1
 	}
-	mid := int((lowIndex + highIndex) / 2)
+	mid := int(lowIndex + (highIndex-lowIndex)/2)
 	if array[mid] > target {
 		return binarySearch(array, target, lowIndex, mid)
 	} else if array[mid] < target {
@@ -22,7 +23,7 @@ func iterBinarySearch(array []int, target int, lowIndex int, highIndex int) int 
 	endIndex := highIndex
 	var mid int
 	for startIndex < endIndex {
-		mid = int((startIndex + endIndex) / 2)
+		mid = int(startIndex + (endIndex - startIndex))
 		if array[mid] > target {
 			endIndex = mid
 		} else if array[mid] < target {
@@ -33,3 +34,5 @@ func iterBinarySearch(array []int, target int, lowIndex int, highIndex int) int 
 	}
 	return -1
 }
+=======
+>>>>>>> master

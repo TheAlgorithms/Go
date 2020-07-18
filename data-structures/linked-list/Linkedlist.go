@@ -4,7 +4,7 @@ import "fmt"
 
 /* v is the value of node; next is the pointer to next node */
 type node struct {
-	v int
+	v    int
 	next *node
 }
 
@@ -24,9 +24,9 @@ func (l *node) pushFront(val int) *node {
 		nnode = head
 		/* create a second node with new value and `next -> nnode`
 		*  is this way, nnode2 is before nnode
-		*/
-		nnode2 := &node {
-			v: val,
+		 */
+		nnode2 := &node{
+			v:    val,
 			next: nnode,
 		}
 		/* now head is equals nnode2 */
@@ -62,7 +62,7 @@ func (l *node) popFront() *node {
 	/* create a new node equals to first node pointed by head */
 	cpnode := new(node)
 	cpnode = head.next
-	
+
 	/* now head is equals cpnode (second node) */
 	head = cpnode
 
@@ -76,7 +76,7 @@ func (l *node) popBack() *node {
 	/* create a new node equals to head */
 	cpnode := new(node)
 	cpnode = head
-	
+
 	/* read list to the penultimate node */
 	for cpnode.next.next != nil {
 		cpnode = cpnode.next
@@ -89,14 +89,14 @@ func (l *node) popBack() *node {
 func main() {
 	lista := new(node)
 	lista.pushBack(25).pushBack(24).pushBack(32) /* lista: 25 24 32 */
-	lista.pushBack(56) /* lista: 25 24 32 56 */
-	lista.pushFront(36) /* lista: 36 25 24 32 56 */
-	lista.popFront() /* lista: 25 24 32 56 */
-	lista.popBack() /* lista: 25 24 32 */
-	
+	lista.pushBack(56)                           /* lista: 25 24 32 56 */
+	lista.pushFront(36)                          /* lista: 36 25 24 32 56 */
+	lista.popFront()                             /* lista: 25 24 32 56 */
+	lista.popBack()                              /* lista: 25 24 32 */
+
 	/* read the list until head is not nil */
 	for head != nil {
-		fmt.Printf("%d ",head.v)
+		fmt.Printf("%d ", head.v)
 		head = head.next /*head points to next node */
 	}
 }
