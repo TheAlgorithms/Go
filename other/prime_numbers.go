@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/douglasmakey/golang-algorithms-/utils"
 	"math"
 	"os"
 	"strconv"
-	"github.com/douglasmakey/golang-algorithms-/utils"
 	"time"
 )
 
@@ -31,7 +31,6 @@ func isPrime(n int64) bool {
 	if math.Mod(float64(n), 2) == 0 {
 		return false
 	}
-
 
 	limit = int64(math.Ceil(math.Sqrt(float64(n))))
 	for i = 3; i <= limit; i += 2 {

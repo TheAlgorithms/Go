@@ -34,11 +34,11 @@ func toASCII(slice []rune) []int {
 }
 func main() {
 	str := "hello world"
-	key :=97
-	temp:= []rune(str)
-	message:=toASCII(temp)
-	encrypted:=encrypt(key,message)
-	decrypted:=decrypt(key,encrypted)
-	plaintext:=decodeToString(decrypted)
+	key := 97
+	temp := []rune(str)
+	message := toASCII(temp)
+	encrypted := encrypt(key, message)
+	decrypted := decrypt(key, encrypted)
+	plaintext := decodeToString(decrypted)
 	fmt.Println(plaintext)
 }
