@@ -1,17 +1,39 @@
 package sorts
 
-func CountingSort(arr []int, max int) []int {
-	//use the max value to create a slice of item counts
-	counts := make([]int, max+1)
-	result := make([]int, 0)
-	for _, item := range arr {
-		counts[item]++
+// CountingSort : Time O(n) | Space O(n)
+func CountingSort(arr []int) []int {
+	if len(arr) <= 1 {
+		return arr
 	}
-	for i := 0; i < len(counts); i++ {
-		count := counts[i]
-		for j := 0; j < count; j++ {
-			result = append(result, i)
+	min, max := findMinAndMax(arr)
+
+	buckets := make([]int, max-min+1)
+
+	for _, item := range arr {
+		buckets[item-min]++
+	}
+
+	index := 0
+	for i := 0; i < len(buckets); i++ {
+		for buckets[i] > 0 {
+			arr[index] = i + min
+			index++
+			buckets[i]--
 		}
 	}
-	return result
+	return arr
+}
+
+func findMinAndMax(a []int) (min int, max int) {
+	min = a[0]
+	max = a[0]
+	for _, value := range a {
+		if value < min {
+			min = value
+		}
+		if value > max {
+			max = value
+		}
+	}
+	return min, max
 }

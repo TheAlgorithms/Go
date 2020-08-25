@@ -3,36 +3,37 @@ package sorts
 
 import (
 	"math/rand"
+	"time"
 )
 
-func quickSort(arr []int) []int {
-
-	if len(arr) <= 1 {
-		return arr
+func quickSort(array []int, left int, right int) []int {
+	if left < right {
+		p := partition(array, left, right)
+		quickSort(array, left, p-1)
+		quickSort(array, p+1, right)
 	}
 
-	median := arr[rand.Intn(len(arr))]
+	return array
+}
 
-	lowPart := make([]int, 0, len(arr))
-	highPart := make([]int, 0, len(arr))
-	middlePart := make([]int, 0, len(arr))
+// Lomuto's partition scheme
+func partition(array []int, low int, high int) int {
+	rand.Seed(time.Now().UnixNano())
+	pivotIndex := rand.Intn(high-low) + low
+	pivot := array[pivotIndex]
 
-	for _, item := range arr {
-		switch {
-		case item < median:
-			lowPart = append(lowPart, item)
-		case item == median:
-			middlePart = append(middlePart, item)
-		case item > median:
-			highPart = append(highPart, item)
+	array[pivotIndex], array[high] = array[high], array[pivotIndex]
+
+	index := low
+
+	for i := low; i < high; i++ {
+		if array[i] < pivot {
+			array[i], array[index] = array[index], array[i]
+			index++
 		}
 	}
 
-	lowPart = quickSort(lowPart)
-	highPart = quickSort(highPart)
+	array[high], array[index] = array[index], array[high]
 
-	lowPart = append(lowPart, middlePart...)
-	lowPart = append(lowPart, highPart...)
-
-	return lowPart
+	return index
 }

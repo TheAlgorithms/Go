@@ -2,9 +2,14 @@
 package sorts
 
 import (
-	"crypto/rand"
-	"math/big"
+	"math/rand"
 	"sort"
+	"time"
+)
+
+const (
+	maxSize = 500_000
+	minSize = -maxSize
 )
 
 type sortTest struct {
@@ -13,7 +18,7 @@ type sortTest struct {
 	name     string
 }
 
-var arr []= makeRandArray(500_000)
+var arr []int = makeRandArray()
 
 var sortTests = []sortTest{
 	//Sorted slice
@@ -26,18 +31,25 @@ var sortTests = []sortTest{
 	{[]int{}, []int{}, "Empty"},
 	//Single-entry slice
 	{[]int{1}, []int{1}, "Singleton"},
-
-	//500k values sort
+	// random array of maxSize length sort
 	{arr, getSortedVersion(arr), "Large Random"},
 }
 
-func makeRandArray(size int) []int {
-	vals := make([]int, size)
+func makeRandArray() []int {
+	rand.Seed(time.Now().UnixNano())
+
+	testArr := []int{}
+
+	for range [maxSize]int{} {
+		testArr = append(testArr, rand.Intn(maxSize-minSize)+minSize)
+	}
+	/* Same method with using crypto rand and only positive numbers
 	for i := 0; i < size; i++ {
 		temp, _ := rand.Int(rand.Reader, big.NewInt(int64(size)))
 		vals[i] = int(temp.Int64())
 	}
-	return vals
+	*/
+	return testArr
 }
 
 func getSortedVersion(a []int) []int {
