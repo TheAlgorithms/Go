@@ -1,14 +1,18 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
-	swapped := true
-	for swapped {
+
+// Optimized bubble sort
+func bubbleSort(numbers *[]int) {
+	var swapped bool = true
+	var nofIteration int
+	for swapped{
 		swapped = false
-		for i := 0; i < len(arrayzor)-1; i++ {
-			if arrayzor[i+1] < arrayzor[i] {
-				arrayzor[i+1], arrayzor[i] =  arrayzor[i], arrayzor[i+1]
+		for j := 0; j < len(*numbers) - nofIteration - 1; j++{
+			if (*numbers)[j] > (*numbers)[j+1]{
+				(*numbers)[j], (*numbers)[j+1] = (*numbers)[j+1], (*numbers)[j]
 				swapped = true
 			}
 		}
+		nofIteration += 1
 	}
-	return arrayzor
 }
