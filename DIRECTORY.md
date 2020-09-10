@@ -6,6 +6,9 @@
   * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher.go)
   * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xorCipher.go)
 
+## Conversions
+  * [Roman To Integer](https://github.com/TheAlgorithms/Go/blob/master/conversions/roman_to_integer.go)
+
 ## Data-Structures
   * Binary-Tree
     * [Binary-Search-Tree](https://github.com/TheAlgorithms/Go/blob/master/data-structures/binary-tree/binary-search-tree.go)
