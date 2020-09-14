@@ -1,31 +1,19 @@
 package main
 
-//based on square and multiply algorithm
-
-func fastExponentiation(b int, e int) float64 {
-	//runs in O(log(n)) where n = e
-	if e == 0 {
-		return 1.0
-	}
-	if e == 1 {
-		return float64(b)
-	}
-	if e < 0 {
-		e *= -1
-		println("executed")
-		return 1 / fastExponentiation(b, e)
-	}
-	r := 1
-	for e > 0 {
-		if e%2 == 1 {
-			r = r * b
+func fastExponentiation(x int, y int) float64 {
+	res := 1 // res is the final result
+	for y > 0 {
+		// If y is odd, multiply x with result
+		if (y & 1) != 0 {
+			res = res * x
 		}
-		e = e >> 1
-		b = b * b
+		// After AND operation with 1 y will be even now
+		y = y >> 1 //  Right Bit Shift(y=y/2)
+		x = x * x  // Change x to x^2
 	}
-	return float64(r)
+	return float64(res)
 }
 
 func main() {
-	print(fastExponentiation(2, 0))
+	print(fastExponentiation(3, 0))
 }
