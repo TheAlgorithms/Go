@@ -1,10 +1,11 @@
 // Floyd-Warshall algorithm
 // https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
 
-package graph
+package main
 
 import (
 	"math"
+	"fmt"
 )
 
 // Defining matrix to use 2d array easier
@@ -47,17 +48,17 @@ func FloydWarshall(graph Matrix) Matrix {
 	return result
 }
 
-// func main() {
-// 	var graph Matrix
-// 	graph = Matrix{{0, maxValue, -2, maxValue},
-// 		{4, 0, 3, maxValue},
-// 		{maxValue, maxValue, 0, 2},
-// 		{maxValue, -1, maxValue, 0}}
+func main() {
+ 	var graph Matrix
+ 	graph = Matrix{{0, maxValue, -2, maxValue},
+ 		{4, 0, 3, maxValue},
+ 		{maxValue, maxValue, 0, 2},
+ 		{maxValue, -1, maxValue, 0}}
 
-// 	result := FloydWarshall(graph)
+ 	result := FloydWarshall(graph)
 
-// 	// Print result
-// 	for i := 0; i < len(result); i++ {
-// 		fmt.Printf("%4g\n", result[i])
-// 	}
-// }
+ 	//Print result
+ 	for i := 0; i < len(result); i++ {
+ 		fmt.Printf("%4g\n", result[i])
+ 	}
+ }

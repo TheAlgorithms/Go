@@ -49,7 +49,8 @@ func main() {
 	}
 }
 
-func modularExponentiation(b int, e int, mod int) int {
+func modularExponentiation(b, e, mod int) int {
+
 	//runs in O(log(n)) where n = e
 	//uses exponentiation by squaring to speed up the process
 	if mod == 1 {
