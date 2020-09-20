@@ -2,6 +2,7 @@
 ## Ciphers
   * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/CaesarCipher.go)
   * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffieHellmanKeyExchange.go)
+  * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/Rot13.go)
   * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher(Big).go)
   * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher.go)
   * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xorCipher.go)
@@ -35,6 +36,7 @@
 
 ## Math
   * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/fastExponent.go)
+  * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/Sieve.go)
 
 ## Other
   * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/maxSubarraySum.go)
