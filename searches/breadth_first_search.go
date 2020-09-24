@@ -20,7 +20,7 @@ func notExist(target int, slice []int) bool {
 	return true
 }
 
-func bfs(start, end int, nodes []int, edges [][]bool) bool {
+func breadthFirstSearch(start, end int, nodes []int, edges [][]bool) bool {
 	var route []int
 	var queue []int
 	startIdx := getIdx(start, nodes)
@@ -67,6 +67,6 @@ func main() {
 	}
 	start := 1
 	end := 6
-	result := bfs(start, end, nodes, edges)
+	result := breadthFirstSearch(start, end, nodes, edges)
 	fmt.Println(result)
 }

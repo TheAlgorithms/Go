@@ -63,12 +63,12 @@ func prime(limit int) (primes []int) {
 	}
 	return
 }
-func lcm(a int, b int) int {
+func lcm(a, b int) int {
 	//complexity depends on gcd
 	return int((a * b) / gcd(a, b))
 
 }
-func gcd(a int, b int) int {
+func gcd(a, b int) int {
 	//complexity not clear
 	for b != 0 {
 		t := b
@@ -77,7 +77,7 @@ func gcd(a int, b int) int {
 	}
 	return a
 }
-func modularMultiplicativeInverse(e int, delta int) int {
+func modularMultiplicativeInverse(e, delta int) int {
 	//runs in O(n) where n = delta
 	e = e % delta
 	for i := 1; i < delta; i++ {
@@ -88,7 +88,7 @@ func modularMultiplicativeInverse(e int, delta int) int {
 	return 0
 }
 
-func modularExponentiation(b int, e int, mod int) int {
+func modularExponentiation(b, e, mod int) int {
 	//runs in O(log(n)) where n = e
 	if mod == 1 {
 		return 0
@@ -105,7 +105,7 @@ func modularExponentiation(b int, e int, mod int) int {
 	return r
 }
 
-func encryptRSA(message []int, e int, n int) []int {
+func encryptRSA(message []int, e, n int) []int {
 	//runs in O(k*log(n)) where k = len(message) and n = e
 	var ciphertext []int
 	for _, v := range message {
@@ -113,7 +113,7 @@ func encryptRSA(message []int, e int, n int) []int {
 	}
 	return ciphertext
 }
-func decryptRSA(ciphertext []int, d int, n int) []int {
+func decryptRSA(ciphertext []int, d, n int) []int {
 	//runs in O(k*log(n)) where k = len(ciphertext) and n = d
 	var message []int
 	for _, v := range ciphertext {
