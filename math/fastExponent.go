@@ -1,19 +1,42 @@
 package main
 
-func fastExponentiation(x int, y int) float64 {
-	res := 1 // res is the final result
-	for y > 0 {
-		// If y is odd, multiply x with result
-		if (y & 1) != 0 {
-			res = res * x
+//iterative O(logn) function for pow(x, y)
+func iterativePower(n uint, power uint) uint {
+	var res uint = 1
+	for power > 0 {
+
+		if (power & 1) != 0 {
+			res = res * n
 		}
-		// After AND operation with 1 y will be even now
-		y = y >> 1 //  Right Bit Shift(y=y/2)
-		x = x * x  // Change x to x^2
+
+		power = power >> 1
+		n = n * n
 	}
-	return float64(res)
+	return res
 }
 
-func main() {
-	print(fastExponentiation(3, 0))
+//recursive O(logn) function for pow(x, y)
+func recursivePower(n uint, power uint) uint {
+	if power == 0 {
+		return 1
+	}
+	var temp = recursivePower(n, power/2)
+	if power%2 == 0 {
+		return temp * temp
+	} else {
+		return n * temp * temp
+	}
+}
+
+
+//recursive O(n) function for pow(x, y)
+func recursivePower1( n uint, power uint) uint{
+    if power == 0 {
+		return 1
+	} else if power % 2 == 0 {
+		return recursivePower1(n, power/2) * recursivePower1(n, power/2)
+	} else
+	{
+		return n * recursivePower1(n, power/2) * recursivePower1(n, power/2)
+	}
 }
