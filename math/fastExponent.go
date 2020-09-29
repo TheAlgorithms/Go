@@ -1,7 +1,7 @@
 package main
 
 //iterative O(logn) function for pow(x, y)
-func iterativePower(n uint, power uint) uint {
+func IterativePower(n uint, power uint) uint {
 	var res uint = 1
 	for power > 0 {
 
@@ -16,11 +16,11 @@ func iterativePower(n uint, power uint) uint {
 }
 
 //recursive O(logn) function for pow(x, y)
-func recursivePower(n uint, power uint) uint {
+func RecursivePower(n uint, power uint) uint {
 	if power == 0 {
 		return 1
 	}
-	var temp = recursivePower(n, power/2)
+	var temp = RecursivePower(n, power/2)
 	if power%2 == 0 {
 		return temp * temp
 	} else {
@@ -30,13 +30,26 @@ func recursivePower(n uint, power uint) uint {
 
 
 //recursive O(n) function for pow(x, y)
-func recursivePower1( n uint, power uint) uint{
+func RecursivePower1( n uint, power uint) uint{
     if power == 0 {
 		return 1
 	} else if power % 2 == 0 {
-		return recursivePower1(n, power/2) * recursivePower1(n, power/2)
+		return RecursivePower1(n, power/2) * RecursivePower1(n, power/2)
 	} else
 	{
-		return n * recursivePower1(n, power/2) * recursivePower1(n, power/2)
+		return n * RecursivePower1(n, power/2) * RecursivePower1(n, power/2)
 	}
 }
+
+//Benchmarking Results
+//goos: windows
+//goarch: amd64
+//BenchmarkIterativePower-12      330048070                3.62 ns/op
+//BenchmarkRecursivePower-12      124427038                9.63 ns/op
+//BenchmarkRecursivePower1-12     20380434                58.5 ns/op
+
+
+
+
+
+
