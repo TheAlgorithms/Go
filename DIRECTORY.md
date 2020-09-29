@@ -36,6 +36,7 @@
 
 ## Math
   * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/fastExponent.go)
+  * [Greatest Common Divisor](https://github.com/TheAlgorithms/Go/blob/master/math/greatest_common_divisor.go)
   * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/Sieve.go)
 
 ## Other
