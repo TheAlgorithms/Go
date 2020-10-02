@@ -8,7 +8,7 @@ Time Complexity : O(n*m)
     m = length of pattern
 */
 
-package strings
+package main
 
 import (
 	"fmt"
@@ -32,7 +32,7 @@ func naivePatternSearch(text string, pattern string) []int {
 	return positions
 }
 
-func solveNaive() {
+func main() {
 	text := "ABAAABCDBBABCDDEBCABC"
 	pattern := "ABC"
 	var positions []int = naivePatternSearch(text, pattern)
