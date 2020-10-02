@@ -72,13 +72,13 @@
   * [Topological Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/topological_sort.go)
 
 ## Strings
-  * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteinDistance.go)
   * Multiple-String-Matching
     * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/ac.go)
     * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/adac.go)
+    * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/levenshteinDistance.go)
     * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/sbom.go)
-  * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naiveStringSearch.go)
   * Single-String-Matching
     * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/bom.go)
     * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/horspool.go)
     * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/kmp.go)
+    * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/naiveStringSearch.go)
