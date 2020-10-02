@@ -68,6 +68,4 @@ func main() {
 	strDistance2 := levenshteinDistance(str1, str2, 1, 1, 3)
 	fmt.Printf("Distance between \"%s\" and \"%s\" is: %d.\n", str1, str2, strDistance2)
 	// Output: Distance between "stingy" and "ring" is: 7.
-
-	return
 }

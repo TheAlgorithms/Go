@@ -14,7 +14,7 @@ import (
 	"fmt"
 )
 
-func naivePatternSearch(text string, pattern string) []int {
+func NaivePatternSearch(text string, pattern string) []int {
 	var positions []int
 	for i := 0; i < len(text)-len(pattern); i++ {
 		var match bool = true
