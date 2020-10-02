@@ -15,6 +15,7 @@
     * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data-structures/dynamic-array/dynamic_array.go)
   * Hash-Map
     * [Hash Map](https://github.com/TheAlgorithms/Go/blob/master/data-structures/hash-map/hash_map.go)
+    * [Hash Map Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/hash-map/hash_map_test.go)
   * Linked-List
     * [Double-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/double-linkedlist.go)
     * [Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/Linkedlist.go)
