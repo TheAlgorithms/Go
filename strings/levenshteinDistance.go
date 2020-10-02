@@ -4,7 +4,7 @@ Parameters: two strings to compare and weights of insertion, substitution and de
 Output: distance between both strings
 */
 
-package main
+package strings
 
 import (
 	"fmt"
@@ -55,7 +55,7 @@ func min(str1, str2 int) int {
 	return str2
 }
 
-func main() {
+func solveLeven() {
 	str1 := "stingy"
 	str2 := "ring"
 
