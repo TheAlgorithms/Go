@@ -95,6 +95,21 @@ func TestShell(t *testing.T) {
 	}
 }
 
+// Stoogesort is bad and performs poorly.
+// This is true on bigger arrays as the test case will time out.
+func TestStooge(t *testing.T) {
+	for _, test := range sortTests {
+		actual := stoogeSort(test.input, 0, len(test.input)-1)
+		pos, sorted := compareSlices(actual, test.expected)
+		if !sorted {
+			if pos == -1 {
+				t.Errorf("test %s failed due to slice length changing", test.name)
+			}
+			t.Errorf("test %s failed at index %d", test.name, pos)
+		}
+	}
+}
+
 /*func TestTopological(t *testing.T) {
 	for _, test := range sortTests {
 		actual := topologicalSort(test.input)
@@ -163,6 +178,16 @@ func BenchmarkShell(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
 			shellSort(test.input)
+		}
+	}
+}
+
+// Stoogesort is bad and performs poorly. This is
+// true on bigger datasets as the benchmark would fail.
+func BenchmarkStooge(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			stoogeSort(test.input, 0, len(test.input)-1)
 		}
 	}
 }
