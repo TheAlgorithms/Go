@@ -2,7 +2,7 @@ package sorts
 
 import "testing"
 
-func TestBubble(t *testing.T) {
+func TestBubbleSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := bubbleSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -28,7 +28,7 @@ func TestCountingSort(t *testing.T) {
 	}
 }
 
-func TestSelection(t *testing.T) {
+func TestSelectionSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := selectionSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -41,7 +41,7 @@ func TestSelection(t *testing.T) {
 	}
 }
 
-func TestInsertion(t *testing.T) {
+func TestInsertionSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := insertionSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -54,7 +54,7 @@ func TestInsertion(t *testing.T) {
 	}
 }
 
-func TestMerge(t *testing.T) {
+func TestMergeSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := Mergesort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -67,7 +67,7 @@ func TestMerge(t *testing.T) {
 	}
 }
 
-func TestHeap(t *testing.T) {
+func TestHeapSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := heapSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -80,7 +80,7 @@ func TestHeap(t *testing.T) {
 	}
 }
 
-func TestQuick(t *testing.T) {
+func TestQuickSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := quickSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
@@ -93,7 +93,7 @@ func TestQuick(t *testing.T) {
 	}
 }
 
-func TestShell(t *testing.T) {
+func TestShellSort(t *testing.T) {
 	for _, test := range sortTests {
 		actual := shellSort(test.input)
 		pos, sorted := compareSlices(actual, test.expected)
