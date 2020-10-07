@@ -62,10 +62,10 @@
   * [Search Test](https://github.com/TheAlgorithms/Go/blob/master/searches/search_test.go)
 
 ## Sorts
-  * [Bubble Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubble_sort.go)
-  * [Counting Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/counting_sort.go)
+  * [Bubblesort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubblesort.go)
+  * [Countingsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/countingsort.go)
   * [Heap Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heap_sort.go)
-  * [Insertion Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertion_sort.go)
+  * [Insertionsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertionsort.go)
   * [Merge Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/merge_sort.go)
   * [Quick Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/quick_sort.go)
   * [Selection Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/selection_sort.go)
