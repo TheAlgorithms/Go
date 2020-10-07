@@ -1,4 +1,3 @@
-// Package sorts a package for demonstrating sorting algorithms in Go
 // Implementation of basic bubble sort algorithm
 // Reference: https://en.wikipedia.org/wiki/Bubble_sort
 
