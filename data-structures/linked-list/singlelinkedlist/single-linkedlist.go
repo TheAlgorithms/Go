@@ -23,6 +23,7 @@ func newNode(val interface{}) *node {
 	return &node{val, nil}
 }
 
+// AddAtBeg adds a new node with given value at the beginning of the list.
 func (ll *singlelinkedlist) AddAtBeg(val interface{}) {
 	n := newNode(val)
 	n.Next = ll.Head
@@ -30,6 +31,7 @@ func (ll *singlelinkedlist) AddAtBeg(val interface{}) {
 	ll.length++
 }
 
+// AddAtEnd adds a new node with given value at the end of the list.
 func (ll *singlelinkedlist) AddAtEnd(val int) {
 	n := newNode(val)
 
@@ -46,6 +48,7 @@ func (ll *singlelinkedlist) AddAtEnd(val int) {
 	ll.length++
 }
 
+// DelAtBeg deletes the node at the head(beginning) of the list and returns its value. Returns -1 if the list is empty.
 func (ll *singlelinkedlist) DelAtBeg() interface{} {
 	if ll.Head == nil {
 		return -1
@@ -58,6 +61,7 @@ func (ll *singlelinkedlist) DelAtBeg() interface{} {
 	return cur.Val
 }
 
+// DelAtEnd deletes the node at the tail(end) of the list and returns its value. Returns -1 if the list is empty.
 func (ll *singlelinkedlist) DelAtEnd() interface{} {
 	if ll.Head == nil {
 		return -1
@@ -79,10 +83,12 @@ func (ll *singlelinkedlist) DelAtEnd() interface{} {
 
 }
 
+// Count returns the current size of the list.
 func (ll *singlelinkedlist) Count() int {
 	return ll.length
 }
 
+// Reverse reverses the list.
 func (ll *singlelinkedlist) Reverse() {
 	var prev, Next *node
 	cur := ll.Head
@@ -97,6 +103,7 @@ func (ll *singlelinkedlist) Reverse() {
 	ll.Head = prev
 }
 
+// Display prints out the elements of the list.
 func (ll *singlelinkedlist) Display() {
 	for cur := ll.Head; cur != nil; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
@@ -104,22 +111,3 @@ func (ll *singlelinkedlist) Display() {
 
 	fmt.Print("\n")
 }
-
-// func main() {
-// 	ll := singlelinkedlist{}
-
-// 	ll.addAtBeg(10)
-// 	ll.addAtEnd(20)
-// 	ll.display()
-// 	ll.addAtBeg(30)
-// 	ll.display()
-// 	ll.reverse()
-// 	ll.display()
-
-// 	fmt.Print(ll.delAtBeg(), "\n")
-// 	ll.display()
-
-// 	fmt.Print(ll.delAtEnd(), "\n")
-// 	ll.display()
-
-// }
