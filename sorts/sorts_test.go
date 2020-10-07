@@ -2,8 +2,6 @@ package sorts
 
 import "testing"
 
-//BEGIN TESTS
-
 func TestBubble(t *testing.T) {
 	for _, test := range sortTests {
 		actual := bubbleSort(test.input)
@@ -13,6 +11,19 @@ func TestBubble(t *testing.T) {
 				t.Errorf("test %s failed due to slice length changing", test.name)
 			}
 			t.Errorf("test %s failed at index %d", test.name, pos)
+		}
+	}
+}
+
+func TestCountingSort(t *testing.T) {
+	for _, testcase := range sortTests {
+		actual := countingSort(testcase.input)
+		pos, sorted := compareSlices(actual, testcase.expected)
+		if !sorted {
+			if pos == -1 {
+				t.Errorf("test %s failed due to slice length changing", testcase.name)
+			}
+			t.Errorf("test %s failed at index %d", testcase.name, pos)
 		}
 	}
 }
@@ -95,22 +106,6 @@ func TestShell(t *testing.T) {
 	}
 }
 
-/*func TestTopological(t *testing.T) {
-	for _, test := range sortTests {
-		actual := topologicalSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
-}*/
-
-//END TESTS
-
-//BEGIN BENCHMARKS
 func BenchmarkBubble(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
@@ -166,16 +161,6 @@ func BenchmarkShell(b *testing.B) {
 		}
 	}
 }
-
-/*func BenchmarkTopological(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			topologicalSort(test.input)
-		}
-	}
-}*/
-
-//END BENCHMARKS
 
 func compareSlices(a []int, b []int) (int, bool) {
 	if len(a) != len(b) {
