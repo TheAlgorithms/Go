@@ -28,6 +28,11 @@ func PairApproach(n int) bool {
 	return true
 }
 
+func sumFunction(a int, b int) string {
+	result := a + b
+	return ("result of sum : " + string(result))
+}
+
 //goos: windows
 //goarch: amd64
 //BenchmarkNaiveApproach-12       660980034                1.81 ns/op
