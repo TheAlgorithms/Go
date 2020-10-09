@@ -15,6 +15,7 @@
     * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data-structures/dynamic-array/dynamic_array.go)
   * Hash-Map
     * [Hash Map](https://github.com/TheAlgorithms/Go/blob/master/data-structures/hash-map/hash_map.go)
+    * [Hash Map Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/hash-map/hash_map_test.go)
   * Linked-List
     * [Double-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/double-linkedlist.go)
     * [Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/Linkedlist.go)
@@ -36,6 +37,10 @@
 
 ## Math
   * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/fastExponent.go)
+  * [Greatest Common Divisor](https://github.com/TheAlgorithms/Go/blob/master/math/greatest_common_divisor.go)
+  * Prime Check
+    * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/prime_check/prime_check.go)
+    * [Prime Check Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime_check/prime_check_test.go)
   * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/Sieve.go)
 
 ## Other
@@ -57,10 +62,10 @@
   * [Search Test](https://github.com/TheAlgorithms/Go/blob/master/searches/search_test.go)
 
 ## Sorts
-  * [Bubble Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubble_sort.go)
-  * [Counting Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/counting_sort.go)
+  * [Bubblesort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubblesort.go)
+  * [Countingsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/countingsort.go)
   * [Heap Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heap_sort.go)
-  * [Insertion Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertion_sort.go)
+  * [Insertionsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertionsort.go)
   * [Merge Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/merge_sort.go)
   * [Quick Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/quick_sort.go)
   * [Selection Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/selection_sort.go)
