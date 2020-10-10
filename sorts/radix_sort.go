@@ -1,6 +1,6 @@
 // Reference: https://medium.com/@houzier.saurav/radix-sort-golang-14cdb995f702
 
-package main
+package sorts
 import (
  "fmt"
  "strconv"
@@ -67,7 +67,7 @@ func RadixSort(intArr []int) []int{
   
   Loop(place, intArr, &count)
   intArr = AuxArray(place, intArr, &count)
-  printString(intArr)
+  // printString(intArr)
  }
  
  
@@ -81,9 +81,4 @@ func printString(arr []int){
   z = append(z, strconv.Itoa(value))
  }
  fmt.Println(strings.Join(z, " "))
-}
-func main() {
- a := []int{170, 45, 75, 90, 802, 998, 1234,  24, 2, 66, 121, 223}
- RadixSort(a)
- 
 }
