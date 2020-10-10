@@ -59,7 +59,7 @@ func RadixSort(intArr []int) []int{
  places := BigNumPlaceCount(tmp)
  
  
- for index, _ := range make([]int, places){
+ for index := range make([]int, places){
  
   place := int(math.Pow(float64(10), float64(index)))
  
