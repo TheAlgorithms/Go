@@ -73,12 +73,3 @@ func RadixSort(intArr []int) []int{
  
  return intArr
 }
-func printString(arr []int){
- z := []string{}
- 
- for _, value := range arr{
- 
-  z = append(z, strconv.Itoa(value))
- }
- fmt.Println(strings.Join(z, " "))
-}
