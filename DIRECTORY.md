@@ -19,7 +19,9 @@
   * Linked-List
     * [Double-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/double-linkedlist.go)
     * [Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/Linkedlist.go)
-    * [Single-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/single-linkedlist.go)
+    * Singlelinkedlist
+      * [Single-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/singlelinkedlist/single-linkedlist.go)
+      * [Single-Linkedlist Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/singlelinkedlist/single-linkedlist_test.go)
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Go/blob/master/data-structures/trie/trie.go)
     * [Trie Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/trie/trie_test.go)
