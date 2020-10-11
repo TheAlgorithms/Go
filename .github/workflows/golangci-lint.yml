@@ -29,6 +29,8 @@ jobs:
       - run: golangci-lint run --no-config other                              || true
       - run: golangci-lint run --no-config searches                           || true
       - run: golangci-lint run --no-config sorts
-      - run: golangci-lint run --no-config strings/...
+      # - run: golangci-lint run --no-config strings/...
       - run: golangci-lint run --no-config "strings/multiple string matching" || true
       # - run: golangci-lint run --no-config "strings/single string matching"   || true
+      - run: golangci-lint run --no-config strings/levenshteindistance
+      - run: golangci-lint run --no-config strings/naivesearch
