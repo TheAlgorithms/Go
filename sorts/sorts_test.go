@@ -82,7 +82,7 @@ func TestHeapSort(t *testing.T) {
 
 func TestQuickSort(t *testing.T) {
 	for _, test := range sortTests {
-		actual := quickSort(test.input)
+		actual := quickSort(test.input,0,len(test.input))
 		pos, sorted := compareSlices(actual, test.expected)
 		if !sorted {
 			if pos == -1 {
