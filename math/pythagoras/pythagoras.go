@@ -1,4 +1,4 @@
-package main
+package pythagoras
 
 import (
 	"fmt"
@@ -19,8 +19,4 @@ func Distance(a, b vector) float64 {
 	res := float64(math.Pow(abs, 2.0) + math.Pow(float64(b.y-a.y), 2.0) + math.Pow(float64(b.z-a.z), 2))
 	fmt.Println(abs, res)
 	return math.Sqrt(res)
-}
-
-func main() {
-
 }
