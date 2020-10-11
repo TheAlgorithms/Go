@@ -40,12 +40,12 @@ func main() {
 	if debugMode == true {
 		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
 	}
-	ahoCorasick(string(textFile), patterns)
+	advancedAhoCorasick(string(textFile), patterns)
 }
 
 // Function performing the Advanced Aho-Corasick alghoritm.
 // Finds and prints occurences of each pattern.
-func ahoCorasick(t string, p []string) {
+func advancedAhoCorasick(t string, p []string) {
 	startTime := time.Now()
 	occurences := make(map[int][]int)
 	ac, f := buildExtendedAc(p)
@@ -89,7 +89,7 @@ func ahoCorasick(t string, p []string) {
 }
 
 // Functions that builds extended Aho Corasick automaton.
-func buildExtendedAc(p []string) (acToReturn map[int]map[uint8]int, f map[int][]int) {
+func buildExtendedAhoCorasick(p []string) (acToReturn map[int]map[uint8]int, f map[int][]int) {
 	acTrie, stateIsTerminal, f := constructTrie(p)
 	s := make([]int, len(stateIsTerminal)) //supply function
 	i := 0                                 //root of acTrie
@@ -151,50 +151,6 @@ func buildExtendedAc(p []string) (acToReturn map[int]map[uint8]int, f map[int][]
 		}
 	}
 	return acToReturn, f
-}
-
-// Function that constructs Trie as an automaton for a set of reversed & trimmed strings.
-func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bool, f map[int][]int) {
-	trie = make(map[int]map[uint8]int)
-	stateIsTerminal = make([]bool, 1)
-	f = make(map[int][]int)
-	state := 1
-	if debugMode == true {
-		fmt.Printf("\n\nTrie construction: \n")
-	}
-	createNewState(0, trie)
-	for i := 0; i < len(p); i++ {
-		current := 0
-		j := 0
-		for j < len(p[i]) && getTransition(current, p[i][j], trie) != -1 {
-			current = getTransition(current, p[i][j], trie)
-			j++
-		}
-		for j < len(p[i]) {
-			stateIsTerminal = boolArrayCapUp(stateIsTerminal)
-			createNewState(state, trie)
-			stateIsTerminal[state] = false
-			createTransition(current, p[i][j], state, trie)
-			current = state
-			j++
-			state++
-		}
-		if stateIsTerminal[current] {
-			newArray := intArrayCapUp(f[current])
-			newArray[len(newArray)-1] = i
-			f[current] = newArray // F(Current) <- F(Current) union {i}
-			if debugMode == true {
-				fmt.Printf(" and %d", i)
-			}
-		} else {
-			stateIsTerminal[current] = true
-			f[current] = []int{i} // F(Current) <- {i}
-			if debugMode == true {
-				fmt.Printf("\n%d is terminal for word number %d", current, i)
-			}
-		}
-	}
-	return trie, stateIsTerminal, f
 }
 
 // Returns 'true' if arry of int's 's' contains int 'e', 'false' otherwise.

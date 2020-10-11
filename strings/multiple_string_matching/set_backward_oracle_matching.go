@@ -40,18 +40,18 @@ func main() {
 	if debugMode == true {
 		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
 	}
-	sbom(string(textFile), patterns)
+	setBackwardOracleMatching(string(textFile), patterns)
 }
 
-// Function sbom performing the Set Backward Oracle Matching alghoritm.
+// Function setBackwardOracleMatching performing the Set Backward Oracle Matching alghoritm.
 // Finds and prints occurences of each pattern.
-func sbom(t string, p []string) {
+func setBackwardOracleMatching(t string, p []string) {
 	startTime := time.Now()
 	occurences := make(map[int][]int)
 	lmin := computeMinLength(p)
 	or, f := buildOracleMultiple(reverseAll(trimToLength(p, lmin)))
 	if debugMode == true {
-		fmt.Printf("\n\nSBOM:\n\n")
+		fmt.Printf("\n\nsetBackwardOracleMatching:\n\n")
 	}
 	pos := 0
 	for pos <= len(t)-lmin {

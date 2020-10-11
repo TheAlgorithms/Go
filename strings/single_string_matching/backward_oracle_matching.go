@@ -43,7 +43,7 @@ func main() {
 		} else {
 			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
 		}
-		bom(s, pattern)
+		backwardOracleMatching(s, pattern)
 	} else if commandLineInput == false { // case of file line input
 		patFile, err := ioutil.ReadFile("pattern.txt")
 		if err != nil {
@@ -63,14 +63,14 @@ func main() {
 		} else {
 			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
 		}
-		bom(string(textFile), string(patFile))
+		backwardOracleMatching(string(textFile), string(patFile))
 	}
 }
 
-// Function bom performing the Backward Oracle Matching algorithm.
+// Function backwardOracleMatching performing the Backward Oracle Matching algorithm.
 // Prints whether the word/pattern was found + positions of possible multiple occurrences
 // or that the word was not found.
-func bom(t, p string) {
+func backwardOracleMatching(t, p string) {
 	startTime := time.Now()
 	n, m := len(t), len(p)
 	var current, j, pos int

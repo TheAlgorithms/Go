@@ -33,7 +33,7 @@ func main() {
 		fmt.Printf("\nRunning: Knuth-Morris-Pratt algorithm.\n\n")
 		fmt.Printf("Search word (%d chars long): %q.\n", len(args[1]), pattern)
 		fmt.Printf("Text        (%d chars long): %q.\n\n", len(s), s)
-		knp(s, pattern)
+		knuthMorrisPratt(s, pattern)
 	} else if commandLineInput == false { // case of file input
 		patFile, err := ioutil.ReadFile("pattern.txt")
 		if err != nil {
@@ -49,16 +49,16 @@ func main() {
 		fmt.Printf("\nRunning: Knuth-Morris-Pratt algorithm.\n\n")
 		fmt.Printf("Search word (%d chars long): %q.\n", len(patFile), patFile)
 		fmt.Printf("Text        (%d chars long): %q.\n\n", len(textFile), textFile)
-		knp(string(textFile), string(patFile))
+		knuthMorrisPratt(string(textFile), string(patFile))
 	}
 }
 
-// Function knp performing the Knuth-Morris-Pratt algorithm.
+// Function knuthMorrisPratt performing the Knuth-Morris-Pratt algorithm.
 // Prints whether the word/pattern was found and on what position in the text or not.
 // m - current match in text, i - current character in w, c - amount of comparisons.
-func knp(text, word string) {
+func knuthMorrisPratt(text, word string) {
 	m, i, c := 0, 0, 0
-	t := kmp_table(word)
+	t := knuthMorrisPrattTable(word)
 	for m+i < len(text) {
 		fmt.Printf("\n   comparing characters %c %c at positions %d %d", text[m+i], word[i], m+i, i)
 		c++
@@ -84,7 +84,7 @@ func knp(text, word string) {
 
 // Table building alghoritm.
 // Takes word to be analyzed and table to be filled.
-func kmp_table(word string) (t []int) {
+func knuthMorrisPrattTable(word string) (t []int) {
 	t = make([]int, len(word))
 	pos, cnd := 2, 0
 	t[0], t[1] = -1, 0

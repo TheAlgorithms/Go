@@ -48,7 +48,7 @@ func main() {
 func ahoCorasick(t string, p []string) {
 	startTime := time.Now()
 	occurences := make(map[int][]int)
-	ac, f, s := buildAc(p)
+	ac, f, s := buildAhoCorasick(p)
 	if debugMode == true {
 		fmt.Printf("\n\nAC:\n\n")
 	}
@@ -99,7 +99,7 @@ func ahoCorasick(t string, p []string) {
 }
 
 // Functions that builds Aho Corasick automaton.
-func buildAc(p []string) (acToReturn map[int]map[uint8]int, f map[int][]int, s []int) {
+func buildAhoCorasick(p []string) (acToReturn map[int]map[uint8]int, f map[int][]int, s []int) {
 	acTrie, stateIsTerminal, f := constructTrie(p)
 	s = make([]int, len(stateIsTerminal)) //supply function
 	i := 0                                //root of acTrie
