@@ -1,8 +1,7 @@
-package main
+package rot13
 
 import (
 	"bytes"
-	"fmt"
 	"strings"
 )
 
@@ -24,11 +23,4 @@ func rot13(input string) string {
 		outputBuffer.WriteString(string(newByte))
 	}
 	return outputBuffer.String()
-
-}
-func main() {
-	cleartext := "We'll just make him an offer he can't refuse... tell me you get the pop culture reference"
-	encrypted := rot13(cleartext)
-	decrypted := rot13(encrypted)
-	fmt.Printf("Cleartext: %v\nencrypted: %v\ndecrypted: %v\n", cleartext, encrypted, decrypted)
 }
