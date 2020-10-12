@@ -5,7 +5,9 @@
   * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/Rot13.go)
   * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher(Big).go)
   * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher.go)
-  * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xorCipher.go)
+  * Xor
+    * [Xor Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xor_cipher_test.go)
+    * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xorCipher.go)
 
 ## Data-Structures
   * Binary-Tree
