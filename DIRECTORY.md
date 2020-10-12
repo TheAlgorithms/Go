@@ -46,12 +46,17 @@
   * [Floyd Warshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floyd_warshall.go)
 
 ## Math
-  * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/fastExponent.go)
-  * [Greatest Common Divisor](https://github.com/TheAlgorithms/Go/blob/master/math/greatest_common_divisor.go)
-  * Prime Check
-    * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/prime_check/prime_check.go)
-    * [Prime Check Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime_check/prime_check_test.go)
-  * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/Sieve.go)
+  * Gcd
+    * [Greatest Common Divisor](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/greatest_common_divisor.go)
+    * [Greatest Common Divisor Test](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/greatest_common_divisor_test.go)
+  * Power
+    * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastExponent.go)
+    * [Fastexponent Test](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastExponent_test.go)
+  * Primecheck
+    * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/prime_check.go)
+    * [Prime Check Test](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/prime_check_test.go)
+  * Sieve
+    * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/Sieve.go)
 
 ## Other
   * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/maxSubarraySum.go)
