@@ -3,8 +3,12 @@
   * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/CaesarCipher.go)
   * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffieHellmanKeyExchange.go)
   * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/Rot13.go)
-  * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher(Big).go)
-  * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher.go)
+  * Rsa
+    * [Rsa Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/rsa_cipher_test.go)
+    * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/RSAcipher.go)
+  * Rsabig
+    * [Rsa Cipher Big Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsaBig/rsa_cipher_big_test.go)
+    * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsaBig/RSAcipher(Big).go)
   * Xor
     * [Xor Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xor_cipher_test.go)
     * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xorCipher.go)
