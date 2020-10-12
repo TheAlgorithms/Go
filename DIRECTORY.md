@@ -77,12 +77,16 @@
   * [Topological Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/topological_sort.go)
 
 ## Strings
-  * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteinDistance.go)
+  * Levenshteindistance
+    * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteindistance/levenshteinDistance.go)
+    * [Levenshteindistance Test](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteindistance/levenshteinDistance_test.go)
   * Multiple String Matching
     * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/ac.go)
     * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/adac.go)
     * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/sbom.go)
-  * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naiveStringSearch.go)
+  * Naivesearch
+    * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch.go)
+    * [Naivestringsearch Test](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch_test.go)
   * Single String Matching
     * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/bom.go)
     * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/horspool.go)
