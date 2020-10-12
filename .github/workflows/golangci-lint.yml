@@ -37,4 +37,4 @@ jobs:
       - run: golangci-lint run --no-config math/gcd
       - run: golangci-lint run --no-config math/power
       - run: golangci-lint run --no-config math/primecheck
-      - run: golangci-lint run --no-config math/sieve                         || true"
+      - run: golangci-lint run --no-config math/sieve                         || true
