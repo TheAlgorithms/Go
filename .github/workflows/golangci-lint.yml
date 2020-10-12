@@ -34,3 +34,7 @@ jobs:
       # - run: golangci-lint run --no-config "strings/single string matching"   || true
       - run: golangci-lint run --no-config strings/levenshteindistance
       - run: golangci-lint run --no-config strings/naivesearch
+      - run: golangci-lint run --no-config math/gcd
+      - run: golangci-lint run --no-config math/power
+      - run: golangci-lint run --no-config math/primecheck
+      - run: golangci-lint run --no-config math/sieve                         || true"
