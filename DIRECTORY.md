@@ -4,7 +4,9 @@
     * [Caesar Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_test.go)
     * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/CaesarCipher.go)
   * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffieHellmanKeyExchange.go)
-  * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/Rot13.go)
+  * Rot13
+    * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13.go)
+    * [Rot13 Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13_test.go)
   * Rsa
     * [Rsa Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/rsa_cipher_test.go)
     * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/RSAcipher.go)
