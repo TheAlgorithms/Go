@@ -47,12 +47,7 @@ func (hm *HashMap) Put(key interface{}, value interface{}) interface{} {
 // Contains checks if given key is stored in hashmap
 func (hm *HashMap) Contains(key interface{}) bool {
 	node := hm.getNodeByHash(hm.hash(key))
-
-	if node != nil {
-		return true
-	}
-
-	return false
+	return node != nil
 }
 
 func (hm *HashMap) putValue(hash uint64, key interface{}, value interface{}) interface{} {
