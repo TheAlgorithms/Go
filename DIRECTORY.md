@@ -57,6 +57,9 @@
   * Primecheck
     * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/prime_check.go)
     * [Prime Check Test](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/prime_check_test.go)
+  * Pythagoras
+    * [Pythagoras](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras.go)
+    * [Pythagoras Test](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras_test.go)
   * Sieve
     * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/Sieve.go)
 
