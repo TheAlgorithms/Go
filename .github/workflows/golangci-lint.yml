@@ -9,12 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
-      - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2
+      - uses: golangci/golangci-lint-action@v2
         with:
           # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
           version: v1.31
-      # - run: echo "::set-env name=PATH::/home/runner/golangci-lint-1.27.0-linux-amd64:$PATH"
+          only-new-issues: true  # Let's first focus on this PR
       - run: go version ; golangci-lint --version  # Fix the following and remove || true
       - run: golangci-lint run --no-config ciphers                            || true
       - run: golangci-lint run --no-config data-structures/binary-tree        || true
