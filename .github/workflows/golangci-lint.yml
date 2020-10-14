@@ -18,10 +18,10 @@ jobs:
           # only-new-issues: true  # Let's focus on this PR first
       - run: echo "/home/runner/golangci-lint-1.31.0-linux-amd64" >> $GITHUB_PATH
       - run: go version ; golangci-lint --version  # Fix the following and remove || true
-      - run: golangci-lint run --no-config ciphers                            || true
+      - run: golangci-lint run --no-config ciphers
       - run: golangci-lint run --no-config data-structures/binary-tree        || true
       - run: golangci-lint run --no-config data-structures/dynamic-array      || true
-      - run: golangci-lint run --no-config data-structures/hash-map           || true
+      - run: golangci-lint run --no-config data-structures/hash-map
       - run: golangci-lint run --no-config data-structures/linked-list        || true
       - run: golangci-lint run --no-config data-structures/trie               || true
       - run: golangci-lint run --no-config dynamic-programming                || true
