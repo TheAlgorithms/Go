@@ -13,7 +13,6 @@ type Vector struct {
 
 //Distance calculates the distance between to vectors with the   Pythagoras theorem
 func Distance(a, b Vector) float64 {
-	abs := float64(math.Abs(b.x - a.x))
-	res := float64(math.Pow(abs, 2.0) + math.Pow(b.y-a.y, 2.0) + math.Pow(b.z-a.z, 2.0))
+	res := math.Pow(b.x-a.x, 2.0) + math.Pow(b.y-a.y, 2.0) + math.Pow(b.z-a.z, 2.0)
 	return math.Sqrt(res)
 }
