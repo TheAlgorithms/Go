@@ -10,9 +10,9 @@
 /.*  @cclauss
 /ciphers/
 /data-structures/
-/dynamic-programming/
-/graphs/
-/math/
+/dynamic-programming/ @vedantmamgain 
+/graphs/ @vedantmamgain 
+/math/  @vedantmamgain 
 /other/
 /searches/
 /sorts/
