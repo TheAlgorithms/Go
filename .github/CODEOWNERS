@@ -9,11 +9,11 @@
 
 /.*  @cclauss
 /ciphers/
-/data-structures/
+/data-structures/ @Mystigan 
 /dynamic-programming/ @vedantmamgain 
 /graphs/ @vedantmamgain 
-/math/  @vedantmamgain 
+/math/  @vedantmamgain @Mystigan  
 /other/
-/searches/
-/sorts/
-/strings/ @Mystigan 
+/searches/ @Mystigan 
+/sorts/ @Mystigan 
+/strings/ 
