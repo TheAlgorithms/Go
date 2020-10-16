@@ -1,4 +1,4 @@
-package main
+package kmp
 
 import (
 	"fmt"
@@ -10,53 +10,65 @@ import (
 // User defined.
 // Set to true to read input from two command line arguments
 // Set to false to read input from two files "pattern.txt" and "text.txt"
-const commandLineInput bool = false
+const isTakingInputFromCommandLine bool = true
+const notFoundPosition int = -1
+
+type result struct {
+	resultPosition     int
+	numberOfComparison int
+}
 
 // Implementation of Knuth-Morris-Pratt algorithm (Prefix based approach).
 // Requires either a two command line arguments separated by a single space,
 // or two files in the same folder: "pattern.txt" containing the string to
 // be searched for, "text.txt" containing the text to be searched in.
 func main() {
-	if commandLineInput == true { // case of command line input
+	var text string
+	var word string
+
+	if isTakingInputFromCommandLine { // case of command line input
 		args := os.Args
 		if len(args) <= 2 {
 			log.Fatal("Not enough arguments. Two string arguments separated by spaces are required!")
 		}
-		pattern := args[1]
-		s := args[2]
+		word = args[1]
+		text = args[2]
 		for i := 3; i < len(args); i++ {
-			s = s + " " + args[i]
+			text = text + " " + args[i]
 		}
-		if len(args[1]) > len(s) {
-			log.Fatal("Pattern  is longer than text!")
-		}
-		fmt.Printf("\nRunning: Knuth-Morris-Pratt algorithm.\n\n")
-		fmt.Printf("Search word (%d chars long): %q.\n", len(args[1]), pattern)
-		fmt.Printf("Text        (%d chars long): %q.\n\n", len(s), s)
-		knp(s, pattern)
-	} else if commandLineInput == false { // case of file input
-		patFile, err := ioutil.ReadFile("pattern.txt")
+	} else { // case of file input
+		patFile, err := ioutil.ReadFile("../pattern.txt")
 		if err != nil {
 			log.Fatal(err)
 		}
-		textFile, err := ioutil.ReadFile("text.txt")
+		textFile, err := ioutil.ReadFile("../text.txt")
 		if err != nil {
 			log.Fatal(err)
 		}
-		if len(patFile) > len(textFile) {
-			log.Fatal("Pattern  is longer than text!")
-		}
-		fmt.Printf("\nRunning: Knuth-Morris-Pratt algorithm.\n\n")
-		fmt.Printf("Search word (%d chars long): %q.\n", len(patFile), patFile)
-		fmt.Printf("Text        (%d chars long): %q.\n\n", len(textFile), textFile)
-		knp(string(textFile), string(patFile))
+		text = string(textFile)
+		word = string(patFile)
+	}
+
+	if len(word) > len(text) {
+		log.Fatal("Pattern is longer than text!")
+	}
+	fmt.Printf("\nRunning: Knuth-Morris-Pratt algorithm.\n\n")
+	fmt.Printf("Search word (%d chars long): %q.\n", len(word), word)
+	fmt.Printf("Text        (%d chars long): %q.\n\n", len(text), text)
+
+	r := kmp(text, word)
+	if r.resultPosition == notFoundPosition {
+		fmt.Printf("\n\nWord was not found.\n%d comparisons were done.", r.numberOfComparison)
+	} else {
+		fmt.Printf("\n\nWord %q was found at position %d in %q. \n%d comparisons were done.", word,
+			r.resultPosition, text, r.numberOfComparison)
 	}
 }
 
-// Function knp performing the Knuth-Morris-Pratt algorithm.
+// Function kmp performing the Knuth-Morris-Pratt algorithm.
 // Prints whether the word/pattern was found and on what position in the text or not.
 // m - current match in text, i - current character in w, c - amount of comparisons.
-func knp(text, word string) {
+func kmp(text string, word string) result {
 	m, i, c := 0, 0, 0
 	t := kmp_table(word)
 	for m+i < len(text) {
@@ -65,8 +77,9 @@ func knp(text, word string) {
 		if word[i] == text[m+i] {
 			fmt.Printf(" - match")
 			if i == len(word)-1 {
-				fmt.Printf("\n\nWord %q was found at position %d in %q. \n%d comparisons were done.", word, m, text, c)
-				return
+				return result{
+					m, c,
+				}
 			}
 			i++
 		} else {
@@ -78,8 +91,9 @@ func knp(text, word string) {
 			}
 		}
 	}
-	fmt.Printf("\n\nWord was not found.\n%d comparisons were done.", c)
-	return
+	return result{notFoundPosition,
+		c,
+	}
 }
 
 // Table building alghoritm.

@@ -1,4 +1,4 @@
-package main
+package horspool
 
 import (
 	"fmt"
@@ -10,54 +10,63 @@ import (
 // User defined.
 // Set to true to read input from two command line arguments
 // Set to false to read input from two files "pattern.txt" and "text.txt"
-const commandLineInput bool = false
+const isTakingInputFromCommandLine bool = false
+const notFoundPosition int = -1
+
+type result struct {
+	foundPosition      int
+	numberOfComparison int
+}
 
 // Implementation of Boyer-Moore-Horspool algorithm (Suffix based approach).
 // Requires either a two command line arguments separated by a single space,
 // or two files in the same folder: "pattern.txt" containing the string to
 // be searched for, "text.txt" containing the text to be searched in.
 func main() {
-	if commandLineInput == true { // case of command line input
+	var word string
+	var text string
+
+	if isTakingInputFromCommandLine { // case of command line input
 		args := os.Args
 		if len(args) <= 2 {
 			log.Fatal("Not enough arguments. Two string arguments separated by spaces are required!")
 		}
-		pattern := args[1]
-		s := args[2]
+		word = args[1]
+		text = args[2]
 		for i := 3; i < len(args); i++ {
-			s = s + " " + args[i]
+			text = text + " " + args[i]
 		}
-		if len(args[1]) > len(s) {
-			log.Fatal("Pattern  is longer than text!")
-		}
-		fmt.Printf("\nRunning: Horspool algorithm.\n\n")
-		fmt.Printf("Search word (%d chars long): %q.\n", len(args[1]), pattern)
-		fmt.Printf("Text        (%d chars long): %q.\n\n", len(s), s)
-		horspool(s, pattern)
-	} else if commandLineInput == false { // case of file line input
-		patFile, err := ioutil.ReadFile("pattern.txt")
+	} else { // case of file line input
+		patFile, err := ioutil.ReadFile("../pattern.txt")
 		if err != nil {
 			log.Fatal(err)
 		}
-		textFile, err := ioutil.ReadFile("text.txt")
+		textFile, err := ioutil.ReadFile("../text.txt")
 		if err != nil {
 			log.Fatal(err)
 		}
-		if len(patFile) > len(textFile) {
-			log.Fatal("Pattern  is longer than text!")
-		}
-		fmt.Printf("\nRunning: Horspool algorithm.\n\n")
-		fmt.Printf("Search word (%d chars long): %q.\n", len(patFile), patFile)
-		fmt.Printf("Text        (%d chars long): %q.\n\n", len(textFile), textFile)
-		horspool(string(textFile), string(patFile))
+		word = string(patFile)
+		text = string(textFile)
+	}
+	if len(word) > len(text) {
+		log.Fatal("Pattern is longer than text!")
+	}
+	fmt.Printf("\nRunning: Horspool algorithm.\n\n")
+	fmt.Printf("Search word (%d chars long): %q.\n", len(word), word)
+	fmt.Printf("Text        (%d chars long): %q.\n\n", len(text), text)
+	r := horspool(text, word)
+	if r.foundPosition == notFoundPosition {
+		fmt.Printf("\n\nWord %q was not found.\n%d comparisons were done.", word, r.numberOfComparison)
+	} else {
+		fmt.Printf("\n\nWord %q was found at position %d in %q. \n%d comparisons were done.", word, r.foundPosition, text, r.numberOfComparison)
 	}
 }
 
 // Function horspool performing the Horspool algorithm.
 // Prints whether the word/pattern was found and on what position in the text or not.
-func horspool(t, p string) {
+func horspool(t, p string) result {
 	m, n, c, pos := len(p), len(t), 0, 0
-	//Perprocessing
+	//Preprocessing
 	d := preprocess(t, p)
 	//Map output
 	fmt.Printf("Precomputed shifts per symbol: ")
@@ -79,13 +88,17 @@ func horspool(t, p string) {
 			j--
 		}
 		if j == 0 {
-			fmt.Printf("\n\nWord %q was found at position %d in %q. \n%d comparisons were done.", p, pos, t, c)
-			return
+			return result{
+				pos,
+				c,
+			}
 		}
 		pos = pos + d[t[pos+m]]
 	}
-	fmt.Printf("\n\nWord was not found.\n%d comparisons were done.", c)
-	return
+	return result{
+		notFoundPosition,
+		c,
+	}
 }
 
 // Function that pre-computes map with Key: uint8 (char) Value: int.

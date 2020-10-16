@@ -1,4 +1,4 @@
-package main
+package bom
 
 import (
 	"fmt"
@@ -13,69 +13,82 @@ import (
 // Set to false for quick and quiet execution.
 const debugMode bool = false
 
+type result struct {
+	numberOfFoundWord int
+	foundPositions    []int
+}
+
 // User defined.
 // Set to true to read input from two command line arguments
 // Set to false to read input from two files "pattern.txt" and "text.txt"
-const commandLineInput bool = false
+const isTakingInputFromCommandLine bool = false
 
 // Implementation of Backward Oracle Matching algorithm (Factor based approach).
 // Requires either a two command line arguments separated by a single space,
 // or two files in the same folder: "pattern.txt" containing the string to
 // be searched for, "text.txt" containing the text to be searched in.
 func main() {
-	if commandLineInput == true { // case of command line input
+	var word string
+	var text string
+	//occurrences
+
+	if isTakingInputFromCommandLine { // case of command line input
 		args := os.Args
 		if len(args) <= 2 {
 			log.Fatal("Not enough arguments. Two string arguments separated by spaces are required!")
 		}
-		pattern := args[1]
-		s := args[2]
+		word = args[1]
+		text = args[2]
 		for i := 3; i < len(args); i++ {
-			s = s + " " + args[i]
+			text = text + " " + args[i]
 		}
-		if len(args[1]) > len(s) {
-			log.Fatal("Pattern  is longer than text!")
-		}
-		if debugMode == true {
-			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
-			fmt.Printf("Search word (%d chars long): %q.\n", len(args[1]), pattern)
-			fmt.Printf("Text        (%d chars long): %q.\n\n", len(s), s)
-		} else {
-			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
-		}
-		bom(s, pattern)
-	} else if commandLineInput == false { // case of file line input
-		patFile, err := ioutil.ReadFile("pattern.txt")
+	} else { // case of file line input
+		patFile, err := ioutil.ReadFile("../pattern.txt")
 		if err != nil {
 			log.Fatal(err)
 		}
-		textFile, err := ioutil.ReadFile("text.txt")
+		textFile, err := ioutil.ReadFile("../text.txt")
 		if err != nil {
 			log.Fatal(err)
 		}
-		if len(patFile) > len(textFile) {
-			log.Fatal("Pattern  is longer than text!")
+		word = string(patFile)
+		text = string(textFile)
+	}
+
+	if len(word) > len(text) {
+		log.Fatal("Pattern is longer than text!")
+	}
+	if debugMode {
+		fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
+		fmt.Printf("Search word (%d chars long): %q.\n", len(word), word)
+		fmt.Printf("Text        (%d chars long): %q.\n\n", len(text), text)
+	} else {
+		fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
+	}
+	r := bom(text, word)
+	if r.numberOfFoundWord == 0 {
+		fmt.Printf("\nWord was not found.\n")
+	} else {
+		fmt.Printf("Word %q was found %d times at positions: ", word, r.numberOfFoundWord)
+		for k := 0; k < r.numberOfFoundWord; k++ {
+			fmt.Printf("%d", r.foundPositions[k])
+			if k < r.numberOfFoundWord-1 {
+				fmt.Printf(", ")
+			}
 		}
-		if debugMode == true {
-			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
-			fmt.Printf("Search word (%d chars long): %q.\n", len(patFile), patFile)
-			fmt.Printf("Text        (%d chars long): %q.\n\n", len(textFile), textFile)
-		} else {
-			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
-		}
-		bom(string(textFile), string(patFile))
+		fmt.Printf(".\n")
 	}
 }
 
 // Function bom performing the Backward Oracle Matching algorithm.
 // Prints whether the word/pattern was found + positions of possible multiple occurrences
 // or that the word was not found.
-func bom(t, p string) {
+func bom(t, p string) result {
 	startTime := time.Now()
 	n, m := len(t), len(p)
 	var current, j, pos int
 	oracle := oracleOnLine(reverse(p))
-	occurences := make([]int, len(t))
+	occurrences := make([]int, len(t))
 	currentOcc := 0
 	pos = 0
 	if debugMode == true {
@@ -95,7 +108,7 @@ func bom(t, p string) {
 			if debugMode == true {
 				fmt.Printf(" We got an occurence!")
 			}
-			occurences[currentOcc] = pos
+			occurrences[currentOcc] = pos
 			currentOcc++
 		}
 		pos = pos + j + 1
@@ -109,17 +122,13 @@ func bom(t, p string) {
 	fmt.Printf("\n\nElapsed %f secs\n", elapsed.Seconds())
 	fmt.Printf("\n\n")
 	if currentOcc > 0 {
-		fmt.Printf("Word %q was found %d times at positions: ", p, currentOcc)
-		for k := 0; k < currentOcc-1; k++ {
-			fmt.Printf("%d, ", occurences[k])
+		results := make([]int, currentOcc)
+		for i := 0; i < currentOcc; i++ {
+			results[i] = occurrences[i]
 		}
-		fmt.Printf("%d", occurences[currentOcc-1])
-		fmt.Printf(".\n")
+		return result{currentOcc, results}
 	}
-	if currentOcc == 0 {
-		fmt.Printf("\nWord was not found.\n")
-	}
-	return
+	return result{0, []int{}}
 }
 
 // Construction of the factor oracle automaton for a word p.
