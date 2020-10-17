@@ -20,7 +20,7 @@ func findLargestNum(array []int) int {
 
 func radixSort(array []int) []int {
 
-  fmt.Println("Running Radix Sort on Unsorted List\n")
+  fmt.Println("Running Radix Sort on Unsorted List")
 
 
 	largestNum := findLargestNum(array)
@@ -30,7 +30,7 @@ func radixSort(array []int) []int {
 
 
 	for largestNum / significantDigit > 0 {
-  
+
     fmt.Println("\tSorting: " + strconv.Itoa(significantDigit) + "'s place", array)
 
 		bucket := [10]int{0}
@@ -57,9 +57,9 @@ func radixSort(array []int) []int {
 		for i := 0; i < size; i++ {
 			array[i] = semiSorted[i]
 		}
-    
+
     fmt.Println("\n\tBucket: ", bucket)
-  
+
 
 		significantDigit *= 10 
 	}
@@ -69,13 +69,10 @@ func radixSort(array []int) []int {
 
 func main() {
 
-  fmt.Println("\n\nRunning Radix Sort Example in Go!")
-
 	unsortedList :=[]int{10, 2, 303, 4021, 293, 1, 0, 429, 480, 92, 2999, 14}
-	fmt.Println("Unsorted List:", unsortedList, "\n")
-
+	fmt.Println("Unsorted List:", unsortedList)
+	
 	sortedList := radixSort(unsortedList)
-
-	fmt.Println("\nSorted List:", sortedList, "\n")
+	fmt.Println("\nSorted List:", sortedList)
 	
 }
