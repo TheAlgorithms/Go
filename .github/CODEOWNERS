@@ -8,12 +8,12 @@
 # Order is important. The last matching pattern has the most precedence.
 
 /.*  @cclauss
-/ciphers/
-/data-structures/ @Mystigan 
+/ciphers/ @vedantmamgain 
+/data-structures/ @Mystigan @vedantmamgain 
 /dynamic-programming/ @vedantmamgain 
 /graphs/ @vedantmamgain 
 /math/  @vedantmamgain @Mystigan  
-/other/
+/other/ @vedantmamgain 
 /searches/ @Mystigan 
 /sorts/ @Mystigan 
-/strings/ 
+/strings/ @vedantmamgain 
