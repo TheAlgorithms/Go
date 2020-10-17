@@ -1,4 +1,6 @@
-package radixsort
+package main
+
+
 
 import (
 	"fmt"
@@ -18,7 +20,7 @@ func findLargestNum(array []int) int {
 }
 
 
-func radixSort(array []int) []int {
+func radixsort(array []int) []int {
 
   fmt.Println("Running Radix Sort on Unsorted List")
 
@@ -72,7 +74,8 @@ func main() {
 	unsortedList :=[]int{10, 2, 303, 4021, 293, 1, 0, 429, 480, 92, 2999, 14}
 	fmt.Println("Unsorted List:", unsortedList)
 	
-	sortedList := radixSort(unsortedList)
+	sortedList := radixsort(unsortedList)
 	fmt.Println("Sorted List:", sortedList)
 	
 }
+
