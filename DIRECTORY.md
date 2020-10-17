@@ -105,7 +105,9 @@
   * Naivesearch
     * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch.go)
     * [Naivestringsearch Test](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch_test.go)
-  * Single String Matching
-    * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/bom.go)
-    * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/horspool.go)
-    * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/kmp.go)
+  * Single-String-Matching
+    * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/bom.go)
+    * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/horspool.go)
+    * Kmp
+      * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/kmp/kmp.go)
+      * [Kmp Test](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/kmp/kmp_test.go)
