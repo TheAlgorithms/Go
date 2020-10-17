@@ -13,25 +13,35 @@ type sortTest struct {
 	name     string
 }
 
-var uarr []int = makeRandNonNegativeArray(500_000)
-var arr []int = makeRandArray(500_000)
+var uarr []int = makeRandomUnsignedSlice(500_000)
+var arr []int = makeRandomSignedSlice(500_000)
 
 var sortTests = []sortTest{
 	//Sorted slice
+	{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+		[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Signed"},
+	//Reversed slice
+	{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
+		[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Signed"},
+
+	//500k int values sort
+	{arr, getSortedVersion(arr), "Large Random Signed"},
+
+	//Sorted slice
 	{[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted"},
+		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Unsigned"},
 
 	//Reversed slice
 	{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
-		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed"},
+		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Unsigned"},
 
 	//Reversed slice, even length
 	{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
-		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Even"},
+		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Unsigned #2"},
 
 	//Random order with repetitions
 	{[]int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
-		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10}, "Random order with repetitions"},
+		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10}, "Random order"},
 
 	//Empty slice
 	{[]int{}, []int{}, "Empty"},
@@ -39,13 +49,10 @@ var sortTests = []sortTest{
 	{[]int{1}, []int{1}, "Singleton"},
 
 	//500k non negative int values sort
-	{uarr, getSortedVersion(uarr), "Large Random"},
-
-	//500k int values sort
-	{arr, getSortedVersion(arr), "Large Random2"},
+	{uarr, getSortedVersion(uarr), "Large Random unsigned"},
 }
 
-func makeRandNonNegativeArray(size int) []int {
+func makeRandomUnsignedSlice(size int) []int {
 	vals := make([]int, size)
 	for i := 0; i < size; i++ {
 		temp, _ := rand.Int(rand.Reader, big.NewInt(int64(size)))
@@ -54,7 +61,7 @@ func makeRandNonNegativeArray(size int) []int {
 	return vals
 }
 
-func makeRandArray(size int) []int {
+func makeRandomSignedSlice(size int) []int {
 	vals := make([]int, size)
 	for i := 0; i < size; i++ {
 		temp, _ := rand.Int(rand.Reader, big.NewInt(int64(size)))
