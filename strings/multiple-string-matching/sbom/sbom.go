@@ -1,4 +1,4 @@
-package main
+package sbom
 
 import (
 	"fmt"
@@ -13,14 +13,18 @@ import (
 // Set to false for quick and quiet execution.
 const debugMode bool = true
 
+type result struct {
+	occurrences map[string][]int
+}
+
 // Implementation of Set Backward Oracle Matching algorithm (Factor based).
 // Searches for a set of strings (in 'patterns.txt') in text.txt.
 func main() {
-	patFile, err := ioutil.ReadFile("patterns.txt")
+	patFile, err := ioutil.ReadFile("../patterns.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	textFile, err := ioutil.ReadFile("text.txt")
+	textFile, err := ioutil.ReadFile("../text.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,14 +44,25 @@ func main() {
 	if debugMode == true {
 		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
 	}
-	sbom(string(textFile), patterns)
+	r := sbom(string(textFile), patterns)
+	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
+		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
+		for i := range value {
+			fmt.Printf("%d", value[i])
+			if i != len(value)-1 {
+				fmt.Printf(", ")
+			}
+		}
+		fmt.Printf(".")
+	}
+
 }
 
-// Function sbom performing the Set Backward Oracle Matching alghoritm.
-// Finds and prints occurences of each pattern.
-func sbom(t string, p []string) {
+// Function sbom performing the Set Backward Oracle Matching algorithm.
+// Finds and prints occurrences of each pattern.
+func sbom(t string, p []string) result {
 	startTime := time.Now()
-	occurences := make(map[int][]int)
+	occurrences := make(map[int][]int)
 	lmin := computeMinLength(p)
 	or, f := buildOracleMultiple(reverseAll(trimToLength(p, lmin)))
 	if debugMode == true {
@@ -84,9 +99,9 @@ func sbom(t string, p []string) {
 					if debugMode == true {
 						fmt.Printf("- Occurence, %q = %q\n", p[f[current][i]], word)
 					}
-					newOccurences := intArrayCapUp(occurences[f[current][i]])
-					occurences[f[current][i]] = newOccurences
-					occurences[f[current][i]][len(newOccurences)-1] = pos
+					newOccurences := intArrayCapUp(occurrences[f[current][i]])
+					occurrences[f[current][i]] = newOccurences
+					occurrences[f[current][i]][len(newOccurences)-1] = pos
 				}
 			}
 			j = 0
@@ -95,17 +110,14 @@ func sbom(t string, p []string) {
 	}
 	elapsed := time.Since(startTime)
 	fmt.Printf("\n\nElapsed %f secs\n", elapsed.Seconds())
-	for key, value := range occurences { //prints all occurences of each pattern (if there was at least one)
-		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), p[key])
-		for i := range value {
-			fmt.Printf("%d", value[i])
-			if i != len(value)-1 {
-				fmt.Printf(", ")
-			}
-		}
-		fmt.Printf(".")
+	var resultOccurrences = make(map[string][]int)
+	for key, value := range occurrences {
+		resultOccurrences[p[key]] = value
 	}
-	return
+
+	return result{
+		resultOccurrences,
+	}
 }
 
 // Function that builds factor oracle.
