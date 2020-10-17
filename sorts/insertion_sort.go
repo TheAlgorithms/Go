@@ -1,7 +1,7 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func insertionSort(arr []int) []int {
+func InsertionSort(arr []int) []int {
 	for out := 1; out < len(arr); out++ {
 		temp := arr[out]
 		in := out

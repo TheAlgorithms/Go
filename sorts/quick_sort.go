@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func quickSort(arr []int) []int {
+func QuickSort(arr []int) []int {
 
 	if len(arr) <= 1 {
 		return arr
@@ -28,8 +28,8 @@ func quickSort(arr []int) []int {
 		}
 	}
 
-	lowPart = quickSort(lowPart)
-	highPart = quickSort(highPart)
+	lowPart = QuickSort(lowPart)
+	highPart = QuickSort(highPart)
 
 	lowPart = append(lowPart, middlePart...)
 	lowPart = append(lowPart, highPart...)

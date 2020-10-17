@@ -1,11 +1,7 @@
 package sorts
 
-import (
-	"math"
-)
-
 func max(arr []int) int {
-	max := math.MinInt64
+	max := arr[0]
 	for _, item := range arr {
 		if item > max {
 			max = item
@@ -17,10 +13,10 @@ func max(arr []int) int {
 func countSort(arr []int, exp int) []int {
 	var digits [10]int
 	var output = make([]int, len(arr))
+
 	for _, item := range arr {
 		digits[(item/exp)%10]++
 	}
-
 	for i := 1; i < 10; i++ {
 		digits[i] += digits[i-1]
 	}
@@ -33,18 +29,10 @@ func countSort(arr []int, exp int) []int {
 	return output
 }
 
-func RadixSort(arr []int) []int {
-	maxElement := max(arr)
-	for exp := 1; maxElement/exp > 0; exp *= 10 {
-		arr = countSort(arr, exp)
-	}
-	return arr
-}
-
-// The following adds support for signed ints
-/*
-
 func unsignedRadixSort(arr []int) []int {
+	if len(arr) == 0 {
+		return arr
+	}
 	maxElement := max(arr)
 	for exp := 1; maxElement/exp > 0; exp *= 10 {
 		arr = countSort(arr, exp)
@@ -65,9 +53,8 @@ func RadixSort(arr []int) []int {
 	negatives = unsignedRadixSort(negatives)
 
 	// Reverse the negative array and restore signs
-	for i, j := 0, len(negatives) -1; i < j; i,j = i + 1, j - 1 {
+	for i, j := 0, len(negatives)-1; i <= j; i, j = i+1, j-1 {
 		negatives[i], negatives[j] = -negatives[j], -negatives[i]
 	}
 	return append(negatives, unsignedRadixSort(nonNegatives)...)
 }
-*/
