@@ -98,10 +98,16 @@
   * Levenshteindistance
     * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteindistance/levenshteinDistance.go)
     * [Levenshteindistance Test](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteindistance/levenshteinDistance_test.go)
-  * Multiple String Matching
-    * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/ac.go)
-    * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/adac.go)
-    * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/sbom.go)
+  * Multiple-String-Matching
+    * Advanced-Aho-Corasick
+      * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/advanced-aho-corasick/adac.go)
+      * [Adac Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/advanced-aho-corasick/adac_test.go)
+    * Aho-Corasick
+      * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/aho-corasick/ac.go)
+      * [Ac Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/aho-corasick/ac_test.go)
+    * Sbom
+      * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/sbom/sbom.go)
+      * [Sbom Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/sbom/sbom_test.go)
   * Naivesearch
     * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch.go)
     * [Naivestringsearch Test](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch_test.go)
