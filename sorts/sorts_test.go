@@ -1,7 +1,6 @@
 package sorts
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -14,12 +13,7 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 				if pos == -1 {
 					t.Errorf("test %s failed due to slice length changing", test.name)
 				}
-
-				for i := pos - 10; i < pos+10; i++ {
-					fmt.Print(actual[i], " ")
-				}
 				t.Errorf("test %s failed at index %d", test.name, pos)
-
 			}
 		})
 	}
@@ -55,6 +49,11 @@ func TestRadix(t *testing.T) {
 	testFramework(t, RadixSort)
 }
 
+// Very slow, consider commenting
+func TestSelection(t *testing.T) {
+	testFramework(t, SelectionSort)
+}
+
 /* func TestTopological(t *testing.T) {
 	testFramework(t, topologicalSort)
 } */
@@ -66,14 +65,6 @@ func BenchmarkBubble(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
 			bubbleSort(test.input)
-		}
-	}
-}
-
-func BenchmarkSelection(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			selectionSort(test.input)
 		}
 	}
 }
@@ -122,6 +113,15 @@ func BenchmarkRadix(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
 			RadixSort(test.input)
+		}
+	}
+}
+
+// Very Slow, consider commenting
+func BenchmarkSelection(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			SelectionSort(test.input)
 		}
 	}
 }
