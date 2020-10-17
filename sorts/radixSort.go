@@ -31,7 +31,7 @@ func radixSort(array []int) []int {
 
 	for largestNum / significantDigit > 0 {
 
-    fmt.Println("\tSorting: " + strconv.Itoa(significantDigit) + "'s place", array)
+    fmt.Println("Sorting: " + strconv.Itoa(significantDigit) + "'s place", array)
 
 		bucket := [10]int{0}
 
@@ -58,7 +58,7 @@ func radixSort(array []int) []int {
 			array[i] = semiSorted[i]
 		}
 
-    fmt.Println("\n\tBucket: ", bucket)
+    fmt.Println("Bucket: ", bucket)
 
 
 		significantDigit *= 10 
@@ -73,6 +73,6 @@ func main() {
 	fmt.Println("Unsorted List:", unsortedList)
 	
 	sortedList := radixSort(unsortedList)
-	fmt.Println("\nSorted List:", sortedList)
+	fmt.Println("Sorted List:", sortedList)
 	
 }
