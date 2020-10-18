@@ -42,7 +42,7 @@ func nextF(f int, r chan int, nums []bool) {
 	for {
 		<-r
 		for i, v := range nums[f:] {
-			if v == true {
+			if v {
 				r <- i + f
 			}
 		}
