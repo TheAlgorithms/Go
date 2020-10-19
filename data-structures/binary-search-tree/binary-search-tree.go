@@ -1,9 +1,7 @@
 // Binary search tree
 // https://en.wikipedia.org/wiki/Binary_search_tree
 
-package binarySearchTree
-
-// package main
+package binarysearchtree
 
 import "fmt"
 
@@ -92,35 +90,3 @@ func _calculate_depth(n *node, depth int) int {
 func (t *btree) depth() int {
 	return _calculate_depth(t.root, 0)
 }
-
-
-func main() {
-	t := &btree{nil}
-	inorder(t.root)
-	t.root = insert(t.root, 30)
-
-	t.root = insert(t.root, 20)
-	t.root = insert(t.root, 15)
-	t.root = insert(t.root, 10)
-	t.root = insert(t.root, 12)
-	t.root = insert(t.root, 9)
-	t.root = insert(t.root, 11)
-	t.root = insert(t.root, 17)
-	fmt.Print(t.depth(), "\n")
-	inorder(t.root)
-	fmt.Print("\n")
-	t.root = bst_delete(t.root, 10)
-	inorder(t.root)
-	fmt.Print("\n")
-	t.root = bst_delete(t.root, 30)
-	inorder(t.root)
-	fmt.Print("\n")
-	t.root = bst_delete(t.root, 15)
-	inorder(t.root)
-	fmt.Print("\n")
-	t.root = bst_delete(t.root, 20)
-	inorder(t.root)
-	fmt.Print("\n")
-	fmt.Print(t.depth(), "\n")
-}
-
