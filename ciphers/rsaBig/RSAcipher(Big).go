@@ -9,16 +9,17 @@ import (
 
 /*
 Care has been taken to uses cryptographic secure functions
-The primes numbers are 1024 bits which is as secure as u can get really
 crypto/rand library has been imported as crypto and not rand
 This import style will make it easier to spot all the cryptographic secure functions
 */
 func main() {
 	p, _ := crypto.Prime(crypto.Reader, 1024)
 	q, _ := crypto.Prime(crypto.Reader, 1024)
-	if !(primeCheck(p) || primeCheck(q)) {
+	for !(primeCheck(p) || primeCheck(q)) == False {
 		//they are always prime, no worries
-		fmt.Println("These numbers ain't prime")
+		fmt.Println("These numbers aren't prime")
+		p, _ := crypto.Prime(crypto.Reader, 1024)
+		q, _ := crypto.Prime(crypto.Reader, 1024)
 	}
 	n := new(big.Int).Mul(p, q)
 
