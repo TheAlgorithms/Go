@@ -1,110 +1,64 @@
 package sorts
 
-import "testing"
+import (
+	"testing"
+)
 
-func TestBubbleSort(t *testing.T) {
+func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	for _, test := range sortTests {
-		actual := bubbleSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
+		t.Run(test.name, func(t *testing.T) {
+			actual := sortingFunction(test.input)
+			pos, sorted := compareSlices(actual, test.expected)
+			if !sorted {
+				if pos == -1 {
+					t.Errorf("test %s failed due to slice length changing", test.name)
+				}
+				t.Errorf("test %s failed at index %d", test.name, pos)
 			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
+		})
 	}
 }
 
-func TestCountingSort(t *testing.T) {
-	for _, testcase := range sortTests {
-		actual := countingSort(testcase.input)
-		pos, sorted := compareSlices(actual, testcase.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", testcase.name)
-			}
-			t.Errorf("test %s failed at index %d", testcase.name, pos)
-		}
-	}
+//BEGIN TESTS
+
+func TestBubble(t *testing.T) {
+	testFramework(t, bubbleSort)
 }
 
-func TestSelectionSort(t *testing.T) {
-	for _, test := range sortTests {
-		actual := selectionSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
+func TestInsertion(t *testing.T) {
+	testFramework(t, InsertionSort)
 }
 
-func TestInsertionSort(t *testing.T) {
-	for _, test := range sortTests {
-		actual := insertionSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
+func TestMerge(t *testing.T) {
+	testFramework(t, Mergesort)
 }
 
-func TestMergeSort(t *testing.T) {
-	for _, test := range sortTests {
-		actual := Mergesort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
+func TestHeap(t *testing.T) {
+	testFramework(t, HeapSort)
 }
 
-func TestHeapSort(t *testing.T) {
-	for _, test := range sortTests {
-		actual := heapSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
+func TestQuick(t *testing.T) {
+	testFramework(t, QuickSort)
 }
 
-func TestQuickSort(t *testing.T) {
-	for _, test := range sortTests {
-		actual := quickSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
+func TestShell(t *testing.T) {
+	testFramework(t, ShellSort)
 }
 
-func TestShellSort(t *testing.T) {
-	for _, test := range sortTests {
-		actual := shellSort(test.input)
-		pos, sorted := compareSlices(actual, test.expected)
-		if !sorted {
-			if pos == -1 {
-				t.Errorf("test %s failed due to slice length changing", test.name)
-			}
-			t.Errorf("test %s failed at index %d", test.name, pos)
-		}
-	}
+func TestRadix(t *testing.T) {
+	testFramework(t, RadixSort)
 }
+
+// Very slow, consider commenting
+func TestSelection(t *testing.T) {
+	testFramework(t, SelectionSort)
+}
+
+/* func TestTopological(t *testing.T) {
+	testFramework(t, topologicalSort)
+} */
+
+//END TESTS
 
 func BenchmarkBubble(b *testing.B) {
 	for i := 0; i < b.N; i++ {
@@ -114,18 +68,10 @@ func BenchmarkBubble(b *testing.B) {
 	}
 }
 
-func BenchmarkSelection(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			selectionSort(test.input)
-		}
-	}
-}
-
 func BenchmarkInsertion(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			insertionSort(test.input)
+			InsertionSort(test.input)
 		}
 	}
 }
@@ -141,7 +87,7 @@ func BenchmarkMerge(b *testing.B) {
 func BenchmarkHeap(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			heapSort(test.input)
+			HeapSort(test.input)
 		}
 	}
 }
@@ -149,7 +95,7 @@ func BenchmarkHeap(b *testing.B) {
 func BenchmarkQuick(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			quickSort(test.input)
+			QuickSort(test.input)
 		}
 	}
 }
@@ -157,7 +103,24 @@ func BenchmarkQuick(b *testing.B) {
 func BenchmarkShell(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			shellSort(test.input)
+			ShellSort(test.input)
+		}
+	}
+}
+
+func BenchmarkRadix(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			RadixSort(test.input)
+		}
+	}
+}
+
+// Very Slow, consider commenting
+func BenchmarkSelection(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			SelectionSort(test.input)
 		}
 	}
 }

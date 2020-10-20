@@ -1,4 +1,4 @@
-package main
+package advancedahocorasick
 
 import (
 	"fmt"
@@ -13,14 +13,18 @@ import (
 // Set to false for quick and quiet execution.
 const debugMode bool = true
 
+type result struct {
+	occurrences map[string][]int
+}
+
 // Implementation of Advanced Aho-Corasick algorithm (Prefix based).
 // Searches for a set of strings (patterns.txt) in text.txt.
 func main() {
-	patFile, err := ioutil.ReadFile("patterns.txt")
+	patFile, err := ioutil.ReadFile("../patterns.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	textFile, err := ioutil.ReadFile("text.txt")
+	textFile, err := ioutil.ReadFile("../text.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,14 +44,25 @@ func main() {
 	if debugMode == true {
 		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
 	}
-	ahoCorasick(string(textFile), patterns)
+	r := ahoCorasick(string(textFile), patterns)
+	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
+		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
+		for i := range value {
+			fmt.Printf("%d", value[i])
+			if i != len(value)-1 {
+				fmt.Printf(", ")
+			}
+		}
+		fmt.Printf(".")
+	}
+	return
 }
 
 // Function performing the Advanced Aho-Corasick alghoritm.
-// Finds and prints occurences of each pattern.
-func ahoCorasick(t string, p []string) {
+// Finds and prints occurrences of each pattern.
+func ahoCorasick(t string, p []string) result {
 	startTime := time.Now()
-	occurences := make(map[int][]int)
+	occurrences := make(map[int][]int)
 	ac, f := buildExtendedAc(p)
 	if debugMode == true {
 		fmt.Printf("\n\nAC:\n\n")
@@ -66,26 +81,24 @@ func ahoCorasick(t string, p []string) {
 					if debugMode == true {
 						fmt.Printf("Occurence at position %d, %q = %q\n", pos-len(p[f[current][i]])+1, p[f[current][i]], p[f[current][i]])
 					}
-					newOccurences := intArrayCapUp(occurences[f[current][i]])
-					occurences[f[current][i]] = newOccurences
-					occurences[f[current][i]][len(newOccurences)-1] = pos - len(p[f[current][i]]) + 1
+					newOccurrences := intArrayCapUp(occurrences[f[current][i]])
+					occurrences[f[current][i]] = newOccurrences
+					occurrences[f[current][i]][len(newOccurrences)-1] = pos - len(p[f[current][i]]) + 1
 				}
 			}
 		}
 	}
 	elapsed := time.Since(startTime)
 	fmt.Printf("\n\nElapsed %f secs\n", elapsed.Seconds())
-	for key, value := range occurences { //prints all occurences of each pattern (if there was at least one)
-		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), p[key])
-		for i := range value {
-			fmt.Printf("%d", value[i])
-			if i != len(value)-1 {
-				fmt.Printf(", ")
-			}
-		}
-		fmt.Printf(".")
+
+	var resultOccurrences = make(map[string][]int)
+	for key, value := range occurrences {
+		resultOccurrences[p[key]] = value
 	}
-	return
+
+	return result{
+		resultOccurrences,
+	}
 }
 
 // Functions that builds extended Aho Corasick automaton.

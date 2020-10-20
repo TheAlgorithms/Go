@@ -1,11 +1,21 @@
 
 ## Ciphers
-  * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/CaesarCipher.go)
+  * Caesar
+    * [Caesar Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_test.go)
+    * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/CaesarCipher.go)
   * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffieHellmanKeyExchange.go)
-  * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/Rot13.go)
-  * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher(Big).go)
-  * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/RSAcipher.go)
-  * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xorCipher.go)
+  * Rot13
+    * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13.go)
+    * [Rot13 Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13_test.go)
+  * Rsa
+    * [Rsa Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/rsa_cipher_test.go)
+    * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/RSAcipher.go)
+  * Rsabig
+    * [Rsa Cipher Big Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsaBig/rsa_cipher_big_test.go)
+    * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsaBig/RSAcipher(Big).go)
+  * Xor
+    * [Xor Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xor_cipher_test.go)
+    * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xorCipher.go)
 
 ## Data-Structures
   * Binary-Tree
@@ -19,7 +29,9 @@
   * Linked-List
     * [Double-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/double-linkedlist.go)
     * [Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/Linkedlist.go)
-    * [Single-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/single-linkedlist.go)
+    * Singlelinkedlist
+      * [Single-Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/singlelinkedlist/single-linkedlist.go)
+      * [Single-Linkedlist Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/linked-list/singlelinkedlist/single-linkedlist_test.go)
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Go/blob/master/data-structures/trie/trie.go)
     * [Trie Test](https://github.com/TheAlgorithms/Go/blob/master/data-structures/trie/trie_test.go)
@@ -36,12 +48,20 @@
   * [Floyd Warshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floyd_warshall.go)
 
 ## Math
-  * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/fastExponent.go)
-  * [Greatest Common Divisor](https://github.com/TheAlgorithms/Go/blob/master/math/greatest_common_divisor.go)
-  * Prime Check
-    * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/prime_check/prime_check.go)
-    * [Prime Check Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime_check/prime_check_test.go)
-  * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/Sieve.go)
+  * Gcd
+    * [Greatest Common Divisor](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/greatest_common_divisor.go)
+    * [Greatest Common Divisor Test](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/greatest_common_divisor_test.go)
+  * Power
+    * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastExponent.go)
+    * [Fastexponent Test](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastExponent_test.go)
+  * Primecheck
+    * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/prime_check.go)
+    * [Prime Check Test](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/prime_check_test.go)
+  * Pythagoras
+    * [Pythagoras](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras.go)
+    * [Pythagoras Test](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras_test.go)
+  * Sieve
+    * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/Sieve.go)
 
 ## Other
   * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/maxSubarraySum.go)
@@ -65,9 +85,10 @@
   * [Bubblesort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubblesort.go)
   * [Countingsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/countingsort.go)
   * [Heap Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heap_sort.go)
-  * [Insertionsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertionsort.go)
+  * [Insertion Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertion_sort.go)
   * [Merge Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/merge_sort.go)
   * [Quick Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/quick_sort.go)
+  * [Radix Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/radix_sort.go)
   * [Selection Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/selection_sort.go)
   * [Shell Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/shell_sort.go)
   * [Sorts Case Test](https://github.com/TheAlgorithms/Go/blob/master/sorts/sorts_case_test.go)
@@ -75,13 +96,25 @@
   * [Topological Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/topological_sort.go)
 
 ## Strings
-  * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteinDistance.go)
-  * Multiple String Matching
-    * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/ac.go)
-    * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/adac.go)
-    * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple%20string%20matching/sbom.go)
-  * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naiveStringSearch.go)
-  * Single String Matching
-    * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/bom.go)
-    * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/horspool.go)
-    * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single%20string%20matching/kmp.go)
+  * Levenshteindistance
+    * [Levenshteindistance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteindistance/levenshteinDistance.go)
+    * [Levenshteindistance Test](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshteindistance/levenshteinDistance_test.go)
+  * Multiple-String-Matching
+    * Advanced-Aho-Corasick
+      * [Adac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/advanced-aho-corasick/adac.go)
+      * [Adac Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/advanced-aho-corasick/adac_test.go)
+    * Aho-Corasick
+      * [Ac](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/aho-corasick/ac.go)
+      * [Ac Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/aho-corasick/ac_test.go)
+    * Sbom
+      * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/sbom/sbom.go)
+      * [Sbom Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple-string-matching/sbom/sbom_test.go)
+  * Naivesearch
+    * [Naivestringsearch](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch.go)
+    * [Naivestringsearch Test](https://github.com/TheAlgorithms/Go/blob/master/strings/naivesearch/naiveStringSearch_test.go)
+  * Single-String-Matching
+    * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/bom.go)
+    * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/horspool.go)
+    * Kmp
+      * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/kmp/kmp.go)
+      * [Kmp Test](https://github.com/TheAlgorithms/Go/blob/master/strings/single-string-matching/kmp/kmp_test.go)
