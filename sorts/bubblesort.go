@@ -5,9 +5,11 @@ package sorts
 
 func bubbleSort(arr []int) []int {
 	swapped := true
+	var count int = 0
+
 	for swapped {
 		swapped = false
-		for i := 0; i < len(arr)-1; i++ {
+		for i := 0; i < len(arr)-1-count; i++ {
 			if arr[i+1] < arr[i] {
 				arr[i+1], arr[i] = arr[i], arr[i+1]
 				swapped = true
