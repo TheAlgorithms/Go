@@ -122,6 +122,16 @@ __Properties__
 * Average case performance    O(log n)
 * Worst case space complexity    O(1) 
 
+### Interpolation
+![alt text][binary-image]
+From [Wikipedia][interpolation-wiki]: **Interpolation search** is an algorithm for searching for a key in an array that has been ordered by numerical values assigned to the keys. Interpolation search resembles the method by which people search a telephone directory for a name, in each step the algorithm calculates where in the remaining search space the sought item might be, based on the key values at the bounds of the search space and the value of the sought key, usually via a **linear interpolation**.
+
+__Properties__
+* Worst case performance    O(n)
+* Best case performance    O(1)
+* Average case performance    O(log log n)
+* Worst case space complexity    O(1) 
+
 ----------------------------------------------------------------------------------------------------------------------
 
 ## Ciphers
@@ -169,5 +179,7 @@ Mathematically a bijective function is used on the characters' positions to encr
 [binary-wiki]: https://en.wikipedia.org/wiki/Binary_search_algorithm
 [binary-image]: https://upload.wikimedia.org/wikipedia/commons/f/f7/Binary_search_into_array.png
 
+[interpolation-wiki]: https://en.wikipedia.org/wiki/Interpolation_search
+[interpolation-image]: https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Interpolation_search.svg/1280px-Interpolation_search.svg.png
 
 [caesar]: https://upload.wikimedia.org/wikipedia/commons/4/4a/Caesar_cipher_left_shift_of_3.svg
