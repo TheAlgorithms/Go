@@ -18,12 +18,12 @@ func iterBinarySearch(array []int, target int, lowIndex int, highIndex int) int 
 	startIndex := lowIndex
 	endIndex := highIndex
 	var mid int
-	for startIndex <= endIndex {
-		mid = int(startIndex + (endIndex)/2)
+	for startIndex < endIndex {
+		mid = int(startIndex + (endIndex - startIndex))
 		if array[mid] > target {
-			endIndex = mid - 1
+			endIndex = mid
 		} else if array[mid] < target {
-			startIndex = mid + 1
+			startIndex = mid
 		} else {
 			return mid
 		}
