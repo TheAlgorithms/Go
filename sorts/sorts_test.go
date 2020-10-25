@@ -25,6 +25,10 @@ func TestBubble(t *testing.T) {
 	testFramework(t, bubbleSort)
 }
 
+func TestCount(t *testing.T) {
+	testFramework(t, countingSort)
+}
+
 func TestInsertion(t *testing.T) {
 	testFramework(t, InsertionSort)
 }
@@ -39,6 +43,10 @@ func TestHeap(t *testing.T) {
 
 func TestQuick(t *testing.T) {
 	testFramework(t, QuickSort)
+}
+
+func TestQuickHoare(t *testing.T) {
+	testFramework(t, QuickSortHoare)
 }
 
 func TestShell(t *testing.T) {
@@ -64,6 +72,14 @@ func BenchmarkBubble(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
 			bubbleSort(test.input)
+		}
+	}
+}
+
+func BenchmarkCouting(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			countingSort(test.input)
 		}
 	}
 }
@@ -96,6 +112,14 @@ func BenchmarkQuick(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
 			QuickSort(test.input)
+		}
+	}
+}
+
+func BenchmarkQuickHoare(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			QuickSortHoare(test.input)
 		}
 	}
 }
