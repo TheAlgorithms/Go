@@ -26,7 +26,7 @@ func TestBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
 		actual := binarySearch(test.data, test.key, 0, len(test.data)-1)
 		if actual != test.expected {
-			t.Errorf("test %s failed", test.name)
+			t.Errorf("test %s failed: expected '%d', get '%d'", test.name, test.expected, actual)
 		}
 	}
 }
@@ -35,7 +35,7 @@ func TestIterBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
 		actual := iterBinarySearch(test.data, test.key, 0, len(test.data)-1)
 		if actual != test.expected {
-			t.Errorf("test %s failed", test.name)
+			t.Errorf("test %s failed: expected '%d', get '%d'", test.name, test.expected, actual)
 		}
 	}
 }
@@ -44,7 +44,7 @@ func TestLinearSearch(t *testing.T) {
 	for _, test := range searchTests {
 		actual := linearSearch(test.data, test.key)
 		if actual != test.expected {
-			t.Errorf("test %s failed", test.name)
+			t.Errorf("test %s failed: expected '%d', get '%d'", test.name, test.expected, actual)
 		}
 	}
 }
