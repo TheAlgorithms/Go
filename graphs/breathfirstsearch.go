@@ -1,4 +1,4 @@
-package main
+package graphs
 
 import "fmt"
 
@@ -20,31 +20,31 @@ func notExist(target int, slice []int) bool {
 	return true
 }
 
-func dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
+func breadthFirstSearch(start, end int, nodes []int, edges [][]bool) bool {
 	var route []int
-	var stack []int
+	var queue []int
 	startIdx := getIdx(start, nodes)
-	stack = append(stack, startIdx)
-	for len(stack) > 0 {
-		now := stack[len(stack)-1]
+	queue = append(queue, startIdx)
+	for len(queue) > 0 {
+		now := queue[0]
 		route = append(route, nodes[now])
-		if len(stack) > 1 {
-			stack = stack[:len(stack)-1]
+		if len(queue) > 1 {
+			queue = queue[1:]
 		} else {
-			stack = stack[:len(stack)-1]
+			queue = queue[0:]
 		}
 		for i := 0; i < len(edges[now]); i++ {
-			if edges[now][i] && notExist(i, stack) {
-				stack = append(stack, i)
+			if edges[now][i] && notExist(i, queue) {
+				queue = append(queue, i)
 			}
 			edges[now][i] = false
 			edges[i][now] = false
 		}
 		if route[len(route)-1] == end {
-			return route, true
+			return true
 		}
 	}
-	return nil, false
+	return false
 }
 
 func main() {
@@ -67,6 +67,6 @@ func main() {
 	}
 	start := 1
 	end := 6
-	route, _ := dfs(start, end, nodes, edges)
-	fmt.Println(route)
+	result := breadthFirstSearch(start, end, nodes, edges)
+	fmt.Println(result)
 }

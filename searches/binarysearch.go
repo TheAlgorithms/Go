@@ -1,4 +1,4 @@
-package main
+package searches
 
 func binarySearch(array []int, target int, lowIndex int, highIndex int) int {
 	if highIndex < lowIndex {
