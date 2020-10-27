@@ -17,6 +17,11 @@
     * [Xor Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xor_cipher_test.go)
     * [Xorcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor/xorCipher.go)
 
+## Conversions
+  * Roman-To-Integer
+    * [Roman To Integer](https://github.com/TheAlgorithms/Go/blob/master/conversions/roman-to-integer/roman_to_integer.go)
+    * [Roman To Integer Test](https://github.com/TheAlgorithms/Go/blob/master/conversions/roman-to-integer/roman_to_integer_test.go)
+
 ## Datastructures
   * Binary-Tree
     * [Binarysearchtree](https://github.com/TheAlgorithms/Go/blob/master/datastructures/binary-tree/binarysearchtree.go)
@@ -83,7 +88,6 @@
 
 ## Sorts
   * [Bubblesort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubblesort.go)
-  * [Countingsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/countingsort.go)
   * [Heapsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heapsort.go)
   * [Insertionsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertionsort.go)
   * [Mergesort](https://github.com/TheAlgorithms/Go/blob/master/sorts/mergesort.go)
