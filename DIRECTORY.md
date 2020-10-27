@@ -97,7 +97,6 @@
   * [Shellsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/shellsort.go)
   * [Sorts Test](https://github.com/TheAlgorithms/Go/blob/master/sorts/sorts_test.go)
   * [Sorts Testcases](https://github.com/TheAlgorithms/Go/blob/master/sorts/sorts_testcases.go)
-  * [Topologicalsort](https://github.com/TheAlgorithms/Go/blob/master/sorts/topologicalsort.go)
 
 ## Strings
   * Levenshteindistance
