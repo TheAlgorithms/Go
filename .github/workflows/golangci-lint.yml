@@ -19,12 +19,12 @@ jobs:
       - run: echo "/home/runner/golangci-lint-1.31.0-linux-amd64" >> $GITHUB_PATH
       - run: go version ; golangci-lint --version  # Fix the following and remove || true
       - run: golangci-lint run --no-config ciphers
-      - run: golangci-lint run --no-config data-structures/binary-tree        || true
-      - run: golangci-lint run --no-config data-structures/dynamic-array      || true
-      - run: golangci-lint run --no-config data-structures/hash-map
-      - run: golangci-lint run --no-config data-structures/linked-list        || true
-      - run: golangci-lint run --no-config data-structures/trie               || true
-      - run: golangci-lint run --no-config dynamic-programming                || true
+      - run: golangci-lint run --no-config datastructures/binary-tree        || true
+      - run: golangci-lint run --no-config datastructures/dynamic-array      || true
+      - run: golangci-lint run --no-config datastructures/hashmap
+      - run: golangci-lint run --no-config datastructures/linkedlist        || true
+      - run: golangci-lint run --no-config datastructures/trie               || true
+      - run: golangci-lint run --no-config dynamicprogramming                || true
       - run: golangci-lint run --no-config other                              || true
       - run: golangci-lint run --no-config searches                           || true
       - run: golangci-lint run --no-config sorts
