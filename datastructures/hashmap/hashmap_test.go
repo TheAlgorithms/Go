@@ -1,7 +1,7 @@
 package hashmap_test
 
 import (
-	hashmap "TheAlgorithms/Go/data-structures/hash-map"
+	"TheAlgorithms/Go/datastructures/hashmap"
 	"fmt"
 	"testing"
 )

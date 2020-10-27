@@ -1,6 +1,6 @@
 // matrix chain multiplication problem
 // https://en.wikipedia.org/wiki/Matrix_chain_multiplication
-// www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/
+// www.geeksforgeeks.org/dynamicprogramming-set-8-matrix-chain-multiplication/
 
 // package main
 package matrixChainMultiplication
