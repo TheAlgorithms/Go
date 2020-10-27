@@ -12,6 +12,7 @@ For a full list of all algorithms, please see: [DIRECTORY.md](https://github.com
 
 ## Sort Algorithms
 
+
 ### Bubble
 ![alt text][bubble-image]
 
