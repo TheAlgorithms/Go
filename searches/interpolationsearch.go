@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
-
-func interpolationSearch(arr []int, x int) int {
+func InterpolationSearch(arr []int, x int) int {
 	var first = 0
 	var last = len(arr) - 1
 
@@ -30,18 +26,4 @@ func interpolationSearch(arr []int, x int) int {
 	}
 
 	return -1
-}
-
-func main() {
-
-	arr := []int{10, 12, 13, 16, 18, 19, 20, 21, 22, 23, 24, 33, 35, 42, 47}
-	var x = 47
-
-	index := interpolationSearch(arr, x)
-
-	if index != -1 {
-		fmt.Println("Index:", index)
-	} else {
-		fmt.Println("Not found")
-	}
 }

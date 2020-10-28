@@ -35,3 +35,12 @@ func TestLinearSearch(t *testing.T) {
 		}
 	}
 }
+
+func TestInterpolationSearch(t *testing.T) {
+	for _, test := range searchTests {
+		actual := InterpolationSearch(test.data, test.key)
+		if actual != test.expected {
+			t.Errorf("test %s failed", test.name)
+		}
+	}
+}
