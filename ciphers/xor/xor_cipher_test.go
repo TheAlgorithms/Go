@@ -48,10 +48,16 @@ var xorTestData = []struct {
 		"boffe*}exfn",
 	},
 	{
-		"Encrypt full sentence with key 128",
+		"Encrypt full sentence with key 64",
 		"the quick brown fox jumps over the lazy dog.",
 		64,
 		"4(%`15)#+`\"2/7.`&/8`*5-03`/6%2`4(%`,!:9`$/'n",
+	},
+	{
+		"Encrypt a word with key 32 make the case swap",
+		"abcdefghijklmNOPQRSTUVWXYZ",
+		32,
+		"ABCDEFGHIJKLMnopqrstuvwxyz",
 	},
 }
 
