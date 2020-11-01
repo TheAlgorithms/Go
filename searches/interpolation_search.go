@@ -1,4 +1,4 @@
-package main
+package searches
 
 import (
 	"fmt"
@@ -47,9 +47,9 @@ func main() {
 	fmt.Println("Interpolation Search:")
 	var myArr []int
 	for i := 0; i < num; i++ {
-		myArr = append(myArr, i+10000)
+		myArr = append(myArr, i)
 	}
-	x := interpolationSearch(myArr, num, 90000)
+	x := interpolationSearch(myArr, num, 890)
 	if x != -1 {
 		fmt.Println("\tElement found at location: ", x)
 	} else {
