@@ -11,6 +11,7 @@ type easternNumberToIntegerConversionTest struct {
 var easternToTests = []easternNumberToIntegerConversionTest{
 	{input: "۵۲۸۹", expected: 5289, name: "5289"},
 	{input: "۸٨٤٥", expected: 8845, name: "8845"},
+	{input: "٤٥sd", expected: 45, name: "number+words"},
 	{input: "٥۵۵", expected: 555, name: "555-mixed"},
 	{input: "", expected: 0, name: "empty"},
 	{input: "۰", expected: 0, name: "zero"},
