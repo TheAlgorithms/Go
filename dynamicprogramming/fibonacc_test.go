@@ -1,6 +1,9 @@
 package dynamicprogramming
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func Test_NthFibonacci(t *testing.T) {
 	// source: http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibtable.html
@@ -28,12 +31,12 @@ func Test_NthFibonacci(t *testing.T) {
 		{80, 23416728348467685},
 		{90, 2880067194370816120},
 	}
-	t.Run("test", func(t *testing.T) {
-		for i := range fibonacciNumbers {
+	for i := range fibonacciNumbers {
+		t.Run(fmt.Sprintf("the %dth Fibonacci number", fibonacciNumbers[i].nth), func(t *testing.T) {
 			result := NthFibonacci(fibonacciNumbers[i].nth)
 			if result != fibonacciNumbers[i].fibonacci {
 				t.Errorf("Expected the %dth Fibonacci number to be %d, got %d", fibonacciNumbers[i].nth, fibonacciNumbers[i].fibonacci, result)
 			}
-		}
-	})
+		})
+	}
 }
