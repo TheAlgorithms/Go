@@ -1,4 +1,4 @@
-package main
+package searches
 
 func InterpolationSearch(arr []int, x int) int {
 	var first = 0
