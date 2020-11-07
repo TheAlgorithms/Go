@@ -1,36 +1,33 @@
 // The Moser-de Bruijn sequence is the sequence obtained by
 // adding up the distinct powers of the number 4 (For example 1, 4, 16, 64, etc).
+// You can get more details on https://en.wikipedia.org/wiki/Moser%E2%80%93de_Bruijn_sequence.
 
-package main
+package moserdebruijnsequence
 
-import "fmt"
-
-func main() {
-	number := 5
+func MoserDeBruijnSequence(number int) []int {
 	sequence := []int{}
 
 	for i := 0; i < number; i++ {
-		res := getSequenceNumber(i)
+		res := generateNthTerm(i)
 		sequence = append(sequence, res)
 	}
 
-	fmt.Println(sequence)
-	// [0 1 4 5 16]
+	return sequence
 }
 
-func getSequenceNumber(num int) int {
+func generateNthTerm(num int) int {
 	if num == 0 || num == 1 {
 		return num
 	}
 
 	//number is even
 	if num%2 == 0 {
-		return 4 * getSequenceNumber(num/2)
+		return 4 * generateNthTerm(num/2)
 	}
 
 	//number is odd
 	if num%2 != 0 {
-		return 4*getSequenceNumber(num/2) + 1
+		return 4*generateNthTerm(num/2) + 1
 	}
 
 	return 0
