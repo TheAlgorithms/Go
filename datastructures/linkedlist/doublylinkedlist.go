@@ -1,6 +1,6 @@
 // demonstration of doubly linked list in golang
 
-package doublelinkedlist
+package linkedlist
 
 // package main
 
