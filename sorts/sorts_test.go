@@ -60,69 +60,39 @@ func TestSelection(t *testing.T) {
 
 //END TESTS
 
+func benchmarkFramework(b *testing.B, sortingFunction func([]int) []int) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			sortingFunction(test.input)
+		}
+	}
+}
+
 func BenchmarkBubble(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			bubbleSort(test.input)
-		}
-	}
+	benchmarkFramework(b, bubbleSort)
 }
-
 func BenchmarkInsertion(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			InsertionSort(test.input)
-		}
-	}
+	benchmarkFramework(b, InsertionSort)
 }
-
 func BenchmarkMerge(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			Mergesort(test.input)
-		}
-	}
+	benchmarkFramework(b, Mergesort)
 }
-
 func BenchmarkHeap(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			HeapSort(test.input)
-		}
-	}
+	benchmarkFramework(b, HeapSort)
 }
-
 func BenchmarkQuick(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			QuickSort(test.input)
-		}
-	}
+	benchmarkFramework(b, QuickSort)
 }
-
 func BenchmarkShell(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			ShellSort(test.input)
-		}
-	}
+	benchmarkFramework(b, ShellSort)
 }
-
 func BenchmarkRadix(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			RadixSort(test.input)
-		}
-	}
+	benchmarkFramework(b, RadixSort)
 }
 
 // Very Slow, consider commenting
 func BenchmarkSelection(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
-			SelectionSort(test.input)
-		}
-	}
+	benchmarkFramework(b, SelectionSort)
 }
 
 func compareSlices(a []int, b []int) (int, bool) {
