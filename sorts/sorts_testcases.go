@@ -70,6 +70,13 @@ func makeRandomSignedSlice(size int) []int {
 }
 
 func getSortedVersion(a []int) []int {
-	sort.Slice(a, func(i, j int) bool { return a[i] < a[j] })
-	return a
+	b := cloneIntSlice(a)
+	sort.Slice(b, func(i, j int) bool { return b[i] < b[j] })
+	return b
+}
+
+func cloneIntSlice(src []int) []int {
+	vals := make([]int, len(src))
+	copy(vals, src)
+	return vals
 }

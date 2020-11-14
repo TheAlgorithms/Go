@@ -7,7 +7,7 @@ import (
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	for _, test := range sortTests {
 		t.Run(test.name, func(t *testing.T) {
-			actual := sortingFunction(test.input)
+			actual := sortingFunction(cloneIntSlice(test.input))
 			pos, sorted := compareSlices(actual, test.expected)
 			if !sorted {
 				if pos == -1 {
@@ -63,7 +63,10 @@ func TestSelection(t *testing.T) {
 func benchmarkFramework(b *testing.B, sortingFunction func([]int) []int) {
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			sortingFunction(test.input)
+			b.StopTimer()
+			input := cloneIntSlice(test.input)
+			b.StartTimer()
+			sortingFunction(input)
 		}
 	}
 }
