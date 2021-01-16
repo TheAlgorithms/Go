@@ -2,8 +2,39 @@ package polybius_test
 
 import (
 	"TheAlgorithms/Go/ciphers/polybius"
+	"fmt"
+	"log"
 	"testing"
 )
+
+func ExampleNewPolybius() {
+	// initialize
+	const (
+		plainText  = "HogeFugaPiyoSpam"
+		size       = 5
+		characters = "HogeF"
+		key        = "abcdefghijklmnopqrstuvwxy"
+	)
+	p, err := polybius.NewPolybius(key, size, characters)
+	if err != nil {
+		log.Fatalf("failed NewPolybius: %v", err)
+	}
+	encryptedText, err := p.Encrypt(plainText)
+	if err != nil {
+		log.Fatalf("failed Encrypt: %v", err)
+	}
+	fmt.Printf("Encrypt=> plainText: %s, encryptedText: %s\n", plainText, encryptedText)
+
+	decryptedText, err := p.Decrypt(encryptedText)
+	if err != nil {
+		log.Fatalf("failed Decrypt: %v", err)
+	}
+	fmt.Printf("Decrypt=> encryptedText: %s, decryptedText: %s\n", encryptedText, decryptedText)
+
+	// Output:
+	// Encrypt=> plainText: HogeFugaPiyoSpam, encryptedText: OGGFOOHFOHFHOOHHEHOEFFGFEEEHHHGG
+	// Decrypt=> encryptedText: OGGFOOHFOHFHOOHHEHOEFFGFEEEHHHGG, decryptedText: HOGEFUGAPIYOSPAM
+}
 
 func TestNewPolybius(t *testing.T) {
 	t.Parallel()
@@ -46,7 +77,7 @@ func TestPolybiusEncrypt(t *testing.T) {
 		want string
 	}{
 		{
-			name: "correct encryption", text: "hoge", want: "OGGFOOHF",
+			name: "correct encryption", text: "HogeFugaPiyoSpam", want: "OGGFOOHFOHFHOOHHEHOEFFGFEEEHHHGG",
 		},
 		{
 			name: "invalid encryption", text: "hogz", want: "failed encipher: Z does not exist in keys",
@@ -55,7 +86,7 @@ func TestPolybiusEncrypt(t *testing.T) {
 	// initialize
 	const (
 		size       = 5
-		characters = "HogeFuga"
+		characters = "HogeF"
 		key        = "abcdefghijklmnopqrstuvwxy"
 	)
 	p, err := polybius.NewPolybius(key, size, characters)
@@ -84,7 +115,7 @@ func TestPolybiusDecrypt(t *testing.T) {
 		want string
 	}{
 		{
-			name: "correct decryption", text: "OGGFOOHF", want: "HOGE",
+			name: "correct decryption", text: "OGGFOOHFOHFHOOHHEHOEFFGFEEEHHHGG", want: "HOGEFUGAPIYOSPAM",
 		},
 		{
 			name: "invalid decryption(position of even number)", text: "hogz", want: "failed decipher: Z does not exist in characters",
