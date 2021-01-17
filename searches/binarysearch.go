@@ -1,12 +1,13 @@
 package searches
 
+
 func binarySearch(array []int, target int, lowIndex int, highIndex int) int {
-	if highIndex < lowIndex {
+	if highIndex < lowIndex || len(array) == 0{
 		return -1
 	}
-	mid := int(lowIndex + (highIndex-lowIndex)/2)
+	mid := (highIndex+lowIndex)/2
 	if array[mid] > target {
-		return binarySearch(array, target, lowIndex, mid)
+		return binarySearch(array, target, lowIndex, mid-1)
 	} else if array[mid] < target {
 		return binarySearch(array, target, mid+1, highIndex)
 	} else {
@@ -18,12 +19,16 @@ func iterBinarySearch(array []int, target int, lowIndex int, highIndex int) int 
 	startIndex := lowIndex
 	endIndex := highIndex
 	var mid int
-	for startIndex < endIndex {
-		mid = int(startIndex + (endIndex - startIndex))
+	size := len(array)
+	if size ==0 || highIndex > size || lowIndex < 0 {
+		return -1
+	}
+	for startIndex <= endIndex {
+		mid = (endIndex + startIndex)/2
 		if array[mid] > target {
-			endIndex = mid
+			endIndex = mid-1
 		} else if array[mid] < target {
-			startIndex = mid
+			startIndex = mid+1
 		} else {
 			return mid
 		}
