@@ -1,26 +1,12 @@
+// Package rot13 is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the alphabet.
+// ref: https://en.wikipedia.org/wiki/ROT13
 package rot13
 
 import (
-	"bytes"
-	"strings"
+	"TheAlgorithms/Go/ciphers/caesar"
 )
 
+// rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher
 func rot13(input string) string {
-	var outputBuffer bytes.Buffer
-	for _, r := range strings.ToLower(input) {
-		newByte := int(r)
-
-		if newByte >= 'a' && newByte <= 'z' {
-			newByte += 13
-
-			if newByte > 'z' {
-				newByte -= 26
-			} else if newByte < 'a' {
-				newByte += 26
-			}
-		}
-
-		outputBuffer.WriteString(string(newByte))
-	}
-	return outputBuffer.String()
+	return caesar.NewCaesar().Encrypt(input, 13)
 }
