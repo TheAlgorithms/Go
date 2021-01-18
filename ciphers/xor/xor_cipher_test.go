@@ -1,9 +1,29 @@
-package main
+package xor_test
 
 import (
+	"TheAlgorithms/Go/ciphers/xor"
+	"fmt"
 	"reflect"
 	"testing"
 )
+
+func ExampleNewXor() {
+	const (
+		seed = "Hello World"
+		key  = 97
+	)
+
+	x := xor.NewXor()
+	encrypted := x.Encrypt(byte(key), []byte(seed))
+	fmt.Printf("Encrypt=> key: %d, seed: %s, encryptedText: %v\n", key, seed, encrypted)
+
+	decrypted := x.Decrypt(byte(key), encrypted)
+	fmt.Printf("Decrypt=> key: %d, encryptedText: %v, DecryptedText: %s\n", key, encrypted, string(decrypted))
+
+	// Output:
+	// Encrypt=> key: 97, seed: Hello World, encryptedText: [41 4 13 13 14 65 54 14 19 13 5]
+	// Decrypt=> key: 97, encryptedText: [41 4 13 13 14 65 54 14 19 13 5], DecryptedText: Hello World
+}
 
 var xorTestData = []struct {
 	description string
@@ -61,16 +81,15 @@ var xorTestData = []struct {
 	},
 }
 
+var x *xor.Xor = xor.NewXor()
+
 func TestXorCipherEncrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
-
-			message := toASCII([]rune(test.input))
-			encrypted := encrypt(test.key, message)
-
-			if actual := decodeToString(encrypted); !reflect.DeepEqual(actual, test.encrypted) {
+			encrypted := x.Encrypt(byte(test.key), []byte(test.input))
+			if !reflect.DeepEqual(string(encrypted), test.encrypted) {
 				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %s, actual %s", test.encrypted, actual)
+				t.Fatalf("Expecting %s, actual %s", test.encrypted, string(encrypted))
 			}
 		})
 	}
@@ -79,13 +98,11 @@ func TestXorCipherEncrypt(t *testing.T) {
 func TestXorCipherDecrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
+			decrypted := x.Decrypt(byte(test.key), []byte(test.encrypted))
 
-			message := toASCII([]rune(test.encrypted))
-			decrypted := decrypt(test.key, message)
-
-			if actual := decodeToString(decrypted); !reflect.DeepEqual(actual, test.input) {
+			if !reflect.DeepEqual(string(decrypted), test.input) {
 				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %s, actual %s", test.input, actual)
+				t.Fatalf("Expecting %s, actual %s", test.input, string(decrypted))
 			}
 		})
 	}
