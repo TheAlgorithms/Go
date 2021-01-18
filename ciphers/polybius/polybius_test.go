@@ -46,7 +46,7 @@ func TestNewPolybius(t *testing.T) {
 		wantErr    string
 	}{
 		{
-			name: "correct initalization", size: 5, characters: "HogeF", key: "abcdefghijklmnopqrstuvwxy", wantErr: "",
+			name: "correct initialization", size: 5, characters: "HogeF", key: "abcdefghijklmnopqrstuvwxy", wantErr: "",
 		},
 		{
 			name: "truncate characters", size: 5, characters: "HogeFuga", key: "abcdefghijklmnopqrstuvwxy", wantErr: "",
