@@ -1,0 +1,13 @@
+name: golang-tests
+on: [push, pull_request]
+jobs:
+    golang-tests:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-go@v2
+            - run: go version
+            - name: Tests
+              run: go test $(go list ./... | grep -v /sbom)
