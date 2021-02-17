@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func ExampleNewXor() {
+func Example() {
 	const (
 		seed = "Hello World"
 		key  = 97

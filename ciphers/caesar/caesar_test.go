@@ -136,7 +136,7 @@ func TestDecrypt(t *testing.T) {
 	}
 }
 
-func ExampleNewCaesar() {
+func Example() {
 	const (
 		key   = 10
 		input = "The Quick Brown Fox Jumps over the Lazy Dog."

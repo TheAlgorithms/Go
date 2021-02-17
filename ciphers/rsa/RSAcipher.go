@@ -39,7 +39,7 @@ func prime(limit int) (primes []int) {
 	primes = append(primes, 2, 3, 5)
 	lastIndex := 2
 	for primes[lastIndex] < sqrtLimit {
-		if exit == true {
+		if exit {
 			break
 		}
 		for i := primes[lastIndex] + 2; i < primes[lastIndex]*primes[lastIndex]; i += 2 {
