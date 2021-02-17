@@ -6,7 +6,8 @@ Output: distance between both strings
 
 package levenshteindistance
 
-func levenshteinDistance(str1, str2 string, icost, scost, dcost int) int {
+// LevenshteinDistance Function that gives Levenshtein Distance
+func LevenshteinDistance(str1, str2 string, icost, scost, dcost int) int {
 	row1 := make([]int, len(str2)+1)
 	row2 := make([]int, len(str2)+1)
 
