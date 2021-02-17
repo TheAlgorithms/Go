@@ -69,7 +69,8 @@ func lcmBig(x *big.Int, y *big.Int) *big.Int {
 	return lcm
 }
 
-func primeCheck(prime *big.Int) bool {
+// PrimeCheck primality test
+func PrimeCheck(prime *big.Int) bool {
 	//primality test
 	return prime.ProbablyPrime(256)
 }
@@ -83,7 +84,8 @@ func toASCII(slice []rune) []int {
 	return converted
 }
 
-func toRune(slice []int) string {
+// ToRune convert a string to a rune
+func ToRune(slice []int) string {
 	//runs in O(n) where n = len(slice)
 	var str string
 	for _, v := range slice {

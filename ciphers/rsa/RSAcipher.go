@@ -104,6 +104,7 @@ func modularExponentiation(b, e, mod int) int {
 	return r
 }
 
+// EncryptRSA main encryption function for RSA
 func EncryptRSA(message []int, e, n int) []int {
 	//runs in O(k*log(n)) where k = len(message) and n = e
 	var ciphertext []int
@@ -112,6 +113,8 @@ func EncryptRSA(message []int, e, n int) []int {
 	}
 	return ciphertext
 }
+
+// DecryptRSA main decryption function for RSA
 func DecryptRSA(ciphertext []int, d, n int) []int {
 	//runs in O(k*log(n)) where k = len(ciphertext) and n = d
 	var message []int
@@ -129,7 +132,8 @@ func toASCII(slice []rune) []int {
 	return converted
 }
 
-func toRune(slice []int) string {
+// ToRune convert a string to rune
+func ToRune(slice []int) string {
 	//runs in O(n) where n = len(slice)
 	var str string
 	for _, v := range slice {

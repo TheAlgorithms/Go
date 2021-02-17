@@ -53,7 +53,7 @@ func TestRSABigCipher(t *testing.T) {
 			decrypted := DecryptBig(encrypted, d, n)
 			decryptASCIIs := stringDecode(decrypted)
 
-			if actual := toRune(decryptASCIIs); actual != test.input {
+			if actual := ToRune(decryptASCIIs); actual != test.input {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("Expecting %s, actual %s", test.input, actual)
 			}
