@@ -1,14 +1,13 @@
-package hashmap_test
+package hashmap
 
 import (
-	"TheAlgorithms/Go/datastructures/hashmap"
 	"fmt"
 	"testing"
 )
 
 func TestHashMap_Contains(t *testing.T) {
 
-	mp := hashmap.New()
+	mp := New()
 
 	mp.Put("test-1", 10)
 	fmt.Println(mp.Get("test-1"))
