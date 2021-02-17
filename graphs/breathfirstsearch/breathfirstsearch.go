@@ -1,6 +1,7 @@
 package breathfirstsearch
 
-func getIdx(target int, nodes []int) int {
+// GetIdx ...
+func GetIdx(target int, nodes []int) int {
 	for i := 0; i < len(nodes); i++ {
 		if nodes[i] == target {
 			return i
@@ -9,7 +10,8 @@ func getIdx(target int, nodes []int) int {
 	return -1
 }
 
-func notExist(target int, slice []int) bool {
+// NotExist ...
+func NotExist(target int, slice []int) bool {
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == target {
 			return false
@@ -18,10 +20,11 @@ func notExist(target int, slice []int) bool {
 	return true
 }
 
-func breadthFirstSearch(start, end int, nodes []int, edges [][]bool) bool {
+// BreadthFirstSearch The main algorithm for bread first search
+func BreadthFirstSearch(start, end int, nodes []int, edges [][]bool) bool {
 	var route []int
 	var queue []int
-	startIdx := getIdx(start, nodes)
+	startIdx := GetIdx(start, nodes)
 	queue = append(queue, startIdx)
 	for len(queue) > 0 {
 		now := queue[0]
@@ -32,7 +35,7 @@ func breadthFirstSearch(start, end int, nodes []int, edges [][]bool) bool {
 			queue = queue[0:]
 		}
 		for i := 0; i < len(edges[now]); i++ {
-			if edges[now][i] && notExist(i, queue) {
+			if edges[now][i] && NotExist(i, queue) {
 				queue = append(queue, i)
 			}
 			edges[now][i] = false

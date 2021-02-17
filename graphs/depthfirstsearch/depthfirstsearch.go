@@ -1,6 +1,6 @@
 package depthfirstsearch
 
-func getIdx(target int, nodes []int) int {
+func GetIdx(target int, nodes []int) int {
 	for i := 0; i < len(nodes); i++ {
 		if nodes[i] == target {
 			return i
@@ -9,7 +9,7 @@ func getIdx(target int, nodes []int) int {
 	return -1
 }
 
-func notExist(target int, slice []int) bool {
+func NotExist(target int, slice []int) bool {
 	for i := 0; i < len(slice); i++ {
 		if slice[i] == target {
 			return false
@@ -18,10 +18,10 @@ func notExist(target int, slice []int) bool {
 	return true
 }
 
-func dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
+func Dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
 	var route []int
 	var stack []int
-	startIdx := getIdx(start, nodes)
+	startIdx := GetIdx(start, nodes)
 	stack = append(stack, startIdx)
 	for len(stack) > 0 {
 		now := stack[len(stack)-1]
@@ -32,7 +32,7 @@ func dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
 			stack = stack[:len(stack)-1]
 		}
 		for i := 0; i < len(edges[now]); i++ {
-			if edges[now][i] && notExist(i, stack) {
+			if edges[now][i] && NotExist(i, stack) {
 				stack = append(stack, i)
 			}
 			edges[now][i] = false

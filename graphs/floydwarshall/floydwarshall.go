@@ -3,15 +3,11 @@
 
 package floydwarshall
 
-import (
-	"math"
-)
-
 // Matrix Defining matrix to use 2d array easier
 type Matrix [][]float64
 
 // Defining maximum value. If two vertices share this value, it means they are not connected
-var maxValue = math.Inf(1)
+// var maxValue = math.Inf(1) // This is not being used in the code??
 
 // FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 func FloydWarshall(graph Matrix) Matrix {
