@@ -1,6 +1,4 @@
-package graphs
-
-import "fmt"
+package breathfirstsearch
 
 func getIdx(target int, nodes []int) int {
 	for i := 0; i < len(nodes); i++ {
@@ -47,26 +45,26 @@ func breadthFirstSearch(start, end int, nodes []int, edges [][]bool) bool {
 	return false
 }
 
-func main() {
-	nodes := []int{
-		1, 2, 3, 4, 5, 6,
-	}
-	/*
-		sample graph
-		①-②
-		|  |
-		③-④-⑤-⑥
-	*/
-	edges := [][]bool{
-		{false, true, true, false, false, false},
-		{true, false, false, true, false, false},
-		{true, false, false, true, false, false},
-		{false, true, true, false, true, false},
-		{false, false, false, true, false, true},
-		{false, false, false, false, true, false},
-	}
-	start := 1
-	end := 6
-	result := breadthFirstSearch(start, end, nodes, edges)
-	fmt.Println(result)
-}
+// func main() {
+// 	nodes := []int{
+// 		1, 2, 3, 4, 5, 6,
+// 	}
+// 	/*
+// 		sample graph
+// 		①-②
+// 		|  |
+// 		③-④-⑤-⑥
+// 	*/
+// 	edges := [][]bool{
+// 		{false, true, true, false, false, false},
+// 		{true, false, false, true, false, false},
+// 		{true, false, false, true, false, false},
+// 		{false, true, true, false, true, false},
+// 		{false, false, false, true, false, true},
+// 		{false, false, false, false, true, false},
+// 	}
+// 	start := 1
+// 	end := 6
+// 	result := breadthFirstSearch(start, end, nodes, edges)
+// 	fmt.Println(result)
+// }
