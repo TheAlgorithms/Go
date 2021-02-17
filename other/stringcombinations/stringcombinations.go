@@ -1,7 +1,5 @@
-/*
-  String combinations in Go
-*/
-package main
+// Package stringcombinations ...
+package stringcombinations
 
 import "fmt"
 
