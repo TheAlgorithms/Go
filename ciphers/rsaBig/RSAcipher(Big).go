@@ -1,8 +1,6 @@
-package main
+package bigrsacipher
 
 import (
-	crypto "crypto/rand"
-	"fmt"
 	"math/big"
 	"strconv"
 )
@@ -13,49 +11,51 @@ The primes numbers are 1024 bits which is as secure as u can get really
 crypto/rand library has been imported as crypto and not rand
 This import style will make it easier to spot all the cryptographic secure functions
 */
-func main() {
-	p, _ := crypto.Prime(crypto.Reader, 1024)
-	q, _ := crypto.Prime(crypto.Reader, 1024)
-	if !(primeCheck(p) || primeCheck(q)) {
-		//they are always prime, no worries
-		fmt.Println("These numbers ain't prime")
-	}
-	n := new(big.Int).Mul(p, q)
+// func main() {
+// 	p, _ := crypto.Prime(crypto.Reader, 1024)
+// 	q, _ := crypto.Prime(crypto.Reader, 1024)
+// 	if !(primeCheck(p) || primeCheck(q)) {
+// 		//they are always prime, no worries
+// 		fmt.Println("These numbers ain't prime")
+// 	}
+// 	n := new(big.Int).Mul(p, q)
 
-	one := big.NewInt(1)
+// 	one := big.NewInt(1)
 
-	delta := lcmBig(p.Sub(p, one), q.Sub(q, one))
+// 	delta := lcmBig(p.Sub(p, one), q.Sub(q, one))
 
-	e, _ := crypto.Prime(crypto.Reader, delta.BitLen())
-	d := big.NewInt(0)
-	d.ModInverse(e, delta)
+// 	e, _ := crypto.Prime(crypto.Reader, delta.BitLen())
+// 	d := big.NewInt(0)
+// 	d.ModInverse(e, delta)
 
-	cleartext := "Black Lives Matter, all lives can't matter until Black lives matter"
-	runes := []rune(cleartext)
-	ASCIIs := toASCII(runes)
-	stringEncoded := stringEncode(ASCIIs)
-	bigNum, _ := new(big.Int).SetString(stringEncoded, 0)
-	/*
-		TODO: check that bigNum is not larger than N if larger break
-		into two or more strings and encrypt separately
-	*/
-	fmt.Printf("Message to be encrypted: %v \n", cleartext)
-	fmt.Printf("ASCII encoded: %v\n", bigNum)
-	encrypted := encryptBig(bigNum, e, n)
-	fmt.Printf("ciphertext: %v \n", encrypted)
-	decrypted := decryptBig(encrypted, d, n)
-	fmt.Printf("Decrypted but still ASCII encoded: %v \n", decrypted)
-	decryptASCIIs := stringDecode(decrypted)
-	fmt.Printf("Plaintext (original message) :%v", toRune(decryptASCIIs))
-}
+// 	cleartext := "Black Lives Matter, all lives can't matter until Black lives matter"
+// 	runes := []rune(cleartext)
+// 	ASCIIs := toASCII(runes)
+// 	stringEncoded := stringEncode(ASCIIs)
+// 	bigNum, _ := new(big.Int).SetString(stringEncoded, 0)
+// 	/*
+// 		TODO: check that bigNum is not larger than N if larger break
+// 		into two or more strings and encrypt separately
+// 	*/
+// 	fmt.Printf("Message to be encrypted: %v \n", cleartext)
+// 	fmt.Printf("ASCII encoded: %v\n", bigNum)
+// 	encrypted := encryptBig(bigNum, e, n)
+// 	fmt.Printf("ciphertext: %v \n", encrypted)
+// 	decrypted := decryptBig(encrypted, d, n)
+// 	fmt.Printf("Decrypted but still ASCII encoded: %v \n", decrypted)
+// 	decryptASCIIs := stringDecode(decrypted)
+// 	fmt.Printf("Plaintext (original message) :%v", toRune(decryptASCIIs))
+// }
 
-func encryptBig(num *big.Int, privateExponent *big.Int, modulus *big.Int) *big.Int {
+// EncryptBig Main encryption function
+func EncryptBig(num *big.Int, privateExponent *big.Int, modulus *big.Int) *big.Int {
 	//encrypts by modular exponentiation
 	encrypted := new(big.Int).Exp(num, privateExponent, modulus)
 	return encrypted
 }
 
-func decryptBig(num *big.Int, publicExponent *big.Int, modulus *big.Int) *big.Int {
+// DecryptBig Main decryption function
+func DecryptBig(num *big.Int, publicExponent *big.Int, modulus *big.Int) *big.Int {
 	//decrypts by modular exponentiation
 	decrypted := new(big.Int).Exp(num, publicExponent, modulus)
 	return decrypted

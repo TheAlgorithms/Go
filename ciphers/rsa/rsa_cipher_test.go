@@ -1,4 +1,4 @@
-package main
+package rsacipher
 
 import (
 	"math/rand"
@@ -51,8 +51,8 @@ func TestRSACipher(t *testing.T) {
 			message := []rune(test.input)
 			expected := toASCII(message)
 
-			encrypted := encryptRSA(expected, e, n)
-			decrypted := decryptRSA(encrypted, d, n)
+			encrypted := EncryptRSA(expected, e, n)
+			decrypted := DecryptRSA(encrypted, d, n)
 
 			if actual := decrypted; !reflect.DeepEqual(actual, expected) {
 				t.Logf("FAIL: %s", test.description)

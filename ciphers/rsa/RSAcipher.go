@@ -1,11 +1,10 @@
-package main
+package rsacipher
 
 import (
 	//"math/big"
-	"fmt"
+
 	"math"
 	"math/rand"
-	"time"
 )
 
 func generatePrimes(limit int) int {
@@ -105,7 +104,7 @@ func modularExponentiation(b, e, mod int) int {
 	return r
 }
 
-func encryptRSA(message []int, e, n int) []int {
+func EncryptRSA(message []int, e, n int) []int {
 	//runs in O(k*log(n)) where k = len(message) and n = e
 	var ciphertext []int
 	for _, v := range message {
@@ -113,7 +112,7 @@ func encryptRSA(message []int, e, n int) []int {
 	}
 	return ciphertext
 }
-func decryptRSA(ciphertext []int, d, n int) []int {
+func DecryptRSA(ciphertext []int, d, n int) []int {
 	//runs in O(k*log(n)) where k = len(ciphertext) and n = d
 	var message []int
 	for _, v := range ciphertext {
@@ -139,35 +138,35 @@ func toRune(slice []int) string {
 	return str
 }
 
-func main() {
-	rand.Seed(time.Now().UTC().UnixNano())
-	bits := 17
+// func main() {
+// 	rand.Seed(time.Now().UTC().UnixNano())
+// 	bits := 17
 
-	p := generatePrimes(1 << bits)
-	q := generatePrimes(1 << bits)
-	for p == q {
-		q = generatePrimes(1 << bits)
-	}
+// 	p := generatePrimes(1 << bits)
+// 	q := generatePrimes(1 << bits)
+// 	for p == q {
+// 		q = generatePrimes(1 << bits)
+// 	}
 
-	n := p * q
+// 	n := p * q
 
-	delta := lcm(p-1, q-1)
+// 	delta := lcm(p-1, q-1)
 
-	e := generatePrimes(delta)
-	d := modularMultiplicativeInverse(e, delta)
+// 	e := generatePrimes(delta)
+// 	d := modularMultiplicativeInverse(e, delta)
 
-	fmt.Printf("%v \n%v \n%v \n%v\n", p, q, e, d)
+// 	fmt.Printf("%v \n%v \n%v \n%v\n", p, q, e, d)
 
-	str := "I think RSA is really great"
-	message := []rune(str)
-	asciiSlice := toASCII(message)
+// 	str := "I think RSA is really great"
+// 	message := []rune(str)
+// 	asciiSlice := toASCII(message)
 
-	fmt.Printf("asciiSlice : %v \n", asciiSlice)
-	encrypted := encryptRSA(asciiSlice, e, n)
-	fmt.Printf("encrypted : %v \n", encrypted)
-	decrypted := decryptRSA(encrypted, d, n)
-	fmt.Printf("decrypted : %v \n", decrypted)
-	fmt.Printf("cleartext : %v \n", toRune(decrypted))
-	//switched to atom
+// 	fmt.Printf("asciiSlice : %v \n", asciiSlice)
+// 	encrypted := encryptRSA(asciiSlice, e, n)
+// 	fmt.Printf("encrypted : %v \n", encrypted)
+// 	decrypted := decryptRSA(encrypted, d, n)
+// 	fmt.Printf("decrypted : %v \n", decrypted)
+// 	fmt.Printf("cleartext : %v \n", toRune(decrypted))
+// 	//switched to atom
 
-}
+// }
