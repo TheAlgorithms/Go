@@ -1,7 +1,6 @@
-package xor_test
+package xor
 
 import (
-	"TheAlgorithms/Go/ciphers/xor"
 	"fmt"
 	"reflect"
 	"testing"
@@ -13,11 +12,10 @@ func ExampleNewXor() {
 		key  = 97
 	)
 
-	x := xor.NewXor()
-	encrypted := x.Encrypt(byte(key), []byte(seed))
+	encrypted := Encrypt(byte(key), []byte(seed))
 	fmt.Printf("Encrypt=> key: %d, seed: %s, encryptedText: %v\n", key, seed, encrypted)
 
-	decrypted := x.Decrypt(byte(key), encrypted)
+	decrypted := Decrypt(byte(key), encrypted)
 	fmt.Printf("Decrypt=> key: %d, encryptedText: %v, DecryptedText: %s\n", key, encrypted, string(decrypted))
 
 	// Output:
@@ -81,12 +79,10 @@ var xorTestData = []struct {
 	},
 }
 
-var x *xor.Xor = xor.NewXor()
-
 func TestXorCipherEncrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
-			encrypted := x.Encrypt(byte(test.key), []byte(test.input))
+			encrypted := Encrypt(byte(test.key), []byte(test.input))
 			if !reflect.DeepEqual(string(encrypted), test.encrypted) {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("Expecting %s, actual %s", test.encrypted, string(encrypted))
@@ -98,7 +94,7 @@ func TestXorCipherEncrypt(t *testing.T) {
 func TestXorCipherDecrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
-			decrypted := x.Decrypt(byte(test.key), []byte(test.encrypted))
+			decrypted := Decrypt(byte(test.key), []byte(test.encrypted))
 
 			if !reflect.DeepEqual(string(decrypted), test.input) {
 				t.Logf("FAIL: %s", test.description)
