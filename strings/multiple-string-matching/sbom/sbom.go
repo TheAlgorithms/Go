@@ -2,8 +2,6 @@ package sbom
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
 	"strings"
 	"time"
 )
@@ -13,74 +11,74 @@ import (
 // Set to false for quick and quiet execution.
 const debugMode bool = true
 
-type result struct {
+type Result struct {
 	occurrences map[string][]int
 }
 
 // Implementation of Set Backward Oracle Matching algorithm (Factor based).
 // Searches for a set of strings (in 'patterns.txt') in text.txt.
-func main() {
-	patFile, err := ioutil.ReadFile("../patterns.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	textFile, err := ioutil.ReadFile("../text.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	patterns := strings.Split(string(patFile), " ")
-	fmt.Printf("\nRunning: Set Backward Oracle Matching algorithm.\n\n")
-	if debugMode == true {
-		fmt.Printf("Searching for %d patterns/words:\n", len(patterns))
-	}
-	for i := 0; i < len(patterns); i++ {
-		if len(patterns[i]) > len(textFile) {
-			log.Fatal("There is a pattern that is longer than text! Pattern number:", i+1)
-		}
-		if debugMode == true {
-			fmt.Printf("%q ", patterns[i])
-		}
-	}
-	if debugMode == true {
-		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
-	}
-	r := sbom(string(textFile), patterns)
-	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
-		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
-		for i := range value {
-			fmt.Printf("%d", value[i])
-			if i != len(value)-1 {
-				fmt.Printf(", ")
-			}
-		}
-		fmt.Printf(".")
-	}
+// func main() {
+// 	patFile, err := ioutil.ReadFile("../patterns.txt")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	textFile, err := ioutil.ReadFile("../text.txt")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	patterns := strings.Split(string(patFile), " ")
+// 	fmt.Printf("\nRunning: Set Backward Oracle Matching algorithm.\n\n")
+// 	if debugMode {
+// 		fmt.Printf("Searching for %d patterns/words:\n", len(patterns))
+// 	}
+// 	for i := 0; i < len(patterns); i++ {
+// 		if len(patterns[i]) > len(textFile) {
+// 			log.Fatal("There is a pattern that is longer than text! Pattern number:", i+1)
+// 		}
+// 		if debugMode {
+// 			fmt.Printf("%q ", patterns[i])
+// 		}
+// 	}
+// 	if debugMode {
+// 		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
+// 	}
+// 	r := sbom(string(textFile), patterns)
+// 	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
+// 		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
+// 		for i := range value {
+// 			fmt.Printf("%d", value[i])
+// 			if i != len(value)-1 {
+// 				fmt.Printf(", ")
+// 			}
+// 		}
+// 		fmt.Printf(".")
+// 	}
 
-}
+// }
 
-// Function sbom performing the Set Backward Oracle Matching algorithm.
+// Sbom Function sbom performing the Set Backward Oracle Matching algorithm.
 // Finds and prints occurrences of each pattern.
-func sbom(t string, p []string) result {
+func Sbom(t string, p []string) Result {
 	startTime := time.Now()
 	occurrences := make(map[int][]int)
 	lmin := computeMinLength(p)
 	or, f := buildOracleMultiple(reverseAll(trimToLength(p, lmin)))
-	if debugMode == true {
+	if debugMode {
 		fmt.Printf("\n\nSBOM:\n\n")
 	}
 	pos := 0
 	for pos <= len(t)-lmin {
 		current := 0
 		j := lmin
-		if debugMode == true {
+		if debugMode {
 			fmt.Printf("Position: %d, we read: ", pos)
 		}
 		for j >= 1 && stateExists(current, or) {
-			if debugMode == true {
+			if debugMode {
 				fmt.Printf("%c", t[pos+j-1])
 			}
 			current = getTransition(current, t[pos+j-1], or)
-			if debugMode == true {
+			if debugMode {
 				if current == -1 {
 					fmt.Printf(" (FAIL) ")
 				} else {
@@ -89,14 +87,14 @@ func sbom(t string, p []string) result {
 			}
 			j--
 		}
-		if debugMode == true {
+		if debugMode {
 			fmt.Printf("in the factor oracle. \n")
 		}
 		word := getWord(pos, pos+lmin-1, t)
 		if stateExists(current, or) && j == 0 && strings.HasPrefix(word, getCommonPrefix(p, f[current], lmin)) { //check for prefix match
 			for i := range f[current] {
 				if p[f[current][i]] == getWord(pos, pos-1+len(p[f[current][i]]), t) { //check for word match
-					if debugMode == true {
+					if debugMode {
 						fmt.Printf("- Occurence, %q = %q\n", p[f[current][i]], word)
 					}
 					newOccurences := intArrayCapUp(occurrences[f[current][i]])
@@ -115,7 +113,7 @@ func sbom(t string, p []string) result {
 		resultOccurrences[p[key]] = value
 	}
 
-	return result{
+	return Result{
 		resultOccurrences,
 	}
 }
@@ -127,7 +125,7 @@ func buildOracleMultiple(p []string) (orToReturn map[int]map[uint8]int, f map[in
 	i := 0                                 //root of trie
 	orToReturn = orTrie
 	s[i] = -1
-	if debugMode == true {
+	if debugMode {
 		fmt.Printf("\n\nOracle construction: \n")
 	}
 	for current := 1; current < len(stateIsTerminal); current++ {
@@ -152,7 +150,7 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 	stateIsTerminal = make([]bool, 1)
 	f = make(map[int][]int)
 	state := 1
-	if debugMode == true {
+	if debugMode {
 		fmt.Printf("\n\nTrie construction: \n")
 	}
 	createNewState(0, trie)
@@ -176,13 +174,13 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 			newArray := intArrayCapUp(f[current])
 			newArray[len(newArray)-1] = i
 			f[current] = newArray //F(Current) <- F(Current) union {i}
-			if debugMode == true {
+			if debugMode {
 				fmt.Printf(" and %d", i)
 			}
 		} else {
 			stateIsTerminal[current] = true
 			f[current] = []int{i} //F(Current) <- {i}
-			if debugMode == true {
+			if debugMode {
 				fmt.Printf("\n%d is terminal for word number %d", current, i)
 			}
 		}
@@ -194,7 +192,7 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 func intArrayCapUp(old []int) (new []int) {
 	new = make([]int, cap(old)+1)
 	copy(new, old) //copy(dst,src)
-	old = new
+	// old = new
 	return new
 }
 
@@ -202,7 +200,7 @@ func intArrayCapUp(old []int) (new []int) {
 func boolArrayCapUp(old []bool) (new []bool) {
 	new = make([]bool, cap(old)+1)
 	copy(new, old)
-	old = new
+	// old = new
 	return new
 }
 
@@ -292,7 +290,7 @@ func getParent(state int, at map[int]map[uint8]int) (uint8, int) {
 // Automaton function for creating a new state 'state'.
 func createNewState(state int, at map[int]map[uint8]int) {
 	at[state] = make(map[uint8]int)
-	if debugMode == true {
+	if debugMode {
 		fmt.Printf("\ncreated state %d", state)
 	}
 }
@@ -300,7 +298,7 @@ func createNewState(state int, at map[int]map[uint8]int) {
 // Creates a transition for function σ(state,letter) = end.
 func createTransition(fromState int, overChar uint8, toState int, at map[int]map[uint8]int) {
 	at[fromState][overChar] = toState
-	if debugMode == true {
+	if debugMode {
 		fmt.Printf("\n    σ(%d,%c)=%d;", fromState, overChar, toState)
 	}
 }
@@ -311,7 +309,7 @@ func getTransition(fromState int, overChar uint8, at map[int]map[uint8]int) (toS
 		return -1
 	}
 	toState, ok := at[fromState][overChar]
-	if ok == false {
+	if ok {
 		return -1
 	}
 	return toState

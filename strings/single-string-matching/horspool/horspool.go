@@ -3,7 +3,7 @@ package horspool
 // User defined.
 // Set to true to read input from two command line arguments
 // Set to false to read input from two files "pattern.txt" and "text.txt"
-const commandLineInput bool = false
+// const commandLineInput bool = false
 
 // Implementation of Boyer-Moore-Horspool algorithm (Suffix based approach).
 // Requires either a two command line arguments separated by a single space,

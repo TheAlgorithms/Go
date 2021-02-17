@@ -3,12 +3,12 @@ package bom
 // User defined.
 // Set to true to print various extra stuff out (slows down the execution)
 // Set to false for quick and quiet execution.
-const debugMode bool = false
+// const debugMode bool = false
 
 // User defined.
 // Set to true to read input from two command line arguments
 // Set to false to read input from two files "pattern.txt" and "text.txt"
-const commandLineInput bool = false
+// const commandLineInput bool = false
 
 // Implementation of Backward Oracle Matching algorithm (Factor based approach).
 // Requires either a two command line arguments separated by a single space,

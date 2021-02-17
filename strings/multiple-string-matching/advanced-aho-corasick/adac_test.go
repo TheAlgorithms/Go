@@ -3,6 +3,7 @@ package advancedahocorasick
 import (
 	"fmt"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -10,14 +11,14 @@ var testCases = []struct {
 	name     string
 	words    []string
 	text     string
-	expected result
+	expected Result
 }{
 
 	{
 		"String comparison on all patterns found",
 		[]string{"announce", "annual", "annually"},
 		"CPM_annual_conferenceannounce_announce_annually_announce",
-		result{
+		Result{
 			map[string][]int{
 				"annual":   {4, 39},
 				"announce": {21, 30, 48},
@@ -29,7 +30,7 @@ var testCases = []struct {
 		"String comparison on not all patterns found",
 		[]string{"announce", "annual", "annually"},
 		"CPM_annual_conference_announce",
-		result{
+		Result{
 			map[string][]int{
 				"annual":   {4},
 				"announce": {22},
@@ -40,7 +41,7 @@ var testCases = []struct {
 		"String comparison on not all patterns found",
 		[]string{"announce", "annual", "annually"},
 		"CPM_annual_conference_announce",
-		result{
+		Result{
 			map[string][]int{
 				"annual":   {4},
 				"announce": {22},
@@ -52,7 +53,7 @@ var testCases = []struct {
 func TestAhoCorasick(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := ahoCorasick(tc.text, tc.words)
+			actual := AhoCorasick(tc.text, tc.words)
 			if !reflect.DeepEqual(actual, tc.expected) {
 				actualString := convertToString(actual)
 				expectedString := convertToString(tc.expected)
@@ -63,17 +64,20 @@ func TestAhoCorasick(t *testing.T) {
 	}
 }
 
-func convertToString(res result) string {
-	var r string
+func convertToString(res Result) string {
+	// var r string
+	var r strings.Builder
 	for key, val := range res.occurrences {
-		r = r + fmt.Sprintf("Word: '%s' at positions: ", key)
+		r.WriteString(fmt.Sprintf("Word: '%s' at positions: ", key))
 		for i := range val {
-			r = r + fmt.Sprintf("%d", val[i])
+			r.WriteString(fmt.Sprintf("%d", val[i]))
 			if i != len(val)-1 {
-				r = r + fmt.Sprintf(", ")
+				// r = r + fmt.Sprintf(", ")
+				r.WriteString(", ")
 			}
 		}
-		r = r + fmt.Sprintf(". ")
+		// r = r + fmt.Sprintf(". ")
+		r.WriteString(". ")
 	}
-	return r
+	return r.String()
 }
