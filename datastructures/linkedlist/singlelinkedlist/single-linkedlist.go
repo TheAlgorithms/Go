@@ -1,38 +1,41 @@
+// Package singlelinkedlist Single Linked List
 package singlelinkedlist
 
 // demonstration of singly linked list in golang
 import "fmt"
 
-type node struct {
+// TODO: This is not how it should be done but I don't see a way out of this
+type snode struct {
 	Val  interface{}
-	Next *node
+	Next *snode
 }
 
-type singlelinkedlist struct {
+// SingleLinkedList structure with length of the list and its head
+type SingleLinkedList struct {
 	length int
-	Head   *node
+	Head   *snode
 }
 
 // CreateList returns a new instance of a linked list
-func CreateList() *singlelinkedlist {
-	return &singlelinkedlist{}
+func CreateList() *SingleLinkedList {
+	return &SingleLinkedList{}
 }
 
-// to avoid mistakes when using pointer vs struct for new node creation
-func newNode(val interface{}) *node {
-	return &node{val, nil}
+// to avoid mistakes when using pointer vs struct for new snode creation
+func newNode(val interface{}) *snode {
+	return &snode{val, nil}
 }
 
-// AddAtBeg adds a new node with given value at the beginning of the list.
-func (ll *singlelinkedlist) AddAtBeg(val interface{}) {
+// AddAtBeg adds a new snode with given value at the beginning of the list.
+func (ll *SingleLinkedList) AddAtBeg(val interface{}) {
 	n := newNode(val)
 	n.Next = ll.Head
 	ll.Head = n
 	ll.length++
 }
 
-// AddAtEnd adds a new node with given value at the end of the list.
-func (ll *singlelinkedlist) AddAtEnd(val int) {
+// AddAtEnd adds a new snode with given value at the end of the list.
+func (ll *SingleLinkedList) AddAtEnd(val int) {
 	n := newNode(val)
 
 	if ll.Head == nil {
@@ -48,8 +51,8 @@ func (ll *singlelinkedlist) AddAtEnd(val int) {
 	ll.length++
 }
 
-// DelAtBeg deletes the node at the head(beginning) of the list and returns its value. Returns -1 if the list is empty.
-func (ll *singlelinkedlist) DelAtBeg() interface{} {
+// DelAtBeg deletes the snode at the head(beginning) of the list and returns its value. Returns -1 if the list is empty.
+func (ll *SingleLinkedList) DelAtBeg() interface{} {
 	if ll.Head == nil {
 		return -1
 	}
@@ -61,8 +64,8 @@ func (ll *singlelinkedlist) DelAtBeg() interface{} {
 	return cur.Val
 }
 
-// DelAtEnd deletes the node at the tail(end) of the list and returns its value. Returns -1 if the list is empty.
-func (ll *singlelinkedlist) DelAtEnd() interface{} {
+// DelAtEnd deletes the snode at the tail(end) of the list and returns its value. Returns -1 if the list is empty.
+func (ll *SingleLinkedList) DelAtEnd() interface{} {
 	if ll.Head == nil {
 		return -1
 	}
@@ -84,13 +87,13 @@ func (ll *singlelinkedlist) DelAtEnd() interface{} {
 }
 
 // Count returns the current size of the list.
-func (ll *singlelinkedlist) Count() int {
+func (ll *SingleLinkedList) Count() int {
 	return ll.length
 }
 
 // Reverse reverses the list.
-func (ll *singlelinkedlist) Reverse() {
-	var prev, Next *node
+func (ll *SingleLinkedList) Reverse() {
+	var prev, Next *snode
 	cur := ll.Head
 
 	for cur != nil {
@@ -104,7 +107,7 @@ func (ll *singlelinkedlist) Reverse() {
 }
 
 // Display prints out the elements of the list.
-func (ll *singlelinkedlist) Display() {
+func (ll *SingleLinkedList) Display() {
 	for cur := ll.Head; cur != nil; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
 	}

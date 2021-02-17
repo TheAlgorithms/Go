@@ -1,37 +1,39 @@
 // demonstration of doubly linked list in golang
 
-package linkedlist
+package doublelinkedlist
 
 // package main
 
 import "fmt"
 
-type node struct {
+// TODO: Not the ways its supposed to be done but can't think of a work around for tests to not worry about redeclaration
+type dnode struct {
 	val  int
-	next *node
-	prev *node
+	next *dnode
+	prev *dnode
 }
 
-type doublelinkedlist struct {
-	head *node
+// DoubleLinkedList structure with just the head node
+type DoubleLinkedList struct {
+	head *dnode
 }
 
 // to avoid mistakes when using pointer vs struct for new node creation
-func newNode(val int) *node {
-	n := &node{}
+func newNode(val int) *dnode {
+	n := &dnode{}
 	n.val = val
 	n.next = nil
 	n.prev = nil
 	return n
 }
 
-func (ll *doublelinkedlist) addAtBeg(val int) {
+func (ll *DoubleLinkedList) addAtBeg(val int) {
 	n := newNode(val)
 	n.next = ll.head
 	ll.head = n
 }
 
-func (ll *doublelinkedlist) addAtEnd(val int) {
+func (ll *DoubleLinkedList) addAtEnd(val int) {
 	n := newNode(val)
 
 	if ll.head == nil {
@@ -46,7 +48,7 @@ func (ll *doublelinkedlist) addAtEnd(val int) {
 	n.prev = cur
 }
 
-func (ll *doublelinkedlist) delAtBeg() int {
+func (ll *DoubleLinkedList) delAtBeg() int {
 	if ll.head == nil {
 		return -1
 	}
@@ -61,7 +63,7 @@ func (ll *doublelinkedlist) delAtBeg() int {
 	return cur.val
 }
 
-func (ll *doublelinkedlist) delAtEnd() int {
+func (ll *DoubleLinkedList) delAtEnd() int {
 	// no item
 	if ll.head == nil {
 		return -1
@@ -82,7 +84,7 @@ func (ll *doublelinkedlist) delAtEnd() int {
 	return retval
 }
 
-func (ll *doublelinkedlist) count() int {
+func (ll *DoubleLinkedList) count() int {
 	var ctr int = 0
 
 	for cur := ll.head; cur != nil; cur = cur.next {
@@ -92,8 +94,8 @@ func (ll *doublelinkedlist) count() int {
 	return ctr
 }
 
-func (ll *doublelinkedlist) reverse() {
-	var prev, next *node
+func (ll *DoubleLinkedList) reverse() {
+	var prev, next *dnode
 	cur := ll.head
 
 	for cur != nil {
@@ -107,7 +109,7 @@ func (ll *doublelinkedlist) reverse() {
 	ll.head = prev
 }
 
-func (ll *doublelinkedlist) display() {
+func (ll *DoubleLinkedList) display() {
 	for cur := ll.head; cur != nil; cur = cur.next {
 		fmt.Print(cur.val, " ")
 	}
@@ -115,11 +117,11 @@ func (ll *doublelinkedlist) display() {
 	fmt.Print("\n")
 }
 
-func (ll *doublelinkedlist) displayReverse() {
+func (ll *DoubleLinkedList) displayReverse() {
 	if ll.head == nil {
 		return
 	}
-	var cur *node
+	var cur *dnode
 	for cur = ll.head; cur.next != nil; cur = cur.next {
 	}
 
@@ -132,7 +134,7 @@ func (ll *doublelinkedlist) displayReverse() {
 
 /*
 func main() {
-	ll := doublelinkedlist{}
+	ll := DoubleLinkedList{}
 
 	ll.addAtBeg(10)
 	ll.addAtEnd(20)
