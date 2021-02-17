@@ -3,8 +3,10 @@ package rsacipher
 import (
 	//"math/big"
 
+	"fmt"
 	"math"
 	"math/rand"
+	"strings"
 )
 
 func generatePrimes(limit int) int {
@@ -135,11 +137,12 @@ func toASCII(slice []rune) []int {
 // ToRune convert a string to rune
 func ToRune(slice []int) string {
 	//runs in O(n) where n = len(slice)
-	var str string
+	// var str string
+	var str strings.Builder
 	for _, v := range slice {
-		str += string(v)
+		str.WriteString(fmt.Sprint(v))
 	}
-	return str
+	return str.String()
 }
 
 // func main() {
