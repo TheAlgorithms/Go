@@ -150,6 +150,7 @@ func ToRune(slice []int) []string {
 	return []string{str.String()}
 }
 
+// StringDecode decoding rune to array of ints
 func StringDecode(decrypt []string) []int {
 	split := strings.Split(decrypt[0], " ")
 	var res []int
