@@ -1,50 +1,18 @@
-package main
+package sieve
 
-import (
-	_ "fmt"
-)
-
-func main() {
-	var l, f int
-	l = 100
-	channel := make(chan int, l)
-	channelTwo := make(chan int, l)
-	var nums []bool
-
-	for i := 0; i < l; i++ {
-		nums = append(nums, true)
-	}
-	f = 2
-
-	go crossOff(channel, channelTwo, f, l)
-	go nextF(f, channelTwo, nums)
-	//blocks and sieves out non-primes
-	for {
-		select {
-		case index := <-channel:
-			nums[index-1] = false
-		}
+// Generate generates the sequence of integers starting at 2 and sends it to the channel `ch`
+func Generate(ch chan<- int) {
+	for i := 2; ; i++ {
+		ch <- i
 	}
 }
-func crossOff(c chan int, r chan int, f int, l int) {
-	for f != -1 {
-		for f <= l {
-			c <- f
-			f += f
-		}
-		f = <-r
-		r <- 1
-	}
 
-}
-
-func nextF(f int, r chan int, nums []bool) {
+// Sieve Sieving the numbers that are not prime from the channel - basically removing them from the channels
+func Sieve(in <-chan int, out chan<- int, prime int) {
 	for {
-		<-r
-		for i, v := range nums[f:] {
-			if v {
-				r <- i + f
-			}
+		i := <-in
+		if i%prime != 0 {
+			out <- i
 		}
 	}
 }
