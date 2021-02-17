@@ -3,6 +3,7 @@ maximum contiguous sum in the given array. */
 
 package maxsubarraysum
 
+// Max - already defined somewhere in this repository TODO: remove this definition and add the import path
 func Max(x int, y int) int {
 	if x < y {
 		return y
@@ -10,7 +11,8 @@ func Max(x int, y int) int {
 	return x
 }
 
-func maxSubarraySum(array []int) int {
+// MaxSubarraySum returns the maximum subarray sum
+func MaxSubarraySum(array []int) int {
 	var currentMax int = 0
 	var maxTillNow int = 0
 	for _, v := range array {

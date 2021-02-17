@@ -11,7 +11,8 @@
 
 package nestedbrackets
 
-func isBalanced(input string) string {
+// IsBalanced function which checks whether the number of brackets are balanced
+func IsBalanced(input string) string {
 	if len(input)%2 != 0 {
 		return input + "is not balanced."
 	}

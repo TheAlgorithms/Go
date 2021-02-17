@@ -10,7 +10,7 @@ import (
 	"math/rand"
 )
 
-func generatePassword(minLength int, maxLength int) string {
+func GeneratePassword(minLength int, maxLength int) string {
 	var chars = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+,.?/:;{}[]`~")
 
 	var length = rand.Intn(maxLength-minLength) + minLength

@@ -3,12 +3,14 @@ package stringcombinations
 
 import "fmt"
 
+// Combinations structure with in and out rune
 type Combinations struct {
 	out []rune
 	in  []rune
 }
 
-func startCombinations(input string) {
+// StartCombinations ...
+func StartCombinations(input string) {
 	c := &Combinations{
 		in: []rune(input),
 	}
@@ -16,6 +18,7 @@ func startCombinations(input string) {
 	c.Combine(0)
 }
 
+// Combine ...
 func (c *Combinations) Combine(seed int) {
 	inLen := len(c.in)
 	for i := seed; i < inLen-1; i++ {
