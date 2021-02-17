@@ -1,12 +1,9 @@
-package caesar_test
+package caesar
 
 import (
-	"TheAlgorithms/Go/ciphers/caesar"
 	"fmt"
 	"testing"
 )
-
-var c *caesar.Caesar = caesar.NewCaesar()
 
 func TestEncrypt(t *testing.T) {
 	var caesarTestData = []struct {
@@ -66,7 +63,7 @@ func TestEncrypt(t *testing.T) {
 	}
 	for _, test := range caesarTestData {
 		t.Run(test.description, func(t *testing.T) {
-			actual := c.Encrypt(test.input, test.key)
+			actual := Encrypt(test.input, test.key)
 			if actual != test.expected {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("With input string '%s' and key '%d' was expecting '%s' but actual was '%s'",
@@ -129,7 +126,7 @@ func TestDecrypt(t *testing.T) {
 
 	for _, test := range caesarTestData {
 		t.Run(test.description, func(t *testing.T) {
-			actual := c.Decrypt(test.input, test.key)
+			actual := Decrypt(test.input, test.key)
 			if actual != test.expected {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("With input string '%s' and key '%d' was expecting '%s' but actual was '%s'",
@@ -145,12 +142,10 @@ func ExampleNewCaesar() {
 		input = "The Quick Brown Fox Jumps over the Lazy Dog."
 	)
 
-	c := caesar.NewCaesar()
-
-	encryptedText := c.Encrypt(input, key)
+	encryptedText := Encrypt(input, key)
 	fmt.Printf("Encrypt=> key: %d, input: %s, encryptedText: %s\n", key, input, encryptedText)
 
-	decryptedText := c.Decrypt(encryptedText, key)
+	decryptedText := Decrypt(encryptedText, key)
 	fmt.Printf("Decrypt=> key: %d, input: %s, decryptedText: %s\n", key, encryptedText, decryptedText)
 
 	// Output:
