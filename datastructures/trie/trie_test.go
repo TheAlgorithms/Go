@@ -18,7 +18,7 @@ func TestTrie(t *testing.T) {
 	}
 
 	for _, w := range insertWords {
-		n.insert(w)
+		n.Insert(w)
 		t.Logf(
 			"added \"%s\" to the Trie.",
 			w,
@@ -26,7 +26,7 @@ func TestTrie(t *testing.T) {
 	}
 
 	for k, v := range checkWords {
-		ok := n.find(k)
+		ok := n.Find(k)
 		if ok != v {
 			t.Fatalf(
 				"\"%s\" is supposed to be %sin the Trie.",
@@ -46,12 +46,12 @@ func BenchmarkTrie(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		n := NewNode()
 
-		n.insert("nikola")
-		n.insert("tesla")
+		n.Insert("nikola")
+		n.Insert("tesla")
 
-		n.find("thomas")
-		n.find("edison")
-		n.find("nikola")
+		n.Find("thomas")
+		n.Find("edison")
+		n.Find("nikola")
 	}
 }
 
@@ -60,11 +60,11 @@ func ExampleNode() {
 	node := NewNode()
 
 	// adds words
-	node.insert("nikola")
-	node.insert("tesla")
+	node.Insert("nikola")
+	node.Insert("tesla")
 
 	// finds words
-	node.find("thomas") // false
-	node.find("edison") // false
-	node.find("nikola") // true
+	node.Find("thomas") // false
+	node.Find("edison") // false
+	node.Find("nikola") // true
 }
