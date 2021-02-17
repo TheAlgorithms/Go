@@ -1,11 +1,7 @@
 /* O(n) solution, for calculating
 maximum contiguous sum in the given array. */
 
-package main
-
-import (
-	"fmt"
-)
+package maxsubarraysum
 
 func Max(x int, y int) int {
 	if x < y {
@@ -24,7 +20,7 @@ func maxSubarraySum(array []int) int {
 	return maxTillNow
 }
 
-func main() {
-	array := []int{-2, -5, 6, 0, -2, 0, -3, 1, 0, 5, -6}
-	fmt.Println("Maximum contiguous sum: ", maxSubarraySum(array))
-}
+// func main() {
+// 	array := []int{-2, -5, 6, 0, -2, 0, -3, 1, 0, 5, -6}
+// 	fmt.Println("Maximum contiguous sum: ", maxSubarraySum(array))
+// }

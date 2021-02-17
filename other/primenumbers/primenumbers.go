@@ -1,12 +1,10 @@
-package main
+package primenumbers
 
 import (
-	"fmt"
-	"github.com/douglasmakey/golang-algorithms-/utils"
 	"math"
-	"os"
-	"strconv"
 	"time"
+
+	"github.com/douglasmakey/golang-algorithms-/utils"
 )
 
 // Define struct
@@ -15,10 +13,8 @@ type numberResult struct {
 	isPrime bool
 }
 
-// Define functions
-
-// isPrime: validate N number is prime
-func isPrime(n int64) bool {
+// IsPrime validate N number is prime
+func IsPrime(n int64) bool {
 	var i, limit int64
 	if n <= 1 {
 		return false
@@ -46,7 +42,7 @@ func createNrAndValidate(n int64, c chan numberResult) {
 
 	result := new(numberResult)
 	result.number = n
-	result.isPrime = isPrime(n)
+	result.isPrime = IsPrime(n)
 	c <- *result
 }
 
@@ -77,9 +73,9 @@ func primesInRange(min int64, max int64) (primeArr []int64) {
 	return
 }
 
-func main() {
-	// Receive arguments min max
-	min, _ := strconv.ParseInt(os.Args[1], 10, 64)
-	max, _ := strconv.ParseInt(os.Args[2], 10, 64)
-	fmt.Println(primesInRange(min, max))
-}
+// func main() {
+// 	// Receive arguments min max
+// 	min, _ := strconv.ParseInt(os.Args[1], 10, 64)
+// 	max, _ := strconv.ParseInt(os.Args[2], 10, 64)
+// 	fmt.Println(primesInRange(min, max))
+// }

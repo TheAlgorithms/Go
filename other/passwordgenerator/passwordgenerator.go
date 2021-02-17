@@ -2,14 +2,12 @@
 // You must provide a minimum length and a maximum length
 // This length is not fixed if you generate multiple passwords for the same range
 
-package main
+package passwordgenerator
 
 import (
 	crand "crypto/rand"
-	"fmt"
 	"io"
 	"math/rand"
-	"time"
 )
 
 func generatePassword(minLength int, maxLength int) string {
@@ -39,16 +37,16 @@ func generatePassword(minLength int, maxLength int) string {
 	}
 }
 
-func main() {
-	rand.Seed(time.Now().Unix())
+// func main() {
+// 	rand.Seed(time.Now().Unix())
 
-	fmt.Print("Please specify a minimum length: ")
-	var minLength int
-	fmt.Scanf("%d", &minLength)
+// 	fmt.Print("Please specify a minimum length: ")
+// 	var minLength int
+// 	fmt.Scanf("%d", &minLength)
 
-	fmt.Print("Please specify a maximum length: ")
-	var maxLength int
-	fmt.Scanf("%d", &maxLength)
+// 	fmt.Print("Please specify a maximum length: ")
+// 	var maxLength int
+// 	fmt.Scanf("%d", &maxLength)
 
-	fmt.Printf("Your generated password is %v\n", generatePassword(minLength, maxLength))
-}
+// 	fmt.Printf("Your generated password is %v\n", generatePassword(minLength, maxLength))
+// }

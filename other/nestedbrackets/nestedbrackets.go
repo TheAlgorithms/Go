@@ -9,18 +9,12 @@
 // returns true if input is nested and false otherwise.
 //note that only an even number of brackets can be properly nested
 
-package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-)
+package nestedbrackets
 
 func isBalanced(input string) string {
-	if len(input)%2 != 0{
+	if len(input)%2 != 0 {
 		return input + "is not balanced."
+	}
 	if len(input) > 0 {
 		var stack []byte
 		for i := 0; i < len(input); i++ {
@@ -46,11 +40,11 @@ func isBalanced(input string) string {
 	return "Please enter a sequence of brackets."
 }
 
-func main() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter sequence of brackets: ")
-	text, _ := reader.ReadString('\n')
+// func main() {
+// 	reader := bufio.NewReader(os.Stdin)
+// 	fmt.Print("Enter sequence of brackets: ")
+// 	text, _ := reader.ReadString('\n')
 
-	text = strings.TrimSpace(text)
-	fmt.Println(isBalanced(text))
-}
+// 	text = strings.TrimSpace(text)
+// 	fmt.Println(isBalanced(text))
+// }
