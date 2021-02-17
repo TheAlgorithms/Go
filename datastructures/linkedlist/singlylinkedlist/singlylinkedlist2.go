@@ -1,4 +1,4 @@
-package singlelinkedlist
+package singlylinkedlist
 
 // TODO not needed because there is already an implementation of SingleLinkedList
 

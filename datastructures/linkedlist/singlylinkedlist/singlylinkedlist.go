@@ -1,5 +1,5 @@
 // Package singlelinkedlist Single Linked List
-package singlelinkedlist
+package singlylinkedlist
 
 // demonstration of singly linked list in golang
 import "fmt"
@@ -22,13 +22,13 @@ func CreateList() *SingleLinkedList {
 }
 
 // to avoid mistakes when using pointer vs struct for new snode creation
-func newNode(val interface{}) *snode {
+func NewNode(val interface{}) *snode {
 	return &snode{val, nil}
 }
 
 // AddAtBeg adds a new snode with given value at the beginning of the list.
 func (ll *SingleLinkedList) AddAtBeg(val interface{}) {
-	n := newNode(val)
+	n := NewNode(val)
 	n.Next = ll.Head
 	ll.Head = n
 	ll.length++
@@ -36,7 +36,7 @@ func (ll *SingleLinkedList) AddAtBeg(val interface{}) {
 
 // AddAtEnd adds a new snode with given value at the end of the list.
 func (ll *SingleLinkedList) AddAtEnd(val int) {
-	n := newNode(val)
+	n := NewNode(val)
 
 	if ll.Head == nil {
 		ll.Head = n

@@ -4,7 +4,7 @@ import "fmt"
 
 // BTree Returns a binary tree structure which contains only a root Node
 type BTree struct {
-	root *Node
+	Root *Node
 }
 
 // calculateDepth helper function for BTree's depth()
@@ -29,8 +29,8 @@ func Insert(root *Node, val int) *Node {
 }
 
 // Depth returns the calculated depth of a binary tree
-func (t *BTree) depth() int {
-	return calculateDepth(t.root, 0)
+func (t *BTree) Depth() int {
+	return calculateDepth(t.Root, 0)
 }
 
 // InOrder add's children to a node in order left first then right recursively

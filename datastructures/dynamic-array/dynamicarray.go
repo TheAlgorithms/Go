@@ -6,14 +6,16 @@ import (
 
 var defaultCapacity = 10
 
-type dynamicArray struct {
+// DynamicArray structure
+type DynamicArray struct {
 	size        int
 	capacity    int
 	elementData []interface{}
 }
 
-func (da *dynamicArray) put(index int, element interface{}) error {
-	err := da.checkRangeFromIndex(index)
+// Put function
+func (da *DynamicArray) Put(index int, element interface{}) error {
+	err := da.CheckRangeFromIndex(index)
 
 	if err != nil {
 		return err
@@ -24,17 +26,19 @@ func (da *dynamicArray) put(index int, element interface{}) error {
 	return nil
 }
 
-func (da *dynamicArray) add(element interface{}) {
+// Add function
+func (da *DynamicArray) Add(element interface{}) {
 	if da.size == da.capacity {
-		da.newCapacity()
+		da.NewCapacity()
 	}
 
 	da.elementData[da.size] = element
 	da.size++
 }
 
-func (da *dynamicArray) remove(index int) error {
-	err := da.checkRangeFromIndex(index)
+// Remove function
+func (da *DynamicArray) Remove(index int) error {
+	err := da.CheckRangeFromIndex(index)
 
 	if err != nil {
 		return err
@@ -48,8 +52,9 @@ func (da *dynamicArray) remove(index int) error {
 	return nil
 }
 
-func (da *dynamicArray) get(index int) (interface{}, error) {
-	err := da.checkRangeFromIndex(index)
+// Get function
+func (da *DynamicArray) Get(index int) (interface{}, error) {
+	err := da.CheckRangeFromIndex(index)
 
 	if err != nil {
 		return nil, err
@@ -58,22 +63,26 @@ func (da *dynamicArray) get(index int) (interface{}, error) {
 	return da.elementData[index], nil
 }
 
-func (da *dynamicArray) isEmpty() bool {
+// IsEmpty function
+func (da *DynamicArray) IsEmpty() bool {
 	return da.size == 0
 }
 
-func (da *dynamicArray) getData() []interface{} {
+// GetData function
+func (da *DynamicArray) GetData() []interface{} {
 	return da.elementData[:da.size]
 }
 
-func (da *dynamicArray) checkRangeFromIndex(index int) error {
+// CheckRangeFromIndex function
+func (da *DynamicArray) CheckRangeFromIndex(index int) error {
 	if index >= da.size || index < 0 {
 		return errors.New("index out of range")
 	}
 	return nil
 }
 
-func (da *dynamicArray) newCapacity() {
+// NewCapacity function
+func (da *DynamicArray) NewCapacity() {
 	if da.capacity == 0 {
 		da.capacity = defaultCapacity
 	} else {
