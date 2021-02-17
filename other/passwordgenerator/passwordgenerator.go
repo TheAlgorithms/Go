@@ -10,6 +10,7 @@ import (
 	"math/rand"
 )
 
+// GeneratePassword returns a newly generated password
 func GeneratePassword(minLength int, maxLength int) string {
 	var chars = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+,.?/:;{}[]`~")
 

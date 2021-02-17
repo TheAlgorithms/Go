@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"strconv"
 	"strings"
 )
 
@@ -135,14 +136,28 @@ func toASCII(slice []rune) []int {
 }
 
 // ToRune convert a string to rune
-func ToRune(slice []int) string {
+func ToRune(slice []int) []string {
 	//runs in O(n) where n = len(slice)
 	// var str string
 	var str strings.Builder
-	for _, v := range slice {
-		str.WriteString(fmt.Sprint(v))
+	for i, v := range slice {
+		if i != len(slice)-1 {
+			str.WriteString(fmt.Sprintf("%d ", v))
+		} else {
+			str.WriteString(fmt.Sprintf("%d", v))
+		}
 	}
-	return str.String()
+	return []string{str.String()}
+}
+
+func StringDecode(decrypt []string) []int {
+	split := strings.Split(decrypt[0], " ")
+	var res []int
+	for _, v := range split {
+		tmp, _ := strconv.Atoi(v)
+		res = append(res, tmp)
+	}
+	return res
 }
 
 // func main() {
