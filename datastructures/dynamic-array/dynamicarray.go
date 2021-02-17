@@ -1,4 +1,4 @@
-package dynamic-array
+package dynamicarray
 
 import (
 	"errors"
@@ -111,4 +111,3 @@ func (da *dynamicArray) newCapacity() {
 // 	numbers.put(0, 100)
 // 	fmt.Println(numbers.getData())
 // }
-
