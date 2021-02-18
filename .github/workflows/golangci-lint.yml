@@ -12,11 +12,8 @@ jobs:
       - uses: golangci/golangci-lint-action@v2
         with:
           # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
-          version: v1.31
-          args: --issues-exit-code=0  # Hopefully someday we can remove this...
-          working-directory: sorts    # Hopefully someday we can remove this... and enable only-new-issues
-          # only-new-issues: true  # Let's focus on this PR first
-      - run: echo "/home/runner/golangci-lint-1.31.0-linux-amd64" >> $GITHUB_PATH
+          version: v2.4
+      - run: echo "/home/runner/golangci-lint-2.4.0-linux-amd64" >> $GITHUB_PATH
       - run: go version ; golangci-lint --version  # Fix the following and remove || true
       # - run: golangci-lint run --no-config . || true
       - run: golangci-lint run --no-config ./...
