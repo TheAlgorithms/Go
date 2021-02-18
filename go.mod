@@ -1,5 +1,5 @@
-module github.com/tjgurwara99/Go
+module github.com/TheAlgorithm/Go
 
-go 1.14
+go 1.15
 
-require github.com/douglasmakey/golang-algorithms- v0.0.0-20180429234644-0a5ef73a9fd5
+require github.com/tjgurwara99/Go v0.0.0-20210218104922-4af3545a3a01
