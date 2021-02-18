@@ -3,10 +3,10 @@
 package rot13
 
 import (
-	"TheAlgorithms/Go/ciphers/caesar"
+	"github.com/tjgurwara99/Go/ciphers/caesar"
 )
 
 // rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher
 func rot13(input string) string {
-	return caesar.NewCaesar().Encrypt(input, 13)
+	return caesar.Encrypt(input, 13)
 }

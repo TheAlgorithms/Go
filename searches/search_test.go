@@ -23,7 +23,7 @@ var searchTests = []searchTest{
 
 func TestBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
-		actual := binarySearch(test.data, test.key, 0, len(test.data)-1)
+		actual := BinarySearch(test.data, test.key, 0, len(test.data)-1)
 		if actual != test.expected {
 			t.Errorf("test %s failed", test.name)
 		}
@@ -32,7 +32,7 @@ func TestBinarySearch(t *testing.T) {
 
 func TestIterBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
-		actual := iterBinarySearch(test.data, test.key, 0, len(test.data)-1)
+		actual := IterBinarySearch(test.data, test.key, 0, len(test.data)-1)
 		if actual != test.expected {
 			t.Errorf("test %s failed", test.name)
 		}
@@ -41,10 +41,9 @@ func TestIterBinarySearch(t *testing.T) {
 
 func TestLinearSearch(t *testing.T) {
 	for _, test := range searchTests {
-		actual := linearSearch(test.data, test.key)
+		actual := LinearSearch(test.data, test.key)
 		if actual != test.expected {
 			t.Errorf("test %s failed", test.name)
 		}
 	}
 }
-

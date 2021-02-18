@@ -50,9 +50,9 @@ func TestRadix(t *testing.T) {
 }
 
 // Very slow, consider commenting
-func TestSelection(t *testing.T) {
-	testFramework(t, SelectionSort)
-}
+// func TestSelection(t *testing.T) {
+// 	testFramework(t, SelectionSort)
+// }
 
 /* func TestTopological(t *testing.T) {
 	testFramework(t, topologicalSort)

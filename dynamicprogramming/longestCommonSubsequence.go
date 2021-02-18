@@ -2,20 +2,10 @@
 // DP - 4
 // https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
 
-package longestcommonsubsequence
+package dynamicprogramming
 
-// package main
-
-// import "fmt"
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func longestCommonSubsequence(a string, b string, m int, n int) int {
+// LongestCommonSubsequence function
+func LongestCommonSubsequence(a string, b string, m int, n int) int {
 	// m is the length of string a and n is the length of string b
 
 	// here we are making a 2d slice of size (m+1)*(n+1)
@@ -32,7 +22,7 @@ func longestCommonSubsequence(a string, b string, m int, n int) int {
 			} else if a[i-1] == b[j-1] {
 				lcs[i][j] = lcs[i-1][j-1] + 1
 			} else {
-				lcs[i][j] = max(lcs[i-1][j], lcs[i][j-1])
+				lcs[i][j] = Max(lcs[i-1][j], lcs[i][j-1])
 			}
 		}
 	}

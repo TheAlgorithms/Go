@@ -1,16 +1,16 @@
-package main
+package montecarlopi
 
-import (
-	"math"
-	"testing"
-)
+// import (
+// 	"math"
+// 	"testing"
+// )
 
-func TestMonteCarloPi(t *testing.T) {
-	delta := 0.0001
+// func TestMonteCarloPi(t *testing.T) {
+// 	delta := 0.0001
 
-	pi := MonteCarloPi(100000000)
+// 	pi := MonteCarloPi(100000000)
 
-	if math.Abs(pi-math.Pi) > delta {
-		t.Errorf("Given: %.4f, expected: %.4f", pi, math.Pi)
-	}
-}
+// 	if math.Abs(pi-math.Pi) > delta {
+// 		t.Errorf("Given: %.4f, expected: %.4f", pi, math.Pi)
+// 	}
+// }

@@ -2,17 +2,8 @@
 // ref: https://en.wikipedia.org/wiki/Caesar_cipher
 package caesar
 
-// Caesar is struct for Caesar cipher
-type Caesar struct {
-}
-
-// NewCaesar returns a pointer to object of Caesar
-func NewCaesar() *Caesar {
-	return &Caesar{}
-}
-
 // Encrypt encrypts by right shift of "key" each character of "input"
-func (c Caesar) Encrypt(input string, key int) string {
+func Encrypt(input string, key int) string {
 	// if key is negative value,
 	// updates "key" the number which congruents to "key" modulo 26
 	key = (key%26 + 26) % 26
@@ -32,7 +23,7 @@ func (c Caesar) Encrypt(input string, key int) string {
 }
 
 // Decrypt decrypts by left shift of "key" each character of "input"
-func (c Caesar) Decrypt(input string, key int) string {
+func Decrypt(input string, key int) string {
 	// left shift of "key" is same as right shift of 26-"key"
-	return c.Encrypt(input, 26-key)
+	return Encrypt(input, 26-key)
 }
