@@ -18,25 +18,6 @@ jobs:
           # only-new-issues: true  # Let's focus on this PR first
       - run: echo "/home/runner/golangci-lint-1.31.0-linux-amd64" >> $GITHUB_PATH
       - run: go version ; golangci-lint --version  # Fix the following and remove || true
-      - run: golangci-lint run --no-config . || true
-      - run: golangci-lint run --no-config ./... || true
-      - run: golangci-lint run --no-config ciphers/...
-      # - run: golangci-lint run --no-config datastructures/binary-tree        || true
-      # - run: golangci-lint run --no-config datastructures/dynamic-array      || true
-      # - run: golangci-lint run --no-config datastructures/hashmap
-      # - run: golangci-lint run --no-config datastructures/linkedlist        || true
-      # - run: golangci-lint run --no-config datastructures/trie               || true
-      - run: golangci-lint run --no-config dynamicprogramming/...
-      - run: golangci-lint run --no-config other/...
-      - run: golangci-lint run --no-config searches/...
-      - run: golangci-lint run --no-config sorts/...
-      - run: golangci-lint run --no-config strings/...
-      # - run: golangci-lint run --no-config "strings/multiple-string-matching" || true
-      # - run: golangci-lint run --no-config "strings/single string matching"   || true
-      # - run: golangci-lint run --no-config strings/levenshteindistance
-      # - run: golangci-lint run --no-config strings/naivesearch
-      - run: golangci-lint run --no-config math/...
-      # - run: golangci-lint run --no-config math/gcd
-      # - run: golangci-lint run --no-config math/power
-      # - run: golangci-lint run --no-config math/primecheck
-      # - run: golangci-lint run --no-config math/sieve                         || true
+      # - run: golangci-lint run --no-config . || true
+      - run: golangci-lint run --no-config ./...
+      - run: shopt -s globstar && golangci-lint run --no-config **/*.go
