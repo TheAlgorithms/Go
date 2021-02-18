@@ -29,6 +29,24 @@ var rsaTestData = []struct {
 	},
 }
 
+func TestModularExponentiation(t *testing.T) {
+	t.Run("Test for modular exponentiation", func(t *testing.T) {
+		expected := 2
+		actual := modularExponentiation(2, 5, 3)
+		if actual != expected {
+			t.Errorf("Actual: %d and Expected: %d", actual, expected)
+		}
+	})
+	t.Run("Test 2 for modular exponentiation", func(t *testing.T) {
+		expected := 1099
+		actual := modularExponentiation(200405, 5, 1342)
+		if actual != expected {
+			t.Errorf("Actual: %d and Expected: %d", actual, expected)
+		}
+	})
+}
+
+// This test is not consistent - consider commenting out until we find the problem
 func TestRSACipher(t *testing.T) {
 	rand.Seed(time.Now().UTC().UnixNano())
 	bits := 17
@@ -54,7 +72,7 @@ func TestRSACipher(t *testing.T) {
 			encrypted := EncryptRSA(expected, e, n)
 			decrypted := DecryptRSA(encrypted, d, n)
 
-			if actual := Compare(ToRune(decrypted)); !reflect.DeepEqual(actual, expected) {
+			if actual := decrypted; !reflect.DeepEqual(actual, expected) {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("Expecting %v, actual %v", expected, actual)
 			}

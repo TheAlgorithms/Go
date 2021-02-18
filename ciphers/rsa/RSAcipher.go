@@ -151,8 +151,10 @@ func ToRune(slice []int) string {
 	return str.String()
 }
 
+// Compare ... Added for manual comparison but didn't work
 func Compare(str string) []int {
 	a := strings.Split(str, " ")
+	fmt.Printf("%v", a)
 	var b []int
 	for _, v := range a {
 		temp, _ := strconv.Atoi(v)

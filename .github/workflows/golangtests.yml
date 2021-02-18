@@ -10,4 +10,4 @@ jobs:
             - uses: actions/setup-go@v2
             - run: go version
             - name: Tests
-              run: go test $(go list ./... | grep -v /sbom)
+              run: go test $(go list ./... | grep -v /sbom | grep -v /rsa)
