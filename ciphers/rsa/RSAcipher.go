@@ -136,7 +136,7 @@ func toASCII(slice []rune) []int {
 }
 
 // ToRune convert a string to rune
-func ToRune(slice []int) []string {
+func ToRune(slice []int) string {
 	//runs in O(n) where n = len(slice)
 	// var str string
 	var str strings.Builder
@@ -144,21 +144,21 @@ func ToRune(slice []int) []string {
 		if i != len(slice)-1 {
 			str.WriteString(fmt.Sprintf("%d ", v))
 		} else {
-			str.WriteString(fmt.Sprintf("%d", v))
+			str.WriteString(fmt.Sprint(v))
 		}
+
 	}
-	return []string{str.String()}
+	return str.String()
 }
 
-// StringDecode decoding rune to array of ints
-func StringDecode(decrypt []string) []int {
-	split := strings.Split(decrypt[0], " ")
-	var res []int
-	for _, v := range split {
-		tmp, _ := strconv.Atoi(v)
-		res = append(res, tmp)
+func Compare(str string) []int {
+	a := strings.Split(str, " ")
+	var b []int
+	for _, v := range a {
+		temp, _ := strconv.Atoi(v)
+		b = append(b, temp)
 	}
-	return res
+	return b
 }
 
 // func main() {
