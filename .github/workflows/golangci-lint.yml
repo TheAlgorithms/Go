@@ -12,8 +12,8 @@ jobs:
       - uses: golangci/golangci-lint-action@v2
         with:
           # Required: the version of golangci-lint is required and must be specified without patch version: we always use the latest patch version.
-          version: v2.4
-      - run: echo "/home/runner/golangci-lint-2.4.0-linux-amd64" >> $GITHUB_PATH
+          version: v1.37
+      - run: echo "/home/runner/golangci-lint-1.37.0-linux-amd64" >> $GITHUB_PATH
       - run: go version ; golangci-lint --version  # Fix the following and remove || true
       # - run: golangci-lint run --no-config . || true
       - run: golangci-lint run --no-config ./...
