@@ -8,7 +8,7 @@ import (
 // ErrorIntOverflow For asserting that the values do not overflow in Int64
 var ErrorIntOverflow = errors.New("Integer Overflow")
 
-// ModularExponentiation returns b^e % m
+// ModularExponentiation returns base^exponent % mod
 func ModularExponentiation(base, exponent, mod int64) int64 {
 	if mod == 1 {
 		return 0
