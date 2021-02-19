@@ -36,102 +36,6 @@ var testCases = []cases{
 		mod:         23,
 		expected:    2,
 	},
-	{
-		name:        "Test 4",
-		description: "Test 4: 3^6 % 3 == 0",
-		base:        3,
-		exponent:    6,
-		mod:         3,
-		expected:    0,
-	},
-	{
-		name:        "Test 5",
-		description: "Test 5: 33^60 % 25 == 1",
-		base:        33,
-		exponent:    60,
-		mod:         25,
-		expected:    1,
-	},
-	{
-		name:        "Test 6",
-		description: "Test 6: 17^60 % 23 == 2",
-		base:        17,
-		exponent:    60,
-		mod:         23,
-		expected:    2,
-	},
-	{
-		name:        "Test 7",
-		description: "Test 7: 3^6 % 3 == 0",
-		base:        3,
-		exponent:    6,
-		mod:         3,
-		expected:    0,
-	},
-	{
-		name:        "Test 8",
-		description: "Test 8: 33^60 % 25 == 1",
-		base:        33,
-		exponent:    60,
-		mod:         25,
-		expected:    1,
-	},
-	{
-		name:        "Test 9",
-		description: "Test 9: 17^60 % 23 == 2",
-		base:        17,
-		exponent:    60,
-		mod:         23,
-		expected:    2,
-	},
-	{
-		name:        "Test 10",
-		description: "Test 10: 3^6 % 3 == 0",
-		base:        3,
-		exponent:    6,
-		mod:         3,
-		expected:    0,
-	},
-	{
-		name:        "Test 10",
-		description: "Test 10: 33^60 % 25 == 1",
-		base:        33,
-		exponent:    60,
-		mod:         25,
-		expected:    1,
-	},
-	{
-		name:        "Test 11",
-		description: "Test 11: 17^60 % 23 == 2",
-		base:        17,
-		exponent:    60,
-		mod:         23,
-		expected:    2,
-	},
-	{
-		name:        "Test 12",
-		description: "Test 12: 3^6 % 3 == 0",
-		base:        3,
-		exponent:    6,
-		mod:         3,
-		expected:    0,
-	},
-	{
-		name:        "Test 13",
-		description: "Test 13: 33^60 % 25 == 1",
-		base:        33,
-		exponent:    60,
-		mod:         25,
-		expected:    1,
-	},
-	{
-		name:        "Test 14",
-		description: "Test 14: 17^60 % 23 == 2",
-		base:        17,
-		exponent:    60,
-		mod:         23,
-		expected:    2,
-	},
 }
 
 func TestModularExponentation(t *testing.T) {
@@ -147,7 +51,7 @@ func TestModularExponentation(t *testing.T) {
 }
 
 func BenchmarkModularExponentiation(b *testing.B) {
-	for _, test := range testCases {
-		_ = ModularExponentiation(test.base, test.exponent, test.mod)
+	for i := 0; i < b.N; i++ {
+		_ = ModularExponentiation(17, 60, 23)
 	}
 }
