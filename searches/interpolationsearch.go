@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func InterpolationSearch() {
 	searchValue := 15
 
 	arr := [10]int{1, 5, 100, 0, -100, 15, 4, 102, 30, 1000}
