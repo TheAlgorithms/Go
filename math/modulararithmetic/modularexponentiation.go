@@ -8,15 +8,22 @@ import (
 // ErrorIntOverflow For asserting that the values do not overflow in Int64
 var ErrorIntOverflow = errors.New("Integer Overflow")
 
+// ErrorNegativeExponent for asserting that the exponent we receive is positive
+var ErrorNegativeExponent = errors.New("Negative Exponent Provided")
+
 // ModularExponentiation returns base^exponent % mod
-func ModularExponentiation(base, exponent, mod int64) int64 {
+func ModularExponentiation(base, exponent, mod int64) (int64, error) {
 	if mod == 1 {
-		return 0
+		return 0, nil
+	}
+
+	if exponent < 0 {
+		return -1, ErrorNegativeExponent
 	}
 	_, err := Multiply64BitInt(mod-1, mod-1)
 
 	if err != nil {
-		panic(err)
+		return -1, err
 	}
 
 	var result int64 = 1
@@ -30,7 +37,7 @@ func ModularExponentiation(base, exponent, mod int64) int64 {
 		exponent = exponent >> 1
 		base = (base * base) % mod
 	}
-	return result
+	return result, nil
 }
 
 // Multiply64BitInt Checking if the integer multiplication overflows
