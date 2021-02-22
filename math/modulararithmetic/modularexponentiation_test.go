@@ -12,15 +12,6 @@ type cases struct {
 	expectedError error
 }
 
-type errorCases struct {
-	name          string
-	description   string
-	base          int64
-	exponent      int64
-	mod           int64
-	expectedError error
-}
-
 var testCases = []cases{
 	{
 		name:          "Test 1",
