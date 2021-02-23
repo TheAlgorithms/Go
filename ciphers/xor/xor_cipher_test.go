@@ -1,9 +1,27 @@
-package main
+package xor
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
+
+func Example() {
+	const (
+		seed = "Hello World"
+		key  = 97
+	)
+
+	encrypted := Encrypt(byte(key), []byte(seed))
+	fmt.Printf("Encrypt=> key: %d, seed: %s, encryptedText: %v\n", key, seed, encrypted)
+
+	decrypted := Decrypt(byte(key), encrypted)
+	fmt.Printf("Decrypt=> key: %d, encryptedText: %v, DecryptedText: %s\n", key, encrypted, string(decrypted))
+
+	// Output:
+	// Encrypt=> key: 97, seed: Hello World, encryptedText: [41 4 13 13 14 65 54 14 19 13 5]
+	// Decrypt=> key: 97, encryptedText: [41 4 13 13 14 65 54 14 19 13 5], DecryptedText: Hello World
+}
 
 var xorTestData = []struct {
 	description string
@@ -48,23 +66,26 @@ var xorTestData = []struct {
 		"boffe*}exfn",
 	},
 	{
-		"Encrypt full sentence with key 128",
+		"Encrypt full sentence with key 64",
 		"the quick brown fox jumps over the lazy dog.",
 		64,
 		"4(%`15)#+`\"2/7.`&/8`*5-03`/6%2`4(%`,!:9`$/'n",
+	},
+	{
+		"Encrypt a word with key 32 make the case swap",
+		"abcdefghijklmNOPQRSTUVWXYZ",
+		32,
+		"ABCDEFGHIJKLMnopqrstuvwxyz",
 	},
 }
 
 func TestXorCipherEncrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
-
-			message := toASCII([]rune(test.input))
-			encrypted := encrypt(test.key, message)
-
-			if actual := decodeToString(encrypted); !reflect.DeepEqual(actual, test.encrypted) {
+			encrypted := Encrypt(byte(test.key), []byte(test.input))
+			if !reflect.DeepEqual(string(encrypted), test.encrypted) {
 				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %s, actual %s", test.encrypted, actual)
+				t.Fatalf("Expecting %s, actual %s", test.encrypted, string(encrypted))
 			}
 		})
 	}
@@ -73,13 +94,11 @@ func TestXorCipherEncrypt(t *testing.T) {
 func TestXorCipherDecrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
+			decrypted := Decrypt(byte(test.key), []byte(test.encrypted))
 
-			message := toASCII([]rune(test.encrypted))
-			decrypted := decrypt(test.key, message)
-
-			if actual := decodeToString(decrypted); !reflect.DeepEqual(actual, test.input) {
+			if !reflect.DeepEqual(string(decrypted), test.input) {
 				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %s, actual %s", test.input, actual)
+				t.Fatalf("Expecting %s, actual %s", test.input, string(decrypted))
 			}
 		})
 	}

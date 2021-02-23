@@ -9,13 +9,13 @@ var testCases = []struct {
 	name     string
 	word     string
 	text     string
-	expected result
+	expected Result
 }{
 	{
 		"String comparison on single pattern match",
 		"announce",
 		"CPM_annual_conference_announce",
-		result{
+		Result{
 			22,
 			32,
 		},
@@ -24,7 +24,7 @@ var testCases = []struct {
 		"String comparison on multiple pattern match",
 		"AABA",
 		"AABAACAADAABAABA",
-		result{
+		Result{
 			0,
 			4,
 		},
@@ -33,7 +33,7 @@ var testCases = []struct {
 		"String comparison with not found pattern",
 		"AABC",
 		"AABAACAADAABAABA",
-		result{
+		Result{
 			-1,
 			23,
 		},
@@ -43,7 +43,7 @@ var testCases = []struct {
 func TestKMP(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := kmp(tc.text, tc.word)
+			actual := Kmp(tc.text, tc.word)
 			if !reflect.DeepEqual(actual, tc.expected) {
 				t.Errorf("Expected matches for pattern '%s' for string '%s' are: %v steps at position %v, but actual matches are: %v steps at position %v",
 					tc.word, tc.text, tc.expected.numberOfComparison, tc.expected.resultPosition, actual.numberOfComparison, actual.resultPosition)

@@ -1,41 +1,29 @@
-package main
+// Package caesar is the shift cipher
+// ref: https://en.wikipedia.org/wiki/Caesar_cipher
+package caesar
 
-import (
-	"bytes"
-	"flag"
-	"fmt"
-	"strings"
-)
+// Encrypt encrypts by right shift of "key" each character of "input"
+func Encrypt(input string, key int) string {
+	// if key is negative value,
+	// updates "key" the number which congruents to "key" modulo 26
+	key = (key%26 + 26) % 26
 
-func main() {
-	cipherKey := flag.Int("c", 0, "Cipher shift amount (-26 - 26)")
-	input := flag.String("i", "", "Input")
-	flag.Parse()
-
-	if *cipherKey > 26 || *cipherKey < -26 {
-		flag.PrintDefaults()
-	} else {
-		fmt.Println(caesarCipher(*input, *cipherKey))
+	outputBuffer := []byte{}
+	for _, r := range input {
+		newByte := byte(r)
+		if 'A' <= newByte && newByte <= 'Z' {
+			outputBuffer = append(outputBuffer, byte(int('A')+int(int(newByte-'A')+key)%26))
+		} else if 'a' <= newByte && newByte <= 'z' {
+			outputBuffer = append(outputBuffer, byte(int('a')+int(int(newByte-'a')+key)%26))
+		} else {
+			outputBuffer = append(outputBuffer, newByte)
+		}
 	}
-
+	return string(outputBuffer)
 }
 
-func caesarCipher(input string, key int) string {
-	var outputBuffer bytes.Buffer
-	for _, r := range strings.ToLower(input) {
-		newByte := int(r)
-
-		if newByte >= 'a' && newByte <= 'z' {
-			newByte += key
-
-			if newByte > 'z' {
-				newByte -= 26
-			} else if newByte < 'a' {
-				newByte += 26
-			}
-		}
-
-		outputBuffer.WriteString(string(newByte))
-	}
-	return outputBuffer.String()
+// Decrypt decrypts by left shift of "key" each character of "input"
+func Decrypt(input string, key int) string {
+	// left shift of "key" is same as right shift of 26-"key"
+	return Encrypt(input, 26-key)
 }

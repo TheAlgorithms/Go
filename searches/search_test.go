@@ -22,6 +22,7 @@ var searchTests = []searchTest{
 	{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 2, 1, "Sanity"},
 	{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 1, 0, "Sanity"},
 	//Absent
+	{[]int{1, 4, 5, 6, 7, 10}, -25, -1, "Absent"},
 	{[]int{1, 4, 5, 6, 7, 10}, 25, -1, "Absent"},
 	//Empty slice
 	{[]int{}, 2, -1, "Empty"},
@@ -29,7 +30,7 @@ var searchTests = []searchTest{
 
 func TestBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
-		actual := binarySearch(test.data, test.key, 0, len(test.data)-1)
+		actual := BinarySearch(test.data, test.key, 0, len(test.data)-1)
 		if actual != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actual)
 		}
@@ -38,7 +39,7 @@ func TestBinarySearch(t *testing.T) {
 
 func TestIterBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
-		actual := iterBinarySearch(test.data, test.key, 0, len(test.data)-1)
+		actual := IterBinarySearch(test.data, test.key, 0, len(test.data)-1)
 		if actual != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actual)
 		}
@@ -47,7 +48,7 @@ func TestIterBinarySearch(t *testing.T) {
 
 func TestLinearSearch(t *testing.T) {
 	for _, test := range searchTests {
-		actual := linearSearch(test.data, test.key)
+		actual := LinearSearch(test.data, test.key)
 		if actual != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actual)
 		}

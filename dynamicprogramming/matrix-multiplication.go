@@ -2,33 +2,25 @@
 // https://en.wikipedia.org/wiki/Matrix_chain_multiplication
 // www.geeksforgeeks.org/dynamicprogramming-set-8-matrix-chain-multiplication/
 
-// package main
-package matrixChainMultiplication
+// Package dynamicprogramming Package for dynamically run algorithms
+package dynamicprogramming
 
-import "fmt"
-
-func min(a, b int) int {
-	if a > b {
-		return b
-	} else {
-		return a
-	}
-}
-
-func matrixChainRec(D []int, i, j int) int {
+// MatrixChainRec function
+func MatrixChainRec(D []int, i, j int) int {
 	// d[i-1] x d[i] : dimension of matrix i
 	if i == j {
 		return 0
 	}
 	q := 1 << 32
 	for k := i; k < j; k++ {
-		prod := matrixChainRec(D, i, k) + matrixChainRec(D, k+1, j) + D[i-1]*D[k]*D[j]
-		q = min(prod, q)
+		prod := MatrixChainRec(D, i, k) + MatrixChainRec(D, k+1, j) + D[i-1]*D[k]*D[j]
+		q = Min(prod, q)
 	}
 	return q
 }
 
-func matrixChainDp(D []int) int {
+// MatrixChainDp function
+func MatrixChainDp(D []int) int {
 	// d[i-1] x d[i] : dimension of matrix i
 	N := len(D)
 
@@ -44,7 +36,7 @@ func matrixChainDp(D []int) int {
 			dp[i][j] = 1 << 31
 			for k := i; k < j; k++ {
 				prod := dp[i][k] + dp[k+1][j] + D[i-1]*D[k]*D[j]
-				dp[i][j] = min(prod, dp[i][j])
+				dp[i][j] = Min(prod, dp[i][j])
 			}
 		}
 	}

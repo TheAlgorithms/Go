@@ -1,4 +1,4 @@
-package singlelinkedlist
+package singlylinkedlist
 
 import (
 	"reflect"

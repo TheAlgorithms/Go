@@ -1,20 +1,22 @@
 package searches
 
-func binarySearch(array []int, target int, lowIndex int, highIndex int) int {
-	if highIndex < lowIndex {
+// BinarySearch Binary Search
+func BinarySearch(array []int, target int, lowIndex int, highIndex int) int {
+	if highIndex < lowIndex || len(array) == 0 {
 		return -1
 	}
 	mid := int(lowIndex + (highIndex-lowIndex)/2)
 	if array[mid] > target {
-		return binarySearch(array, target, lowIndex, mid)
+		return BinarySearch(array, target, lowIndex, mid-1)
 	} else if array[mid] < target {
-		return binarySearch(array, target, mid+1, highIndex)
+		return BinarySearch(array, target, mid+1, highIndex)
 	} else {
 		return mid
 	}
 }
 
-func iterBinarySearch(array []int, target int, lowIndex int, highIndex int) int {
+// IterBinarySearch Iter Binary Search
+func IterBinarySearch(array []int, target int, lowIndex int, highIndex int) int {
 	startIndex := lowIndex
 	endIndex := highIndex
 	var mid int
