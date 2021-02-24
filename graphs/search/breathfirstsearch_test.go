@@ -1,10 +1,10 @@
-package breathfirstsearch
+package search
 
 import (
 	"testing"
 )
 
-func Test_BreadthFirstSearch(t *testing.T) {
+func TestBreadthFirstSearch(t *testing.T) {
 	var bfsTestData = []struct {
 		description string
 		start       int
