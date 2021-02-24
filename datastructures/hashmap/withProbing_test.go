@@ -91,7 +91,7 @@ func BenchmarkGoPut(b *testing.B) {
 }
 
 // Put Benchmark on HashTable with Collision Handled via Chaining
-func BenchmarkOldPut(b *testing.B) {
+func BenchmarkChainingPut(b *testing.B) {
 	tb := New()
 	for i := 0; i < b.N; i++ {
 		tb.Put(i, i)

@@ -41,7 +41,6 @@ func (t *table) Put(key interface{}, value interface{}) {
 	index := hashed
 	var trail uint64 = 1
 	for ; t.buckets[index] != nil && t.buckets[index].key != key; trail++ {
-		// fmt.Println("key=", key, "index=", index, "trail=", trail)
 		index = (hashed + (trail * t.probe(encoded))) % t.capacity
 	}
 	if t.buckets[index] == nil {
@@ -96,7 +95,7 @@ func (t *table) resize(newM uint64) {
 	var hashed uint64
 	var index uint64
 	var trail uint64
-	newBuckets := make([]*entry, int(t.capacity), int(t.capacity))
+	newBuckets := make([]*entry, int(t.capacity))
 	for _, v := range t.buckets {
 		if v != nil && v.key != deletedEntryKey {
 			encoded = encode(v.key)
