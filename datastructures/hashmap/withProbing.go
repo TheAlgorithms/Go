@@ -1,3 +1,5 @@
+// Package hashmap provide hash table implementation with collsion resolved
+// using openaddressing
 package hashmap
 
 import (
@@ -24,6 +26,7 @@ type table struct {
 	capacity uint64 // cap = 2^m
 }
 
+// newTable is internal function for creating new hash table
 func newTable() *table {
 	return &table{
 		buckets:  make([]*entry, 1<<initMValue),
@@ -53,6 +56,14 @@ func (t *table) Put(key interface{}, value interface{}) {
 		t.buckets[index].value = value
 	}
 }
+
+func (t *table) Len() int {
+	return int(t.size)
+}
+func (t *table) Cap() int {
+	return int(t.capacity)
+}
+
 func (t *table) Get(key interface{}) interface{} {
 	encoded := encode(key)
 	hashed := t.hash(encoded)
