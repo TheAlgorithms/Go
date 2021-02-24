@@ -14,4 +14,15 @@ type HashTable interface {
 
 	// Contains : return true if given exists in table and false otherwise
 	Contains(key interface{}) bool
+
+	// Len : returns length of the hash table
+	Len() int
+
+	// Cap : returns current capacity of the hash table
+	Cap() int
+}
+
+// NewHashTable : creates new HashTable
+func NewHashTable() HashTable {
+	return newTable()
 }
