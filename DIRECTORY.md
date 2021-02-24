@@ -98,6 +98,9 @@
   * Stringcombinations
     * [Stringcombinations](https://github.com/TheAlgorithms/Go/blob/master/other/stringcombinations/stringcombinations.go)
 
+## Recursion
+  * [Tower Of Hanoi](https://github.com/TheAlgorithms/Go/blob/master/recursion/tower_of_hanoi.go)
+
 ## Searches
   * [Binarysearch](https://github.com/TheAlgorithms/Go/blob/master/searches/binarysearch.go)
   * [Linearsearch](https://github.com/TheAlgorithms/Go/blob/master/searches/linearsearch.go)
