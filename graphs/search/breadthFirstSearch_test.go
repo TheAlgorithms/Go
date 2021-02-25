@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestBFS(t *testing.T) {
+func TestBreadthFirstSearch(t *testing.T) {
 	var bfsTestData = []struct {
 		description string
 		start       int
@@ -65,7 +65,7 @@ func TestBFS(t *testing.T) {
 	}
 	for _, test := range bfsTestData {
 		t.Run(test.description, func(t *testing.T) {
-			r1, r2 := BFS(test.start, test.end,
+			r1, r2 := BreadthFirstSearch(test.start, test.end,
 				test.nodes, test.edges)
 			if r1 != test.expected1 || r2 != test.expected2 {
 				t.Logf("FAIL: %s", test.description)
