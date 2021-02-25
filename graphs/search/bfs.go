@@ -2,14 +2,14 @@
 // reference: https://en.wikipedia.org/wiki/Tree_traversal
 package search
 
-/*BreadthFirstSearch is an algorithm for traversing or searching graph data structures.
+/*BFS Breadth-first search is an algorithm for traversing or searching graph data structures.
 	It starts at an arbitrary node of a graph, and explores all of the neighbor nodes
 	at the present depth prior to moving on to the nodes at the next depth level.
 	Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d})
 	Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d})
 reference: https://en.wikipedia.org/wiki/Breadth-first_search
 */
-func BreadthFirstSearch(start, end, nodes int, edges [][]int) (isConnected bool, distance int) {
+func BFS(start, end, nodes int, edges [][]int) (isConnected bool, distance int) {
 	queue := make([]int, 0)
 	discovered := make([]int, nodes)
 	discovered[start] = 1
