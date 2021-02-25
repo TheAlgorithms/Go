@@ -3,7 +3,9 @@
   * Caesar
     * [Caesar Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_test.go)
     * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/CaesarCipher.go)
-  * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffieHellmanKeyExchange.go)
+  * Diffiehelkeyexchange
+    * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffiehelkeyexchange/diffieHellmanKeyExchange.go)
+    * [Diffiehellmankeyexchange Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffiehelkeyexchange/diffieHellmanKeyExchange_test.go)
   * Polybius
     * [Polybius](https://github.com/TheAlgorithms/Go/blob/master/ciphers/polybius/polybius.go)
     * [Polybius Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/polybius/polybius_test.go)
