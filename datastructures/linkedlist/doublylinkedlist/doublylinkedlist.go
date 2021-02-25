@@ -28,6 +28,11 @@ func NewNode(val int) *Node {
 func (ll *DoubleLinkedList) AddAtBeg(val int) {
 	n := NewNode(val)
 	n.next = ll.head
+	
+	if n.next != nil {
+		n.next.prev = n
+	}
+	
 	ll.head = n
 }
 
