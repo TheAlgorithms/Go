@@ -60,12 +60,13 @@
   * [Rod-Cutting](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/rod-cutting.go)
 
 ## Graphs
-  * Breathfirstsearch
-    * [Breathfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/breathfirstsearch/breathfirstsearch.go)
   * Depthfirstsearch
     * [Depthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/depthfirstsearch/depthfirstsearch.go)
   * Floydwarshall
     * [Floydwarshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floydwarshall/floydwarshall.go)
+  * Search
+    * [Breadthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/search/breadthFirstSearch.go)
+    * [Breadthfirstsearch Test](https://github.com/TheAlgorithms/Go/blob/master/graphs/search/breadthFirstSearch_test.go)
 
 ## Math
   * Gcd
