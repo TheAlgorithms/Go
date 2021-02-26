@@ -3,7 +3,9 @@
   * Caesar
     * [Caesar Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_test.go)
     * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/CaesarCipher.go)
-  * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffieHellmanKeyExchange.go)
+  * Diffiehelkeyexchange
+    * [Diffiehellmankeyexchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffiehelkeyexchange/diffieHellmanKeyExchange.go)
+    * [Diffiehellmankeyexchange Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffiehelkeyexchange/diffieHellmanKeyExchange_test.go)
   * Polybius
     * [Polybius](https://github.com/TheAlgorithms/Go/blob/master/ciphers/polybius/polybius.go)
     * [Polybius Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/polybius/polybius_test.go)
@@ -58,12 +60,13 @@
   * [Rod-Cutting](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/rod-cutting.go)
 
 ## Graphs
-  * Breathfirstsearch
-    * [Breathfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/breathfirstsearch/breathfirstsearch.go)
   * Depthfirstsearch
     * [Depthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/depthfirstsearch/depthfirstsearch.go)
   * Floydwarshall
     * [Floydwarshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floydwarshall/floydwarshall.go)
+  * Search
+    * [Breadthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/search/breadthFirstSearch.go)
+    * [Breadthfirstsearch Test](https://github.com/TheAlgorithms/Go/blob/master/graphs/search/breadthFirstSearch_test.go)
 
 ## Math
   * Gcd
