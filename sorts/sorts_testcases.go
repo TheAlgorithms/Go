@@ -75,6 +75,8 @@ func getSortedVersion(a []int) []int {
 	return b
 }
 
+// cloneIntSlice returns a copy of a given slice of int.
+// Useful to protect a slice from in-place sorting functions.
 func cloneIntSlice(src []int) []int {
 	vals := make([]int, len(src))
 	copy(vals, src)
