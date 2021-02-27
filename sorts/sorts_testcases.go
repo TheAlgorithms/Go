@@ -13,8 +13,8 @@ type sortTest struct {
 	name     string
 }
 
-var uarr []int = makeRandomUnsignedSlice(500_000)
-var arr []int = makeRandomSignedSlice(500_000)
+var uarr []int = makeRandomUnsignedSlice(5_000)
+var arr []int = makeRandomSignedSlice(5_000)
 
 var sortTests = []sortTest{
 	//Sorted slice
@@ -23,7 +23,7 @@ var sortTests = []sortTest{
 	//Reversed slice
 	{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
 		[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Unsigned"},
-	//500k unsigned int values sort
+	//5k unsigned int values sort
 	{uarr, getSortedVersion(uarr), "Large Random Unsigned"},
 
 	//Sorted slice
@@ -42,7 +42,7 @@ var sortTests = []sortTest{
 	{[]int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
 		[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10}, "Random order Signed"},
 
-	//500k int values sort
+	//5k int values sort
 	{arr, getSortedVersion(arr), "Large Random Signed"},
 
 	//Empty slice
