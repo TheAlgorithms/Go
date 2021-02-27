@@ -49,6 +49,19 @@
     * [Trie](https://github.com/TheAlgorithms/Go/blob/master/datastructures/trie/trie.go)
     * [Trie Test](https://github.com/TheAlgorithms/Go/blob/master/datastructures/trie/trie_test.go)
 
+## Designpatterns
+  * Abstractfactory
+    * [Abstractfactory Test](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/abstractfactory_test.go)
+    * [Adidas](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/adidas.go)
+    * [Adidasshirt](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/adidasshirt.go)
+    * [Adidasshoe](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/adidasshoe.go)
+    * [Ishirt](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/ishirt.go)
+    * [Ishoe](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/ishoe.go)
+    * [Isportsfactory](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/isportsFactory.go)
+    * [Nike](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nike.go)
+    * [Nikeshirt](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nikeshirt.go)
+    * [Nikeshoe](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nikeshoe.go)
+
 ## Dynamicprogramming
   * [Binomialcoeffecient](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/binomialcoeffecient.go)
   * [Fibonacc Test](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/fibonacc_test.go)
