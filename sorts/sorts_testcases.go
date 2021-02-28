@@ -69,6 +69,8 @@ func makeRandomSignedSlice(size int) []int {
 	return vals
 }
 
+// getSortedVersion Takes a slice of ints and returns a slice as a sorted (in 
+// ascending order) copy of the slice passed as the argument.
 func getSortedVersion(a []int) []int {
 	b := cloneIntSlice(a)
 	sort.Slice(b, func(i, j int) bool { return b[i] < b[j] })
