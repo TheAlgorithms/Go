@@ -7,8 +7,8 @@ package search
 	at the present depth prior to moving on to the nodes at the next depth level.
 	Worst-case performance	 		O(|V|+|E|)
 	Worst-case space complexity	 	O(|V|)
-		- |V| the number of vertices
-		- |E| the number of edges
+		- |V| the number of vertices in graph
+		- |E| the number of edges in graph
 reference: https://en.wikipedia.org/wiki/Breadth-first_search
 */
 func BreadthFirstSearch(start, end, nodes int, edges [][]int) (isConnected bool, distance int) {

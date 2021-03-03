@@ -11,8 +11,8 @@ import (
 
 	Worst-case performance			O(|V|+|E|)
 	Worst-case space complexity		O(|V|)
-		- |V| the number of vertices
-		- |E| the number of edges
+		- |V| the number of vertices in graph
+		- |E| the number of edges in graph
 reference: https://en.wikipedia.org/wiki/Depth-first_search
 */
 func DepthFirstSearch(start, end, nodes int, edges [][]int) (isConnected bool, distance int) {
