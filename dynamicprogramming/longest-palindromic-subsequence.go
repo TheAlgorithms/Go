@@ -1,20 +1,10 @@
 // longest palindromic subsequence
 // http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
 
-package longestPalindromicSubsequence
+package dynamicprogramming
 
-// package main
-
-import "fmt"
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-
-func lpsRec(word string, i, j int) int {
+// LpsRec function
+func LpsRec(word string, i, j int) int {
 	if i == j {
 		return 1
 	}
@@ -22,12 +12,13 @@ func lpsRec(word string, i, j int) int {
 		return 0
 	}
 	if word[i] == word[j] {
-		return 2 + lpsRec(word, i+1, j-1)
+		return 2 + LpsRec(word, i+1, j-1)
 	}
-	return max(lpsRec(word, i, j-1), lpsRec(word, i+1, j))
+	return Max(LpsRec(word, i, j-1), LpsRec(word, i+1, j))
 }
 
-func lpsDp(word string) int {
+// LpsDp function
+func LpsDp(word string) int {
 	N := len(word)
 	dp := make([][]int, N)
 
@@ -47,7 +38,7 @@ func lpsDp(word string) int {
 					dp[i][j] = 2 + dp[i+1][j-1]
 				}
 			} else {
-				dp[i][j] = max(dp[i+1][j], dp[i][j-1])
+				dp[i][j] = Max(dp[i+1][j], dp[i][j-1])
 			}
 		}
 	}

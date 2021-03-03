@@ -2,75 +2,72 @@ package ahocorasick
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
-	"strings"
 	"time"
 )
 
 // User defined.
 // Set to true to print various extra stuff out (slows down the execution)
 // Set to false for quick and quiet execution.
-const debugMode bool = true
+// const debugMode bool = true
 
-type result struct {
+type Result struct {
 	occurrences map[string][]int
 }
 
 // Implementation of Basic Aho-Corasick algorithm (Prefix based).
 // Searches for a set of strings (patterns.txt) in text.txt.
-func main() {
-	patFile, err := ioutil.ReadFile("../patterns.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	textFile, err := ioutil.ReadFile("../text.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	patterns := strings.Split(string(patFile), " ")
-	fmt.Printf("\nRunning: Basic Aho-Corasick algorithm.\n\n")
-	if debugMode == true {
-		fmt.Printf("Searching for %d patterns/words:\n", len(patterns))
-	}
-	for i := 0; i < len(patterns); i++ {
-		if len(patterns[i]) > len(textFile) {
-			log.Fatal("There is a pattern that is longer than text! Pattern number:", i+1)
-		}
-		if debugMode == true {
-			fmt.Printf("%q ", patterns[i])
-		}
-	}
-	if debugMode == true {
-		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
-	}
-	r := ahoCorasick(string(textFile), patterns)
-	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
-		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
-		for i := range value {
-			fmt.Printf("%d", value[i])
-			if i != len(value)-1 {
-				fmt.Printf(", ")
-			}
-		}
-		fmt.Printf(".")
-	}
-}
+// func main() {
+// 	patFile, err := ioutil.ReadFile("../patterns.txt")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	textFile, err := ioutil.ReadFile("../text.txt")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	patterns := strings.Split(string(patFile), " ")
+// 	fmt.Printf("\nRunning: Basic Aho-Corasick algorithm.\n\n")
+// 	if debugMode == true {
+// 		fmt.Printf("Searching for %d patterns/words:\n", len(patterns))
+// 	}
+// 	for i := 0; i < len(patterns); i++ {
+// 		if len(patterns[i]) > len(textFile) {
+// 			log.Fatal("There is a pattern that is longer than text! Pattern number:", i+1)
+// 		}
+// 		if debugMode == true {
+// 			fmt.Printf("%q ", patterns[i])
+// 		}
+// 	}
+// 	if debugMode == true {
+// 		fmt.Printf("\n\nIn text (%d chars long): \n%q\n\n", len(textFile), textFile)
+// 	}
+// 	r := ahoCorasick(string(textFile), patterns)
+// 	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
+// 		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
+// 		for i := range value {
+// 			fmt.Printf("%d", value[i])
+// 			if i != len(value)-1 {
+// 				fmt.Printf(", ")
+// 			}
+// 		}
+// 		fmt.Printf(".")
+// 	}
+// }
 
-// Function performing the Basic Aho-Corasick algorithm.
+// AhoCorasick Function performing the Basic Aho-Corasick algorithm.
 // Finds and prints occurrences of each pattern.
-func ahoCorasick(t string, p []string) result {
+func AhoCorasick(t string, p []string) Result {
 	startTime := time.Now()
 	occurrences := make(map[int][]int)
 	ac, f, s := buildAc(p)
-	if debugMode == true {
-		fmt.Printf("\n\nAC:\n\n")
-	}
+	// if debugMode == true {
+	// 	fmt.Printf("\n\nAC:\n\n")
+	// }
 	current := 0
 	for pos := 0; pos < len(t); pos++ {
-		if debugMode == true {
-			fmt.Printf("Position: %d, we read: %c", pos, t[pos])
-		}
+		// if debugMode == true {
+		// 	fmt.Printf("Position: %d, we read: %c", pos, t[pos])
+		// }
 		for getTransition(current, t[pos], ac) == -1 && s[current] != -1 {
 			current = s[current]
 		}
@@ -79,17 +76,17 @@ func ahoCorasick(t string, p []string) result {
 			fmt.Printf(" (Continue) \n")
 		} else {
 			current = 0
-			if debugMode == true {
-				fmt.Printf(" (FAIL) \n")
-			}
+			// if debugMode == true {
+			// 	fmt.Printf(" (FAIL) \n")
+			// }
 		}
 		_, ok := f[current]
 		if ok {
 			for i := range f[current] {
 				if p[f[current][i]] == getWord(pos-len(p[f[current][i]])+1, pos, t) { //check for word match
-					if debugMode == true {
-						fmt.Printf("Occurence at position %d, %q = %q\n", pos-len(p[f[current][i]])+1, p[f[current][i]], p[f[current][i]])
-					}
+					// if debugMode == true {
+					// 	fmt.Printf("Occurence at position %d, %q = %q\n", pos-len(p[f[current][i]])+1, p[f[current][i]], p[f[current][i]])
+					// }
 					newOccurrences := intArrayCapUp(occurrences[f[current][i]])
 					occurrences[f[current][i]] = newOccurrences
 					occurrences[f[current][i]][len(newOccurrences)-1] = pos - len(p[f[current][i]]) + 1
@@ -104,7 +101,7 @@ func ahoCorasick(t string, p []string) result {
 		resultOccurrences[p[key]] = value
 	}
 
-	return result{
+	return Result{
 		resultOccurrences,
 	}
 }
@@ -116,9 +113,9 @@ func buildAc(p []string) (acToReturn map[int]map[uint8]int, f map[int][]int, s [
 	i := 0                                //root of acTrie
 	acToReturn = acTrie
 	s[i] = -1
-	if debugMode == true {
-		fmt.Printf("\n\nAC construction: \n")
-	}
+	// if debugMode == true {
+	// 	fmt.Printf("\n\nAC construction: \n")
+	// }
 	for current := 1; current < len(stateIsTerminal); current++ {
 		o, parent := getParent(current, acTrie)
 		down := s[parent]
@@ -127,33 +124,33 @@ func buildAc(p []string) (acToReturn map[int]map[uint8]int, f map[int][]int, s [
 		}
 		if stateExists(down, acToReturn) {
 			s[current] = getTransition(down, o, acToReturn)
-			if stateIsTerminal[s[current]] == true {
+			if stateIsTerminal[s[current]] {
 				stateIsTerminal[current] = true
 				f[current] = arrayUnion(f[current], f[s[current]]) //F(Current) <- F(Current) union F(S(Current))
-				if debugMode == true {
-					fmt.Printf(" f[%d] set to: ", current)
-					for i := range f[current] {
-						fmt.Printf("%d\n", f[current][i])
-					}
-				}
+				// if debugMode == true {
+				// 	fmt.Printf(" f[%d] set to: ", current)
+				// 	for i := range f[current] {
+				// 		fmt.Printf("%d\n", f[current][i])
+				// 	}
+				// }
 			}
 		} else {
 			s[current] = i //initial state?
 		}
 	}
-	if debugMode == true {
-		fmt.Printf("\nsupply function: \n")
-		for i := range s {
-			fmt.Printf("\ns[%d]=%d", i, s[i])
-		}
-		fmt.Printf("\n\n")
-		for i, j := range f {
-			fmt.Printf("f[%d]=", i)
-			for k := range j {
-				fmt.Printf("%d\n", j[k])
-			}
-		}
-	}
+	// if debugMode == true {
+	// 	fmt.Printf("\nsupply function: \n")
+	// 	for i := range s {
+	// 		fmt.Printf("\ns[%d]=%d", i, s[i])
+	// 	}
+	// 	fmt.Printf("\n\n")
+	// 	for i, j := range f {
+	// 		fmt.Printf("f[%d]=", i)
+	// 		for k := range j {
+	// 			fmt.Printf("%d\n", j[k])
+	// 		}
+	// 	}
+	// }
 	return acToReturn, f, s
 }
 
@@ -163,9 +160,9 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 	stateIsTerminal = make([]bool, 1)
 	f = make(map[int][]int)
 	state := 1
-	if debugMode == true {
-		fmt.Printf("\n\nTrie construction: \n")
-	}
+	// if debugMode == true {
+	// 	fmt.Printf("\n\nTrie construction: \n")
+	// }
 	createNewState(0, trie)
 	for i := 0; i < len(p); i++ {
 		current := 0
@@ -187,15 +184,15 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 			newArray := intArrayCapUp(f[current])
 			newArray[len(newArray)-1] = i
 			f[current] = newArray //F(Current) <- F(Current) union {i}
-			if debugMode == true {
-				fmt.Printf(" and %d", i)
-			}
+			// if debugMode == true {
+			// 	fmt.Printf(" and %d", i)
+			// }
 		} else {
 			stateIsTerminal[current] = true
 			f[current] = []int{i} //F(Current) <- {i}
-			if debugMode == true {
-				fmt.Printf("\n%d is terminal for word number %d", current, i)
-			}
+			// if debugMode == true {
+			// 	fmt.Printf("\n%d is terminal for word number %d", current, i)
+			// }
 		}
 	}
 	return trie, stateIsTerminal, f
@@ -231,7 +228,7 @@ func getWord(begin, end int, t string) string {
 func intArrayCapUp(old []int) (new []int) {
 	new = make([]int, cap(old)+1)
 	copy(new, old) //copy(dst,src)
-	old = new
+	// old = new
 	return new
 }
 
@@ -239,7 +236,7 @@ func intArrayCapUp(old []int) (new []int) {
 func boolArrayCapUp(old []bool) (new []bool) {
 	new = make([]bool, cap(old)+1)
 	copy(new, old)
-	old = new
+	// old = new
 	return new
 }
 
@@ -271,17 +268,17 @@ func getParent(state int, at map[int]map[uint8]int) (uint8, int) {
 // Automaton function for creating a new state 'state'.
 func createNewState(state int, at map[int]map[uint8]int) {
 	at[state] = make(map[uint8]int)
-	if debugMode == true {
-		fmt.Printf("\ncreated state %d", state)
-	}
+	// if debugMode == true {
+	// 	fmt.Printf("\ncreated state %d", state)
+	// }
 }
 
 // Creates a transition for function σ(state,letter) = end.
 func createTransition(fromState int, overChar uint8, toState int, at map[int]map[uint8]int) {
 	at[fromState][overChar] = toState
-	if debugMode == true {
-		fmt.Printf("\n    σ(%d,%c)=%d;", fromState, overChar, toState)
-	}
+	// if debugMode == true {
+	// 	fmt.Printf("\n    σ(%d,%c)=%d;", fromState, overChar, toState)
+	// }
 }
 
 // Returns ending state for transition σ(fromState,overChar), '-1' if there is none.
@@ -290,7 +287,7 @@ func getTransition(fromState int, overChar uint8, at map[int]map[uint8]int) (toS
 		return -1
 	}
 	toState, ok := at[fromState][overChar]
-	if ok == false {
+	if !ok {
 		return -1
 	}
 	return toState

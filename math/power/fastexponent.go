@@ -4,13 +4,12 @@ package power
 func IterativePower(n uint, power uint) uint {
 	var res uint = 1
 	for power > 0 {
-
 		if (power & 1) != 0 {
 			res = res * n
 		}
 
 		power = power >> 1
-		n = n * n
+		n *= n
 	}
 	return res
 }

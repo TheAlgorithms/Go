@@ -1,26 +1,22 @@
-package main
+package dynamicprogramming
 
-import (
-	"fmt"
-	"time"
-)
+// func main() {
+// 	myArrayOfK := [4]int{5, 6, 7, 8}
+// 	var x int
 
-func main() {
-	myArrayOfK := [4]int{5, 6, 7, 8}
-	var x int
+// 	fmt.Println("\nBinomial Coefficient Using Dynamic Programming:", bin2(50, 5))
+// 	for _, element := range myArrayOfK {
+// 		start := time.Now()
+// 		x = bin2(50, element)
+// 		elapsed := time.Since(start)
+// 		fmt.Println("bin2 (50,", element, ") = ", x, "    took ", elapsed)
 
-	fmt.Println("\nBinomial Coefficient Using Dynamic Programming:", bin2(50, 5))
-	for _, element := range myArrayOfK {
-		start := time.Now()
-		x = bin2(50, element)
-		elapsed := time.Since(start)
-		fmt.Println("bin2 (50,", element, ") = ", x, "    took ", elapsed)
+// 	}
 
-	}
+// }
 
-}
-
-func bin2(n int, k int) int {
+// Bin2 function
+func Bin2(n int, k int) int {
 	var i, j int
 	B := make([][]int, (n + 1))
 	for i := range B {
@@ -28,7 +24,7 @@ func bin2(n int, k int) int {
 	}
 
 	for i = 0; i <= n; i++ {
-		for j = 0; j <= min(i, k); j++ {
+		for j = 0; j <= Min(i, k); j++ {
 			if j == 0 || j == i {
 				B[i][j] = 1
 			} else {
@@ -39,7 +35,8 @@ func bin2(n int, k int) int {
 	return B[n][k]
 }
 
-func min(a, b int) int {
+// Min function - possible duplicate
+func Min(a, b int) int {
 	if a < b {
 		return a
 	}

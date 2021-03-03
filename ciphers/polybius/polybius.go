@@ -35,9 +35,8 @@ func NewPolybius(key string, size int, chars string) (*Polybius, error) {
 
 // Encrypt encrypts with polybius encryption
 func (p *Polybius) Encrypt(text string) (string, error) {
-	chars := []rune(strings.ToUpper(text))
 	encryptedText := ""
-	for _, char := range chars {
+	for _, char := range strings.ToUpper(text) {
 		encryptedChar, err := p.encipher(char)
 		if err != nil {
 			return "", fmt.Errorf("failed encipher: %w", err)

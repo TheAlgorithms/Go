@@ -1,20 +1,20 @@
+package dynamicprogramming
+
 // Knapsack Problem
 // https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
-package Knapsack
-
-// package main
 
 import (
 	"math"
 )
 
-func max(a, b int) int {
+// Max function - possible duplicate
+func Max(a, b int) int {
 	return int(math.Max(float64(a), float64(b)))
 }
 
-// solve knapsack problem
+// Solve knapsack problem
 // return maxProfit
-func solve(maxWeight int, weights, values []int) int {
+func Solve(maxWeight int, weights, values []int) int {
 	n := len(weights)
 	m := maxWeight
 	// create dp data structure
@@ -27,7 +27,7 @@ func solve(maxWeight int, weights, values []int) int {
 			if weights[i] > j {
 				dp[i+1][j] = dp[i][j]
 			} else {
-				dp[i+1][j] = max(dp[i][j-weights[i]]+values[i], dp[i][j])
+				dp[i+1][j] = Max(dp[i][j-weights[i]]+values[i], dp[i][j])
 			}
 		}
 	}

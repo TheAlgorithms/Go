@@ -1,4 +1,4 @@
-package main
+package bigrsacipher
 
 import (
 	crypto "crypto/rand"
@@ -49,11 +49,11 @@ func TestRSABigCipher(t *testing.T) {
 			stringEncoded := stringEncode(ASCIIs)
 			bigNum, _ := new(big.Int).SetString(stringEncoded, 0)
 
-			encrypted := encryptBig(bigNum, e, n)
-			decrypted := decryptBig(encrypted, d, n)
+			encrypted := EncryptBig(bigNum, e, n)
+			decrypted := DecryptBig(encrypted, d, n)
 			decryptASCIIs := stringDecode(decrypted)
 
-			if actual := toRune(decryptASCIIs); actual != test.input {
+			if actual := ToRune(decryptASCIIs); actual != test.input {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("Expecting %s, actual %s", test.input, actual)
 			}

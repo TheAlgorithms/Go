@@ -1,3 +1,3 @@
-module TheAlgorithms/Go
+module github.com/TheAlgorithms/Go
 
-go 1.14
+go 1.15

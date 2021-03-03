@@ -1,44 +1,25 @@
-package main
+// Package xor is an encryption algorithm that operates the exclusive disjunction(XOR)
+// ref: https://en.wikipedia.org/wiki/XOR_cipher
+package xor
 
-import "fmt"
-
-func encrypt(key int, plaintext []int) (ciphertext []int) {
-	for _, char := range plaintext {
-		ciphertext = append(ciphertext, xor(char, key))
+// Encrypt encrypts with Xor encryption after converting each character to byte
+// The returned value might not be readable because there is no guarantee
+// which is within the ASCII range
+// If using other type such as string, []int, or some other types,
+// add the statements for converting the type to []byte.
+func Encrypt(key byte, plaintext []byte) []byte {
+	cipherText := []byte{}
+	for _, ch := range plaintext {
+		cipherText = append(cipherText, key^ch)
 	}
-	return
-}
-func xor(char int, key int) int {
-	return (char ^ key)
-}
-
-func decrypt(key int, ciphertext []int) (plaintext []int) {
-	for _, char := range ciphertext {
-		plaintext = append(plaintext, xor(char, key))
-	}
-	return
+	return cipherText
 }
 
-func decodeToString(slice []int) (str string) {
-	for _, v := range slice {
-		str += string(v)
+// Decrypt decrypts with Xor encryption
+func Decrypt(key byte, cipherText []byte) []byte {
+	plainText := []byte{}
+	for _, ch := range cipherText {
+		plainText = append(plainText, key^ch)
 	}
-	return
-}
-func toASCII(slice []rune) []int {
-	var converted []int
-	for _, v := range slice {
-		converted = append(converted, int(v))
-	}
-	return converted
-}
-func main() {
-	str := "hello world"
-	key := 97
-	temp := []rune(str)
-	message := toASCII(temp)
-	encrypted := encrypt(key, message)
-	decrypted := decrypt(key, encrypted)
-	plaintext := decodeToString(decrypted)
-	fmt.Println(plaintext)
+	return plainText
 }
