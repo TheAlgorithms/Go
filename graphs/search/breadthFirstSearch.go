@@ -5,8 +5,10 @@ package search
 /*BreadthFirstSearch is an algorithm for traversing and searching graph data structures.
 	It starts at an arbitrary node of a graph, and explores all of the neighbor nodes
 	at the present depth prior to moving on to the nodes at the next depth level.
-	Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d})
-	Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d})
+	Worst-case performance	 		O(|V|+|E|)
+	Worst-case space complexity	 	O(|V|)
+		- |V| the number of vertices
+		- |E| the number of edges
 reference: https://en.wikipedia.org/wiki/Breadth-first_search
 */
 func BreadthFirstSearch(start, end, nodes int, edges [][]int) (isConnected bool, distance int) {

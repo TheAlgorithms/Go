@@ -8,8 +8,11 @@ import (
 
 /*DepthFirstSearch is an algorithm for traversing or searching graph data structures.
 	The algorithm starts at the start node and explores as far as possible along each branch before backtracking.
-	Worst-case performance			O(|V|+|E|)}O(|V| + |E|)
-	Worst-case space complexity		O(|V|)}O(|V|)
+
+	Worst-case performance			O(|V|+|E|)
+	Worst-case space complexity		O(|V|)
+		- |V| the number of vertices
+		- |E| the number of edges
 reference: https://en.wikipedia.org/wiki/Depth-first_search
 */
 func DepthFirstSearch(start, end, nodes int, edges [][]int) (isConnected bool, distance int) {
