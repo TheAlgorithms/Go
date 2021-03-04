@@ -85,15 +85,19 @@
   * Gcd
     * [Gcd](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcd.go)
     * [Gcd Test](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcd_test.go)
+    * [Gcditerative](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcditerative.go)
+  * Lcm
+    * [Lcm](https://github.com/TheAlgorithms/Go/blob/master/math/lcm/lcm.go)
   * Modulararithmetic
     * [Modularexponentiation](https://github.com/TheAlgorithms/Go/blob/master/math/modulararithmetic/modularexponentiation.go)
     * [Modularexponentiation Test](https://github.com/TheAlgorithms/Go/blob/master/math/modulararithmetic/modularexponentiation_test.go)
   * Power
     * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastexponent.go)
     * [Fastexponent Test](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastexponent_test.go)
-  * Primecheck
-    * [Primecheck](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/primecheck.go)
-    * [Primecheck Test](https://github.com/TheAlgorithms/Go/blob/master/math/primecheck/primecheck_test.go)
+  * Prime
+    * [Millerrabinprimalitytest](https://github.com/TheAlgorithms/Go/blob/master/math/prime/millerrabinprimalitytest.go)
+    * [Prime Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime/prime_test.go)
+    * [Primecheck](https://github.com/TheAlgorithms/Go/blob/master/math/prime/primecheck.go)
   * Pythagoras
     * [Pythagoras](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras.go)
     * [Pythagoras Test](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras_test.go)
