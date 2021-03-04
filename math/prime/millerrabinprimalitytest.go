@@ -18,7 +18,9 @@ func findRD(num int64) (int64, int64) {
 	return d, r
 }
 
-// MillerTest Miller Rabin probablistic primality test
+// MillerTest This is the intermediate step that repeats within the
+// miller rabin primality test for better probabilitic chances of
+// receiving the correct result.
 func MillerTest(d, num int64) (bool, error) {
 	random := rand.Int63n(num-1) + 2
 
@@ -45,7 +47,7 @@ func MillerTest(d, num int64) (bool, error) {
 	return false, nil
 }
 
-// MillerRabinTest Probabilistic test for primality of an integer
+// MillerRabinTest Probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
 func MillerRabinTest(num, rounds int64) (bool, error) {
 	if num <= 4 {
 		if num == 2 || num == 3 {
