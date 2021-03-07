@@ -61,6 +61,13 @@
     * [Nike](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nike.go)
     * [Nikeshirt](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nikeshirt.go)
     * [Nikeshoe](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nikeshoe.go)
+  * Factorymethod
+    * [Accountingdepartment](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/accountingDepartment.go)
+    * [Department](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/department.go)
+    * [Departmentfactory](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/departmentFactory.go)
+    * [Factorymethod Test](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/factorymethod_test.go)
+    * [Financedepartment](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/financeDepartment.go)
+    * [Idepartment](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/idepartment.go)
 
 ## Dynamicprogramming
   * [Binomialcoeffecient](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/binomialcoeffecient.go)
