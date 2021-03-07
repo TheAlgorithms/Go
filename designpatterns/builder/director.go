@@ -9,7 +9,6 @@ func newDirector(b iBuilder) *director {
 		builder: b,
 	}
 }
-
 func (d *director) setBuilder(b iBuilder) {
 	d.builder = b
 }

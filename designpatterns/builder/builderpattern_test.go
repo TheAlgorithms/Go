@@ -1,5 +1,6 @@
 package builder
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -32,6 +33,18 @@ func TestBuilderPatter(t *testing.T){
 		if !reflect.DeepEqual(iglooHouse.floor, 1) {
 			t.Errorf("got: %v, want: %v", iglooHouse.floor, 1)
 		}
+	})
+
+	t.Run("Test set builder ", func(t *testing.T) {
+		iglooBuilder := getBuilder("igloo")
+		director := director{}
+		director.setBuilder(iglooBuilder)
+		iglooHouse := director.buildHouse()
+		fmt.Println(iglooHouse)
+		if !reflect.DeepEqual(iglooHouse.floor, 1) {
+			t.Errorf("got: %v, want: %v", iglooHouse.floor, 1)
+		}
+
 	})
 
 }
