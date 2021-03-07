@@ -75,6 +75,11 @@
     * [Factorymethod Test](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/factorymethod_test.go)
     * [Financedepartment](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/financeDepartment.go)
     * [Idepartment](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/idepartment.go)
+  * Prototype
+    * [File](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/prototype/file.go)
+    * [Folder](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/prototype/folder.go)
+    * [Nodeinterface](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/prototype/nodeInterface.go)
+    * [Prototype Test](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/prototype/prototype_test.go)
 
 ## Dynamicprogramming
   * [Binomialcoeffecient](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/binomialcoeffecient.go)
