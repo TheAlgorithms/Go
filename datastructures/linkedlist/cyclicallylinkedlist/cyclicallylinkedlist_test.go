@@ -86,7 +86,7 @@ func TestLinkedList(t *testing.T) {
 		}
 	})
 
-	t.Run("Test JosephTask()", func(t *testing.T) {
+	t.Run("Test JosephusProblem()", func(t *testing.T) {
 		testCases := []testCase{
 			{5, 4, 8},
 			{3, 8, 8},
