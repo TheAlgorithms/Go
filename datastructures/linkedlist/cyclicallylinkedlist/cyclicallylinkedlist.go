@@ -4,6 +4,7 @@ package cyclicallylinkedlist
 
 import "fmt"
 
+// Node of List.
 type ClNode struct {
 	val  interface{}
 	prev *ClNode
@@ -17,10 +18,12 @@ type ClList struct {
 	currentItem *ClNode
 }
 
+// Create new list.
 func NewList() *ClList {
 	return &ClList{0, nil}
 }
 
+// Create new node.
 func NewNode(val interface{}) *ClNode {
 	return &ClNode{val, nil, nil}
 }
@@ -84,7 +87,6 @@ func (cl *ClList) Rotate(places int) {
 
 // Delete the current item.
 func (cl *ClList) Delete() int {
-
 	var deleted int
 	var prevItem, thisItem, nextItem *ClNode
 
