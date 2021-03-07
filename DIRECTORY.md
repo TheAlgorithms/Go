@@ -61,6 +61,13 @@
     * [Nike](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nike.go)
     * [Nikeshirt](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nikeshirt.go)
     * [Nikeshoe](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/abstractfactory/nikeshoe.go)
+  * Builder
+    * [Builderinterface](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/builder/builderinterface.go)
+    * [Builderpattern Test](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/builder/builderpattern_test.go)
+    * [Director](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/builder/director.go)
+    * [House](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/builder/house.go)
+    * [Igloobuilder](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/builder/igloobuilder.go)
+    * [Normalbuilder](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/builder/normalbuilder.go)
   * Factorymethod
     * [Accountingdepartment](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/accountingDepartment.go)
     * [Department](https://github.com/TheAlgorithms/Go/blob/master/designpatterns/factorymethod/department.go)
