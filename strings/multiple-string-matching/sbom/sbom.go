@@ -44,7 +44,7 @@ type Result struct {
 // 	}
 // 	r := sbom(string(textFile), patterns)
 // 	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
-// 		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
+// 		fmt.Printf("\nThere were %d occurrences for word: %q at positions: ", len(value), key)
 // 		for i := range value {
 // 			fmt.Printf("%d", value[i])
 // 			if i != len(value)-1 {
@@ -95,11 +95,11 @@ func Sbom(t string, p []string) Result {
 			for i := range f[current] {
 				if p[f[current][i]] == getWord(pos, pos-1+len(p[f[current][i]]), t) { //check for word match
 					if debugMode {
-						fmt.Printf("- Occurence, %q = %q\n", p[f[current][i]], word)
+						fmt.Printf("- occurrence, %q = %q\n", p[f[current][i]], word)
 					}
-					newOccurences := intArrayCapUp(occurrences[f[current][i]])
-					occurrences[f[current][i]] = newOccurences
-					occurrences[f[current][i]][len(newOccurences)-1] = pos
+					newOccurrences := intArrayCapUp(occurrences[f[current][i]])
+					occurrences[f[current][i]] = newOccurrences
+					occurrences[f[current][i]][len(newOccurrences)-1] = pos
 				}
 			}
 			j = 0

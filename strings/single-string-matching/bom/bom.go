@@ -67,7 +67,7 @@ package bom
 // 	n, m := len(t), len(p)
 // 	var current, j, pos int
 // 	oracle := oracleOnLine(reverse(p))
-// 	occurences := make([]int, len(t))
+// 	occurrences := make([]int, len(t))
 // 	currentOcc := 0
 // 	pos = 0
 // 	if debugMode == true {
@@ -85,9 +85,9 @@ package bom
 // 		}
 // 		if stateExists(current, oracle) {
 // 			if debugMode == true {
-// 				fmt.Printf(" We got an occurence!")
+// 				fmt.Printf(" We got an occurrence!")
 // 			}
-// 			occurences[currentOcc] = pos
+// 			occurrences[currentOcc] = pos
 // 			currentOcc++
 // 		}
 // 		pos = pos + j + 1
@@ -103,9 +103,9 @@ package bom
 // 	if currentOcc > 0 {
 // 		fmt.Printf("Word %q was found %d times at positions: ", p, currentOcc)
 // 		for k := 0; k < currentOcc-1; k++ {
-// 			fmt.Printf("%d, ", occurences[k])
+// 			fmt.Printf("%d, ", occurrences[k])
 // 		}
-// 		fmt.Printf("%d", occurences[currentOcc-1])
+// 		fmt.Printf("%d", occurrences[currentOcc-1])
 // 		fmt.Printf(".\n")
 // 	}
 // 	if currentOcc == 0 {

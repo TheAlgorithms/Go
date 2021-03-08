@@ -43,7 +43,7 @@ type Result struct {
 // 	}
 // 	r := ahoCorasick(string(textFile), patterns)
 // 	for key, value := range r.occurrences { //prints all occurrences of each pattern (if there was at least one)
-// 		fmt.Printf("\nThere were %d occurences for word: %q at positions: ", len(value), key)
+// 		fmt.Printf("\nThere were %d occurrences for word: %q at positions: ", len(value), key)
 // 		for i := range value {
 // 			fmt.Printf("%d", value[i])
 // 			if i != len(value)-1 {
@@ -85,7 +85,7 @@ func AhoCorasick(t string, p []string) Result {
 			for i := range f[current] {
 				if p[f[current][i]] == getWord(pos-len(p[f[current][i]])+1, pos, t) { //check for word match
 					// if debugMode == true {
-					// 	fmt.Printf("Occurence at position %d, %q = %q\n", pos-len(p[f[current][i]])+1, p[f[current][i]], p[f[current][i]])
+					// 	fmt.Printf("Occurrence at position %d, %q = %q\n", pos-len(p[f[current][i]])+1, p[f[current][i]], p[f[current][i]])
 					// }
 					newOccurrences := intArrayCapUp(occurrences[f[current][i]])
 					occurrences[f[current][i]] = newOccurrences
