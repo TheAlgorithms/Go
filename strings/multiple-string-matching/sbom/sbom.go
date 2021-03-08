@@ -6,11 +6,6 @@ import (
 	"time"
 )
 
-// User defined.
-// Set to true to print various extra stuff out (slows down the execution)
-// Set to false for quick and quiet execution.
-const debugMode bool = true
-
 type Result struct {
 	occurrences map[string][]int
 }
@@ -63,40 +58,18 @@ func Sbom(t string, p []string) Result {
 	occurrences := make(map[int][]int)
 	lmin := computeMinLength(p)
 	or, f := buildOracleMultiple(reverseAll(trimToLength(p, lmin)))
-	if debugMode {
-		fmt.Printf("\n\nSBOM:\n\n")
-	}
 	pos := 0
 	for pos <= len(t)-lmin {
 		current := 0
 		j := lmin
-		if debugMode {
-			fmt.Printf("Position: %d, we read: ", pos)
-		}
 		for j >= 1 && stateExists(current, or) {
-			if debugMode {
-				fmt.Printf("%c", t[pos+j-1])
-			}
 			current = getTransition(current, t[pos+j-1], or)
-			if debugMode {
-				if current == -1 {
-					fmt.Printf(" (FAIL) ")
-				} else {
-					fmt.Printf(", ")
-				}
-			}
 			j--
-		}
-		if debugMode {
-			fmt.Printf("in the factor oracle. \n")
 		}
 		word := getWord(pos, pos+lmin-1, t)
 		if stateExists(current, or) && j == 0 && strings.HasPrefix(word, getCommonPrefix(p, f[current], lmin)) { //check for prefix match
 			for i := range f[current] {
 				if p[f[current][i]] == getWord(pos, pos-1+len(p[f[current][i]]), t) { //check for word match
-					if debugMode {
-						fmt.Printf("- occurrence, %q = %q\n", p[f[current][i]], word)
-					}
 					newOccurrences := intArrayCapUp(occurrences[f[current][i]])
 					occurrences[f[current][i]] = newOccurrences
 					occurrences[f[current][i]][len(newOccurrences)-1] = pos
@@ -125,9 +98,6 @@ func buildOracleMultiple(p []string) (orToReturn map[int]map[uint8]int, f map[in
 	i := 0                                 //root of trie
 	orToReturn = orTrie
 	s[i] = -1
-	if debugMode {
-		fmt.Printf("\n\nOracle construction: \n")
-	}
 	for current := 1; current < len(stateIsTerminal); current++ {
 		o, parent := getParent(current, orTrie)
 		down := s[parent]
@@ -150,9 +120,6 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 	stateIsTerminal = make([]bool, 1)
 	f = make(map[int][]int)
 	state := 1
-	if debugMode {
-		fmt.Printf("\n\nTrie construction: \n")
-	}
 	createNewState(0, trie)
 	for i := 0; i < len(p); i++ {
 		current := 0
@@ -174,15 +141,9 @@ func constructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 			newArray := intArrayCapUp(f[current])
 			newArray[len(newArray)-1] = i
 			f[current] = newArray //F(Current) <- F(Current) union {i}
-			if debugMode {
-				fmt.Printf(" and %d", i)
-			}
 		} else {
 			stateIsTerminal[current] = true
 			f[current] = []int{i} //F(Current) <- {i}
-			if debugMode {
-				fmt.Printf("\n%d is terminal for word number %d", current, i)
-			}
 		}
 	}
 	return trie, stateIsTerminal, f
@@ -290,17 +251,11 @@ func getParent(state int, at map[int]map[uint8]int) (uint8, int) {
 // Automaton function for creating a new state 'state'.
 func createNewState(state int, at map[int]map[uint8]int) {
 	at[state] = make(map[uint8]int)
-	if debugMode {
-		fmt.Printf("\ncreated state %d", state)
-	}
 }
 
 // Creates a transition for function σ(state,letter) = end.
 func createTransition(fromState int, overChar uint8, toState int, at map[int]map[uint8]int) {
 	at[fromState][overChar] = toState
-	if debugMode {
-		fmt.Printf("\n    σ(%d,%c)=%d;", fromState, overChar, toState)
-	}
 }
 
 // Returns ending state for transition σ(fromState,overChar), '-1' if there is none.
