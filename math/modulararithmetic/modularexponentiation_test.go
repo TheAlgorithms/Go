@@ -66,12 +66,12 @@ func TestModularExponentiation(t *testing.T) {
 			result, err := ModularExponentiation(test.base, test.exponent, test.mod)
 			if err != test.expectedError {
 				t.Logf("Test Failed for %s", test.name)
-				t.Logf("Unexpected error occured")
-				t.Errorf("Expected error: %v, Recieved error: %v", test.expectedError, err)
+				t.Logf("Unexpected error occurred")
+				t.Errorf("Expected error: %v, Received error: %v", test.expectedError, err)
 			}
 			if result != test.expected {
 				t.Logf("Test Failed for %s", test.description)
-				t.Fatalf("Expected: %d, Recieved: %d", test.expected, result)
+				t.Fatalf("Expected: %d, Received: %d", test.expected, result)
 			}
 		})
 	}
