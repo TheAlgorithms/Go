@@ -13,8 +13,7 @@
     * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13.go)
     * [Rot13 Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13_test.go)
   * Rsa
-    * [Rsa Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/rsa_cipher_test.go)
-    * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/RSAcipher.go)
+    * [Rsa](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa/rsa.go)
   * Rsabig
     * [Rsa Cipher Big Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsaBig/rsa_cipher_big_test.go)
     * [Rsacipher(Big)](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsaBig/RSAcipher(Big).go)
