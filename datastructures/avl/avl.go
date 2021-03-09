@@ -11,6 +11,11 @@ type Node struct {
 	Left, Right *Node
 }
 
+// NewTree create a new AVL tree
+func NewTree() *Node {
+	return nil
+}
+
 // Get : return node with given key
 func Get(root *Node, key int) *Node {
 	if root == nil {

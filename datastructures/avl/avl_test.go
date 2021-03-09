@@ -2,79 +2,124 @@ package avl
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestInsert(t *testing.T) {
-	is := assert.New(t)
 	t.Run("LLRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 		Insert(&root, 5)
 		Insert(&root, 4)
 		Insert(&root, 3)
 
-		is.Equal(4, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 4 {
+			t.Errorf("root should have value = 4")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(3, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 3 {
+			t.Errorf("left child should have value = 3")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(5, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 5 {
+			t.Errorf("right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
+
 	})
 	t.Run("LRRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 		Insert(&root, 5)
 		Insert(&root, 3)
 		Insert(&root, 4)
 
-		is.Equal(4, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 4 {
+			t.Errorf("root should have value = 4")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(3, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 3 {
+			t.Errorf("left child should have value = 3")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(5, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 5 {
+			t.Errorf("right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
 	})
 
 	t.Run("RRRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 		Insert(&root, 3)
 		Insert(&root, 4)
 		Insert(&root, 5)
 
-		is.Equal(4, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 4 {
+			t.Errorf("root should have value = 4")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(3, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 3 {
+			t.Errorf("left child should have value = 3")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(5, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 5 {
+			t.Errorf("right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
 	})
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 		Insert(&root, 3)
 		Insert(&root, 5)
 		Insert(&root, 4)
 
-		is.Equal(4, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 4 {
+			t.Errorf("root should have value = 4")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(3, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 3 {
+			t.Errorf("left child should have value = 3")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(5, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 5 {
+			t.Errorf("right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
 	})
 }
 
 func TestDelete(t *testing.T) {
-	is := assert.New(t)
 	t.Run("LLRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 
 		Insert(&root, 5)
 		Insert(&root, 4)
@@ -83,18 +128,30 @@ func TestDelete(t *testing.T) {
 
 		delete(&root, 5)
 
-		is.Equal(3, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 3 {
+			t.Errorf("root should have value = 3")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(2, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 2 {
+			t.Errorf("left child should have value = 2")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(4, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 4 {
+			t.Errorf("right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
 	})
 
 	t.Run("LRRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 
 		Insert(&root, 10)
 		Insert(&root, 8)
@@ -103,18 +160,31 @@ func TestDelete(t *testing.T) {
 
 		delete(&root, 10)
 
-		is.Equal(7, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 7 {
+			t.Errorf("root should have value = 7")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(6, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 6 {
+			t.Errorf("left child should have value = 6")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(8, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 8 {
+			t.Errorf("right child should have value = 8")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
+
 	})
 
 	t.Run("RRRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 
 		Insert(&root, 2)
 		Insert(&root, 3)
@@ -123,18 +193,31 @@ func TestDelete(t *testing.T) {
 
 		delete(&root, 2)
 
-		is.Equal(4, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 4 {
+			t.Errorf("root should have value = 4")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(3, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 3 {
+			t.Errorf("left child should have value = 3")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(5, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 5 {
+			t.Errorf("right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
+
 	})
 
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		var root *Node
+		root := NewTree()
 
 		Insert(&root, 7)
 		Insert(&root, 6)
@@ -143,30 +226,52 @@ func TestDelete(t *testing.T) {
 
 		delete(&root, 6)
 
-		is.Equal(8, root.Key)
-		is.Equal(2, root.Height)
+		if root.Key != 8 {
+			t.Errorf("root should have value = 8")
+		}
+		if root.Height != 2 {
+			t.Errorf("height of root should be = 2")
+		}
 
-		is.Equal(7, root.Left.Key)
-		is.Equal(1, root.Left.Height)
+		if root.Left.Key != 7 {
+			t.Errorf("left child should have value = 7")
+		}
+		if root.Left.Height != 1 {
+			t.Errorf("height of left child should be 1")
+		}
 
-		is.Equal(9, root.Right.Key)
-		is.Equal(1, root.Right.Height)
+		if root.Right.Key != 9 {
+			t.Errorf("right child should have value = 9")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("height of right should be 1")
+		}
+
 	})
 }
 
 func TestGet(t *testing.T) {
-	is := assert.New(t)
 
-	var root *Node
+	root := NewTree()
 
-	is.Nil(Get(root, 5))
+	if Get(root, 5) != nil {
+		t.Error("no item should exists in newly created AVL tree")
+	}
 
 	Insert(&root, 5)
 	Insert(&root, 4)
 	Insert(&root, 3)
 
 	n := Get(root, 4)
-	is.Equal(4, n.Key)
-	is.Equal(5, n.Right.Key)
-	is.Equal(3, n.Left.Key)
+	if n.Key != 4 {
+		t.Error("key should be 4")
+	}
+	if n.Right.Key != 5 {
+		t.Error("right child should have value 5")
+	}
+
+	if n.Left.Key != 3 {
+		t.Error("left child should have value 3")
+	}
+
 }
