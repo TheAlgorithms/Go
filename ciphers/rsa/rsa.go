@@ -2,7 +2,6 @@ package rsacipher
 
 import (
 	"github.com/TheAlgorithms/Go/math/modulararithmetic"
-	"github.com/TheAlgorithms/Go/math/prime"
 	"github.com/TheAlgorithms/Go/math/sieve"
 )
 
@@ -14,10 +13,6 @@ func Encrypt(num, publicExponent, modulus int64) (int64, error) {
 // Decrypt decrypts the numerical representation of the encrypted data
 func Decrypt(num, privateExponent, modulus int64) (int64, error) {
 	return modulararithmetic.ModularExponentiation(num, privateExponent, modulus)
-}
-
-func primeCheck(num int64) (bool, error) {
-	return prime.MillerRabinTest(num, 256)
 }
 
 // ConvertStringToByteSlice Converts string to byte slice
