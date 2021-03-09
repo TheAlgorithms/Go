@@ -126,7 +126,7 @@ func TestDelete(t *testing.T) {
 		Insert(&root, 3)
 		Insert(&root, 2)
 
-		delete(&root, 5)
+		Delete(&root, 5)
 
 		if root.Key != 3 {
 			t.Errorf("root should have value = 3")
@@ -158,7 +158,7 @@ func TestDelete(t *testing.T) {
 		Insert(&root, 6)
 		Insert(&root, 7)
 
-		delete(&root, 10)
+		Delete(&root, 10)
 
 		if root.Key != 7 {
 			t.Errorf("root should have value = 7")
@@ -191,7 +191,7 @@ func TestDelete(t *testing.T) {
 		Insert(&root, 4)
 		Insert(&root, 5)
 
-		delete(&root, 2)
+		Delete(&root, 2)
 
 		if root.Key != 4 {
 			t.Errorf("root should have value = 4")
@@ -224,7 +224,7 @@ func TestDelete(t *testing.T) {
 		Insert(&root, 9)
 		Insert(&root, 8)
 
-		delete(&root, 6)
+		Delete(&root, 6)
 
 		if root.Key != 8 {
 			t.Errorf("root should have value = 8")

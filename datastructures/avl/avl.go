@@ -67,14 +67,16 @@ func Insert(root **Node, key int) {
 		}
 	}
 }
-func delete(root **Node, key int) {
+
+// Delete : remove given key from the tree
+func Delete(root **Node, key int) {
 	if root == nil {
 		return
 	}
 	if (*root).Key < key {
-		delete(&(*root).Right, key)
+		Delete(&(*root).Right, key)
 	} else if (*root).Key > key {
-		delete(&(*root).Left, key)
+		Delete(&(*root).Left, key)
 	} else {
 		// 3 cases
 		// 1. No Child
@@ -89,7 +91,7 @@ func delete(root **Node, key int) {
 		} else {
 			minVal := min((*root).Right)
 			(*root).Key = minVal
-			delete(root, minVal)
+			Delete(root, minVal)
 		}
 		return
 	}
