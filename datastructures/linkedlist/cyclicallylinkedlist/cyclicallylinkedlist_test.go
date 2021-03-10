@@ -5,104 +5,125 @@ import (
 	"testing"
 )
 
-type testCase struct {
-	param        int
-	wantToReturn int
-	listCount    int
-}
-
 func fillList(list *ClList, n int) {
 	for i := 1; i <= n; i++ {
 		list.Add(i)
 	}
 }
 
-// 100% coverage.
-func TestLinkedList(t *testing.T) {
+func TestAdd(t *testing.T) {
 	list := NewList()
-	list.Add(1)
-	list.Add(2)
-	list.Add(3)
+	fillList(list, 3)
 
-	t.Run("Test Add()", func(t *testing.T) {
-		want := []interface{}{1, 2, 3}
-		var got []interface{}
-		var start *ClNode
-		start = list.CurrentItem
+	want := []interface{}{1, 2, 3}
+	var got []interface{}
+	var start *ClNode
+	start = list.CurrentItem
 
-		for i := 0; i < list.Size; i++ {
-			got = append(got, start.Val)
-			start = start.next
-		}
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got: %v, want: %v", got, want)
-		}
-	})
+	for i := 0; i < list.Size; i++ {
+		got = append(got, start.Val)
+		start = start.next
+	}
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got: %v, want: %v", got, want)
+	}
+}
 
-	t.Run("Test Walk()", func(t *testing.T) {
-		want := 1
-		got := list.Walk()
+func TestWalk(t *testing.T) {
+	list := NewList()
+	fillList(list, 3)
 
-		if got.Val != want {
-			t.Errorf("got: %v, want: nil", got)
-		}
-	})
+	want := 1
+	got := list.Walk()
 
-	t.Run("Test Rotate()", func(t *testing.T) {
-		testCases := []testCase{
-			{1, 2, 0},
-			{3, 2, 0},
-			{6, 2, 0},
-			{7, 3, 0},
-			{-2, 1, 0},
-			{5, 3, 0},
-			{8, 2, 0},
-			{-8, 3, 0},
-		}
-		for idx, tCase := range testCases {
-			list.Rotate(tCase.param)
-			got := list.CurrentItem.Val
-			if got != tCase.wantToReturn {
-				t.Errorf("got: %v, want: %v for test id %v", got, tCase.wantToReturn, idx)
-			}
-		}
+	if got.Val != want {
+		t.Errorf("got: %v, want: nil", got)
+	}
+}
 
-	})
+func TestRotate(t *testing.T) {
+	type testCase struct {
+		param        int
+		wantToReturn int
+	}
+	list := NewList()
+	fillList(list, 3)
 
-	t.Run("Test Delete()", func(t *testing.T) {
-		want := 1
-		list.Delete()
+	testCases := []testCase{
+		{1, 2},
+		{3, 2},
+		{6, 2},
+		{7, 3},
+		{-2, 1},
+		{5, 3},
+		{8, 2},
+		{-8, 3},
+	}
+	for idx, tCase := range testCases {
+		list.Rotate(tCase.param)
 		got := list.CurrentItem.Val
-		if want != got {
-			t.Errorf("got: %v, want: %v", got, want)
+		if got != tCase.wantToReturn {
+			t.Errorf("got: %v, want: %v for test id %v", got, tCase.wantToReturn, idx)
 		}
-	})
+	}
+}
 
-	t.Run("Test Destroy()", func(t *testing.T) {
-		list.Destroy()
-		got := list.CurrentItem
-		if got != nil {
-			t.Errorf("got: %v, want: nil", got)
-		}
-	})
+func TestDelete(t *testing.T) {
+	list := NewList()
+	fillList(list, 3)
 
-	t.Run("Test JosephusProblem()", func(t *testing.T) {
-		testCases := []testCase{
-			{5, 4, 8},
-			{3, 8, 8},
-			{8, 5, 8},
-			{8, 5, 8},
-			{2, 14, 14},
-			{13, 56, 58},
-			{7, 5, 5},
+	want := 2
+	wantSize := 2
+	list.Delete()
+	got := list.CurrentItem.Val
+	if want != got {
+		t.Errorf("got: %v, want: %v", got, want)
+	}
+	if wantSize != list.Size {
+		t.Errorf("got: %v, want: %v", got, want)
+	}
+}
+
+func TestDestroy(t *testing.T) {
+	list := NewList()
+	fillList(list, 3)
+	wantSize := 0
+	list.Destroy()
+
+	got := list.CurrentItem
+
+	if got != nil {
+		t.Errorf("got: %v, want: nil", got)
+	}
+
+	if wantSize != list.Size {
+		t.Errorf("got: %v, want: %v", got, wantSize)
+	}
+}
+
+func TestJosephusProblem(t *testing.T) {
+	type testCase struct {
+		param        int
+		wantToReturn int
+		listCount    int
+	}
+
+	testCases := []testCase{
+		{5, 4, 8},
+		{3, 8, 8},
+		{8, 5, 8},
+		{8, 5, 8},
+		{2, 14, 14},
+		{13, 56, 58},
+		{7, 5, 5},
+	}
+
+	for _, tCase := range testCases {
+		list := NewList()
+		fillList(list, tCase.listCount)
+		got := JosephusProblem(list, tCase.param)
+		if got != tCase.wantToReturn {
+			t.Errorf("got: %v, want: %v", got, tCase.wantToReturn)
 		}
-		for _, tCase := range testCases {
-			list.Destroy()
-			fillList(list, tCase.listCount)
-			got := JosephusProblem(list, tCase.param)
-			if got != tCase.wantToReturn {
-				t.Errorf("got: %v, want: %v", got, tCase.wantToReturn)
-			}
-		}
-	})
+	}
 }
