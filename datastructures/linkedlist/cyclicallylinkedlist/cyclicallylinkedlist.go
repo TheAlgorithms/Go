@@ -30,7 +30,7 @@ func NewNode(val interface{}) *ClNode {
 
 // Inserting the first node is a special case. It will
 // point to itself. For other cases, the node will be added
-// to the end of the list. Enf of the list is prev field of
+// to the end of the list. End of the list is prev field of
 // current item. Complexity O(1).
 func (cl *ClList) Add(val interface{}) {
 	n := NewNode(val)
@@ -55,11 +55,11 @@ func (cl *ClList) Add(val interface{}) {
 // division modulo. But be careful if P is less than 0.
 // if it is - make it positive. This can be done without
 // violating the meaning of the number by adding to it
-// a multiple of N. Now you can decrease P modulo H to
+// a multiple of N. Now you can decrease P modulo N to
 // rotate the list by the minimum number of places.
 // We use the fact that moving forward in a circle by P
 // places is the same as moving N - P places back.
-// Therefore, if P> N / 2, you can turn the list by N-P places back.
+// Therefore, if P > N / 2, you can turn the list by N-P places back.
 // Complexity O(n).
 func (cl *ClList) Rotate(places int) {
 	if cl.size > 0 {
@@ -86,31 +86,34 @@ func (cl *ClList) Rotate(places int) {
 }
 
 // Delete the current item.
-func (cl *ClList) Delete() int {
-	var deleted int
+func (cl *ClList) Delete() bool {
+	var deleted bool
 	var prevItem, thisItem, nextItem *ClNode
 
-	if cl.size > 0 {
-		deleted = 1
-		thisItem = cl.currentItem
-		nextItem = thisItem.next
-		prevItem = thisItem.prev
-
-		if cl.size == 1 {
-			cl.currentItem = nil
-		} else {
-			cl.currentItem = nextItem
-			nextItem.prev = prevItem
-			prevItem.next = nextItem
-		}
-		cl.size--
+	if cl.size == 0 {
+		return deleted
 	}
-	return deleted
+
+	deleted = true
+	thisItem = cl.currentItem
+	nextItem = thisItem.next
+	prevItem = thisItem.prev
+
+	if cl.size == 1 {
+		cl.currentItem = nil
+	} else {
+		cl.currentItem = nextItem
+		nextItem.prev = prevItem
+		prevItem.next = nextItem
+	}
+	cl.size--
+
+	return true
 }
 
 // Destroy all items in the list.
 func (cl *ClList) Destroy() {
-	for cl.Delete() == 1 {
+	for cl.Delete() == true {
 		continue
 	}
 }
