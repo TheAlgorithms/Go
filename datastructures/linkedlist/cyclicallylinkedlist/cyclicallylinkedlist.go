@@ -113,7 +113,7 @@ func (cl *ClList) Delete() bool {
 
 // Destroy all items in the list.
 func (cl *ClList) Destroy() {
-	for cl.Delete() == true {
+	for cl.Delete() {
 		continue
 	}
 }
