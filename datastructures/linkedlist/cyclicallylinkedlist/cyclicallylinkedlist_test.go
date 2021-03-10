@@ -28,10 +28,10 @@ func TestLinkedList(t *testing.T) {
 		want := []interface{}{1, 2, 3}
 		var got []interface{}
 		var start *ClNode
-		start = list.currentItem
+		start = list.CurrentItem
 
-		for i := 0; i < list.size; i++ {
-			got = append(got, start.val)
+		for i := 0; i < list.Size; i++ {
+			got = append(got, start.Val)
 			start = start.next
 		}
 		if !reflect.DeepEqual(got, want) {
@@ -43,7 +43,7 @@ func TestLinkedList(t *testing.T) {
 		want := 1
 		got := list.Walk()
 
-		if got.val != want {
+		if got.Val != want {
 			t.Errorf("got: %v, want: nil", got)
 		}
 	})
@@ -61,7 +61,7 @@ func TestLinkedList(t *testing.T) {
 		}
 		for idx, tCase := range testCases {
 			list.Rotate(tCase.param)
-			got := list.currentItem.val
+			got := list.CurrentItem.Val
 			if got != tCase.wantToReturn {
 				t.Errorf("got: %v, want: %v for test id %v", got, tCase.wantToReturn, idx)
 			}
@@ -72,7 +72,7 @@ func TestLinkedList(t *testing.T) {
 	t.Run("Test Delete()", func(t *testing.T) {
 		want := 1
 		list.Delete()
-		got := list.currentItem.val
+		got := list.CurrentItem.Val
 		if want != got {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
@@ -80,7 +80,7 @@ func TestLinkedList(t *testing.T) {
 
 	t.Run("Test Destroy()", func(t *testing.T) {
 		list.Destroy()
-		got := list.currentItem
+		got := list.CurrentItem
 		if got != nil {
 			t.Errorf("got: %v, want: nil", got)
 		}

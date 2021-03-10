@@ -6,7 +6,7 @@ import "fmt"
 
 // Node of List.
 type ClNode struct {
-	val  interface{}
+	Val  interface{}
 	prev *ClNode
 	next *ClNode
 }
@@ -14,8 +14,8 @@ type ClNode struct {
 // The Cycling list in this implementation is addressed
 // by means of the element located at the current position.
 type ClList struct {
-	size        int
-	currentItem *ClNode
+	Size        int
+	CurrentItem *ClNode
 }
 
 // Create new list.
@@ -34,16 +34,16 @@ func NewNode(val interface{}) *ClNode {
 // current item. Complexity O(1).
 func (cl *ClList) Add(val interface{}) {
 	n := NewNode(val)
-	cl.size++
-	if cl.currentItem == nil {
+	cl.Size++
+	if cl.CurrentItem == nil {
 		n.prev = n
 		n.next = n
-		cl.currentItem = n
+		cl.CurrentItem = n
 	} else {
-		n.prev = cl.currentItem.prev
-		n.next = cl.currentItem
-		cl.currentItem.prev.next = n
-		cl.currentItem.prev = n
+		n.prev = cl.CurrentItem.prev
+		n.next = cl.CurrentItem
+		cl.CurrentItem.prev.next = n
+		cl.CurrentItem.prev = n
 	}
 }
 
@@ -62,23 +62,23 @@ func (cl *ClList) Add(val interface{}) {
 // Therefore, if P > N / 2, you can turn the list by N-P places back.
 // Complexity O(n).
 func (cl *ClList) Rotate(places int) {
-	if cl.size > 0 {
+	if cl.Size > 0 {
 		if places < 0 {
-			multiple := cl.size - 1 - places/cl.size
-			places += multiple * cl.size
+			multiple := cl.Size - 1 - places/cl.Size
+			places += multiple * cl.Size
 		}
-		places %= cl.size
+		places %= cl.Size
 
-		if places > cl.size/2 {
-			places = cl.size - places
+		if places > cl.Size/2 {
+			places = cl.Size - places
 			for i := 0; i < places; i++ {
-				cl.currentItem = cl.currentItem.prev
+				cl.CurrentItem = cl.CurrentItem.prev
 			}
 		} else if places == 0 {
 			return
 		} else {
 			for i := 0; i < places; i++ {
-				cl.currentItem = cl.currentItem.next
+				cl.CurrentItem = cl.CurrentItem.next
 			}
 
 		}
@@ -90,23 +90,23 @@ func (cl *ClList) Delete() bool {
 	var deleted bool
 	var prevItem, thisItem, nextItem *ClNode
 
-	if cl.size == 0 {
+	if cl.Size == 0 {
 		return deleted
 	}
 
 	deleted = true
-	thisItem = cl.currentItem
+	thisItem = cl.CurrentItem
 	nextItem = thisItem.next
 	prevItem = thisItem.prev
 
-	if cl.size == 1 {
-		cl.currentItem = nil
+	if cl.Size == 1 {
+		cl.CurrentItem = nil
 	} else {
-		cl.currentItem = nextItem
+		cl.CurrentItem = nextItem
 		nextItem.prev = prevItem
 		prevItem.next = nextItem
 	}
-	cl.size--
+	cl.Size--
 
 	return deleted
 }
@@ -121,10 +121,10 @@ func (cl *ClList) Destroy() {
 // Show list body.
 func (cl *ClList) Walk() *ClNode {
 	var start *ClNode
-	start = cl.currentItem
+	start = cl.CurrentItem
 
-	for i := 0; i < cl.size; i++ {
-		fmt.Printf("%v \n", start.val)
+	for i := 0; i < cl.Size; i++ {
+		fmt.Printf("%v \n", start.Val)
 		start = start.next
 	}
 	return start
@@ -133,12 +133,12 @@ func (cl *ClList) Walk() *ClNode {
 // https://en.wikipedia.org/wiki/Josephus_problem
 // This is a struct-based solution for Josephus problem.
 func JosephusProblem(cl *ClList, k int) int {
-	for cl.size > 1 {
+	for cl.Size > 1 {
 		cl.Rotate(k)
 		cl.Delete()
 		cl.Rotate(-1)
 	}
-	retval := cl.currentItem.val.(int)
+	retval := cl.CurrentItem.Val.(int)
 	cl.Destroy()
 	return retval
 }
