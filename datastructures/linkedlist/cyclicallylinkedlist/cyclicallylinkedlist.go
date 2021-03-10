@@ -108,7 +108,7 @@ func (cl *ClList) Delete() bool {
 	}
 	cl.size--
 
-	return true
+	return deleted
 }
 
 // Destroy all items in the list.
