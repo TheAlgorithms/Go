@@ -47,11 +47,11 @@ func (cl *ClList) Add(val interface{}) {
 	}
 }
 
-// Rotate method is interesting for optimization.
-// Let us need to rotate the list by P places
-// and list have N items. For first optimization
-// we must decrease P value so that is in range from
-// 0 to N-1. For this we need to use the operation of
+// Rotate list by P places.
+// This method is interesting for optimization.
+// For first optimization we must decrease
+// P value so that will in range from 0 to N-1.
+// For this we need to use the operation of
 // division modulo. But be careful if P is less than 0.
 // if it is - make it positive. This can be done without
 // violating the meaning of the number by adding to it
