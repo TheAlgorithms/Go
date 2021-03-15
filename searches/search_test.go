@@ -63,3 +63,27 @@ func TestLinearSearch(t *testing.T) {
 		}
 	}
 }
+
+func generateBenchmarkTestCase() []int {
+	var testCase []int
+	for i := 0; i < 100; i++ {
+		testCase = append(testCase, i)
+	}
+	return testCase
+}
+
+func BenchmarkBinarySearch(b *testing.B) {
+	testCase := generateBenchmarkTestCase()
+	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
+	for i := 0; i < b.N; i++ {
+		_, _ = BinarySearch(testCase, 10, 0, len(testCase)-1)
+	}
+}
+
+func BenchmarkIterBinarySearch(b *testing.B) {
+	testCase := generateBenchmarkTestCase()
+	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
+	for i := 0; i < b.N; i++ {
+		_, _ = IterBinarySearch(testCase, 10, 0, len(testCase)-1)
+	}
+}
