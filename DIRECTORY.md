@@ -41,6 +41,7 @@
   * Linkedlist
     * Doublylinkedlist
       * [Doublylinkedlist](https://github.com/TheAlgorithms/Go/blob/master/datastructures/linkedlist/doublylinkedlist/doublylinkedlist.go)
+      * [Doublylinkedlist Test](https://github.com/TheAlgorithms/Go/blob/master/datastructures/linkedlist/doublylinkedlist/doublylinkedlist_test.go)
     * Singlylinkedlist
       * [Singlylinkedlist](https://github.com/TheAlgorithms/Go/blob/master/datastructures/linkedlist/singlylinkedlist/singlylinkedlist.go)
       * [Singlylinkedlist2](https://github.com/TheAlgorithms/Go/blob/master/datastructures/linkedlist/singlylinkedlist/singlylinkedlist2.go)
@@ -94,6 +95,7 @@
 ## Graphs
   * Depthfirstsearch
     * [Depthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/depthfirstsearch/depthfirstsearch.go)
+    * [Depthfirstsearch Test](https://github.com/TheAlgorithms/Go/blob/master/graphs/depthfirstsearch/depthfirstsearch_test.go)
   * Floydwarshall
     * [Floydwarshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floydwarshall/floydwarshall.go)
   * Search
