@@ -37,7 +37,7 @@ func Heaps(out chan []string, n int) {
 func GenerateElementSet(out chan []string, n int) {
 	elementSet := make([]string, n)
 	for i := range elementSet {
-		elementSet[i] = string(i + 49) // Adjust this if you want to change your charset
+		elementSet[i] = string(rune(i + 49)) // Adjust this if you want to change your charset
 	}
 	out <- elementSet
 }
