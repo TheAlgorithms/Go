@@ -123,6 +123,9 @@
   * Sieve
     * [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/Sieve.go)
     * [Sieve Test](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/sieve_test.go)
+  * Permutation
+    * [Heap's Algorithm](https://github.com/TheAlgorithms/Go/blob/master/math/permutation/heaps.go)
+    * [Heap's Algorithm Test](https://github.com/TheAlgorithms/Go/blob/master/math/permutation/heaps_test.go)
 
 ## Other
   * Maxsubarraysum
