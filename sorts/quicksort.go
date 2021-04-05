@@ -1,38 +1,25 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-import (
-	"math/rand"
-)
-
-func QuickSort(arr []int) []int {
-
-	if len(arr) <= 1 {
-		return arr
+func Quicksort(array []int) {
+	if len(array) <= 1 {
+		return
 	}
+	q := partition(array)
+	Quicksort(array[:q])
+	Quicksort(array[q+1:])
+}
 
-	median := arr[rand.Intn(len(arr))]
-
-	lowPart := make([]int, 0, len(arr))
-	highPart := make([]int, 0, len(arr))
-	middlePart := make([]int, 0, len(arr))
-
-	for _, item := range arr {
-		switch {
-		case item < median:
-			lowPart = append(lowPart, item)
-		case item == median:
-			middlePart = append(middlePart, item)
-		case item > median:
-			highPart = append(highPart, item)
+func partition(array []int) int {
+	r := len(array) - 1
+	x := array[r] // last element of slice
+	i := -1
+	for j := 0; j < r; j++ {
+		if array[j] <= x {
+			i++
+			array[i], array[j] = array[j], array[i]
 		}
 	}
-
-	lowPart = QuickSort(lowPart)
-	highPart = QuickSort(highPart)
-
-	lowPart = append(lowPart, middlePart...)
-	lowPart = append(lowPart, highPart...)
-
-	return lowPart
+	array[i+1], array[r] = array[r], array[i+1]
+	return i + 1
 }
