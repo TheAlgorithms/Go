@@ -1,13 +1,14 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func Quicksort(array []int) {
+func QuickSort(array []int)[]int {
 	if len(array) <= 1 {
-		return
+		return array
 	}
 	q := partition(array)
-	Quicksort(array[:q])
-	Quicksort(array[q+1:])
+	QuickSort(array[:q])
+	QuickSort(array[q+1:])
+	return array
 }
 
 func partition(array []int) int {
