@@ -2,19 +2,21 @@
 // ref: https://en.wikipedia.org/wiki/Caesar_cipher
 package caesar
 
+
 // Encrypt encrypts by right shift of "key" each character of "input"
 func Encrypt(input string, key int) string {
 	// if key is negative value,
-	// updates "key" the number which congruents to "key" modulo 26
-	key = (key%26 + 26) % 26
+	// updates "key" the number which congruents to "key" modulo 26.
+	var key8 uint8 = byte(key%26+26) % 26
 
 	outputBuffer := []byte{}
+	// r is a rune, which is the equivalent of uint32.
 	for _, r := range input {
 		newByte := byte(r)
-		if 'A' <= newByte && newByte <= 'Z' {
-			outputBuffer = append(outputBuffer, byte(int('A')+int(int(newByte-'A')+key)%26))
+		if 'A' <= r && r <= 'Z' {
+			outputBuffer = append(outputBuffer, 'A'+(newByte-'A'+key8)%26)
 		} else if 'a' <= newByte && newByte <= 'z' {
-			outputBuffer = append(outputBuffer, byte(int('a')+int(int(newByte-'a')+key)%26))
+			outputBuffer = append(outputBuffer, 'a'+(newByte-'a'+key8)%26)
 		} else {
 			outputBuffer = append(outputBuffer, newByte)
 		}
