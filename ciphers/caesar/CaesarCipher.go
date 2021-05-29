@@ -15,7 +15,7 @@ func Encrypt(input string, key int) string {
 		newByte := byte(r)
 		if 'A' <= r && r <= 'Z' {
 			outputBuffer = append(outputBuffer, 'A'+(newByte-'A'+key8)%26)
-		} else if 'a' <= newByte && newByte <= 'z' {
+		} else if 'a' <= r && r <= 'z' {
 			outputBuffer = append(outputBuffer, 'a'+(newByte-'a'+key8)%26)
 		} else {
 			outputBuffer = append(outputBuffer, newByte)
