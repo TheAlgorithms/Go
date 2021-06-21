@@ -91,6 +91,9 @@
   * [Matrix-Multiplication](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/matrix-multiplication.go)
   * [Rod-Cutting](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/rod-cutting.go)
 
+## Genetic-Algorithm
+  * [Genetic Algo](https://github.com/TheAlgorithms/Go/blob/master/genetic-algorithm/genetic_algo.go)
+
 ## Graphs
   * Depthfirstsearch
     * [Depthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/depthfirstsearch/depthfirstsearch.go)
