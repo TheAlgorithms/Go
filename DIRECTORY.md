@@ -90,6 +90,9 @@
   * [Matrix-Multiplication](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/matrix-multiplication.go)
   * [Rod-Cutting](https://github.com/TheAlgorithms/Go/blob/master/dynamicprogramming/rod-cutting.go)
 
+## Genetic-Algorithm
+  * [Genetic Algo](https://github.com/TheAlgorithms/Go/blob/master/genetic-algorithm/genetic_algo.go)
+
 ## Graphs
   * Depthfirstsearch
     * [Depthfirstsearch](https://github.com/TheAlgorithms/Go/blob/master/graphs/depthfirstsearch/depthfirstsearch.go)
@@ -109,6 +112,9 @@
   * Modulararithmetic
     * [Modularexponentiation](https://github.com/TheAlgorithms/Go/blob/master/math/modulararithmetic/modularexponentiation.go)
     * [Modularexponentiation Test](https://github.com/TheAlgorithms/Go/blob/master/math/modulararithmetic/modularexponentiation_test.go)
+  * Permutation
+    * [Heaps](https://github.com/TheAlgorithms/Go/blob/master/math/permutation/heaps.go)
+    * [Heaps Test](https://github.com/TheAlgorithms/Go/blob/master/math/permutation/heaps_test.go)
   * Power
     * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastexponent.go)
     * [Fastexponent Test](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastexponent_test.go)
