@@ -28,7 +28,13 @@ func NewNode(val int) *Node {
 func (ll *DoubleLinkedList) AddAtBeg(val int) {
 	n := NewNode(val)
 	n.next = ll.head
+
+	if ll.head != nil{
+		ll.head.prev = n
+	}
+
 	ll.head = n
+
 }
 
 // AddAtEnd Add a node at the end of the linkedlist
