@@ -1,8 +1,8 @@
 
 ## Ciphers
   * Caesar
+    * [Caesar Cipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_cipher.go)
     * [Caesar Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_test.go)
-    * [Caesarcipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/caesar_cipher.go)
   * Diffie Hellman Key Exchange
     * [Diffie Hellman Key Exchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffie_hellman_key_exchange/diffie_hellman_key_exchange.go)
     * [Diffie Hellman Key Exchange Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffie_hellman_key_exchange/diffie_hellman_key_exchange_test.go)
@@ -12,15 +12,15 @@
   * Rot13
     * [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13.go)
     * [Rot13 Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/rot13_test.go)
-  * RSA Cipher
+  * Rsa Cipher
+    * [Rsa Cipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher/rsa_cipher.go)
     * [Rsa Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher/rsa_cipher_test.go)
-    * [Rsacipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher/rsa_cipher.go)
-  * RSA Cipher Big
-    * [RSA Cipher Big Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher_big/rsa_cipher_big_test.go)
-    * [RSA Cipher Big](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher_big/rsa_cipher_big.go)
-  * XOR Cipher
-    * [XOR Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor_cipher/xor_cipher_test.go)
-    * [XOR Cipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor_cipher/xor_cipher.go)
+  * Rsa Cipher Big
+    * [Rsa Cipher Big](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher_big/rsa_cipher_big.go)
+    * [Rsa Cipher Big Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher_big/rsa_cipher_big_test.go)
+  * Xor Cipher
+    * [Xor Cipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor_cipher/xor_cipher.go)
+    * [Xor Cipher Test](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor_cipher/xor_cipher_test.go)
 
 ## Conversions
   * Roman To Integer
@@ -31,20 +31,21 @@
   * Binary Tree
     * [Binary Search Tree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/binary_search_tree.go)
     * [Binary Tree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/binary_tree.go)
-    * [B Tree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/btree.go)
+    * [Btree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/btree.go)
     * [Node](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/node.go)
-  * Dynamic Array
-    * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data_structures/dynamic_array/dynamic_array.go)
+  * Dynamic-Array
+    * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data_structures/dynamic-array/dynamic_array.go)
   * Hashmap
     * [Hashmap](https://github.com/TheAlgorithms/Go/blob/master/data_structures/hashmap/hashmap.go)
     * [Hashmap Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/hashmap/hashmap_test.go)
-  * Linked-List
-    * Doubly Linked-List
-      * [Doublylinkedlist](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/doubly_linkedlist/doubly_linkedlist.go)
-    * Singly Linked-List
-      * [Singlylinkedlist](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/singly_linkedlist.go)
-      * [Singlylinkedlist2](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/singly_linkedlist2.go)
-      * [Singlylinkedlist Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/singly_linkedlist_test.go)
+  * Linkedlist
+    * Doubly Linkedlist
+      * [Doubly Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/doubly_linkedlist/doubly_linkedlist.go)
+      * [Doubly Linkedlist Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/doubly_linkedlist/doubly_linkedlist_test.go)
+    * Singly Linkedlist
+      * [Singly Linkedlist](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/singly_linkedlist.go)
+      * [Singly Linkedlist2](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/singly_linkedlist2.go)
+      * [Singly Linkedlist Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/singly_linkedlist_test.go)
   * Trie
     * [Trie](https://github.com/TheAlgorithms/Go/blob/master/data_structures/trie/trie.go)
     * [Trie Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/trie/trie_test.go)
@@ -53,8 +54,8 @@
   * Abstract Factory
     * [Abstract Factory Test](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/abstract_factory_test.go)
     * [Adidas](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/adidas.go)
-    * [Adidas Shirt](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/adidas_shirt.go)
     * [Adidas Shoe](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/adidas_shoe.go)
+    * [Adidasshirt](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/adidasshirt.go)
     * [I Shirt](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/i_shirt.go)
     * [I Shoe](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/i_shoe.go)
     * [I Sports Factory](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/i_sports_factory.go)
@@ -66,8 +67,8 @@
     * [Builder Pattern Test](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/builder_pattern_test.go)
     * [Director](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/director.go)
     * [House](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/house.go)
-    * [Igloo Builder](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/iglooـbuilder.go)
-    * [Normal Builder](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/normalـbuilder.go)
+    * [Igloo Builder](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/igloo_builder.go)
+    * [Normal Builder](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/normal_builder.go)
   * Factory Method
     * [Accounting Department](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/factory_method/accounting_department.go)
     * [Department](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/factory_method/department.go)
@@ -82,12 +83,12 @@
     * [Prototype Test](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/prototype/prototype_test.go)
 
 ## Dynamic Programming
-  * [Binomial Coeffecient](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/binomial_coeffecient.go)
-  * [Fibonacci Test](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci_test.go)
+  * [Binomial Coefficient](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/binomial_coefficient.go)
   * [Fibonacci](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci.go)
+  * [Fibonacci Test](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci_test.go)
   * [Knapsack](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/knapsack.go)
-  * [Longest Palindromic Subsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longest_palindromic_subsequence.go)
   * [Longest Common Subsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longest_common_subsequence.go)
+  * [Longest Palindromic Subsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longest_palindromic_subsequence.go)
   * [Matrix Multiplication](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/matrix_multiplication.go)
   * [Rod Cutting](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/rod_cutting.go)
 
@@ -106,8 +107,8 @@
 ## Math
   * Gcd
     * [Gcd](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcd.go)
-    * [Gcd Test](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcd_test.go)
     * [Gcd Iterative](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcd_iterative.go)
+    * [Gcd Test](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/gcd_test.go)
   * Lcm
     * [Lcm](https://github.com/TheAlgorithms/Go/blob/master/math/lcm/lcm.go)
   * Modular Arithmetic
@@ -120,9 +121,9 @@
     * [Fast Exponent](https://github.com/TheAlgorithms/Go/blob/master/math/power/fast_exponent.go)
     * [Fast Exponent Test](https://github.com/TheAlgorithms/Go/blob/master/math/power/fast_exponent_test.go)
   * Prime
-    * [Millerrabinprimalitytest](https://github.com/TheAlgorithms/Go/blob/master/math/prime/miller_rabin_primality_test.go)
-    * [Prime Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime/prime_test.go)
+    * [Miller Rabin Primality Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime/miller_rabin_primality_test.go)
     * [Prime Check](https://github.com/TheAlgorithms/Go/blob/master/math/prime/prime_check.go)
+    * [Prime Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime/prime_test.go)
   * Pythagoras
     * [Pythagoras](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras.go)
     * [Pythagoras Test](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/pythagoras_test.go)
@@ -131,8 +132,8 @@
     * [Sieve Test](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/sieve_test.go)
 
 ## Other
-  * Max SubArray Sum
-    * [Maxsubarraysum](https://github.com/TheAlgorithms/Go/blob/master/other/max_subarray_sum/max_subarray_sum.go)
+  * Max Subarray Sum
+    * [Max Subarray Sum](https://github.com/TheAlgorithms/Go/blob/master/other/max_subarray_sum/max_subarray_sum.go)
   * Monte Carlo Pi
     * [Monte Carlo Pi](https://github.com/TheAlgorithms/Go/blob/master/other/monte_carlo_pi/monte_carlo_pi.go)
     * [Monte Carlo Pi Test](https://github.com/TheAlgorithms/Go/blob/master/other/monte_carlo_pi/monte_carlo_pi_test.go)
@@ -166,8 +167,8 @@
     * [Levenshtein Distance Test](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshtein_distance/levenshtein_distance_test.go)
   * Multiple String Matching
     * Advanced Aho Corasick
-      * [Advanced Aho Corasick](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/advanced_aho_corasick/advanced_aho_corasic.go)
-      * [Advanced Aho Corasick Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/advanced_aho_corasick/advanced_aho_corasic_test.go)
+      * [Advanced Aho Corasick](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/advanced_aho_corasick/advanced_aho_corasick.go)
+      * [Advanced Aho Corasick Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/advanced_aho_corasick/advanced_aho_corasick_test.go)
     * Aho Corasick
       * [Aho Corasick](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/aho_corasick/aho_corasick.go)
       * [Aho Corasick Test](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/aho_corasick/aho_corasick_test.go)
