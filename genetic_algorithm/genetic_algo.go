@@ -62,7 +62,7 @@ func geneticString(target string, charmap []rune) (int, int, string) {
 	}
 
 	// Generate random starting population
-	pop := make([]populationItem, populationNum, populationNum)
+	pop := make([]populationItem, populationNum)
 	for i := 0; i < populationNum; i++ {
 		key := ""
 		for x := 0; x < utf8.RuneCountInString(target); x++ {
