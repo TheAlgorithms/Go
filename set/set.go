@@ -31,13 +31,13 @@ type Set interface {
 	// ex: [1,2,3] union [3,4,5] -> [1,2,3,4,5]
 	Union(set2 Set) Set
 	// Intersection: gives new intersection set of both sets.
-	// ex: [1,2,3] union [3,4,5] -> [3]
+	// ex: [1,2,3] Intersection [3,4,5] -> [3]
 	Intersection(set2 Set) Set
 	// Difference: gives new difference set of both sets.
-	// ex: [1,2,3] union [3,4,5] -> [1,2]
+	// ex: [1,2,3] Difference [3,4,5] -> [1,2]
 	Difference(set2 Set) Set
 	// SymmetricDifference: gives new symmetric difference set of both sets.
-	// ex: [1,2,3] union [3,4,5] -> [1,2,4,5]
+	// ex: [1,2,3] SymmetricDifference [3,4,5] -> [1,2,4,5]
 	SymmetricDifference(set2 Set) Set
 }
 
