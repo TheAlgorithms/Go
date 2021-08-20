@@ -1,5 +1,17 @@
+// Dynamic Array
+// description: A dynamic array is quite similar to a regular array, but its size is modifiable during program runtime.
+// details: for more details check out those links below here:
+// geeks for geeks article : https://www.geeksforgeeks.org/how-do-dynamic-arrays-work/
+// We can mention that Dynamic Array is like Slice for more detail about golang slice check this articles :
+//	https://blog.golang.org/slices-intro
+// 	https://blog.golang.org/slices
+// authors [Wesllhey Holanda](https://github.com/wesllhey), [Milad](https://github.com/miraddo)
+// see dynamic_array.go, dynamic_array_test.go
+
 package dynamicarray
 
+
+// errors: used to handle CheckRangeFromIndex function with a reasonable error value
 import (
 	"errors"
 )
@@ -7,13 +19,16 @@ import (
 var defaultCapacity = 10
 
 // DynamicArray structure
+// size: length of array
+// capacity: the maximum length of the segment
+// elementData: an array of any type of data with interface
 type DynamicArray struct {
 	size        int
 	capacity    int
 	elementData []interface{}
 }
 
-// Put function
+// Put function is change/update the value in array with the index and new value
 func (da *DynamicArray) Put(index int, element interface{}) error {
 	err := da.CheckRangeFromIndex(index)
 
@@ -26,7 +41,7 @@ func (da *DynamicArray) Put(index int, element interface{}) error {
 	return nil
 }
 
-// Add function
+// Add function is add new element to our array
 func (da *DynamicArray) Add(element interface{}) {
 	if da.size == da.capacity {
 		da.NewCapacity()
@@ -36,7 +51,7 @@ func (da *DynamicArray) Add(element interface{}) {
 	da.size++
 }
 
-// Remove function
+// Remove function is remove an element with the index
 func (da *DynamicArray) Remove(index int) error {
 	err := da.CheckRangeFromIndex(index)
 
@@ -52,7 +67,7 @@ func (da *DynamicArray) Remove(index int) error {
 	return nil
 }
 
-// Get function
+// Get function is return one element with the index of array
 func (da *DynamicArray) Get(index int) (interface{}, error) {
 	err := da.CheckRangeFromIndex(index)
 
@@ -63,17 +78,17 @@ func (da *DynamicArray) Get(index int) (interface{}, error) {
 	return da.elementData[index], nil
 }
 
-// IsEmpty function
+// IsEmpty function is check that the array has value or not
 func (da *DynamicArray) IsEmpty() bool {
 	return da.size == 0
 }
 
-// GetData function
+// GetData function return all value of array
 func (da *DynamicArray) GetData() []interface{} {
 	return da.elementData[:da.size]
 }
 
-// CheckRangeFromIndex function
+// CheckRangeFromIndex function it will check the range from the index
 func (da *DynamicArray) CheckRangeFromIndex(index int) error {
 	if index >= da.size || index < 0 {
 		return errors.New("index out of range")
@@ -81,7 +96,7 @@ func (da *DynamicArray) CheckRangeFromIndex(index int) error {
 	return nil
 }
 
-// NewCapacity function
+// NewCapacity function increase the capacity
 func (da *DynamicArray) NewCapacity() {
 	if da.capacity == 0 {
 		da.capacity = defaultCapacity
@@ -95,28 +110,3 @@ func (da *DynamicArray) NewCapacity() {
 
 	da.elementData = newDataElement
 }
-
-// func main() {
-// 	numbers := dynamicArray{}
-// 	fmt.Println(numbers.isEmpty())
-
-// 	numbers.add(10)
-// 	numbers.add(20)
-// 	numbers.add(30)
-// 	numbers.add(40)
-// 	numbers.add(50)
-
-// 	fmt.Println(numbers.isEmpty())
-
-// 	fmt.Println(numbers.getData())
-
-// 	numbers.remove(1)
-
-// 	fmt.Println(numbers.getData())
-
-// 	numberFound, _ := numbers.get(1)
-// 	fmt.Println(numberFound)
-
-// 	numbers.put(0, 100)
-// 	fmt.Println(numbers.getData())
-// }
