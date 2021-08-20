@@ -1,7 +1,7 @@
 package set
 
-// GetSet gives new set.
-func GetSet(items ...interface{}) Set {
+// New gives new set.
+func New(items ...interface{}) Set {
 	st := set{
 		elements: make(map[interface{}]bool),
 	}
@@ -90,7 +90,7 @@ func (st *set) IsSupersetOf(subSet Set) bool {
 }
 
 func (st *set) Union(st2 Set) Set {
-	unionSet := GetSet()
+	unionSet := New()
 	for _, item := range st.GetItems() {
 		unionSet.Add(item)
 	}
@@ -101,7 +101,7 @@ func (st *set) Union(st2 Set) Set {
 }
 
 func (st *set) Intersection(st2 Set) Set {
-	intersectionSet := GetSet()
+	intersectionSet := New()
 	var minSet, maxSet Set
 	if st.Len() > st2.Len() {
 		minSet = st2
@@ -119,7 +119,7 @@ func (st *set) Intersection(st2 Set) Set {
 }
 
 func (st *set) Difference(st2 Set) Set {
-	differenceSet := GetSet()
+	differenceSet := New()
 	for _, item := range st.GetItems() {
 		if !st2.In(item) {
 			differenceSet.Add(item)
@@ -129,8 +129,8 @@ func (st *set) Difference(st2 Set) Set {
 }
 
 func (st *set) SymmetricDifference(st2 Set) Set {
-	symmetricDifferenceSet := GetSet()
-	dropSet := GetSet()
+	symmetricDifferenceSet := New()
+	dropSet := New()
 	for _, item := range st.GetItems() {
 		if st2.In(item) {
 			dropSet.Add(item)
