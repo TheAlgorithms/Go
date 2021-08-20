@@ -2,7 +2,7 @@
 // description: A dynamic array is quite similar to a regular array, but its size is modifiable during program runtime.
 // details: for more details check out those links below here:
 // geeks for geeks article : https://www.geeksforgeeks.org/how-do-dynamic-arrays-work/
-// We can mention that Dynamic Array is like Slice for more detail about golang slice check this articles :
+// We can mention that Dynamic Array is like Slice for more detail about `Go` Slices check those articles :
 //	https://blog.golang.org/slices-intro
 // 	https://blog.golang.org/slices
 // authors [Wesllhey Holanda](https://github.com/wesllhey), [Milad](https://github.com/miraddo)
