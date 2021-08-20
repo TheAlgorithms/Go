@@ -33,8 +33,9 @@
     * [Binary Tree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/binary_tree.go)
     * [Btree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/btree.go)
     * [Node](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/node.go)
-  * Dynamic-Array
-    * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data_structures/dynamic-array/dynamic_array.go)
+  * Dynamic Array
+    * [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data_structures/dynamic_array/dynamic_array.go)
+    * [Dynamic Array Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/dynamic_array/dynamic_array_test.go)
   * Hashmap
     * [Hashmap](https://github.com/TheAlgorithms/Go/blob/master/data_structures/hashmap/hashmap.go)
     * [Hashmap Test](https://github.com/TheAlgorithms/Go/blob/master/data_structures/hashmap/hashmap_test.go)

@@ -147,7 +147,7 @@ Common prefixes:
 
 ### Pull Requests
 
-- Checkout our [pull request template](https://github.com/TheAlgorithms/Go/blob/master/.github/PULL_REQUEST_TEMPLATE/pull_request.go
+- Checkout our [pull request template](https://github.com/TheAlgorithms/Go/blob/master/.github/PULL_REQUEST_TEMPLATE/pull_request.md
   )
 
 #### Building Locally
