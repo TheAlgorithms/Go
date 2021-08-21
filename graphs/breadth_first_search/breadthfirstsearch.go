@@ -1,6 +1,6 @@
 // Package search Graph search algorithms
 // reference: https://en.wikipedia.org/wiki/Tree_traversal
-package search
+package breadth_first_search
 
 /*BreadthFirstSearch is an algorithm for traversing and searching graph data structures.
 	It starts at an arbitrary node of a graph, and explores all of the neighbor nodes

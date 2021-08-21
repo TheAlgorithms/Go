@@ -2,7 +2,9 @@
 // DP - 4
 // https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
 
-package dynamic_programming
+package longest_common_subsequence
+
+import "github.com/TheAlgorithms/Go/dynamic_programming/knapsack"
 
 // LongestCommonSubsequence function
 func LongestCommonSubsequence(a string, b string, m int, n int) int {
@@ -22,7 +24,7 @@ func LongestCommonSubsequence(a string, b string, m int, n int) int {
 			} else if a[i-1] == b[j-1] {
 				lcs[i][j] = lcs[i-1][j-1] + 1
 			} else {
-				lcs[i][j] = Max(lcs[i-1][j], lcs[i][j-1])
+				lcs[i][j] = knapsack.Max(lcs[i-1][j], lcs[i][j-1])
 			}
 		}
 	}

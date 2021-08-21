@@ -6,7 +6,7 @@
 //	https://blog.golang.org/slices-intro
 // 	https://blog.golang.org/slices
 // authors [Wesllhey Holanda](https://github.com/wesllhey), [Milad](https://github.com/miraddo)
-// see dynamic_array.go, dynamic_array_test.go
+// see dynamicarray.go, dynamicarray_test.go
 
 package dynamicarray
 

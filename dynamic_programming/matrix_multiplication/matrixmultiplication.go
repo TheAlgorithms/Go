@@ -3,7 +3,9 @@
 // www.geeksforgeeks.org/dynamic_programming-set-8-matrix-chain-multiplication/
 
 // Package dynamic_programming Package for dynamically run algorithms
-package dynamic_programming
+package matrix_multiplication
+
+import "github.com/TheAlgorithms/Go/dynamic_programming/binomial_coefficient"
 
 // MatrixChainRec function
 func MatrixChainRec(D []int, i, j int) int {
@@ -14,7 +16,7 @@ func MatrixChainRec(D []int, i, j int) int {
 	q := 1 << 32
 	for k := i; k < j; k++ {
 		prod := MatrixChainRec(D, i, k) + MatrixChainRec(D, k+1, j) + D[i-1]*D[k]*D[j]
-		q = Min(prod, q)
+		q = binomial_coefficient.Min(prod, q)
 	}
 	return q
 }
@@ -36,7 +38,7 @@ func MatrixChainDp(D []int) int {
 			dp[i][j] = 1 << 31
 			for k := i; k < j; k++ {
 				prod := dp[i][k] + dp[k+1][j] + D[i-1]*D[k]*D[j]
-				dp[i][j] = Min(prod, dp[i][j])
+				dp[i][j] = binomial_coefficient.Min(prod, dp[i][j])
 			}
 		}
 	}

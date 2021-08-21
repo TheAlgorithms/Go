@@ -1,6 +1,8 @@
-package searches
+package binarysearch
 
-import "testing"
+import (
+	"testing"
+)
 
 type searchTest struct {
 	data     []int
@@ -33,15 +35,6 @@ func TestBinarySearch(t *testing.T) {
 func TestIterBinarySearch(t *testing.T) {
 	for _, test := range searchTests {
 		actual := IterBinarySearch(test.data, test.key, 0, len(test.data)-1)
-		if actual != test.expected {
-			t.Errorf("test %s failed", test.name)
-		}
-	}
-}
-
-func TestLinearSearch(t *testing.T) {
-	for _, test := range searchTests {
-		actual := LinearSearch(test.data, test.key)
 		if actual != test.expected {
 			t.Errorf("test %s failed", test.name)
 		}

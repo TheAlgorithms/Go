@@ -23,7 +23,7 @@ var rsaTestData = []struct {
 		"the quick brown fox jumps over the lazy dog.",
 	},
 	{
-		"Encrypt full sentence from rsa_cipher_big.go main function",
+		"Encrypt full sentence from rsacipherbig.go main function",
 		"Black Lives Matter, all lives can't matter until Black lives matter",
 	},
 }
