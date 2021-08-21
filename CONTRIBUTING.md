@@ -73,8 +73,9 @@ You can add new algorithms or data structures that are **not present in the repo
 // description containing links, references,
 // math equations, etc.
 // author(s) [Name](https://github.com/handle), [Name](https://github.com/handle)
-// see related_file.go, another_file.go, file_test.go
+// see relatedfile.go, anotherfile.go, file_test.go
  
+// ** Is just an example of how to write description for package and function and other stuff ... **
 
 // Package sort provides primitives for sorting slices and user-defined
 // collections.
