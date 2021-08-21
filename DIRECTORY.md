@@ -150,6 +150,9 @@
   * [Linear Search](https://github.com/TheAlgorithms/Go/blob/master/searches/linear_search.go)
   * [Search Test](https://github.com/TheAlgorithms/Go/blob/master/searches/search_test.go)
 
+## Set
+  * [Set](https://github.com/TheAlgorithms/Go/blob/master/set/set.go)
+
 ## Sorts
   * [Bubble Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubble_sort.go)
   * [Heap Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heap_sort.go)
