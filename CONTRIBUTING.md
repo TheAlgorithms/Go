@@ -15,7 +15,7 @@ Welcome to [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go)! Before submi
 Being a contributor at The Algorithms, we request you to follow the points mentioned below:
 
 - You did your own work.
-  - No plagiarism is allowed. Any plagiarized work will not be merged.
+- No plagiarism is allowed. Any plagiarized work will not be merged.
 - Your work will be distributed under the [MIT License](https://github.com/TheAlgoritms/Go/blob/master/LICENSE) once your pull request has been merged.
 - Please follow the repository guidelines and standards mentioned below.
 
@@ -138,7 +138,7 @@ some_new_fancy_category         is correct
 
 ```bash
 git add filexyz.go
-git commit -m "your message."
+git commit -m "your message"
 ```
 
 Examples of commit messages with semantic prefixes:
