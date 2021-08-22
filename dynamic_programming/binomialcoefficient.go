@@ -1,4 +1,4 @@
-package binomial_coefficient
+package dynamic_programming
 
 // func main() {
 // 	myArrayOfK := [4]int{5, 6, 7, 8}

@@ -2,9 +2,7 @@
 // https://en.wikipedia.org/wiki/Cutting_stock_problem
 // http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
 
-package rod_cutting
-
-import "github.com/TheAlgorithms/Go/dynamic_programming/knapsack"
+package dynamic_programming
 
 // CutRodRec solve the problem recursively: initial approach
 func CutRodRec(price []int, length int) int {
@@ -14,7 +12,7 @@ func CutRodRec(price []int, length int) int {
 
 	q := -1
 	for i := 1; i <= length; i++ {
-		q = knapsack.Max(q, price[i]+CutRodRec(price, length-i))
+		q = Max(q, price[i]+CutRodRec(price, length-i))
 	}
 	return q
 }
@@ -27,7 +25,7 @@ func CutRodDp(price []int, length int) int {
 	for j := 1; j <= length; j++ { // for each length (subproblem)
 		q := -1
 		for i := 1; i <= j; i++ {
-			q = knapsack.Max(q, price[i]+r[j-i]) // avoiding recursive call
+			q = Max(q, price[i]+r[j-i]) // avoiding recursive call
 		}
 		r[j] = q
 	}

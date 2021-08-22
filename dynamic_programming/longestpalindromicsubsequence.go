@@ -1,9 +1,7 @@
 // longest palindromic subsequence
 // http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
 
-package longest_palindromic_subsequence
-
-import "github.com/TheAlgorithms/Go/dynamic_programming/knapsack"
+package dynamic_programming
 
 // LpsRec function
 func LpsRec(word string, i, j int) int {
@@ -16,7 +14,7 @@ func LpsRec(word string, i, j int) int {
 	if word[i] == word[j] {
 		return 2 + LpsRec(word, i+1, j-1)
 	}
-	return knapsack.Max(LpsRec(word, i, j-1), LpsRec(word, i+1, j))
+	return Max(LpsRec(word, i, j-1), LpsRec(word, i+1, j))
 }
 
 // LpsDp function
@@ -40,7 +38,7 @@ func LpsDp(word string) int {
 					dp[i][j] = 2 + dp[i+1][j-1]
 				}
 			} else {
-				dp[i][j] = knapsack.Max(dp[i+1][j], dp[i][j-1])
+				dp[i][j] = Max(dp[i+1][j], dp[i][j-1])
 			}
 		}
 	}

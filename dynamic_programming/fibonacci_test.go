@@ -1,4 +1,4 @@
-package fibonacci
+package dynamic_programming
 
 import (
 	"fmt"
