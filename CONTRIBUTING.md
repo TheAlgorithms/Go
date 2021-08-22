@@ -102,8 +102,8 @@ func Fprint(w io.Writer, a ...interface{}) (n int, err error) {
 
 #### New File Name guidelines
 
-- Use  lowercase words without ``"_"`` for the file name
-- Use ``"_"`` as a separator just fo `_test.go` or `_bench.go`
+- Use lowercase words without ``"_"`` for the file name
+- Use ``"_"`` as a separator only for `_test.go` or `_bench.go`
 - For instance
 
 ```markdown
@@ -144,7 +144,7 @@ git commit -m "your message"
 Examples of commit messages with semantic prefixes:
 
 ```markdown
-fix:  XYZ algorithm bug
+fix: XYZ algorithm bug
 feat: add XYZ algorithm
 test: add test for XYZ algorithm
 docs: add comments and explanation to XYZ algorithm
@@ -152,7 +152,7 @@ docs: add comments and explanation to XYZ algorithm
 
 Common prefixes:
 
-- fix:  A bug fix
+- fix: A bug fix
 - feat: A new feature
 - docs: Documentation changes
 - test: Correct existing tests or add new ones
