@@ -84,21 +84,14 @@
     * [Prototype Test](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/prototype/prototype_test.go)
 
 ## Dynamic Programming
-  * Binomial Coefficient
-    * [Binomialcoefficient](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/binomial_coefficient/binomialcoefficient.go)
-  * Fibonacci
-    * [Fibonacci](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci/fibonacci.go)
-    * [Fibonacci Test](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci/fibonacci_test.go)
-  * Knapsack
-    * [Knapsack](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/knapsack/knapsack.go)
-  * Longest Common Subsequence
-    * [Longestcommonsubsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longest_common_subsequence/longestcommonsubsequence.go)
-  * Longest Palindromic Subsequence
-    * [Longestpalindromicsubsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longest_palindromic_subsequence/longestpalindromicsubsequence.go)
-  * Matrix Multiplication
-    * [Matrixmultiplication](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/matrix_multiplication/matrixmultiplication.go)
-  * Rod Cutting
-    * [Rodcutting](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/rod_cutting/rodcutting.go)
+  * [Binomialcoefficient](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/binomialcoefficient.go)
+  * [Fibonacci](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci.go)
+  * [Fibonacci Test](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci_test.go)
+  * [Knapsack](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/knapsack.go)
+  * [Longestcommonsubsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longestcommonsubsequence.go)
+  * [Longestpalindromicsubsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longestpalindromicsubsequence.go)
+  * [Matrixmultiplication](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/matrixmultiplication.go)
+  * [Rodcutting](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/rodcutting.go)
 
 ## Genetic Algorithm
   * [Geneticalgorithm](https://github.com/TheAlgorithms/Go/blob/master/genetic_algorithm/geneticalgorithm.go)
@@ -129,7 +122,7 @@
     * [Fastexponent](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastexponent.go)
     * [Fastexponent Test](https://github.com/TheAlgorithms/Go/blob/master/math/power/fastexponent_test.go)
   * Prime
-    * [Millerrabinprimality Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime/millerrabinprimality_test.go)
+    * [Millerrabinprimalitytest](https://github.com/TheAlgorithms/Go/blob/master/math/prime/millerrabinprimalitytest.go)
     * [Primecheck](https://github.com/TheAlgorithms/Go/blob/master/math/prime/primecheck.go)
     * [Primecheck Test](https://github.com/TheAlgorithms/Go/blob/master/math/prime/primecheck_test.go)
   * Pythagoras
