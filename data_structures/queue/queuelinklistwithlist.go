@@ -44,9 +44,8 @@ func (lq *LQueue) Dequeue() error {
 // Front it will return the front value
 func (lq *LQueue) Front() (interface{}, error)  {
 	if !lq.Empty() {
-		if val, ok := lq.queue.Front().Value.(interface{}); ok{
-			return val, nil
-		}
+		val := lq.queue.Front().Value
+		return val, nil
 	}
 
 	return "", fmt.Errorf("error queue is empty")
@@ -55,9 +54,8 @@ func (lq *LQueue) Front() (interface{}, error)  {
 // Back it will return the back value
 func (lq *LQueue) Back() (interface{}, error)  {
 	if !lq.Empty() {
-		if val, ok := lq.queue.Back().Value.(interface{}); ok{
-			return val, nil
-		}
+		val := lq.queue.Back().Value
+		return val, nil
 	}
 
 	return "", fmt.Errorf("error queue is empty")

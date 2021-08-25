@@ -173,7 +173,7 @@ func TestQueue(t *testing.T) {
 			err := listQueue.Dequeue()
 
 			if err != nil{
-				t.Error("We got an unexpected error ", err)
+				t.Error("got an unexpected error ", err)
 			}
 			if listQueue.Len() != 3{
 				t.Errorf("List Dequeue is not correct expected %d but got %d",3, listQueue.Len())
@@ -185,10 +185,14 @@ func TestQueue(t *testing.T) {
 
 			err := listQueue.Dequeue()
 
+			if err != nil{
+				t.Error("got an unexpected error ", err)
+			}
+
 			result , err := listQueue.Front()
 
 			if err != nil{
-				t.Error("We got an unexpected error ", err)
+				t.Error("got an unexpected error ", err)
 			}
 
 			if result != true{
@@ -202,10 +206,14 @@ func TestQueue(t *testing.T) {
 
 			err := listQueue.Dequeue()
 
+			if err != nil{
+				t.Error("got an unexpected error ", err)
+			}
+
 			result , err := listQueue.Back()
 
 			if err != nil{
-				t.Error("We got an unexpected error ", err)
+				t.Error("got an unexpected error ", err)
 			}
 
 			if result != 212.545454{
@@ -222,7 +230,7 @@ func TestQueue(t *testing.T) {
 			err := listQueue.Dequeue()
 
 			if err != nil{
-				t.Error("We got an unexpected error ", err)
+				t.Error("got an unexpected error ", err)
 			}
 
 			if listQueue.Len() != 1{
@@ -236,7 +244,7 @@ func TestQueue(t *testing.T) {
 			err := listQueue.Dequeue()
 
 			if err != nil{
-				t.Error("We got an unexpected error ", err)
+				t.Error("got an unexpected error ", err)
 			}
 
 			if !listQueue.Empty(){
