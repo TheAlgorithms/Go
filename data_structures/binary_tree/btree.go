@@ -115,3 +115,12 @@ func LevelOrder(root *Node) {
 		}
 	}
 }
+
+
+// Max Function that returns max of two numbers - possibly already declared.
+func Max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
