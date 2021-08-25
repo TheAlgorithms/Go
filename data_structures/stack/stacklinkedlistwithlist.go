@@ -28,7 +28,7 @@ func (sl *SList) Push(val interface{})  {
 func (sl *SList) Peak() (interface{}, error) {
 	if !sl.Empty() {
 		element := sl.stack.Front()
-		return element.Value.(interface{}), nil
+		return element.Value, nil
 	}
 	return "", fmt.Errorf("stack list is empty")
 }
@@ -42,7 +42,7 @@ func (sl *SList) Pop() (interface{}, error) {
 		// remove element in stack
 		sl.stack.Remove(element)
 		// return element value
-		return element.Value.(interface{}), nil
+		return element.Value, nil
 	}
 	return "", fmt.Errorf("stack list is empty")
 }

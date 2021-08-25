@@ -176,9 +176,13 @@ func TestStackLinkedListWithList(t *testing.T)  {
 			t.Errorf("Stack Emtpy is not work we expected %v but got %v", false, stackList.Empty())
 		}
 
-		stackList.Pop()
-		stackList.Pop()
-		stackList.Pop()
+		d1 , err := stackList.Pop()
+		d2 , _ :=  stackList.Pop()
+		d3 , _  := stackList.Pop()
+
+		if err != nil{
+			t.Errorf("got an unexpected error %v, pop1: %v, pop2: %v, pop3: %v", err, d1, d2, d3)
+		}
 
 		if stackList.Empty() == false{
 			t.Errorf("Stack Emtpy is not work we expected %v but got %v", true, stackList.Empty())
