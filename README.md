@@ -15,99 +15,98 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 
 ## Ciphers
-* [Caesar](https://github.com/TheAlgorithms/Go/blob/master/ciphers/caesar/)
-* [Diffie Hellman Key Exchange](https://github.com/TheAlgorithms/Go/blob/master/ciphers/diffie_hellman_key_exchange/)
-* [Polybius](https://github.com/TheAlgorithms/Go/blob/master/ciphers/polybius/)
-* [Rot13](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rot13/)
-* [Rsa Cipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher/)
-* [Rsa Cipher Big](https://github.com/TheAlgorithms/Go/blob/master/ciphers/rsa_cipher_big/)
-* [Xor Cipher](https://github.com/TheAlgorithms/Go/blob/master/ciphers/xor_cipher/)
+* [Caesar](./ciphers/caesar/)
+* [Diffie Hellman Key Exchange](./ciphers/diffie_hellman_key_exchange/)
+* [Polybius](./ciphers/polybius/)
+* [Rot13](./ciphers/rot13/)
+* [Rsa Cipher](./ciphers/rsa_cipher/)
+* [Rsa Cipher Big](./ciphers/rsa_cipher_big/)
+* [Xor Cipher](./ciphers/xor_cipher/)
 
 ## Conversions
-* [Roman To Integer](https://github.com/TheAlgorithms/Go/blob/master/conversions/roman_to_integer/)
+* [Roman To Integer](./conversions/roman_to_integer/)
 
 ## Data Structures
-* [Binary Tree](https://github.com/TheAlgorithms/Go/blob/master/data_structures/binary_tree/)
-* [Dynamic Array](https://github.com/TheAlgorithms/Go/blob/master/data_structures/dynamic_array/)
-* [Hashmap](https://github.com/TheAlgorithms/Go/blob/master/data_structures/hashmap/)
+* [Binary Tree](./data_structures/binary_tree/)
+* [Dynamic Array](./data_structures/dynamic_array/)
+* [Hashmap](./data_structures/hashmap/)
 * Linked-List
-    * [Doubly Linked-list](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/doubly_linkedlist/)
-    * [Singly Linked-list](https://github.com/TheAlgorithms/Go/blob/master/data_structures/linkedlist/singly_linkedlist/)
-* [Trie](https://github.com/TheAlgorithms/Go/blob/master/data_structures/trie/)
+    * [Doubly Linked-list](./data_structures/linkedlist/doubly_linkedlist/)
+    * [Singly Linked-list](./data_structures/linkedlist/singly_linkedlist/)
+* [Trie](./data_structures/trie/)
 
 ## Design Patterns
-* [Abstract Factory](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/abstract_factory/)
-* [Builder](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/builder/)
-* [Factory Method](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/factory_method/)
-* [Prototype](https://github.com/TheAlgorithms/Go/blob/master/design_patterns/prototype/)
+* [Abstract Factory](./design_patterns/abstract_factory/)
+* [Builder](./design_patterns/builder/)
+* [Factory Method](./design_patterns/factory_method/)
+* [Prototype](./design_patterns/prototype/)
 
 
 ## Dynamic Programming
-* [Binomial Coefficient](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/binomialcoefficient.go)
-* [Fibonacci](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci.go) | [Test](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/fibonacci_test.go)
-* [Knapsack](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/knapsack.go)
-* [Longest Common Subsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longestcommonsubsequence.go)
-* [Longest Palindromic Subsequence](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/longestpalindromicsubsequence.go)
-* [Matrix Multiplication](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/matrixmultiplication.go)
-* [Cutting a Rod](https://github.com/TheAlgorithms/Go/blob/master/dynamic_programming/rodcutting.go)
+* [Binomial Coefficient](./dynamic_programming/binomialcoefficient.go)
+* [Fibonacci](./dynamic_programming/fibonacci.go) | [Test](./dynamic_programming/fibonacci_test.go)
+* [Knapsack](./dynamic_programming/knapsack.go)
+* [Longest Common Subsequence](./dynamic_programming/longestcommonsubsequence.go)
+* [Longest Palindromic Subsequence](./dynamic_programming/longestpalindromicsubsequence.go)
+* [Matrix Multiplication](./dynamic_programming/matrixmultiplication.go)
+* [Cutting a Rod](./dynamic_programming/rodcutting.go)
 
 ## Genetic Algorithm
-* [Genetic Algorithm](https://github.com/TheAlgorithms/Go/blob/master/genetic_algorithm/geneticalgorithm.go)
+* [Genetic Algorithm](./genetic_algorithm/geneticalgorithm.go)
 
 ## Graphs
-* [Breadth First Search](https://github.com/TheAlgorithms/Go/blob/master/graphs/breadth_first_search/)
-* [Depth First Search](https://github.com/TheAlgorithms/Go/blob/master/graphs/depth_first_search/)
-* [Floyd Warshall](https://github.com/TheAlgorithms/Go/blob/master/graphs/floyd_warshall/)
+* [Breadth First Search](./graphs/breadth_first_search/)
+* [Depth First Search](./graphs/depth_first_search/)
+* [Floyd Warshall](./graphs/floyd_warshall/)
     
 ## Math
-* [Gcd](https://github.com/TheAlgorithms/Go/blob/master/math/gcd/)
-* [Lcm](https://github.com/TheAlgorithms/Go/blob/master/math/lcm/)
-* [Modular Arithmetic](https://github.com/TheAlgorithms/Go/blob/master/math/modular_arithmetic/) 
-* [Permutation](https://github.com/TheAlgorithms/Go/blob/master/math/permutation/)
-* [Power](https://github.com/TheAlgorithms/Go/blob/master/math/power/)
-* [Prime](https://github.com/TheAlgorithms/Go/blob/master/math/prime/)
-* [Pythagoras](https://github.com/TheAlgorithms/Go/blob/master/math/pythagoras/)
-* [Sieve](https://github.com/TheAlgorithms/Go/blob/master/math/sieve/)
+* [Gcd](./math/gcd/)
+* [Lcm](./math/lcm/)
+* [Modular Arithmetic](./math/modular_arithmetic/) 
+* [Permutation](./math/permutation/)
+* [Power](./math/power/)
+* [Prime](./math/prime/)
+* [Pythagoras](./math/pythagoras/)
+* [Sieve](./math/sieve/)
 
 
 ## Other
-* [Max Subarray Sum](https://github.com/TheAlgorithms/Go/blob/master/other/max_subarray_sum/)
-* [Monte Carlo Pi](https://github.com/TheAlgorithms/Go/blob/master/other/monte_carlo_pi/)
-* [Nested Brackets](https://github.com/TheAlgorithms/Go/blob/master/other/nested_brackets/)
-* [Password Generator](https://github.com/TheAlgorithms/Go/blob/master/other/password_generator/)
-* [String Combinations](https://github.com/TheAlgorithms/Go/blob/master/other/string_combinations/)
+* [Max Subarray Sum](./other/max_subarray_sum/)
+* [Monte Carlo Pi](./other/monte_carlo_pi/)
+* [Nested Brackets](./other/nested_brackets/)
+* [Password Generator](./other/password_generator/)
+* [String Combinations](./other/string_combinations/)
 
 ## Searches
-* [Binary Search](https://github.com/TheAlgorithms/Go/blob/master/searches/binary_search/)
-* [Linear Search](https://github.com/TheAlgorithms/Go/blob/master/searches/linear_search/)
+* [Binary Search](./searches/binary_search/)
+* [Linear Search](./searches/linear_search/)
 
 ## Set
-* [Set](https://github.com/TheAlgorithms/Go/blob/master/set/set.go)
+* [Set](./data_structures/set/set.go)
 
 ## Sorts
-* [Bubble Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/bubblesort.go)
-* [Heap Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/heapsort.go)
-* [Insertion Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/insertionsort.go)
-* [Merge Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/mergesort.go)
-* [Quick Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/quicksort.go)
-* [Radix Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/radixsort.go)
-* [Selection Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/selectionsort.go)
-* [Shell Sort](https://github.com/TheAlgorithms/Go/blob/master/sorts/shellsort.go)
+* [Bubble Sort](./sorts/bubblesort.go)
+* [Heap Sort](./sorts/heapsort.go)
+* [Insertion Sort](./sorts/insertionsort.go)
+* [Merge Sort](./sorts/mergesort.go)
+* [Quick Sort](./sorts/quicksort.go)
+* [Radix Sort](./sorts/radixsort.go)
+* [Selection Sort](./sorts/selectionsort.go)
+* [Shell Sort](./sorts/shellsort.go)
 
 
 * Sorts Test
-  * [Sorts Test](https://github.com/TheAlgorithms/Go/blob/master/sorts/sorts_test.go)
-  * [Sorts Testcases](https://github.com/TheAlgorithms/Go/blob/master/sorts/sorts_testcases.go)
+  * [Sorts Test](./sorts/sorts_test.go)
+  * [Sorts Testcases](./sorts/sorts_testcases.go)
 
 ## Strings
-* [Levenshtein Distance](https://github.com/TheAlgorithms/Go/blob/master/strings/levenshtein_distance/)
+* [Levenshtein Distance](./strings/levenshtein_distance/)
 * Multiple String Matching
-    * [Advanced Aho Corasick](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/advanced_aho_corasick/)
-    * [Aho Corasick](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/aho_corasick/)
-    * [Sbom](https://github.com/TheAlgorithms/Go/blob/master/strings/multiple_string_matching/sbom/)
-* [Naive String Search](https://github.com/TheAlgorithms/Go/blob/master/strings/naive_string_search/)
+    * [Advanced Aho Corasick](./strings/multiple_string_matching/advanced_aho_corasick/)
+    * [Aho Corasick](./strings/multiple_string_matching/aho_corasick/)
+    * [Sbom](./strings/multiple_string_matching/sbom/)
+* [Naive String Search](./strings/naive_string_search/)
 * Single String Matching
-    * [Bom](https://github.com/TheAlgorithms/Go/blob/master/strings/single_string_matching/bom/)
-    * [Horspool](https://github.com/TheAlgorithms/Go/blob/master/strings/single_string_matching/horspool/)
-    * [Kmp](https://github.com/TheAlgorithms/Go/blob/master/strings/single_string_matching/kmp/)
-
+    * [Bom](./strings/single_string_matching/bom/)
+    * [Horspool](./strings/single_string_matching/horspool/)
+    * [Kmp](./strings/single_string_matching/kmp/)
