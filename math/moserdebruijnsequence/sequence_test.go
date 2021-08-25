@@ -10,9 +10,6 @@ var testCases = []struct {
 	inputNum int
 	expected []int
 }{
-	{"first 0 terms", 0, []int{}},
-	{"first 5 terms", 5, []int{0, 1, 4, 5, 16}},
-	{"first 10 terms", 10, []int{0, 1, 4, 5, 16, 17, 20, 21, 64, 65}},
 	{"first 15 terms", 15, []int{0, 1, 4, 5, 16, 17, 20, 21, 64, 65, 68, 69, 80, 81, 84}},
 }
 
