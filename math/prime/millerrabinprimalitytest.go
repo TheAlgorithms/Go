@@ -3,7 +3,7 @@ package prime
 import (
 	"math/rand"
 
-	"github.com/TheAlgorithms/Go/math/modular_arithmetic"
+	"github.com/TheAlgorithms/Go/math/modular"
 )
 
 // findD accepts a number and returns the
@@ -24,7 +24,7 @@ func findRD(num int64) (int64, int64) {
 func MillerTest(d, num int64) (bool, error) {
 	random := rand.Int63n(num-1) + 2
 
-	res, err := modular_arithmetic.ModularExponentiation(random, d, num)
+	res, err := modular.Exponentiation(random, d, num)
 
 	if err != nil {
 		return false, err

@@ -1,6 +1,7 @@
 package sieve
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -24,5 +25,17 @@ func TestSieve(t *testing.T) {
 			t.Errorf("The first 10 primes do not match")
 		}
 
+	})
+}
+
+func TestGeneratePrimes(t *testing.T) {
+	firstTenPrimes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
+
+	t.Run("Testing GeneratePrimes Function", func(t *testing.T) {
+		testPrimes := GeneratePrimes(10)
+
+		if !reflect.DeepEqual(firstTenPrimes, testPrimes) {
+			t.Fatal("GeneratePrimes function failed")
+		}
 	})
 }

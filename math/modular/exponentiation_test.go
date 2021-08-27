@@ -1,4 +1,4 @@
-package modular_arithmetic
+package modular
 
 import "testing"
 
@@ -60,10 +60,10 @@ var testCases = []cases{
 	},
 }
 
-func TestModularExponentiation(t *testing.T) {
+func TestExponentiation(t *testing.T) {
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
-			result, err := ModularExponentiation(test.base, test.exponent, test.mod)
+			result, err := Exponentiation(test.base, test.exponent, test.mod)
 			if err != test.expectedError {
 				t.Logf("Test Failed for %s", test.name)
 				t.Logf("Unexpected error occurred")
@@ -77,8 +77,8 @@ func TestModularExponentiation(t *testing.T) {
 	}
 }
 
-func BenchmarkModularExponentiation(b *testing.B) {
+func BenchmarkExponentiation(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = ModularExponentiation(17, 60, 23)
+		_, _ = Exponentiation(17, 60, 23)
 	}
 }

@@ -1,4 +1,4 @@
-package modular_arithmetic
+package modular
 
 import (
 	"errors"
@@ -11,8 +11,8 @@ var ErrorIntOverflow = errors.New("Integer Overflow")
 // ErrorNegativeExponent for asserting that the exponent we receive is positive
 var ErrorNegativeExponent = errors.New("Negative Exponent Provided")
 
-// ModularExponentiation returns base^exponent % mod
-func ModularExponentiation(base, exponent, mod int64) (int64, error) {
+// Exponentiation returns base^exponent % mod
+func Exponentiation(base, exponent, mod int64) (int64, error) {
 	if mod == 1 {
 		return 0, nil
 	}

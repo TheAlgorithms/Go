@@ -16,3 +16,20 @@ func Sieve(in <-chan int, out chan<- int, prime int) {
 		}
 	}
 }
+
+// GeneratePrimes returns a int slice of prime numbers up to the limit
+func GeneratePrimes(limit int) []int {
+	var primes []int
+
+	ch := make(chan int)
+	go Generate(ch)
+
+	for i := 0; i < limit; i++ {
+		primes = append(primes, <-ch)
+		ch1 := make(chan int)
+		go Sieve(ch, ch1, primes[i])
+		ch = ch1
+	}
+
+	return primes
+}
