@@ -74,7 +74,7 @@ func TestRSACipher(t *testing.T) {
 
 			if actual := decrypted; !reflect.DeepEqual(actual, expected) {
 				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %v, actual %v", expected, actual)
+				t.Fatalf("Expecting %v, actual %v", expected, ToRune(actual))
 			}
 		})
 	}

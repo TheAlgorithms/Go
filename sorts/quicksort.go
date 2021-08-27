@@ -1,7 +1,7 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func QuickSort(array []int)[]int {
+func QuickSort(array []int) []int {
 	if len(array) <= 1 {
 		return array
 	}

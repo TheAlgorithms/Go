@@ -17,15 +17,15 @@ func Heaps(out chan []string, n int) {
 			permutations = append(permutations, strings.Join(elements, ""))
 		} else {
 			for i := 0; i < n; i++ {
-				recursiveGenerate(previousIteration, n - 1, elements)
-				if n % 2 == 1 {
+				recursiveGenerate(previousIteration, n-1, elements)
+				if n%2 == 1 {
 					tmp := elements[i]
-					elements[i] = elements[n - 1]
-					elements[n - 1] = tmp
+					elements[i] = elements[n-1]
+					elements[n-1] = tmp
 				} else {
 					tmp := elements[0]
-					elements[0] = elements[n - 1]
-					elements[n - 1] = tmp
+					elements[0] = elements[n-1]
+					elements[n-1] = tmp
 				}
 			}
 		}
