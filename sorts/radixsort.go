@@ -41,6 +41,9 @@ func unsignedRadixSort(arr []int) []int {
 }
 
 func RadixSort(arr []int) []int {
+	if len(arr) < 1 {
+		return arr
+	}
 	var negatives, nonNegatives []int
 
 	for _, item := range arr {

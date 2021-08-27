@@ -1,26 +1,27 @@
 //Package sorts a package for demonstrating sorting algorithms in Go
 package sorts
 
-func QuickSort(array []int)[]int {
-	if len(array) <= 1 {
-		return array
-	}
-	q := partition(array)
-	QuickSort(array[:q])
-	QuickSort(array[q+1:])
-	return array
-}
-
-func partition(array []int) int {
-	r := len(array) - 1
-	x := array[r] // last element of slice
-	i := -1
-	for j := 0; j < r; j++ {
-		if array[j] <= x {
-			i++
-			array[i], array[j] = array[j], array[i]
+func partition(arr []int, low, high int) int {
+	index := low - 1
+	pivotElement := arr[high]
+	for i := low; i < high; i++ {
+		if arr[i] <= pivotElement {
+			index += 1
+			arr[index], arr[i] = arr[i], arr[index]
 		}
 	}
-	array[i+1], array[r] = array[r], array[i+1]
-	return i + 1
+	arr[index+1], arr[high] = arr[high], arr[index+1]
+	return index + 1
+}
+
+func QuickSort(arr []int, low, high int) {
+	if len(arr) <= 1 {
+		return
+	}
+
+	if low < high {
+		pivot := partition(arr, low, high)
+		QuickSort(arr, low, pivot-1)
+		QuickSort(arr, pivot+1, high)
+	}
 }

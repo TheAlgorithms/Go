@@ -20,7 +20,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Polybius](./ciphers/polybius/)
 * [Rot13](./ciphers/rot13/)
 * [Rsa](./ciphers/rsa/)
-* [Xor Cipher](./ciphers/xor_cipher/)
+* [Xor](./ciphers/xor/)
 
 ## Conversions
 * [Roman To Integer](./conversions/roman_to_integer/)
