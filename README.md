@@ -32,6 +32,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * Linked-List
     * [Doubly Linked-list](./data_structures/linkedlist/doubly_linkedlist/)
     * [Singly Linked-list](./data_structures/linkedlist/singly_linkedlist/)
+* [Queue](./data_structures/queue/) | Array, Linked-List, STL(Container/List), Test
+* [Stack](./data_structures/stack/) | Array, Linked-List, STL(Container/List), Test
+* [Set](./data_structures/set/)
 * [Trie](./data_structures/trie/)
 
 ## Design Patterns
@@ -79,9 +82,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ## Searches
 * [Binary Search](./searches/binary_search/)
 * [Linear Search](./searches/linear_search/)
-
-## Set
-* [Set](./data_structures/set/set.go)
 
 ## Sorts
 * [Bubble Sort](./sorts/bubblesort.go)
