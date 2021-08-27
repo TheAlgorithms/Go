@@ -9,7 +9,6 @@
 
 package queue
 
-
 // container/list: is used as linked-list
 // fmt: used to return fmt.Errorf for the error part
 import (
@@ -27,7 +26,6 @@ func (lq *LQueue) Enqueue(value interface{}) {
 	lq.queue.PushBack(value)
 }
 
-
 // Dequeue will be removed the first value that input (First In First Out - FIFO)
 func (lq *LQueue) Dequeue() error {
 
@@ -42,7 +40,7 @@ func (lq *LQueue) Dequeue() error {
 }
 
 // Front it will return the front value
-func (lq *LQueue) Front() (interface{}, error)  {
+func (lq *LQueue) Front() (interface{}, error) {
 	if !lq.Empty() {
 		val := lq.queue.Front().Value
 		return val, nil
@@ -52,7 +50,7 @@ func (lq *LQueue) Front() (interface{}, error)  {
 }
 
 // Back it will return the back value
-func (lq *LQueue) Back() (interface{}, error)  {
+func (lq *LQueue) Back() (interface{}, error) {
 	if !lq.Empty() {
 		val := lq.queue.Back().Value
 		return val, nil
@@ -70,4 +68,3 @@ func (lq *LQueue) Len() int {
 func (lq *LQueue) Empty() bool {
 	return lq.queue.Len() == 0
 }
-

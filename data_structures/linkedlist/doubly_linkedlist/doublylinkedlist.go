@@ -29,7 +29,7 @@ func (ll *DoubleLinkedList) AddAtBeg(val int) {
 	n := NewNode(val)
 	n.next = ll.head
 
-	if ll.head != nil{
+	if ll.head != nil {
 		ll.head.prev = n
 	}
 

@@ -20,7 +20,7 @@ type SList struct {
 }
 
 // Push add a value into our stack
-func (sl *SList) Push(val interface{})  {
+func (sl *SList) Push(val interface{}) {
 	sl.stack.PushFront(val)
 }
 

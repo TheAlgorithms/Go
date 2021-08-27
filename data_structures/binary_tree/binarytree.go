@@ -1,7 +1,6 @@
 // Package binarytree basic binary tree and related operations
 package binarytree
 
-
 /*
 func main() {
 	t := btree{nil}

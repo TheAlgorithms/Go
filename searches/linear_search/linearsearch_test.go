@@ -23,7 +23,6 @@ var searchTests = []searchTest{
 	{[]int{}, 2, -1, "Empty"},
 }
 
-
 func TestLinearSearch(t *testing.T) {
 	for _, test := range searchTests {
 		actual := LinearSearch(test.data, test.key)
