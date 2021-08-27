@@ -19,8 +19,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Diffie Hellman Key Exchange](./ciphers/diffie_hellman_key_exchange/)
 * [Polybius](./ciphers/polybius/)
 * [Rot13](./ciphers/rot13/)
-* [Rsa Cipher](./ciphers/rsa_cipher/)
-* [Rsa Cipher Big](./ciphers/rsa_cipher_big/)
+* [Rsa](./ciphers/rsa/)
 * [Xor Cipher](./ciphers/xor_cipher/)
 
 ## Conversions
