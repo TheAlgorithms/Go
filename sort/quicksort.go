@@ -1,5 +1,11 @@
-//Package sorts a package for demonstrating sorting algorithms in Go
-package sorts
+// quicksort.go
+// description: Implementation of in-place quicksort algorithm
+// details:
+// A simple in-place quicksort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Quicksort)
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see sort_test.go for a test implementation, test function TestQuickSort.
+
+package sort
 
 func partition(arr []int, low, high int) int {
 	index := low - 1

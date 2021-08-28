@@ -1,4 +1,16 @@
-package rsacipher
+// rsa.go
+// description: Simple RSA algorithm implementation
+// details:
+// A simple RSA Encryption and Decryption algorithm.
+// It uses prime numbers that fit in int64 datatypes and
+// thus both the Encrypt and Decrypt are not a production
+// ready implementation. The OpenSSL implementation of RSA
+// also adds a padding which is not present in this algorithm.
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see rsa_test.go
+
+// Package rsa shows a simple implementation of RSA algorithm
+package rsa
 
 import (
 	"errors"

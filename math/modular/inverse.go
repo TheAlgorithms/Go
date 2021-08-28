@@ -1,3 +1,10 @@
+// inverse.go
+// description: Implementation of Modular Inverse Algorithm
+// details:
+// A simple implementation of Modular Inverse - [Modular Inverse wiki](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see inverse_test.go
+
 package modular
 
 import (

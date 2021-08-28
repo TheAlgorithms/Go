@@ -1,3 +1,8 @@
+// inverse_test.go
+// description: Test for Modular Inverse
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see inverse.go
+
 package modular
 
 import "testing"

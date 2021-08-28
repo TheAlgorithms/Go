@@ -1,3 +1,11 @@
+// extended.go
+// description: Implementation of Extended GCD Algorithm
+// details:
+// A simple implementation of Extended GCD algorithm, that returns GCD, a and b
+// which solves ax + by = gcd(a, b)
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see extended_test.go
+
 package gcd
 
 // Extended simple extended gcd

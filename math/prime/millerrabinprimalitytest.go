@@ -1,3 +1,11 @@
+// millerrabinprimalitytest.go
+// description: An implementation of Miller-Rabin primality test
+// details:
+// A simple implementation of Miller-Rabin Primality Test
+// [Miller-Rabin primality test Wiki](https://en.wikipedia.org/wiki/Miller–Rabin_primality_test)
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see millerrabinprimalitytest_test.go
+
 package prime
 
 import (

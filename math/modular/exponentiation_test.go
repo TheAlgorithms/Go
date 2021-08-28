@@ -1,3 +1,8 @@
+// exponentiation_test.go
+// description: Test for ModularExponentation
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see exponentiation.go
+
 package modular
 
 import "testing"

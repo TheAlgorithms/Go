@@ -1,4 +1,4 @@
-package sorts
+package sort
 
 func max(arr []int) int {
 	max := arr[0]

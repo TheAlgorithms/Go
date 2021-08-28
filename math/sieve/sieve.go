@@ -1,3 +1,8 @@
+// sieve.go
+// description: Algorithms for generating prime numbers efficiently
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see sieve_test.go
+
 package sieve
 
 // Generate generates the sequence of integers starting at 2 and sends it to the channel `ch`

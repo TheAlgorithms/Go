@@ -1,4 +1,4 @@
-package sorts
+package sort
 
 import (
 	"reflect"
@@ -98,16 +98,16 @@ func TestRadix(t *testing.T) {
 	testFramework(t, RadixSort)
 }
 
-// // Very slow, consider commenting
-// // func TestSelection(t *testing.T) {
-// 	// 	testFramework(t, SelectionSort)
-// 	// }
+// Very slow, consider commenting
+// func TestSelection(t *testing.T) {
+// 	testFramework(t, SelectionSort)
+// }
 
-// 	/* func TestTopological(t *testing.T) {
-// 		testFramework(t, topologicalSort)
-// 		} */
+/* func TestTopological(t *testing.T) {
+testFramework(t, topologicalSort)
+} */
 
-// 		//END TESTS
+//END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	type sortTest struct {

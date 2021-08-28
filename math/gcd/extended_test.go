@@ -1,3 +1,8 @@
+// extended_test.go
+// description: Test for Extended GCD algorithm in extended.go
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see extended.go
+
 package gcd
 
 import "testing"

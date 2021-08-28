@@ -1,4 +1,9 @@
-package rsacipher
+// rsa_test.go
+// description: Test for RSA Encrypt and Decrypt algorithms
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see rsa.go
+
+package rsa
 
 import (
 	"testing"

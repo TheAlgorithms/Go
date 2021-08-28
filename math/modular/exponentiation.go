@@ -1,3 +1,10 @@
+// exponentiation.go
+// description: Implementation of Modular Exponentiation Algorithm
+// details:
+// A simple implementation of Modular Exponentiation - [Modular Exponenetation wiki](https://en.wikipedia.org/wiki/Modular_exponentiation)
+// author(s) [Taj](https://github.com/tjgurwara99)
+// see exponentiation_test.go
+
 package modular
 
 import (
