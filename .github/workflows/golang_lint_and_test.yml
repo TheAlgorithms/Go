@@ -16,4 +16,5 @@ jobs:
           # specified without patch version: we always use the latest patch version.
           # https://github.com/golangci/golangci-lint/releases
           version: v1.39
+          args: -E gofmt
       - run: go test ./...
