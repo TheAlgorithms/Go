@@ -12,7 +12,7 @@ type sortTest struct {
 }
 
 func generateTestCases() []sortTest {
-	return []sortTest{
+	tests := []sortTest{
 		//Sorted slice
 		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Unsigned"},
@@ -41,6 +41,7 @@ func generateTestCases() []sortTest {
 		//Single-entry slice
 		{[]int{1}, []int{1}, "Singleton"},
 	}
+	return tests
 }
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
