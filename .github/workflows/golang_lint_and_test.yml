@@ -15,6 +15,6 @@ jobs:
           # Required: the version of golangci-lint is required and must be
           # specified without patch version: we always use the latest patch version.
           # https://github.com/golangci/golangci-lint/releases
-          version: v1.39
+          version: latest
           args: -E gofmt
       - run: go test ./...
