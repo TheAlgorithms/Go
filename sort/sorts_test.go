@@ -11,6 +11,8 @@ type sortTest struct {
 	name     string
 }
 
+var sortTests []sortTest
+
 func generateTestCases() []sortTest {
 	test := sortTest{
 		input:    []int{},
@@ -70,7 +72,7 @@ func generateTestCases() []sortTest {
 }
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
-	var sortTests = generateTestCases()
+	sortTests = generateTestCases()
 	for _, test := range sortTests {
 		t.Run(test.name, func(t *testing.T) {
 			actual := sortingFunction(test.input)
