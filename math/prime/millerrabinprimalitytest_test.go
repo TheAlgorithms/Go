@@ -36,6 +36,6 @@ func TestMillerRabinTest(t *testing.T) {
 
 func BenchmarkMillerRabinPrimalityTest(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		MillerRabinTest(23, 5)
+		_, _ = MillerRabinTest(23, 5)
 	}
 }
