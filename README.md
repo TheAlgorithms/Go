@@ -20,7 +20,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Polybius](./ciphers/polybius/)
 * [Rot13](./ciphers/rot13/)
 * [Rsa Cipher](./ciphers/rsa_cipher/)
-* [Rsa Cipher Big](./ciphers/rsa_cipher_big/)
 * [Xor Cipher](./ciphers/xor_cipher/)
 
 ## Conversions
@@ -104,7 +103,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * Multiple String Matching
     * [Advanced Aho Corasick](./strings/multiple_string_matching/advanced_aho_corasick/)
     * [Aho Corasick](./strings/multiple_string_matching/aho_corasick/)
-    * [Sbom](./strings/multiple_string_matching/sbom/)
 * [Naive String Search](./strings/naive_string_search/)
 * Single String Matching
     * [Bom](./strings/single_string_matching/bom/)

@@ -1,8 +1,6 @@
 package rsacipher
 
 import (
-	//"math/big"
-
 	"fmt"
 	"math"
 	"math/rand"

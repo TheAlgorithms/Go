@@ -10,7 +10,6 @@
 
 package dynamicarray
 
-
 // errors: used to handle CheckRangeFromIndex function with a reasonable error value
 import (
 	"errors"
