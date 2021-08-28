@@ -5,21 +5,12 @@ import (
 	"testing"
 )
 
-type sortTest struct {
-	input    []int
-	expected []int
-	name     string
-}
-
-var sortTests []sortTest
-
-func generateTestCases() []sortTest {
-	test := sortTest{
-		input:    []int{},
-		expected: []int{},
-		name:     "Empty Slice",
-	}
-	tests := []sortTest{
+func testFramework(t *testing.T, sortingFunction func([]int) []int) {
+	sortTests := []struct {
+		input    []int
+		expected []int
+		name     string
+	}{
 		//Sorted slice
 		{
 			input:    []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
@@ -66,13 +57,12 @@ func generateTestCases() []sortTest {
 			expected: []int{1},
 			name:     "Singleton",
 		},
+		{
+			input:    []int{},
+			expected: []int{},
+			name:     "Empty Slice",
+		},
 	}
-	tests = append(tests, test) // appending empty slice test - golangci-lint has an issue with embedded structs
-	return tests
-}
-
-func testFramework(t *testing.T, sortingFunction func([]int) []int) {
-	sortTests = generateTestCases()
 	for _, test := range sortTests {
 		t.Run(test.name, func(t *testing.T) {
 			actual := sortingFunction(test.input)
@@ -104,7 +94,63 @@ func TestHeap(t *testing.T) {
 }
 
 func TestQuick(t *testing.T) {
-	testCases := generateTestCases()
+	testCases := []struct {
+		input    []int
+		expected []int
+		name     string
+	}{
+		//Sorted slice
+		{
+			input:    []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			expected: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			name:     "Sorted Unsigned",
+		},
+		//Reversed slice
+		{
+			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
+			expected: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			name:     "Reversed Unsigned",
+		},
+
+		//Sorted slice
+		{
+			input:    []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			name:     "Sorted Signed",
+		},
+
+		//Reversed slice
+		{
+			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
+			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			name:     "Reversed Signed",
+		},
+
+		//Reversed slice, even length
+		{
+			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
+			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			name:     "Reversed Signed #2",
+		},
+
+		//Random order with repetitions
+		{
+			input:    []int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
+			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10},
+			name:     "Random order Signed",
+		},
+		//Single-entry slice
+		{
+			input:    []int{1},
+			expected: []int{1},
+			name:     "Singleton",
+		},
+		{
+			input:    []int{},
+			expected: []int{},
+			name:     "Empty Slice",
+		},
+	}
 
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
@@ -138,13 +184,11 @@ testFramework(t, topologicalSort)
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
-	type sortTest struct {
+	var sortTests = []struct {
 		input    []int
 		expected []int
 		name     string
-	}
-
-	var sortTests = []sortTest{
+	}{
 		//Sorted slice
 		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Unsigned"},
@@ -189,26 +233,64 @@ func BenchmarkInsertion(b *testing.B) {
 }
 
 func BenchmarkMerge(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	benchmarkFramework(b, Mergesort)
 }
 
 func BenchmarkHeap(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	benchmarkFramework(b, HeapSort)
 }
 
 func BenchmarkQuick(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	var sortTests = []struct {
+		input    []int
+		expected []int
+		name     string
+	}{
+		//Sorted slice
+		{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Unsigned"},
+		//Reversed slice
+		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
+			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Unsigned"},
+
+		//Sorted slice
+		{[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Signed"},
+
+		//Reversed slice
+		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
+			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Signed"},
+
+		//Reversed slice, even length
+		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
+			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Signed #2"},
+
+		//Random order with repetitions
+		{[]int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
+			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10}, "Random order Signed"},
+
+		//Empty slice
+		{[]int{}, []int{}, "Empty"},
+		//Single-entry slice
+		{[]int{1}, []int{1}, "Singleton"},
+	}
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for _, test := range sortTests {
+			QuickSort(test.input, 0, len(test.input)-1)
+		}
+	}
 }
 
 func BenchmarkShell(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	benchmarkFramework(b, ShellSort)
 }
 
 func BenchmarkRadix(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	benchmarkFramework(b, RadixSort)
 }
 
 // Very Slow, consider commenting
 func BenchmarkSelection(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	benchmarkFramework(b, SelectionSort)
 }

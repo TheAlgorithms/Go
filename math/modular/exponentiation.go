@@ -13,10 +13,10 @@ import (
 )
 
 // ErrorIntOverflow For asserting that the values do not overflow in Int64
-var ErrorIntOverflow = errors.New("Integer Overflow")
+var ErrorIntOverflow = errors.New("integer overflow")
 
 // ErrorNegativeExponent for asserting that the exponent we receive is positive
-var ErrorNegativeExponent = errors.New("Negative Exponent Provided")
+var ErrorNegativeExponent = errors.New("negative Exponent provided")
 
 // Exponentiation returns base^exponent % mod
 func Exponentiation(base, exponent, mod int64) (int64, error) {

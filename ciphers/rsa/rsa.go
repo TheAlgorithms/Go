@@ -19,10 +19,10 @@ import (
 )
 
 // ErrorFailedToEncrypt Raised when Encrypt function fails to encrypt the message
-var ErrorFailedToEncrypt = errors.New("Failed to Encrypt")
+var ErrorFailedToEncrypt = errors.New("failed to Encrypt")
 
 // ErrorFailedToDecrypt Raised when Decrypt function fails to decrypt the encrypted message
-var ErrorFailedToDecrypt = errors.New("Failed to Decrypt")
+var ErrorFailedToDecrypt = errors.New("failed to Decrypt")
 
 // Encrypt encrypts based on the RSA algorithm - uses modular exponentitation in math directory
 func Encrypt(message []rune, publicExponent, modulus int64) ([]rune, error) {

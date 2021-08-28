@@ -14,7 +14,7 @@ import (
 )
 
 // ErrorIntOverflow For asserting that the values do not overflow in Int64
-var ErrorInverse = errors.New("No Modular Inverse Exists")
+var ErrorInverse = errors.New("no Modular Inverse exists")
 
 // Inverse Modular function
 func Inverse(a, b int64) (int64, error) {
