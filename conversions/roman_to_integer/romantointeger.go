@@ -11,15 +11,13 @@ var romans = map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500
 
 func RomanToInteger(roman string) int {
 	total := 0
-	holder := 0
 	romanLen := len(roman)
-	for holder < romanLen {
+	for holder := range roman {
 		if holder+1 < romanLen && romans[string(roman[holder])] < romans[string(roman[holder+1])] {
 			total -= romans[string(roman[holder])]
 		} else {
 			total += romans[string(roman[holder])]
 		}
-		holder++
 	}
 	return total
 }
