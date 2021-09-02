@@ -7,8 +7,8 @@ import (
 )
 
 func TestHeaps(t *testing.T) {
-	t.Run("Should generate permutations for various size sets", func (t *testing.T) {
-		expectedValues := [][]string {
+	t.Run("Should generate permutations for various size sets", func(t *testing.T) {
+		expectedValues := [][]string{
 			{"1"},
 			{"12", "21"},
 			{"123", "213", "321", "231", "312", "132"},
@@ -20,11 +20,11 @@ func TestHeaps(t *testing.T) {
 
 		for i := 1; i <= 5; i++ {
 			go Heaps(permutationsCh, i)
-			value = <- permutationsCh
+			value = <-permutationsCh
 			sort.Strings(value)
-			sort.Strings(expectedValues[i - 1])
-			if !reflect.DeepEqual(value, expectedValues[i - 1]) {
-				t.Errorf("Permutation set is incorrect for element size of %v. Expected (%v) and received (%v)", i, expectedValues[i - 1], value)
+			sort.Strings(expectedValues[i-1])
+			if !reflect.DeepEqual(value, expectedValues[i-1]) {
+				t.Errorf("Permutation set is incorrect for element size of %v. Expected (%v) and received (%v)", i, expectedValues[i-1], value)
 			}
 		}
 	})
