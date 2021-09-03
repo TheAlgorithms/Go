@@ -11,9 +11,7 @@ func SelectionSort(arr []int) []int {
 			}
 		}
 
-		tmp := arr[i]
-		arr[i] = arr[min]
-		arr[min] = tmp
+		arr[i], arr[min] = arr[min], arr[i]
 	}
 	return arr
 }
