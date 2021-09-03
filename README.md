@@ -1,4 +1,4 @@
-# The Algorithms - Go
+[# The Algorithms - Go
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/TheAlgorithms/Go)&nbsp;
 ![golangci-lint](https://github.com/TheAlgorithms/Go/workflows/golangci-lint/badge.svg)
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Go.svg?label=Repo%20size&style=flat-square)&nbsp;
@@ -30,8 +30,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Dynamic Array](./data_structures/dynamic_array/)
 * [Hashmap](./data_structures/hashmap/)
 * Linked-List
-    * [Doubly Linked-list](./data_structures/linkedlist/doubly_linkedlist/)
-    * [Singly Linked-list](./data_structures/linkedlist/singly_linkedlist/)
+  * [Doubly Linked-list](./data_structures/linkedlist/doubly_linkedlist/)
+  * [Cyclically Linked-list](./data_structures/linkedlist/cyclically_linkedlist)
+  * [Singly Linked-list](./data_structures/linkedlist/singly_linkedlist/)
 * [Queue](./data_structures/queue/) | Array, Linked-List, STL(Container/List), Test
 * [Stack](./data_structures/stack/) | Array, Linked-List, STL(Container/List), Test
 * [Set](./data_structures/set/)
@@ -60,11 +61,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Breadth First Search](./graphs/breadth_first_search/)
 * [Depth First Search](./graphs/depth_first_search/)
 * [Floyd Warshall](./graphs/floyd_warshall/)
-    
+
 ## Math
 * [Gcd](./math/gcd/)
 * [Lcm](./math/lcm/)
-* [Modular Arithmetic](./math/modular_arithmetic/) 
+* [Modular Arithmetic](./math/modular_arithmetic/)
+* [Moser-De Bruijn sequence](./math/moserde_bruijn_sequence)
 * [Permutation](./math/permutation/)
 * [Power](./math/power/)
 * [Prime](./math/prime/)
@@ -75,12 +77,13 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ## Other
 * [Max Subarray Sum](./other/max_subarray_sum/)
 * [Monte Carlo Pi](./other/monte_carlo_pi/)
-* [Nested Brackets](./other/nested_brackets/)
+* [Nested Brackets](./other/nested_brackets/) | Test
 * [Password Generator](./other/password_generator/)
 * [String Combinations](./other/string_combinations/)
 
 ## Searches
 * [Binary Search](./searches/binary_search/)
+* [Interpolation Search](./searches/interpolation_search/)
 * [Linear Search](./searches/linear_search/)
 
 ## Sorts
@@ -101,10 +104,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ## Strings
 * [Levenshtein Distance](./strings/levenshtein_distance/)
 * Multiple String Matching
-    * [Advanced Aho Corasick](./strings/multiple_string_matching/advanced_aho_corasick/)
-    * [Aho Corasick](./strings/multiple_string_matching/aho_corasick/)
+  * [Advanced Aho Corasick](./strings/multiple_string_matching/advanced_aho_corasick/)
+  * [Aho Corasick](./strings/multiple_string_matching/aho_corasick/)
 * [Naive String Search](./strings/naive_string_search/)
 * Single String Matching
-    * [Bom](./strings/single_string_matching/bom/)
-    * [Horspool](./strings/single_string_matching/horspool/)
-    * [Kmp](./strings/single_string_matching/kmp/)
+  * [Bom](./strings/single_string_matching/bom/)
+  * [Horspool](./strings/single_string_matching/horspool/)
+  * [Kmp](./strings/single_string_matching/kmp/)
+    
