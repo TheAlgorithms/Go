@@ -64,7 +64,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ## Math
 * [Gcd](./math/gcd/)
 * [Lcm](./math/lcm/)
-* [Modular Arithmetic](./math/modular_arithmetic/) 
+* [Modular](./math/modular/) 
 * [Permutation](./math/permutation/)
 * [Power](./math/power/)
 * [Prime](./math/prime/)
