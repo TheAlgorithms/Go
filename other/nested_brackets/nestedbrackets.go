@@ -1,4 +1,4 @@
-// Package nested_brackets provides functions for testing 
+// Package nested_brackets provides functions for testing
 // strings propper brackets nesting.
 package nested_brackets
 
