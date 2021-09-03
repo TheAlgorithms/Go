@@ -7,18 +7,17 @@ package gcd
 
 import "testing"
 
-var testCasesExtended = []struct {
-	name string
-	a    int64
-	b    int64
-	gcd  int64
-	x    int64
-	y    int64
-}{
-	{"gcd of 30 and 50", 30, 50, 10, 2, -1},
-}
-
 func TestExtended(t *testing.T) {
+	var testCasesExtended = []struct {
+		name string
+		a    int64
+		b    int64
+		gcd  int64
+		x    int64
+		y    int64
+	}{
+		{"gcd of 30 and 50", 30, 50, 10, 2, -1},
+	}
 	for _, tc := range testCasesExtended {
 		t.Run(tc.name, func(t *testing.T) {
 			gcd, x, y := Extended(tc.a, tc.b)
