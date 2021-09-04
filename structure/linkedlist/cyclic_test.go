@@ -1,28 +1,28 @@
-package cyclicallylinkedlist
+package linkedlist
 
 import (
 	"reflect"
 	"testing"
 )
 
-func fillList(list *ClList, n int) {
+func fillList(list *Cyclic, n int) {
 	for i := 1; i <= n; i++ {
 		list.Add(i)
 	}
 }
 
 func TestAdd(t *testing.T) {
-	list := NewList()
+	list := NewCyclic()
 	fillList(list, 3)
 
 	want := []interface{}{1, 2, 3}
 	var got []interface{}
-	var start *ClNode
-	start = list.CurrentItem
+	var start *Node
+	start = list.Head
 
 	for i := 0; i < list.Size; i++ {
 		got = append(got, start.Val)
-		start = start.next
+		start = start.Next
 	}
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got: %v, want: %v", got, want)
@@ -30,7 +30,7 @@ func TestAdd(t *testing.T) {
 }
 
 func TestWalk(t *testing.T) {
-	list := NewList()
+	list := NewCyclic()
 	fillList(list, 3)
 
 	want := 1
@@ -46,7 +46,7 @@ func TestRotate(t *testing.T) {
 		param        int
 		wantToReturn int
 	}
-	list := NewList()
+	list := NewCyclic()
 	fillList(list, 3)
 
 	testCases := []testCase{
@@ -61,7 +61,7 @@ func TestRotate(t *testing.T) {
 	}
 	for idx, tCase := range testCases {
 		list.Rotate(tCase.param)
-		got := list.CurrentItem.Val
+		got := list.Head.Val
 		if got != tCase.wantToReturn {
 			t.Errorf("got: %v, want: %v for test id %v", got, tCase.wantToReturn, idx)
 		}
@@ -69,13 +69,13 @@ func TestRotate(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	list := NewList()
+	list := NewCyclic()
 	fillList(list, 3)
 
 	want := 2
 	wantSize := 2
 	list.Delete()
-	got := list.CurrentItem.Val
+	got := list.Head.Val
 	if want != got {
 		t.Errorf("got: %v, want: %v", got, want)
 	}
@@ -85,12 +85,12 @@ func TestDelete(t *testing.T) {
 }
 
 func TestDestroy(t *testing.T) {
-	list := NewList()
+	list := NewCyclic()
 	fillList(list, 3)
 	wantSize := 0
 	list.Destroy()
 
-	got := list.CurrentItem
+	got := list.Head
 
 	if got != nil {
 		t.Errorf("got: %v, want: nil", got)
@@ -119,7 +119,7 @@ func TestJosephusProblem(t *testing.T) {
 	}
 
 	for _, tCase := range testCases {
-		list := NewList()
+		list := NewCyclic()
 		fillList(list, tCase.listCount)
 		got := JosephusProblem(list, tCase.param)
 		if got != tCase.wantToReturn {

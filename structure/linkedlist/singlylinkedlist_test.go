@@ -1,12 +1,12 @@
-package singly_linkedlist
+package linkedlist
 
 import (
 	"reflect"
 	"testing"
 )
 
-func TestLinkedList(t *testing.T) {
-	list := CreateList()
+func TestSingly(t *testing.T) {
+	list := NewSingly()
 	list.AddAtBeg(1)
 	list.AddAtBeg(2)
 	list.AddAtBeg(3)

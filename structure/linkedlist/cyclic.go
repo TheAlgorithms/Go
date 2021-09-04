@@ -1,49 +1,34 @@
-// Package cyclicallylinkedlist demonstration of Linked List Cycle in golang
-
-package cyclicallylinkedlist
+package linkedlist
 
 import "fmt"
 
-// Node of List.
-type ClNode struct {
-	Val  interface{}
-	prev *ClNode
-	next *ClNode
-}
-
-// The Cycling list in this implementation is addressed
-// by means of the element located at the current position.
-type ClList struct {
-	Size        int
-	CurrentItem *ClNode
+// Cyclic Struct which cycles the linked list in this implementation.
+type Cyclic struct {
+	Size int
+	Head *Node
 }
 
 // Create new list.
-func NewList() *ClList {
-	return &ClList{0, nil}
-}
-
-// Create new node.
-func NewNode(val interface{}) *ClNode {
-	return &ClNode{val, nil, nil}
+func NewCyclic() *Cyclic {
+	return &Cyclic{0, nil}
 }
 
 // Inserting the first node is a special case. It will
 // point to itself. For other cases, the node will be added
-// to the end of the list. End of the list is prev field of
+// to the end of the list. End of the list is Prev field of
 // current item. Complexity O(1).
-func (cl *ClList) Add(val interface{}) {
+func (cl *Cyclic) Add(val interface{}) {
 	n := NewNode(val)
 	cl.Size++
-	if cl.CurrentItem == nil {
-		n.prev = n
-		n.next = n
-		cl.CurrentItem = n
+	if cl.Head == nil {
+		n.Prev = n
+		n.Next = n
+		cl.Head = n
 	} else {
-		n.prev = cl.CurrentItem.prev
-		n.next = cl.CurrentItem
-		cl.CurrentItem.prev.next = n
-		cl.CurrentItem.prev = n
+		n.Prev = cl.Head.Prev
+		n.Next = cl.Head
+		cl.Head.Prev.Next = n
+		cl.Head.Prev = n
 	}
 }
 
@@ -61,7 +46,7 @@ func (cl *ClList) Add(val interface{}) {
 // places is the same as moving N - P places back.
 // Therefore, if P > N / 2, you can turn the list by N-P places back.
 // Complexity O(n).
-func (cl *ClList) Rotate(places int) {
+func (cl *Cyclic) Rotate(places int) {
 	if cl.Size > 0 {
 		if places < 0 {
 			multiple := cl.Size - 1 - places/cl.Size
@@ -72,13 +57,13 @@ func (cl *ClList) Rotate(places int) {
 		if places > cl.Size/2 {
 			places = cl.Size - places
 			for i := 0; i < places; i++ {
-				cl.CurrentItem = cl.CurrentItem.prev
+				cl.Head = cl.Head.Prev
 			}
 		} else if places == 0 {
 			return
 		} else {
 			for i := 0; i < places; i++ {
-				cl.CurrentItem = cl.CurrentItem.next
+				cl.Head = cl.Head.Next
 			}
 
 		}
@@ -86,25 +71,25 @@ func (cl *ClList) Rotate(places int) {
 }
 
 // Delete the current item.
-func (cl *ClList) Delete() bool {
+func (cl *Cyclic) Delete() bool {
 	var deleted bool
-	var prevItem, thisItem, nextItem *ClNode
+	var prevItem, thisItem, nextItem *Node
 
 	if cl.Size == 0 {
 		return deleted
 	}
 
 	deleted = true
-	thisItem = cl.CurrentItem
-	nextItem = thisItem.next
-	prevItem = thisItem.prev
+	thisItem = cl.Head
+	nextItem = thisItem.Next
+	prevItem = thisItem.Prev
 
 	if cl.Size == 1 {
-		cl.CurrentItem = nil
+		cl.Head = nil
 	} else {
-		cl.CurrentItem = nextItem
-		nextItem.prev = prevItem
-		prevItem.next = nextItem
+		cl.Head = nextItem
+		nextItem.Prev = prevItem
+		prevItem.Next = nextItem
 	}
 	cl.Size--
 
@@ -112,33 +97,33 @@ func (cl *ClList) Delete() bool {
 }
 
 // Destroy all items in the list.
-func (cl *ClList) Destroy() {
+func (cl *Cyclic) Destroy() {
 	for cl.Delete() {
 		continue
 	}
 }
 
 // Show list body.
-func (cl *ClList) Walk() *ClNode {
-	var start *ClNode
-	start = cl.CurrentItem
+func (cl *Cyclic) Walk() *Node {
+	var start *Node
+	start = cl.Head
 
 	for i := 0; i < cl.Size; i++ {
 		fmt.Printf("%v \n", start.Val)
-		start = start.next
+		start = start.Next
 	}
 	return start
 }
 
 // https://en.wikipedia.org/wiki/Josephus_problem
 // This is a struct-based solution for Josephus problem.
-func JosephusProblem(cl *ClList, k int) int {
+func JosephusProblem(cl *Cyclic, k int) int {
 	for cl.Size > 1 {
 		cl.Rotate(k)
 		cl.Delete()
 		cl.Rotate(-1)
 	}
-	retval := cl.CurrentItem.Val.(int)
+	retval := cl.Head.Val.(int)
 	cl.Destroy()
 	return retval
 }

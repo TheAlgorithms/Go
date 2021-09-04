@@ -1,3 +1,7 @@
+# Linked List
+This directory is fully dedicated to different types of linkedlists
+
+
 # Linked Cyclic List
 ***
 ## What is it?
