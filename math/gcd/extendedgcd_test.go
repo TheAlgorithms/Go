@@ -4,20 +4,19 @@ import "testing"
 
 type testExtendedFunction func(int64, int64) (int64, int64, int64)
 
-var testCasesExtended = []struct {
-	name string
-	a    int64
-	b    int64
-	gcd  int64
-	x    int64
-	y    int64
-}{
-	{"gcd of 10 and 0", 10, 0, 10, 1, 0},
-	{"gcd of 98 and 56", 98, 56, 14, -1, 2},
-	{"gcd of 0 and 10", 0, 10, 10, 0, 1},
-}
-
 func TemplateTestExtendedGCD(t *testing.T, f testExtendedFunction) {
+	var testCasesExtended = []struct {
+		name string
+		a    int64
+		b    int64
+		gcd  int64
+		x    int64
+		y    int64
+	}{
+		{"gcd of 10 and 0", 10, 0, 10, 1, 0},
+		{"gcd of 98 and 56", 98, 56, 14, -1, 2},
+		{"gcd of 0 and 10", 0, 10, 10, 0, 1},
+	}
 	for _, tc := range testCasesExtended {
 		t.Run(tc.name, func(t *testing.T) {
 			actualGcd, actualX, actualY := f(tc.a, tc.b)
