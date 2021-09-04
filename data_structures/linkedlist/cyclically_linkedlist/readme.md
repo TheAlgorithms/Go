@@ -8,7 +8,7 @@ They are better suited for cyclic data such as train schedules.
 These lists are missing the first and last items.
 Therefore, it is necessary to introduce the concept of the current position.
 
-know more : [https://en.wikipedia.org/wiki/Cycle_detection](https://en.wikipedia.org/wiki/Cycle_detection)
+Find out more about [cycle detection here](https://en.wikipedia.org/wiki/Cycle_detection).
 
 This picture shows similar lists:
 ![Cyclic Linked List Image](linked_cyclic_list.jpg)
