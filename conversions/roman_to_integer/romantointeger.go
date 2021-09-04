@@ -7,16 +7,16 @@ Only standard form is supported
 */
 package conversions
 
-var romans = map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+var romans = map[byte]int{'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
 
 func RomanToInteger(roman string) int {
 	total := 0
 	romanLen := len(roman)
 	for holder := range roman {
-		if holder+1 < romanLen && romans[string(roman[holder])] < romans[string(roman[holder+1])] {
-			total -= romans[string(roman[holder])]
+		if holder+1 < romanLen && romans[roman[holder]] < romans[roman[holder+1]] {
+			total -= romans[roman[holder]]
 		} else {
-			total += romans[string(roman[holder])]
+			total += romans[roman[holder]]
 		}
 	}
 	return total
