@@ -33,17 +33,3 @@ func Solve(maxWeight int, weights, values []int) int {
 	}
 	return dp[n][m]
 }
-
-/*
-func main() {
-	maxWeight := 50
-	values := []int{
-		60, 100, 120,
-	}
-	weights := []int{
-		10, 20, 30,
-	}
-	maxProfit := solve(maxWeight, weights, values)
-	fmt.Println(maxProfit)
-}
-*/
