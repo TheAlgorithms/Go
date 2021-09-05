@@ -1,12 +1,10 @@
 package dynamicarray
 
-// reflect: used for check equal values
 import (
 	"reflect"
 	"testing"
 )
 
-// TestDynamicArray some test for dynamic array to make sure everything is ok, and we got the right result
 func TestDynamicArray(t *testing.T) {
 	numbers := DynamicArray{}
 
