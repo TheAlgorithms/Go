@@ -32,16 +32,3 @@ func CutRodDp(price []int, length int) int {
 
 	return r[length]
 }
-
-/*
-func main() {
-	length := 10
-	price := []int{0, 1, 5, 8, 9, 17, 17, 17, 20, 24, 30}
-	// price := []int{0, 10, 5, 8, 9, 17, 17, 17, 20, 24, 30}
-
-	// fmt.Print(price[5]+price[length-5], "\n")
-
-	fmt.Print(cutRodRec(price, length), "\n")
-	fmt.Print(cutRodDp(price, length), "\n")
-}
-*/
