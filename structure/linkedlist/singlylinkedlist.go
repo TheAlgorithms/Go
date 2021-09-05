@@ -6,7 +6,10 @@ import "fmt"
 // Singly structure with length of the list and its head
 type Singly struct {
 	length int
-	Head   *Node
+
+	// Note that Node here holds both Next and Prev Node
+	// however only the Next node is used in Singly methods.
+	Head *Node
 }
 
 // NewSingly returns a new instance of a linked list
