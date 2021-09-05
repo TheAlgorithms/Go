@@ -141,28 +141,3 @@ func (ll *DoubleLinkedList) DisplayReverse() {
 
 	fmt.Print("\n")
 }
-
-/*
-func main() {
-	ll := DoubleLinkedList{}
-
-	ll.addAtBeg(10)
-	ll.addAtEnd(20)
-	ll.display()
-	ll.addAtBeg(30)
-	ll.display()
-
-	ll.reverse()
-	ll.display()
-	ll.displayReverse()
-
-	fmt.Print(ll.delAtBeg(), "\n")
-	fmt.Print(ll.delAtEnd(), "\n")
-	fmt.Print("Display")
-	ll.display()
-	fmt.Print(ll.delAtBeg(), "\n")
-	ll.display()
-	fmt.Print(ll.delAtBeg(), "\n")
-	ll.display()
-}
-*/
