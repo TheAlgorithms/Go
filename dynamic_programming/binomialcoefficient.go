@@ -1,20 +1,5 @@
 package dynamic_programming
 
-// func main() {
-// 	myArrayOfK := [4]int{5, 6, 7, 8}
-// 	var x int
-
-// 	fmt.Println("\nBinomial Coefficient Using Dynamic Programming:", bin2(50, 5))
-// 	for _, element := range myArrayOfK {
-// 		start := time.Now()
-// 		x = bin2(50, element)
-// 		elapsed := time.Since(start)
-// 		fmt.Println("bin2 (50,", element, ") = ", x, "    took ", elapsed)
-
-// 	}
-
-// }
-
 // Bin2 function
 func Bin2(n int, k int) int {
 	var i, j int
