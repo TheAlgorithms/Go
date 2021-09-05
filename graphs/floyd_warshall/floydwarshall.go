@@ -42,18 +42,3 @@ func FloydWarshall(graph Matrix) Matrix {
 
 	return result
 }
-
-// func main() {
-// 	var graph Matrix
-// 	graph = Matrix{{0, maxValue, -2, maxValue},
-// 		{4, 0, 3, maxValue},
-// 		{maxValue, maxValue, 0, 2},
-// 		{maxValue, -1, maxValue, 0}}
-
-// 	result := FloydWarshall(graph)
-
-// 	//Print result
-// 	for i := 0; i < len(result); i++ {
-// 		fmt.Printf("%4g\n", result[i])
-// 	}
-// }
