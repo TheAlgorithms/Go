@@ -21,8 +21,3 @@ func MaxSubarraySum(array []int) int {
 	}
 	return maxTillNow
 }
-
-// func main() {
-// 	array := []int{-2, -5, 6, 0, -2, 0, -3, 1, 0, 5, -6}
-// 	fmt.Println("Maximum contiguous sum: ", maxSubarraySum(array))
-// }
