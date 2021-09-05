@@ -1,7 +1,7 @@
 // Floyd-Warshall algorithm
 // https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
 
-package floyd_warshall
+package graph
 
 // Matrix Defining matrix to use 2d array easier
 type Matrix [][]float64

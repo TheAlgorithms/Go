@@ -1,4 +1,4 @@
-package dynamic_programming
+package dynamic
 
 // Knapsack Problem
 // https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/

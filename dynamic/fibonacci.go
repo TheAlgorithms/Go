@@ -1,4 +1,4 @@
-package dynamic_programming
+package dynamic
 
 // https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
 

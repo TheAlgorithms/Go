@@ -9,7 +9,7 @@ https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_stri
 Author: D4rkia
 */
 
-package main
+package genetic
 
 import (
 	"errors"
@@ -148,10 +148,10 @@ func geneticString(target string, charmap []rune) (int, int, string) {
 	return gen, generatedPop, pop[0].Key
 }
 
-func main() {
-	// Define parameters
-	target := string("This is a genetic algorithm to evaluate, combine, evolve and mutate a string!")
-	charmap := []rune(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\")
-	gen, generatedPop, best := geneticString(target, charmap)
-	fmt.Println("Generation:", strconv.Itoa(gen), "Analyzed:", generatedPop, "Best:", best)
-}
+// func main() {
+// 	// Define parameters
+// 	target := string("This is a genetic algorithm to evaluate, combine, evolve and mutate a string!")
+// 	charmap := []rune(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\")
+// 	gen, generatedPop, best := geneticString(target, charmap)
+// 	fmt.Println("Generation:", strconv.Itoa(gen), "Analyzed:", generatedPop, "Best:", best)
+// }

@@ -1,4 +1,4 @@
-package dynamic_programming
+package dynamic
 
 import (
 	"fmt"
