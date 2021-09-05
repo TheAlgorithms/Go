@@ -116,6 +116,35 @@ func LevelOrder(root *Node) {
 	}
 }
 
+// AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
+func AccessNodesByLayer(root *Node) [][]int {
+	var res [][]int
+	if root == nil {
+		return res
+	}
+	var q []*Node
+	var n *Node
+	var idx = 0
+	q = append(q, root)
+
+	for len(q) != 0 {
+		res = append(res, []int{})
+		qLen := len(q)
+		for i := 0; i < qLen; i++ {
+			n, q = q[0], q[1:]
+			res[idx] = append(res[idx], n.val)
+			if n.left != nil {
+				q = append(q, n.left)
+			}
+			if n.right != nil {
+				q = append(q, n.right)
+			}
+		}
+		idx++
+	}
+	return res
+}
+
 // Max Function that returns max of two numbers - possibly already declared.
 func Max(a, b int) int {
 	if a > b {
