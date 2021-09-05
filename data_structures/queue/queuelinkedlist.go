@@ -27,13 +27,13 @@ func (ll *Queue) enqueue(n interface{}) {
 	var newNode Node // create new Node
 	newNode.Data = n // set the data
 
-	if ll.tail != nil{
+	if ll.tail != nil {
 		ll.tail.Next = &newNode
 	}
 
 	ll.tail = &newNode
 
-	if ll.head == nil{
+	if ll.head == nil {
 		ll.head = &newNode
 	}
 	ll.length++
@@ -41,14 +41,14 @@ func (ll *Queue) enqueue(n interface{}) {
 
 // dequeue it will be removed the first value into queue (First In First Out)
 func (ll *Queue) dequeue() interface{} {
-	if ll.isEmpty(){
+	if ll.isEmpty() {
 		return -1 // if is empty return -1
 	}
 	data := ll.head.Data
 
 	ll.head = ll.head.Next
 
-	if ll.head == nil{
+	if ll.head == nil {
 		ll.tail = nil
 	}
 

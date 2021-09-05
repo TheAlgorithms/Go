@@ -42,7 +42,7 @@ func geneticString(target string, charmap []rune) (int, int, string) {
 
 	// Verify if 'populationNum' s bigger than 'selectionNum'
 	if populationNum < selectionNum {
-		fmt.Println(errors.New("PopulationNum must be bigger tha selectionNum "))
+		fmt.Println(errors.New("populationNum must be bigger than selectionNum"))
 		os.Exit(1)
 	}
 	// Verify that the target contains no genes besides the ones inside genes variable.
@@ -56,7 +56,7 @@ func geneticString(target string, charmap []rune) (int, int, string) {
 			return false
 		}
 		if !find() {
-			fmt.Println(errors.New("Character not aviable in charmap"), position, "\"", string(r), "\"")
+			fmt.Println(errors.New("character not aviable in charmap"), position, "\"", string(r), "\"")
 			os.Exit(1)
 		}
 	}

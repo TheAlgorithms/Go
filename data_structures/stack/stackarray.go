@@ -17,7 +17,7 @@ func stackPush(n interface{}) {
 }
 
 // stackLength return length of array
-func stackLength() int  {
+func stackLength() int {
 	return len(stackArray)
 }
 
@@ -27,7 +27,7 @@ func stackPeak() interface{} {
 }
 
 // stackEmpty check array is empty or not
-func stackEmpty() bool  {
+func stackEmpty() bool {
 	return len(stackArray) == 0
 }
 
