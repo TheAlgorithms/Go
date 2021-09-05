@@ -205,10 +205,11 @@ func height(root *Node) int {
 	if root.Right != nil {
 		rightHeight = root.Right.Height
 	}
+	max := leftHeight
 	if rightHeight > leftHeight {
-		leftHeight = rightHeight
+		max = rightHeight
 	}
-	return 1 + leftHeight // 1+ max(leftHeight,rightHeight)
+	return 1 + max
 }
 
 func min(root *Node) int {
