@@ -1,4 +1,4 @@
-package breadth_first_search
+package graph
 
 import (
 	"testing"

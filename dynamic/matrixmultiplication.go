@@ -3,7 +3,7 @@
 // www.geeksforgeeks.org/dynamic_programming-set-8-matrix-chain-multiplication/
 
 // Package dynamic_programming Package for dynamically run algorithms
-package dynamic_programming
+package dynamic
 
 // MatrixChainRec function
 func MatrixChainRec(D []int, i, j int) int {

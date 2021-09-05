@@ -1,7 +1,7 @@
 /* O(n) solution, for calculating
 maximum contiguous sum in the given array. */
 
-package max_subarray_sum
+package maxsubarraysum
 
 // Max - already defined somewhere in this repository TODO: remove this definition and add the import path
 func Max(x int, y int) int {

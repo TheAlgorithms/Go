@@ -1,7 +1,7 @@
 // longest palindromic subsequence
 // http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
 
-package dynamic_programming
+package dynamic
 
 // LpsRec function
 func LpsRec(word string, i, j int) int {

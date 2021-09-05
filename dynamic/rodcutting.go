@@ -2,7 +2,7 @@
 // https://en.wikipedia.org/wiki/Cutting_stock_problem
 // http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
 
-package dynamic_programming
+package dynamic
 
 // CutRodRec solve the problem recursively: initial approach
 func CutRodRec(price []int, length int) int {

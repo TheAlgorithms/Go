@@ -1,4 +1,4 @@
-package depth_first_search
+package graph
 
 func GetIdx(target int, nodes []int) int {
 	for i := 0; i < len(nodes); i++ {
@@ -18,7 +18,7 @@ func NotExist(target int, slice []int) bool {
 	return true
 }
 
-func Dfs(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
+func DepthFirstSearch(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
 	var route []int
 	var stack []int
 	startIdx := GetIdx(start, nodes)

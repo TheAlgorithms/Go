@@ -10,8 +10,8 @@ import (
 	"math/big"
 )
 
-// GeneratePassword returns a newly generated password
-func GeneratePassword(minLength int, maxLength int) string {
+// Generate returns a newly generated password
+func Generate(minLength int, maxLength int) string {
 	var chars = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+,.?/:;{}[]`~")
 
 	length, err := rand.Int(rand.Reader, big.NewInt(int64(maxLength-minLength)))
@@ -43,17 +43,3 @@ func GeneratePassword(minLength int, maxLength int) string {
 		}
 	}
 }
-
-// func main() {
-// 	rand.Seed(time.Now().Unix())
-
-// 	fmt.Print("Please specify a minimum length: ")
-// 	var minLength int
-// 	fmt.Scanf("%d", &minLength)
-
-// 	fmt.Print("Please specify a maximum length: ")
-// 	var maxLength int
-// 	fmt.Scanf("%d", &maxLength)
-
-// 	fmt.Printf("Your generated password is %v\n", generatePassword(minLength, maxLength))
-// }

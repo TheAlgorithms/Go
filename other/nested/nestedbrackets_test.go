@@ -1,4 +1,4 @@
-package nested_brackets
+package nested
 
 import (
 	"testing"

@@ -2,7 +2,7 @@
 // DP - 4
 // https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
 
-package dynamic_programming
+package dynamic
 
 // LongestCommonSubsequence function
 func LongestCommonSubsequence(a string, b string, m int, n int) int {

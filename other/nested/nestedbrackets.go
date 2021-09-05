@@ -1,6 +1,6 @@
 // Package nested_brackets provides functions for testing
 // strings propper brackets nesting.
-package nested_brackets
+package nested
 
 // IsBalanced returns true if provided input string is properly nested.
 //
