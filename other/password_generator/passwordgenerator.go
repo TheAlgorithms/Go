@@ -5,24 +5,30 @@
 package password_generator
 
 import (
-	crand "crypto/rand"
+	"crypto/rand"
 	"io"
-	"math/rand"
+	"math/big"
 )
 
 // GeneratePassword returns a newly generated password
 func GeneratePassword(minLength int, maxLength int) string {
 	var chars = []byte("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+,.?/:;{}[]`~")
 
-	var length = rand.Intn(maxLength-minLength) + minLength
+	length, err := rand.Int(rand.Reader, big.NewInt(int64(maxLength-minLength)))
+	if err != nil {
+		panic(err) // handle this gracefully
+	}
+	length.Add(length, big.NewInt(int64(minLength)))
 
-	newPassword := make([]byte, length)
-	randomData := make([]byte, length+(length/4))
+	intLength := int(length.Int64())
+
+	newPassword := make([]byte, intLength)
+	randomData := make([]byte, intLength+intLength/4)
 	clen := byte(len(chars))
 	maxrb := byte(256 - (256 % len(chars)))
 	i := 0
 	for {
-		if _, err := io.ReadFull(crand.Reader, randomData); err != nil {
+		if _, err := io.ReadFull(rand.Reader, randomData); err != nil {
 			panic(err)
 		}
 		for _, c := range randomData {
@@ -31,7 +37,7 @@ func GeneratePassword(minLength int, maxLength int) string {
 			}
 			newPassword[i] = chars[c%clen]
 			i++
-			if i == length {
+			if i == intLength {
 				return string(newPassword)
 			}
 		}
