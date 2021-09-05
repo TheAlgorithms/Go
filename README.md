@@ -19,8 +19,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Diffie Hellman Key Exchange](./ciphers/diffie_hellman_key_exchange/)
 * [Polybius](./ciphers/polybius/)
 * [Rot13](./ciphers/rot13/)
-* [Rsa Cipher](./ciphers/rsa_cipher/)
-* [Xor Cipher](./ciphers/xor_cipher/)
+* [Rsa](./ciphers/rsa/)
+* [Xor](./ciphers/xor/)
 
 ## Conversions
 * [Roman To Integer](./conversions/roman_to_integer/)
@@ -64,7 +64,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ## Math
 * [Gcd](./math/gcd/)
 * [Lcm](./math/lcm/)
-* [Modular Arithmetic](./math/modular_arithmetic/) 
+* [Modular](./math/modular/) 
 * [Permutation](./math/permutation/)
 * [Power](./math/power/)
 * [Prime](./math/prime/)

@@ -1,5 +1,4 @@
-//Package sorts a package for demonstrating sorting algorithms in Go
-package sorts
+package sort
 
 func InsertionSort(arr []int) []int {
 	for currentIndex := 1; currentIndex < len(arr); currentIndex++ {
