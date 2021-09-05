@@ -43,11 +43,3 @@ func MatrixChainDp(D []int) int {
 
 	return dp[1][N-1]
 }
-
-/*
-func main() {
-	D := []int{2, 2, 2, 2, 2} // 4 matrices
-	fmt.Print(matrixChainRec(D, 1, 4), "\n")
-	fmt.Print(matrixChainDp(D), "\n")
-}
-*/
