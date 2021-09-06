@@ -1,4 +1,4 @@
-package levenshtein_distance
+package levenshtein
 
 import "testing"
 
@@ -43,7 +43,7 @@ var testCases = []struct {
 func TestLevenshteinDistance(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := LevenshteinDistance(tc.string1, tc.string2, tc.insertionCost, tc.substitutionCost, tc.deletionCost)
+			actual := Distance(tc.string1, tc.string2, tc.insertionCost, tc.substitutionCost, tc.deletionCost)
 			if actual != tc.expected {
 				t.Errorf("Expected Levenshtein distance between strings: '%s' and '%s' is %v, but got: %v", tc.string1, tc.string2, tc.expected, actual)
 			}

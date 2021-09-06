@@ -3,10 +3,10 @@
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see sieve_test.go
 
-package sieve
+package prime
 
 // Generate generates the sequence of integers starting at 2 and sends it to the channel `ch`
-func Generate(ch chan<- int) {
+func GenerateChannel(ch chan<- int) {
 	for i := 2; ; i++ {
 		ch <- i
 	}
@@ -22,12 +22,12 @@ func Sieve(in <-chan int, out chan<- int, prime int) {
 	}
 }
 
-// GeneratePrimes returns a int slice of prime numbers up to the limit
-func GeneratePrimes(limit int) []int {
+// Generate returns a int slice of prime numbers up to the limit
+func Generate(limit int) []int {
 	var primes []int
 
 	ch := make(chan int)
-	go Generate(ch)
+	go GenerateChannel(ch)
 
 	for i := 0; i < limit; i++ {
 		primes = append(primes, <-ch)

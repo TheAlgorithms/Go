@@ -4,10 +4,10 @@ Parameters: two strings to compare and weights of insertion, substitution and de
 Output: distance between both strings
 */
 
-package levenshtein_distance
+package levenshtein
 
-// LevenshteinDistance Function that gives Levenshtein Distance
-func LevenshteinDistance(str1, str2 string, icost, scost, dcost int) int {
+// Distance Function that gives Levenshtein Distance
+func Distance(str1, str2 string, icost, scost, dcost int) int {
 	row1 := make([]int, len(str2)+1)
 	row2 := make([]int, len(str2)+1)
 

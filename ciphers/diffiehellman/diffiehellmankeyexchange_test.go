@@ -1,4 +1,4 @@
-package diffie_hellman_key_exchange
+package diffiehellman
 
 import (
 	"crypto/rand"

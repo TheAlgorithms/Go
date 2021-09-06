@@ -3,7 +3,7 @@
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see sieve.go
 
-package sieve
+package prime
 
 import (
 	"reflect"
@@ -17,7 +17,7 @@ func TestSieve(t *testing.T) {
 		var testTenPrimes [10]int
 
 		ch := make(chan int)
-		go Generate(ch)
+		go GenerateChannel(ch)
 
 		for i := 0; i < 10; i++ {
 			testTenPrimes[i] = <-ch
@@ -37,7 +37,7 @@ func TestGeneratePrimes(t *testing.T) {
 	firstTenPrimes := []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29}
 
 	t.Run("Testing GeneratePrimes Function", func(t *testing.T) {
-		testPrimes := GeneratePrimes(10)
+		testPrimes := Generate(10)
 
 		if !reflect.DeepEqual(firstTenPrimes, testPrimes) {
 			t.Fatal("GeneratePrimes function failed")

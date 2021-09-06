@@ -1,5 +1,5 @@
-// Package string_combinations ...
-package string_combinations
+// Package combination ...
+package combination
 
 import "fmt"
 
@@ -9,8 +9,8 @@ type Combinations struct {
 	in  []rune
 }
 
-// StartCombinations ...
-func StartCombinations(input string) {
+// Start ...
+func Start(input string) {
 	c := &Combinations{
 		in: []rune(input),
 	}

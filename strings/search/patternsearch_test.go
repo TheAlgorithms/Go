@@ -1,4 +1,4 @@
-package naive_string_search
+package search
 
 import (
 	"reflect"
@@ -37,10 +37,10 @@ var testCases = []struct {
 	},
 }
 
-func TestNaivePatternSearch(t *testing.T) {
+func TestNaive(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := naivePatternSearch(tc.input, tc.pattern)
+			actual := Naive(tc.input, tc.pattern)
 			if !reflect.DeepEqual(actual, tc.expected) {
 				t.Errorf("Expected matches for pattern '%s' for string '%s' are: %v, but actual matches are: %v", tc.pattern, tc.input, tc.expected, actual)
 			}

@@ -1,6 +1,4 @@
-package interpolationsearch
-
-import "testing"
+package search
 
 type searchTest struct {
 	data     []int
@@ -9,6 +7,8 @@ type searchTest struct {
 	name     string
 }
 
+// Note that these are immutable therefore they are shared among all the search tests.
+// If your algorithm is mutating these then it is advisable to create separate test cases.
 var searchTests = []searchTest{
 	//Sanity
 	{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 1, 0, "Sanity"},
@@ -19,13 +19,4 @@ var searchTests = []searchTest{
 	{[]int{1, 4, 5, 6, 7, 10}, 25, -1, "Absent"},
 	//Empty slice
 	{[]int{}, 2, -1, "Empty"},
-}
-
-func TestInterpolationSearch(t *testing.T) {
-	for _, test := range searchTests {
-		actual := InterpolationSearch(test.data, test.key)
-		if actual != test.expected {
-			t.Errorf("test %s failed", test.name)
-		}
-	}
 }

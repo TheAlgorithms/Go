@@ -1,18 +1,15 @@
-package interpolationsearch
+package search
 
-/*
-InterpolationSearch searches for the entity in the given sortedData.
-if the entity is present, it will return the index of the entity, if not -1 will be returned.
-see: https://en.wikipedia.org/wiki/Interpolation_search
-Complexity
-	Worst: O(N)
-	Average: O(log(log(N))  if the elements are uniformly distributed
-	Best: O(1)
-
-Example
-		fmt.Println(InterpolationSearch([]int{1, 2, 9, 20, 31, 45, 63, 70, 100},100))
-*/
-func InterpolationSearch(sortedData []int, guess int) int {
+// Interpolation searches for the entity in the given sortedData.
+// if the entity is present, it will return the index of the entity, if not -1 will be returned.
+// see: https://en.wikipedia.org/wiki/Interpolation_search
+// Complexity
+// 		Worst: O(N)
+// 		Average: O(log(log(N))  if the elements are uniformly distributed
+// 		Best: O(1)
+// Example
+// 		fmt.Println(InterpolationSearch([]int{1, 2, 9, 20, 31, 45, 63, 70, 100},100))
+func Interpolation(sortedData []int, guess int) int {
 	if len(sortedData) == 0 {
 		return -1
 	}

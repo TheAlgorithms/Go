@@ -1,6 +1,6 @@
-// Package diffie_hellman_key_exchange implements Deffie Hellman Key Exchange Algorithm
+// Package diffiehellman implements Deffie Hellman Key Exchange Algorithm
 // for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
-package diffie_hellman_key_exchange
+package diffiehellman
 
 const (
 	generator         = 3

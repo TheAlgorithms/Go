@@ -1,4 +1,4 @@
-package xor_cipher
+package xor
 
 import (
 	"fmt"
