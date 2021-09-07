@@ -9,12 +9,10 @@
 
 package queue
 
-
 var ListQueue []interface{}
 
-
 // EnQueue it will be added new value into our list
-func EnQueue(n interface{})  {
+func EnQueue(n interface{}) {
 	ListQueue = append(ListQueue, n)
 }
 
@@ -27,7 +25,7 @@ func DeQueue() interface{} {
 
 // FrontQueue return the Front value
 func FrontQueue() interface{} {
-	return  ListQueue[0]
+	return ListQueue[0]
 }
 
 // BackQueue return the Back value

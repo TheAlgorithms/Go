@@ -3,24 +3,36 @@ package binarytree
 
 /*
 func main() {
-	t := btree{nil}
-	t.root = newNode(0)
-	t.root.left = newNode(1)
-	t.root.right = newNode(2)
-	t.root.left.left = newNode(3)
-	t.root.left.right = newNode(4)
-	t.root.right.left = newNode(5)
-	t.root.right.right = newNode(6)
-	t.root.right.right.right = newNode(10)
+	t := BTree{nil}
+	t.Root = NewNode(0)
+	t.Root.left = NewNode(1)
+	t.Root.right = NewNode(2)
+	t.Root.left.left = NewNode(3)
+	t.Root.left.right = NewNode(4)
+	t.Root.right.left = NewNode(5)
+	t.Root.right.right = NewNode(6)
+	t.Root.right.right.right = NewNode(10)
 
-	inorder(t.root)
+	InOrder(t.Root)
 	fmt.Print("\n")
-	preorder(t.root)
+	PreOrder(t.Root)
 	fmt.Print("\n")
-	postorder(t.root)
+	PostOrder(t.Root)
 	fmt.Print("\n")
-	levelorder(t.root)
+	LevelOrder(t.Root)
 	fmt.Print("\n")
-	fmt.Print(t.depth(), "\n")
+	fmt.Print(t.Depth(), "\n")
+	var list = AccessNodesByLayer(t.Root)
+	fmt.Println("{")
+	for i, v := range list {
+		for _, v2 := range v {
+			fmt.Print(" [", v2, "]")
+		}
+		if i != len(list)-1 {
+			fmt.Print(",")
+		}
+		fmt.Println()
+	}
+	fmt.Println("}")
 }
 */

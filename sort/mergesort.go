@@ -1,5 +1,4 @@
-//Package sorts a package for demonstrating sorting algorithms in Go
-package sorts
+package sort
 
 func merge(a []int, b []int) []int {
 

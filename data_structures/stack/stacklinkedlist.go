@@ -50,7 +50,6 @@ func (ll *Stack) isEmpty() bool {
 	return ll.length == 0
 }
 
-
 // len use to return length of our stack
 func (ll *Stack) len() int {
 	return ll.length
