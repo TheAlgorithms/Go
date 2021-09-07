@@ -5,21 +5,21 @@ maximum contiguous sum in the given array. */
 // problem of finding max contigious sum within a array of ints.
 package maxsubarraysum
 
-import "github.com/TheAlgorithms/Go/math/max"
+import (
+	"github.com/TheAlgorithms/Go/math/max"
+)
 
 // MaxSubarraySum returns the maximum subarray sum
 func MaxSubarraySum(array []int) int {
-	var currentMax int = 0
-	var maxTillNow int = 0
+	var currentMax int
+	var maxTillNow int
+	if len(array) != 0 {
+		currentMax = array[0]
+		maxTillNow = array[0]
+	}
 	for _, v := range array {
 		currentMax = max.Int(v, currentMax+v)
 		maxTillNow = max.Int(maxTillNow, currentMax)
 	}
 	return maxTillNow
 }
-
-// TODO: make a test file with this
-// func main() {
-// 	array := []int{-2, -5, 6, 0, -2, 0, -3, 1, 0, 5, -6}
-// 	fmt.Println("Maximum contiguous sum: ", maxSubarraySum(array))
-// }
