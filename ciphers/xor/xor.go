@@ -1,6 +1,6 @@
-// Package xor_cipher is an encryption algorithm that operates the exclusive disjunction(XOR)
+// Package xor is an encryption algorithm that operates the exclusive disjunction(XOR)
 // ref: https://en.wikipedia.org/wiki/XOR_cipher
-package xor_cipher
+package xor
 
 // Encrypt encrypts with Xor encryption after converting each character to byte
 // The returned value might not be readable because there is no guarantee
