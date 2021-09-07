@@ -2,7 +2,6 @@
 // https://en.wikipedia.org/wiki/Matrix_chain_multiplication
 // www.geeksforgeeks.org/dynamic_programming-set-8-matrix-chain-multiplication/
 
-// Package dynamic_programming Package for dynamically run algorithms
 package dynamic
 
 // MatrixChainRec function
