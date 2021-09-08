@@ -85,4 +85,18 @@ func TestDoubly(t *testing.T) {
 		}
 	})
 
+	t.Run("Test Reverse", func(t *testing.T) {
+		want := []int{4, 1, 2, 3}
+		got := []int{}
+		newList.Reverse()
+		current := newList.Head
+		got = append(got, current.Val.(int))
+		for current.Next != nil {
+			current = current.Next
+			got = append(got, current.Val.(int))
+		}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got: %v, want: %v", got, want)
+		}
+	})
 }

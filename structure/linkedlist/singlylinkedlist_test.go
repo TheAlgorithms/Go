@@ -64,4 +64,42 @@ func TestSingly(t *testing.T) {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
 	})
+
+	list2 := Singly{}
+	list2.AddAtBeg(1)
+	list2.AddAtBeg(2)
+	list2.AddAtBeg(3)
+	list2.AddAtBeg(4)
+	list2.AddAtBeg(5)
+	list2.AddAtBeg(6)
+
+	t.Run("Test Reverse()", func(t *testing.T) {
+		want := []interface{}{1, 2, 3, 4, 5, 6}
+		got := []interface{}{}
+		list2.Reverse()
+		current := list2.Head
+		got = append(got, current.Val)
+		for current.Next != nil {
+			current = current.Next
+			got = append(got, current.Val)
+		}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got: %v, want: %v", got, want)
+		}
+	})
+
+	t.Run("Test ReversePartition()", func(t *testing.T) {
+		want := []interface{}{6, 2, 3, 4, 5, 1}
+		got := []interface{}{}
+		list2.ReversePartition(2, 5)
+		current := list2.Head
+		got = append(got, current.Val)
+		for current.Next != nil {
+			current = current.Next
+			got = append(got, current.Val)
+		}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got: %v, want: %v", got, want)
+		}
+	})
 }
