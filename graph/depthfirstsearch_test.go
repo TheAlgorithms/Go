@@ -1,4 +1,4 @@
-package depthfirstsearch
+package graph
 
 import (
 	"reflect"
@@ -23,7 +23,7 @@ func TestDfsWhenPathIsFound(t *testing.T) {
 	start := 1
 	end := 6
 
-	actual, actualIsFound := Dfs(start, end, nodes, edges)
+	actual, actualIsFound := DepthFirstSearch(start, end, nodes, edges)
 	expected := []int{1, 3, 4, 5, 6}
 	expectedIsFound := true
 	t.Run("Test Dfs", func(t *testing.T) {
@@ -52,7 +52,7 @@ func TestDfsWhenPathIsNotFound(t *testing.T) {
 	start := 1
 	end := 7
 
-	actual, actualIsFound := Dfs(start, end, nodes, edges)
+	actual, actualIsFound := DepthFirstSearch(start, end, nodes, edges)
 	var expected []int
 	expectedIsFound := false
 	t.Run("Test Dfs", func(t *testing.T) {
