@@ -2,7 +2,8 @@
 // You must provide a minimum length and a maximum length
 // This length is not fixed if you generate multiple passwords for the same range
 
-package password_generator
+// Package password contains functions to help generate random passwords
+package password
 
 import (
 	"crypto/rand"
