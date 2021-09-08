@@ -85,4 +85,18 @@ func TestDoubleLinkedList(t *testing.T) {
 		}
 	})
 
+	t.Run("Test Reverse", func(t *testing.T) {
+		want := []int{4, 1, 2, 3}
+		got := []int{}
+		newList.Reverse()
+		current := newList.head
+		got = append(got, current.val)
+		for current.next != nil {
+			current = current.next
+			got = append(got, current.val)
+		}
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got: %v, want: %v", got, want)
+		}
+	})
 }
