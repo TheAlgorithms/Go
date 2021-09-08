@@ -91,7 +91,11 @@ func TestSingly(t *testing.T) {
 	t.Run("Test ReversePartition()", func(t *testing.T) {
 		want := []interface{}{6, 2, 3, 4, 5, 1}
 		got := []interface{}{}
-		list2.ReversePartition(2, 5)
+		err := list2.ReversePartition(2, 5)
+
+		if err != nil {
+			t.Errorf("Incorrect boundary conditions entered%v", err)
+		}
 		current := list2.Head
 		got = append(got, current.Val)
 		for current.Next != nil {
