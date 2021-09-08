@@ -1,12 +1,12 @@
-package linkedlist
+package singly_linkedlist
 
 import (
 	"reflect"
 	"testing"
 )
 
-func TestSingly(t *testing.T) {
-	list := NewSingly()
+func TestLinkedList(t *testing.T) {
+	list := CreateList()
 	list.AddAtBeg(1)
 	list.AddAtBeg(2)
 	list.AddAtBeg(3)
@@ -64,7 +64,8 @@ func TestSingly(t *testing.T) {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
 	})
-	list2 := NewSingly()
+
+	list2 := CreateList()
 	list2.AddAtBeg(1)
 	list2.AddAtBeg(2)
 	list2.AddAtBeg(3)

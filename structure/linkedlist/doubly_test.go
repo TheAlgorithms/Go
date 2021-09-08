@@ -1,12 +1,12 @@
-package linkedlist
+package doubly_linkedlist
 
 import (
 	"reflect"
 	"testing"
 )
 
-func TestDoubly(t *testing.T) {
-	newList := NewDoubly()
+func TestDoubleLinkedList(t *testing.T) {
+	newList := DoubleLinkedList{}
 
 	newList.AddAtBeg(1)
 	newList.AddAtBeg(2)
@@ -17,27 +17,27 @@ func TestDoubly(t *testing.T) {
 		wantPrev := []int{1, 2, 3}
 		got := []int{}
 
-		// check from Next address
-		current := newList.Head
+		// check from next address
+		current := newList.head
 
-		got = append(got, current.Val.(int))
+		got = append(got, current.val)
 
-		for current.Next != nil {
-			current = current.Next
-			got = append(got, current.Val.(int))
+		for current.next != nil {
+			current = current.next
+			got = append(got, current.val)
 		}
 
 		if !reflect.DeepEqual(got, wantNext) {
 			t.Errorf("got: %v, want: %v", got, wantNext)
 		}
 
-		// check from Prev address
+		// check from prev address
 		got = []int{}
-		got = append(got, current.Val.(int))
+		got = append(got, current.val)
 
-		for current.Prev != nil {
-			current = current.Prev
-			got = append(got, current.Val.(int))
+		for current.prev != nil {
+			current = current.prev
+			got = append(got, current.val)
 		}
 
 		if !reflect.DeepEqual(got, wantPrev) {
@@ -50,11 +50,11 @@ func TestDoubly(t *testing.T) {
 	t.Run("Test AddAtEnd", func(t *testing.T) {
 		want := []int{3, 2, 1, 4}
 		got := []int{}
-		current := newList.Head
-		got = append(got, current.Val.(int))
-		for current.Next != nil {
-			current = current.Next
-			got = append(got, current.Val.(int))
+		current := newList.head
+		got = append(got, current.val)
+		for current.next != nil {
+			current = current.next
+			got = append(got, current.val)
 		}
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -89,14 +89,11 @@ func TestDoubly(t *testing.T) {
 		want := []int{4, 1, 2, 3}
 		got := []int{}
 		newList.Reverse()
-		// check from Next address
-		current := newList.Head
-
-		got = append(got, current.Val.(int))
-
-		for current.Next != nil {
-			current = current.Next
-			got = append(got, current.Val.(int))
+		current := newList.head
+		got = append(got, current.val)
+		for current.next != nil {
+			current = current.next
+			got = append(got, current.val)
 		}
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
