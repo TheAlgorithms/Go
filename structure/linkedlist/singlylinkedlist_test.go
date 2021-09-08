@@ -89,7 +89,7 @@ func TestSingly(t *testing.T) {
 	})
 
 	t.Run("Test ReversePartition()", func(t *testing.T) {
-		want := []interface{}{6, 2, 3, 4, 5, 1}
+		want := []interface{}{1, 5, 4, 3, 2, 6}
 		got := []interface{}{}
 		err := list2.ReversePartition(2, 5)
 

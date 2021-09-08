@@ -85,11 +85,15 @@ func TestDoubly(t *testing.T) {
 		}
 	})
 
+	newList2 := NewDoubly()
+	newList2.AddAtBeg(1)
+	newList2.AddAtBeg(2)
+	newList2.AddAtBeg(3)
 	t.Run("Test Reverse", func(t *testing.T) {
-		want := []int{4, 1, 2, 3}
+		want := []int{1, 2, 3}
 		got := []int{}
-		newList.Reverse()
-		current := newList.Head
+		newList2.Reverse()
+		current := newList2.Head
 		got = append(got, current.Val.(int))
 		for current.Next != nil {
 			current = current.Next
