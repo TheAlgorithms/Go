@@ -1,7 +1,10 @@
 package linkedlist
 
 // demonstration of singly linked list in golang
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // Singly structure with length of the list and its head
 type Singly struct {
@@ -95,6 +98,39 @@ func (ll *Singly) Reverse() {
 	}
 
 	ll.Head = prev
+}
+
+// ReversePartition Reverse the linked list from the ath to the bth node
+func (ll *Singly) ReversePartition(left, right int) error {
+	err := ll.CheckRangeFromIndex(left, right)
+	if err != nil {
+		return err
+	}
+	tmpNode := NewNode(-1)
+	tmpNode.Next = ll.Head
+	pre := tmpNode
+	for i := 0; i < left-1; i++ {
+		pre = pre.Next
+	}
+	cur := pre.Next
+	for i := 0; i < right-left; i++ {
+		next := cur.Next
+		cur.Next = next.Next
+		next.Next = pre.Next
+		pre.Next = next
+	}
+	ll.Head = tmpNode.Next
+	return nil
+}
+func (ll *Singly) CheckRangeFromIndex(left, right int) error {
+	if left > right {
+		return errors.New("left boundary must smaller than right")
+	} else if left < 1 {
+		return errors.New("left boundary starts from the first node")
+	} else if right > ll.length {
+		return errors.New("right boundary cannot be greater than the length of the linked list")
+	}
+	return nil
 }
 
 // Display prints out the elements of the list.
