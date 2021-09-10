@@ -14,33 +14,39 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ## List of Algorithms
 
 ### Ciphers
-* [Caesar](./cipher/caesar)
-* [Diffie Hellman Key Exchange](./cipher/diffiehellman)
-* [Polybius](./cipher/polybius)
-* [Rot13](./cipher/rot13)
-* [Rsa](./cipher/rsa)
-* [Xor](./cipher/xor)
+* [Caesar](./cipher/caesar/caesar.go)
+* [Diffie Hellman Key Exchange](./cipher/diffiehellman/diffiehellmankeyexchange.go)
+* [Polybius](./cipher/polybius/polybius.go)
+* [Rot13](./cipher/rot13/rot13.go)
+* [Rsa](./cipher/rsa/rsa.go)
+* [Xor](./cipher/xor/xor.go)
 
 ### Conversions
 * [Roman To Integer](./conversion/romantointeger.go)
 
 ### Data Structures
-* [AVL Tree](./structure/avl)
-* [Binary Tree](./structure/binarytree)
-* [Dynamic Array](./structure/dynamicarray)
-* [Hashmap](./structure/hashmap)
+* [AVL Tree](./structure/avl/avl.go)
+* [Binary Tree](./structure/binarytree/btree.go)
+* [Dynamic Array](./structure/dynamicarray/dynamicarray.go)
+* [Hashmap](./structure/hashmap/hashmap.go)
 * Linked-List
     * [Doubly Linked List](./structure/linkedlist/doubly.go)
     * [Singly Linked List](./structure/linkedlist/singlylinkedlist.go)
     * [Cyclic Linked List AKA Looped Linked List](./structure/linkedlist/cyclic.go)
-* [Queue](./structure/queue) | Array, Linked-List, STL(Container/List), Test
-* [Set](./structure/set)
-* [Stack](./structure/stack) | Array, Linked-List, STL(Container/List), Test
-* [Trie](./structure/trie)
+* [Queue](./structure/queue)
+    * [Array Based](./structure/queue/queuearray.go)
+    * [Custom Linked List Based](./structure/queue/queuelinkedlist.go)
+    * [Standard Library Container/List Based](./structure/queue/queuelinkedlist.go)
+* [Set](./structure/set/set.go)
+* [Stack](./structure/stack)
+    * [Array Based](./structure/stack/stackarray.go)
+    * [Custom Linked List](./structure/stack/stacklinkedlist.go)
+    * [Standard Library Container/List Based](structure/stack/stacklinkedlistwithlist.go)
+* [Trie](./structure/trie/trie.go)
 
 ### Dynamic Programming
 * [Binomial Coefficient](./dynamic/binomialcoefficient.go)
-* [Fibonacci](./dynamic/fibonacci.go) | [Test](./dynamic/fibonacci_test.go)
+* [Fibonacci](./dynamic/fibonacci.go)
 * [Knapsack](./dynamic/knapsack.go)
 * [Longest Common Subsequence](./dynamic/longestcommonsubsequence.go)
 * [Longest Palindromic Subsequence](./dynamic/longestpalindromicsubsequence.go)
@@ -54,20 +60,28 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
     
 ### Math
 * [Gcd](./math/gcd)
-* [Lcm](./math/lcm)
-* [Max](./math/max)
-* [Modular](./math/modular) 
-* [Moser-de Bruijn sequence](./math/moserdebruijnsequence)
-* [Permutation](./math/permutation)
-* [Power](./math/power)
+    * [Extended](./math/gcd/extended.go)
+    * [Recursive](./math/gcd/gcd.go)
+    * [Iterative](./math/gcd/gcditerative.go)
+* [Lcm](./math/lcm/lcm.go)
+* [Max](./math/max/max.go)
+* [Modular](./math/modular)
+    * [Exponentiation](./math/max/max.go)
+    * [Inverse](./math/modular/inverse.go) 
+* [Moser-de Bruijn sequence](./math/moserdebruijnsequence/sequence.go)
+* [Permutation](./math/permutation/heaps.go)
+* [Power](./math/power/fastexponent.go)
 * [Prime](./math/prime)
-* [Pythagoras](./math/pythagoras)
+    * [Miller Rabin Primality Test](./math/prime/millerrabinprimalitytest.go)
+    * [Naive and Pair Approach](./math/prime/primecheck.go)
+    * [Sieve](./math/prime/sieve.go)
+* [Pythagoras](./math/pythagoras/pythagoras.go)
 * [Sieve](./math/prime/sieve.go)
 
 ### Other
-* [Max Subarray Sum](./other/maxsubarraysum)
-* [Nested Brackets](./other/nested)
-* [Password Generator](./other/password)
+* [Max Subarray Sum](./other/maxsubarraysum/maxsubarraysum.go)
+* [Nested Brackets](./other/nested/nestedbrackets.go)
+* [Password Generator](./other/password/generator.go)
 
 ### Searches
 * [Binary Search](./search/binary.go)
@@ -93,6 +107,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
     * [Advanced Aho Corasick](./strings/ahocorasick/advancedahocorasick.go)
     * [Aho Corasick](./strings/ahocorasick/ahocorasick.go)
 * Single String Matching
-    * [Bom](./strings/bom)
-    * [Horspool](./strings/horspool)
-    * [Kmp](./strings/kmp)
+    * [Bom](./strings/bom/bom.go)
+    * [Horspool](./strings/horspool/horspool.go)
+    * [Kmp](./strings/kmp/kmp.go)
