@@ -102,7 +102,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Sorts Test](./sort/sorts_test.go)
 
 ### Strings
-* [Levenshtein Distance](./strings/levenshtein)
+* [Levenshtein Distance](./strings/levenshtein/levenshteindistance.go)
 * Multiple String Matching
     * [Advanced Aho Corasick](./strings/ahocorasick/advancedahocorasick.go)
     * [Aho Corasick](./strings/ahocorasick/ahocorasick.go)
