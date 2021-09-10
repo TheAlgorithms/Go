@@ -74,7 +74,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Linear Search](./search/linear.go)
 * [Interpolation Search](./search/interpolation.go)
 
-## Sorts
+### Sorts
 * [Bubble Sort](./sort/bubblesort.go)
 * [Heap Sort](./sort/heapsort.go)
 * [Insertion Sort](./sort/insertionsort.go)
@@ -87,7 +87,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 * [Sorts Test](./sort/sorts_test.go)
 
-## Strings
+### Strings
 * [Levenshtein Distance](./strings/levenshtein)
 * Multiple String Matching
     * [Advanced Aho Corasick](./strings/ahocorasick/advancedahocorasick.go)
