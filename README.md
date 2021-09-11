@@ -16,98 +16,100 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## List of Algorithms
 
+### Ciphers
+* [Caesar](./cipher/caesar/caesar.go)
+* [Diffie Hellman Key Exchange](./cipher/diffiehellman/diffiehellmankeyexchange.go)
+* [Polybius](./cipher/polybius/polybius.go)
+* [Rot13](./cipher/rot13/rot13.go)
+* [Rsa](./cipher/rsa/rsa.go)
+* [Xor](./cipher/xor/xor.go)
 
-## Ciphers
-* [Caesar](./ciphers/caesar/)
-* [Diffie Hellman Key Exchange](./ciphers/diffie_hellman_key_exchange/)
-* [Polybius](./ciphers/polybius/)
-* [Rot13](./ciphers/rot13/)
-* [Rsa](./ciphers/rsa/)
-* [Xor](./ciphers/xor/)
+### Conversions
+* [Roman To Integer](./conversion/romantointeger.go)
 
-## Conversions
-* [Roman To Integer](./conversions/roman_to_integer/)
-
-## Data Structures
-* [Binary Tree](./data_structures/binary_tree/)
-* [Dynamic Array](./data_structures/dynamic_array/)
-* [Hashmap](./data_structures/hashmap/)
+### Data Structures
+* [AVL Tree](./structure/avl/avl.go)
+* [Binary Tree](./structure/binarytree/btree.go)
+* [Dynamic Array](./structure/dynamicarray/dynamicarray.go)
+* [Hashmap](./structure/hashmap/hashmap.go)
 * Linked-List
-    * [Doubly Linked-list](./data_structures/linkedlist/doubly_linkedlist/)
-    * [Singly Linked-list](./data_structures/linkedlist/singly_linkedlist/)
-* [Queue](./data_structures/queue/) | Array, Linked-List, STL(Container/List), Test
-* [Stack](./data_structures/stack/) | Array, Linked-List, STL(Container/List), Test
-* [Set](./data_structures/set/)
-* [Trie](./data_structures/trie/)
+    * [Doubly Linked List](./structure/linkedlist/doubly.go)
+    * [Singly Linked List](./structure/linkedlist/singlylinkedlist.go)
+    * [Cyclic Linked List AKA Looped Linked List](./structure/linkedlist/cyclic.go)
+* [Queue](./structure/queue)
+    * [Array Based](./structure/queue/queuearray.go)
+    * [Custom Linked List Based](./structure/queue/queuelinkedlist.go)
+    * [Standard Library Container/List Based](./structure/queue/queuelinkedlist.go)
+* [Set](./structure/set/set.go)
+* [Stack](./structure/stack)
+    * [Array Based](./structure/stack/stackarray.go)
+    * [Custom Linked List](./structure/stack/stacklinkedlist.go)
+    * [Standard Library Container/List Based](structure/stack/stacklinkedlistwithlist.go)
+* [Trie](./structure/trie/trie.go)
 
-## Design Patterns
-* [Abstract Factory](./design_patterns/abstract_factory/)
-* [Builder](./design_patterns/builder/)
-* [Factory Method](./design_patterns/factory_method/)
-* [Prototype](./design_patterns/prototype/)
+### Dynamic Programming
+* [Binomial Coefficient](./dynamic/binomialcoefficient.go)
+* [Fibonacci](./dynamic/fibonacci.go)
+* [Knapsack](./dynamic/knapsack.go)
+* [Longest Common Subsequence](./dynamic/longestcommonsubsequence.go)
+* [Longest Palindromic Subsequence](./dynamic/longestpalindromicsubsequence.go)
+* [Matrix Multiplication](./dynamic/matrixmultiplication.go)
+* [Cutting a Rod](./dynamic/rodcutting.go)
 
-
-## Dynamic Programming
-* [Binomial Coefficient](./dynamic_programming/binomialcoefficient.go)
-* [Fibonacci](./dynamic_programming/fibonacci.go) | [Test](./dynamic_programming/fibonacci_test.go)
-* [Knapsack](./dynamic_programming/knapsack.go)
-* [Longest Common Subsequence](./dynamic_programming/longestcommonsubsequence.go)
-* [Longest Palindromic Subsequence](./dynamic_programming/longestpalindromicsubsequence.go)
-* [Matrix Multiplication](./dynamic_programming/matrixmultiplication.go)
-* [Cutting a Rod](./dynamic_programming/rodcutting.go)
-
-## Genetic Algorithm
-* [Genetic Algorithm](./genetic_algorithm/geneticalgorithm.go)
-
-## Graphs
-* [Breadth First Search](./graphs/breadth_first_search/)
-* [Depth First Search](./graphs/depth_first_search/)
-* [Floyd Warshall](./graphs/floyd_warshall/)
+### Graphs
+* [Breadth First Search](./graph/breadthfirstsearch.go)
+* [Depth First Search](./graph/depthfirstsearch.go)
+* [Floyd Warshall](./graph/floydwarshall.go)
     
-## Math
-* [Gcd](./math/gcd/)
-* [Lcm](./math/lcm/)
-* [Modular](./math/modular/) 
-* [Permutation](./math/permutation/)
-* [Power](./math/power/)
-* [Prime](./math/prime/)
-* [Pythagoras](./math/pythagoras/)
-* [Sieve](./math/sieve/)
+### Math
+* [Gcd](./math/gcd)
+    * [Extended](./math/gcd/extended.go)
+    * [Recursive](./math/gcd/gcd.go)
+    * [Iterative](./math/gcd/gcditerative.go)
+* [Lcm](./math/lcm/lcm.go)
+* [Max](./math/max/max.go)
+* [Modular](./math/modular)
+    * [Exponentiation](./math/max/max.go)
+    * [Inverse](./math/modular/inverse.go) 
+* [Moser-de Bruijn sequence](./math/moserdebruijnsequence/sequence.go)
+* [Permutation](./math/permutation/heaps.go)
+* [Power](./math/power/fastexponent.go)
+* [Prime](./math/prime)
+    * [Miller Rabin Primality Test](./math/prime/millerrabinprimalitytest.go)
+    * [Naive and Pair Approach](./math/prime/primecheck.go)
+    * [Sieve](./math/prime/sieve.go)
+* [Pythagoras](./math/pythagoras/pythagoras.go)
+* [Sieve](./math/prime/sieve.go)
+
+### Other
+* [Max Subarray Sum](./other/maxsubarraysum/maxsubarraysum.go)
+* [Nested Brackets](./other/nested/nestedbrackets.go)
+* [Password Generator](./other/password/generator.go)
+
+### Searches
+* [Binary Search](./search/binary.go)
+* [Linear Search](./search/linear.go)
+* [Interpolation Search](./search/interpolation.go)
+
+### Sorts
+* [Bubble Sort](./sort/bubblesort.go)
+* [Heap Sort](./sort/heapsort.go)
+* [Insertion Sort](./sort/insertionsort.go)
+* [Merge Sort](./sort/mergesort.go)
+* [Quick Sort](./sort/quicksort.go)
+* [Radix Sort](./sort/radixsort.go)
+* [Selection Sort](./sort/selectionsort.go)
+* [Shell Sort](./sort/shellsort.go)
 
 
-## Other
-* [Max Subarray Sum](./other/max_subarray_sum/)
-* [Monte Carlo Pi](./other/monte_carlo_pi/)
-* [Nested Brackets](./other/nested_brackets/)
-* [Password Generator](./other/password_generator/)
-* [String Combinations](./other/string_combinations/)
+* [Sorts Test](./sort/sorts_test.go)
 
-## Searches
-* [Binary Search](./searches/binary_search/)
-* [Linear Search](./searches/linear_search/)
-
-## Sorts
-* [Bubble Sort](./sorts/bubblesort.go)
-* [Heap Sort](./sorts/heapsort.go)
-* [Insertion Sort](./sorts/insertionsort.go)
-* [Merge Sort](./sorts/mergesort.go)
-* [Quick Sort](./sorts/quicksort.go)
-* [Radix Sort](./sorts/radixsort.go)
-* [Selection Sort](./sorts/selectionsort.go)
-* [Shell Sort](./sorts/shellsort.go)
-
-
-* Sorts Test
-  * [Sorts Test](./sorts/sorts_test.go)
-  * [Sorts Testcases](./sorts/sorts_testcases.go)
-
-## Strings
-* [Levenshtein Distance](./strings/levenshtein_distance/)
+### Strings
+* [Levenshtein Distance](./strings/levenshtein/levenshteindistance.go)
 * Multiple String Matching
-    * [Advanced Aho Corasick](./strings/multiple_string_matching/advanced_aho_corasick/)
-    * [Aho Corasick](./strings/multiple_string_matching/aho_corasick/)
-* [Naive String Search](./strings/naive_string_search/)
+    * [Advanced Aho Corasick](./strings/ahocorasick/advancedahocorasick.go)
+    * [Aho Corasick](./strings/ahocorasick/ahocorasick.go)
 * Single String Matching
-    * [Bom](./strings/single_string_matching/bom/)
-    * [Horspool](./strings/single_string_matching/horspool/)
-    * [Kmp](./strings/single_string_matching/kmp/)
+    * [Bom](./strings/bom/bom.go)
+    * [Horspool](./strings/horspool/horspool.go)
+    * [Kmp](./strings/kmp/kmp.go)
