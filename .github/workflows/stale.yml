@@ -1,4 +1,5 @@
 name: 'Close stale issues and PRs'
+on: [push, pull_request]
 jobs:
   stale:
     runs-on: ubuntu-latest
