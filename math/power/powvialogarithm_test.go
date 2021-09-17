@@ -1,0 +1,38 @@
+// powvialogarithm_test.go
+// description: Test for PowUseLog
+// author(s) [red_byte](https://github.com/i-redbyte)
+// see powvialogarithm.go
+
+package power
+
+import "testing"
+
+var tests = []struct {
+	name     string
+	base     int
+	power    int
+	expected int
+}{
+	{"0^0", 99, 1, 99},
+	{"-3^9", -3, 9, -19683},
+	{"0^2", 0, 2, 0},
+	{"2^0", 2, 0, 1},
+	{"2^3", 2, 3, 8},
+	{"8^3", 8, 3, 512},
+	{"11^11", 11, 11, 285311670611},
+	{"5^5", 5, 5, 3125},
+	{"-7^2", -7, 2, 49},
+	{"-6^3", -6, 3, -216},
+}
+
+func TestPowUseLog(t *testing.T) {
+	for _, tc := range tests {
+		t.Run(tc.name, func(t *testing.T) {
+			result := PowUseLog(tc.base, tc.power)
+			t.Log(result)
+			if result != tc.expected {
+				t.Errorf("Expected %d to the power of %d to be: %d, but got: %d", tc.base, tc.power, tc.expected, result)
+			}
+		})
+	}
+}
