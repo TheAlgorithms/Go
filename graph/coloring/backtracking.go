@@ -1,8 +1,11 @@
+// This file contains the graph coloring implementation using backtracking
+// Author(s): [Shivam](https://github.com/Shivam010)
+
 package coloring
 
-// ColoringUsingBacktracking will return the Color of each vertex and the
+// ColorUsingBacktracking will return the Color of each vertex and the
 // total number of different colors used, using backtracking
-func (g *Graph) ColoringUsingBacktracking() (map[int]Color, int) {
+func (g *Graph) ColorUsingBacktracking() (map[int]Color, int) {
 	vertexColors := make(map[int]Color, g.vertices)
 	g.colorVertex(0, vertexColors)
 

@@ -1,3 +1,6 @@
+// This file provides tests for graph coloring validations.
+// Author(s): [Shivam](https://github.com/Shivam010)
+
 package coloring_test
 
 import (
@@ -14,9 +17,9 @@ type testGraph struct {
 
 func getTestGraphs() (list []*testGraph) {
 	// Graph 0th:
-	// 		1---2
-	// 		| /  \
-	//  4---3     0
+	//     1---2
+	//     | /  \
+	// 4---3    0
 	// Min number of colors required = 3
 	g0 := &testGraph{
 		Graph:      &coloring.Graph{},
@@ -35,8 +38,8 @@ func getTestGraphs() (list []*testGraph) {
 	g0.Graph.AddEdge(2, 0)
 
 	// Graph 1st:
-	// 		1---2
-	// 		| / |
+	//      1---2
+	//      | / |
 	//  4---3---0
 	// Min number of colors required = 3
 	g1 := &testGraph{
@@ -57,8 +60,8 @@ func getTestGraphs() (list []*testGraph) {
 	g1.Graph.AddEdge(3, 0)
 
 	// Graph 2nd:
-	// 		1---2
-	// 		|
+	//      1---2
+	//      |
 	//  4---3   0
 	// Min number of colors required = 2
 	g2 := &testGraph{
@@ -76,9 +79,9 @@ func getTestGraphs() (list []*testGraph) {
 	g2.Graph.AddEdge(1, 2)
 
 	// Graph 3rd:
-	// 	1---2	4
-	// 	|	|	|
-	//  0---3	5
+	//  1---2   4
+	//  |   |   |
+	//  0---3   5
 	// Min number of colors required = 2
 	g3 := &testGraph{
 		Graph:      &coloring.Graph{},
@@ -139,7 +142,7 @@ func getTestGraphsForNegativeTests() (list []*testGraph) {
 	return list[:4]
 }
 
-func TestGraph_ValidateColorsOfVertex_Negative(t *testing.T) {
+func TestGraphValidateColorsOfVertex_Negative(t *testing.T) {
 	for i, tt := range getTestGraphsForNegativeTests() {
 		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			if err := tt.Graph.ValidateColorsOfVertex(tt.VertexColors); err == nil {

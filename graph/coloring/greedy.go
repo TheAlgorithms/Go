@@ -1,11 +1,14 @@
+// This file contains the graph coloring implementation using Greedy Approach.
+// Author(s): [Shivam](https://github.com/Shivam010)
+
 package coloring
 
 import "sort"
 
-// ColoringUsingGreedyApproach will return the Color of each vertex and the
+// ColorUsingGreedyApproach will return the Color of each vertex and the
 // total number of different colors used, using a greedy approach, based on
 // the number of edges (or degree) from any vertex.
-func (g *Graph) ColoringUsingGreedyApproach() (map[int]Color, int) {
+func (g *Graph) ColorUsingGreedyApproach() (map[int]Color, int) {
 	degreeOfVertex := make([]struct{ degree, vertex int }, 0, g.vertices)
 	for v, neighbours := range g.edges {
 		degreeOfVertex = append(degreeOfVertex,

@@ -1,10 +1,13 @@
+// This file contains the graph coloring implementation using BFS
+// Author(s): [Shivam](https://github.com/Shivam010)
+
 package coloring
 
 import "container/list"
 
-// ColoringUsingBFS will return the Color of each vertex and the
+// ColorUsingBFS will return the Color of each vertex and the
 // total number of different colors used, using BFS
-func (g *Graph) ColoringUsingBFS() (map[int]Color, int) {
+func (g *Graph) ColorUsingBFS() (map[int]Color, int) {
 	// Initially all vertices will have same color
 	vertexColors := make(map[int]Color, g.vertices)
 	for i := 0; i < g.vertices; i++ {
