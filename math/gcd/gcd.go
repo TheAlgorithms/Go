@@ -1,9 +1,9 @@
 package gcd
 
-// Gcd finds and returns the greatest common divisor of a given integer.
-func Gcd(a, b int) int {
+// Recursive finds and returns the greatest common divisor of a given integer.
+func Recursive(a, b int64) int64 {
 	if b == 0 {
 		return a
 	}
-	return Gcd(b, a%b)
+	return Recursive(b, a%b)
 }
