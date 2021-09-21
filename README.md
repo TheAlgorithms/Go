@@ -57,7 +57,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Breadth First Search](./graph/breadthfirstsearch.go)
 * [Depth First Search](./graph/depthfirstsearch.go)
 * [Floyd Warshall](./graph/floydwarshall.go)
-    
+* [Coloring Algorithms](./graph/coloring)
+  * [Using BFS](./graph/coloring/bfs.go)
+  * [Using Backtracking](./graph/coloring/backtracking.go)
+  * [Using Greedy Approach](./graph/coloring/greedy.go)
+
 ### Math
 * [Gcd](./math/gcd)
     * [Extended](./math/gcd/extended.go)
