@@ -21,7 +21,7 @@ var tests = []struct {
 	{"31415", 5},
 }
 
-func TestPowUseLog(t *testing.T) {
+func TestPiSpigot(t *testing.T) {
 	for _, tv := range tests {
 		t.Run(strconv.Itoa(tv.n)+":"+tv.result, func(t *testing.T) {
 			result := PiSpigot(tv.n)
@@ -29,5 +29,23 @@ func TestPowUseLog(t *testing.T) {
 				t.Errorf("Bad result %d:%s", tv.n, tv.result)
 			}
 		})
+	}
+}
+
+func BenchmarkPiSpigotN10(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PiSpigot(10)
+	}
+}
+
+func BenchmarkPiSpigotN100(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PiSpigot(100)
+	}
+}
+
+func BenchmarkPiSpigotN1000(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PiSpigot(1000)
 	}
 }
