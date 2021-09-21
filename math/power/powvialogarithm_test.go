@@ -9,9 +9,9 @@ import "testing"
 
 var tests = []struct {
 	name     string
-	base     int
-	power    int
-	expected int
+	base     float64
+	power    float64
+	expected float64
 }{
 	{"0^0", 99, 1, 99},
 	{"-3^9", -3, 9, -19683},
@@ -31,8 +31,14 @@ func TestPowUseLog(t *testing.T) {
 			result := PowUseLog(tc.base, tc.power)
 			t.Log(result)
 			if result != tc.expected {
-				t.Errorf("Expected %d to the power of %d to be: %d, but got: %d", tc.base, tc.power, tc.expected, result)
+				t.Errorf("Expected %.2f to the power of %.2f to be: %.2f, but got: %.2f", tc.base, tc.power, tc.expected, result)
 			}
 		})
+	}
+}
+
+func BenchmarkPowUseLog(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PowUseLog(10, 5)
 	}
 }
