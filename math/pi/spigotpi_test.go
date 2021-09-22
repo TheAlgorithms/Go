@@ -9,22 +9,21 @@ import (
 	"testing"
 )
 
-var tests = []struct {
-	result string
-	n      int
-}{
-	{"314159", 6},
-	{"31415926535", 11},
-	{"314159265358", 12},
-	{"314159265358979323846", 21},
-	{"314", 3},
-	{"31415", 5},
-}
-
-func TestPiSpigot(t *testing.T) {
+func TestSpigot(t *testing.T) {
+	var tests = []struct {
+		result string
+		n      int
+	}{
+		{"314159", 6},
+		{"31415926535", 11},
+		{"314159265358", 12},
+		{"314159265358979323846", 21},
+		{"314", 3},
+		{"31415", 5},
+	}
 	for _, tv := range tests {
 		t.Run(strconv.Itoa(tv.n)+":"+tv.result, func(t *testing.T) {
-			result := PiSpigot(tv.n)
+			result := Spigot(tv.n)
 			if result != tv.result {
 				t.Errorf("Bad result %d:%s", tv.n, tv.result)
 			}
@@ -34,18 +33,18 @@ func TestPiSpigot(t *testing.T) {
 
 func BenchmarkPiSpigotN10(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PiSpigot(10)
+		Spigot(10)
 	}
 }
 
 func BenchmarkPiSpigotN100(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PiSpigot(100)
+		Spigot(100)
 	}
 }
 
 func BenchmarkPiSpigotN1000(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		PiSpigot(1000)
+		Spigot(1000)
 	}
 }

@@ -9,29 +9,30 @@ package pi
 
 import "strconv"
 
-func PiSpigot(n int) string {
+func Spigot(n int) string {
 	pi := ""
 	boxes := n * 10 / 3
-	reminders := make([]int, boxes)
+	reminder := make([]int, boxes)
 	for i := 0; i < boxes; i++ {
-		reminders[i] = 2
+		reminder[i] = 2
 	}
 	heldDigits := 0
 	for i := 0; i < n; i++ {
 		carriedOver := 0
 		sum := 0
 		for j := boxes - 1; j >= 0; j-- {
-			reminders[j] *= 10
-			sum = reminders[j] + carriedOver
+			reminder[j] *= 10
+			sum = reminder[j] + carriedOver
 			quotient := sum / (j*2 + 1)
-			reminders[j] = sum % (j*2 + 1)
+			reminder[j] = sum % (j*2 + 1)
 			carriedOver = quotient * j
 		}
-		reminders[0] = sum % 10
+		reminder[0] = sum % 10
 		q := sum / 10
-		if q == 9 {
+		switch q {
+		case 9:
 			heldDigits++
-		} else if q == 10 {
+		case 10:
 			q = 0
 			for k := 1; k <= heldDigits; k++ {
 				replaced, _ := strconv.Atoi(pi[i-k : i-k+1])
@@ -40,11 +41,11 @@ func PiSpigot(n int) string {
 				} else {
 					replaced++
 				}
-				pi = string(delChar([]rune(pi), i-k))
+				pi = string(delChar(pi, i-k))
 				pi = pi[:i-k] + strconv.Itoa(replaced) + pi[i-k:]
 			}
 			heldDigits = 1
-		} else {
+		default:
 			heldDigits = 1
 		}
 		pi += strconv.Itoa(q)
@@ -52,6 +53,7 @@ func PiSpigot(n int) string {
 	return pi
 }
 
-func delChar(s []rune, index int) []rune {
-	return append(s[0:index], s[index+1:]...)
+func delChar(s string, index int) []rune {
+	tmp := []rune(s)
+	return append(tmp[0:index], tmp[index+1:]...)
 }

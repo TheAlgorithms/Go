@@ -11,7 +11,7 @@ import (
 	"math"
 )
 
-func PowUseLog(a float64, b float64) float64 {
+func UsingLog(a float64, b float64) float64 {
 	var p float64
 	p = 1
 	if a < 0 && int(b)&1 != 0 {
