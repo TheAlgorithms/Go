@@ -16,7 +16,7 @@ func Spigot(n int) string {
 	for i := 0; i < boxes; i++ {
 		remainders[i] = 2
 	}
-	heldDigits := 0
+	digitsHeld := 0
 	for i := 0; i < n; i++ {
 		carriedOver := 0
 		sum := 0
@@ -31,10 +31,10 @@ func Spigot(n int) string {
 		q := sum / 10
 		switch q {
 		case 9:
-			heldDigits++
+			digitsHeld++
 		case 10:
 			q = 0
-			for k := 1; k <= heldDigits; k++ {
+			for k := 1; k <= digitsHeld; k++ {
 				replaced, _ := strconv.Atoi(pi[i-k : i-k+1])
 				if replaced == 9 {
 					replaced = 0
@@ -44,9 +44,9 @@ func Spigot(n int) string {
 				pi = delChar(pi, i-k)
 				pi = pi[:i-k] + strconv.Itoa(replaced) + pi[i-k:]
 			}
-			heldDigits = 1
+			digitsHeld = 1
 		default:
-			heldDigits = 1
+			digitsHeld = 1
 		}
 		pi += strconv.Itoa(q)
 	}
