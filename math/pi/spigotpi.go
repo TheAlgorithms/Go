@@ -12,22 +12,22 @@ import "strconv"
 func Spigot(n int) string {
 	pi := ""
 	boxes := n * 10 / 3
-	reminder := make([]int, boxes)
+	remainders := make([]int, boxes)
 	for i := 0; i < boxes; i++ {
-		reminder[i] = 2
+		remainders[i] = 2
 	}
 	heldDigits := 0
 	for i := 0; i < n; i++ {
 		carriedOver := 0
 		sum := 0
 		for j := boxes - 1; j >= 0; j-- {
-			reminder[j] *= 10
-			sum = reminder[j] + carriedOver
+			remainders[j] *= 10
+			sum = remainders[j] + carriedOver
 			quotient := sum / (j*2 + 1)
-			reminder[j] = sum % (j*2 + 1)
+			remainders[j] = sum % (j*2 + 1)
 			carriedOver = quotient * j
 		}
-		reminder[0] = sum % 10
+		remainders[0] = sum % 10
 		q := sum / 10
 		switch q {
 		case 9:
@@ -41,7 +41,7 @@ func Spigot(n int) string {
 				} else {
 					replaced++
 				}
-				pi = string(delChar(pi, i-k))
+				pi = delChar(pi, i-k)
 				pi = pi[:i-k] + strconv.Itoa(replaced) + pi[i-k:]
 			}
 			heldDigits = 1
@@ -53,7 +53,7 @@ func Spigot(n int) string {
 	return pi
 }
 
-func delChar(s string, index int) []rune {
+func delChar(s string, index int) string {
 	tmp := []rune(s)
-	return append(tmp[0:index], tmp[index+1:]...)
+	return string(append(tmp[0:index], tmp[index+1:]...))
 }
