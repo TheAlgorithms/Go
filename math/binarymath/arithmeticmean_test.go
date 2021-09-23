@@ -2,15 +2,16 @@
 // description: Test for Arithmetic mean
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see arithmeticmean.go
+
 package binarymath
 
 import "testing"
 
-func TestArithmeticMean1(t *testing.T) {
+func TestMeanUsingAndXor(t *testing.T) {
 	tests := getTests()
 	for _, tv := range tests {
 		t.Run(tv.name, func(t *testing.T) {
-			result := ArithmeticMean1(tv.a, tv.b)
+			result := MeanUsingAndXor(tv.a, tv.b)
 			if result != tv.result {
 				t.Errorf("Wrong result! Expected:%d, returned:%d ", tv.result, result)
 			}
@@ -19,11 +20,11 @@ func TestArithmeticMean1(t *testing.T) {
 
 }
 
-func TestArithmeticMean2(t *testing.T) {
+func TestMeanUsingRightShift(t *testing.T) {
 	tests := getTests()
 	for _, tv := range tests {
 		t.Run(tv.name, func(t *testing.T) {
-			result := ArithmeticMean2(tv.a, tv.b)
+			result := MeanUsingRightShift(tv.a, tv.b)
 			if result != tv.result {
 				t.Errorf("Wrong result! Expected:%d, returned:%d ", tv.result, result)
 			}
@@ -43,22 +44,22 @@ func getTests() []struct {
 		b      int
 		result int
 	}{
-		{"(2+4)/2=3", 2, 4, 3},
-		{"(5+5)/2=5", 5, 5, 5},
-		{"(1000+1002)/2=1000", 1000, 1002, 1001},
-		{"(80+40)/2=60", 80, 40, 60},
-		{"(7+4)/2=5", 7, 4, 5},
+		{"Average of 2 and 4", 2, 4, 3},
+		{"Average of 5 and 5", 5, 5, 5},
+		{"Average of 1000 and 1002", 1000, 1002, 1001},
+		{"Average of 80 and 40", 80, 40, 60},
+		{"Average of 7 and 4", 7, 4, 5},
 	}
 	return tests
 }
-func BenchmarkArithmeticMean1(b *testing.B) {
+func BenchmarkMeanUsingAndXor(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		ArithmeticMean1(222, 888)
+		MeanUsingAndXor(222, 888)
 	}
 }
 
-func BenchmarkArithmeticMean2(b *testing.B) {
+func BenchmarkMeanUsingRightShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		ArithmeticMean2(222, 888)
+		MeanUsingRightShift(222, 888)
 	}
 }
