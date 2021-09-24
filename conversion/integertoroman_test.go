@@ -6,19 +6,19 @@ func TestIntToRoman(t *testing.T) {
 	for expected, input := range romanTestCases {
 		out, err := IntToRoman(input)
 		if err != nil {
-			t.Errorf("IntToString(%d) returned an error %s", input, err.Error())
+			t.Errorf("IntToRoman(%d) returned an error %s", input, err.Error())
 		}
 		if out != expected {
-			t.Errorf("IntToString(%d) = %s; want %s", input, out, expected)
+			t.Errorf("IntToRoman(%d) = %s; want %s", input, out, expected)
 		}
 	}
 	_, err := IntToRoman(100000)
 	if err == nil {
-		t.Errorf("IntToString(%d) expected an error", 100000)
+		t.Errorf("IntToRoman(%d) expected an error", 100000)
 	}
 	_, err = IntToRoman(0)
 	if err == nil {
-		t.Errorf("IntToString(%d) expected an error", 0)
+		t.Errorf("IntToRoman(%d) expected an error", 0)
 	}
 }
 
