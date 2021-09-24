@@ -49,7 +49,7 @@ func RomanToInteger(input string) (int, error) {
 		}
 	}
 	// if we are still left with input string values then the
-	// input was invalid and the bool is returned as false
+	// input was invalid and an error is returned.
 	if len(input) > 0 {
 		return 0, errors.New("invalid roman numeral")
 	}
