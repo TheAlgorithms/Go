@@ -7,13 +7,5 @@
 
 # Order is important. The last matching pattern has the most precedence.
 
+* @siriak @raklaptudirm @tjgurwara99
 /.*  @cclauss
-/ciphers/ @vedantmamgain 
-/data-structures/ @Mystigan @vedantmamgain 
-/dynamic-programming/ @vedantmamgain 
-/graphs/ @vedantmamgain 
-/math/  @vedantmamgain @Mystigan  
-/other/ @vedantmamgain 
-/searches/ @Mystigan 
-/sorts/ @Mystigan 
-/strings/ @vedantmamgain 
