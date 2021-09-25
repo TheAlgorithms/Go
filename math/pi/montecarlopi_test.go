@@ -11,7 +11,7 @@ import (
 )
 
 func TestMonteCarloPi(t *testing.T) {
-	t.Run("BruteForce Pi", func(t *testing.T) {
+	t.Run("Monte Carlo Pi", func(t *testing.T) {
 		result := fmt.Sprintf("%.2f", MonteCarloPi(100000000))
 		t.Log(result)
 		if result != "3.14" {

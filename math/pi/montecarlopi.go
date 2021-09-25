@@ -12,16 +12,16 @@ import (
 	"time"
 )
 
-func MonteCarloPi(n int) float64 {
+func MonteCarloPi(randomPoints int) float64 {
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
-	pass := 0
-	for i := 0; i < n; i++ {
+	inside := 0
+	for i := 0; i < randomPoints; i++ {
 		x := rnd.Float64()
 		y := rnd.Float64()
 		if x*x+y*y <= 1 {
-			pass += 1
+			inside += 1
 		}
 	}
-	pi := float64(pass) / float64(n) * float64(4)
+	pi := float64(inside) / float64(randomPoints) * float64(4)
 	return pi
 }
