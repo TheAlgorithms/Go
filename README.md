@@ -22,7 +22,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Xor](./cipher/xor/xor.go)
 
 ### Conversions
-* [Roman To Integer](./conversion/romantointeger.go)
+* [Roman Numeral To Integer](./conversion/romantointeger.go)
+* [Integer To Roman Numeral](./conversion/integertoroman.go)
 
 ### Data Structures
 * [AVL Tree](./structure/avl/avl.go)
