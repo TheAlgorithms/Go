@@ -1,3 +1,8 @@
+// checkisnumberpoweroftwo_test.go
+// description: Test for Is the number a power of two
+// author(s) [red_byte](https://github.com/i-redbyte)
+// see checkisnumberpoweroftwo.go
+
 package binarymath
 
 import (
