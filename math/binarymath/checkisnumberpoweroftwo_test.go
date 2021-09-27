@@ -20,16 +20,16 @@ func getTestsForPowerOfTwo() []struct {
 		a       int
 		missing bool
 	}{
-		{"64 is power of two? - YES", 64, true},
-		{"1 is power of two? - YES", 1, true},
-		{"2 is power of two? - YES", 2, true},
-		{"5 is power of two? - NO", 5, false},
-		{"1023 is power of two? - NO", 1023, false},
-		{"1024 is power of two? - YES", 1024, true},
-		{"0 is power of two? - NO", 0, false},
-		{"9223372036854775807 is power of two? - NO", math.MaxInt64, false},
-		{"9223372036854775806 is power of two? - NO", math.MaxInt64, false},
-		{"4611686018427387904 is power of two? - YES", 4611686018427387904, true},
+		{"Is 64 a power of 2? - YES", 64, true},
+		{"Is 1 a power of 2? - YES", 1, true},
+		{"Is 2 a power of 2? - YES", 2, true},
+		{"Is 5 a power of 2? - NO", 5, false},
+		{"Is 1023 a power of 2? - NO", 1023, false},
+		{"Is 1024 a power of 2? - YES", 1024, true},
+		{"Is 0 a power of 2? - NO", 0, false},
+		{"Is 9223372036854775807 a power of 2? - NO", math.MaxInt64, false},
+		{"Is 9223372036854775806 a power of 2? - NO", math.MaxInt64, false},
+		{"Is 4611686018427387904 a power of 2? - YES", 4611686018427387904, true},
 	}
 	return tests
 }
