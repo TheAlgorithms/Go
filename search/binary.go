@@ -1,13 +1,9 @@
 package search
 
-import "errors"
-
-var errNotFound = errors.New("target not found in array")
-
 // Binary Binary Search
 func Binary(array []int, target int, lowIndex int, highIndex int) (int, error) {
 	if highIndex < lowIndex || len(array) == 0 {
-		return -1, errNotFound
+		return -1, ErrNotFound
 	}
 	mid := int(lowIndex + (highIndex-lowIndex)/2)
 	if array[mid] > target {
@@ -34,5 +30,5 @@ func BinaryIterative(array []int, target int, lowIndex int, highIndex int) (int,
 			return mid, nil
 		}
 	}
-	return -1, errNotFound
+	return -1, ErrNotFound
 }
