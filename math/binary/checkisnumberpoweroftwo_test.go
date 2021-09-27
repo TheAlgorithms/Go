@@ -6,6 +6,7 @@
 package binary
 
 import (
+	math2 "github.com/TheAlgorithms/Go/math"
 	"math"
 	"testing"
 )
@@ -64,7 +65,7 @@ func TestIsPowerOfTwoUseLog(t *testing.T) {
 	tests := getTestsForPowerOfTwo()
 	for _, tv := range tests {
 		t.Run(tv.name, func(t *testing.T) {
-			result := IsPowerOfTwoUseLog(float64(tv.a))
+			result := math2.IsPowerOfTwoUseLog(float64(tv.a))
 			t.Log(tv.a, " ", result)
 			if result != tv.missing {
 				t.Errorf("Wrong result! Expected:%v, returned:%v ", tv.missing, result)
@@ -87,6 +88,6 @@ func BenchmarkIsPowerOfTwoUseCycleAndLeftShift(b *testing.B) {
 
 func BenchmarkIsPowerOfTwoUseLog(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		IsPowerOfTwoUseLog(1024)
+		math2.IsPowerOfTwoUseLog(1024)
 	}
 }

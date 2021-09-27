@@ -7,10 +7,6 @@
 
 package binary
 
-import (
-	"math"
-)
-
 // IsPowerOfTwo This function uses the fact that powers of 2 are represented
 // like 10...0 in binary, and numbers one less than the power of 2
 // are represented like 11...1.
@@ -37,12 +33,4 @@ func IsPowerOfTwoLeftShift(number uint) bool {
 		}
 	}
 	return false
-}
-
-func IsPowerOfTwoUseLog(number float64) bool {
-	if number == 0 || math.Round(number) == math.MaxInt64 {
-		return false
-	}
-	log := math.Log2(number)
-	return log == math.Round(log)
 }
