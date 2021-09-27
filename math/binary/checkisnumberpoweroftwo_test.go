@@ -3,7 +3,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see checkisnumberpoweroftwo.go
 
-package binarymath
+package binary
 
 import (
 	"math"
@@ -34,11 +34,11 @@ func getTestsForPowerOfTwo() []struct {
 	return tests
 }
 
-func TestIsPowerOfTwoBinaryMethod(t *testing.T) {
+func TestIsPowerOfTwo(t *testing.T) {
 	tests := getTestsForPowerOfTwo()
 	for _, tv := range tests {
 		t.Run(tv.name, func(t *testing.T) {
-			result := IsPowerOfTwoBinaryMethod(tv.a)
+			result := IsPowerOfTwo(tv.a)
 			t.Log(tv.a, " ", result)
 			if result != tv.missing {
 				t.Errorf("Wrong result! Expected:%v, returned:%v ", tv.missing, result)
@@ -47,11 +47,11 @@ func TestIsPowerOfTwoBinaryMethod(t *testing.T) {
 	}
 }
 
-func TestIsPowerOfTwoUseCycleAndLeftShift(t *testing.T) {
+func TestIsPowerOfTwoLeftShift(t *testing.T) {
 	tests := getTestsForPowerOfTwo()
 	for _, tv := range tests {
 		t.Run(tv.name, func(t *testing.T) {
-			result := IsPowerOfTwoUseCycleAndLeftShift(uint(tv.a))
+			result := IsPowerOfTwoLeftShift(uint(tv.a))
 			t.Log(tv.a, " ", result)
 			if result != tv.missing {
 				t.Errorf("Wrong result! Expected:%v, returned:%v ", tv.missing, result)
@@ -75,13 +75,13 @@ func TestIsPowerOfTwoUseLog(t *testing.T) {
 
 func BenchmarkIsPowerOfTwoBinaryMethod(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		IsPowerOfTwoBinaryMethod(1024)
+		IsPowerOfTwo(1024)
 	}
 }
 
 func BenchmarkIsPowerOfTwoUseCycleAndLeftShift(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		IsPowerOfTwoUseCycleAndLeftShift(1024)
+		IsPowerOfTwoLeftShift(1024)
 	}
 }
 

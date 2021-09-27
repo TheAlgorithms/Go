@@ -5,7 +5,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see xorsearch_test.go
 
-package binarymath
+package binary
 
 func XorSearchMissingNumber(a []int) int {
 	n := len(a)
