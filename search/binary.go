@@ -1,6 +1,8 @@
 package search
 
-// Binary Binary Search
+// Binary search for target within a sorted array by repeatedly dividing the array in half and comparing the midpoint with the target.
+// This function uses recursive call to itself.
+// If a target is found, the index of the target is returned. Else the function return -1 and ErrNotFound.
 func Binary(array []int, target int, lowIndex int, highIndex int) (int, error) {
 	if highIndex < lowIndex || len(array) == 0 {
 		return -1, ErrNotFound
@@ -15,7 +17,9 @@ func Binary(array []int, target int, lowIndex int, highIndex int) (int, error) {
 	}
 }
 
-// BinaryIterative Iterative Binary Search
+// BinaryIterative search for target within a sorted array by repeatedly dividing the array in half and comparing the midpoint with the target.
+// Unlike Binary, this function uses iterative method and not recursive.
+// If a target is found, the index of the target is returned. Else the function return -1 and ErrNotFound.
 func BinaryIterative(array []int, target int, lowIndex int, highIndex int) (int, error) {
 	startIndex := lowIndex
 	endIndex := highIndex
