@@ -61,11 +61,11 @@ func TestIsPowerOfTwoLeftShift(t *testing.T) {
 	}
 }
 
-func TestIsPowerOfTwoUseLog(t *testing.T) {
+func TestIsPowOfTwoUseLog(t *testing.T) {
 	tests := getTestsForPowerOfTwo()
 	for _, tv := range tests {
 		t.Run(tv.name, func(t *testing.T) {
-			result := math2.IsPowerOfTwoUseLog(float64(tv.a))
+			result := math2.IsPowOfTwoUseLog(float64(tv.a))
 			t.Log(tv.a, " ", result)
 			if result != tv.missing {
 				t.Errorf("Wrong result! Expected:%v, returned:%v ", tv.missing, result)
@@ -88,6 +88,6 @@ func BenchmarkIsPowerOfTwoUseCycleAndLeftShift(b *testing.B) {
 
 func BenchmarkIsPowerOfTwoUseLog(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		math2.IsPowerOfTwoUseLog(1024)
+		math2.IsPowOfTwoUseLog(1024)
 	}
 }
