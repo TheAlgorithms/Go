@@ -124,6 +124,94 @@ func TestDelete(t *testing.T) {
 	})
 }
 
+func TestInOrder(t *testing.T) {
+	BTree := BTree{
+		Root: NewNode(90),
+	}
+
+	root := BTree.Root
+
+	Insert(root, 80)
+	Insert(root, 100)
+	Insert(root, 70)
+	Insert(root, 85)
+	Insert(root, 95)
+	Insert(root, 105)
+
+	a := InOrder(root)
+	b := []int{70, 80, 85, 90, 95, 100, 105}
+
+	if !reflect.DeepEqual(a, b) {
+		t.Errorf("Nodes should have value = [70 80 85 90 95 100 105]")
+	}
+}
+
+func TestPreOrder(t *testing.T) {
+	BTree := BTree{
+		Root: NewNode(90),
+	}
+
+	root := BTree.Root
+
+	Insert(root, 80)
+	Insert(root, 100)
+	Insert(root, 70)
+	Insert(root, 85)
+	Insert(root, 95)
+	Insert(root, 105)
+
+	a := PreOrder(root)
+	b := []int{90, 80, 70, 85, 100, 95, 105}
+
+	if !reflect.DeepEqual(a, b) {
+		t.Errorf("Nodes should have value = [90 80 70 85 100 95 105]")
+	}
+}
+
+func TestPostOrder(t *testing.T) {
+	BTree := BTree{
+		Root: NewNode(90),
+	}
+
+	root := BTree.Root
+
+	Insert(root, 80)
+	Insert(root, 100)
+	Insert(root, 70)
+	Insert(root, 85)
+	Insert(root, 95)
+	Insert(root, 105)
+
+	a := PostOrder(root)
+	b := []int{70, 85, 80, 95, 105, 100, 90}
+
+	if !reflect.DeepEqual(a, b) {
+		t.Errorf("Nodes should have value = [70 85 80 95 105 100 90]")
+	}
+}
+
+func TestLevelOrder(t *testing.T) {
+	BTree := BTree{
+		Root: NewNode(90),
+	}
+
+	root := BTree.Root
+
+	Insert(root, 80)
+	Insert(root, 100)
+	Insert(root, 70)
+	Insert(root, 85)
+	Insert(root, 95)
+	Insert(root, 105)
+
+	a := LevelOrder(root)
+	b := []int{90, 80, 100, 70, 85, 95, 105}
+
+	if !reflect.DeepEqual(a, b) {
+		t.Errorf("Nodes should have value = [90 80 100 70 85 95 105]")
+	}
+}
+
 func TestAccessNodesByLayer(t *testing.T) {
 	BTree := BTree{
 		Root: NewNode(90),
