@@ -29,7 +29,6 @@ func GenerateParenthesis(n int) []string {
 			s = s[:len(s)-1]
 		}
 	}
-	k := make([]string, 0)
-	recursiveComputation(k, 0, 0)
+	recursiveComputation(make([]string, 0), 0, 0)
 	return result
 }
