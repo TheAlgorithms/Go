@@ -26,7 +26,7 @@ func GenerateParenthesis(n int) []string {
 		if right < left {
 			s = append(s, ")")
 			recursiveComputation(s, left, right+1)
-			s = s[:len(s)-1]
+			_ = s[:len(s)-1]
 		}
 	}
 	recursiveComputation(make([]string, 0), 0, 0)
