@@ -11,21 +11,21 @@ type Point struct {
 
 // Calculates the shortest distance between two points.
 func distance(a, b *Point) float64 {
-	return math.Sqrt(math.Pow(a.x - b.x, 2) + math.Pow(a.y - b.y, 2))
+	return math.Sqrt(math.Pow(a.x-b.x, 2) + math.Pow(a.y-b.y, 2))
 }
 
 // Calcualtes the Point that divides a line in specific ratio.
 // DO NOT specify the ratio in the form m:n, specify it as r, where r = m / n.
 func section(p1, p2 *Point, r float64) Point {
 	var point Point
-	point.x = (r * p2.x + p1.x) / (r + 1)
-	point.y = (r * p2.y + p1.y) / (r + 1)
+	point.x = (r*p2.x + p1.x) / (r + 1)
+	point.y = (r*p2.y + p1.y) / (r + 1)
 	return point
 }
 
 // Calculates the slope (gradient) of a line.
 func slope(a, b *Point) float64 {
-	return (b.y - a.y) / (b.x - a.x) 
+	return (b.y - a.y) / (b.x - a.x)
 }
 
 // Calculates the Y-Intercept of a line from a specific Point.
@@ -40,11 +40,11 @@ func isParallel(a, b, c, d *Point) bool {
 
 // Checks if two lines are perpendicular or not.
 func isPerpendicular(a, b, c, d *Point) bool {
-	return slope(a, b) * slope(c, d) == -1
+	return slope(a, b)*slope(c, d) == -1
 }
 
 // Calculates the distance of a given Point from a given line.
 // The slice should contain the coefficiet of x, the coefficient of y and the constant in the respective order.
 func pointDistance(p *Point, equation [3]float64) float64 {
-	return math.Abs(equation[0] * p.x + equation[1] * p.y + equation[2]) / math.Sqrt(math.Pow(equation[0], 2) + math.Pow(equation[1], 2))
+	return math.Abs(equation[0]*p.x+equation[1]*p.y+equation[2]) / math.Sqrt(math.Pow(equation[0], 2)+math.Pow(equation[1], 2))
 }
