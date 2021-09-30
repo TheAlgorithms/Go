@@ -5,8 +5,8 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see arithmeticmean_test.go
 
-// Package binarymath describes algorithms that use binary operations for different calculations.
-package binarymath
+// Package binary describes algorithms that use binary operations for different calculations.
+package binary
 
 func MeanUsingAndXor(a int, b int) int {
 	return ((a ^ b) >> 1) + (a & b)
