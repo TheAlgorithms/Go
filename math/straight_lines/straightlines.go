@@ -1,4 +1,4 @@
-package straight_lines
+package straightlines
 
 import (
 	"math"
