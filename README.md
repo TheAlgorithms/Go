@@ -82,6 +82,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
     * [Sieve](./math/prime/sieve.go)
 * [Pythagoras](./math/pythagoras/pythagoras.go)
 * [Sieve](./math/prime/sieve.go)
+* [Straight Lines](./math/straight_lines/straight_lines.go)
 
 ### Other
 * [Max Subarray Sum](./other/maxsubarraysum/maxsubarraysum.go)
