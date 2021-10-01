@@ -9,6 +9,10 @@ type Point struct {
 	x, y float64
 }
 
+type Line struct {
+	p1, p2 Point
+}
+
 // Calculates the shortest distance between two points.
 func distance(a, b *Point) float64 {
 	return math.Sqrt(math.Pow(a.x-b.x, 2) + math.Pow(a.y-b.y, 2))
@@ -24,8 +28,8 @@ func section(p1, p2 *Point, r float64) Point {
 }
 
 // Calculates the slope (gradient) of a line.
-func slope(a, b *Point) float64 {
-	return (b.y - a.y) / (b.x - a.x)
+func slope(l *Line) float64 {
+	return (l.p2.y - l.p1.y) / (l.p2.x - l.p1.x)
 }
 
 // Calculates the Y-Intercept of a line from a specific Point.
@@ -34,13 +38,13 @@ func intercept(p *Point, slope float64) float64 {
 }
 
 // Checks if two lines are parallel or not.
-func isParallel(a, b, c, d *Point) bool {
-	return slope(a, b) == slope(c, d)
+func isParallel(l1, l2 *Line) bool {
+	return slope(l1) == slope(l2)
 }
 
 // Checks if two lines are perpendicular or not.
-func isPerpendicular(a, b, c, d *Point) bool {
-	return slope(a, b)*slope(c, d) == -1
+func isPerpendicular(l1, l2 *Line) bool {
+	return slope(l1)*slope(l2) == -1
 }
 
 // Calculates the distance of a given Point from a given line.
