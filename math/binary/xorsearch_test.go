@@ -2,7 +2,7 @@
 // description: Test for Find a missing number in a sequence
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see xorsearch.go
-package binarymath
+package binary
 
 import (
 	"testing"
