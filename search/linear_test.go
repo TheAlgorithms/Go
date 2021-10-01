@@ -15,3 +15,11 @@ func TestLinear(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkLinear(b *testing.B) {
+	testCase := generateBenchmarkTestCase()
+	b.ResetTimer() // exclude time taken to generate test case
+	for i := 0; i < b.N; i++ {
+		_, _ = Linear(testCase, 10)
+	}
+}

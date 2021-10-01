@@ -13,3 +13,11 @@ func TestInterpolation(t *testing.T) {
 		}
 	}
 }
+
+func BenchmarkInterpolation(b *testing.B) {
+	testCase := generateBenchmarkTestCase()
+	b.ResetTimer() // exclude time taken to generate test case
+	for i := 0; i < b.N; i++ {
+		_, _ = Interpolation(testCase, 10)
+	}
+}

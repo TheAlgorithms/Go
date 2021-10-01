@@ -26,14 +26,6 @@ func TestBinaryIterative(t *testing.T) {
 	}
 }
 
-func generateBenchmarkTestCase() []int {
-	var testCase []int
-	for i := 0; i < 100; i++ {
-		testCase = append(testCase, i)
-	}
-	return testCase
-}
-
 func BenchmarkBinary(b *testing.B) {
 	testCase := generateBenchmarkTestCase()
 	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
