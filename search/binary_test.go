@@ -30,7 +30,7 @@ func BenchmarkBinary(b *testing.B) {
 	testCase := generateBenchmarkTestCase()
 	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
 	for i := 0; i < b.N; i++ {
-		_, _ = Binary(testCase, 10, 0, len(testCase)-1)
+		_, _ = Binary(testCase, i, 0, len(testCase)-1)
 	}
 }
 
@@ -38,6 +38,6 @@ func BenchmarkBinaryIterative(b *testing.B) {
 	testCase := generateBenchmarkTestCase()
 	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
 	for i := 0; i < b.N; i++ {
-		_, _ = BinaryIterative(testCase, 10, 0, len(testCase)-1)
+		_, _ = BinaryIterative(testCase, i, 0, len(testCase)-1)
 	}
 }
