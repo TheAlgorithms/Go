@@ -168,6 +168,8 @@ Common prefixes:
   - Manual Installation: [Downloads - The Go Programming Language](https://golang.org/dl/)
 - Running (all platforms): `go run filexyz.go`
 
+> Note: New packages should not be `main`, and never implement `main` functions for any package.
+
 #### Code formatter
 To format your code, you can use the gofmt tool directly:
 
