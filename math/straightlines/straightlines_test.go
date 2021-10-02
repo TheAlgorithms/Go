@@ -25,7 +25,7 @@ func TestSection(t *testing.T) {
 }
 
 func TestSlope(t *testing.T) {
-	line := Line{p1: Point{1, 2}, p2: Point{2, 4}}
+	line := Line{P1: Point{1, 2}, P2: Point{2, 4}}
 	var wantedSlope float64 = 2
 	var calculatedSlope float64 = slope(&line)
 	if calculatedSlope != wantedSlope {
@@ -44,16 +44,16 @@ func TestIntercept(t *testing.T) {
 }
 
 func TestIsParallel(t *testing.T) {
-	l1 := Line{p1: Point{1, 2}, p2: Point{2, 4}}
-	l2 := Line{p1: Point{25, 50}, p2: Point{50, 100}}
+	l1 := Line{P1: Point{1, 2}, P2: Point{2, 4}}
+	l2 := Line{P1: Point{25, 50}, P2: Point{50, 100}}
 	if !isParallel(&l1, &l2) {
 		t.Fatalf("Failed to check if Parallel.")
 	}
 }
 
 func TestIsPerpendicular(t *testing.T) {
-	l1 := Line{p1: Point{1, 2}, p2: Point{2, 4}}
-	l2 := Line{p1: Point{2, 2}, p2: Point{4, 1}}
+	l1 := Line{P1: Point{1, 2}, P2: Point{2, 4}}
+	l2 := Line{P1: Point{2, 2}, P2: Point{4, 1}}
 	if !isPerpendicular(&l1, &l2) {
 		t.Fatalf("Failed to check if Perpendicular.")
 	}
