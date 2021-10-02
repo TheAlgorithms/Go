@@ -9,9 +9,9 @@ package search
 // 		Best: O(1)
 // Example
 // 		fmt.Println(InterpolationSearch([]int{1, 2, 9, 20, 31, 45, 63, 70, 100},100))
-func Interpolation(sortedData []int, guess int) int {
+func Interpolation(sortedData []int, guess int) (int, error) {
 	if len(sortedData) == 0 {
-		return -1
+		return -1, ErrNotFound
 	}
 
 	var (
@@ -27,7 +27,7 @@ func Interpolation(sortedData []int, guess int) int {
 			for mid > 0 && sortedData[mid-1] == guess {
 				mid--
 			}
-			return mid
+			return mid, nil
 
 		}
 
@@ -42,7 +42,7 @@ func Interpolation(sortedData []int, guess int) int {
 	}
 
 	if guess == lowVal {
-		return low
+		return low, nil
 	}
-	return -1
+	return -1, ErrNotFound
 }

@@ -2,7 +2,7 @@ package search
 
 import "testing"
 
-func TestBinarySearch(t *testing.T) {
+func TestBinary(t *testing.T) {
 	for _, test := range searchTests {
 		actualValue, actualError := Binary(test.data, test.key, 0, len(test.data)-1)
 		if actualValue != test.expected {
@@ -14,7 +14,7 @@ func TestBinarySearch(t *testing.T) {
 	}
 }
 
-func TestIterBinarySearch(t *testing.T) {
+func TestBinaryIterative(t *testing.T) {
 	for _, test := range searchTests {
 		actualValue, actualError := BinaryIterative(test.data, test.key, 0, len(test.data)-1)
 		if actualValue != test.expected {
@@ -26,26 +26,18 @@ func TestIterBinarySearch(t *testing.T) {
 	}
 }
 
-func generateBenchmarkTestCase() []int {
-	var testCase []int
-	for i := 0; i < 100; i++ {
-		testCase = append(testCase, i)
-	}
-	return testCase
-}
-
-func BenchmarkBinarySearch(b *testing.B) {
+func BenchmarkBinary(b *testing.B) {
 	testCase := generateBenchmarkTestCase()
 	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
 	for i := 0; i < b.N; i++ {
-		_, _ = Binary(testCase, 10, 0, len(testCase)-1)
+		_, _ = Binary(testCase, i, 0, len(testCase)-1)
 	}
 }
 
-func BenchmarkIterBinarySearch(b *testing.B) {
+func BenchmarkBinaryIterative(b *testing.B) {
 	testCase := generateBenchmarkTestCase()
 	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
 	for i := 0; i < b.N; i++ {
-		_, _ = BinaryIterative(testCase, 10, 0, len(testCase)-1)
+		_, _ = BinaryIterative(testCase, i, 0, len(testCase)-1)
 	}
 }
