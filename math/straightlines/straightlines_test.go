@@ -4,17 +4,17 @@ import (
 	"testing"
 )
 
-func testDistance(t *testing.T) {
+func TestDistance(t *testing.T) {
 	p1 := Point{0, 0}
 	p2 := Point{3, 4}
-	var wantedDistance float64 = 10
+	var wantedDistance float64 = 5
 	var calculatedDistance float64 = distance(&p1, &p2)
 	if calculatedDistance != wantedDistance {
 		t.Fatalf("Failed to calculate Distance.")
 	}
 }
 
-func testSection(t *testing.T) {
+func TestSection(t *testing.T) {
 	p1 := Point{1, 0}
 	p2 := Point{5, 0}
 	wantedPoint := Point{3, 0}
@@ -24,7 +24,7 @@ func testSection(t *testing.T) {
 	}
 }
 
-func testSlope(t *testing.T) {
+func TestSlope(t *testing.T) {
 	line := Line{p1: Point{1, 2}, p2: Point{2, 4}}
 	var wantedSlope float64 = 2
 	var calculatedSlope float64 = slope(&line)
@@ -33,7 +33,7 @@ func testSlope(t *testing.T) {
 	}
 }
 
-func testIntercept(t *testing.T) {
+func TestIntercept(t *testing.T) {
 	p := Point{0, 3}
 	var slope float64 = -5
 	var wantedIntercept float64 = 3
@@ -43,7 +43,7 @@ func testIntercept(t *testing.T) {
 	}
 }
 
-func testIsParallel(t *testing.T) {
+func TestIsParallel(t *testing.T) {
 	l1 := Line{p1: Point{1, 2}, p2: Point{2, 4}}
 	l2 := Line{p1: Point{25, 50}, p2: Point{50, 100}}
 	if !isParallel(&l1, &l2) {
@@ -51,7 +51,7 @@ func testIsParallel(t *testing.T) {
 	}
 }
 
-func testIsPerpendicular(t *testing.T) {
+func TestIsPerpendicular(t *testing.T) {
 	l1 := Line{p1: Point{1, 2}, p2: Point{2, 4}}
 	l2 := Line{p1: Point{2, 2}, p2: Point{4, 1}}
 	if !isPerpendicular(&l1, &l2) {
@@ -59,7 +59,7 @@ func testIsPerpendicular(t *testing.T) {
 	}
 }
 
-func testPointDistance(t *testing.T) {
+func TestPointDistance(t *testing.T) {
 	p := Point{1, 1}
 	equation := [3]float64{4, 3, 1}
 	var wantedDistance float64 = 1.6
