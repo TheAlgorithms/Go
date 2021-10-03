@@ -22,6 +22,6 @@ func MonteCarloPi(randomPoints int) float64 {
 			inside += 1
 		}
 	}
-	pi := float64(inside) / randomPoints * 4
+	pi := float64(inside) / float64(randomPoints) * 4
 	return pi
 }
