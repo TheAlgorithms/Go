@@ -13,7 +13,7 @@ package binary
 // Repeat this till all its bits are processed.
 func ReverseBits(number uint) uint {
 	result := uint(0)
-	powerTwo := 31
+	intSize := 31
 	for number != 0 {
 		result += (number & 1) << powerTwo
 		number = number >> 1
