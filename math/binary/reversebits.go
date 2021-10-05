@@ -15,9 +15,9 @@ func ReverseBits(number uint) uint {
 	result := uint(0)
 	intSize := 31
 	for number != 0 {
-		result += (number & 1) << powerTwo
+		result += (number & 1) << intSize
 		number = number >> 1
-		powerTwo -= 1
+		intSize -= 1
 	}
 	return result
 }
