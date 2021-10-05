@@ -7,13 +7,20 @@ package graph
 type Matrix [][]float64
 
 // Defining maximum value. If two vertices share this value, it means they are not connected
-// var maxValue = math.Inf(1) // This is not being used in the code??
+//var maxValue = math.Inf(1) // This is not being used in the code??
 
 // FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 func FloydWarshall(graph Matrix) Matrix {
-	// If graph is empty or width != height, returns nil
+	// If graph is empty, returns nil
 	if len(graph) == 0 || len(graph) != len(graph[0]) {
 		return nil
+	}
+
+	for i := 0; i < len(graph); i++ {
+		//If graph matrix width is different than the height, returns nil
+		if len(graph[i]) != len(graph) {
+			return nil
+		}
 	}
 
 	numVertecies := len(graph)
@@ -43,17 +50,20 @@ func FloydWarshall(graph Matrix) Matrix {
 	return result
 }
 
-// func main() {
-// 	var graph Matrix
-// 	graph = Matrix{{0, maxValue, -2, maxValue},
-// 		{4, 0, 3, maxValue},
-// 		{maxValue, maxValue, 0, 2},
-// 		{maxValue, -1, maxValue, 0}}
+/*func main() {
+	var graph Matrix
+	graph = Matrix{
+		{0, maxValue, -2, maxValue},
+		{4, 0, 3, maxValue},
+		{maxValue, maxValue, 0, 2},
+		{maxValue, -1, maxValue, 0},
+	}
 
-// 	result := FloydWarshall(graph)
+	result := FloydWarshall(graph)
 
-// 	//Print result
-// 	for i := 0; i < len(result); i++ {
-// 		fmt.Printf("%4g\n", result[i])
-// 	}
-// }
+	//Print result
+	for i := 0; i < len(result); i++ {
+		fmt.Printf("%4g\n", result[i])
+	}
+}
+*/
