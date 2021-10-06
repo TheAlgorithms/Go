@@ -3,14 +3,16 @@
 
 package graph
 
-// Matrix Defining matrix to use 2d array easier
-type Matrix [][]float64
+import "math"
+
+// WeightedGraph defining matrix to use 2d array easier
+type WeightedGraph [][]float64
 
 // Defining maximum value. If two vertices share this value, it means they are not connected
-//var maxValue = math.Inf(1) // This is not being used in the code??
+var Inf = math.Inf(1)
 
 // FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
-func FloydWarshall(graph Matrix) Matrix {
+func FloydWarshall(graph WeightedGraph) WeightedGraph {
 	// If graph is empty, returns nil
 	if len(graph) == 0 || len(graph) != len(graph[0]) {
 		return nil
@@ -23,22 +25,22 @@ func FloydWarshall(graph Matrix) Matrix {
 		}
 	}
 
-	numVertecies := len(graph)
+	numVertices := len(graph)
 
 	// Initializing result matrix and filling it up with same values as given graph
-	result := make(Matrix, numVertecies)
+	result := make(WeightedGraph, numVertices)
 
-	for i := 0; i < numVertecies; i++ {
-		result[i] = make([]float64, numVertecies)
-		for j := 0; j < numVertecies; j++ {
+	for i := 0; i < numVertices; i++ {
+		result[i] = make([]float64, numVertices)
+		for j := 0; j < numVertices; j++ {
 			result[i][j] = graph[i][j]
 		}
 	}
 
 	// Running over the result matrix and following the algorithm
-	for k := 0; k < numVertecies; k++ {
-		for i := 0; i < numVertecies; i++ {
-			for j := 0; j < numVertecies; j++ {
+	for k := 0; k < numVertices; k++ {
+		for i := 0; i < numVertices; i++ {
+			for j := 0; j < numVertices; j++ {
 				// If there is a less costly path from i to j node, remembering it
 				if result[i][j] > result[i][k]+result[k][j] {
 					result[i][j] = result[i][k] + result[k][j]
@@ -49,21 +51,3 @@ func FloydWarshall(graph Matrix) Matrix {
 
 	return result
 }
-
-/*func main() {
-	var graph Matrix
-	graph = Matrix{
-		{0, maxValue, -2, maxValue},
-		{4, 0, 3, maxValue},
-		{maxValue, maxValue, 0, 2},
-		{maxValue, -1, maxValue, 0},
-	}
-
-	result := FloydWarshall(graph)
-
-	//Print result
-	for i := 0; i < len(result); i++ {
-		fmt.Printf("%4g\n", result[i])
-	}
-}
-*/

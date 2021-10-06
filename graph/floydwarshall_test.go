@@ -5,30 +5,31 @@ import (
 	"testing"
 )
 
-//noConnection is a value (INF) which represents that there are no two edges that directly connects these two nodes
-var noConnection = math.Inf(1)
+const float64EqualityThreshold = 1e-9
 
-func compareDist(a, b float64) bool {
-	const float64EqualityThreshold = 1e-9
+//almostEqual subtracts two float64 variables and returns true if they differ less then float64EqualityThreshold
+//reference: https://stackoverflow.com/a/47969546
+func almostEqual(a, b float64) bool {
 	return math.Abs(a-b) <= float64EqualityThreshold
 }
 
-func equalMatrices(a, b [][]float64) bool {
-	if len(a) != len(b) {
+//IsAlmostEqualTo verifies if two WeightedGraphs can be considered almost equal
+func (a *WeightedGraph) IsAlmostEqualTo(b WeightedGraph) bool {
+	if len(*a) != len(b) {
 		return false
 	}
 
-	for i := range a {
-		if len(a[i]) != len(b[i]) {
+	for i := range *a {
+		if len((*a)[i]) != len(b[i]) {
 			return false
 		}
 
-		for j := range a[i] {
-			if a[i][j] == noConnection && b[i][j] == noConnection {
+		for j := range (*a)[i] {
+			if (*a)[i][j] == Inf && b[i][j] == Inf {
 				continue
 			}
 
-			if !compareDist(a[i][j], b[i][j]) {
+			if !almostEqual((*a)[i][j], b[i][j]) {
 				return false
 			}
 		}
@@ -52,19 +53,19 @@ func TestFloydWarshall(t *testing.T) {
 			description: "test graph with wrong dimensions",
 			graph: [][]float64{
 				{1, 2},
-				{noConnection},
+				{Inf},
 			},
 			expected: nil,
 		},
 		{
 			description: "test graph with no edges",
 			graph: [][]float64{
-				{noConnection, noConnection},
-				{noConnection, noConnection},
+				{Inf, Inf},
+				{Inf, Inf},
 			},
 			expected: [][]float64{
-				{noConnection, noConnection},
-				{noConnection, noConnection},
+				{Inf, Inf},
+				{Inf, Inf},
 			},
 		},
 		{
@@ -81,11 +82,11 @@ func TestFloydWarshall(t *testing.T) {
 		{
 			description: "test graph with 5 vertices and self-loops",
 			graph: [][]float64{
-				{1, 2, noConnection, noConnection, noConnection},
-				{noConnection, noConnection, 3, -4, noConnection},
-				{noConnection, noConnection, noConnection, noConnection, 5},
-				{1, noConnection, noConnection, noConnection, noConnection},
-				{noConnection, noConnection, noConnection, 2, noConnection},
+				{1, 2, Inf, Inf, Inf},
+				{Inf, Inf, 3, -4, Inf},
+				{Inf, Inf, Inf, Inf, 5},
+				{1, Inf, Inf, Inf, Inf},
+				{Inf, Inf, Inf, 2, Inf},
 			},
 			expected: [][]float64{
 				{-1, 1, 4, -3, 8},
@@ -100,7 +101,7 @@ func TestFloydWarshall(t *testing.T) {
 		t.Run(test.description, func(t *testing.T) {
 			result := FloydWarshall(test.graph)
 
-			if !equalMatrices(result, test.expected) {
+			if !result.IsAlmostEqualTo(test.expected) {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("Expected result:%f\nFound: %f", test.expected, result)
 			}
