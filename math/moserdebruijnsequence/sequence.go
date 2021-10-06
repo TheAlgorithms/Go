@@ -26,9 +26,5 @@ func generateNthTerm(num int) int {
 	}
 
 	//number is odd
-	if num%2 != 0 {
-		return 4*generateNthTerm(num/2) + 1
-	}
-
-	return 0
+	return 4*generateNthTerm(num/2) + 1
 }
