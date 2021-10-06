@@ -65,7 +65,7 @@ func (dsu *disjointSetUnion) unionSets(firstNode int, secondNode int) {
 	if firstNode != secondNode {
 
 		if dsu.rank[firstNode] < dsu.rank[secondNode] {
-			swap(firstNode, secondNode)
+			firstNode, secondNode = secondNode, firstNode
 		}
 		dsu.parent[secondNode] = firstNode
 
@@ -104,12 +104,4 @@ func KruskalMST(n int, edges []edge) ([]edge, int) {
 	}
 
 	return mst, cost
-}
-
-// swap is a utility function to swap two numbers
-func swap(a int, b int) {
-
-	temp := a
-	a = b
-	b = temp
 }
