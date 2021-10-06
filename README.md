@@ -71,7 +71,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Lcm](./math/lcm/lcm.go)
 * [Max](./math/max/max.go)
 * [Modular](./math/modular)
-    * [Exponentiation](./math/max/max.go)
+    * [Exponentiation](./math/modular/exponentiation.go)
     * [Inverse](./math/modular/inverse.go) 
 * [Moser-de Bruijn sequence](./math/moserdebruijnsequence/sequence.go)
 * [Permutation](./math/permutation/heaps.go)
