@@ -1,3 +1,7 @@
+// KRUSKAL'S ALGORITHM
+// https://cp-algorithms.com/data_structures/disjoint_set_union.html
+// https://cp-algorithms.com/graph/mst_kruskal_with_dsu.html
+
 package graph
 
 import (
