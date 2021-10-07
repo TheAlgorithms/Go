@@ -26,26 +26,22 @@ type DisjointSetUnionElement struct {
 // DisjointSetUnion is a data structure that treats its elements as separate sets
 // and provides fast operations for set creation, merging sets, and finding the parent
 // of the given element of a set.
-type DisjointSetUnion struct {
-	elements []DisjointSetUnionElement
-}
+type DisjointSetUnion []DisjointSetUnionElement
 
 // NewDSU will return an initialised DSU using the value of n
 // which will be treated as the number of elements out of which
 // the DSU is being made
 func NewDSU(n int) *DisjointSetUnion {
 
-	return &DisjointSetUnion{
-
-		elements: make([]DisjointSetUnionElement, n),
-	}
+	dsu := DisjointSetUnion(make([]DisjointSetUnionElement, n))
+	return &dsu
 }
 
 // MakeSet will create a set in the DSU for the given node
-func (dsu *DisjointSetUnion) MakeSet(node Vertex) {
+func (dsu DisjointSetUnion) MakeSet(node Vertex) {
 
-	dsu.elements[node].parent = node
-	dsu.elements[node].rank = 0
+	dsu[node].parent = node
+	dsu[node].rank = 0
 }
 
 // FindSetRepresentative will return the parent element of the set the given node
@@ -53,34 +49,34 @@ func (dsu *DisjointSetUnion) MakeSet(node Vertex) {
 // has the same parent, we store the parent value for each element in the
 // path. This reduces consequent function calls and helps in going from O(n)
 // to O(log n). This is known as path compression technique.
-func (dsu *DisjointSetUnion) FindSetRepresentative(node Vertex) Vertex {
+func (dsu DisjointSetUnion) FindSetRepresentative(node Vertex) Vertex {
 
-	if node == dsu.elements[node].parent {
+	if node == dsu[node].parent {
 		return node
 	}
 
-	dsu.elements[node].parent = dsu.FindSetRepresentative(dsu.elements[node].parent)
-	return dsu.elements[node].parent
+	dsu[node].parent = dsu.FindSetRepresentative(dsu[node].parent)
+	return dsu[node].parent
 }
 
 // unionSets will merge two given sets. The naive implementation of this
 // always combines the secondNode's tree with the firstNode's tree. This can lead
 // to creation of trees of length O(n) so we optimize by attaching the node with
 // smaller rank to the node with bigger rank. Rank represents the upper bound depth of the tree.
-func (dsu *DisjointSetUnion) UnionSets(firstNode Vertex, secondNode Vertex) {
+func (dsu DisjointSetUnion) UnionSets(firstNode Vertex, secondNode Vertex) {
 
 	firstNode = dsu.FindSetRepresentative(firstNode)
 	secondNode = dsu.FindSetRepresentative(secondNode)
 
 	if firstNode != secondNode {
 
-		if dsu.elements[firstNode].rank < dsu.elements[secondNode].rank {
+		if dsu[firstNode].rank < dsu[secondNode].rank {
 			firstNode, secondNode = secondNode, firstNode
 		}
-		dsu.elements[secondNode].parent = firstNode
+		dsu[secondNode].parent = firstNode
 
-		if dsu.elements[firstNode].rank == dsu.elements[secondNode].rank {
-			dsu.elements[firstNode].rank++
+		if dsu[firstNode].rank == dsu[secondNode].rank {
+			dsu[firstNode].rank++
 		}
 	}
 }
