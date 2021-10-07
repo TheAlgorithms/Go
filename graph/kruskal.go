@@ -17,66 +17,70 @@ type Edge struct {
 	weight int
 }
 
-// disjointSetUnion is a data structure that treats its elements as separate sets
-// and provides fast operations for set creation, merging sets, and finding the parent
-// of the given element of a set.
-type disjointSetUnion struct {
-	parent []Vertex
-	rank   []int
+// DisjointSetUnionElement describes what an element of DSU looks like
+type DisjointSetUnionElement struct {
+	parent Vertex
+	rank   int
 }
 
-// newDSU will return an initialised DSU using the value of n
+// DisjointSetUnion is a data structure that treats its elements as separate sets
+// and provides fast operations for set creation, merging sets, and finding the parent
+// of the given element of a set.
+type DisjointSetUnion struct {
+	elements []DisjointSetUnionElement
+}
+
+// NewDSU will return an initialised DSU using the value of n
 // which will be treated as the number of elements out of which
 // the DSU is being made
-func newDSU(n int) *disjointSetUnion {
+func NewDSU(n int) *DisjointSetUnion {
 
-	return &disjointSetUnion{
+	return &DisjointSetUnion{
 
-		parent: make([]Vertex, n),
-		rank:   make([]int, n),
+		elements: make([]DisjointSetUnionElement, n),
 	}
 }
 
-// makeSet will create a set in the DSU for the given node
-func (dsu *disjointSetUnion) makeSet(node Vertex) {
+// MakeSet will create a set in the DSU for the given node
+func (dsu *DisjointSetUnion) MakeSet(node Vertex) {
 
-	dsu.parent[node] = node
-	dsu.rank[node] = 0
+	dsu.elements[node].parent = node
+	dsu.elements[node].rank = 0
 }
 
-// findSet will return the parent element of the set the given node
+// FindSetRepresentative will return the parent element of the set the given node
 // belongs to. Since every single element in the path from node to parent
 // has the same parent, we store the parent value for each element in the
 // path. This reduces consequent function calls and helps in going from O(n)
 // to O(log n). This is known as path compression technique.
-func (dsu *disjointSetUnion) findSet(node Vertex) Vertex {
+func (dsu *DisjointSetUnion) FindSetRepresentative(node Vertex) Vertex {
 
-	if node == dsu.parent[node] {
+	if node == dsu.elements[node].parent {
 		return node
 	}
 
-	dsu.parent[node] = dsu.findSet(dsu.parent[node])
-	return dsu.parent[node]
+	dsu.elements[node].parent = dsu.FindSetRepresentative(dsu.elements[node].parent)
+	return dsu.elements[node].parent
 }
 
 // unionSets will merge two given sets. The naive implementation of this
 // always combines the secondNode's tree with the firstNode's tree. This can lead
 // to creation of trees of length O(n) so we optimize by attaching the node with
 // smaller rank to the node with bigger rank. Rank represents the upper bound depth of the tree.
-func (dsu *disjointSetUnion) unionSets(firstNode Vertex, secondNode Vertex) {
+func (dsu *DisjointSetUnion) unionSets(firstNode Vertex, secondNode Vertex) {
 
-	firstNode = dsu.findSet(firstNode)
-	secondNode = dsu.findSet(secondNode)
+	firstNode = dsu.FindSetRepresentative(firstNode)
+	secondNode = dsu.FindSetRepresentative(secondNode)
 
 	if firstNode != secondNode {
 
-		if dsu.rank[firstNode] < dsu.rank[secondNode] {
+		if dsu.elements[firstNode].rank < dsu.elements[secondNode].rank {
 			firstNode, secondNode = secondNode, firstNode
 		}
-		dsu.parent[secondNode] = firstNode
+		dsu.elements[secondNode].parent = firstNode
 
-		if dsu.rank[firstNode] == dsu.rank[secondNode] {
-			dsu.rank[firstNode]++
+		if dsu.elements[firstNode].rank == dsu.elements[secondNode].rank {
+			dsu.elements[firstNode].rank++
 		}
 	}
 }
@@ -89,10 +93,10 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	var mst []Edge // The resultant minimum spanning tree
 	var cost int = 0
 
-	dsu := newDSU(n)
+	dsu := NewDSU(n)
 
 	for i := 0; i < n; i++ {
-		dsu.makeSet(Vertex(i))
+		dsu.MakeSet(Vertex(i))
 	}
 
 	sort.SliceStable(edges, func(i, j int) bool {
@@ -101,7 +105,7 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 
 	for _, edge := range edges {
 
-		if dsu.findSet(edge.start) != dsu.findSet(edge.end) {
+		if dsu.FindSetRepresentative(edge.start) != dsu.FindSetRepresentative(edge.end) {
 
 			mst = append(mst, edge)
 			cost += edge.weight
