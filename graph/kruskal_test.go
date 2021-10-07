@@ -9,12 +9,12 @@ func Test_KruskalMST(t *testing.T) {
 
 	var testCases = []struct {
 		n     int
-		graph []edge
+		graph []Edge
 		cost  int
 	}{
 		{
 			n: 5,
-			graph: []edge{
+			graph: []Edge{
 				{
 					start:  0,
 					end:    1,
@@ -70,7 +70,7 @@ func Test_KruskalMST(t *testing.T) {
 		},
 		{
 			n: 3,
-			graph: []edge{
+			graph: []Edge{
 				{
 					start:  0,
 					end:    1,
@@ -91,7 +91,7 @@ func Test_KruskalMST(t *testing.T) {
 		},
 		{
 			n: 4,
-			graph: []edge{
+			graph: []Edge{
 				{
 					start:  0,
 					end:    1,
@@ -127,7 +127,7 @@ func Test_KruskalMST(t *testing.T) {
 		},
 		{
 			n: 2,
-			graph: []edge{
+			graph: []Edge{
 				{
 					start:  0,
 					end:    1,
@@ -138,7 +138,7 @@ func Test_KruskalMST(t *testing.T) {
 		},
 		{
 			n: 1,
-			graph: []edge{
+			graph: []Edge{
 				{
 					start:  0,
 					end:    0,
