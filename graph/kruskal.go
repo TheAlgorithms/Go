@@ -67,7 +67,7 @@ func (dsu *DisjointSetUnion) FindSetRepresentative(node Vertex) Vertex {
 // always combines the secondNode's tree with the firstNode's tree. This can lead
 // to creation of trees of length O(n) so we optimize by attaching the node with
 // smaller rank to the node with bigger rank. Rank represents the upper bound depth of the tree.
-func (dsu *DisjointSetUnion) unionSets(firstNode Vertex, secondNode Vertex) {
+func (dsu *DisjointSetUnion) UnionSets(firstNode Vertex, secondNode Vertex) {
 
 	firstNode = dsu.FindSetRepresentative(firstNode)
 	secondNode = dsu.FindSetRepresentative(secondNode)
@@ -109,7 +109,7 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 
 			mst = append(mst, edge)
 			cost += edge.weight
-			dsu.unionSets(edge.start, edge.end)
+			dsu.UnionSets(edge.start, edge.end)
 		}
 	}
 
