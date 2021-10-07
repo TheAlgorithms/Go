@@ -8,10 +8,12 @@ import (
 	"sort"
 )
 
-// edge describes the edge of a weighted graph
-type edge struct {
-	start  int
-	end    int
+type Vertex int
+
+// Edge describes the edge of a weighted graph
+type Edge struct {
+	start  Vertex
+	end    Vertex
 	weight int
 }
 
@@ -19,7 +21,7 @@ type edge struct {
 // and provides fast operations for set creation, merging sets, and finding the parent
 // of the given element of a set.
 type disjointSetUnion struct {
-	parent []int
+	parent []Vertex
 	rank   []int
 }
 
@@ -30,13 +32,13 @@ func newDSU(n int) *disjointSetUnion {
 
 	return &disjointSetUnion{
 
-		parent: make([]int, n),
+		parent: make([]Vertex, n),
 		rank:   make([]int, n),
 	}
 }
 
 // makeSet will create a set in the DSU for the given node
-func (dsu *disjointSetUnion) makeSet(node int) {
+func (dsu *disjointSetUnion) makeSet(node Vertex) {
 
 	dsu.parent[node] = node
 	dsu.rank[node] = 0
@@ -47,7 +49,7 @@ func (dsu *disjointSetUnion) makeSet(node int) {
 // has the same parent, we store the parent value for each element in the
 // path. This reduces consequent function calls and helps in going from O(n)
 // to O(log n). This is known as path compression technique.
-func (dsu *disjointSetUnion) findSet(node int) int {
+func (dsu *disjointSetUnion) findSet(node Vertex) Vertex {
 
 	if node == dsu.parent[node] {
 		return node
@@ -61,7 +63,7 @@ func (dsu *disjointSetUnion) findSet(node int) int {
 // always combines the secondNode's tree with the firstNode's tree. This can lead
 // to creation of trees of length O(n) so we optimize by attaching the node with
 // smaller rank to the node with bigger rank. Rank represents the upper bound depth of the tree.
-func (dsu *disjointSetUnion) unionSets(firstNode int, secondNode int) {
+func (dsu *disjointSetUnion) unionSets(firstNode Vertex, secondNode Vertex) {
 
 	firstNode = dsu.findSet(firstNode)
 	secondNode = dsu.findSet(secondNode)
@@ -82,15 +84,15 @@ func (dsu *disjointSetUnion) unionSets(firstNode int, secondNode int) {
 // KruskalMST will return a minimum spanning tree along with its total cost
 // to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is
 // the number of edges in the graph and n is number of nodes in it.
-func KruskalMST(n int, edges []edge) ([]edge, int) {
+func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 
-	var mst []edge // The resultant minimum spanning tree
+	var mst []Edge // The resultant minimum spanning tree
 	var cost int = 0
 
 	dsu := newDSU(n)
 
 	for i := 0; i < n; i++ {
-		dsu.makeSet(i)
+		dsu.makeSet(Vertex(i))
 	}
 
 	sort.SliceStable(edges, func(i, j int) bool {
