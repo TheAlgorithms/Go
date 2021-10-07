@@ -12,15 +12,15 @@ type Vertex int
 
 // Edge describes the edge of a weighted graph
 type Edge struct {
-	start  Vertex
-	end    Vertex
-	weight int
+	Start  Vertex
+	End    Vertex
+	Weight int
 }
 
 // DisjointSetUnionElement describes what an element of DSU looks like
 type DisjointSetUnionElement struct {
-	parent Vertex
-	rank   int
+	Parent Vertex
+	Rank   int
 }
 
 // DisjointSetUnion is a data structure that treats its elements as separate sets
@@ -40,8 +40,8 @@ func NewDSU(n int) *DisjointSetUnion {
 // MakeSet will create a set in the DSU for the given node
 func (dsu DisjointSetUnion) MakeSet(node Vertex) {
 
-	dsu[node].parent = node
-	dsu[node].rank = 0
+	dsu[node].Parent = node
+	dsu[node].Rank = 0
 }
 
 // FindSetRepresentative will return the parent element of the set the given node
@@ -51,12 +51,12 @@ func (dsu DisjointSetUnion) MakeSet(node Vertex) {
 // to O(log n). This is known as path compression technique.
 func (dsu DisjointSetUnion) FindSetRepresentative(node Vertex) Vertex {
 
-	if node == dsu[node].parent {
+	if node == dsu[node].Parent {
 		return node
 	}
 
-	dsu[node].parent = dsu.FindSetRepresentative(dsu[node].parent)
-	return dsu[node].parent
+	dsu[node].Parent = dsu.FindSetRepresentative(dsu[node].Parent)
+	return dsu[node].Parent
 }
 
 // unionSets will merge two given sets. The naive implementation of this
@@ -70,13 +70,13 @@ func (dsu DisjointSetUnion) UnionSets(firstNode Vertex, secondNode Vertex) {
 
 	if firstNode != secondNode {
 
-		if dsu[firstNode].rank < dsu[secondNode].rank {
+		if dsu[firstNode].Rank < dsu[secondNode].Rank {
 			firstNode, secondNode = secondNode, firstNode
 		}
-		dsu[secondNode].parent = firstNode
+		dsu[secondNode].Parent = firstNode
 
-		if dsu[firstNode].rank == dsu[secondNode].rank {
-			dsu[firstNode].rank++
+		if dsu[firstNode].Rank == dsu[secondNode].Rank {
+			dsu[firstNode].Rank++
 		}
 	}
 }
@@ -96,16 +96,16 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	}
 
 	sort.SliceStable(edges, func(i, j int) bool {
-		return edges[i].weight < edges[j].weight
+		return edges[i].Weight < edges[j].Weight
 	})
 
 	for _, edge := range edges {
 
-		if dsu.FindSetRepresentative(edge.start) != dsu.FindSetRepresentative(edge.end) {
+		if dsu.FindSetRepresentative(edge.Start) != dsu.FindSetRepresentative(edge.End) {
 
 			mst = append(mst, edge)
-			cost += edge.weight
-			dsu.UnionSets(edge.start, edge.end)
+			cost += edge.Weight
+			dsu.UnionSets(edge.Start, edge.End)
 		}
 	}
 
