@@ -18,8 +18,8 @@ func NewNode() *Node {
 	return n
 }
 
-// Insert inserts words at a Trie node.
-func (n *Node) Insert(s string) {
+// insert a single word at a Trie node.
+func (n *Node) insert(s string) {
 	curr := n
 	for _, c := range s {
 		next, ok := curr.children[c]
@@ -32,15 +32,76 @@ func (n *Node) Insert(s string) {
 	curr.isLeaf = true
 }
 
-// Find finds words at a Trie node.
+// Insert zero, one or more words at a Trie node.
+func (n *Node) Insert(s ...string) {
+	for _, ss := range s {
+		n.insert(ss)
+	}
+}
+
+// Find  words at a Trie node.
 func (n *Node) Find(s string) bool {
-	curr := n
+	next, ok := n, false
 	for _, c := range s {
-		next, ok := curr.children[c]
+		next, ok = next.children[c]
 		if !ok {
 			return false
 		}
-		curr = next
 	}
-	return true
+	return next.isLeaf
+}
+
+// Capacity returns the number of nodes in the Trie
+func (n *Node) Capacity() int {
+	r := 0
+	for _, c := range n.children {
+		r += c.Capacity()
+	}
+	return 1 + r
+}
+
+// Size returns the number of words in the Trie
+func (n *Node) Size() int {
+	r := 0
+	for _, c := range n.children {
+		r += c.Size()
+	}
+	if n.isLeaf {
+		r++
+	}
+	return r
+}
+
+// remove lazily a word from the Trie node, no node is actually removed.
+func (n *Node) remove(s string) {
+	if len(s) == 0 {
+		return
+	}
+	next, ok := n, false
+	for _, c := range s {
+		next, ok = next.children[c]
+		if !ok {
+			// word cannot be found - we're done !
+			return
+		}
+	}
+	next.isLeaf = false
+}
+
+// Remove zero, one or more words lazily from the Trie, no node is actually removed.
+func (n *Node) Remove(s ...string) {
+	for _, ss := range s {
+		n.remove(ss)
+	}
+}
+
+// Compact will remove unecessay nodes, reducing the capacity, retuning true if node n itself should be removed.
+func (n *Node) Compact() (remove bool) {
+
+	for r, c := range n.children {
+		if c.Compact() {
+			delete(n.children, r)
+		}
+	}
+	return !n.isLeaf && len(n.children) == 0
 }
