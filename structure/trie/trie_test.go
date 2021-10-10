@@ -71,7 +71,7 @@ func TestTrieRemove(t *testing.T) {
 	if n.Compact() {
 		t.Fatal("the Trie should not be completely removable after compaction")
 	}
-	if capa == n.Capacity() {
+	if capa <= n.Capacity() {
 		t.Fatal("capacity should have reduced following compaction")
 	}
 	capa = n.Capacity()

@@ -95,7 +95,7 @@ func (n *Node) Remove(s ...string) {
 	}
 }
 
-// Compact will remove unecessay nodes, reducing the capacity, retuning true if node n itself should be removed.
+// Compact will remove unecessay nodes, reducing the capacity, returning true if node n itself should be removed.
 func (n *Node) Compact() (remove bool) {
 
 	for r, c := range n.children {
