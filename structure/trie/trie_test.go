@@ -24,6 +24,41 @@ func TestTrieInsert(t *testing.T) {
 
 }
 
+func TestTrieInsert_substrings(t *testing.T) {
+	n := NewNode()
+
+	insertWords := []string{
+		"aa",
+		"aaaa",
+		"aaaaa",
+	}
+
+	checkWords := map[string]bool{
+		"a":       false,
+		"aa":      true,
+		"aaa":     false,
+		"aaaa":    true,
+		"aaaaa":   true,
+		"aaaaaa":  false,
+		"aaaaaaa": false,
+	}
+
+	n.Insert(insertWords...)
+	n.verify(t, checkWords)
+	n.verifySizeCapa(t, 3, 5+1)
+
+	n.Remove("aaaa")
+	checkWords["aaaa"] = false
+	n.verify(t, checkWords)
+	n.verifySizeCapa(t, 2, 5+1)
+
+	if n.Compact() {
+		t.Fatalf("it should not be possible to remove the node")
+	}
+	n.verify(t, checkWords)
+	n.verifySizeCapa(t, 2, 5+1)
+}
+
 func TestTrieRemove(t *testing.T) {
 	n := NewNode()
 
