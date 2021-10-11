@@ -1,6 +1,7 @@
 //Segment Tree Data Structure for Range Queries
 //Build: O(n*log(n))
 //Query: O(log(n))
+//Update: O(log(n))
 //reference: https://cp-algorithms.com/data_structures/segment_tree.html
 
 package segmenttree
