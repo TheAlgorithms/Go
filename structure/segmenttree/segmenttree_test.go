@@ -35,7 +35,7 @@ func TestSegmentTree(t *testing.T) {
 			segmentTree := NewSegmentTree(test.array)
 
 			for i := 0; i < len(test.queries); i++ {
-				result := segmentTree.query(1, 0, len(test.array)-1, test.queries[i].firstIndex, test.queries[i].lastIndex)
+				result := segmentTree.Query(1, 0, len(test.array)-1, test.queries[i].firstIndex, test.queries[i].lastIndex)
 
 				if result != test.expected[i] {
 					t.Logf("FAIL: %s", test.description)
