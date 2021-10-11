@@ -5,12 +5,38 @@
 
 package segmenttree
 
-import "github.com/TheAlgorithms/Go/dynamic"
+import (
+	"github.com/TheAlgorithms/Go/dynamic"
+)
+
+const emptyLazyNode = -1
 
 //SegmentTree with original array and the Segment Tree array
 type SegmentTree struct {
 	array       []int
 	segmentTree []int
+	lazyTree    []int
+}
+
+//Propagate lazy tree node values
+func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
+	if s.lazyTree[node] != emptyLazyNode {
+		//add lazy node value multiplied by (right-left+1), which represents all interval
+		//this is the same of adding a value on each node
+		s.segmentTree[node] += (rightNode - leftNode + 1) * s.lazyTree[node]
+
+		if leftNode == rightNode {
+			//leaf node
+			s.array[leftNode] = s.lazyTree[node]
+		} else {
+			//propagate lazy node value for children nodes
+			s.lazyTree[2*node] = s.lazyTree[node]
+			s.lazyTree[2*node+1] = s.lazyTree[node]
+		}
+
+		//clear lazy node
+		s.lazyTree[node] = emptyLazyNode
+	}
 }
 
 //Query on interval [firstIndex, leftIndex]
@@ -20,6 +46,9 @@ func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex in
 		//outside the interval
 		return 0
 	}
+
+	//propagate lazy tree
+	s.Propagate(node, leftNode, rightNode)
 
 	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
 		//inside the interval
@@ -33,6 +62,34 @@ func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex in
 	rightNodeSum := s.Query(2*node+1, mid+1, rightNode, dynamic.Max(firstIndex, mid+1), lastIndex)
 
 	return leftNodeSum + rightNodeSum
+}
+
+//Update Segment Tree
+//node, leftNode and rightNode always should start with 1, 0 and len(array)-1
+//index is the array index that you want to update
+//value is the value that you want to override
+func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex int, lastIndex int, value int) {
+	//propagate lazy tree
+	s.Propagate(node, leftNode, rightNode)
+
+	if (firstIndex > lastIndex) || (leftNode > rightNode) {
+		//outside the interval
+		return
+	}
+
+	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
+		//inside the interval
+		s.lazyTree[node] = value
+		s.Propagate(node, leftNode, rightNode)
+	} else {
+		//update left and right nodes
+		mid := (leftNode + rightNode) / 2
+
+		s.Update(2*node, leftNode, mid, firstIndex, dynamic.Min(mid, lastIndex), value)
+		s.Update(2*node+1, mid+1, rightNode, dynamic.Max(firstIndex, mid+1), lastIndex, value)
+
+		s.segmentTree[node] = s.segmentTree[2*node] + s.segmentTree[2*node+1]
+	}
 }
 
 //Build Segment Tree
@@ -60,6 +117,12 @@ func NewSegmentTree(array []int) *SegmentTree {
 	segTree := SegmentTree{
 		array:       array,
 		segmentTree: make([]int, 4*len(array)),
+		lazyTree:    make([]int, 4*len(array)),
+	}
+
+	for i := range segTree.lazyTree {
+		//fill lazyTree with empty lazy nodes
+		segTree.lazyTree[i] = emptyLazyNode
 	}
 
 	//starts with node 1 and interval [0, len(arr)-1] inclusive
