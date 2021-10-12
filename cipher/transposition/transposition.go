@@ -8,32 +8,35 @@
 package transposition
 
 import (
-	"errors"
 	"sort"
 	"strings"
 )
 
-type RuneSlice []rune
+type NoTextToEncryptError struct{}
+type KeyMissingError struct{}
 
-func (p RuneSlice) Len() int           { return len(p) }
-func (p RuneSlice) Less(i, j int) bool { return p[i] < p[j] }
-func (p RuneSlice) Swap(i, j int)      { p[i], p[j] = p[j], p[i] }
+func (n *NoTextToEncryptError) Error() string {
+	return "No text to encrypt"
+}
+func (n *KeyMissingError) Error() string {
+	return "Missing Key"
+}
 
 func getKey(keyWord string) []int {
 	keyWord = strings.ToLower(keyWord)
 	word := []rune(keyWord)
-	var sortedWord RuneSlice = make(RuneSlice, len(word))
+	var sortedWord = make([]rune, len(word))
 	copy(sortedWord, word)
-	sort.Sort(RuneSlice(sortedWord))
-	usedLettersMap := make(map[string]int)
+	sort.Slice(sortedWord, func(i, j int) bool { return sortedWord[i] < sortedWord[j] })
+	usedLettersMap := make(map[rune]int)
 	wordLength := len(word)
 	resultKey := make([]int, wordLength)
 	for i := 0; i < wordLength; i++ {
 		char := word[i]
-		numberOfUsage := usedLettersMap[string(char)]
+		numberOfUsage := usedLettersMap[char]
 		resultKey[i] = getIndex(sortedWord, char) + numberOfUsage + 1 //+1 -so that indexing does not start at 0
 		numberOfUsage++
-		usedLettersMap[string(char)] = numberOfUsage
+		usedLettersMap[char] = numberOfUsage
 	}
 	return resultKey
 }
@@ -50,14 +53,14 @@ func getIndex(wordSet []rune, subString rune) int {
 
 func Encrypt(text []rune, keyWord string) (string, error) {
 	key := getKey(keyWord)
-	space := rune(' ')
+	space := ' '
 	keyLength := len(key)
 	textLength := len(text)
 	if keyLength <= 0 {
-		return "", errors.New("key missing")
+		return "", &KeyMissingError{}
 	}
 	if textLength <= 0 {
-		return "", errors.New("no encryption text")
+		return "", &NoTextToEncryptError{}
 	}
 	n := textLength % keyLength
 
@@ -79,17 +82,17 @@ func Encrypt(text []rune, keyWord string) (string, error) {
 func Decrypt(text []rune, keyWord string) (string, error) {
 	key := getKey(keyWord)
 	textLength := len(text)
+	if textLength <= 0 {
+		return "", &NoTextToEncryptError{}
+	}
 	keyLength := len(key)
-	space := rune(' ')
+	if keyLength <= 0 {
+		return "", &KeyMissingError{}
+	}
+	space := ' '
 	n := textLength % keyLength
 	for i := 0; i < keyLength-n; i++ {
 		text = append(text, space)
-	}
-	if keyLength <= 0 {
-		return "", errors.New("key missing")
-	}
-	if textLength <= 0 {
-		return "", errors.New("no encryption text")
 	}
 	result := ""
 	for i := 0; i < textLength; i += keyLength {

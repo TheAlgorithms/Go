@@ -6,6 +6,7 @@
 package transposition
 
 import (
+	"errors"
 	"math/rand"
 	"strings"
 	"testing"
@@ -24,10 +25,10 @@ func getTexts() []string {
 }
 
 func getRandomString() string {
-	rusRune := []rune(enAlphabet)
+	enRunes := []rune(enAlphabet)
 	b := make([]rune, rand.Intn(100))
 	for i := range b {
-		b[i] = rusRune[rand.Intn(len(rusRune))]
+		b[i] = enRunes[rand.Intn(len(enRunes))]
 	}
 	return string(b)
 }
@@ -35,6 +36,9 @@ func getRandomString() string {
 func TestEncrypt(t *testing.T) {
 	fn := func(text string, keyWord string) (bool, error) {
 		encrypt, err := Encrypt([]rune(text), keyWord)
+		if err != nil && !errors.Is(err, &NoTextToEncryptError{}) && !errors.Is(err, &KeyMissingError{}) {
+			t.Error("Unexpected error ", err)
+		}
 		return text == encrypt, err
 	}
 	for _, s := range getTexts() {
@@ -50,10 +54,23 @@ func TestEncrypt(t *testing.T) {
 func TestDecrypt(t *testing.T) {
 	for _, s := range getTexts() {
 		keyWord := getRandomString()
-		encrypt, err := Encrypt([]rune(s), keyWord)
-		decrypt, _ := Decrypt([]rune(encrypt), keyWord)
-		if err != nil {
-			t.Error(err)
+		encrypt, errEncrypt := Encrypt([]rune(s), keyWord)
+		if errEncrypt != nil &&
+			!errors.Is(errEncrypt, &NoTextToEncryptError{}) &&
+			!errors.Is(errEncrypt, &KeyMissingError{}) {
+			t.Error("Unexpected error ", errEncrypt)
+		}
+		if errEncrypt != nil {
+			t.Error(errEncrypt)
+		}
+		decrypt, errDecrypt := Decrypt([]rune(encrypt), keyWord)
+		if errDecrypt != nil &&
+			!errors.Is(errDecrypt, &NoTextToEncryptError{}) &&
+			!errors.Is(errDecrypt, &KeyMissingError{}) {
+			t.Error("Unexpected error ", errDecrypt)
+		}
+		if errDecrypt != nil {
+			t.Error(errDecrypt)
 		}
 		if encrypt == decrypt {
 			t.Error("String ", s, " not encrypted")
@@ -68,8 +85,14 @@ func TestEncryptDecrypt(t *testing.T) {
 	text := "Test text for checking the algorithm"
 	key1 := "testKey"
 	key2 := "Test Key2"
-	encrypt, _ := Encrypt([]rune(text), key1)
-	decrypt, _ := Decrypt([]rune(encrypt), key1)
+	encrypt, errEncrypt := Encrypt([]rune(text), key1)
+	if errEncrypt != nil {
+		t.Error(errEncrypt)
+	}
+	decrypt, errDecrypt := Decrypt([]rune(encrypt), key1)
+	if errDecrypt != nil {
+		t.Error(errDecrypt)
+	}
 	if strings.Contains(decrypt, text) == false {
 		t.Error("The string was not decrypted correctly")
 	}
