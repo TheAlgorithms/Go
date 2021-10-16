@@ -1,4 +1,4 @@
-package IsPalindrome
+package palindrome
 
 import (
 	"testing"
