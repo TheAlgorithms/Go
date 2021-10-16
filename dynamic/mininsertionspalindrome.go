@@ -4,17 +4,8 @@
 // Given a string, the task is to find the minimum number of characters to be inserted to convert it to palindrome.
 // [geeksforgeeks](https://www.geeksforgeeks.org/minimum-insertions-to-form-a-palindrome-dp-28/)
 // see mininsertionspalindrome_test.go for test implementation
- 
-package dynamic
 
-//Utility Function
-func Minimum(a, b int) int {
-	if a < b {
-		return a
-	} else {
-		return b
-	}
-}
+package dynamic
 
 func FindMinInsertionsPalindrome(str string) int {
 	n := len(str)
@@ -27,9 +18,9 @@ func FindMinInsertionsPalindrome(str string) int {
 		left := 0
 		for right := gap; right < n; right++ {
 			if str[left] == str[right] {
-				dp[left][right] = dp[left + 1][right - 1]
+				dp[left][right] = dp[left+1][right-1]
 			} else {
-				dp[left][right] = Minimum(dp[left][right - 1],dp[left + 1][right]) + 1
+				dp[left][right] = Min(dp[left][right-1], dp[left+1][right]) + 1
 			}
 			left += 1
 		}
