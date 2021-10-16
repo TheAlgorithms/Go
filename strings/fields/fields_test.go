@@ -1,4 +1,4 @@
-package test
+package fields
 
 import (
 	"reflect"
