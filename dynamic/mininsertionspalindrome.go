@@ -7,6 +7,7 @@
 
 package dynamic
 
+// FindMinInsertionsPalindrome returns minimum number of insertions required to convert given string to a palindrome
 func FindMinInsertionsPalindrome(str string) int {
 	n := len(str)
 	dp := make([][]int, n)
@@ -20,9 +21,10 @@ func FindMinInsertionsPalindrome(str string) int {
 			if str[left] == str[right] {
 				dp[left][right] = dp[left+1][right-1]
 			} else {
+				// Min :- Minimum function imported from binomialcoefficient.go in package dynamic
 				dp[left][right] = Min(dp[left][right-1], dp[left+1][right]) + 1
 			}
-			left += 1
+			left++
 		}
 	}
 	return dp[0][n-1]
