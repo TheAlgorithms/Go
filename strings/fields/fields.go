@@ -5,11 +5,11 @@ Example:
 using FieldsN("This is a string", 1) will separate the string into []string{"This", "is a string"} 
 */
 
-package Fields
+package fields
 
 import "strings"
 
-func FieldsN(s string, n int) []string {
+func NeoSplit(s string, n int) []string {
 	a := make([]string, 0)
 	b := strings.Fields(s)
 	for i := 1; i <= n; i++ {
