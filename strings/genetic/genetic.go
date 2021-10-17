@@ -15,13 +15,13 @@ import (
 )
 
 // Population item represent a single step in the evolution process.
-// One can think of ppopulation item as a single species.
+// One can think of population item as a single species.
 // Key stands for the actual data entity of the species, which is a string
 // in current implementation. Key can be interpreted as species DNA.
 // Value shows how close this species to the desired target, where 1 means,
-// that species DNA equals to the targeted one, 0 for no mathings in the DNA.
+// that species DNA equals to the targeted one, 0 for no matchings in the DNA.
 //
-// **Note** In the current implementation species DNA lenght is suppose to be
+// **Note** In the current implementation species DNA length is suppose to be
 // equal to the target length for algorithm to work.
 type PopulationItem struct {
 	Key   string
