@@ -26,21 +26,21 @@ var decimalTestCases = map[int]string{
 	100: "1100100",
 }
 
-func TestDecimalToBinary(t *testing.T) {
+func TestConvert(t *testing.T) {
 	for input, expected := range decimalTestCases {
-		out, err := DecimalToBinary(input)
+		out, err := Convert(input)
 		if err != nil {
-			t.Errorf("DecimalToBinary(%d) returned an error %s", input, err.Error())
+			t.Errorf("Convert(%d) returned an error %s", input, err.Error())
 		}
 		if out != expected {
-			t.Errorf("DecimalToBinary(%d) = %s; want %s", input, out, expected)
+			t.Errorf("Convert(%d) = %s; want %s", input, out, expected)
 		}
 	}
 }
 
-func BenchmarkDecimalToBinary(b *testing.B) {
+func BenchmarkConvert(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		_, _ = DecimalToBinary(100)
+		_, _ = Convert(100)
 	}
 }
