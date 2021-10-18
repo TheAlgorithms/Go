@@ -71,7 +71,6 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
-
 //BEGIN TESTS
 
 func TestBubble(t *testing.T) {
@@ -212,7 +211,6 @@ func TestRadix(t *testing.T) {
 }
 
 //END TESTS
-
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	var sortTests = []struct {
