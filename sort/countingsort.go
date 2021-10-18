@@ -7,7 +7,7 @@
 // package sort provides primitives for sorting slices and user-defined collections
 package sort
 
-func CountSort(data []int, maxValue int) []int {
+func Count(data []int, maxValue int) []int {
 	bucketLen := maxValue + 1
 	bucket := make([]int, bucketLen)
 	sortedIndex := 0
