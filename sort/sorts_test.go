@@ -77,6 +77,10 @@ func TestBubble(t *testing.T) {
 	testFramework(t, bubbleSort)
 }
 
+func TestExchange(t *testing.T) {
+	testFramework(t, Exchange)
+}
+
 func TestInsertion(t *testing.T) {
 	testFramework(t, InsertionSort)
 }
@@ -207,6 +211,10 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, bubbleSort)
+}
+
+func BenchmarkExchange(b *testing.B) {
+	benchmarkFramework(b, Exchange)
 }
 
 func BenchmarkInsertion(b *testing.B) {
