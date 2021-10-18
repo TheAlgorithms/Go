@@ -129,7 +129,7 @@ func TestCount(t *testing.T) {
 	}
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
-			CountSort(test.input, max(test.input))
+			Count(test.input, max(test.input))
 			if !reflect.DeepEqual(test.input, test.expected) {
 				t.Errorf("test %s failed", test.name)
 				t.Errorf("actual %v expected %v", test.input, test.expected)
@@ -297,7 +297,7 @@ func BenchmarkCount(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			CountSort(test.input, max(test.input))
+			Count(test.input, max(test.input))
 		}
 	}
 }
