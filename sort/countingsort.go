@@ -7,19 +7,33 @@
 // package sort provides primitives for sorting slices and user-defined collections
 package sort
 
-func Count(data []int, maxValue int) []int {
-	bucketLen := maxValue + 1
-	bucket := make([]int, bucketLen)
-	sortedIndex := 0
-	length := len(data)
-	for i := 0; i < length; i++ {
-		bucket[data[i]] += 1
+import (
+	"fmt"
+	"runtime"
+	"strings"
+)
+
+func Count(data []int) []int {
+	var aMin, aMax = -1000, 1000
+	defer func() {
+		if x := recover(); x != nil {
+			if _, ok := x.(runtime.Error); ok &&
+				strings.HasSuffix(x.(error).Error(), "index out of range") {
+				fmt.Printf("data value out of range (%d..%d)\n", aMin, aMax)
+				return
+			}
+			panic(x)
+		}
+	}()
+	count := make([]int, aMax-aMin+1)
+	for _, x := range data {
+		count[x-aMin]++
 	}
-	for j := 0; j < bucketLen; j++ {
-		for bucket[j] > 0 {
-			data[sortedIndex] = j
-			sortedIndex += 1
-			bucket[j] -= 1
+	z := 0
+	for i, c := range count {
+		for ; c > 0; c-- {
+			data[z] = i + aMin
+			z++
 		}
 	}
 	return data
