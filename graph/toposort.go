@@ -7,9 +7,9 @@ package graph
 func TopoSort(N int, constraints [][]int) []int {
 	dependencies := make([]int, N)
 	edges := make(map[int][]int)
-	for i := 0; i < len(constraints); i++ {
-		a := constraints[i][0]
-		b := constraints[i][1]
+	for _, c := range constraints {
+		a := c[0]
+		b := c[1]
 		dependencies[b]++
 
 		_, isin := edges[a]
@@ -39,11 +39,10 @@ func TopoSort(N int, constraints [][]int) []int {
 			ans = append(ans, s0)
 			stack = stack[:len(stack)-1]
 
-			for v := 0; v < len(edges[s0]); v++ {
-				v0 := edges[s0][v]
-				if !visited[v0] {
-					visited[v0] = true
-					stack = append(stack, v0)
+			for _, v := range edges[s0] {
+				if !visited[v] {
+					visited[v] = true
+					stack = append(stack, v)
 				}
 			}
 		}

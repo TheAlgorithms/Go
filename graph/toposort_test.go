@@ -44,8 +44,8 @@ func TestTopoSort(t *testing.T) {
 				positions[actual[i]] = i
 				visited[actual[i]] = true
 			}
-			for i := 0; i < tc.N; i++ {
-				if !visited[i] {
+			for _, v := range visited {
+				if !v {
 					t.Errorf("nodes not all visited, %v", visited)
 				}
 			}
