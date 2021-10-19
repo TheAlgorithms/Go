@@ -1,7 +1,9 @@
 package graph
 
-// Assumes that graph given is valid
-// and possible to get a topo ordering
+// Assumes that graph given is valid and possible to
+// get a topo ordering.
+// constraints are array of []int{a, b}, representing
+// an edge going from a to b
 func TopoSort(N int, constraints [][]int) []int {
 	dependencies := make([]int, N)
 	edges := make(map[int][]int)
