@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestFieldsN(t *testing.T) {
+func TestNeoSplit(t *testing.T) {
 	type args struct {
 		s string
 		n int
