@@ -81,6 +81,10 @@ func TestBubble(t *testing.T) {
 	testFramework(t, bubbleSort)
 }
 
+func TestExchange(t *testing.T) {
+	testFramework(t, Exchange)
+}
+
 func TestInsertion(t *testing.T) {
 	testFramework(t, InsertionSort)
 }
@@ -172,6 +176,14 @@ func TestRadix(t *testing.T) {
 	testFramework(t, RadixSort)
 }
 
+func TestSimple(t *testing.T) {
+	testFramework(t, SimpleSort)
+}
+
+func TestImprovedSimple(t *testing.T) {
+	testFramework(t, ImprovedSimpleSort)
+}
+
 // Very slow, consider commenting
 // func TestSelection(t *testing.T) {
 // 	testFramework(t, SelectionSort)
@@ -226,6 +238,10 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 }
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, bubbleSort)
+}
+
+func BenchmarkExchange(b *testing.B) {
+	benchmarkFramework(b, Exchange)
 }
 
 func BenchmarkInsertion(b *testing.B) {
@@ -288,6 +304,14 @@ func BenchmarkShell(b *testing.B) {
 
 func BenchmarkRadix(b *testing.B) {
 	benchmarkFramework(b, RadixSort)
+}
+
+func BenchmarkSimple(b *testing.B) {
+	benchmarkFramework(b, SimpleSort)
+}
+
+func BenchmarkImprovedSimple(b *testing.B) {
+	benchmarkFramework(b, ImprovedSimpleSort)
 }
 
 // Very Slow, consider commenting
