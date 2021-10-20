@@ -3,7 +3,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see wordpattern.go
 
-package main
+package wordpattern
 
 import "testing"
 

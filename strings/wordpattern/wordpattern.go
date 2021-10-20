@@ -8,7 +8,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see wordpattern_test.go
 
-package main
+package wordpattern
 
 import (
 	"strings"
