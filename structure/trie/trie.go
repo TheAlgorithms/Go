@@ -3,6 +3,8 @@
 // Wikipedia: https://en.wikipedia.org/wiki/Trie
 package trie
 
+import "fmt"
+
 // Node represents each node in Trie.
 type Node struct {
 	children map[rune]*Node // map children nodes
@@ -43,4 +45,19 @@ func (n *Node) Find(s string) bool {
 		curr = next
 	}
 	return true
+}
+
+// Logical removal of a word
+func (n *Node) Remove(s string) error {
+	curr := n
+	for _, c := range s {
+		if curr.children[c] == nil {
+			return fmt.Errorf("word not found")
+		}
+		curr = curr.children[c]
+	}
+	if curr.isLeaf {
+		curr.isLeaf = false
+	}
+	return nil
 }
