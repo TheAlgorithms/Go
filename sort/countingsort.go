@@ -15,16 +15,6 @@ import (
 
 func Count(data []int) []int {
 	var aMin, aMax = -1000, 1000
-	defer func() {
-		if x := recover(); x != nil {
-			if _, ok := x.(runtime.Error); ok &&
-				strings.HasSuffix(x.(error).Error(), "index out of range") {
-				fmt.Printf("data value out of range (%d..%d)\n", aMin, aMax)
-				return
-			}
-			panic(x)
-		}
-	}()
 	count := make([]int, aMax-aMin+1)
 	for _, x := range data {
 		count[x-aMin]++
