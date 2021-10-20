@@ -14,38 +14,38 @@ var RGB = [][]byte{
 	{155, 89, 182},
 }
 
-func TestExtractRGB(t *testing.T) {
+func TestHEXToRGB(t *testing.T) {
 	for i := 0; i < len(HEX); i++ {
 		hex := HEX[i]
 		expected := RGB[i]
-		resultR, resultG, resultB := ExtractRGB(hex)
+		resultR, resultG, resultB := HEXToRGB(hex)
 		if resultR != expected[0] || resultG != expected[1] || resultB != expected[2] {
-			t.Errorf("ExtractRGB(%d) = %d,%d,%d; want %d,%d,%d",
+			t.Errorf("HEXToRGB(%d) = %d,%d,%d; want %d,%d,%d",
 				hex, resultR, resultG, resultB, expected[0], expected[1], expected[2])
 		}
 	}
 }
 
-func BenchmarkExtractRGB(b *testing.B) {
+func BenchmarkHEXToRGB(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _, _ = ExtractRGB(0xdeadbe)
+		_, _, _ = HEXToRGB(0xdeadbe)
 	}
 }
 
-func TestCombineRGB(t *testing.T) {
+func TestRGBToHEX(t *testing.T) {
 	for i := 0; i < len(RGB); i++ {
 		args := RGB[i]
 		expected := HEX[i]
-		result := CombineRGB(args[0], args[1], args[2])
+		result := RGBToHEX(args[0], args[1], args[2])
 		if result != expected {
-			t.Errorf("CombineRGB(%d,%d,%d) = %d; want %d",
+			t.Errorf("RGBToHEX(%d,%d,%d) = %d; want %d",
 				args[0], args[1], args[2], result, expected)
 		}
 	}
 }
 
-func BenchmarkCombineRGB(b *testing.B) {
+func BenchmarkRGBToHEX(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = CombineRGB(222, 173, 190)
+		_ = RGBToHEX(222, 173, 190)
 	}
 }
