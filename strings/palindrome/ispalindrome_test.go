@@ -11,16 +11,26 @@ var testCases = []struct {
 }{
 	{
 		"non palindrome string",
-		"According to the laws of aviation bees can't fly",
+		"According to the laws of aviation bees can't flyã",
+		false,
+	},
+	{
+		"non palindrome string",
+		"Alô?",
 		false,
 	},
 	{
 		"palindrome string 1",
-		"Do geese see God",
+		"Do geese see God?",
 		true,
 	},
 	{
 		"palindrome string 2",
+		"ΝΙΨΟΝ ΑΝΟΜΗΜΑΤΑ ΜΗ ΜΟΝΑΝ ΟΨΙΝ",
+		true,
+	},
+	{
+		"palindrome string 3",
 		"Was it a car or a cat I saw?",
 		true,
 	},

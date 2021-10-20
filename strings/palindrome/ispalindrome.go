@@ -1,3 +1,14 @@
+// ispalindrome.go
+// description: Checks if a given string is palindrome or not
+// details:
+// Palindromes are expressions that read the same way forwards and backwards.
+// They can be words/phrases (like "racecar" and "Do geese see God?"), or even
+// numbers (like "02/02/2020"). Usually punctuation signs, capitalization
+// and spaces are ignored. A regular expression was used to achieve that.
+// See more information on: https://en.wikipedia.org/wiki/Palindrome
+// author(s) [Fernanda Kawasaki](https://github.com/fernandakawasaki)
+// see ispalindrome_test.go
+
 package palindrome
 
 import (
@@ -8,16 +19,17 @@ import (
 func CleanString(text string) string {
 	clean_text := strings.ToLower(text)
 	clean_text = strings.Join(strings.Fields(clean_text), "") // Remove spaces
-	regex, _ := regexp.Compile("[^a-zA-Z0-9 ]+")              // Regular expression for alphanumeric only characters
+	regex, _ := regexp.Compile(`[^\p{L}\p{N} ]+`)             // Regular expression for alphanumeric only characters
 	return regex.ReplaceAllString(clean_text, "")
 }
 
 func IsPalindrome(text string) bool {
 	clean_text := CleanString(text)
 	var i, j int
-	for i = 0; i < len(clean_text)/2; i++ {
-		j = len(clean_text) - 1 - i
-		if clean_text[i] != clean_text[j] {
+	rune := []rune(clean_text)
+	for i = 0; i < len(rune)/2; i++ {
+		j = len(rune) - 1 - i
+		if string(rune[i]) != string(rune[j]) {
 			return false
 		}
 	}
