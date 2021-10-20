@@ -170,6 +170,23 @@ func TestRadix(t *testing.T) {
 	testFramework(t, RadixSort)
 }
 
+func TestSimple(t *testing.T) {
+	testFramework(t, SimpleSort)
+}
+
+func TestImprovedSimple(t *testing.T) {
+	testFramework(t, ImprovedSimpleSort)
+}
+
+// Very slow, consider commenting
+// func TestSelection(t *testing.T) {
+// 	testFramework(t, SelectionSort)
+// }
+
+/* func TestTopological(t *testing.T) {
+testFramework(t, topologicalSort)
+} */
+
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -276,6 +293,14 @@ func BenchmarkShell(b *testing.B) {
 
 func BenchmarkRadix(b *testing.B) {
 	benchmarkFramework(b, RadixSort)
+}
+
+func BenchmarkSimple(b *testing.B) {
+	benchmarkFramework(b, SimpleSort)
+}
+
+func BenchmarkImprovedSimple(b *testing.B) {
+	benchmarkFramework(b, ImprovedSimpleSort)
 }
 
 // Very Slow, consider commenting
