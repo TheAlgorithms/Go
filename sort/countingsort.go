@@ -21,9 +21,10 @@ func Count(data []int) []int {
 	}
 	z := 0
 	for i, c := range count {
-		for ; c > 0; c-- {
+		for c > 0 {
 			data[z] = i + aMin
 			z++
+			c--
 		}
 	}
 	return data
