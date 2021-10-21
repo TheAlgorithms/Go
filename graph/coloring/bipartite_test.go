@@ -1,4 +1,4 @@
-package graph
+package coloring
 
 import (
 	"testing"
@@ -23,7 +23,7 @@ var testCases = []struct {
 func TestBipartite(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := IsBipartite(tc.N, tc.edges)
+			actual := BipartiteCheck(tc.N, tc.edges)
 			if tc.isBipartite != actual {
 				t.Errorf("failed %s: %v", tc.name, tc.edges)
 			}
