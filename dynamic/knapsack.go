@@ -12,9 +12,9 @@ func Max(a, b int) int {
 	return int(math.Max(float64(a), float64(b)))
 }
 
-// Solve knapsack problem
+// Knapsack solves knapsack problem
 // return maxProfit
-func Solve(maxWeight int, weights, values []int) int {
+func Knapsack(maxWeight int, weights, values []int) int {
 	n := len(weights)
 	m := maxWeight
 	// create dp data structure
@@ -43,7 +43,7 @@ func main() {
 	weights := []int{
 		10, 20, 30,
 	}
-	maxProfit := solve(maxWeight, weights, values)
+	maxProfit := Knapsack(maxWeight, weights, values)
 	fmt.Println(maxProfit)
 }
 */
