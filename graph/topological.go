@@ -4,7 +4,7 @@ package graph
 // get a topo ordering.
 // constraints are array of []int{a, b}, representing
 // an edge going from a to b
-func TopoSort(N int, constraints [][]int) []int {
+func Topological(N int, constraints [][]int) []int {
 	dependencies := make([]int, N)
 	edges := make(map[int][]int)
 	for _, c := range constraints {

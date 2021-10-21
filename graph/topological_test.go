@@ -33,10 +33,10 @@ var testCases = []struct {
 	},
 }
 
-func TestTopoSort(t *testing.T) {
+func TestTopological(t *testing.T) {
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := TopoSort(tc.N, tc.constraints)
+			actual := Topological(tc.N, tc.constraints)
 
 			visited := make([]bool, tc.N)
 			positions := make([]int, tc.N)
