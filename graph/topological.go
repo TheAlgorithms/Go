@@ -20,31 +20,24 @@ func Topological(N int, constraints [][]int) []int {
 	}
 
 	ans := []int{}
-	stack := []int{}
 	visited := make(map[int]bool, N)
 
-	// O(n) algorithm for walking the
-	// tree in topo order
+    var dfs func(int)
+    dfs = func(s0 int) {
+        visited[s0] = true
+        ans = append(ans, s0)
+        for _, v := range edges[s0] {
+            if !visited[v] {
+                dfs(v)
+            }
+        }
+    }
+
+	// O(n) algorithm for walking the tree in topo order
 	for s := 0; s < N; s++ {
 		// Only start walking from top level nodes
-		if dependencies[s] > 0 {
-			continue
-		}
-
-		// dfs walk down in topo order
-		visited[s] = true
-		stack := append(stack, s)
-		for len(stack) > 0 {
-			s0 := stack[len(stack)-1]
-			ans = append(ans, s0)
-			stack = stack[:len(stack)-1]
-
-			for _, v := range edges[s0] {
-				if !visited[v] {
-					visited[v] = true
-					stack = append(stack, v)
-				}
-			}
+		if dependencies[s] == 0 {
+			dfs(s)
 		}
 	}
 
