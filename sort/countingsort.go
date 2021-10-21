@@ -7,12 +7,6 @@
 // package sort provides primitives for sorting slices and user-defined collections
 package sort
 
-import (
-	"fmt"
-	"runtime"
-	"strings"
-)
-
 func Count(data []int) []int {
 	var aMin, aMax = -1000, 1000
 	count := make([]int, aMax-aMin+1)
