@@ -154,7 +154,7 @@ func TestQuick(t *testing.T) {
 	}
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
-			QuickSort(test.input, 0, len(test.input)-1)
+			QuickSort(test.input)
 			if !reflect.DeepEqual(test.input, test.expected) {
 				t.Errorf("test %s failed", test.name)
 				t.Errorf("actual %v expected %v", test.input, test.expected)
@@ -280,7 +280,7 @@ func BenchmarkQuick(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for _, test := range sortTests {
-			QuickSort(test.input, 0, len(test.input)-1)
+			QuickSort(test.input)
 		}
 	}
 }
