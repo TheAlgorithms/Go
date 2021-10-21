@@ -6,11 +6,11 @@ import (
 )
 
 func TestInsert(t *testing.T) {
-	BTree := BTree{
+	BSTree := BSTree{
 		Root: NewNode(90),
 	}
 
-	root := BTree.Root
+	root := BSTree.Root
 
 	Insert(root, 80)
 	Insert(root, 100)
@@ -27,18 +27,18 @@ func TestInsert(t *testing.T) {
 		t.Errorf("right child should have value = 100")
 	}
 
-	if BTree.Depth() != 2 {
+	if BSTree.Depth() != 2 {
 		t.Errorf("tree should have depth = 1")
 	}
 }
 
 func TestDelete(t *testing.T) {
 	t.Run("Delete a node with no child", func(t *testing.T) {
-		BTree := BTree{
+		BSTree := BSTree{
 			Root: NewNode(90),
 		}
 
-		root := BTree.Root
+		root := BSTree.Root
 
 		Insert(root, 80)
 		Insert(root, 100)
@@ -57,17 +57,17 @@ func TestDelete(t *testing.T) {
 			t.Errorf("right child should have value = nil")
 		}
 
-		if BTree.Depth() != 2 {
+		if BSTree.Depth() != 2 {
 			t.Errorf("Depth should have value = 2")
 		}
 	})
 
 	t.Run("Delete a node with one child", func(t *testing.T) {
-		BTree := BTree{
+		BSTree := BSTree{
 			Root: NewNode(90),
 		}
 
-		root := BTree.Root
+		root := BSTree.Root
 
 		Insert(root, 80)
 		Insert(root, 100)
@@ -87,17 +87,17 @@ func TestDelete(t *testing.T) {
 			t.Errorf("left child should have value = 70")
 		}
 
-		if BTree.Depth() != 2 {
+		if BSTree.Depth() != 2 {
 			t.Errorf("Depth should have value = 2")
 		}
 	})
 
 	t.Run("Delete a node with two children", func(t *testing.T) {
-		BTree := BTree{
+		BSTree := BSTree{
 			Root: NewNode(90),
 		}
 
-		root := BTree.Root
+		root := BSTree.Root
 
 		Insert(root, 80)
 		Insert(root, 100)
@@ -118,18 +118,18 @@ func TestDelete(t *testing.T) {
 			t.Errorf("right child should have value = 100")
 		}
 
-		if BTree.Depth() != 3 {
+		if BSTree.Depth() != 3 {
 			t.Errorf("Depth should have value = 3")
 		}
 	})
 }
 
 func TestInOrder(t *testing.T) {
-	BTree := BTree{
+	BSTree := BSTree{
 		Root: NewNode(90),
 	}
 
-	root := BTree.Root
+	root := BSTree.Root
 
 	Insert(root, 80)
 	Insert(root, 100)
@@ -147,11 +147,11 @@ func TestInOrder(t *testing.T) {
 }
 
 func TestPreOrder(t *testing.T) {
-	BTree := BTree{
+	BSTree := BSTree{
 		Root: NewNode(90),
 	}
 
-	root := BTree.Root
+	root := BSTree.Root
 
 	Insert(root, 80)
 	Insert(root, 100)
@@ -169,11 +169,11 @@ func TestPreOrder(t *testing.T) {
 }
 
 func TestPostOrder(t *testing.T) {
-	BTree := BTree{
+	BSTree := BSTree{
 		Root: NewNode(90),
 	}
 
-	root := BTree.Root
+	root := BSTree.Root
 
 	Insert(root, 80)
 	Insert(root, 100)
@@ -191,11 +191,11 @@ func TestPostOrder(t *testing.T) {
 }
 
 func TestLevelOrder(t *testing.T) {
-	BTree := BTree{
+	BSTree := BSTree{
 		Root: NewNode(90),
 	}
 
-	root := BTree.Root
+	root := BSTree.Root
 
 	Insert(root, 80)
 	Insert(root, 100)
@@ -213,11 +213,11 @@ func TestLevelOrder(t *testing.T) {
 }
 
 func TestAccessNodesByLayer(t *testing.T) {
-	BTree := BTree{
+	BSTree := BSTree{
 		Root: NewNode(90),
 	}
 
-	root := BTree.Root
+	root := BSTree.Root
 
 	Insert(root, 80)
 	Insert(root, 100)
