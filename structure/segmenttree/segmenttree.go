@@ -12,36 +12,36 @@ import (
 
 const emptyLazyNode = -1
 
-//SegmentTree with original array and the Segment Tree array
+//SegmentTree with original Array and the Segment Tree Array
 type SegmentTree struct {
-	array       []int
-	segmentTree []int
-	lazyTree    []int
+	Array       []int
+	SegmentTree []int
+	LazyTree    []int
 }
 
 //Propagate lazy tree node values
 func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
-	if s.lazyTree[node] != emptyLazyNode {
+	if s.LazyTree[node] != emptyLazyNode {
 		//add lazy node value multiplied by (right-left+1), which represents all interval
 		//this is the same of adding a value on each node
-		s.segmentTree[node] += (rightNode - leftNode + 1) * s.lazyTree[node]
+		s.SegmentTree[node] += (rightNode - leftNode + 1) * s.LazyTree[node]
 
 		if leftNode == rightNode {
 			//leaf node
-			s.array[leftNode] = s.lazyTree[node]
+			s.Array[leftNode] = s.LazyTree[node]
 		} else {
 			//propagate lazy node value for children nodes
-			s.lazyTree[2*node] = s.lazyTree[node]
-			s.lazyTree[2*node+1] = s.lazyTree[node]
+			s.LazyTree[2*node] = s.LazyTree[node]
+			s.LazyTree[2*node+1] = s.LazyTree[node]
 		}
 
 		//clear lazy node
-		s.lazyTree[node] = emptyLazyNode
+		s.LazyTree[node] = emptyLazyNode
 	}
 }
 
 //Query on interval [firstIndex, leftIndex]
-//node, leftNode and rightNode always should start with 1, 0 and len(array)-1
+//node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
 func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex int, lastIndex int) int {
 	if (firstIndex > lastIndex) || (leftNode > rightNode) {
 		//outside the interval
@@ -53,7 +53,7 @@ func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex in
 
 	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
 		//inside the interval
-		return s.segmentTree[node]
+		return s.SegmentTree[node]
 	}
 
 	//get sum of left and right nodes
@@ -66,8 +66,8 @@ func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex in
 }
 
 //Update Segment Tree
-//node, leftNode and rightNode always should start with 1, 0 and len(array)-1
-//index is the array index that you want to update
+//node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
+//index is the Array index that you want to update
 //value is the value that you want to override
 func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex int, lastIndex int, value int) {
 	//propagate lazy tree
@@ -80,7 +80,7 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 
 	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
 		//inside the interval
-		s.lazyTree[node] = value
+		s.LazyTree[node] = value
 		s.Propagate(node, leftNode, rightNode)
 	} else {
 		//update left and right nodes
@@ -89,16 +89,16 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 		s.Update(2*node, leftNode, mid, firstIndex, dynamic.Min(mid, lastIndex), value)
 		s.Update(2*node+1, mid+1, rightNode, dynamic.Max(firstIndex, mid+1), lastIndex, value)
 
-		s.segmentTree[node] = s.segmentTree[2*node] + s.segmentTree[2*node+1]
+		s.SegmentTree[node] = s.SegmentTree[2*node] + s.SegmentTree[2*node+1]
 	}
 }
 
 //Build Segment Tree
-//node, leftNode and rightNode always should start with 1, 0 and len(array)-1
+//node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
 func (s *SegmentTree) Build(node int, left int, right int) {
 	if left == right {
 		//leaf node
-		s.segmentTree[node] = s.array[left]
+		s.SegmentTree[node] = s.Array[left]
 	} else {
 		//get sum of left and right nodes
 		mid := (left + right) / 2
@@ -106,28 +106,28 @@ func (s *SegmentTree) Build(node int, left int, right int) {
 		s.Build(2*node, left, mid)
 		s.Build(2*node+1, mid+1, right)
 
-		s.segmentTree[node] = s.segmentTree[2*node] + s.segmentTree[2*node+1]
+		s.SegmentTree[node] = s.SegmentTree[2*node] + s.SegmentTree[2*node+1]
 	}
 }
 
-func NewSegmentTree(array []int) *SegmentTree {
-	if len(array) == 0 {
+func NewSegmentTree(Array []int) *SegmentTree {
+	if len(Array) == 0 {
 		return nil
 	}
 
 	segTree := SegmentTree{
-		array:       array,
-		segmentTree: make([]int, 4*len(array)),
-		lazyTree:    make([]int, 4*len(array)),
+		Array:       Array,
+		SegmentTree: make([]int, 4*len(Array)),
+		LazyTree:    make([]int, 4*len(Array)),
 	}
 
-	for i := range segTree.lazyTree {
-		//fill lazyTree with empty lazy nodes
-		segTree.lazyTree[i] = emptyLazyNode
+	for i := range segTree.LazyTree {
+		//fill LazyTree with empty lazy nodes
+		segTree.LazyTree[i] = emptyLazyNode
 	}
 
 	//starts with node 1 and interval [0, len(arr)-1] inclusive
-	segTree.Build(1, 0, len(array)-1)
+	segTree.Build(1, 0, len(Array)-1)
 
 	return &segTree
 }
