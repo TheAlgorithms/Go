@@ -24,6 +24,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ### Conversions
 * [Roman Numeral To Integer](./conversion/romantointeger.go)
 * [Integer To Roman Numeral](./conversion/integertoroman.go)
+* [Decimal To Binary](./conversion/decimaltobinary.go)
 
 ### Data Structures
 * [AVL Tree](./structure/avl/avl.go)

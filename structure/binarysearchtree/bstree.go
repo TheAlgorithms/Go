@@ -1,11 +1,11 @@
 package binarytree
 
-// BTree Returns a binary tree structure which contains only a root Node
-type BTree struct {
+// BSTree Returns a binary search tree structure which contains only a root Node
+type BSTree struct {
 	Root *Node
 }
 
-// calculateDepth helper function for BTree's depth()
+// calculateDepth helper function for BSTree's depth()
 func calculateDepth(n *Node, depth int) int {
 	if n == nil {
 		return depth
@@ -13,7 +13,7 @@ func calculateDepth(n *Node, depth int) int {
 	return Max(calculateDepth(n.left, depth+1), calculateDepth(n.right, depth+1))
 }
 
-// Insert a value in the BTree
+// Insert a value in the BSTree
 func Insert(root *Node, val int) *Node {
 	if root == nil {
 		return NewNode(val)
@@ -26,8 +26,8 @@ func Insert(root *Node, val int) *Node {
 	return root
 }
 
-// Depth returns the calculated depth of a binary tree
-func (t *BTree) Depth() int {
+// Depth returns the calculated depth of a binary saerch tree
+func (t *BSTree) Depth() int {
 	return calculateDepth(t.Root, 0)
 }
 
@@ -75,6 +75,7 @@ func inOrderRecursive(n *Node, traversal *[]int) {
 	}
 }
 
+// Travers the tree in the following order left --> root --> right
 func InOrder(root *Node) []int {
 	traversal := make([]int, 0)
 	inOrderRecursive(root, &traversal)
@@ -91,6 +92,7 @@ func preOrderRecursive(n *Node, traversal *[]int) {
 	preOrderRecursive(n.right, traversal)
 }
 
+// Travers the tree in the following order root --> left --> right
 func PreOrder(root *Node) []int {
 	traversal := make([]int, 0)
 	preOrderRecursive(root, &traversal)
@@ -107,6 +109,7 @@ func postOrderRecursive(n *Node, traversal *[]int) {
 	*traversal = append(*traversal, n.val)
 }
 
+// Travers the tree in the following order left --> right --> root
 func PostOrder(root *Node) []int {
 	traversal := make([]int, 0)
 	postOrderRecursive(root, &traversal)
