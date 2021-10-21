@@ -4,6 +4,8 @@
 
 package dynamic
 
+import "github.com/TheAlgorithms/Go/math/min"
+
 // MatrixChainRec function
 func MatrixChainRec(D []int, i, j int) int {
 	// d[i-1] x d[i] : dimension of matrix i
@@ -13,7 +15,7 @@ func MatrixChainRec(D []int, i, j int) int {
 	q := 1 << 32
 	for k := i; k < j; k++ {
 		prod := MatrixChainRec(D, i, k) + MatrixChainRec(D, k+1, j) + D[i-1]*D[k]*D[j]
-		q = Min(prod, q)
+		q = min.Int(prod, q)
 	}
 	return q
 }
@@ -35,7 +37,7 @@ func MatrixChainDp(D []int) int {
 			dp[i][j] = 1 << 31
 			for k := i; k < j; k++ {
 				prod := dp[i][k] + dp[k+1][j] + D[i-1]*D[k]*D[j]
-				dp[i][j] = Min(prod, dp[i][j])
+				dp[i][j] = min.Int(prod, dp[i][j])
 			}
 		}
 	}
