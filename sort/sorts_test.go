@@ -53,6 +53,7 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 			expected: []int{1},
 			name:     "Singleton",
 		},
+		// Empty slice
 		{
 			input:    []int{},
 			expected: []int{},
@@ -178,14 +179,9 @@ func TestImprovedSimple(t *testing.T) {
 	testFramework(t, ImprovedSimpleSort)
 }
 
-// Very slow, consider commenting
-// func TestSelection(t *testing.T) {
-// 	testFramework(t, SelectionSort)
-// }
-
-/* func TestTopological(t *testing.T) {
-testFramework(t, topologicalSort)
-} */
+func TestSelection(t *testing.T) {
+	testFramework(t, SelectionSort)
+}
 
 //END TESTS
 
@@ -225,6 +221,8 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 		}
 	}
 }
+
+//BEGIN BENCHMARKS
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, bubbleSort)
@@ -307,3 +305,5 @@ func BenchmarkImprovedSimple(b *testing.B) {
 func BenchmarkSelection(b *testing.B) {
 	benchmarkFramework(b, SelectionSort)
 }
+
+//END BENCHMARKS
