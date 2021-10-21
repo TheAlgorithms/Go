@@ -20,14 +20,21 @@ func partition(arr []int, low, high int) int {
 	return index + 1
 }
 
-func QuickSort(arr []int, low, high int) {
+// QuickSortRange Sorts the specified range within the array
+func QuickSortRange(arr []int, low, high int) {
 	if len(arr) <= 1 {
 		return
 	}
 
 	if low < high {
 		pivot := partition(arr, low, high)
-		QuickSort(arr, low, pivot-1)
-		QuickSort(arr, pivot+1, high)
+		QuickSortRange(arr, low, pivot-1)
+		QuickSortRange(arr, pivot+1, high)
 	}
+}
+
+// QuickSort Sorts the entire array
+func QuickSort(arr []int) []int {
+	QuickSortRange(arr, 0, len(arr)-1)
+	return arr
 }

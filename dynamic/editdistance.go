@@ -4,20 +4,7 @@
 
 package dynamic
 
-// Utility function which does what you expect.
-func minOfTwo(a int, b int) int {
-
-	if a < b {
-		return a
-	}
-	return b
-}
-
-// Utility function to compute minimum of three numbers using minOfTwo.
-func minOfThree(a int, b int, c int) int {
-
-	return minOfTwo(a, minOfTwo(b, c))
-}
+import "github.com/TheAlgorithms/Go/math/min"
 
 // EditDistanceRecursive is a naive implementation with exponential time complexity.
 func EditDistanceRecursive(first string, second string, pointerFirst int, pointerSecond int) int {
@@ -36,7 +23,7 @@ func EditDistanceRecursive(first string, second string, pointerFirst int, pointe
 	}
 
 	// We have three choices, all with cost of 1 unit
-	return 1 + minOfThree(EditDistanceRecursive(first, second, pointerFirst, pointerSecond-1), // Insert
+	return 1 + min.Int(EditDistanceRecursive(first, second, pointerFirst, pointerSecond-1), // Insert
 		EditDistanceRecursive(first, second, pointerFirst-1, pointerSecond),   // Delete
 		EditDistanceRecursive(first, second, pointerFirst-1, pointerSecond-1)) // Replace
 }
@@ -74,7 +61,7 @@ func EditDistanceDP(first string, second string) int {
 				continue
 			}
 
-			dp[i][j] = 1 + minOfThree(dp[i][j-1], dp[i-1][j], dp[i-1][j-1])
+			dp[i][j] = 1 + min.Int(dp[i][j-1], dp[i-1][j], dp[i-1][j-1])
 		}
 	}
 
