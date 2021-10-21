@@ -1,52 +1,37 @@
+// Implementation of counting sort algorithm
+// Reference: https://www.geeksforgeeks.org/counting-sort/
+
 package sort
 
-func findMax(arr []int) int {
-	var temp int
-
-	temp = arr[0]
-
-	for _, e := range arr {
-		if temp < e {
-			temp = e
+func countingSort(data []int) []int {
+	if len(data) == 0 {
+		return data
+	}
+	maxValue := data[0]
+	minValue := data[0]
+	for i:=0; i < len(data); i++ {
+		if data[i] > maxValue {
+			maxValue = data[i]
+		}
+		if data[i] < minValue {
+			minValue = data[i]
 		}
 	}
+	rangeOfElements := maxValue-minValue+1
+	countArray := make([]int, rangeOfElements, rangeOfElements)
+	outputArray := make([]int, len(data))
 
-	return temp
-}
-
-func makeRange(min, max int) []int {
-	a := make([]int, max-min+1)
-	for i := range a {
-		a[i] = 0
-	}
-	return a
-}
-
-func CountingSort(arr []int) []int {
-	// generate array from min to max
-	//todo: wie unten lösen
-	counter := makeRange(0, findMax(arr))
-
-	// count
-	for _, e := range arr {
-		counter[e] += 1
+	for i:=0; i<len(data); i++ {
+		countArray[data[i]-minValue] += 1
 	}
 
-	// add prev val to curr
-	for i := 1; i < len(counter); i++ {
-		counter[i] += counter[i-1]
+	for i:=1; i<len(countArray); i++ {
+		countArray[i] += countArray[i-1]
 	}
 
-	// copy to correct pos
-	res := make([]int, len(arr))
-
-	for i := 0 ; i < len(arr) ; i++ {
-		e := arr[i] // elem to add
-		t := counter[e] - 1 // target pos
-
-		res[t] = e
-		counter[e] = counter[e] - 1
+	for i:=len(data)-1; i>=0; i-- {
+		outputArray[countArray[data[i]-minValue]-1] = data[i]
+		countArray[data[i]-minValue] -= 1
 	}
-
-	return res
+	return outputArray
 }
