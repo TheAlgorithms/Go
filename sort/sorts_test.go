@@ -122,6 +122,10 @@ func TestSelection(t *testing.T) {
 	testFramework(t, SelectionSort)
 }
 
+func TestCounting(t *testing.T) {
+	testFramework(t, countingSort)
+}
+
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -211,6 +215,10 @@ func BenchmarkImprovedSimple(b *testing.B) {
 // Very Slow, consider commenting
 func BenchmarkSelection(b *testing.B) {
 	benchmarkFramework(b, SelectionSort)
+}
+
+func BenchmarkCounting(b *testing.B) {
+	benchmarkFramework(b, countingSort)
 }
 
 //END BENCHMARKS
