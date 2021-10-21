@@ -1,5 +1,7 @@
 package dynamic
 
+import "github.com/TheAlgorithms/Go/math/min"
+
 // func main() {
 // 	myArrayOfK := [4]int{5, 6, 7, 8}
 // 	var x int
@@ -24,7 +26,7 @@ func Bin2(n int, k int) int {
 	}
 
 	for i = 0; i <= n; i++ {
-		for j = 0; j <= Min(i, k); j++ {
+		for j = 0; j <= min.Int(i, k); j++ {
 			if j == 0 || j == i {
 				B[i][j] = 1
 			} else {
@@ -33,12 +35,4 @@ func Bin2(n int, k int) int {
 		}
 	}
 	return B[n][k]
-}
-
-// Min function - possible duplicate
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
 }
