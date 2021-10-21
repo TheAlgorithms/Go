@@ -9,7 +9,7 @@ func countingSort(data []int) []int {
 	}
 	maxValue := data[0]
 	minValue := data[0]
-	for i:=0; i < len(data); i++ {
+	for i := 0; i < len(data); i++ {
 		if data[i] > maxValue {
 			maxValue = data[i]
 		}
@@ -17,19 +17,19 @@ func countingSort(data []int) []int {
 			minValue = data[i]
 		}
 	}
-	rangeOfElements := maxValue-minValue+1
+	rangeOfElements := maxValue - minValue + 1
 	countArray := make([]int, rangeOfElements, rangeOfElements)
 	outputArray := make([]int, len(data))
 
-	for i:=0; i<len(data); i++ {
+	for i := 0; i < len(data); i++ {
 		countArray[data[i]-minValue] += 1
 	}
 
-	for i:=1; i<len(countArray); i++ {
+	for i := 1; i < len(countArray); i++ {
 		countArray[i] += countArray[i-1]
 	}
 
-	for i:=len(data)-1; i>=0; i-- {
+	for i := len(data) - 1; i >= 0; i-- {
 		outputArray[countArray[data[i]-minValue]-1] = data[i]
 		countArray[data[i]-minValue] -= 1
 	}
