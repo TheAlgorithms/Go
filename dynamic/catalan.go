@@ -5,6 +5,7 @@
 package dynamic
 
 // NthCatalan returns the n-th Catalan Number
+// Complexity: O(n²)
 func NthCatalanNumber(n int) int64 {
 	if n < 0 {
 		//doesn't accept negative number
