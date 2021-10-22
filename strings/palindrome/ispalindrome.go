@@ -24,7 +24,7 @@ func cleanString(text string) string {
 }
 
 func IsPalindrome(text string) bool {
-	clean_text := CleanString(text)
+	clean_text := cleanString(text)
 	var i, j int
 	rune := []rune(clean_text)
 	for i = 0; i < len(rune)/2; i++ {
