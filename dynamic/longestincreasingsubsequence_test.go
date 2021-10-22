@@ -7,7 +7,7 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-func TestLIS(t *testing.T) {
+func TestLongestIncreasingSubsequence(t *testing.T) {
 	td := []struct {
 		elements    []int
 		expectedLen int
@@ -21,7 +21,7 @@ func TestLIS(t *testing.T) {
 	}
 	for _, tc := range td {
 		t.Run(fmt.Sprint("test with", tc.elements), func(t *testing.T) {
-			actualLen := dynamic.LIS(tc.elements)
+			actualLen := dynamic.LongestIncreasingSubsequence(tc.elements)
 			if tc.expectedLen != actualLen {
 				t.Fatalf("expecting a sequence of len %d to be found but the actual len was %d; input: %v", tc.expectedLen, actualLen, tc.elements)
 			}

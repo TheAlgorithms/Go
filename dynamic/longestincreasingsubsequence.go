@@ -1,14 +1,12 @@
 package dynamic
 
 import (
-	"log"
-
 	"github.com/TheAlgorithms/Go/math/max"
 )
 
-// LIS returns the longest increasing subsequence (LIS)
+// LongestIncreasingSubsequence returns the longest increasing subsequence
 // where all elements of the subsequence are sorted in increasing order
-func LIS(elements []int) int {
+func LongestIncreasingSubsequence(elements []int) int {
 	n := len(elements)
 	lis := make([]int, n)
 	for i := range lis {
@@ -16,17 +14,14 @@ func LIS(elements []int) int {
 	}
 	for i := range lis {
 		for j := 0; j < i; j++ {
-			log.Print(elements[i], elements[j], lis[i], lis[j]+1)
 			if elements[i] > elements[j] && lis[i] < lis[j]+1 {
 				lis[i] = lis[j] + 1
 			}
 		}
 	}
-	log.Println(elements)
-	log.Println(lis)
 	res := 0
-	for _, value := range lis {
-		res = max.Int(res, value)
+	for i := range lis {
+		res = max.Int(res, lis[i])
 	}
 	return res
 }
