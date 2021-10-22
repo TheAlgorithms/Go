@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-func CleanString(text string) string {
+func cleanString(text string) string {
 	clean_text := strings.ToLower(text)
 	clean_text = strings.Join(strings.Fields(clean_text), "") // Remove spaces
 	regex, _ := regexp.Compile(`[^\p{L}\p{N} ]+`)             // Regular expression for alphanumeric only characters
