@@ -18,4 +18,29 @@ func main() {
 	t.PrintPreorder()
 	fmt.Println("")
 	t.PrintInorder()
+	fmt.Println("")
+	var b = t.Search(15)
+	if b != nil {
+		// fmt.Printf("%d %v\n", b.Val, b.isRed)
+	} else {
+		fmt.Println("Not found")
+	}
+	b = t.Search(50)
+
+	if b != nil {
+		// fmt.Printf("%d %v\n", b.Val, b.isRed)
+	} else {
+		fmt.Println("Not found")
+	}
+
+	t.Delete(5)
+	fmt.Println("")
+	t.PrintPreorder()
+	fmt.Println("")
+	t.PrintInorder()
+	fmt.Println("")
+	t.Delete(50)
+	t.PrintPreorder()
+	fmt.Println("")
+	t.PrintInorder()
 }

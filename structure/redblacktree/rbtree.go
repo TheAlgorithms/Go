@@ -2,40 +2,34 @@ package redblacktree
 
 import (
 	"fmt"
-
-	"github.com/TheAlgorithms/Go/structure/queue"
 )
 
 type RBTree struct {
 	Root *Node
 }
 
-func (t *RBTree) Insert(val int) {
-	t.intInsert(val)
+func (t *RBTree) Insert(Val int) {
+	t.intInsert(Val)
 	t.Root.isRed = false
 }
 
-func (t *RBTree) intInsert(val int) {
+func (t *RBTree) intInsert(Val int) {
 	var newParent *Node = nil
 	var currNode = t.Root
 	for currNode != nil {
 		newParent = currNode
-		if val < currNode.val {
+		if Val < currNode.Val {
 			currNode = currNode.left
 		} else {
 			currNode = currNode.right
 		}
 	}
-	var insNode = newNode(val, newParent)
+	var insNode = newNode(Val, newParent)
 	if newParent == nil {
 		t.Root = insNode
 		return
 	}
-	if insNode.parent != nil {
-		// fmt.Printf("parent of %d is %d\n", insNode.val, insNode.parent.val)
-	}
-	// fmt.Println("has parent %s", (insNode.parent != nil))
-	if val < newParent.val {
+	if Val < newParent.Val {
 		newParent.left = insNode
 	} else {
 
@@ -47,7 +41,6 @@ func (t *RBTree) intInsert(val int) {
 		// Hence within the loop, currNode.parent is not root
 		var parentNode = currNode.parent
 		var grandNode = parentNode.parent
-		// fmt.Printf("has grandparent %s\n", grandNode != nil)
 		// L* case
 		if parentNode == grandNode.left {
 			var uncle = grandNode.right
@@ -134,19 +127,8 @@ func (t *RBTree) rightRotate(parentNode *Node) {
 	}
 }
 
-func newNode(val int, parent *Node) *Node {
-	return &Node{val: val, left: nil, right: nil, parent: parent, isRed: true}
-}
-func (t *RBTree) Print() {
-	// fmt.Println(t.getArray())
-	var arr = t.getArray()
-	for _, a := range arr {
-		if a == nil {
-			// fmt.Println()
-			continue
-		}
-		// fmt.Printf("%d %s | ", a.val, a.isRed)
-	}
+func newNode(Val int, parent *Node) *Node {
+	return &Node{Val: Val, left: nil, right: nil, parent: parent, isRed: true}
 }
 func (t *RBTree) PrintPreorder() {
 	// var currNode = t.Root
@@ -161,63 +143,182 @@ func inorder(currNode *Node) {
 	}
 
 	inorder(currNode.left)
-	fmt.Printf("%d %s\n", currNode.val, currNode.isRed)
+	fmt.Printf("%d %v\n", currNode.Val, currNode.isRed)
 	inorder(currNode.right)
 }
 func preorder(currNode *Node) {
 	if currNode == nil {
 		return
 	}
-	fmt.Printf("%d %s\n", currNode.val, currNode.isRed)
+	fmt.Printf("%d %v\n", currNode.Val, currNode.isRed)
 	preorder(currNode.left)
 	preorder(currNode.right)
 }
-func (t *RBTree) getArray() []*Node {
-	var res = []*Node{}
-	if t.Root == nil {
-		return res
-	}
-	// var queue = []*Node{}
-	// var newQueue queue.Queue
-	queue.EnQueue(t.Root)
-	queue.EnQueue(nil)
-	for !queue.IsEmptyQueue() {
-		var curr = queue.DeQueue()
-		if curr == nil {
-			if !queue.IsEmptyQueue() {
-				queue.EnQueue(nil)
-				res = append(res, nil)
 
-			}
-			// fmt.Println("")
-		} else {
-			var currNode = curr.(*Node)
-			res = append(res, currNode)
-			if currNode.left != nil {
-				queue.EnQueue(currNode.left)
-			}
-			if currNode.right != nil {
-				queue.EnQueue(currNode.right)
-			}
-			// fmt.Printf("%d %s | ", currNode.val, currNode.isRed)
-		}
-	}
-	return res
+func (t *RBTree) Search(Val int) *Node {
+	return intSearch(t.Root, Val)
 }
 
-func (t *RBTree) Search(val int) *Node {
-	return intSearch(t.Root, val)
-}
-
-func intSearch(node *Node, val int) *Node {
+func intSearch(node *Node, Val int) *Node {
 	if node == nil {
 		return nil
 	}
-	if node.val == val {
+	if node.Val == Val {
 		return node
 	}
-	if val < node.val {
-		return intSearch(node.left, val)
+	if Val < node.Val {
+		return intSearch(node.left, Val)
 	}
-	return intSearch(node.right, val)
+	return intSearch(node.right, Val)
+}
+
+func (t *RBTree) replace(curr *Node, repl *Node) {
+	if curr == nil {
+		return
+	}
+	if t.isRoot(curr) {
+		t.setRoot(repl)
+		return
+	}
+
+	if curr == curr.parent.left {
+		curr.parent.left = repl
+	} else {
+		curr.parent.right = repl
+	}
+
+	if repl != nil {
+		repl.parent = curr.parent
+	}
+}
+
+func (t *RBTree) isRoot(curr *Node) bool {
+	return curr != nil && curr.parent == nil
+}
+func (t *RBTree) setRoot(curr *Node) {
+	t.Root = curr
+	if t.Root != nil {
+		t.Root.isRed = false
+	}
+}
+
+func (t *RBTree) Delete(val int) {
+	var curr = t.Search(val)
+	t.delete(curr)
+}
+func (t *RBTree) delete(curr *Node) {
+	if curr == nil {
+		return
+	}
+	var checkIsRed = curr.isRed
+	var next *Node
+	if curr.left == nil {
+		next = curr.right
+		t.replace(curr, curr.right)
+	} else if curr.right == nil {
+		next = curr.left
+		t.replace(curr, curr.left)
+	} else {
+		var minNode = t.min(curr.right)
+		checkIsRed = minNode.isRed
+		next = minNode.right
+		if minNode.parent != curr {
+			t.replace(minNode, minNode.right)
+			minNode.right = curr.right
+			minNode.right.parent = minNode
+		}
+		t.replace(curr, minNode)
+		minNode.left = curr.left
+		minNode.left.parent = minNode
+		minNode.isRed = curr.isRed
+	}
+	if !checkIsRed {
+		t.fix(next)
+	}
+}
+
+func (t *RBTree) min(curr *Node) *Node {
+	if curr == nil {
+		return nil
+	}
+	for curr.left != nil {
+		curr = curr.left
+	}
+	return curr
+}
+
+func (t *RBTree) fix(curr *Node) {
+	if curr == nil {
+		return
+	}
+	for !t.isRoot(curr) && !curr.isRed {
+		if curr == curr.parent.left {
+			var sibling = curr.parent.right
+			if sibling == nil {
+				return
+			}
+			if sibling.isRed {
+				sibling.setBlack()
+				curr.parent.setRed()
+				t.leftRotate(curr.parent)
+				sibling = curr.parent.right
+			}
+			if sibling.left != nil && !sibling.left.isRed && sibling.right != nil && !sibling.right.isRed {
+				sibling.setRed()
+				curr = curr.parent
+			} else {
+				if sibling.right != nil && !sibling.right.isRed {
+					if sibling.left != nil {
+						sibling.left.setBlack()
+						sibling.setRed()
+						t.rightRotate(sibling)
+						sibling = curr.parent.right
+					}
+					curr.parent.setBlack()
+					if sibling != nil {
+						sibling.isRed = curr.parent.isRed
+					}
+					if sibling.right != nil {
+						sibling.right.setBlack()
+					}
+					t.leftRotate(curr.parent)
+					curr = t.Root
+				}
+			}
+		} else {
+			var sibling = curr.parent.left
+			if sibling == nil {
+				return
+			}
+			if sibling.isRed {
+				sibling.setBlack()
+				curr.parent.setRed()
+				t.rightRotate(curr.parent)
+				sibling = curr.parent.left
+			}
+			if sibling.left != nil && !sibling.left.isRed && sibling.right != nil && !sibling.right.isRed {
+				sibling.setRed()
+				curr = curr.parent
+			} else {
+				if sibling.left != nil && !sibling.left.isRed {
+					if sibling.right != nil {
+						sibling.right.setBlack()
+						sibling.setRed()
+						t.leftRotate(sibling)
+						sibling = curr.parent.left
+					}
+					curr.parent.setBlack()
+					if sibling != nil {
+						sibling.isRed = curr.parent.isRed
+					}
+					if sibling.left != nil {
+						sibling.left.setBlack()
+					}
+					t.rightRotate(curr.parent)
+					curr = t.Root
+				}
+			}
+		}
+	}
+	curr.setBlack()
 }
