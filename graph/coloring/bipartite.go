@@ -10,17 +10,17 @@ func (g *Graph) TryBipartiteColoring() map[int]Color {
 		visited[i] = false
 	}
 
-	var dfs func(int)
-	dfs = func(s int) {
-		if !visited[s] {
-			visited[s] = true
-			coloring := []Color{0, 2, 1}
+	var color_node func(int)
+	color_node = func(s int) {
+		visited[s] = true
+		coloring := []Color{0, 2, 1}
 
-			for n := range g.edges[s] {
-				if colors[n] == 0 {
-					colors[n] = coloring[colors[s]]
-				}
-				dfs(n)
+		for n := range g.edges[s] {
+			if colors[n] == 0 {
+				colors[n] = coloring[colors[s]]
+			}
+			if !visited[n] {
+				color_node(n)
 			}
 		}
 	}
@@ -28,7 +28,7 @@ func (g *Graph) TryBipartiteColoring() map[int]Color {
 	for i := range g.edges {
 		if colors[i] == 0 {
 			colors[i] = 1
-			dfs(i)
+			color_node(i)
 		}
 	}
 
