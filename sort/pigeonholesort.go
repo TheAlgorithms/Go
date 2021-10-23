@@ -1,23 +1,19 @@
 package sort
 
-// PigeonholeSort algorithm's working at wikipedia.
+import (
+	"github.com/TheAlgorithms/Go/math/max"
+	"github.com/TheAlgorithms/Go/math/min"
+)
+
+// Pigeonhole algorithm's working at wikipedia.
 // https://en.wikipedia.org/wiki/Pigeonhole_sort
-func PigeonholeSort(arr []int) []int {
+func Pigeonhole(arr []int) []int {
 	if len(arr) == 0 {
 		return arr
 	}
 
-	max := arr[0]
-	min := arr[0]
-
-	for _, element := range arr {
-		if min > element {
-			min = element
-		}
-		if max < element {
-			max = element
-		}
-	}
+	max := max.Int(arr...)
+	min := min.Int(arr...)
 
 	size := max - min + 1
 
