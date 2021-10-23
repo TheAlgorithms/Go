@@ -6,14 +6,14 @@ package dynamic
 
 import "fmt"
 
-var ErrCatalan = fmt.Errorf("can't have a negative n-th catalan number")
+var errCatalan = fmt.Errorf("can't have a negative n-th catalan number")
 
 // NthCatalan returns the n-th Catalan Number
 // Complexity: O(n²)
 func NthCatalanNumber(n int) (int64, error) {
 	if n < 0 {
 		//doesn't accept negative number
-		return 0, ErrCatalan
+		return 0, errCatalan
 	}
 
 	var catalanNumberList []int64

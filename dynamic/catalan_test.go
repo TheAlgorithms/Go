@@ -11,8 +11,8 @@ func TestCatalanNumbers(t *testing.T) {
 		expectedCatalanNumber int64
 		expectedError         error
 	}{
-		{nthCatalanNumber: -1000, expectedCatalanNumber: 0, expectedError: ErrCatalan},
-		{nthCatalanNumber: -1, expectedCatalanNumber: 0, expectedError: ErrCatalan},
+		{nthCatalanNumber: -1000, expectedCatalanNumber: 0, expectedError: errCatalan},
+		{nthCatalanNumber: -1, expectedCatalanNumber: 0, expectedError: errCatalan},
 		{nthCatalanNumber: 0, expectedCatalanNumber: 1, expectedError: nil},
 		{nthCatalanNumber: 1, expectedCatalanNumber: 1, expectedError: nil},
 		{nthCatalanNumber: 2, expectedCatalanNumber: 2, expectedError: nil},
