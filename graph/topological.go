@@ -6,38 +6,28 @@ package graph
 // an edge going from a to b
 func Topological(N int, constraints [][]int) []int {
 	dependencies := make([]int, N)
-	edges := make(map[int][]int)
+	nodes := make([]int, N)
+	for i := range nodes {
+		nodes[i] = i
+	}
+	edges := make([][]bool, N)
+	for i := range edges {
+		edges[i] = make([]bool, N)
+	}
+
 	for _, c := range constraints {
 		a := c[0]
 		b := c[1]
 		dependencies[b]++
-
-		_, isin := edges[a]
-		if !isin {
-			edges[a] = []int{}
-		}
-		edges[a] = append(edges[a], b)
+		edges[a][b] = true
 	}
 
 	ans := []int{}
-	visited := make(map[int]bool, N)
-
-	var dfs func(int)
-	dfs = func(s0 int) {
-		visited[s0] = true
-		ans = append(ans, s0)
-		for _, v := range edges[s0] {
-			if !visited[v] {
-				dfs(v)
-			}
-		}
-	}
-
-	// O(n) algorithm for walking the tree in topo order
 	for s := 0; s < N; s++ {
 		// Only start walking from top level nodes
 		if dependencies[s] == 0 {
-			dfs(s)
+			route, _ := DepthFirstSearchHelper(s, N, nodes, edges, true)
+			ans = append(ans, route...)
 		}
 	}
 
