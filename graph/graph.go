@@ -28,6 +28,7 @@ func (g *Graph) AddVertex(v int) {
 
 	// Check if vertex is present or not
 	if _, ok := g.edges[v]; !ok {
+		g.vertices++
 		g.edges[v] = make(map[int]int)
 	}
 }
