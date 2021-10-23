@@ -19,20 +19,20 @@ import (
 	"regexp"
 )
 
-var IsValid = regexp.MustCompile("^[0-1]{1,}$").MatchString
+var isValid = regexp.MustCompile("^[0-1]{1,}$").MatchString
 
 // BinaryToDecimal() function that will take Binary number as string,
 // and return it's Decimal equivalent as integer.
-func BinaryToDecimal(num string) (int, error) {
-	if !IsValid(num) {
+func BinaryToDecimal(binary string) (int, error) {
+	if !isValid(binary) {
 		return -1, errors.New("not a valid binary string")
 	}
-	if len(num) > 32 {
+	if len(binary) > 32 {
 		return -1, errors.New("binary number must be in range 0 to 2^(31-1)")
 	}
 	var result, base int = 0, 1
-	for i := len(num) - 1; i >= 0; i-- {
-		if num[i] == '1' {
+	for i := len(binary) - 1; i >= 0; i-- {
+		if binary[i] == '1' {
 			result += base
 		}
 		base *= 2
