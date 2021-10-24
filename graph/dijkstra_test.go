@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-var testCases = []struct {
+var tc_dijkstra = []struct {
 	name     string
 	edges    [][]int
 	N        int
@@ -35,7 +35,7 @@ var testCases = []struct {
 }
 
 func TestDijkstra(t *testing.T) {
-	for _, tc := range testCases {
+	for _, tc := range tc_dijkstra {
 		t.Run(tc.name, func(t *testing.T) {
 			actual, _ := Dijkstra(tc.N, tc.edges, tc.node0, tc.node1)
 			if actual != tc.expected {
