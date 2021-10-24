@@ -18,7 +18,7 @@ func NotExist(target int, slice []int) bool {
 	return true
 }
 
-func DepthFirstSearch(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
+func DepthFirstSearchHelper(start, end int, nodes []int, edges [][]bool, showroute bool) ([]int, bool) {
 	var route []int
 	var stack []int
 	startIdx := GetIdx(start, nodes)
@@ -42,7 +42,16 @@ func DepthFirstSearch(start, end int, nodes []int, edges [][]bool) ([]int, bool)
 			return route, true
 		}
 	}
-	return nil, false
+
+	if showroute {
+		return route, false
+	} else {
+		return nil, false
+	}
+}
+
+func DepthFirstSearch(start, end int, nodes []int, edges [][]bool) ([]int, bool) {
+	return DepthFirstSearchHelper(start, end, nodes, edges, false)
 }
 
 // func main() {
