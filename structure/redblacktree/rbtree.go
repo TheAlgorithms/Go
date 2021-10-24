@@ -1,5 +1,19 @@
+// rbtree.go
+// description: A struct representing a red black tree
+// details:
+// This file contains the tree with a single field - root node
+// There are multiple methods, public ones are
+// Insert - inserts a value
+// Search - searches and returns Node pointer
+// Delete - deletes a value
+// PrintInorder - prints inorder representation - Val and isRed
+// PrintPreorder - prints preorder representation - Val and isRed
+// Based on Introduction to Algorithms, Cormen et. al., 3rd edition
+// And related concepts
+// author: VinWare (https://github.com/VinWare)
 package redblacktree
 
+// For printing
 import (
 	"fmt"
 )
@@ -13,9 +27,12 @@ func (t *RBTree) Insert(Val int) {
 	t.Root.isRed = false
 }
 
+// Internal insert function, refer Intro to Algorithms mentioned above
 func (t *RBTree) intInsert(Val int) {
 	var newParent *Node = nil
 	var currNode = t.Root
+
+	// Find empty node to act as parent
 	for currNode != nil {
 		newParent = currNode
 		if Val < currNode.Val {
@@ -26,9 +43,11 @@ func (t *RBTree) intInsert(Val int) {
 	}
 	var insNode = newNode(Val, newParent)
 	if newParent == nil {
+		// Is root node
 		t.Root = insNode
 		return
 	}
+	// Is not root node, so must be left or right child of a node
 	if Val < newParent.Val {
 		newParent.left = insNode
 	} else {
@@ -82,6 +101,7 @@ func (t *RBTree) intInsert(Val int) {
 	}
 }
 
+// Simplest case, make parent level black
 func case1(parentNode, uncleNode, grandNode *Node) *Node {
 	parentNode.isRed = false
 	uncleNode.isRed = false
@@ -89,7 +109,9 @@ func case1(parentNode, uncleNode, grandNode *Node) *Node {
 	return grandNode
 }
 
+// A left rotate similar to binary search tree. Coloring is not handled
 func (t *RBTree) leftRotate(parentNode *Node) {
+	// Swap nodes and parents
 	var currNode = parentNode.right
 	var tempNode = currNode.left
 	currNode.left = parentNode
@@ -97,10 +119,11 @@ func (t *RBTree) leftRotate(parentNode *Node) {
 	currNode.parent = parentNode.parent
 	parentNode.parent = currNode
 
-	if currNode.parent == nil {
+	if t.isRoot(currNode) {
 		t.Root = currNode
 		return
 	}
+	// Set new parent left or right
 	if currNode.parent.left == parentNode {
 		currNode.parent.left = currNode
 	} else {
@@ -108,6 +131,7 @@ func (t *RBTree) leftRotate(parentNode *Node) {
 	}
 }
 
+// Right rotate, similar to left rotate above
 func (t *RBTree) rightRotate(parentNode *Node) {
 	var currNode = parentNode.left
 	var tempNode = currNode.right
@@ -127,51 +151,74 @@ func (t *RBTree) rightRotate(parentNode *Node) {
 	}
 }
 
+// Simply return new node
 func newNode(Val int, parent *Node) *Node {
 	return &Node{Val: Val, left: nil, right: nil, parent: parent, isRed: true}
 }
+
+// Public function to print preorder
 func (t *RBTree) PrintPreorder() {
-	// var currNode = t.Root
-	preorder(t.Root)
+	var p = preorder(t.Root)
+	fmt.Printf("Length %d\n", len(p))
+	for _, a := range p {
+		fmt.Printf("%d %v\n", a.Val, a.isRed)
+	}
 }
+
+// Public function to print inorder
 func (t *RBTree) PrintInorder() {
-	inorder(t.Root)
+	var p = inorder(t.Root)
+	fmt.Printf("Length %d\n", len(p))
+	for _, a := range p {
+		fmt.Printf("%d %v\n", a.Val, a.isRed)
+	}
 }
-func inorder(currNode *Node) {
+
+// Returns inorder representation
+func inorder(currNode *Node) []*Node {
+	var ret = []*Node{}
 	if currNode == nil {
-		return
+		return ret
 	}
 
-	inorder(currNode.left)
-	fmt.Printf("%d %v\n", currNode.Val, currNode.isRed)
-	inorder(currNode.right)
+	ret = append(ret, inorder(currNode.left)...)
+	ret = append(ret, currNode)
+	ret = append(ret, inorder(currNode.right)...)
+	return ret
 }
-func preorder(currNode *Node) {
+
+// Returns preorder representation
+func preorder(currNode *Node) []*Node {
+	var ret = []*Node{}
 	if currNode == nil {
-		return
+		return ret
 	}
-	fmt.Printf("%d %v\n", currNode.Val, currNode.isRed)
-	preorder(currNode.left)
-	preorder(currNode.right)
+	ret = append(ret, currNode)
+	ret = append(ret, preorder(currNode.left)...)
+	ret = append(ret, preorder(currNode.right)...)
+	return ret
 }
 
-func (t *RBTree) Search(Val int) *Node {
-	return intSearch(t.Root, Val)
+// Public search function based on value
+func (t *RBTree) Search(val int) *Node {
+	return intSearch(t.Root, val)
 }
 
-func intSearch(node *Node, Val int) *Node {
+// Internal search function, recursive search
+func intSearch(node *Node, val int) *Node {
 	if node == nil {
 		return nil
 	}
-	if node.Val == Val {
+	if node.Val == val {
 		return node
 	}
-	if Val < node.Val {
-		return intSearch(node.left, Val)
+	if val < node.Val {
+		return intSearch(node.left, val)
 	}
-	return intSearch(node.right, Val)
+	return intSearch(node.right, val)
 }
 
+// Replaces the node curr with repl
 func (t *RBTree) replace(curr *Node, repl *Node) {
 	if curr == nil {
 		return
@@ -192,9 +239,12 @@ func (t *RBTree) replace(curr *Node, repl *Node) {
 	}
 }
 
+// Simple function to test if curr is or should be root
 func (t *RBTree) isRoot(curr *Node) bool {
 	return curr != nil && curr.parent == nil
 }
+
+// Set root (coloring it black is important)
 func (t *RBTree) setRoot(curr *Node) {
 	t.Root = curr
 	if t.Root != nil {
@@ -202,23 +252,33 @@ func (t *RBTree) setRoot(curr *Node) {
 	}
 }
 
+// Delete function based on value
 func (t *RBTree) Delete(val int) {
 	var curr = t.Search(val)
 	t.delete(curr)
 }
+
+// Internal delete based on node
 func (t *RBTree) delete(curr *Node) {
 	if curr == nil {
+		// Didn't find the node
 		return
 	}
+
 	var checkIsRed = curr.isRed
 	var next *Node
+
+	// First replace the relevant child, moving it up the list
 	if curr.left == nil {
+		// Only right child/no children
 		next = curr.right
 		t.replace(curr, curr.right)
 	} else if curr.right == nil {
+		// Only left child
 		next = curr.left
 		t.replace(curr, curr.left)
 	} else {
+		// Have to handle both children
 		var minNode = t.min(curr.right)
 		checkIsRed = minNode.isRed
 		next = minNode.right
@@ -233,6 +293,7 @@ func (t *RBTree) delete(curr *Node) {
 		minNode.isRed = curr.isRed
 	}
 	if !checkIsRed {
+		// Certain fix up is needed
 		t.fix(next)
 	}
 }
@@ -249,15 +310,18 @@ func (t *RBTree) min(curr *Node) *Node {
 
 func (t *RBTree) fix(curr *Node) {
 	if curr == nil {
+		// Nothing to fix
 		return
 	}
 	for !t.isRoot(curr) && !curr.isRed {
 		if curr == curr.parent.left {
+			// Left child case
 			var sibling = curr.parent.right
 			if sibling == nil {
 				return
 			}
 			if sibling.isRed {
+				// Recolor and rotate
 				sibling.setBlack()
 				curr.parent.setRed()
 				t.leftRotate(curr.parent)
@@ -286,6 +350,7 @@ func (t *RBTree) fix(curr *Node) {
 				}
 			}
 		} else {
+			// Right child case, same as above, but left and right are swapped everywhere
 			var sibling = curr.parent.left
 			if sibling == nil {
 				return
