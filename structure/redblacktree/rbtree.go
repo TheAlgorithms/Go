@@ -1,16 +1,25 @@
 // rbtree.go
+//
 // description: A struct representing a red black tree
+//
 // details:
+//
 // This file contains the tree with a single field - root node
+//
 // There are multiple methods, public ones are
 // Insert - inserts a value
 // Search - searches and returns Node pointer
 // Delete - deletes a value
 // PrintInorder - prints inorder representation - Val and isRed
 // PrintPreorder - prints preorder representation - Val and isRed
-// Based on Introduction to Algorithms, Cormen et. al., 3rd edition
-// And related concepts
+//
+// Implementation is based on Introduction to Algorithms, Cormen et. al., 3rd edition
+//
+// Wikipedia: https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+// Geeks-for-geeks series: https://www.geeksforgeeks.org/red-black-tree-set-1-introduction-2/
+//
 // author: VinWare (https://github.com/VinWare)
+
 package redblacktree
 
 // For printing
