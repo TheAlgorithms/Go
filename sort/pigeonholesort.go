@@ -1,3 +1,6 @@
+// Pigeonhole algorithm's working at wikipedia.
+// https://en.wikipedia.org/wiki/Pigeonhole_sort
+
 package sort
 
 import (
@@ -5,8 +8,7 @@ import (
 	"github.com/TheAlgorithms/Go/math/min"
 )
 
-// Pigeonhole algorithm's working at wikipedia.
-// https://en.wikipedia.org/wiki/Pigeonhole_sort
+// Pigeonhole sorts a slice using pigeonhole sorting algorithm.
 func Pigeonhole(arr []int) []int {
 	if len(arr) == 0 {
 		return arr
