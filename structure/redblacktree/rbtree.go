@@ -32,7 +32,7 @@ type RBTree struct {
 }
 
 func (t *RBTree) Insert(Val int) {
-	t.intInsert(Val)
+	t.insert(Val)
 	t.Root.isRed = false
 }
 
@@ -210,11 +210,11 @@ func preorder(currNode *Node) []*Node {
 
 // Public search function based on value
 func (t *RBTree) Search(val int) *Node {
-	return intSearch(t.Root, val)
+	return search(t.Root, val)
 }
 
 // Internal search function, recursive search
-func intSearch(node *Node, val int) *Node {
+func search(node *Node, val int) *Node {
 	if node == nil {
 		return nil
 	}
@@ -222,9 +222,9 @@ func intSearch(node *Node, val int) *Node {
 		return node
 	}
 	if val < node.Val {
-		return intSearch(node.left, val)
+		return search(node.left, val)
 	}
-	return intSearch(node.right, val)
+	return search(node.right, val)
 }
 
 // Replaces the node curr with repl
