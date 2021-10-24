@@ -41,7 +41,7 @@ func (p *Pqueue) Pop() interface{} {
 }
 func (p *Pqueue) update(item *Item, dist int) {
 	item.dist = dist
-	heap.Fix(p, item.index)
+	heap.Fix(p, item.index-1)
 }
 
 func (g *UndirectedGraph) ClosestDistance(start, end int) (int, bool) {
@@ -51,7 +51,7 @@ func (g *UndirectedGraph) ClosestDistance(start, end int) (int, bool) {
 	pq := make(Pqueue, 0, len(g.edges))
 	nodes[start] = &Item{
 		dist:  0,
-		index: 1,
+		index: 0,
 		node:  start,
 	}
 	pq = append(pq, nodes[start])
@@ -94,5 +94,6 @@ func Dijkstra(N int, edges [][]int, node0 int, node1 int) (int, bool) {
 	for _, edge := range edges {
 		graph.AddEdgeValue(edge[0], edge[1], edge[2])
 	}
+
 	return graph.ClosestDistance(node0, node1)
 }

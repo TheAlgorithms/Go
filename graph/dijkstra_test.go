@@ -22,6 +22,16 @@ var testCases = []struct {
 		[][]int{{0, 1, 5}},
 		3, 0, 2, -1,
 	},
+	{
+		"double paths",
+		[][]int{{0, 1, 5}, {1, 3, 5}, {0, 2, 5}, {2, 3, 4}},
+		4, 0, 3, 9,
+	},
+	{
+		"double paths extended",
+		[][]int{{0, 1, 5}, {1, 3, 5}, {0, 2, 5}, {2, 3, 4}, {3, 4, 1}},
+		5, 0, 4, 10,
+	},
 }
 
 func TestDijkstra(t *testing.T) {
