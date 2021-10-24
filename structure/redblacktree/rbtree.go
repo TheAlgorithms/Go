@@ -37,7 +37,7 @@ func (t *RBTree) Insert(Val int) {
 }
 
 // Internal insert function, refer Intro to Algorithms mentioned above
-func (t *RBTree) intInsert(Val int) {
+func (t *RBTree) insert(Val int) {
 	var newParent *Node = nil
 	var currNode = t.Root
 
