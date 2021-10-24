@@ -122,6 +122,10 @@ func TestSelection(t *testing.T) {
 	testFramework(t, SelectionSort)
 }
 
+func TestPigeonhole(t *testing.T) {
+	testFramework(t, Pigeonhole)
+}
+
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -212,4 +216,6 @@ func BenchmarkSelection(b *testing.B) {
 	benchmarkFramework(b, SelectionSort)
 }
 
-//END BENCHMARKS
+func BenchmarkPigeonhole(b *testing.B) {
+	benchmarkFramework(b, Pigeonhole)
+}
