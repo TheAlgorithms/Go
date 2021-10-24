@@ -4,6 +4,12 @@
 //
 // details:
 //
+// A Red Black tree is a self-balancing Binary Search Tree.
+// It considers an additional attribute for each node, a color either red or black
+// By requiring that no two consecutive nodes in a Depth Traversal can have red color,
+// the tree ensures that the heights of all subtrees remain close enough
+// to ensure O(n) time search
+//
 // This file contains the tree with a single field - root node
 //
 // There are multiple methods, public ones are
