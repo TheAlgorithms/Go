@@ -1,10 +1,12 @@
 package max
 
-// Int gives max of two integers
-// defining it here to be used in other subpackages of the repo.
-func Int(x int, y int) int {
-	if x < y {
-		return y
+// Int is a function which returns the maximum of all the integers provided as arguments.
+func Int(values ...int) int {
+	max := values[0]
+	for _, value := range values {
+		if value > max {
+			max = value
+		}
 	}
-	return x
+	return max
 }
