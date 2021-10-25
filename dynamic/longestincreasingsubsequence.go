@@ -25,8 +25,8 @@ func LIS(elements []int) int {
 	log.Println(elements)
 	log.Println(lis)
 	res := 0
-	for i := range lis {
-		res = max.Int(res, lis[i])
+	for _, value := range lis {
+		res = max.Int(res, value)
 	}
 	return res
 }
