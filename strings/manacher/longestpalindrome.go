@@ -7,11 +7,10 @@
 
 package manacher
 
-import "strings"
-
-func min(a, b int) int {
-	return a&((a-b)>>31) | b&(^(a-b)>>31)
-}
+import (
+	"github.com/TheAlgorithms/Go/math/min"
+	"strings"
+)
 
 func makeBoundaries(s string) string {
 	var result strings.Builder
@@ -44,7 +43,7 @@ func LongestPalindrome(s string) string {
 	maxCenterSize := 0
 	for i := range b {
 		if i < k {
-			b[i] = min(b[2*index-i], k-i)
+			b[i] = min.Int(b[2*index-i], k-i)
 		} else {
 			b[i] = 1
 		}
