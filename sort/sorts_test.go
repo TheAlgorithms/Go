@@ -23,28 +23,24 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 			expected: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			name:     "Reversed Unsigned",
 		},
-
 		//Sorted slice
 		{
 			input:    []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			name:     "Sorted Signed",
 		},
-
 		//Reversed slice
 		{
 			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			name:     "Reversed Signed",
 		},
-
 		//Reversed slice, even length
 		{
 			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			name:     "Reversed Signed #2",
 		},
-
 		//Random order with repetitions
 		{
 			input:    []int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
@@ -98,6 +94,10 @@ func TestHeap(t *testing.T) {
 	testFramework(t, HeapSort)
 }
 
+func TestCount(t *testing.T) {
+	testFramework(t, Count)
+}
+
 func TestQuick(t *testing.T) {
 	testFramework(t, QuickSort)
 }
@@ -122,6 +122,10 @@ func TestSelection(t *testing.T) {
 	testFramework(t, SelectionSort)
 }
 
+func TestPigeonhole(t *testing.T) {
+	testFramework(t, Pigeonhole)
+}
+
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -136,23 +140,18 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 		//Reversed slice
 		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
 			[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Unsigned"},
-
 		//Sorted slice
 		{[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Sorted Signed"},
-
 		//Reversed slice
 		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
 			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Signed"},
-
 		//Reversed slice, even length
 		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
 			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, "Reversed Signed #2"},
-
 		//Random order with repetitions
 		{[]int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
 			[]int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10}, "Random order Signed"},
-
 		//Empty slice
 		{[]int{}, []int{}, "Empty"},
 		//Single-entry slice
@@ -188,6 +187,10 @@ func BenchmarkHeap(b *testing.B) {
 	benchmarkFramework(b, HeapSort)
 }
 
+func BenchmarkCount(b *testing.B) {
+	benchmarkFramework(b, Count)
+}
+
 func BenchmarkQuick(b *testing.B) {
 	benchmarkFramework(b, QuickSort)
 }
@@ -213,4 +216,6 @@ func BenchmarkSelection(b *testing.B) {
 	benchmarkFramework(b, SelectionSort)
 }
 
-//END BENCHMARKS
+func BenchmarkPigeonhole(b *testing.B) {
+	benchmarkFramework(b, Pigeonhole)
+}
