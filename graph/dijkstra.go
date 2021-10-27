@@ -15,7 +15,7 @@ func (a Item) Idx() int {
 	return a.node
 }
 
-func (g *UndirectedGraph) Dijkstra(start, end int) (int, bool) {
+func (g UndirectedGraph) Dijkstra(start, end int) (int, bool) {
 	visited := make(map[int]bool)
 	nodes := make(map[int]*Item)
 

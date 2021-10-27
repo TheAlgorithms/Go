@@ -27,11 +27,7 @@ func (h *MaxHeap) Init(slice []Comparable) {
 	h.Heapify()
 }
 
-func (h MaxHeap) Size() int {
-	return h.heapSize
-}
-
-func (h *MaxHeap) Heapify() {
+func (h MaxHeap) Heapify() {
 	for i, v := range h.slice {
 		h.indexs[v.Idx()] = i
 	}
@@ -61,6 +57,10 @@ func (h *MaxHeap) Push(i Comparable) {
 	h.updateidx(h.heapSize)
 	h.heapifyUp(h.heapSize)
 	h.heapSize++
+}
+
+func (h MaxHeap) Size() int {
+	return h.heapSize
 }
 
 func (h MaxHeap) Update(i Comparable) {
