@@ -18,9 +18,9 @@ import (
 	"strconv"
 )
 
-// Inverse() function that will take string,
-// and returns the inverse of that string.
-func Inverse(str string) string {
+// Reverse() function that will take string,
+// and returns the reverse of that string.
+func Reverse(str string) string {
 	rStr := []rune(str)
 	for i, j := 0, len(rStr)-1; i < len(rStr)/2; i, j = i+1, j-1 {
 		rStr[i], rStr[j] = rStr[j], rStr[i]
@@ -28,9 +28,9 @@ func Inverse(str string) string {
 	return string(rStr)
 }
 
-// Convert() function that will take Decimal number as int,
+// DecimalToBinary() function that will take Decimal number as int,
 // and return it's Binary equivalent as string.
-func Convert(num int) (string, error) {
+func DecimalToBinary(num int) (string, error) {
 	if num < 0 {
 		return "", errors.New("integer must have +ve value")
 	}
@@ -42,5 +42,5 @@ func Convert(num int) (string, error) {
 		result += strconv.Itoa(num & 1)
 		num >>= 1
 	}
-	return Inverse(result), nil
+	return Reverse(result), nil
 }
