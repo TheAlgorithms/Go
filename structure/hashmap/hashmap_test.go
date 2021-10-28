@@ -48,7 +48,7 @@ func TestHashMap(t *testing.T) {
 		}
 	})
 
-	t.Run("Test 6: Checking if the key that doesnt exists returns false", func(t *testing.T) {
+	t.Run("Test 6: Checking if the key that doesn't exists returns false", func(t *testing.T) {
 		want := false
 		got := mp.Contains(2)
 		if got != want {
