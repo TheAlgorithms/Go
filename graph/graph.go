@@ -9,19 +9,12 @@ package graph
 type Graph struct {
 	vertices int
 	edges    map[int]map[int]int // Stores weight of an edge
-	directed bool                // Differentiate directed/undirected graphs
+	Directed bool                // Differentiate directed/undirected graphs
 }
 
-// Constructor functions for graphs
-func MakeUndirectedGraph(v int) Graph {
-	return Graph{
-		directed: false,
-		vertices: v,
-	}
-}
-func MakeDirectedGraph(v int) Graph {
-	return Graph{
-		directed: true,
+// Constructor functions for graphs (undirected by default)
+func New(v int) *Graph {
+	return &Graph{
 		vertices: v,
 	}
 }
@@ -55,7 +48,7 @@ func (g *Graph) AddWeightedEdge(one, two, weight int) {
 	// one->two and two->one for undirected graph
 	// one->two for directed graphs
 	g.edges[one][two] = weight
-	if !g.directed {
+	if !g.Directed {
 		g.edges[two][one] = weight
 	}
 }

@@ -76,7 +76,8 @@ func TestDirectedGraph(t *testing.T) {
 	for _, test := range directedGraphTestCases {
 		t.Run(fmt.Sprint(test.name), func(t *testing.T) {
 			// Initializing graph, adding edges
-			graph := MakeDirectedGraph(test.vertices)
+			graph := New(test.vertices)
+			graph.Directed = true
 			for _, edge := range test.edges {
 				graph.AddWeightedEdge(edge[0], edge[1], edge[2])
 			}
@@ -105,7 +106,7 @@ func TestUndirectedGraph(t *testing.T) {
 	for _, test := range graphTestCases {
 		t.Run(fmt.Sprint(test.name), func(t *testing.T) {
 			// Initializing graph, adding edges
-			graph := MakeUndirectedGraph(test.vertices)
+			graph := New(test.vertices)
 			for _, edge := range test.edges {
 				graph.AddWeightedEdge(edge[0], edge[1], edge[2])
 			}
