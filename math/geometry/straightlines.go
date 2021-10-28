@@ -18,7 +18,7 @@ func Distance(a, b *Point) float64 {
 	return math.Sqrt(math.Pow(a.X-b.X, 2) + math.Pow(a.Y-b.Y, 2))
 }
 
-// Calcualtes the Point that divides a line in specific ratio.
+// Calculates the Point that divides a line in specific ratio.
 // DO NOT specify the ratio in the form m:n, specify it as r, where r = m / n.
 func Section(p1, p2 *Point, r float64) Point {
 	var point Point

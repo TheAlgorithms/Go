@@ -105,7 +105,7 @@ func TestStackArray(t *testing.T) {
 
 		t.Run("Stack Empty", func(t *testing.T) {
 			if stackEmpty() == true {
-				t.Errorf("Stack Emtpy is not work we expected %v but got %v", false, stackEmpty())
+				t.Errorf("Stack Empty is not work we expected %v but got %v", false, stackEmpty())
 			}
 
 			stackPop()
@@ -113,7 +113,7 @@ func TestStackArray(t *testing.T) {
 			stackPop()
 
 			if stackEmpty() == false {
-				t.Errorf("Stack Emtpy is not work we expected %v but got %v", true, stackEmpty())
+				t.Errorf("Stack Empty is not work we expected %v but got %v", true, stackEmpty())
 			}
 		})
 	})
@@ -161,7 +161,7 @@ func TestStackLinkedListWithList(t *testing.T) {
 
 	t.Run("Stack Empty", func(t *testing.T) {
 		if stackList.Empty() == true {
-			t.Errorf("Stack Emtpy is not work we expected %v but got %v", false, stackList.Empty())
+			t.Errorf("Stack Empty is not work we expected %v but got %v", false, stackList.Empty())
 		}
 
 		d1, err := stackList.Pop()
@@ -173,7 +173,7 @@ func TestStackLinkedListWithList(t *testing.T) {
 		}
 
 		if stackList.Empty() == false {
-			t.Errorf("Stack Emtpy is not work we expected %v but got %v", true, stackList.Empty())
+			t.Errorf("Stack Empty is not work we expected %v but got %v", true, stackList.Empty())
 		}
 	})
 }

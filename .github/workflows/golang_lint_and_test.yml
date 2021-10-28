@@ -8,6 +8,10 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          ignore_words_list: "actualy,nwe"
+          skip: "go.mod,go.sum"
       - uses: actions/setup-go@v2
       - run: go version
       - uses: golangci/golangci-lint-action@v2
