@@ -9,7 +9,7 @@ import (
 // in the interval [a, b]. a and b should be finit numbers
 func TernaryMax(a, b, epsilon float64, f func(x float64) float64) (float64, error) {
 	if a == math.Inf(-1) || b == math.Inf(1) {
-		return -1, fmt.Errorf("interval boundries should be finite numbers")
+		return -1, fmt.Errorf("interval boundaries should be finite numbers")
 	}
 	if math.Abs(a-b) <= epsilon {
 		return f((a + b) / 2), nil
@@ -26,7 +26,7 @@ func TernaryMax(a, b, epsilon float64, f func(x float64) float64) (float64, erro
 // in the interval [a, b]. a and b should be finit numbers.
 func TernaryMin(a, b, epsilon float64, f func(x float64) float64) (float64, error) {
 	if a == math.Inf(-1) || b == math.Inf(1) {
-		return -1, fmt.Errorf("interval boundries should be finite numbers")
+		return -1, fmt.Errorf("interval boundaries should be finite numbers")
 	}
 	if math.Abs(a-b) <= epsilon {
 		return f((a + b) / 2), nil

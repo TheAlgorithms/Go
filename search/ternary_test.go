@@ -25,7 +25,7 @@ func TestTernaryMax(t *testing.T) {
 	for _, test := range tests {
 		result, err := TernaryMax(test.a, test.b, EPS, test.f)
 		if err != nil {
-			t.Errorf("error occured: %v", err)
+			t.Errorf("error occurred: %v", err)
 		}
 		if !equal(result, test.expected) {
 			t.Errorf("Wrong result! Expected:%v, returned:%v ", test.expected, result)
@@ -47,7 +47,7 @@ func TestTernaryMin(t *testing.T) {
 	for _, test := range tests {
 		result, err := TernaryMin(test.a, test.b, EPS, test.f)
 		if err != nil {
-			t.Errorf("error occured: %v", err)
+			t.Errorf("error occurred: %v", err)
 		}
 		if !equal(result, test.expected) {
 			t.Errorf("Wrong result! Expected:%v, returned:%v ", test.expected, result)

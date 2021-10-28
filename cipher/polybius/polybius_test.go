@@ -51,7 +51,7 @@ func TestNewPolybius(t *testing.T) {
 			name: "truncate characters", size: 5, characters: "HogeFuga", key: "abcdefghijklmnopqrstuvwxy", wantErr: "",
 		},
 		{
-			name: "invaid key", size: 5, characters: "HogeFuga", key: "abcdefghi", wantErr: "len(key): 9 must be as long as size squared: 25",
+			name: "invalid key", size: 5, characters: "HogeFuga", key: "abcdefghi", wantErr: "len(key): 9 must be as long as size squared: 25",
 		},
 		{
 			name: "invalid characters", size: 5, characters: "HogeH", key: "abcdefghijklmnopqrstuvwxy", wantErr: "\"chars\" contains same character: H",

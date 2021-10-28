@@ -91,7 +91,7 @@ func TestTrieRemove(t *testing.T) {
 	n.verify(t, checkWords)
 	n.verifySizeCapa(t, size, capa)
 
-	n.Remove("marcel") // no effect since ,o, existant
+	n.Remove("marcel") // no effect since ,o, existent
 	n.verify(t, checkWords)
 	n.verifySizeCapa(t, size, capa)
 

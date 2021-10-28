@@ -22,14 +22,14 @@ func Topological(N int, constraints [][]int) []int {
 		edges[a][b] = true
 	}
 
-	ans := []int{}
+	answer := []int{}
 	for s := 0; s < N; s++ {
 		// Only start walking from top level nodes
 		if dependencies[s] == 0 {
 			route, _ := DepthFirstSearchHelper(s, N, nodes, edges, true)
-			ans = append(ans, route...)
+			answer = append(answer, route...)
 		}
 	}
 
-	return ans
+	return answer
 }

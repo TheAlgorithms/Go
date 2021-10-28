@@ -116,7 +116,7 @@ func (ll *Doubly) Reverse() {
 	ll.Head = Prev
 }
 
-// Display diplay the linked list
+// Display display the linked list
 func (ll *Doubly) Display() {
 	for cur := ll.Head; cur != nil; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
