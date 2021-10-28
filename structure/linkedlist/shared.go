@@ -1,7 +1,7 @@
 package linkedlist
 
 // Node Structure representing the linkedlist node.
-// This node is shared accross different implementations.
+// This node is shared across different implementations.
 type Node struct {
 	Val  interface{}
 	Prev *Node
