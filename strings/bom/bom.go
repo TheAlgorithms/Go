@@ -71,8 +71,7 @@ package bom
 // 	currentOcc := 0
 // 	pos = 0
 // 	if debugMode == true {
-// 		fmt.Print("\n\n")
-//    fmt.Printf("We are reading backwards in %q, searching for %q\n\nat position %d:\n", t, p, pos+m-1)
+// 		fmt.Print("\n\nWe are reading backwards in %q, searching for %q\n\nat position %d:\n", t, p, pos+m-1)
 // 	}
 // 	for pos <= n-m {
 // 		current = 0 //initial state of the oracle
