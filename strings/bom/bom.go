@@ -49,11 +49,11 @@ package bom
 // 			log.Fatal("Pattern  is longer than text!")
 // 		}
 // 		if debugMode == true {
-// 			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
+// 			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
 // 			fmt.Printf("Search word (%d chars long): %q.\n", len(patFile), patFile)
 // 			fmt.Printf("Text        (%d chars long): %q.\n\n", len(textFile), textFile)
 // 		} else {
-// 			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
+// 			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
 // 		}
 // 		bom(string(textFile), string(patFile))
 // 	}
@@ -71,7 +71,8 @@ package bom
 // 	currentOcc := 0
 // 	pos = 0
 // 	if debugMode == true {
-// 		fmt.Printf("\n\nWe are reading backwards in %q, searching for %q\n\nat position %d:\n", t, p, pos+m-1)
+// 		fmt.Print("\n\n")
+//    fmt.Printf("We are reading backwards in %q, searching for %q\n\nat position %d:\n", t, p, pos+m-1)
 // 	}
 // 	for pos <= n-m {
 // 		current = 0 //initial state of the oracle
