@@ -10,4 +10,4 @@ jobs:
         with:
           # file types to ignore
           skip: "go.mod,go.sum"
-          ignore-words-list: "actualY,nWe"
+          ignore_words_list: "actualY,nWe"
