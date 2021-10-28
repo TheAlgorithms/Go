@@ -19,15 +19,15 @@ func TemplateTestExtendedGCD(t *testing.T, f testExtendedFunction) {
 	}
 	for _, tc := range testCasesExtended {
 		t.Run(tc.name, func(t *testing.T) {
-			actualGcd, actualX, actualY := f(tc.a, tc.b)
-			if actualGcd != tc.gcd {
-				t.Errorf("Expected GCD of %d and %d to be: %v, but got: %d", tc.a, tc.b, tc.gcd, actualGcd)
+			gcd, x, y := f(tc.a, tc.b)
+			if gcd != tc.gcd {
+				t.Errorf("Expected GCD of %d and %d to be: %v, but got: %d", tc.a, tc.b, tc.gcd, gcd)
 			}
-			if actualX != tc.x {
-				t.Errorf("Expected x satisfying %d * x + %d * y = gcd to be: %v, but got: %d", tc.a, tc.b, tc.x, actualX)
+			if x != tc.x {
+				t.Errorf("Expected x satisfying %d * x + %d * y = gcd to be: %v, but got: %d", tc.a, tc.b, tc.x, x)
 			}
-			if actualY != tc.y {
-				t.Errorf("Expected y satisfying %d * x + %d * y = gcd to be: %v, but got: %d", tc.a, tc.b, tc.y, actualY)
+			if y != tc.y {
+				t.Errorf("Expected y satisfying %d * x + %d * y = gcd to be: %v, but got: %d", tc.a, tc.b, tc.y, y)
 			}
 		})
 	}
