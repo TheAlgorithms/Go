@@ -9,6 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-go@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          skip: "go.mod,go.sum"
+          ignore_words_list: "actualy,nwe"
       - run: go version
       - uses: golangci/golangci-lint-action@v2
         with:
