@@ -3,7 +3,7 @@ package sort
 type MaxHeap struct {
 	slice    []Comparable
 	heapSize int
-	indices   map[int]int
+	indices  map[int]int
 }
 
 func buildMaxHeap(slice0 []int) MaxHeap {
