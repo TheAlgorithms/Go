@@ -3,7 +3,7 @@ package sort
 type MaxHeap struct {
 	slice    []Comparable
 	heapSize int
-	indexs   map[int]int
+	indices   map[int]int
 }
 
 func buildMaxHeap(slice0 []int) MaxHeap {
@@ -23,13 +23,13 @@ func (h *MaxHeap) Init(slice []Comparable) {
 
 	h.slice = slice
 	h.heapSize = len(slice)
-	h.indexs = make(map[int]int)
+	h.indices = make(map[int]int)
 	h.Heapify()
 }
 
 func (h MaxHeap) Heapify() {
 	for i, v := range h.slice {
-		h.indexs[v.Idx()] = i
+		h.indices[v.Idx()] = i
 	}
 	for i := h.heapSize / 2; i >= 0; i-- {
 		h.heapifyDown(i)
@@ -64,13 +64,13 @@ func (h MaxHeap) Size() int {
 }
 
 func (h MaxHeap) Update(i Comparable) {
-	h.slice[h.indexs[i.Idx()]] = i
-	h.heapifyUp(h.indexs[i.Idx()])
-	h.heapifyDown(h.indexs[i.Idx()])
+	h.slice[h.indices[i.Idx()]] = i
+	h.heapifyUp(h.indices[i.Idx()])
+	h.heapifyDown(h.indices[i.Idx()])
 }
 
 func (h MaxHeap) updateidx(i int) {
-	h.indexs[h.slice[i].Idx()] = i
+	h.indices[h.slice[i].Idx()] = i
 }
 
 func (h MaxHeap) heapifyUp(i int) {
