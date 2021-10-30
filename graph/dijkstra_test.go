@@ -36,9 +36,9 @@ var tc_dijkstra = []struct {
 func TestDijkstra(t *testing.T) {
 	for _, tc := range tc_dijkstra {
 		t.Run(tc.name, func(t *testing.T) {
-			var graph UndirectedGraph
+			var graph Graph
 			for _, edge := range tc.edges {
-				graph.AddEdgeValue(edge[0], edge[1], edge[2])
+				graph.AddWeightedEdge(edge[0], edge[1], edge[2])
 			}
 
 			actual, _ := graph.Dijkstra(tc.node0, tc.node1)
