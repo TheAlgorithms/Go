@@ -203,7 +203,7 @@ func inorder(currNode *Node) []*Node {
 }
 
 // Returns preorder representation
-func preorder(currNode *Node) []*Node {
+func preOrder(currNode *Node) []*Node {
 	var ret = []*Node{}
 	if currNode == nil {
 		return ret
