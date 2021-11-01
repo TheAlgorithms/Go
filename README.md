@@ -29,7 +29,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ### Data Structures
 * [AVL Tree](./structure/avl/avl.go)
-* [Binary Tree](./structure/binarysearchtree/btree.go)
+* [Binary Tree](./structure/binarysearchtree/bstree.go)
 * [Dynamic Array](./structure/dynamicarray/dynamicarray.go)
 * [Hashmap](./structure/hashmap/hashmap.go)
 * Linked-List
