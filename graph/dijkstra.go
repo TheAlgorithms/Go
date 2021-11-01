@@ -55,7 +55,6 @@ func (g Graph) Dijkstra(start, end int) (int, bool) {
 	item := nodes[end]
 	if item == nil {
 		return -1, false
-	} else {
-		return item.dist, true
 	}
+	return item.dist, true
 }
