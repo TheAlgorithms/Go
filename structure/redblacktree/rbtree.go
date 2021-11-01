@@ -16,8 +16,8 @@
 // Insert - inserts a value
 // Search - searches and returns Node pointer
 // Delete - deletes a value
-// PrintInorder - prints inorder representation - Val and isRed
-// PrintPreorder - prints preorder representation - Val and isRed
+// PrintInOrder - prints inorder representation - Val and isRed
+// PrintPreOrder - prints preorder representation - Val and isRed
 //
 // Implementation is based on Introduction to Algorithms, Cormen et. al., 3rd edition
 //
@@ -172,7 +172,7 @@ func newNode(Val int, parent *RBNode) *RBNode {
 }
 
 // Public function to print preorder
-func (t *RBTree) PrintPreorder() {
+func (t *RBTree) PrintPreOrder() {
 	var p = preOrder(t.Root)
 	fmt.Printf("Length %d\n", len(p))
 	for _, a := range p {
@@ -181,7 +181,7 @@ func (t *RBTree) PrintPreorder() {
 }
 
 // Public function to print inorder
-func (t *RBTree) PrintInorder() {
+func (t *RBTree) PrintInOrder() {
 	var p = inOrder(t.Root)
 	fmt.Printf("Length %d\n", len(p))
 	for _, a := range p {
