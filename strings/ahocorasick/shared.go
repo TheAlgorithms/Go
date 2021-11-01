@@ -35,7 +35,7 @@ func ConstructTrie(p []string) (trie map[int]map[uint8]int, stateIsTerminal []bo
 	return trie, stateIsTerminal, f
 }
 
-// Contains Returns 'true' if arry of int's 's' contains int 'e', 'false' otherwise.
+// Contains Returns 'true' if array of int's 's' contains int 'e', 'false' otherwise.
 func Contains(s []int, e int) bool {
 	for _, a := range s {
 		if a == e {

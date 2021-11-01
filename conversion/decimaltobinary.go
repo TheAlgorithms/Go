@@ -7,7 +7,7 @@ Date: 14-Oct-2021
 // This algorithm will convert any Decimal (+ve integer) number to Binary number.
 // https://en.wikipedia.org/wiki/Binary_number
 // Function receives a integer as a Decimal number and returns the Binary number.
-// Suppoted integer value range is 0 to 2^(31 -1).
+// Supported integer value range is 0 to 2^(31 -1).
 
 // Package name.
 package conversion

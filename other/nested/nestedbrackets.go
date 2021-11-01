@@ -1,5 +1,5 @@
 // Package nested provides functions for testing
-// strings propper brackets nesting.
+// strings proper brackets nesting.
 package nested
 
 // IsBalanced returns true if provided input string is properly nested.
@@ -16,7 +16,7 @@ package nested
 //
 // **Note** Providing characters other then brackets would return false,
 // despite brackets sequence in the string. Make sure to filter
-// input before useage.
+// input before usage.
 func IsBalanced(input string) bool {
 	if len(input) == 0 {
 		return true

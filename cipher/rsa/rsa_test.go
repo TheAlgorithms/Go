@@ -47,7 +47,7 @@ func TestEncryptDecrypt(t *testing.T) {
 	e := int64(17) // Coprime with delta
 
 	if gcd.Recursive(e, delta) != 1 {
-		t.Fatal("Algorithm failed in preamble stage:\n\tPrime numbers are chosed statically and it shouldn't fail at this stage")
+		t.Fatal("Algorithm failed in preamble stage:\n\tPrime numbers are chosen statically and it shouldn't fail at this stage")
 	}
 
 	d, err := modular.Inverse(e, delta)

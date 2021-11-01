@@ -8,7 +8,7 @@ Date: 19-Oct-2021
 // https://en.wikipedia.org/wiki/Binary_number
 // https://en.wikipedia.org/wiki/Decimal
 // Function receives a Binary Number as string and returns the Decimal number as integer.
-// Suppoted Binary number range is 0 to 2^(31-1).
+// Supported Binary number range is 0 to 2^(31-1).
 
 // Package name.
 package conversion

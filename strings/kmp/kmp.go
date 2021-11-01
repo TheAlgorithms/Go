@@ -95,7 +95,7 @@ func Kmp(text string, word string) Result {
 	}
 }
 
-// Table building alghoritm.
+// Table building algorithm.
 // Takes word to be analyzed and table to be filled.
 func kmpTable(word string) (t []int) {
 	t = make([]int, len(word))
