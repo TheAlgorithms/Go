@@ -7,8 +7,8 @@ import (
 
 func compare(tree *RBTree, preVal []int, preRed []bool, inVal []int, inRed []bool) bool {
 	var ret = false
-	var pre = preorder(tree.Root)
-	var in = inorder(tree.Root)
+	var pre = preOrder(tree.Root)
+	var in = inOrder(tree.Root)
 	if len(pre) != len(preVal) || len(in) != len(inVal) {
 		return ret
 	}

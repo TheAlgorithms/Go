@@ -173,7 +173,7 @@ func newNode(Val int, parent *RBNode) *RBNode {
 
 // Public function to print preorder
 func (t *RBTree) PrintPreorder() {
-	var p = preorder(t.Root)
+	var p = preOrder(t.Root)
 	fmt.Printf("Length %d\n", len(p))
 	for _, a := range p {
 		fmt.Printf("%d %v\n", a.Val, a.isRed)
@@ -182,7 +182,7 @@ func (t *RBTree) PrintPreorder() {
 
 // Public function to print inorder
 func (t *RBTree) PrintInorder() {
-	var p = inorder(t.Root)
+	var p = inOrder(t.Root)
 	fmt.Printf("Length %d\n", len(p))
 	for _, a := range p {
 		fmt.Printf("%d %v\n", a.Val, a.isRed)
@@ -190,27 +190,27 @@ func (t *RBTree) PrintInorder() {
 }
 
 // Returns inorder representation
-func inorder(currNode *RBNode) []*RBNode {
+func inOrder(currNode *RBNode) []*RBNode {
 	var ret = []*RBNode{}
 	if currNode == nil {
 		return ret
 	}
 
-	ret = append(ret, inorder(currNode.left)...)
+	ret = append(ret, inOrder(currNode.left)...)
 	ret = append(ret, currNode)
-	ret = append(ret, inorder(currNode.right)...)
+	ret = append(ret, inOrder(currNode.right)...)
 	return ret
 }
 
 // Returns preorder representation
-func preorder(currNode *RBNode) []*RBNode {
+func preOrder(currNode *RBNode) []*RBNode {
 	var ret = []*RBNode{}
 	if currNode == nil {
 		return ret
 	}
 	ret = append(ret, currNode)
-	ret = append(ret, preorder(currNode.left)...)
-	ret = append(ret, preorder(currNode.right)...)
+	ret = append(ret, preOrder(currNode.left)...)
+	ret = append(ret, preOrder(currNode.right)...)
 	return ret
 }
 
