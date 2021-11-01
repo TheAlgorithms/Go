@@ -216,11 +216,11 @@ func preOrder(currNode *RBNode) []*RBNode {
 
 // Public search function based on value
 func (t *RBTree) Search(val int) *RBNode {
-	return search(t.Root, val)
+	return SearchNode(t.Root, val)
 }
 
-// Internal search function, recursive search
-func search(node *RBNode, val int) *RBNode {
+// Internal SearchNode function, recursive SearchNode
+func SearchNode(node *RBNode, val int) *RBNode {
 	if node == nil {
 		return nil
 	}
@@ -228,9 +228,9 @@ func search(node *RBNode, val int) *RBNode {
 		return node
 	}
 	if val < node.Val {
-		return search(node.left, val)
+		return SearchNode(node.left, val)
 	}
-	return search(node.right, val)
+	return SearchNode(node.right, val)
 }
 
 // Replaces the node curr with repl
