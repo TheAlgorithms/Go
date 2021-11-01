@@ -34,7 +34,7 @@ import (
 )
 
 type RBTree struct {
-	Root *Node
+	Root *RBNode
 }
 
 func (t *RBTree) Insert(Val int) {
@@ -44,7 +44,7 @@ func (t *RBTree) Insert(Val int) {
 
 // Internal insert function, refer Intro to Algorithms mentioned above
 func (t *RBTree) insert(Val int) {
-	var newParent *Node = nil
+	var newParent *RBNode = nil
 	var currNode = t.Root
 
 	// Find empty node to act as parent
@@ -117,7 +117,7 @@ func (t *RBTree) insert(Val int) {
 }
 
 // Simplest case, make parent level black
-func case1(parentNode, uncleNode, grandNode *Node) *Node {
+func case1(parentNode, uncleNode, grandNode *RBNode) *RBNode {
 	parentNode.isRed = false
 	uncleNode.isRed = false
 	grandNode.isRed = true
@@ -125,7 +125,7 @@ func case1(parentNode, uncleNode, grandNode *Node) *Node {
 }
 
 // A left rotate similar to binary search tree. Coloring is not handled
-func (t *RBTree) leftRotate(parentNode *Node) {
+func (t *RBTree) leftRotate(parentNode *RBNode) {
 	// Swap nodes and parents
 	var currNode = parentNode.right
 	var tempNode = currNode.left
@@ -147,7 +147,7 @@ func (t *RBTree) leftRotate(parentNode *Node) {
 }
 
 // Right rotate, similar to left rotate above
-func (t *RBTree) rightRotate(parentNode *Node) {
+func (t *RBTree) rightRotate(parentNode *RBNode) {
 	var currNode = parentNode.left
 	var tempNode = currNode.right
 	currNode.right = parentNode
@@ -167,8 +167,8 @@ func (t *RBTree) rightRotate(parentNode *Node) {
 }
 
 // Simply return new node
-func newNode(Val int, parent *Node) *Node {
-	return &Node{Val: Val, left: nil, right: nil, parent: parent, isRed: true}
+func newNode(Val int, parent *RBNode) *RBNode {
+	return &RBNode{Val: Val, left: nil, right: nil, parent: parent, isRed: true}
 }
 
 // Public function to print preorder
@@ -190,8 +190,8 @@ func (t *RBTree) PrintInorder() {
 }
 
 // Returns inorder representation
-func inorder(currNode *Node) []*Node {
-	var ret = []*Node{}
+func inorder(currNode *RBNode) []*RBNode {
+	var ret = []*RBNode{}
 	if currNode == nil {
 		return ret
 	}
@@ -203,8 +203,8 @@ func inorder(currNode *Node) []*Node {
 }
 
 // Returns preorder representation
-func preorder(currNode *Node) []*Node {
-	var ret = []*Node{}
+func preorder(currNode *RBNode) []*RBNode {
+	var ret = []*RBNode{}
 	if currNode == nil {
 		return ret
 	}
@@ -215,12 +215,12 @@ func preorder(currNode *Node) []*Node {
 }
 
 // Public search function based on value
-func (t *RBTree) Search(val int) *Node {
+func (t *RBTree) Search(val int) *RBNode {
 	return search(t.Root, val)
 }
 
 // Internal search function, recursive search
-func search(node *Node, val int) *Node {
+func search(node *RBNode, val int) *RBNode {
 	if node == nil {
 		return nil
 	}
@@ -234,7 +234,7 @@ func search(node *Node, val int) *Node {
 }
 
 // Replaces the node curr with repl
-func (t *RBTree) replace(curr *Node, repl *Node) {
+func (t *RBTree) replace(curr *RBNode, repl *RBNode) {
 	if curr == nil {
 		return
 	}
@@ -255,12 +255,12 @@ func (t *RBTree) replace(curr *Node, repl *Node) {
 }
 
 // Simple function to test if curr is or should be root
-func (t *RBTree) isRoot(curr *Node) bool {
+func (t *RBTree) isRoot(curr *RBNode) bool {
 	return curr != nil && curr.parent == nil
 }
 
 // Set root (coloring it black is important)
-func (t *RBTree) setRoot(curr *Node) {
+func (t *RBTree) setRoot(curr *RBNode) {
 	t.Root = curr
 	if t.Root != nil {
 		t.Root.isRed = false
@@ -274,14 +274,14 @@ func (t *RBTree) Delete(val int) {
 }
 
 // Internal delete based on node
-func (t *RBTree) delete(curr *Node) {
+func (t *RBTree) delete(curr *RBNode) {
 	if curr == nil {
 		// Didn't find the node
 		return
 	}
 
 	var checkIsRed = curr.isRed
-	var next *Node
+	var next *RBNode
 
 	// First replace the relevant child, moving it up the list
 	if curr.left == nil {
@@ -313,7 +313,7 @@ func (t *RBTree) delete(curr *Node) {
 	}
 }
 
-func (t *RBTree) min(curr *Node) *Node {
+func (t *RBTree) min(curr *RBNode) *RBNode {
 	if curr == nil {
 		return nil
 	}
@@ -323,7 +323,7 @@ func (t *RBTree) min(curr *Node) *Node {
 	return curr
 }
 
-func (t *RBTree) fix(curr *Node) {
+func (t *RBTree) fix(curr *RBNode) {
 	if curr == nil {
 		// Nothing to fix
 		return
