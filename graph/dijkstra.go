@@ -27,14 +27,8 @@ func (g *Graph) Dijkstra(start, end int) (int, bool) {
 	pq.Init(nil)
 	pq.Push(*nodes[start])
 
-	for pq.Size() > 0 {
-		curr := pq.Pop().(Item)
+	visit := func(curr Item) {
 		visited[curr.node] = true
-
-		if curr.node == end {
-			break
-		}
-
 		for n, d := range g.edges[curr.node] {
 			if visited[n] {
 				continue
@@ -50,6 +44,14 @@ func (g *Graph) Dijkstra(start, end int) (int, bool) {
 				pq.Update(*item)
 			}
 		}
+	}
+
+	for pq.Size() > 0 {
+		curr := pq.Pop().(Item)
+		if curr.node == end {
+			break
+		}
+		visit(curr)
 	}
 
 	item := nodes[end]
