@@ -42,11 +42,9 @@ func (t *RBTree) Insert(Val int) {
 	t.Root.isRed = false
 }
 
-// Internal insert function, refer Intro to Algorithms mentioned above
-func (t *RBTree) insert(Val int) {
+func (t *RBTree) findParent(Val int) *RBNode {
 	var newParent *RBNode = nil
 	var currNode = t.Root
-
 	// Find empty node to act as parent
 	for currNode != nil {
 		newParent = currNode
@@ -56,20 +54,26 @@ func (t *RBTree) insert(Val int) {
 			currNode = currNode.right
 		}
 	}
+	return newParent
+}
+
+// Internal insert function, refer Intro to Algorithms mentioned above
+func (t *RBTree) insert(Val int) {
+	var newParent = t.findParent(Val)
 	var insNode = newNode(Val, newParent)
 	if newParent == nil {
 		// Is root node
-		t.Root = insNode
+		t.setRoot(insNode)
 		return
 	}
 	// Is not root node, so must be left or right child of a node
 	if Val < newParent.Val {
 		newParent.left = insNode
 	} else {
-
 		newParent.right = insNode
 	}
-	currNode = insNode
+
+	var currNode = insNode
 	for currNode != t.Root && currNode.parent.isRed {
 		// By definition, root must be black (specifically Cormen et. al.).
 		// Hence within the loop, currNode.parent is not root
