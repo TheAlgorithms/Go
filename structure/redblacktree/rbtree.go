@@ -79,6 +79,7 @@ func (t *RBTree) insert(Val int) {
 		// Hence within the loop, currNode.parent is not root
 		var parentNode = currNode.parent
 		var grandNode = parentNode.parent
+		// climbTreeColoring(currNode,parentNode,grandNode)
 		// L* case
 		if parentNode == grandNode.left {
 			var uncle = grandNode.right
@@ -120,7 +121,7 @@ func (t *RBTree) insert(Val int) {
 	}
 }
 
-// Simplest case, make parent level black
+// Simplest case, make parent level black and grandparent level red
 func case1(parentNode, uncleNode, grandNode *RBNode) *RBNode {
 	parentNode.isRed = false
 	uncleNode.isRed = false
@@ -128,25 +129,30 @@ func case1(parentNode, uncleNode, grandNode *RBNode) *RBNode {
 	return grandNode
 }
 
-// A left rotate similar to binary search tree. Coloring is not handled
+// A left rotate similar to binary search tree. Colors remain same
 func (t *RBTree) leftRotate(parentNode *RBNode) {
 	// Swap nodes and parents
 	var currNode = parentNode.right
 	var tempNode = currNode.left
+	var grandNode = parentNode.parent
 	currNode.left = parentNode
 	parentNode.right = tempNode
-	currNode.parent = parentNode.parent
+	t.setParents(currNode, parentNode, grandNode)
+}
+
+func (t *RBTree) setParents(currNode *RBNode, parentNode *RBNode, grandNode *RBNode) {
+	currNode.parent = grandNode
 	parentNode.parent = currNode
 
 	if t.isRoot(currNode) {
-		t.Root = currNode
+		t.setRoot(currNode)
 		return
 	}
 	// Set new parent left or right
-	if currNode.parent.left == parentNode {
-		currNode.parent.left = currNode
+	if grandNode.left == parentNode {
+		grandNode.left = currNode
 	} else {
-		currNode.parent.right = currNode
+		grandNode.right = currNode
 	}
 }
 
@@ -154,20 +160,28 @@ func (t *RBTree) leftRotate(parentNode *RBNode) {
 func (t *RBTree) rightRotate(parentNode *RBNode) {
 	var currNode = parentNode.left
 	var tempNode = currNode.right
+	var grandNode = parentNode.parent
 	currNode.right = parentNode
 	parentNode.left = tempNode
-	currNode.parent = parentNode.parent
-	parentNode.parent = currNode
+	t.setParents(currNode, parentNode, grandNode)
+}
 
-	if currNode.parent == nil {
-		t.Root = currNode
+func (t *RBTree) rotate(currNode *RBNode, parentNode *RBNode) {
+	if parentNode == nil || currNode == nil {
 		return
 	}
-	if currNode.parent.left == parentNode {
-		currNode.parent.left = currNode
+	if parentNode.right == currNode {
+		//leftRotate
+
+		var shiftNode = currNode.left
+		currNode.left = parentNode
+		parentNode.right = shiftNode
 	} else {
-		currNode.parent.right = currNode
+		var shiftNode = currNode.right
+		currNode.right = parentNode
+		parentNode.left = shiftNode
 	}
+	t.setParents(currNode, parentNode, parentNode.parent)
 }
 
 // Simply return new node
