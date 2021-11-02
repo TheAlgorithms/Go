@@ -42,6 +42,8 @@ func (t *RBTree) Insert(Val int) {
 	t.Root.setBlack()
 }
 
+// Simply search the tree for the new parent of the new node
+// Similar to ordinary BST
 func (t *RBTree) findNewParent(Val int) *RBNode {
 	var newParent *RBNode = nil
 	var currNode = t.Root
@@ -108,6 +110,15 @@ func (t *RBTree) climbTreeColoring(curr *RBNode) *RBNode {
 		curr = parent
 		parent = tempNode
 	}
+
+	// 			grand		grand
+	//   	   /				\
+	//		  /				 	 \
+	//   	parent		OR		parent
+	//     /				 		\
+	//	  /							 \
+	//   curr						curr
+	//
 	// Rotate grandparent node
 	t.rotate(parent, grand)
 
