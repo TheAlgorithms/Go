@@ -6,6 +6,7 @@ import (
 )
 
 func compare(tree *RBTree, preVal []int, preRed []bool, inVal []int, inRed []bool) bool {
+	// fmt.Println("In compare")
 	var ret = false
 	var pre = preOrder(tree.Root)
 	var in = inOrder(tree.Root)
@@ -36,8 +37,8 @@ func TestInsert(t *testing.T) {
 		for _, val := range vals {
 			tree.Insert(val)
 		}
-		// tree.PrintPreorder()
-		// tree.PrintInorder()
+		// tree.PrintPreOrder()
+		// tree.PrintInOrder()
 		if !compare(tree, expPreVal, expPreRed, expInVal, expInRed) {
 			t.Error("Insert did not work")
 		}
