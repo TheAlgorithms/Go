@@ -94,37 +94,37 @@ func (t *RBTree) climbTreeColoring(curr *RBNode) *RBNode {
 		return case1(parent, uncle, grand)
 	}
 	if isTriangle(curr, parent, grand) {
-		// 		grand			grand
+		// 		grand-B			grand-B
 		//      /					\
-		//	   /					 \
-		//   parent		OR			parent
+		//	   /	  	    	 	 \
+		//  parent-R		OR 		parent-R
 		//     \					 /
 		//		\					/
-		//      curr			curr
+		//      curr-R			curr-R
 		//
 		// First rotate the curr and parent to ensure a straight line
 		t.rotate(curr, parent)
 
-		// Swap curr and parent
+		// Swap curr and parent pointers
 		var tempNode = curr
 		curr = parent
 		parent = tempNode
 	}
 
-	// 			grand		grand
+	// 			grand-B		grand-B
 	//   	   /				\
-	//		  /				 	 \
-	//   	parent		OR		parent
+	//		  /		 	  	  	 \
+	//   parent-R	 	OR		parent-R
 	//     /				 		\
 	//	  /							 \
-	//   curr						curr
+	//  curr-R						curr-R
 	//
 	// Rotate grandparent node
 	t.rotate(parent, grand)
 
 	// Ensure that levels are colored to maintain rules
-	curr.parent.setBlack() // Since curr is red, it's parent should be black
-	grand.setRed()         // Since grand is moved down, it is colored to red
+	parent.setBlack() // Since curr is red, it's parent should be black
+	grand.setRed()    // Since grand is moved down, it is colored to red
 	return curr
 }
 
