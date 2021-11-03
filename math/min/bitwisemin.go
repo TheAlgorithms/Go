@@ -7,6 +7,10 @@
 
 package min
 
-func BitwiseMin(a int, b int, base int) int {
-	return a&((a-b)>>base) | b&(^(a-b)>>base)
+func Bitwise(base int, values ...int) int {
+	result := values[0]
+	for _, val := range values {
+		result = result&((result-val)>>base) | val&(^(result-val)>>base)
+	}
+	return result
 }
