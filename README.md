@@ -12,8 +12,9 @@ The repository is a collection of open-source implementation of a variety of alg
 Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## List of Algorithms
-<!-- TESTING A SMALL CHANGE --->
 <!--- GODOCMD BEGIN --->
+
+<!--- TESTING WHETHER THIS GETS DELETED --->
 # Packages:
 
 <details>
