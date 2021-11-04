@@ -8,17 +8,17 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '^1.17'
-      - id: install-godomd
-      - run: |
+      - name: install-godomd
+        run: |
           go install github.com/tjgurwara99/godocmd@v0.1.1
-      - id: cofigure github-action
-      - run: |
+      - name: cofigure github-action
+        run: |
           git config --global user.name godocmd-action
           git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
-      - id: update-readme
-      - run: |
+      - name: update-readme
+        run: |
           godocmd -r -module ./ -w
-      - id: commit-changes
-      - run: |
+      - name: commit-changes
+        run: |
           git commit -am "Updated Documentation in README.md"
           git push
