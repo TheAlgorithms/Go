@@ -11,7 +11,7 @@ jobs:
       - name: install-godomd
         run: |
           go install github.com/tjgurwara99/godocmd@v0.1.2
-      - name: cofigure github-action
+      - name: configure github-action
         run: |
           git config --global user.name github-action
           git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
