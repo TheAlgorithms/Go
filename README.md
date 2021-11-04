@@ -171,7 +171,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package name. Package name. Package conversion is a package of implementations which converts one data structure to another.
+#####  Package name. Package conversion is a package of implementations which converts one data structure to another. Package name.
 
 ---
 ##### Functions:
@@ -336,7 +336,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  The Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted durected graph. It is slower than Dijkstra but capable of handling negative edge weights. https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm Implementation is based on the book 'Introduction to Algorithms' (CLRS) Package graph demonstrates Graph search algorithms reference: https://en.wikipedia.org/wiki/Tree_traversal
+#####  Package graph demonstrates Graph search algorithms reference: https://en.wikipedia.org/wiki/Tree_traversal
 
 ---
 ##### Functions:
