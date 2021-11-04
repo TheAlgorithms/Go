@@ -20,5 +20,9 @@ jobs:
           godocmd -r -module ./ -w
       - name: commit-changes
         run: |
-          git commit -am "Updated Documentation in README.md"
-          git push
+          if [[ `git status --porcelain` ]]; then
+            git commit -am "Updated Documentation in README.md"
+            git push
+          else
+            echo "NO CHANGES DETECTED"
+          fi
