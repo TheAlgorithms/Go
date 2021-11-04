@@ -8,6 +8,6 @@ jobs:
     - uses: actions/setup-go@v2
       with:
         go-version: '^1.17'
-      run: |
+    - run: |
         go install github.com/tjgurwara99/godocmd@v0.1.1
         ls
