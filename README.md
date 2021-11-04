@@ -466,11 +466,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
 
-2. [`Doubly`](./structure/linkedlist/doubly.go#L18): No description provided.
+2. [`Singly`](./structure/linkedlist/singlylinkedlist.go#L10): No description provided.
 
-3. [`Node`](./structure/linkedlist/shared.go#L5): No description provided.
+3. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
 
-4. [`Singly`](./structure/linkedlist/singlylinkedlist.go#L10): No description provided.
+4. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
 
 5. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
 
@@ -496,8 +496,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-2. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+1. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+2. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
 
 ---
 </details><details>
@@ -507,8 +507,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
-2. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
+1. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
+2. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
 
 ---
 </details><details>
@@ -634,8 +634,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
-2. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
+1. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
+2. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
 
 ---
 </details><details>
@@ -829,7 +829,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 2. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
 
-3. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
+3. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
 
 
 ---
