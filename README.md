@@ -119,9 +119,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Types
 
-1. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
+1. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
 
-2. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
+2. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
 
 
 ---
@@ -326,7 +326,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 2. [`PopulationItem`](./strings/genetic/genetic.go#L26): No description provided.
 
-3. [`Result`](./strings/genetic/genetic.go#L52): No description provided.
+3. [`Conf`](./strings/genetic/genetic.go#L32): No description provided.
 
 
 ---
@@ -388,7 +388,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 5. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-6. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
+6. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
 
 ---
@@ -466,11 +466,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
 
-2. [`Singly`](./structure/linkedlist/singlylinkedlist.go#L10): No description provided.
+2. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
 
-3. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
+3. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
 
-4. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
+4. [`Doubly`](./structure/linkedlist/doubly.go#L18): No description provided.
 
 5. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
 
@@ -496,8 +496,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
-2. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
+1. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
+2. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
 
 ---
 </details><details>
@@ -507,8 +507,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
-2. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
+1. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
+2. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
 
 ---
 </details><details>
