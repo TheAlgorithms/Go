@@ -10,7 +10,7 @@ jobs:
           go-version: '^1.17'
       - name: install-godomd
         run: |
-          go install github.com/tjgurwara99/godocmd@v0.1.1
+          go install github.com/tjgurwara99/godocmd@v0.1.2
       - name: cofigure github-action
         run: |
           git config --global user.name github-action
