@@ -728,9 +728,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  package set implements a Set using a golang map. This implies that only the types that are accepted as valid map keys can be used as set elements. For instance, do not try to Add a slice, or the program will panic.
-
----
 ##### Functions:
 
 1. [`New`](./structure/set/set.go#L4):  New gives new set.
@@ -741,7 +738,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package sort a package for demonstrating sorting algorithms in Go package sort provides primitives for sorting slices and user-defined collections
+#####  package sort provides primitives for sorting slices and user-defined collections Package sort a package for demonstrating sorting algorithms in Go
 
 ---
 ##### Functions:
