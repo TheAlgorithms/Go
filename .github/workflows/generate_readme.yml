@@ -13,7 +13,7 @@ jobs:
           go install github.com/tjgurwara99/godocmd@v0.1.1
       - name: cofigure github-action
         run: |
-          git config --global user.name godocmd-action
+          git config --global user.name github-action
           git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
       - name: update-readme
         run: |
