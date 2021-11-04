@@ -116,9 +116,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Types
 
-1. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
+1. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
 
-2. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
+2. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
 
 
 ---
