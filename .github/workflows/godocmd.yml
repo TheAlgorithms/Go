@@ -1,4 +1,4 @@
-name: generate_readme
+name: godocmd
 on: [push, pull_request]
 jobs:
   generate_readme:
