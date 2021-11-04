@@ -10,4 +10,9 @@ jobs:
         go-version: '^1.17'
     - run: |
         go install github.com/tjgurwara99/godocmd@v0.1.1
-        ls
+        git config --global user.name godocmd-action
+        git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
+        godocmd -r -module ./ -w
+        git add README.md
+        git commit -am "Updated README.md"
+        git push
