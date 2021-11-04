@@ -73,7 +73,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  xorsearch_test.go description: Test for Find a missing number in a sequence author(s) [red_byte](https://github.com/i-redbyte) see xorsearch.go Package binary describes algorithms that use binary operations for different calculations.
+#####  Package binary describes algorithms that use binary operations for different calculations. xorsearch_test.go description: Test for Find a missing number in a sequence author(s) [red_byte](https://github.com/i-redbyte) see xorsearch.go
 
 ---
 ##### Functions:
@@ -728,9 +728,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+#####  package set implements a Set using a golang map. This implies that only the types that are accepted as valid map keys can be used as set elements. For instance, do not try to Add a slice, or the program will panic.
+
+---
 ##### Functions:
 
-1. [`New`](./structure/set/set.go#L4):  New gives new set.
+1. [`New`](./structure/set/set.go#L7):  New gives new set.
 
 ---
 </details><details>
@@ -738,7 +741,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  package sort provides primitives for sorting slices and user-defined collections Package sort a package for demonstrating sorting algorithms in Go
+#####  Package sort a package for demonstrating sorting algorithms in Go package sort provides primitives for sorting slices and user-defined collections
 
 ---
 ##### Functions:
