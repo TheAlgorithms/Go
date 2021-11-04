@@ -13,8 +13,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## List of Algorithms
 <!--- GODOCMD BEGIN --->
-
-<!--- TESTING WHETHER THIS GETS DELETED --->
 # Packages:
 
 <details>
@@ -172,7 +170,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package name. Package conversion is a package of implementations which converts one data structure to another.
+#####  Package conversion is a package of implementations which converts one data structure to another. Package name.
 
 ---
 ##### Functions:
