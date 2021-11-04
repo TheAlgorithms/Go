@@ -73,7 +73,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  xorsearch_test.go description: Test for Find a missing number in a sequence author(s) [red_byte](https://github.com/i-redbyte) see xorsearch.go Package binary describes algorithms that use binary operations for different calculations.
+#####  Package binary describes algorithms that use binary operations for different calculations.
 
 ---
 ##### Functions:
