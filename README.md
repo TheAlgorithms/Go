@@ -108,9 +108,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Types
 
-1. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
+1. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
 
-2. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
+2. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
 
 
 ---
@@ -171,18 +171,18 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package name. Package conversion is a package of implementations which converts one data structure to another. Package name.
+#####  Package name. Package name. Package conversion is a package of implementations which converts one data structure to another.
 
 ---
 ##### Functions:
 
 1. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
-2. [`Reverse`](./conversion/decimaltobinary.go#L23):  Reverse() function that will take string, and returns the reverse of that string.
-3. [`DecimalToBinary`](./conversion/decimaltobinary.go#L33):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
-4. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
-5. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
-6. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
-7. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L26):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
+2. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
+3. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
+4. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
+5. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L26):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
+6. [`Reverse`](./conversion/decimaltobinary.go#L23):  Reverse() function that will take string, and returns the reverse of that string.
+7. [`DecimalToBinary`](./conversion/decimaltobinary.go#L33):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
 
 ---
 </details><details>
@@ -209,22 +209,22 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`CutRodRec`](./dynamic/rodcutting.go#L8):  CutRodRec solve the problem recursively: initial approach
-2. [`CutRodDp`](./dynamic/rodcutting.go#L21):  CutRodDp solve the same problem using dynamic programming
-3. [`EditDistanceRecursive`](./dynamic/editdistance.go#L10):  EditDistanceRecursive is a naive implementation with exponential time complexity.
-4. [`EditDistanceDP`](./dynamic/editdistance.go#L35):  EditDistanceDP is an optimised implementation which builds on the ideas of the recursive implementation. We use dynamic programming to compute the DP table where dp[i][j] denotes the edit distance value of first[0..i-1] and second[0..j-1]. Time complexity is O(m * n) where m and n are lengths of the strings, first and second respectively.
-5. [`LongestIncreasingSubsequence`](./dynamic/longestincreasingsubsequence.go#L9):  LongestIncreasingSubsequence returns the longest increasing subsequence where all elements of the subsequence are sorted in increasing order
-6. [`LpsRec`](./dynamic/longestpalindromicsubsequence.go#L7):  LpsRec function
-7. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L21):  LpsDp function
-8. [`MatrixChainRec`](./dynamic/matrixmultiplication.go#L10):  MatrixChainRec function
-9. [`MatrixChainDp`](./dynamic/matrixmultiplication.go#L24):  MatrixChainDp function
-10. [`Bin2`](./dynamic/binomialcoefficient.go#L21):  Bin2 function
-11. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L8):  LongestCommonSubsequence function
-12. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
-13. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
-14. [`Knapsack`](./dynamic/knapsack.go#L17):  Knapsack solves knapsack problem return maxProfit
+1. [`LongestIncreasingSubsequence`](./dynamic/longestincreasingsubsequence.go#L9):  LongestIncreasingSubsequence returns the longest increasing subsequence where all elements of the subsequence are sorted in increasing order
+2. [`CutRodRec`](./dynamic/rodcutting.go#L8):  CutRodRec solve the problem recursively: initial approach
+3. [`CutRodDp`](./dynamic/rodcutting.go#L21):  CutRodDp solve the same problem using dynamic programming
+4. [`EditDistanceRecursive`](./dynamic/editdistance.go#L10):  EditDistanceRecursive is a naive implementation with exponential time complexity.
+5. [`EditDistanceDP`](./dynamic/editdistance.go#L35):  EditDistanceDP is an optimised implementation which builds on the ideas of the recursive implementation. We use dynamic programming to compute the DP table where dp[i][j] denotes the edit distance value of first[0..i-1] and second[0..j-1]. Time complexity is O(m * n) where m and n are lengths of the strings, first and second respectively.
+6. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L8):  LongestCommonSubsequence function
+7. [`MatrixChainRec`](./dynamic/matrixmultiplication.go#L10):  MatrixChainRec function
+8. [`MatrixChainDp`](./dynamic/matrixmultiplication.go#L24):  MatrixChainDp function
+9. [`IsSubsetSum`](./dynamic/subsetsum.go#L14): No description provided.
+10. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
+11. [`Knapsack`](./dynamic/knapsack.go#L17):  Knapsack solves knapsack problem return maxProfit
+12. [`LpsRec`](./dynamic/longestpalindromicsubsequence.go#L7):  LpsRec function
+13. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L21):  LpsDp function
+14. [`Bin2`](./dynamic/binomialcoefficient.go#L21):  Bin2 function
 15. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
-16. [`IsSubsetSum`](./dynamic/subsetsum.go#L14): No description provided.
+16. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
 
 ---
 </details><details>
@@ -263,15 +263,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`ExtendedRecursive`](./math/gcd/extendedgcd.go#L4):  ExtendedRecursive finds and returns gcd(a, b), x, y satisfying a*x + b*y = gcd(a, b).
-2. [`TemplateTestExtendedGCD`](./math/gcd/extendedgcd_test.go#L7): No description provided.
-3. [`TemplateBenchmarkExtendedGCD`](./math/gcd/extendedgcd_test.go#L44): No description provided.
-4. [`ExtendedIterative`](./math/gcd/extendedgcditerative.go#L4):  ExtendedIterative finds and returns gcd(a, b), x, y satisfying a*x + b*y = gcd(a, b).
-5. [`Recursive`](./math/gcd/gcd.go#L4):  Recursive finds and returns the greatest common divisor of a given integer.
-6. [`TemplateTestGCD`](./math/gcd/gcd_test.go#L18): No description provided.
-7. [`TemplateBenchmarkGCD`](./math/gcd/gcd_test.go#L37): No description provided.
-8. [`Iterative`](./math/gcd/gcditerative.go#L4):  Iterative Faster iterative version of GcdRecursive without holding up too much of the stack
-9. [`Extended`](./math/gcd/extended.go#L12):  Extended simple extended gcd
+1. [`TemplateTestGCD`](./math/gcd/gcd_test.go#L18): No description provided.
+2. [`TemplateBenchmarkGCD`](./math/gcd/gcd_test.go#L37): No description provided.
+3. [`Iterative`](./math/gcd/gcditerative.go#L4):  Iterative Faster iterative version of GcdRecursive without holding up too much of the stack
+4. [`Extended`](./math/gcd/extended.go#L12):  Extended simple extended gcd
+5. [`ExtendedRecursive`](./math/gcd/extendedgcd.go#L4):  ExtendedRecursive finds and returns gcd(a, b), x, y satisfying a*x + b*y = gcd(a, b).
+6. [`TemplateTestExtendedGCD`](./math/gcd/extendedgcd_test.go#L7): No description provided.
+7. [`TemplateBenchmarkExtendedGCD`](./math/gcd/extendedgcd_test.go#L44): No description provided.
+8. [`ExtendedIterative`](./math/gcd/extendedgcditerative.go#L4):  ExtendedIterative finds and returns gcd(a, b), x, y satisfying a*x + b*y = gcd(a, b).
+9. [`Recursive`](./math/gcd/gcd.go#L4):  Recursive finds and returns the greatest common divisor of a given integer.
 
 ---
 </details><details>
@@ -336,28 +336,28 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package graph demonstrates Graph search algorithms reference: https://en.wikipedia.org/wiki/Tree_traversal The Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted durected graph. It is slower than Dijkstra but capable of handling negative edge weights. https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm Implementation is based on the book 'Introduction to Algorithms' (CLRS)
+#####  The Bellman–Ford algorithm is an algorithm that computes shortest paths from a single source vertex to all of the other vertices in a weighted durected graph. It is slower than Dijkstra but capable of handling negative edge weights. https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm Implementation is based on the book 'Introduction to Algorithms' (CLRS) Package graph demonstrates Graph search algorithms reference: https://en.wikipedia.org/wiki/Tree_traversal
 
 ---
 ##### Functions:
 
-1. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
-2. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-3. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
-4. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
-5. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-6. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
-7. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
-8. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-9. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
-10. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
+1. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
+2. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+3. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
+4. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
+5. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
+6. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
+7. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
+8. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
+9. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
+10. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
 
 ---
 ##### Types
 
-1. [`Graph`](./graph/graph.go#L9): No description provided.
+1. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-2. [`Item`](./graph/dijkstra.go#L5): No description provided.
+2. [`Graph`](./graph/graph.go#L9): No description provided.
 
 3. [`Edge`](./graph/kruskal.go#L14): No description provided.
 
@@ -440,15 +440,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Types
 
-1. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
+1. [`Node`](./structure/linkedlist/shared.go#L5): No description provided.
 
-2. [`Doubly`](./structure/linkedlist/doubly.go#L18): No description provided.
+2. [`Singly`](./structure/linkedlist/singlylinkedlist.go#L10): No description provided.
 
-3. [`Node`](./structure/linkedlist/shared.go#L5): No description provided.
+3. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
 
-4. [`Singly`](./structure/linkedlist/singlylinkedlist.go#L10): No description provided.
+4. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
 
-5. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
+5. [`Doubly`](./structure/linkedlist/doubly.go#L18): No description provided.
 
 
 ---
@@ -472,8 +472,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-2. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+1. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+2. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
 
 ---
 </details><details>
@@ -483,8 +483,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
-2. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
+1. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
+2. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
 
 ---
 </details><details>
@@ -517,9 +517,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Inverse`](./math/modular/inverse.go#L20):  Inverse Modular function
-2. [`Exponentiation`](./math/modular/exponentiation.go#L22):  Exponentiation returns base^exponent % mod
-3. [`Multiply64BitInt`](./math/modular/exponentiation.go#L51):  Multiply64BitInt Checking if the integer multiplication overflows
+1. [`Exponentiation`](./math/modular/exponentiation.go#L22):  Exponentiation returns base^exponent % mod
+2. [`Multiply64BitInt`](./math/modular/exponentiation.go#L51):  Multiply64BitInt Checking if the integer multiplication overflows
+3. [`Inverse`](./math/modular/inverse.go#L20):  Inverse Modular function
 
 ---
 </details><details>
@@ -589,8 +589,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
-2. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
+1. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
+2. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
 
 ---
 </details><details>
@@ -748,17 +748,17 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
-2. [`Count`](./sort/countingsort.go#L10): No description provided.
-3. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-4. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-5. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
-6. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
+2. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
+3. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
+4. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+5. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+6. [`Count`](./sort/countingsort.go#L10): No description provided.
 7. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
-8. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-9. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-10. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-11. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
-12. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+8. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+9. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
+10. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+11. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
+12. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
 13. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
 
 ---
@@ -779,11 +779,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Types
 
-1. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
+1. [`Node`](./structure/stack/stacklinkedlist.go#L13): No description provided.
 
-2. [`Node`](./structure/stack/stacklinkedlist.go#L13): No description provided.
+2. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
 
-3. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
+3. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
 
 
 ---
