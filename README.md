@@ -14,10 +14,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## List of Algorithms
 <!--- GODOCMD BEGIN --->
-# Packages:
 
-<details>
-	<summary> <strong> ahocorasick </strong> </summary>	
 
 ---
 
