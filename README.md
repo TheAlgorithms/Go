@@ -171,12 +171,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package name. Package conversion is a package of implementations which converts one data structure to another. Package name.
+#####  Package name. Package conversion is a package of implementations which converts one data structure to another.
 
 ---
 ##### Functions:
 
-1. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L26):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
+1. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
 2. [`DecimalToBinary`](./conversion/decimaltobinary.go#L33):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
 3. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
 4. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
