@@ -73,7 +73,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package binary describes algorithms that use binary operations for different calculations. xorsearch_test.go description: Test for Find a missing number in a sequence author(s) [red_byte](https://github.com/i-redbyte) see xorsearch.go
+#####  xorsearch_test.go description: Test for Find a missing number in a sequence author(s) [red_byte](https://github.com/i-redbyte) see xorsearch.go Package binary describes algorithms that use binary operations for different calculations.
 
 ---
 ##### Functions:
@@ -741,12 +741,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package sort a package for demonstrating sorting algorithms in Go package sort provides primitives for sorting slices and user-defined collections
+#####  Package sort a package for demonstrating sorting algorithms in Go
 
 ---
 ##### Functions:
 
-1. [`Count`](./sort/countingsort.go#L10): No description provided.
+1. [`Count`](./sort/countingsort.go#L9): No description provided.
 2. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
 3. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
 4. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
