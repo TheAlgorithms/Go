@@ -11,7 +11,7 @@ func getNextGap(gap int) int {
 	return gap
 }
 
-func combSort(data []int) []int {
+func Comb(data []int) []int {
 	n := len(data)
 	gap := n
 	swapped := true
