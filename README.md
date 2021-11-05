@@ -25,10 +25,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 * [Roman Numeral To Integer](./conversion/romantointeger.go)
 * [Integer To Roman Numeral](./conversion/integertoroman.go)
 * [Decimal To Binary](./conversion/decimaltobinary.go)
+* [Binary To Decimal](./conversion/binarytodecimal.go)
 
 ### Data Structures
 * [AVL Tree](./structure/avl/avl.go)
-* [Binary Tree](./structure/binarytree/btree.go)
+* [Binary Tree](./structure/binarysearchtree/bstree.go)
 * [Dynamic Array](./structure/dynamicarray/dynamicarray.go)
 * [Hashmap](./structure/hashmap/hashmap.go)
 * Linked-List

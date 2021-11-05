@@ -126,6 +126,10 @@ func TestComb(t *testing.T) {
 	testFramework(t, combSort)
 }
 
+func TestPigeonhole(t *testing.T) {
+	testFramework(t, Pigeonhole)
+}
+
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -220,4 +224,6 @@ func BenchmarkComb(b *testing.B) {
 	benchmarkFramework(b, combSort)
 }
 
-//END BENCHMARKS
+func BenchmarkPigeonhole(b *testing.B) {
+	benchmarkFramework(b, Pigeonhole)
+}

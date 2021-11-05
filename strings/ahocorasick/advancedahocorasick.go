@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// Advanced Function performing the Advanced Aho-Corasick alghoritm.
+// Advanced Function performing the Advanced Aho-Corasick algorithm.
 // Finds and prints occurrences of each pattern.
 func Advanced(t string, p []string) Result {
 	startTime := time.Now()

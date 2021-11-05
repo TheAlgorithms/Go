@@ -15,7 +15,7 @@ func New(items ...interface{}) Set {
 type Set interface {
 	// Add: adds new element to the set
 	Add(item interface{})
-	// Delete: delets the passed element from the set if present
+	// Delete: deletes the passed element from the set if present
 	Delete(item interface{})
 	// Len: gives the length of the set (total no. of elements in set)
 	Len() int
@@ -23,9 +23,9 @@ type Set interface {
 	GetItems() []interface{}
 	// In: checks whether item is present in set or not.
 	In(item interface{}) bool
-	// IsSubsetOf: checks wether set is subset of set2 or not.
+	// IsSubsetOf: checks whether set is subset of set2 or not.
 	IsSubsetOf(set2 Set) bool
-	// IsSupersetOf: checks wether set is superset of set2 or not.
+	// IsSupersetOf: checks whether set is superset of set2 or not.
 	IsSupersetOf(set2 Set) bool
 	// Union: gives new union set of both sets.
 	// ex: [1,2,3] union [3,4,5] -> [1,2,3,4,5]

@@ -1,14 +1,6 @@
 package sort
 
-func max(arr []int) int {
-	max := arr[0]
-	for _, item := range arr {
-		if item > max {
-			max = item
-		}
-	}
-	return max
-}
+import "github.com/TheAlgorithms/Go/math/max"
 
 func countSort(arr []int, exp int) []int {
 	var digits [10]int
@@ -33,7 +25,7 @@ func unsignedRadixSort(arr []int) []int {
 	if len(arr) == 0 {
 		return arr
 	}
-	maxElement := max(arr)
+	maxElement := max.Int(arr...)
 	for exp := 1; maxElement/exp > 0; exp *= 10 {
 		arr = countSort(arr, exp)
 	}
