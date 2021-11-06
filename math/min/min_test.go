@@ -57,6 +57,6 @@ func BenchmarkTestMinInt(b *testing.B) {
 
 func BenchmarkTestBitwiseMin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Int(0, 10, 9, 7, 2, 1, 4, 3, 5, 6)
+		Bitwise(32, 10, 9, 7, 2, 1, 4, 3, 5, 6)
 	}
 }
