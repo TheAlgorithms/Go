@@ -1,81 +1,62 @@
-package min_test
+package min
 
 import (
 	"testing"
-
-	"github.com/TheAlgorithms/Go/math/min"
 )
 
-func TestMin(t *testing.T) {
-	testCases := []struct {
-		name  string
-		left  int
-		right int
-		min   int
+func getTestCases() []struct {
+	name    string
+	base    int
+	numbers []int
+	min     int
+} {
+	var tests = []struct {
+		name    string
+		base    int
+		numbers []int
+		min     int
 	}{
-		{
-			name:  "left is min",
-			left:  1,
-			right: 10,
-			min:   1,
-		},
-		{
-			name:  "right is min",
-			left:  10,
-			right: 9,
-			min:   9,
-		},
+		{"BASE: 8bit, numbers: [128, 127], min = 117", 8, []int{128, 127}, 127},
+		{"BASE: 32bit, numbers: [5], min = 5", 32, []int{5}, 5},
+		{"BASE: 64bit, numbers: [-8, 32, 64, -1, 0], min = -8", 64, []int{-8, 32, 64, -1, 0}, -8},
+		{"BASE: 32bit, numbers: [1, 2, 3, 4, 5], min = 1", 32, []int{1, 2, 3, 4, 5}, 1},
+		{"BASE: 32bit, numbers: [1024, 512, 256, 333, 777], min = 256", 64, []int{1024, 512, 256, 333, 777}, 256},
+		{"BASE: 64bit, numbers: [-9223372036854770001, -9223372036854770000, 256, 333, 777], min = 256", 64, []int{-9223372036854770001, -9223372036854770000, 256, 333, 777}, -9223372036854770001},
 	}
+	return tests
+}
 
-	for _, test := range testCases {
+func TestBitwiseMin(t *testing.T) {
+	tests := getTestCases()
+	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			actualMin := min.Int(test.left, test.right)
-			if actualMin != test.min {
-				t.Errorf("Failed test %s\n\tleft: %v, right: %v, min: %v but received: %v",
-					test.name, test.left, test.right, test.min, actualMin)
+			result := Bitwise(test.base, test.numbers...)
+			if result != test.min {
+				t.Errorf("Wrong result! Expected:%v, returned:%v ", test.min, result)
 			}
 		})
 	}
 }
 
-func TestMinOfThree(t *testing.T) {
-	testCases := []struct {
-		name   string
-		left   int
-		middle int
-		right  int
-		min    int
-	}{
-		{
-			name:   "left is min",
-			left:   1,
-			middle: 5,
-			right:  10,
-			min:    1,
-		},
-		{
-			name:   "middle is min",
-			left:   10,
-			middle: 5,
-			right:  9,
-			min:    5,
-		},
-		{
-			name:   "right is min",
-			left:   10,
-			middle: 8,
-			right:  6,
-			min:    6,
-		},
-	}
-
-	for _, test := range testCases {
+func TestMin(t *testing.T) {
+	for _, test := range getTestCases() {
 		t.Run(test.name, func(t *testing.T) {
-			actualMin := min.Int(test.left, test.middle, test.right)
+			actualMin := Int(test.numbers...)
 			if actualMin != test.min {
-				t.Errorf("Failed test %s\n\tleft: %v, middle: %v, right: %v, min: %v but received: %v",
-					test.name, test.left, test.middle, test.right, test.min, actualMin)
+				t.Errorf("Wrong result! Expected:%v, returned:%v ", test.min, actualMin)
 			}
 		})
+	}
+}
+
+func BenchmarkTestMinInt(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Int(0, 10, 9, 7, 2, 1, 4, 3, 5, 6)
+	}
+}
+
+func BenchmarkTestBitwiseMin(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Int(0, 10, 9, 7, 2, 1, 4, 3, 5, 6)
 	}
 }
