@@ -30,7 +30,7 @@ func TestBitwiseMin(t *testing.T) {
 	tests := getTestCases()
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result := Bitwise(test.base, 0, test.numbers...)
+			result := Bitwise(test.base, 999, test.numbers...)
 			if result != test.min {
 				t.Errorf("Wrong result! Expected:%v, returned:%v ", test.min, result)
 			}

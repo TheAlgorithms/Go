@@ -8,12 +8,9 @@
 package min
 
 func Bitwise(base int, value int, values ...int) int {
-	result := value
-	if len(values) > 0 {
-		result = values[0]
-	}
+	min := value
 	for _, val := range values {
-		result = result&((result-val)>>base) | val&(^(result-val)>>base)
+		min = min&((min-val)>>base) | val&(^(min-val)>>base)
 	}
-	return result
+	return min
 }
