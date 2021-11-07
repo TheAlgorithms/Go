@@ -7,8 +7,11 @@
 
 package min
 
-func Bitwise(base int, values ...int) int {
-	result := values[0]
+func Bitwise(base int, value int, values ...int) int {
+	result := value
+	if len(values) > 0 {
+		result = values[0]
+	}
 	for _, val := range values {
 		result = result&((result-val)>>base) | val&(^(result-val)>>base)
 	}
