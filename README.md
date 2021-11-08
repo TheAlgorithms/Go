@@ -507,7 +507,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Int`](./math/min/min.go#L4):  Int is a function which returns the minimum of all the integers provided as arguments.
+1. [`Bitwise`](./math/min/bitwisemin.go#L10): No description provided.
+2. [`Int`](./math/min/min.go#L4):  Int is a function which returns the minimum of all the integers provided as arguments.
 
 ---
 </details><details>
