@@ -90,7 +90,7 @@ func (t *RBTree) climbTreeColoring(curr *RBNode) *RBNode {
 	var grand = parent.parent
 	var uncle = getSibling(parent)
 	if uncle != nil && uncle.isRed {
-		// Case 1
+		// Case 1: Simple recoloring
 		return case1(parent, uncle, grand)
 	}
 	if isTriangle(curr, parent, grand) {
@@ -201,7 +201,7 @@ func newNode(Val int, parent *RBNode) *RBNode {
 
 // Public function to print preorder
 func (t *RBTree) PrintPreOrder() {
-	var p = preOrder(t.Root)
+	var p = PreOrder(t.Root)
 	fmt.Printf("Length %d\n", len(p))
 	for _, a := range p {
 		fmt.Printf("%d %v\n", a.Val, a.isRed)
@@ -210,7 +210,7 @@ func (t *RBTree) PrintPreOrder() {
 
 // Public function to print inorder
 func (t *RBTree) PrintInOrder() {
-	var p = inOrder(t.Root)
+	var p = InOrder(t.Root)
 	fmt.Printf("Length %d\n", len(p))
 	for _, a := range p {
 		fmt.Printf("%d %v\n", a.Val, a.isRed)
@@ -218,27 +218,27 @@ func (t *RBTree) PrintInOrder() {
 }
 
 // Returns inorder representation
-func inOrder(currNode *RBNode) []*RBNode {
+func InOrder(currNode *RBNode) []*RBNode {
 	var ret = []*RBNode{}
 	if currNode == nil {
 		return ret
 	}
 
-	ret = append(ret, inOrder(currNode.left)...)
+	ret = append(ret, InOrder(currNode.left)...)
 	ret = append(ret, currNode)
-	ret = append(ret, inOrder(currNode.right)...)
+	ret = append(ret, InOrder(currNode.right)...)
 	return ret
 }
 
 // Returns preorder representation
-func preOrder(currNode *RBNode) []*RBNode {
+func PreOrder(currNode *RBNode) []*RBNode {
 	var ret = []*RBNode{}
 	if currNode == nil {
 		return ret
 	}
 	ret = append(ret, currNode)
-	ret = append(ret, preOrder(currNode.left)...)
-	ret = append(ret, preOrder(currNode.right)...)
+	ret = append(ret, PreOrder(currNode.left)...)
+	ret = append(ret, PreOrder(currNode.right)...)
 	return ret
 }
 

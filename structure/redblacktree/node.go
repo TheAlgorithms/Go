@@ -21,3 +21,14 @@ func (n *RBNode) setBlack() {
 func (n *RBNode) setRed() {
 	n.isRed = true
 }
+
+// Checks whether two nodes can be substituted for each other
+// Only value and color is checked as node pointers can be set during actual substitution
+func (n *RBNode) EquivalentNode(m *RBNode) bool {
+	return n.Val == m.Val && n.isRed == m.isRed
+}
+
+//
+func CreateNode(Val int, isRed bool) *RBNode {
+	return &RBNode{Val: Val, isRed: isRed}
+}

@@ -1,26 +1,31 @@
-package redblacktree
+package redblacktree_test
 
 import (
 	"fmt"
 	"testing"
+
+	"github.com/TheAlgorithms/Go/structure/redblacktree"
 )
+
+type RBTree = redblacktree.RBTree
+type RBNode = redblacktree.RBNode
 
 func compare(tree *RBTree, preVal []int, preRed []bool, inVal []int, inRed []bool) bool {
 	// fmt.Println("In compare")
 	var ret = false
-	var pre = preOrder(tree.Root)
-	var in = inOrder(tree.Root)
+	var pre = redblacktree.PreOrder(tree.Root)
+	var in = redblacktree.InOrder(tree.Root)
 	if len(pre) != len(preVal) || len(in) != len(inVal) {
 		return ret
 	}
 	for i := 0; i < len(pre); i++ {
-		if pre[i].Val != preVal[i] || pre[i].isRed != preRed[i] {
+		if !pre[i].EquivalentNode(redblacktree.CreateNode(preVal[i], preRed[i])) {
 			fmt.Printf("Error at pre %d", i)
 			return ret
 		}
 	}
 	for i := 0; i < len(in); i++ {
-		if in[i].Val != inVal[i] || in[i].isRed != inRed[i] {
+		if !in[i].EquivalentNode(redblacktree.CreateNode(inVal[i], inRed[i])) {
 			return ret
 		}
 	}
@@ -37,14 +42,10 @@ func TestInsert(t *testing.T) {
 		for _, val := range vals {
 			tree.Insert(val)
 		}
-		// tree.PrintPreOrder()
-		// tree.PrintInOrder()
 		if !compare(tree, expPreVal, expPreRed, expInVal, expInRed) {
 			t.Error("Insert did not work")
 		}
 	})
-	// tree.Insert(5)
-	// var a = preorder(tree.Root)
 }
 func TestSearch(t *testing.T) {
 	var tree1 = &RBTree{}
