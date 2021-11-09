@@ -93,7 +93,7 @@ func TestDelete(t *testing.T) {
 		}
 		tree1.Delete(delete1)
 		if !compare(tree1, expPreVal, expPreRed, expInVal, expInRed) {
-			t.Error("Insert did not work")
+			t.Error("Delete non-existing did not work")
 		}
 	})
 	t.Run("Test 2: Delete existing item", func(t *testing.T) {
@@ -102,7 +102,7 @@ func TestDelete(t *testing.T) {
 		}
 		tree2.Delete(delete2)
 		if !compare(tree2, deleteExpPreVal, deleteExpPreRed, deleteExpInVal, deleteExpInRed) {
-			t.Error("Insert did not work")
+			t.Error("Delete existing did not work")
 		}
 	})
 }
