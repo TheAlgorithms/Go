@@ -10,6 +10,9 @@ import (
 type RBTree = redblacktree.RBTree
 type RBNode = redblacktree.RBNode
 
+// Utility to compare a Tree to expected values and colors and order
+// By comparing pre and in order traversels, as well as state (value and color)
+// We can ensure that the Tree is as expected
 func compare(tree *RBTree, preVal []int, preRed []bool, inVal []int, inRed []bool) bool {
 	// fmt.Println("In compare")
 	var ret = false
@@ -31,6 +34,8 @@ func compare(tree *RBTree, preVal []int, preRed []bool, inVal []int, inRed []boo
 	}
 	return true
 }
+
+// Test Insert of a number of values and check that the final tree is correct
 func TestInsert(t *testing.T) {
 	var tree = &RBTree{}
 	var vals = []int{8, 18, 5, 15, 17, 25, 40, 80}
@@ -47,6 +52,8 @@ func TestInsert(t *testing.T) {
 		}
 	})
 }
+
+// Test Search for both an existing and a non-existing value
 func TestSearch(t *testing.T) {
 	var tree1 = &RBTree{}
 	var tree2 = &RBTree{}
@@ -71,6 +78,8 @@ func TestSearch(t *testing.T) {
 	})
 }
 
+// Test delete for both a non-existing value (nothing deleted)
+// and for existing value (should be deleted and tree rebalanced)
 func TestDelete(t *testing.T) {
 
 	var tree1 = &RBTree{}
