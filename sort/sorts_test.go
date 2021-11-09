@@ -123,7 +123,7 @@ func TestSelection(t *testing.T) {
 }
 
 func TestComb(t *testing.T) {
-	testFramework(t, combSort)
+	testFramework(t, Comb)
 }
 
 func TestPigeonhole(t *testing.T) {
@@ -221,7 +221,7 @@ func BenchmarkSelection(b *testing.B) {
 }
 
 func BenchmarkComb(b *testing.B) {
-	benchmarkFramework(b, combSort)
+	benchmarkFramework(b, Comb)
 }
 
 func BenchmarkPigeonhole(b *testing.B) {
