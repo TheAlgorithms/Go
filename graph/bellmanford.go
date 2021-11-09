@@ -3,6 +3,7 @@
 // It is slower than Dijkstra but capable of handling negative edge weights.
 // https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 // Implementation is based on the book 'Introduction to Algorithms' (CLRS)
+
 package graph
 
 import (
