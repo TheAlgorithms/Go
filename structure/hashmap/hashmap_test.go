@@ -1,12 +1,14 @@
-package hashmap
+package hashmap_test
 
 import (
 	"testing"
+
+	"github.com/TheAlgorithms/Go/structure/hashmap"
 )
 
 func TestHashMap(t *testing.T) {
 
-	mp := New()
+	mp := hashmap.New()
 
 	t.Run("Test 1: Put(10) and checking if Get() is correct", func(t *testing.T) {
 		mp.Put("test", 10)
@@ -48,12 +50,32 @@ func TestHashMap(t *testing.T) {
 		}
 	})
 
-	t.Run("Test 6: Checking if the key that doesnt exists returns false", func(t *testing.T) {
+	t.Run("Test 6: Checking if the key that does not exist returns false", func(t *testing.T) {
 		want := false
 		got := mp.Contains(2)
 		if got != want {
-			t.Errorf("Key '2' doesn't exists in the map but it says otherwise")
+			t.Errorf("Key '2' does not exist in the map but it says otherwise")
 		}
 	})
 
+	t.Run("Test 7: Checking if the key does not exist Get func returns nil", func(t *testing.T) {
+		want := interface{}(nil)
+		got := mp.Get(2)
+		if got != want {
+			t.Errorf("Key '2' does not exists in the map but it says otherwise")
+		}
+	})
+
+	t.Run("Test 8: Resizing a map", func(t *testing.T) {
+		mp := hashmap.Make(4, 4)
+
+		for i := 0; i < 20; i++ {
+			mp.Put(i, 40)
+		}
+
+		got := mp.Get(5)
+		if got != 40 {
+			t.Errorf("Put: %v, Got: %v", got, 40)
+		}
+	})
 }
