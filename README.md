@@ -129,6 +129,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> catalan </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`CatalanNumber`](./math/catalan/catalannumber.go#L15): No description provided.
+
+---
+</details><details>
 	<summary> <strong> coloring </strong> </summary>	
 
 ---
