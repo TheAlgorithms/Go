@@ -1,5 +1,8 @@
 name: godocmd
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
 jobs:
   generate_readme:
     runs-on: ubuntu-latest
