@@ -9,7 +9,6 @@ Date: 14-Oct-2021
 // Function receives a integer as a Decimal number and returns the Binary number.
 // Supported integer value range is 0 to 2^(31 -1).
 
-// Package name.
 package conversion
 
 // Importing necessary package.
