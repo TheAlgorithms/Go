@@ -49,11 +49,11 @@ package bom
 // 			log.Fatal("Pattern  is longer than text!")
 // 		}
 // 		if debugMode == true {
-// 			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
+// 			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
 // 			fmt.Printf("Search word (%d chars long): %q.\n", len(patFile), patFile)
 // 			fmt.Printf("Text        (%d chars long): %q.\n\n", len(textFile), textFile)
 // 		} else {
-// 			fmt.Printf("\nRunning: Backward Oracle Matching alghoritm.\n\n")
+// 			fmt.Printf("\nRunning: Backward Oracle Matching algorithm.\n\n")
 // 		}
 // 		bom(string(textFile), string(patFile))
 // 	}

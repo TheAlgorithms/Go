@@ -2,7 +2,7 @@
 maximum contiguous sum in the given array. */
 
 // Package maxsubarraysum is a package containing a solution to a common
-// problem of finding max contigious sum within a array of ints.
+// problem of finding max contiguous sum within a array of ints.
 package maxsubarraysum
 
 import (

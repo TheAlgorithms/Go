@@ -103,7 +103,7 @@ func GeneticString(target string, charmap []rune, conf *Conf) (*Result, error) {
 			}
 		}
 		if invalid {
-			message := fmt.Sprintf("character not aviable in charmap at position: %v", position)
+			message := fmt.Sprintf("character not available in charmap at position: %v", position)
 			return nil, errors.New(message)
 		}
 	}

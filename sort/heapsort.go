@@ -1,50 +1,134 @@
 package sort
 
-type maxHeap struct {
-	slice    []int
+type MaxHeap struct {
+	slice    []Comparable
 	heapSize int
+	indices  map[int]int
 }
 
-func buildMaxHeap(slice []int) maxHeap {
-	h := maxHeap{slice: slice, heapSize: len(slice)}
-	for i := len(slice) / 2; i >= 0; i-- {
-		h.MaxHeapify(i)
+func buildMaxHeap(slice0 []int) MaxHeap {
+	var slice []Comparable
+	for _, i := range slice0 {
+		slice = append(slice, Int(i))
 	}
+	h := MaxHeap{}
+	h.Init(slice)
 	return h
 }
 
-func (h maxHeap) MaxHeapify(i int) {
-	l, r := 2*i+1, 2*i+2
-	max := i
+func (h *MaxHeap) Init(slice []Comparable) {
+	if slice == nil {
+		slice = make([]Comparable, 0)
+	}
 
-	if l < h.size() && h.slice[l] > h.slice[max] {
-		max = l
+	h.slice = slice
+	h.heapSize = len(slice)
+	h.indices = make(map[int]int)
+	h.Heapify()
+}
+
+func (h MaxHeap) Heapify() {
+	for i, v := range h.slice {
+		h.indices[v.Idx()] = i
 	}
-	if r < h.size() && h.slice[r] > h.slice[max] {
-		max = r
-	}
-	//log.Printf("MaxHeapify(%v): l,r=%v,%v; max=%v\t%v\n", i, l, r, max, h.slice)
-	if max != i {
-		h.slice[i], h.slice[max] = h.slice[max], h.slice[i]
-		h.MaxHeapify(max)
+	for i := h.heapSize / 2; i >= 0; i-- {
+		h.heapifyDown(i)
 	}
 }
 
-func (h maxHeap) size() int { return h.heapSize } // ???
+func (h *MaxHeap) Pop() Comparable {
+	if h.heapSize == 0 {
+		return nil
+	}
+
+	i := h.slice[0]
+	h.heapSize--
+
+	h.slice[0] = h.slice[h.heapSize]
+	h.updateidx(0)
+	h.heapifyDown(0)
+
+	h.slice = h.slice[0:h.heapSize]
+	return i
+}
+
+func (h *MaxHeap) Push(i Comparable) {
+	h.slice = append(h.slice, i)
+	h.updateidx(h.heapSize)
+	h.heapifyUp(h.heapSize)
+	h.heapSize++
+}
+
+func (h MaxHeap) Size() int {
+	return h.heapSize
+}
+
+func (h MaxHeap) Update(i Comparable) {
+	h.slice[h.indices[i.Idx()]] = i
+	h.heapifyUp(h.indices[i.Idx()])
+	h.heapifyDown(h.indices[i.Idx()])
+}
+
+func (h MaxHeap) updateidx(i int) {
+	h.indices[h.slice[i].Idx()] = i
+}
+
+func (h MaxHeap) heapifyUp(i int) {
+	if i == 0 {
+		return
+	}
+	p := i / 2
+
+	if h.slice[i].More(h.slice[p]) {
+		h.slice[i], h.slice[p] = h.slice[p], h.slice[i]
+		h.updateidx(i)
+		h.updateidx(p)
+		h.heapifyUp(p)
+	}
+}
+
+func (h MaxHeap) heapifyDown(i int) {
+	l, r := 2*i+1, 2*i+2
+	max := i
+
+	if l < h.heapSize && h.slice[l].More(h.slice[max]) {
+		max = l
+	}
+	if r < h.heapSize && h.slice[r].More(h.slice[max]) {
+		max = r
+	}
+	if max != i {
+		h.slice[i], h.slice[max] = h.slice[max], h.slice[i]
+		h.updateidx(i)
+		h.updateidx(max)
+		h.heapifyDown(max)
+	}
+}
+
+type Comparable interface {
+	Idx() int
+	More(interface{}) bool
+}
+type Int int
+
+func (a Int) More(b interface{}) bool {
+	return a > b.(Int)
+}
+func (a Int) Idx() int {
+	return int(a)
+}
 
 func HeapSort(slice []int) []int {
 	h := buildMaxHeap(slice)
-	//log.Println(slice)
 	for i := len(h.slice) - 1; i >= 1; i-- {
 		h.slice[0], h.slice[i] = h.slice[i], h.slice[0]
 		h.heapSize--
-		h.MaxHeapify(0)
-		/*if i == len(h.slice)-1 || i == len(h.slice)-3 || i == len(h.slice)-5 {
-			element := (i - len(h.slice)) * -1
-			fmt.Println("Heap after removing ", element, " elements")
-			fmt.Println(h.slice)
-
-		}*/
+		h.heapifyDown(0)
 	}
-	return h.slice
+
+	res := []int{}
+	for _, i := range h.slice {
+		res = append(res, int(i.(Int)))
+	}
+	return res
 }
