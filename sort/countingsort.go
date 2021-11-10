@@ -4,7 +4,6 @@
 // author [Phil](https://github.com/pschik)
 // see sort_test.go for a test implementation, test function TestQuickSort
 
-// package sort provides primitives for sorting slices and user-defined collections
 package sort
 
 func Count(data []int) []int {
