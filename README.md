@@ -567,6 +567,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> pascal </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`GenerateTriangle`](./math/pascal/pascaltriangle.go#L24):  GenerateTriangle This function generates a Pascal's triangle of n lines
+
+---
+</details><details>
 	<summary> <strong> password </strong> </summary>	
 
 ---
