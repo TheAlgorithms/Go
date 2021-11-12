@@ -386,7 +386,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
+1. [`Make`](./structure/hashmap/hashmap.go#L32):  Make creates a new HashMap instance with input size and capacity
+2. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
 
 ---
 ##### Types
