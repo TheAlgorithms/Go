@@ -567,6 +567,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> pascal </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`GenerateTriangle`](./math/pascal/pascaltriangle.go#L24):  GenerateTriangle This function generates a Pascal's triangle of n lines
+
+---
+</details><details>
 	<summary> <strong> password </strong> </summary>	
 
 ---
@@ -758,19 +768,20 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Count`](./sort/countingsort.go#L9): No description provided.
-2. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
-3. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
-4. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-5. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
-6. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
-7. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-8. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-9. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-10. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-11. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-12. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
-13. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+1. [`Comb`](./sort/combSort.go#L14): No description provided.
+2. [`Count`](./sort/countingsort.go#L9): No description provided.
+3. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
+4. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
+5. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+6. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
+7. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
+8. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+9. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
+10. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
+11. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+12. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
+13. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
+14. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
 
 ---
 ##### Types
