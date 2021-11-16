@@ -51,6 +51,9 @@ func Encode(input []byte) (encoded string) {
 	return
 }
 
+// Decode decodes the received input base64 string into a byte slice.
+// The implementation follows the RFC4648 standard, which is documented
+// at https://datatracker.ietf.org/doc/html/rfc4648#section-4
 func Decode(input string) (decoded []byte) {
 	padding := strings.Count(input, "=") // Number of bytes which will be ignored
 
