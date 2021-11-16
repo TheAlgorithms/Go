@@ -103,3 +103,45 @@ func TestXorCipherDecrypt(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkEncrypt(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, test := range xorTestData {
+			cipherText := Encrypt(byte(test.key), []byte(test.input))
+			Decrypt(byte(test.key), cipherText)
+		}
+	}
+}
+
+func BenchmarkOldEncrypt(b *testing.B) {
+
+	// Encrypt encrypts with Xor encryption after converting each character to byte
+	// The returned value might not be readable because there is no guarantee
+	// which is within the ASCII range
+	// If using other type such as string, []int, or some other types,
+	// add the statements for converting the type to []byte.
+	oldEncrypt := func(key byte, plaintext []byte) []byte {
+		cipherText := []byte{}
+		for _, ch := range plaintext {
+		cipherText = append(cipherText, key^ch)
+	}
+		return cipherText
+	}
+
+	// Decrypt decrypts with Xor encryption
+	oldDecrypt := func(key byte, cipherText []byte) []byte {
+		plainText := []byte{}
+		for _, ch := range cipherText {
+		plainText = append(plainText, key^ch)
+	}
+		return plainText
+	}
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for _, test := range xorTestData {
+			cipherText := oldEncrypt(byte(test.key), []byte(test.input))
+			oldDecrypt(byte(test.key), cipherText)
+		}
+	}
+}
