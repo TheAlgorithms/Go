@@ -89,3 +89,23 @@ func BenchmarkDecode(b *testing.B) {
 		})
 	}
 }
+
+func TestEncodeDecodeInverse(t *testing.T) {
+	testCases := []struct {
+		in string
+	}{
+		{"Hello World!"},   // multiple of 3 byte length (multiple of 24-bits)
+		{"Hello World!a"},  // multiple of 3 byte length + 1
+		{"Hello World!ab"}, // multiple of 3 byte length + 2
+		{""},               // empty byte slice
+		{"6"},              // short text
+		{"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}, // Long text
+	}
+
+	for _, tc := range testCases {
+		result := string(Decode(Encode([]byte(tc.in))))
+		if result != tc.in {
+			t.Fatalf("Decode(Encode(%s)) = %s, want %s", tc.in, result, tc.in)
+		}
+	}
+}
