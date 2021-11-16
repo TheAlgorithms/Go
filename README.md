@@ -78,7 +78,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Encode`](./cipher/base64/base64.go#15):  Encode : encodes the given bytes slice into a base64 string.
+1. [`Encode`](./cipher/base64/base64.go#L19):  Encode : encodes the given bytes slice into a base64 string.
+2. [`Decode`](./cipher/base64/base64.go#L54):  Decode : Decodes the given base64 string into a bytes slice.
 
 
 ---
