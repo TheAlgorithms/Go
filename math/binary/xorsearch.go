@@ -7,6 +7,7 @@
 
 package binary
 
+// XorSearchMissingNumber - This function find a missing number in a sequence
 func XorSearchMissingNumber(a []int) int {
 	n := len(a)
 	result := len(a)

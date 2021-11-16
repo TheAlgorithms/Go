@@ -8,6 +8,7 @@
 // Package factorial describes algorithms Factorials calculations.
 package factorial
 
+// BruteForceFactorial This function calculates the factorial of a number using a loop
 func BruteForceFactorial(n int) int {
 	result := 1
 	for i := 2; i <= n; i++ {
@@ -16,6 +17,7 @@ func BruteForceFactorial(n int) int {
 	return result
 }
 
+// RecursiveFactorial This function recursively computes the factorial of a number
 func RecursiveFactorial(n int) int {
 	if n == 1 {
 		return 1
@@ -24,6 +26,7 @@ func RecursiveFactorial(n int) int {
 	}
 }
 
+// CalculateFactorialUseTree This function finds the factorial of a number using a binary tree
 func CalculateFactorialUseTree(n int) int {
 	if n < 0 {
 		return 0

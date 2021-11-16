@@ -7,6 +7,7 @@
 
 package max
 
+// BitwiseMax This function returns the maximum integer using bit operations
 func BitwiseMax(a int, b int, base int) int {
 	z := a - b
 	i := (z >> base) & 1

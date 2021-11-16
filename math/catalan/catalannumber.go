@@ -12,6 +12,7 @@ import (
 	f "github.com/TheAlgorithms/Go/math/factorial"
 )
 
+//CatalanNumber This function returns the Catalan number by its number
 func CatalanNumber(n int) int {
 	return f.BruteForceFactorial(n*2) / (f.BruteForceFactorial(n) * f.BruteForceFactorial(n+1))
 }
