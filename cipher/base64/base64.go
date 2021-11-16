@@ -7,7 +7,9 @@
 // see base64_test.go
 package base64
 
-import "strings" // Used for efficient string builder (more efficient than simply appending strings)
+import (
+	"strings" // Used for efficient string builder (more efficient than simply appending strings)
+)
 
 const Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
@@ -36,7 +38,7 @@ func Encode(input []byte) (encoded string) {
 			input[i+2] & 0x3F,
 		}
 
-		// translate each groups into a char using the static map
+		// translate each group into a char using the static map
 		for _, b := range group {
 			sb.WriteString(string(Alphabet[int(b)]))
 		}
