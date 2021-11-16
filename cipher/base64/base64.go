@@ -50,3 +50,28 @@ func Encode(input []byte) (encoded string) {
 
 	return
 }
+
+func Decode(input string) (decoded []byte) {
+	padding := strings.Count(input, "=") // Number of bytes which will be ignored
+
+	// select 4 6-bit input groups, and re-arrange them into 3 8-bit groups
+	for i := 0; i < len(input); i += 4 {
+		// translate each group into a byte using the static map
+		byteInput := [4]byte{
+			byte(strings.IndexByte(Alphabet, input[i])),
+			byte(strings.IndexByte(Alphabet, input[i+1])),
+			byte(strings.IndexByte(Alphabet, input[i+2])),
+			byte(strings.IndexByte(Alphabet, input[i+3])),
+		}
+
+		group := [3]byte{
+			byteInput[0]<<2 + byteInput[1]>>4,
+			byteInput[1]<<4 + byteInput[2]>>2,
+			byteInput[2]<<6 + byteInput[3],
+		}
+
+		decoded = append(decoded, group[:]...)
+	}
+
+	return decoded[:len(decoded)-padding]
+}
