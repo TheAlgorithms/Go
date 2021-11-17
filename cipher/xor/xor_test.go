@@ -123,8 +123,8 @@ func BenchmarkOldEncrypt(b *testing.B) {
 	oldEncrypt := func(key byte, plaintext []byte) []byte {
 		cipherText := []byte{}
 		for _, ch := range plaintext {
-		cipherText = append(cipherText, key^ch)
-	}
+			cipherText = append(cipherText, key^ch)
+		}
 		return cipherText
 	}
 
@@ -132,8 +132,8 @@ func BenchmarkOldEncrypt(b *testing.B) {
 	oldDecrypt := func(key byte, cipherText []byte) []byte {
 		plainText := []byte{}
 		for _, ch := range cipherText {
-		plainText = append(plainText, key^ch)
-	}
+			plainText = append(plainText, key^ch)
+		}
 		return plainText
 	}
 
