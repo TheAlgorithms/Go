@@ -7,8 +7,8 @@
 
 package max
 
-// BitwiseMax This function returns the maximum integer using bit operations
-func BitwiseMax(a int, b int, base int) int {
+// Bitwise computes using bitwise operator the maximum of all the integer input and returns it
+func Bitwise(a int, b int, base int) int {
 	z := a - b
 	i := (z >> base) & 1
 	return a - (i * z)
