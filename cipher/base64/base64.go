@@ -17,7 +17,7 @@ const Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 // Encode encodes the received input bytes slice into a base64 string.
 // The implementation follows the RFC4648 standard, which is documented
 // at https://datatracker.ietf.org/doc/html/rfc4648#section-4
-func Encode(input []byte) (encoded string) {
+func Encode(input []byte) string {
 	var sb strings.Builder
 	// If not 24 bits (3 bytes) multiple, pad with 0 value bytes, and with "=" for the output
 	var padding string
@@ -44,19 +44,20 @@ func Encode(input []byte) (encoded string) {
 			sb.WriteString(string(Alphabet[int(b)]))
 		}
 	}
-	encoded = sb.String()
+	encoded := sb.String()
 
 	// Apply the output padding
 	encoded = encoded[:len(encoded)-len(padding)] + padding[:]
 
-	return
+	return encoded
 }
 
 // Decode decodes the received input base64 string into a byte slice.
 // The implementation follows the RFC4648 standard, which is documented
 // at https://datatracker.ietf.org/doc/html/rfc4648#section-4
-func Decode(input string) (decoded []byte) {
+func Decode(input string) []byte {
 	padding := strings.Count(input, "=") // Number of bytes which will be ignored
+	var decoded []byte
 
 	// select 4 6-bit input groups, and re-arrange them into 3 8-bit groups
 	for i := 0; i < len(input); i += 4 {
