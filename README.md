@@ -81,10 +81,10 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
 2. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
-3. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L11): No description provided.
-4. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L15): No description provided.
+3. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function find arithmetic mean using "AND" and "XOR" operations
+4. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function find arithmetic mean using right shift
 5. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
-6. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L10): No description provided.
+6. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber - This function find a missing number in a sequence
 
 ---
 </details><details>
@@ -135,7 +135,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`CatalanNumber`](./math/catalan/catalannumber.go#L15): No description provided.
+1. [`CatalanNumber`](./math/catalan/catalannumber.go#L16): CatalanNumber This function returns the Catalan number by its number
 
 ---
 </details><details>
@@ -261,9 +261,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`BruteForceFactorial`](./math/factorial/factorial.go#L11): No description provided.
-2. [`CalculateFactorialUseTree`](./math/factorial/factorial.go#L27): No description provided.
-3. [`RecursiveFactorial`](./math/factorial/factorial.go#L19): No description provided.
+1. [`BruteForceFactorial`](./math/factorial/factorial.go#L12):  BruteForceFactorial This function calculates the factorial of a number using a loop
+2. [`CalculateFactorialUseTree`](./math/factorial/factorial.go#L30):  CalculateFactorialUseTree This function finds the factorial of a number using a binary tree
+3. [`RecursiveFactorial`](./math/factorial/factorial.go#L21):  RecursiveFactorial This function recursively computes the factorial of a number
 
 ---
 </details><details>
@@ -494,7 +494,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
+1. [`BitwiseMax`](./math/max/bitwisemax.go#L11):  BitwiseMax This function returns the maximum integer using bit operations
 2. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
 
 ---
@@ -518,7 +518,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Bitwise`](./math/min/bitwisemin.go#L10): No description provided.
+1. [`Bitwise`](./math/min/bitwisemin.go#L11):  Bitwise This function returns the minimum integer using bit operations
 2. [`Int`](./math/min/min.go#L4):  Int is a function which returns the minimum of all the integers provided as arguments.
 
 ---
