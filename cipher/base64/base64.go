@@ -1,10 +1,11 @@
-// Package base64
 // base64.go
-// description: The base64 encodage algorithm as defined in the RFC4648 standard.
+// description: The base64 encoding algorithm as defined in the RFC4648 standard.
 // author: [Paul Leydier] (https://github.com/paul-leydier)
 // ref: https://datatracker.ietf.org/doc/html/rfc4648#section-4
 // ref: https://en.wikipedia.org/wiki/Base64
 // see base64_test.go
+
+// Package base64 encodes input as base64 as defined in the RFC4648 standard.
 package base64
 
 import (
