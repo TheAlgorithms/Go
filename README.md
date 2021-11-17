@@ -569,6 +569,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> pangram </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`IsPangram`](./strings/pangram/ispangram.go#L21): No description provided.
+
+---
+</details><details>
 	<summary> <strong> pascal </strong> </summary>	
 
 ---
