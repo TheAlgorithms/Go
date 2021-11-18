@@ -69,21 +69,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> base64 </strong> </summary>	
-
----
-
-#####  Package base64 is an implementation of the eponymous algorithm, as defined in the RFC4648 standard. See https://datatracker.ietf.org/doc/html/rfc4648#section-4
-
----
-##### Functions:
-
-1. [`Encode`](./cipher/base64/base64.go#L19):  Encode : encodes the given bytes slice into a base64 string.
-2. [`Decode`](./cipher/base64/base64.go#L54):  Decode : Decodes the given base64 string into a bytes slice.
-
-
----
-</details><details>
 	<summary> <strong> binary </strong> </summary>	
 
 ---

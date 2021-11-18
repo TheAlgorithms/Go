@@ -5,8 +5,7 @@
 // ref: https://en.wikipedia.org/wiki/Base64
 // see base64_test.go
 
-// Package base64 encodes input as base64 as defined in the RFC4648 standard.
-package base64
+package conversion
 
 import (
 	"strings" // Used for efficient string builder (more efficient than simply appending strings)
@@ -14,10 +13,10 @@ import (
 
 const Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-// Encode encodes the received input bytes slice into a base64 string.
+// Base64Encode encodes the received input bytes slice into a base64 string.
 // The implementation follows the RFC4648 standard, which is documented
 // at https://datatracker.ietf.org/doc/html/rfc4648#section-4
-func Encode(input []byte) string {
+func Base64Encode(input []byte) string {
 	var sb strings.Builder
 	// If not 24 bits (3 bytes) multiple, pad with 0 value bytes, and with "=" for the output
 	var padding string
@@ -52,10 +51,10 @@ func Encode(input []byte) string {
 	return encoded
 }
 
-// Decode decodes the received input base64 string into a byte slice.
+// Base64Decode decodes the received input base64 string into a byte slice.
 // The implementation follows the RFC4648 standard, which is documented
 // at https://datatracker.ietf.org/doc/html/rfc4648#section-4
-func Decode(input string) []byte {
+func Base64Decode(input string) []byte {
 	padding := strings.Count(input, "=") // Number of bytes which will be ignored
 	var decoded []byte
 

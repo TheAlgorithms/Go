@@ -1,8 +1,8 @@
-package base64
+package conversion
 
 import "testing"
 
-func TestEncode(t *testing.T) {
+func TestBase64Encode(t *testing.T) {
 	testCases := []struct {
 		in       string
 		expected string
@@ -16,14 +16,14 @@ func TestEncode(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		result := Encode([]byte(tc.in))
+		result := Base64Encode([]byte(tc.in))
 		if result != tc.expected {
-			t.Fatalf("Encode(%s) = %s, want %s", tc.in, result, tc.expected)
+			t.Fatalf("Base64Encode(%s) = %s, want %s", tc.in, result, tc.expected)
 		}
 	}
 }
 
-func BenchmarkEncode(b *testing.B) {
+func BenchmarkBase64Encode(b *testing.B) {
 	benchmarks := []struct {
 		name     string
 		in       string
@@ -40,13 +40,13 @@ func BenchmarkEncode(b *testing.B) {
 	for _, bm := range benchmarks {
 		b.Run(bm.name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				Encode([]byte(bm.in))
+				Base64Encode([]byte(bm.in))
 			}
 		})
 	}
 }
 
-func TestDecode(t *testing.T) {
+func TestBase64Decode(t *testing.T) {
 	testCases := []struct {
 		expected string
 		in       string
@@ -60,14 +60,14 @@ func TestDecode(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		result := string(Decode(tc.in))
+		result := string(Base64Decode(tc.in))
 		if result != tc.expected {
-			t.Fatalf("Decode(%s) = %s, want %s", tc.in, result, tc.expected)
+			t.Fatalf("Base64Decode(%s) = %s, want %s", tc.in, result, tc.expected)
 		}
 	}
 }
 
-func BenchmarkDecode(b *testing.B) {
+func BenchmarkBase64Decode(b *testing.B) {
 	benchmarks := []struct {
 		name     string
 		expected string
@@ -84,13 +84,13 @@ func BenchmarkDecode(b *testing.B) {
 	for _, bm := range benchmarks {
 		b.Run(bm.name, func(b *testing.B) {
 			for i := 0; i < b.N; i++ {
-				Decode(bm.in)
+				Base64Decode(bm.in)
 			}
 		})
 	}
 }
 
-func TestEncodeDecodeInverse(t *testing.T) {
+func TestBase64EncodeDecodeInverse(t *testing.T) {
 	testCases := []struct {
 		in string
 	}{
@@ -103,9 +103,9 @@ func TestEncodeDecodeInverse(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		result := string(Decode(Encode([]byte(tc.in))))
+		result := string(Base64Decode(Base64Encode([]byte(tc.in))))
 		if result != tc.in {
-			t.Fatalf("Decode(Encode(%s)) = %s, want %s", tc.in, result, tc.in)
+			t.Fatalf("Base64Decode(Base64Encode(%s)) = %s, want %s", tc.in, result, tc.in)
 		}
 	}
 }
