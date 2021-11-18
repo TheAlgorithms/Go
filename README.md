@@ -67,6 +67,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Node`](./structure/avl/avl.go#L8): No description provided.
 
+
 ---
 </details><details>
 	<summary> <strong> binary </strong> </summary>	
