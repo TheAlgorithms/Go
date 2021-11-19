@@ -122,6 +122,10 @@ func TestSelection(t *testing.T) {
 	testFramework(t, SelectionSort)
 }
 
+func TestComb(t *testing.T) {
+	testFramework(t, Comb)
+}
+
 func TestPigeonhole(t *testing.T) {
 	testFramework(t, Pigeonhole)
 }
@@ -214,6 +218,10 @@ func BenchmarkImprovedSimple(b *testing.B) {
 // Very Slow, consider commenting
 func BenchmarkSelection(b *testing.B) {
 	benchmarkFramework(b, SelectionSort)
+}
+
+func BenchmarkComb(b *testing.B) {
+	benchmarkFramework(b, Comb)
 }
 
 func BenchmarkPigeonhole(b *testing.B) {
