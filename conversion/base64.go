@@ -5,7 +5,7 @@
 // ref: https://en.wikipedia.org/wiki/Base64
 // see base64_test.go
 
-package conversion1
+package conversion
 
 import (
 	"strings" // Used for efficient string builder (more efficient than simply appending strings)
