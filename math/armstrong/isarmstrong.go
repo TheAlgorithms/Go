@@ -19,18 +19,13 @@ func IsArmstrong(number int) bool {
 	// to get the number of digits in the number
 	length := float64(len(strconv.Itoa(number)))
 
-	// get the right most digit
-	for {
+	// get the right most digit and break the loop once all digits are iterated
+	for tempNum > 0 {
 		rightMost = tempNum % 10
 		sum += int(math.Pow(float64(rightMost), length))
 
 		// update the input digit minus the processed rightMost
 		tempNum /= 10
-
-		// break the loop if all numbers are iterated
-		if tempNum == 0 {
-			break
-		}
 	}
 
 	return number == sum
