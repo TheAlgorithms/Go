@@ -48,6 +48,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> armstrong </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`IsArmstrong`](./math/armstrong/isarmstrong.go#L14): No description provided.
+
+---
+</details><details>
 	<summary> <strong> avl </strong> </summary>	
 
 ---
@@ -79,12 +89,13 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
-2. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
-3. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L11): No description provided.
-4. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L15): No description provided.
-5. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
-6. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L10): No description provided.
+1. [`BitCounter`](./math/binary/bitcounter.go#L11):  BitCounter - The function returns the number of set bits for an unsigned integer number
+2. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
+3. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
+4. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L11): No description provided.
+5. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L15): No description provided.
+6. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
+7. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L10): No description provided.
 
 ---
 </details><details>
@@ -126,6 +137,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Decrypt`](./cipher/caesar/caesar.go#L27):  Decrypt decrypts by left shift of "key" each character of "input"
 2. [`Encrypt`](./cipher/caesar/caesar.go#L6):  Encrypt encrypts by right shift of "key" each character of "input"
+
+---
+</details><details>
+	<summary> <strong> catalan </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`CatalanNumber`](./math/catalan/catalannumber.go#L15): No description provided.
 
 ---
 </details><details>
@@ -376,7 +397,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
+1. [`Make`](./structure/hashmap/hashmap.go#L32):  Make creates a new HashMap instance with input size and capacity
+2. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
 
 ---
 ##### Types
@@ -554,6 +576,26 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`IsPalindrome`](./strings/palindrome/ispalindrome.go#L26): No description provided.
+
+---
+</details><details>
+	<summary> <strong> pangram </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`IsPangram`](./strings/pangram/ispangram.go#L21): No description provided.
+
+---
+</details><details>
+	<summary> <strong> pascal </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`GenerateTriangle`](./math/pascal/pascaltriangle.go#L24):  GenerateTriangle This function generates a Pascal's triangle of n lines
 
 ---
 </details><details>
@@ -748,19 +790,20 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Count`](./sort/countingsort.go#L9): No description provided.
-2. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
-3. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
-4. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-5. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
-6. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
-7. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-8. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-9. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-10. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-11. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-12. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
-13. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+1. [`Comb`](./sort/combSort.go#L14): No description provided.
+2. [`Count`](./sort/countingsort.go#L9): No description provided.
+3. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
+4. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
+5. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+6. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
+7. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
+8. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+9. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
+10. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
+11. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+12. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
+13. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
+14. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
 
 ---
 ##### Types

@@ -28,6 +28,15 @@ func New() *HashMap {
 	}
 }
 
+// Make creates a new HashMap instance with input size and capacity
+func Make(size, capacity uint64) HashMap {
+	return HashMap{
+		size:     size,
+		capacity: capacity,
+		table:    make([]*node, capacity),
+	}
+}
+
 // Get returns value associated with given key
 func (hm *HashMap) Get(key interface{}) interface{} {
 	node := hm.getNodeByHash(hm.hash(key))
