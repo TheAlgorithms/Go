@@ -48,6 +48,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> armstrong </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`IsArmstrong`](./math/armstrong/isarmstrong.go#L14): No description provided.
+
+---
+</details><details>
 	<summary> <strong> avl </strong> </summary>	
 
 ---
