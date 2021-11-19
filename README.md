@@ -14,6 +14,10 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ## List of Algorithms
 <!--- GODOCMD BEGIN --->
+# Packages:
+
+<details>
+	<summary> <strong> ahocorasick </strong> </summary>	
 
 ---
 
@@ -322,7 +326,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 2. [`PopulationItem`](./strings/genetic/genetic.go#L26): No description provided.
 
-3. [`Conf`](./strings/genetic/genetic.go#L32): No description provided.
+3. [`Result`](./strings/genetic/genetic.go#L52): No description provided.
 
 
 ---
@@ -384,7 +388,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 5. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-6. [`Item`](./graph/dijkstra.go#L5): No description provided.
+6. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
 
 
 ---
@@ -462,11 +466,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
 
-2. [`Cyclic`](./structure/linkedlist/cyclic.go#L6): No description provided.
+2. [`Doubly`](./structure/linkedlist/doubly.go#L18): No description provided.
 
-3. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
+3. [`Node`](./structure/linkedlist/shared.go#L5): No description provided.
 
-4. [`Doubly`](./structure/linkedlist/doubly.go#L18): No description provided.
+4. [`Singly`](./structure/linkedlist/singlylinkedlist.go#L10): No description provided.
 
 5. [`testCase`](./structure/linkedlist/cyclic_test.go#L105): No description provided.
 
@@ -630,8 +634,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
-2. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
+1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
+2. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
 
 ---
 </details><details>
@@ -825,7 +829,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 2. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
 
-3. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
+3. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
 
 
 ---
