@@ -1,8 +1,15 @@
+// sha256.go
+// description: The sha256 cryptographic hash function as defined in the RFC6234 standard.
+// author: [Paul Leydier] (https://github.com/paul-leydier)
+// ref: https://datatracker.ietf.org/doc/html/rfc6234
+// ref: https://en.wikipedia.org/wiki/SHA-2
+// see sha256_test.go
+
 package sha256
 
 import (
-	"encoding/binary"
-	"math/bits"
+	"encoding/binary" // Used for interacting with uint at the byte level
+	"math/bits"       // Used for bits rotation operations
 )
 
 var K = [64]uint32{
@@ -18,26 +25,36 @@ var K = [64]uint32{
 
 const chunkSize = 64
 
+// pad returns a padded version of the input message, such as the padded message's length is a multiple
+// of 512 bits.
+// The padding methodology is as follows:
+// A "1" bit is appended at the end of the input message, followed by m "0" bits such as the length is
+// 64 bits short of a 512 bits multiple. The remaining 64 bits are filled with the initial length of the
+// message, represented as a 64-bits unsigned integer.
+// For more details, see: https://datatracker.ietf.org/doc/html/rfc6234#section-4.1
 func pad(message []byte) []byte {
 	L := make([]byte, 8)
 	binary.BigEndian.PutUint64(L, uint64(len(message)*8))
-	message = append(message, 0x80)
+	message = append(message, 0x80) // "1" bit followed by 7 "0" bits
 	for (len(message)+8)%64 != 0 {
-		message = append(message, 0x00)
+		message = append(message, 0x00) // 8 "0" bits
 	}
 	message = append(message, L...)
 
 	return message
 }
 
+// Hash hashes the input message using the sha256 hashing function, and return a 32 byte array.
+// The implementation follows the RGC6234 standard, which is documented
+// at https://datatracker.ietf.org/doc/html/rfc6234
 func Hash(message []byte) [32]byte {
 	message = pad(message)
 
 	// Initialize round constants
-	h0, h1, h2, h3, h4, h5, h6, h7 := uint32(0x6a09e667), uint32(0xbb67ae85), uint32(0x3c6ef372), uint32(0xa54ff53a), uint32(0x510e527f), uint32(0x9b05688c), uint32(0x1f83d9ab), uint32(0x5be0cd19)
+	h0, h1, h2, h3, h4, h5, h6, h7 := uint32(0x6a09e667), uint32(0xbb67ae85), uint32(0x3c6ef372), uint32(0xa54ff53a),
+		uint32(0x510e527f), uint32(0x9b05688c), uint32(0x1f83d9ab), uint32(0x5be0cd19)
 
 	// Iterate through 512-bit chunks
-
 	for chunkStart := 0; chunkStart < len(message); chunkStart += chunkSize {
 		// Message schedule
 		var w [64]uint32
@@ -45,13 +62,14 @@ func Hash(message []byte) [32]byte {
 			w[i] = binary.BigEndian.Uint32(message[chunkStart+i*4 : chunkStart+(i+1)*4])
 		}
 
+		// Extend the 16 bytes chunk to the whole 64 bytes message schedule
 		for i := 16; i < 64; i++ {
 			s0 := bits.RotateLeft32(w[i-15], -7) ^ bits.RotateLeft32(w[i-15], -18) ^ (w[i-15] >> 3)
 			s1 := bits.RotateLeft32(w[i-2], -17) ^ bits.RotateLeft32(w[i-2], -19) ^ (w[i-2] >> 10)
 			w[i] = w[i-16] + s0 + w[i-7] + s1
 		}
 
-		// Compression
+		// Actual hashing loop
 		a, b, c, d, e, f, g, h := h0, h1, h2, h3, h4, h5, h6, h7
 		for i := 0; i < 64; i++ {
 			S1 := bits.RotateLeft32(e, -6) ^ bits.RotateLeft32(e, -11) ^ bits.RotateLeft32(e, -25)
