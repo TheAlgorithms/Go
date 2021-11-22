@@ -9,7 +9,7 @@ package fibonacci
 
 // Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
 func Matrix(n uint) uint {
-	a, b, tb := 1, 1, 1
+	a, b := 1, 1
 	c, rc, tc := 1, 0, 0
 	d, rd := 0, 1
 
@@ -21,7 +21,7 @@ func Matrix(n uint) uint {
 		}
 
 		ta := a
-		tb = b
+		tb := b
 		tc = c
 		a = a*a + b*c
 		b = ta*b + b*d
