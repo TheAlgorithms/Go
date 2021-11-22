@@ -8,10 +8,12 @@
 // Package binary describes algorithms that use binary operations for different calculations.
 package binary
 
+// MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
 func MeanUsingAndXor(a int, b int) int {
 	return ((a ^ b) >> 1) + (a & b)
 }
 
+// MeanUsingRightShift This function finds arithmetic mean using right shift
 func MeanUsingRightShift(a int, b int) int {
 	return (a + b) >> 1
 }
