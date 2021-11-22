@@ -280,6 +280,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> fibonacci </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Matrix`](./math/fibonacci/fibonacci.go#L11):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
+
+---
+</details><details>
 	<summary> <strong> gcd </strong> </summary>	
 
 ---
