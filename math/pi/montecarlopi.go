@@ -70,7 +70,7 @@ func drawPoints(n int, c chan<- int) {
 
 // splitInt takes an integer x and splits it within an integer slice of length n in the most uniform
 // way possible.
-// For example, splitInt(10, 3) will retun []int{4, 3, 3}, nil
+// For example, splitInt(10, 3) will return []int{4, 3, 3}, nil
 func splitInt(x int, n int) ([]int, error) {
 	if x < n {
 		return nil, fmt.Errorf("x must be < n - given values are x=%d, n=%d", x, n)
