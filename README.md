@@ -793,6 +793,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> sha256 </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Hash`](./hashing/sha256/sha256.go#L50):  Hash hashes the input message using the sha256 hashing function, and return a 32 byte array. The implementation follows the RGC6234 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc6234
+
+---
+</details><details>
 	<summary> <strong> sort </strong> </summary>	
 
 ---
