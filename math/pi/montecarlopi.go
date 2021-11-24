@@ -1,17 +1,17 @@
 // montecarlopi.go
 // description: Calculating pi by the Monte Carlo method
 // details:
-// implementation of Monte Carlo Algorithm for the calculating of Pi - [Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method)
-// author(s) [red_byte](https://github.com/i-redbyte)
+// implementations of Monte Carlo Algorithm for the calculating of Pi - [Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method)
+// author(s): [red_byte](https://github.com/i-redbyte), [Paul Leydier] (https://github.com/paul-leydier)
 // see montecarlopi_test.go
 
 package pi
 
 import (
-	"fmt"
-	"math/rand"
-	"runtime"
-	"time"
+	"fmt"       // Used for error formatting
+	"math/rand" // Used for random number generation in Monte Carlo method
+	"runtime"   // Used to get information on available CPUs
+	"time"      // Used for seeding the random number generation
 )
 
 func MonteCarloPi(randomPoints int) float64 {
@@ -28,16 +28,25 @@ func MonteCarloPi(randomPoints int) float64 {
 	return pi
 }
 
+// MonteCarloPi2 approximates the value of pi using the Monte Carlo method.
+// Unlike the MonteCarloPi function (first version), this implementation uses
+// goroutines and channels to parallelize the computation.
+// More details on the Monte Carlo method available at https://en.wikipedia.org/wiki/Monte_Carlo_method.
+// More details on goroutines parallelization available at https://go.dev/doc/effective_go#parallel.
 func MonteCarloPi2(n int) (float64, error) {
 	numCPU := runtime.GOMAXPROCS(0)
 	c := make(chan int, numCPU)
-	pointsToDraw, err := splitInt(n, numCPU)
+	pointsToDraw, err := splitInt(n, numCPU) // split the task in sub-tasks of approximately equal sizes
 	if err != nil {
 		return 0, err
 	}
+
+	// launch numCPU parallel tasks
 	for _, p := range pointsToDraw {
 		go drawPoints(p, c)
 	}
+
+	// collect the tasks results
 	inside := 0
 	for i := 0; i < numCPU; i++ {
 		inside += <-c
@@ -45,6 +54,8 @@ func MonteCarloPi2(n int) (float64, error) {
 	return float64(inside) / float64(n) * 4, nil
 }
 
+// drawPoints draws n random two-dimensional points in the interval [0, 1), [0, 1) and sends through c
+// the number of points which where within the circle of center 0 and radius 1 (unit circle)
 func drawPoints(n int, c chan<- int) {
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	inside := 0
@@ -57,6 +68,9 @@ func drawPoints(n int, c chan<- int) {
 	c <- inside
 }
 
+// splitInt takes an integer x and splits it within an integer slice of length n in the most uniform
+// way possible.
+// For example, splitInt(10, 3) will retun []int{4, 3, 3}, nil
 func splitInt(x int, n int) ([]int, error) {
 	if x < n {
 		return nil, fmt.Errorf("x must be < n - given values are x=%d, n=%d", x, n)
