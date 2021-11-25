@@ -280,6 +280,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> fibonacci </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Matrix`](./math/fibonacci/fibonacci.go#L11):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
+
+---
+</details><details>
 	<summary> <strong> gcd </strong> </summary>	
 
 ---
@@ -780,6 +790,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`New`](./structure/set/set.go#L7):  New gives new set.
+
+---
+</details><details>
+	<summary> <strong> sha256 </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Hash`](./hashing/sha256/sha256.go#L50):  Hash hashes the input message using the sha256 hashing function, and return a 32 byte array. The implementation follows the RGC6234 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc6234
 
 ---
 </details><details>
