@@ -62,7 +62,7 @@ func TestSplitInt(t *testing.T) {
 }
 
 func TestMonteCarloPi2(t *testing.T) {
-	res, err := MonteCarloPi2(100000000)
+	res, err := MonteCarloPiConcurrent(100000000)
 	if err != nil {
 		t.Errorf("unexpected error %s", err)
 	}
@@ -75,7 +75,7 @@ func TestMonteCarloPi2(t *testing.T) {
 
 func BenchmarkMonteCarloPi2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, err := MonteCarloPi2(100000000)
+		_, err := MonteCarloPiConcurrent(100000000)
 		if err != nil {
 			b.Fatalf("unexpected error - %s", err)
 		}

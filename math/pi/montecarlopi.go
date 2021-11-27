@@ -28,12 +28,12 @@ func MonteCarloPi(randomPoints int) float64 {
 	return pi
 }
 
-// MonteCarloPi2 approximates the value of pi using the Monte Carlo method.
+// MonteCarloPiConcurrent approximates the value of pi using the Monte Carlo method.
 // Unlike the MonteCarloPi function (first version), this implementation uses
 // goroutines and channels to parallelize the computation.
 // More details on the Monte Carlo method available at https://en.wikipedia.org/wiki/Monte_Carlo_method.
 // More details on goroutines parallelization available at https://go.dev/doc/effective_go#parallel.
-func MonteCarloPi2(n int) (float64, error) {
+func MonteCarloPiConcurrent(n int) (float64, error) {
 	numCPU := runtime.GOMAXPROCS(0)
 	c := make(chan int, numCPU)
 	pointsToDraw, err := splitInt(n, numCPU) // split the task in sub-tasks of approximately equal sizes
