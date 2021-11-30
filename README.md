@@ -644,8 +644,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
-2. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
+1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L17): No description provided.
+2. [`MonteCarloPiConcurrent`](./math/pi/montecarlopi.go#L36):  MonteCarloPiConcurrent approximates the value of pi using the Monte Carlo method. Unlike the MonteCarloPi function (first version), this implementation uses goroutines and channels to parallelize the computation. More details on the Monte Carlo method available at https://en.wikipedia.org/wiki/Monte_Carlo_method. More details on goroutines parallelization available at https://go.dev/doc/effective_go#parallel.
+3. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
 
 ---
 </details><details>
