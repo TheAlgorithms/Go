@@ -53,6 +53,17 @@ func TestNthFibonacci(t *testing.T) {
 	}
 }
 
+func TestFormula(t *testing.T) {
+	tests := getTests()
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			if got := Formula(test.n); got != test.want {
+				t.Errorf("Return value = %v, want %v", got, test.want)
+			}
+		})
+	}
+}
+
 func BenchmarkNthFibonacci(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		dynamic.NthFibonacci(90)
@@ -62,5 +73,11 @@ func BenchmarkNthFibonacci(b *testing.B) {
 func BenchmarkMatrix(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Matrix(90)
+	}
+}
+
+func BenchmarkFormula(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Formula(90)
 	}
 }
