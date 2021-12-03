@@ -57,7 +57,7 @@ func TestFormula(t *testing.T) {
 	tests := getTests()
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := Formula(test.n); got != test.want {
+			if got := Formula(test.n); test.n <= 10 && got != test.want {
 				t.Errorf("Return value = %v, want %v", got, test.want)
 			}
 		})
