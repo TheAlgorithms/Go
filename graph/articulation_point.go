@@ -1,3 +1,7 @@
+// Algorithm to identify articulation points in a connected graph
+// You can read more about articulation points here: https://en.wikipedia.org/wiki/Biconnected_component
+// and the implementation and explanation here: https://cptalks.quora.com/Cut-Vertex-Articulation-point
+
 package graph
 
 import "github.com/TheAlgorithms/Go/math/min"
