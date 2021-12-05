@@ -287,7 +287,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Matrix`](./math/fibonacci/fibonacci.go#L11):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
+1. [`Formula`](./math/fibonacci/fibonacci.go#L42):  Formula This function calculates the n-th fibonacci number using the [formula](https://en.wikipedia.org/wiki/Fibonacci_number#Relation_to_the_golden_ratio) Attention! Tests for large values fall due to rounding error of floating point numbers, works well, only on small numbers
+2. [`Matrix`](./math/fibonacci/fibonacci.go#L15):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
 
 ---
 </details><details>
