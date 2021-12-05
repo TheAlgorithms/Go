@@ -14,11 +14,13 @@ func LuhnAlgorithm(s string) bool {
 	result := 0
 	for i := 0; i < n; i++ {
 		number = int(s[i]) - '0'
-		if i%2 == 0 {
-			number *= 2
-			if number > 9 {
-				number -= 9
-			}
+		if i%2 != 0 {
+			result += number
+			continue
+		}
+		number *= 2
+		if number > 9 {
+			number -= 9
 		}
 		result += number
 	}
