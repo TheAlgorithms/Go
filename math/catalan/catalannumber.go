@@ -12,6 +12,7 @@ import (
 	f "github.com/TheAlgorithms/Go/math/factorial"
 )
 
+// CatalanNumber This function returns the `nth` Catalan number
 func CatalanNumber(n int) int {
-	return f.BruteForceFactorial(n*2) / (f.BruteForceFactorial(n) * f.BruteForceFactorial(n+1))
+	return f.Iterative(n*2) / (f.Iterative(n) * f.Iterative(n+1))
 }

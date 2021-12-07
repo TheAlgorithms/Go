@@ -48,6 +48,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> armstrong </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`IsArmstrong`](./math/armstrong/isarmstrong.go#L14): No description provided.
+
+---
+</details><details>
 	<summary> <strong> avl </strong> </summary>	
 
 ---
@@ -79,12 +89,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
-2. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
-3. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L11): No description provided.
-4. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L15): No description provided.
-5. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
-6. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L10): No description provided.
+1. [`BitCounter`](./math/binary/bitcounter.go#L11):  BitCounter - The function returns the number of set bits for an unsigned integer number
+2. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
+3. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
+4. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
+5. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
+6. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
+7. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
+8. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
 
 ---
 </details><details>
@@ -135,7 +147,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`CatalanNumber`](./math/catalan/catalannumber.go#L15): No description provided.
+1. [`CatalanNumber`](./math/catalan/catalannumber.go#L16):  CatalanNumber This function returns the `nth` Catalan number
 
 ---
 </details><details>
@@ -186,13 +198,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
-2. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
-3. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
-4. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
-5. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
-6. [`Reverse`](./conversion/decimaltobinary.go#L22):  Reverse() function that will take string, and returns the reverse of that string.
-7. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
+1. [`Base64Decode`](./conversion/base64.go#L57):  Base64Decode decodes the received input base64 string into a byte slice. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
+2. [`Base64Encode`](./conversion/base64.go#L19):  Base64Encode encodes the received input bytes slice into a base64 string. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
+3. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
+4. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
+5. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
+6. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
+7. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
+8. [`Reverse`](./conversion/decimaltobinary.go#L22):  Reverse() function that will take string, and returns the reverse of that string.
+9. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
 
 ---
 </details><details>
@@ -261,9 +275,20 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`BruteForceFactorial`](./math/factorial/factorial.go#L11): No description provided.
-2. [`CalculateFactorialUseTree`](./math/factorial/factorial.go#L27): No description provided.
-3. [`RecursiveFactorial`](./math/factorial/factorial.go#L19): No description provided.
+1. [`Iterative`](./math/factorial/factorial.go#L12):  Iterative returns the iteratively brute forced factorial of n
+2. [`Recursive`](./math/factorial/factorial.go#L21):  Recursive This function recursively computes the factorial of a number
+3. [`UsingTree`](./math/factorial/factorial.go#L30):  UsingTree This function finds the factorial of a number using a binary tree
+
+---
+</details><details>
+	<summary> <strong> fibonacci </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Formula`](./math/fibonacci/fibonacci.go#L42):  Formula This function calculates the n-th fibonacci number using the [formula](https://en.wikipedia.org/wiki/Fibonacci_number#Relation_to_the_golden_ratio) Attention! Tests for large values fall due to rounding error of floating point numbers, works well, only on small numbers
+2. [`Matrix`](./math/fibonacci/fibonacci.go#L15):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
 
 ---
 </details><details>
@@ -386,7 +411,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
+1. [`Make`](./structure/hashmap/hashmap.go#L32):  Make creates a new HashMap instance with input size and capacity
+2. [`New`](./structure/hashmap/hashmap.go#L24):  New return new HashMap instance
 
 ---
 ##### Types
@@ -493,7 +519,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`BitwiseMax`](./math/max/bitwisemax.go#L10): No description provided.
+1. [`Bitwise`](./math/max/bitwisemax.go#L11):  Bitwise computes using bitwise operator the maximum of all the integer input and returns it
 2. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
 
 ---
@@ -517,7 +543,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Bitwise`](./math/min/bitwisemin.go#L10): No description provided.
+1. [`Bitwise`](./math/min/bitwisemin.go#L11):  Bitwise This function returns the minimum integer using bit operations
 2. [`Int`](./math/min/min.go#L4):  Int is a function which returns the minimum of all the integers provided as arguments.
 
 ---
@@ -567,6 +593,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> pangram </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`IsPangram`](./strings/pangram/ispangram.go#L21): No description provided.
+
+---
+</details><details>
 	<summary> <strong> pascal </strong> </summary>	
 
 ---
@@ -610,8 +646,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L15): No description provided.
-2. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
+1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L17): No description provided.
+2. [`MonteCarloPiConcurrent`](./math/pi/montecarlopi.go#L36):  MonteCarloPiConcurrent approximates the value of pi using the Monte Carlo method. Unlike the MonteCarloPi function (first version), this implementation uses goroutines and channels to parallelize the computation. More details on the Monte Carlo method available at https://en.wikipedia.org/wiki/Monte_Carlo_method. More details on goroutines parallelization available at https://go.dev/doc/effective_go#parallel.
+3. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
 
 ---
 </details><details>
@@ -756,6 +793,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`New`](./structure/set/set.go#L7):  New gives new set.
+
+---
+</details><details>
+	<summary> <strong> sha256 </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Hash`](./hashing/sha256/sha256.go#L50):  Hash hashes the input message using the sha256 hashing function, and return a 32 byte array. The implementation follows the RGC6234 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc6234
 
 ---
 </details><details>
