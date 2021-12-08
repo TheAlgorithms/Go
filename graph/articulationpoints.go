@@ -27,7 +27,7 @@ func ArticulationPoint(graph Graph) []bool {
 	dfs(graph, 0, -1)
 
 	if child_cnt[0] == 1 {
-		is_ap[0] = false
+		is_ap[0] = false // if the root has only one child, it is not an articulation point
 	}
 
 	return is_ap
