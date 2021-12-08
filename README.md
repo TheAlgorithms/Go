@@ -376,18 +376,17 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`ArticulationPoint`](./graph/articulation_point.go#L18): No description provided.
-2. [`ArticulationPoint`](./graph/articulationpoints.go#L18): No description provided.
-3. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
-4. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
-5. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
-6. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
-7. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
-8. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
-9. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-10. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-11. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-12. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+1. [`ArticulationPoint`](./graph/articulationpoints.go#L18): No description provided.
+2. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
+3. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
+4. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
+5. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
+6. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
+7. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
+8. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
+9. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
+10. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
+11. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
 ---
 ##### Types
