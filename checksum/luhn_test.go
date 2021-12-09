@@ -10,16 +10,16 @@ import "testing"
 func TestLuhnAlgorithm(t *testing.T) {
 	tests := []struct {
 		name string
-		s    string
+		s    []rune
 		want bool
 	}{
-		{"check 4242424242424242", "4242424242424242", true},
-		{"check 6200000000000005", "6200000000000005", true},
-		{"check 5534200028533164", "5534200028533164", true},
-		{"check 36227206271667", "36227206271667", true},
-		{"check 471629309440", "471629309440", false},
-		{"check 1111", "1111", false},
-		{"check 12345674", "12345674", true},
+		{"check 4242424242424242", []rune("4242424242424242"), true},
+		{"check 6200000000000005", []rune("6200000000000005"), true},
+		{"check 5534200028533164", []rune("5534200028533164"), true},
+		{"check 36227206271667", []rune("36227206271667"), true},
+		{"check 471629309440", []rune("471629309440"), false},
+		{"check 1111", []rune("1111"), false},
+		{"check 12345674", []rune("12345674"), true},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
@@ -32,6 +32,6 @@ func TestLuhnAlgorithm(t *testing.T) {
 
 func BenchmarkBruteForceFactorial(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		LuhnAlgorithm("4242424242424242")
+		LuhnAlgorithm([]rune("4242424242424242"))
 	}
 }
