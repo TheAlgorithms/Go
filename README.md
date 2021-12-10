@@ -151,6 +151,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> checksum </strong> </summary>	
+
+---
+
+#####  Package checksum describes algorithms for finding various checksums
+
+---
+##### Functions:
+
+1. [`LuhnAlgorithm`](./checksum/luhn.go#L11):  LuhnAlgorithm This function calculates the checksum using the Luna algorithm
+
+---
+</details><details>
 	<summary> <strong> coloring </strong> </summary>	
 
 ---
