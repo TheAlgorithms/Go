@@ -24,7 +24,7 @@ func ArticulationPoint(graph Graph) []bool {
 	discovery_time = make([]int, graph.vertices)
 	earliest_discovery = make([]int, graph.vertices)
 
-	dfs(graph, 0, -1)
+	ArticulationPointHelper(graph, 0, -1)
 
 	if child_cnt[0] == 1 {
 		is_ap[0] = false // if the root has only one child, it is not an articulation point
@@ -33,7 +33,11 @@ func ArticulationPoint(graph Graph) []bool {
 	return is_ap
 }
 
-func dfs(graph Graph, u int, parent int) {
+func ArticulationPointHelper(graph Graph, u int, parent int) {
+	// A recursive function to identify articulation points in a graph
+	// based on the depth first search transversal of the graph, however modified to keep track
+	// and update the child_cnt, discovery_time and earliest_discovery arrays defined above
+
 	visited[u] = true
 
 	discovery_time[u] = time                  // Mark the time of discovery of a vertex
@@ -46,7 +50,7 @@ func dfs(graph Graph, u int, parent int) {
 		}
 		if !visited[v] {
 			child_cnt[u]++
-			dfs(graph, v, u)
+			ArticulationPointHelper(graph, v, u)
 			earliest_discovery[u] = min.Int(earliest_discovery[u], earliest_discovery[v])
 			if earliest_discovery[v] >= discovery_time[u] {
 				is_ap[u] = true
