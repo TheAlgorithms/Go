@@ -389,7 +389,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`ArticulationPoint`](./graph/articulationpoints.go#L18): No description provided.
+1. [`ArticulationPoint`](./graph/articulationpoints.go#L9): No description provided.
 2. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
 3. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
 4. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
