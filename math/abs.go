@@ -5,10 +5,10 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see abs_test.go
 
-package abs
+package math
 
-// ABS - this function return absolute value
-func ABS(n int) int {
+// Abs - this function return absolute value
+func Abs(n int) int {
 	if n < 0 {
 		return -n
 	}

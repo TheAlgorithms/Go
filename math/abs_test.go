@@ -1,4 +1,4 @@
-package abs
+package math
 
 import (
 	"github.com/TheAlgorithms/Go/math/binary"
@@ -10,8 +10,8 @@ func TestABS(t *testing.T) {
 	tests := getTests()
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := ABS(test.n); got != test.want {
-				t.Errorf("ABS() = %v, want %v", got, test.want)
+			if got := Abs(test.n); got != test.want {
+				t.Errorf("Abs() = %v, want %v", got, test.want)
 			}
 		})
 	}
@@ -21,8 +21,8 @@ func TestBinaryABS(t *testing.T) {
 	tests := getTests()
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := binary.ABS(64, test.n); got != test.want {
-				t.Errorf("ABS() = %v, want %v", got, test.want)
+			if got := binary.Abs(64, test.n); got != test.want {
+				t.Errorf("Abs() = %v, want %v", got, test.want)
 			}
 		})
 	}
@@ -50,18 +50,18 @@ func getTests() []struct {
 
 func BenchmarkSimpleABS(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		ABS(-1024)
+		Abs(-1024)
 	}
 }
 func BenchmarkBinaryABS32(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		binary.ABS(32, -1024)
+		binary.Abs(32, -1024)
 	}
 }
 
 func BenchmarkBinaryABS64(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		binary.ABS(64, -1024)
+		binary.Abs(64, -1024)
 	}
 }
 
