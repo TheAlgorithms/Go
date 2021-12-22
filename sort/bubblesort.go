@@ -5,7 +5,6 @@ package sort
 
 import "constraints"
 
-
 type Numbers interface {
 	~contstraints.Integer | ~constraints.Float
 }
