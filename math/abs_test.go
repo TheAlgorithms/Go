@@ -6,22 +6,11 @@ import (
 	"testing"
 )
 
-func TestABS(t *testing.T) {
+func TestAbs(t *testing.T) {
 	tests := getTests()
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			if got := Abs(test.n); got != test.want {
-				t.Errorf("Abs() = %v, want %v", got, test.want)
-			}
-		})
-	}
-}
-
-func TestBinaryABS(t *testing.T) {
-	tests := getTests()
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
-			if got := binary.Abs(64, test.n); got != test.want {
 				t.Errorf("Abs() = %v, want %v", got, test.want)
 			}
 		})
@@ -43,29 +32,29 @@ func getTests() []struct {
 		{"0 = |0| ", 0, 0},
 		{"5 = |5| ", 5, 5},
 		{"-5 = |5| ", -5, 5},
-		{"-98368972 = |5| ", -98368972, 98368972},
+		{"-98368972 = |98368972| ", -98368972, 98368972},
 	}
 	return tests
 }
 
-func BenchmarkSimpleABS(b *testing.B) {
+func BenchmarkSimpleAbs(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Abs(-1024)
 	}
 }
-func BenchmarkBinaryABS32(b *testing.B) {
+func BenchmarkBinaryAbs32(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		binary.Abs(32, -1024)
 	}
 }
 
-func BenchmarkBinaryABS64(b *testing.B) {
+func BenchmarkBinaryAbs64(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		binary.Abs(64, -1024)
 	}
 }
 
-func BenchmarkStdLibABS(b *testing.B) {
+func BenchmarkStdLibAbs(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		math.Abs(-1024)
 	}
