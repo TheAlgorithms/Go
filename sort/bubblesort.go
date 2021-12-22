@@ -3,7 +3,14 @@
 
 package sort
 
-func bubbleSort(arr []int) []int {
+import "constraints"
+
+
+type Numbers interface {
+	~contstraints.Integer | ~constraints.Float
+}
+
+func bubbleSort[T Numbers](arr []T) []T {
 	swapped := true
 	for swapped {
 		swapped = false
