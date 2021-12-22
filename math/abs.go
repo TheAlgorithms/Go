@@ -7,7 +7,7 @@
 
 package math
 
-// Abs - this function return absolute value
+// Abs returns absolute value
 func Abs(n int) int {
 	if n < 0 {
 		return -n
