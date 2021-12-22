@@ -1,6 +1,6 @@
 package binary
 
-// Abs - this function return absolute value use binary operation
+// Abs returns absolute value using binary operation
 // Principle of operation:
 // 1) Get the mask by right shift by the base
 // 2) Base is the size of an integer variable in bits, for example, for int32 it will be 32, for int64 it will be 64
