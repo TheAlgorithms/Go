@@ -5,11 +5,7 @@ package sort
 
 import "constraints"
 
-type Numbers interface {
-	~contstraints.Integer | ~constraints.Float
-}
-
-func bubbleSort[T Numbers](arr []T) []T {
+func bubbleSort[T constraints.Ordered](arr []T) []T {
 	swapped := true
 	for swapped {
 		swapped = false
