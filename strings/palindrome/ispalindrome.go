@@ -35,3 +35,23 @@ func IsPalindrome(text string) bool {
 	}
 	return true
 }
+
+func IsPalindromeRecursive(text string) bool {
+	clean_text := cleanString(text)
+	runes := []rune(clean_text)
+	return IsPalindromeRecursiveHelper(runes, 0, int64(len(runes)))
+}
+
+func IsPalindromeRecursiveHelper(runes []rune, start int64, end int64) bool {
+	if start < end {
+		if string(runes[start]) != string(runes[end-1]) {
+			return false
+		}
+	} else {
+		return true
+	}
+	start = start + 1
+	end = end - 1
+
+	return IsPalindromeRecursiveHelper(runes, start, end)
+}

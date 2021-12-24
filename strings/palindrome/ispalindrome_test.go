@@ -51,3 +51,14 @@ func TestIsPalindrome(t *testing.T) {
 		})
 	}
 }
+
+func TestIsPalindromeRecursive(t *testing.T) {
+	for _, test := range testCases {
+		t.Run(test.name, func(t *testing.T) {
+			func_result := IsPalindromeRecursive(test.input)
+			if test.expected != func_result {
+				t.Errorf("Expected answer '%t' for string '%s' but answer given was %t", test.expected, test.input, func_result)
+			}
+		})
+	}
+}
