@@ -389,7 +389,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`ArticulationPoint`](./graph/articulationpoints.go#L17): No description provided.
+1. [`ArticulationPoint`](./graph/articulationpoints.go#L18):  ArticulationPoint is a function to identify articulation points in a graph. The function takes the graph as an argument and returns a boolean slice which indicates whether a vertex is an articulation point or not. Worst Case Time Complexity: O(|V| + |E|) Auxiliary Space: O(|V|) reference: https://en.wikipedia.org/wiki/Biconnected_component and https://cptalks.quora.com/Cut-Vertex-Articulation-point
 2. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
 3. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
 4. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
