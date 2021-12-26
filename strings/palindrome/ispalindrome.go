@@ -43,12 +43,11 @@ func IsPalindromeRecursive(text string) bool {
 }
 
 func IsPalindromeRecursiveHelper(runes []rune, start int64, end int64) bool {
-	if start < end {
-		if string(runes[start]) != string(runes[end-1]) {
-			return false
-		}
-	} else {
+	if start >= end {
 		return true
+	}
+	if string(runes[start]) != string(runes[end-1]) {
+		return false
 	}
 	start = start + 1
 	end = end - 1
