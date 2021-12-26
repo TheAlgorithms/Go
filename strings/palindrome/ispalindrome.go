@@ -42,15 +42,15 @@ func IsPalindromeRecursive(text string) bool {
 	return IsPalindromeRecursiveHelper(runes, 0, int64(len(runes)))
 }
 
+
 func IsPalindromeRecursiveHelper(runes []rune, start int64, end int64) bool {
 	if start >= end {
 		return true
 	}
-	if string(runes[start]) != string(runes[end-1]) {
+	if runes[start] != runes[end-1] {
 		return false
 	}
 	start = start + 1
 	end = end - 1
-
 	return IsPalindromeRecursiveHelper(runes, start, end)
 }
