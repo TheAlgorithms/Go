@@ -1,7 +1,3 @@
-// Algorithm to identify articulation points in a connected graph
-// You can read more about articulation points here: https://en.wikipedia.org/wiki/Biconnected_component
-// and the implementation and explanation here: https://cptalks.quora.com/Cut-Vertex-Articulation-point
-
 package graph
 
 import "github.com/TheAlgorithms/Go/math/min"
@@ -14,16 +10,21 @@ type apHelper struct {
 	earliest_discovery []int
 }
 
+// ArticulationPoint is a function to identify articulation points in a graph.
+// The function takes the graph as an argument and returns a boolean slice which indicates whether a vertex is an articulation point or not.
+// Worst Case Time Complexity: O(|V| + |E|)
+// Auxiliary Space: O(|V|)
+// reference: https://en.wikipedia.org/wiki/Biconnected_component and https://cptalks.quora.com/Cut-Vertex-Articulation-point
 func ArticulationPoint(graph Graph) []bool {
 	time := 0 // time variable to keep track of the time of discovery_time of a vertex
 
 	//initialize all the variables
 	apHelperInstance := &apHelper{
-		is_ap:              make([]bool, graph.vertices), // boolean array to mark articulation points
-		visited:            make([]bool, graph.vertices), // boolean array to mark visited vertices
-		child_cnt:          make([]int, graph.vertices),  // array to store the number of children of a vertex
-		discovery_time:     make([]int, graph.vertices),  // array to store the time of discovery of a vertex
-		earliest_discovery: make([]int, graph.vertices),  // array to store the earliest discovered vertex reachable from a vertex
+		is_ap:              make([]bool, graph.vertices),
+		visited:            make([]bool, graph.vertices),
+		child_cnt:          make([]int, graph.vertices),
+		discovery_time:     make([]int, graph.vertices), // integer slice to store the discovery time of a vertex as we traverse the graph in a depth first manner
+		earliest_discovery: make([]int, graph.vertices), // integer slice to store the earliest discovered vertex reachable from a vertex
 	}
 	articulationPointHelper(apHelperInstance, 0, -1, &time, graph)
 
@@ -34,11 +35,10 @@ func ArticulationPoint(graph Graph) []bool {
 	return apHelperInstance.is_ap
 }
 
+// articulationPointHelper is a recursive function to traverse the graph and mark articulation points.
+// Based on the depth first search transversal of the graph, however modified to keep track
+// and update the child_cnt, discovery_time and earliest_discovery slices defined above
 func articulationPointHelper(apHelperInstance *apHelper, vertex int, parent int, time *int, graph Graph) {
-	// A recursive function to identify articulation points in a graph
-	// based on the depth first search transversal of the graph, however modified to keep track
-	// and update the child_cnt, discovery_time and earliest_discovery arrays defined above
-
 	apHelperInstance.visited[vertex] = true
 
 	apHelperInstance.discovery_time[vertex] = *time                                       // Mark the time of discovery of a vertex
