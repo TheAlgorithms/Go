@@ -2,7 +2,7 @@ package sort
 
 import "github.com/TheAlgorithms/Go/math/min"
 
-func Mergesort2(items []int) []int {
+func Merge2(items []int) []int {
 	for step := 1; step < len(items); step += step {
 		for i := 0; i+step < len(items); i += 2 * step {
 			merge2(items, i, i+step, min.Int(i+2*step, len(items)))
@@ -18,10 +18,10 @@ func merge2(items []int, l, mid, r int) {
 		if items[l1] < items[l2] {
 			tmp = append(tmp, items[l1])
 			l1++
-		} else {
-			tmp = append(tmp, items[l2])
-			l2++
+			continue
 		}
+		tmp = append(tmp, items[l2])
+		l2++
 	}
 	for l1 < r1 {
 		tmp = append(tmp, items[l1])
