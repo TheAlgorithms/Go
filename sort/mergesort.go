@@ -1,5 +1,7 @@
 package sort
 
+import "github.com/TheAlgorithms/Go/math/min"
+
 func merge(a []int, b []int) []int {
 
 	var r = make([]int, len(a)+len(b))
@@ -44,4 +46,14 @@ func Mergesort(items []int) []int {
 	var b = Mergesort(items[middle:])
 	return merge(a, b)
 
+}
+
+func MergesortIter(items []int) []int {
+	for step := 1; step < len(items); step += step {
+		for i := 0; i+step < len(items); i += 2 * step {
+			tmp := merge(items[i:i+step], items[i+step:min.Int(i+2*step, len(items))])
+			copy(items[i:], tmp)
+		}
+	}
+	return items
 }
