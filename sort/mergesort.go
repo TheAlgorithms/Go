@@ -48,7 +48,7 @@ func Mergesort(items []int) []int {
 
 }
 
-func MergesortIter(items []int) []int {
+func MergeIter(items []int) []int {
 	for step := 1; step < len(items); step += step {
 		for i := 0; i+step < len(items); i += 2 * step {
 			tmp := merge(items[i:i+step], items[i+step:min.Int(i+2*step, len(items))])

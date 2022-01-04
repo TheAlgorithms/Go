@@ -91,7 +91,7 @@ func TestMerge(t *testing.T) {
 }
 
 func TestMergeIter(t *testing.T) {
-	testFramework(t, MergesortIter)
+	testFramework(t, MergeIter)
 }
 
 func TestHeap(t *testing.T) {
@@ -192,7 +192,7 @@ func BenchmarkMerge(b *testing.B) {
 }
 
 func BenchmarkMergeIter(b *testing.B) {
-	benchmarkFramework(b, MergesortIter)
+	benchmarkFramework(b, MergeIter)
 }
 
 func BenchmarkHeap(b *testing.B) {
