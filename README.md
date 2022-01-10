@@ -606,6 +606,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`IsPalindrome`](./strings/palindrome/ispalindrome.go#L26): No description provided.
+2. [`IsPalindromeRecursive`](./strings/palindrome/ispalindrome.go#L39): No description provided.
 
 ---
 </details><details>
@@ -837,14 +838,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 4. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
 5. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
 6. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
-7. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
-8. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-9. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-10. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-11. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-12. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-13. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
-14. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+7. [`MergeIter`](./sort/mergesort.go#L51): No description provided.
+8. [`Mergesort`](./sort/mergesort.go#L37): Mergesort Perform mergesort on a slice of ints
+9. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+10. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
+11. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
+12. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+13. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
+14. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
+15. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
 
 ---
 ##### Types
