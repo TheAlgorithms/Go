@@ -16,7 +16,7 @@ type apHelper struct {
 // Worst Case Time Complexity: O(|V| + |E|)
 // Auxiliary Space: O(|V|)
 // reference: https://en.wikipedia.org/wiki/Biconnected_component and https://cptalks.quora.com/Cut-Vertex-Articulation-point
-func ArticulationPoint(graph Graph) []bool {
+func ArticulationPoint(graph *Graph) []bool {
 	// time variable to keep track of the time of discovery_time of a vertex
 	time := 0
 
@@ -56,7 +56,7 @@ func articulationPointHelper(
 	vertex int,
 	parent int,
 	time *int,
-	graph Graph,
+	graph *Graph,
 ) {
 	apHelperInstance.visited[vertex] = true
 

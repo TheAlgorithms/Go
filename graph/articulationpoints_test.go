@@ -73,7 +73,7 @@ func TestArticulationPoints(t *testing.T) {
 
 	for _, test := range testCases {
 		t.Run(test.description, func(t *testing.T) {
-			is_ap := ArticulationPoint(test.graph)
+			is_ap := ArticulationPoint(&test.graph)
 			if !reflect.DeepEqual(is_ap, test.expected) {
 				t.Logf("FAIL: %s", test.description)
 			}
