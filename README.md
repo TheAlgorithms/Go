@@ -390,16 +390,17 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
-2. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
-3. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
-4. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
-5. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
-6. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
-7. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-8. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-9. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-10. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+1. [`ArticulationPoint`](./graph/articulationpoints.go#L19):  ArticulationPoint is a function to identify articulation points in a graph. The function takes the graph as an argument and returns a boolean slice which indicates whether a vertex is an articulation point or not. Worst Case Time Complexity: O(|V| + |E|) Auxiliary Space: O(|V|) reference: https://en.wikipedia.org/wiki/Biconnected_component and https://cptalks.quora.com/Cut-Vertex-Articulation-point
+2. [`BreadthFirstSearch`](./graph/breadthfirstsearch.go#L9):  BreadthFirstSearch is an algorithm for traversing and searching graph data structures. It starts at an arbitrary node of a graph, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level. Worst-case performance	 		O(|V|+|E|)=O(b^{d})}O(|V|+|E|)=O(b^{d}) Worst-case space complexity	 	O(|V|)=O(b^{d})}O(|V|)=O(b^{d}) reference: https://en.wikipedia.org/wiki/Breadth-first_search
+3. [`DepthFirstSearch`](./graph/depthfirstsearch.go#L53): No description provided.
+4. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
+5. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
+6. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
+7. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
+8. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
+9. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
+10. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
+11. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
 ---
 ##### Types
@@ -605,6 +606,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`IsPalindrome`](./strings/palindrome/ispalindrome.go#L26): No description provided.
+2. [`IsPalindromeRecursive`](./strings/palindrome/ispalindrome.go#L39): No description provided.
 
 ---
 </details><details>
@@ -836,14 +838,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 4. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
 5. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
 6. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
-7. [`Mergesort`](./sort/mergesort.go#L35): Mergesort Perform mergesort on a slice of ints
-8. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-9. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-10. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-11. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-12. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-13. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
-14. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+7. [`MergeIter`](./sort/mergesort.go#L51): No description provided.
+8. [`Mergesort`](./sort/mergesort.go#L37): Mergesort Perform mergesort on a slice of ints
+9. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+10. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
+11. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
+12. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+13. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
+14. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
+15. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
 
 ---
 ##### Types
