@@ -24,15 +24,15 @@ func isanagram(text1 string, text2 string) bool {
 	if len(cleanText1) != len(cleanText2) {
 		return false
 	}
-	arr := make([]int, 256)
+	charArray := make([]int, 256) //This array is used to represent the ASCII values.
 	for _, char := range cleanText1 {
-		arr[char]++
+		charArray[char]++ //Increments the index for the characters in cleanText1 Example: charArray['a']++ => charArray[97]++
 	}
 	for _, char := range cleanText2 {
-		arr[char]--
+		charArray[char]-- //Decrements the index for the characters in cleanText2  Example: charArray['a']-- => charArray[97]--
 	}
 	for i := 0; i < 256; i++ {
-		if arr[i] != 0 {
+		if charArray[i] != 0 { //If the characters in both texts are balanced, it is an anagram otherwise No
 			return false
 		}
 	}
