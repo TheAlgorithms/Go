@@ -30,8 +30,8 @@ var testCases = []struct {
 	},
 	{
 		"Non-Anagram String 2",
-		"length",
-		"different",
+		"*@W@!@",
+		"differentttt",
 		false,
 	},
 	{
@@ -42,8 +42,8 @@ var testCases = []struct {
 	},
 	{
 		"Anagram String 4",
-		"I am happy",
-		"Happy am I",
+		"I am%Happy",
+		"Happy%am I",
 		true,
 	},
 }
