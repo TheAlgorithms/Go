@@ -13,7 +13,6 @@ type Result struct {
 // AhoCorasick Function performing the Basic Aho-Corasick algorithm.
 // Finds and prints occurrences of each pattern.
 func AhoCorasick(t string, p []string) Result {
-
 	startTime := time.Now()
 	occurrences := make(map[int][]int)
 	ac, f, s := BuildAc(p)
