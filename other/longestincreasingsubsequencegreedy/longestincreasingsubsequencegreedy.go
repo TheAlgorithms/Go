@@ -2,10 +2,10 @@ package longestincreasingsubsequencegreedy
 
 // LongestIncreasingSubsequenceGreedy is a function to find the longest increasing
 // subsequence in a given array using a greedy approach.
-// The dynamic programming approach is implemented under the dynamic programming directory.
+// The dynamic programming approach is implemented in the dynamic programming directory.
 // Worst Case Time Complexity: O(nlogn)
 // Auxiliary Space: O(n), where n is the length of the array.
-// references: https://en.wikipedia.org/wiki/Biconnected_component and https://cptalks.quora.com/Cut-Vertex-Articulation-point
+// references: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
 
 func LongestIncreasingSubsequenceGreedy(nums []int) int {
 	longestIncreasingSubsequnce := make([]int, 0)
@@ -30,17 +30,17 @@ func LongestIncreasingSubsequenceGreedy(nums []int) int {
 func lowerBound(arr []int, val int) int {
 	leftmostIndex, rightmostIndex := 0, len(arr)-1
 
-	return_index := len(arr)
+	returnIndex := len(arr)
 	for leftmostIndex <= rightmostIndex {
 		middle := (leftmostIndex + rightmostIndex) / 2
 
 		if arr[middle] < val {
 			leftmostIndex = middle + 1
 		} else {
-			return_index = middle
+			returnIndex = middle
 			rightmostIndex = middle - 1
 		}
 	}
 
-	return return_index
+	return returnIndex
 }
