@@ -4,7 +4,7 @@ package longestincreasingsubsequencegreedy
 // subsequence in a given array using a greedy approach.
 // The dynamic programming approach is implemented in the dynamic programming directory.
 // Worst Case Time Complexity: O(nlogn)
-// Auxiliary Space: O(n), where n is the length of the array.
+// Auxiliary Space: O(n), where n is the length of the array(slice).
 // references: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
 
 func LongestIncreasingSubsequenceGreedy(nums []int) int {
