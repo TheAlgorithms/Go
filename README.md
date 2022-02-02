@@ -504,6 +504,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> longestincreasingsubsequencegreedy </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`LongestIncreasingSubsequenceGreedy`](./other/longestincreasingsubsequencegreedy/longestincreasingsubsequencegreedy.go#L10): No description provided.
+
+---
+</details><details>
 	<summary> <strong> manacher </strong> </summary>	
 
 ---
