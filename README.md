@@ -510,7 +510,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`LongestIncreasingSubsequenceGreedy`](./other/longestincreasingsubsequencegreedy/longestincreasingsubsequencegreedy.go#L10): No description provided.
+1. [`LongestIncreasingSubsequenceGreedy`](./other/longestincreasingsubsequencegreedy/longestincreasingsubsequencegreedy.go#L9):  LongestIncreasingSubsequenceGreedy is a function to find the longest increasing subsequence in a given array using a greedy approach. The dynamic programming approach is implemented in the dynamic programming directory. Worst Case Time Complexity: O(nlogn) Auxiliary Space: O(n), where n is the length of the array(slice). references: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
 
 ---
 </details><details>
