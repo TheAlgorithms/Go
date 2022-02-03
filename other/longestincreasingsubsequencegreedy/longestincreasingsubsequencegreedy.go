@@ -28,19 +28,17 @@ func LongestIncreasingSubsequenceGreedy(nums []int) int {
 // Time Complexity: O(logn)
 // Auxiliary Space: O(1)
 func lowerBound(arr []int, val int) int {
-	leftmostIndex, rightmostIndex := 0, len(arr)-1
+	searchWindowLeft, searchWindowRight := 0, len(arr)-1
 
-	returnIndex := len(arr)
-	for leftmostIndex <= rightmostIndex {
-		middle := (leftmostIndex + rightmostIndex) / 2
+	for searchWindowLeft <= searchWindowRight {
+		middle := (searchWindowLeft + searchWindowRight) / 2
 
 		if arr[middle] < val {
-			leftmostIndex = middle + 1
+			searchWindowLeft = middle + 1
 		} else {
-			returnIndex = middle
-			rightmostIndex = middle - 1
+			searchWindowRight = middle - 1
 		}
 	}
 
-	return returnIndex
+	return searchWindowRight + 1
 }
