@@ -1,4 +1,4 @@
-package longestincreasingsubsequencegreedy
+package dynamic
 
 // LongestIncreasingSubsequenceGreedy is a function to find the longest increasing
 // subsequence in a given array using a greedy approach.

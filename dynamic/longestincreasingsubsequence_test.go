@@ -21,9 +21,13 @@ func TestLongestIncreasingSubsequence(t *testing.T) {
 	}
 	for _, tc := range td {
 		t.Run(fmt.Sprint("test with", tc.elements), func(t *testing.T) {
-			actualLen := dynamic.LongestIncreasingSubsequence(tc.elements)
-			if tc.expectedLen != actualLen {
-				t.Fatalf("expecting a sequence of len %d to be found but the actual len was %d; input: %v", tc.expectedLen, actualLen, tc.elements)
+			calculatedLen := dynamic.LongestIncreasingSubsequence(tc.elements)
+			calculatedLenGreedy := dynamic.LongestIncreasingSubsequenceGreedy(tc.elements)
+			if tc.expectedLen != calculatedLen {
+				t.Fatalf("expecting a sequence of len %d to be found but the actual len was %d; input: %v", tc.expectedLen, calculatedLen, tc.elements)
+			}
+			if tc.expectedLen != calculatedLenGreedy {
+				t.Fatalf("greedy approach failed, expecting a sequence of len %d to be found but the actual len was %d; input: %v", tc.expectedLen, calculatedLenGreedy, tc.elements)
 			}
 		})
 	}
