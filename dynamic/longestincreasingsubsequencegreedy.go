@@ -2,10 +2,10 @@ package dynamic
 
 // LongestIncreasingSubsequenceGreedy is a function to find the longest increasing
 // subsequence in a given array using a greedy approach.
-// The dynamic programming approach is implemented in the dynamic programming directory.
+// The dynamic programming approach is implemented alongside this one.
 // Worst Case Time Complexity: O(nlogn)
 // Auxiliary Space: O(n), where n is the length of the array(slice).
-// references: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
+// Reference: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
 func LongestIncreasingSubsequenceGreedy(nums []int) int {
 	longestIncreasingSubsequnce := make([]int, 0)
 
