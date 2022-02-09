@@ -24,14 +24,14 @@ var (
 )
 
 func TestCalculateCRC8(t *testing.T) {
-	data := []byte("Hello World")
+	data := []byte("123456789")
 	tests := []struct {
 		name  string
 		data  []byte
 		model CRCModel
 		want  uint8
 	}{
-		{CRC8.Name, data, CRC8, 0x25},
+		{CRC8.Name, data, CRC8, 0xF4},
 		{CRC8CDMA2000.Name, data, CRC8CDMA2000, 0xDA},
 		{CRC8DARC.Name, data, CRC8DARC, 0x15},
 		{CRC8DVBS2.Name, data, CRC8DVBS2, 0xBC},
