@@ -13,9 +13,7 @@ func BreadthFirstSearch(start, end, nodes int, edges [][]int) (isConnected bool,
 	queue = append(queue, start)
 	for len(queue) > 0 {
 		v := queue[0]
-		if len(queue) > 0 {
-			queue = queue[1:]
-		}
+		queue = queue[1:]
 		for i := 0; i < len(edges[v]); i++ {
 			if discovered[i] == 0 && edges[v][i] > 0 {
 				if i == end {

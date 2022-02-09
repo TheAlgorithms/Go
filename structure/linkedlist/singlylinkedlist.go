@@ -29,7 +29,7 @@ func (ll *Singly) AddAtBeg(val interface{}) {
 }
 
 // AddAtEnd adds a new snode with given value at the end of the list.
-func (ll *Singly) AddAtEnd(val int) {
+func (ll *Singly) AddAtEnd(val interface{}) {
 	n := NewNode(val)
 
 	if ll.Head == nil {
