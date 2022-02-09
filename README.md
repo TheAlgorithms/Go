@@ -224,6 +224,22 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> crc </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`CalculateCRC8`](./checksum/crc/crc8.go#L23):  CalculateCRC8 This function calculate CRC8 checksum.
+
+---
+##### Types
+
+1. [`CRCModel`](./checksum/crc/crc8.go#L13): No description provided.
+
+
+---
+</details><details>
 	<summary> <strong> diffiehellman </strong> </summary>	
 
 ---
