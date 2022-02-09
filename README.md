@@ -228,14 +228,17 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+#####  Package crc describes algorithms for finding various CRC checksums
+
+---
 ##### Functions:
 
-1. [`CalculateCRC8`](./checksum/crc/crc8.go#L23):  CalculateCRC8 This function calculate CRC8 checksum.
+1. [`CalculateCRC8`](./checksum/crc/crc8.go#L26):  CalculateCRC8 This function calculate CRC8 checksum.
 
 ---
 ##### Types
 
-1. [`CRCModel`](./checksum/crc/crc8.go#L13): No description provided.
+1. [`CRCModel`](./checksum/crc/crc8.go#L16): No description provided.
 
 
 ---
