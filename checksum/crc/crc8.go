@@ -1,10 +1,13 @@
 // crc8.go
 // description: Calculate CRC8
 // details:
-// A cyclic redundancy check (CRC) is an error-detecting code commonly used in digital networks and storage devices to detect accidental changes to raw data. See more [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)
+// A cyclic redundancy check (CRC) is an error-detecting code commonly used in digital networks
+// and storage devices to detect accidental changes to raw data.
+// See more [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see crc8_test.go
 
+// Package crc describes algorithms for finding various CRC checksums
 package crc
 
 import "math/bits"
@@ -22,6 +25,32 @@ type CRCModel struct {
 // CalculateCRC8 This function calculate CRC8 checksum.
 func CalculateCRC8(data []byte, model CRCModel) uint8 {
 	table := make([]uint8, 256)
+	createTable(model, table)
+	crcResult := model.Init
+	crcResult = addBytes(data, model, crcResult, table)
+	if model.RefOut {
+		crcResult = bits.Reverse8(crcResult)
+	}
+	return crcResult ^ model.XorOut
+}
+
+// This function get the result of adding the bytes in data to the crc
+func addBytes(data []byte, model CRCModel, crcResult uint8, table []uint8) uint8 {
+	if model.RefIn {
+		for _, d := range data {
+			d = bits.Reverse8(d)
+			crcResult = table[crcResult^d]
+		}
+	} else {
+		for _, d := range data {
+			crcResult = table[crcResult^d]
+		}
+	}
+	return crcResult
+}
+
+// This function make 256-byte table for efficient processing.
+func createTable(model CRCModel, table []uint8) {
 	for i := 0; i < 256; i++ {
 		crc := uint8(i)
 		for j := 0; j < 8; j++ {
@@ -33,21 +62,4 @@ func CalculateCRC8(data []byte, model CRCModel) uint8 {
 		}
 		table[i] = crc
 	}
-	crcResult := model.Init
-
-	if model.RefIn {
-		for _, d := range data {
-			d = bits.Reverse8(d)
-			crcResult = table[crcResult^d]
-		}
-	} else {
-		for _, d := range data {
-			crcResult = table[crcResult^d]
-		}
-	}
-	if model.RefOut {
-		crcResult = bits.Reverse8(crcResult)
-	}
-
-	return crcResult ^ model.XorOut
 }
