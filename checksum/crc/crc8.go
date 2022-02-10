@@ -24,8 +24,7 @@ type CRCModel struct {
 
 // CalculateCRC8 This function calculate CRC8 checksum.
 func CalculateCRC8(data []byte, model CRCModel) uint8 {
-	table := make([]uint8, 256)
-	createTable(model, table)
+	table := getTable(model)
 	crcResult := model.Init
 	crcResult = addBytes(data, model, crcResult, table)
 	if model.RefOut {
@@ -41,16 +40,17 @@ func addBytes(data []byte, model CRCModel, crcResult uint8, table []uint8) uint8
 			d = bits.Reverse8(d)
 			crcResult = table[crcResult^d]
 		}
-	} else {
-		for _, d := range data {
-			crcResult = table[crcResult^d]
-		}
+		return crcResult
+	}
+	for _, d := range data {
+		crcResult = table[crcResult^d]
 	}
 	return crcResult
 }
 
-// This function make 256-byte table for efficient processing.
-func createTable(model CRCModel, table []uint8) {
+// This function get 256-byte (256x8) table for efficient processing.
+func getTable(model CRCModel) []uint8 {
+	table := make([]uint8, 256)
 	for i := 0; i < 256; i++ {
 		crc := uint8(i)
 		for j := 0; j < 8; j++ {
@@ -62,4 +62,5 @@ func createTable(model CRCModel, table []uint8) {
 		}
 		table[i] = crc
 	}
+	return table
 }
