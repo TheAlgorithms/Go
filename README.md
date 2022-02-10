@@ -267,6 +267,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> dynamic_test </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`LongestIncreasingSubsequenceTest`](./dynamic/longestincreasingsubsequence_test.go#L10): No description provided.
+
+---
+</details><details>
 	<summary> <strong> dynamicarray </strong> </summary>	
 
 ---
