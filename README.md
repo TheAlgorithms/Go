@@ -275,13 +275,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 7. [`Knapsack`](./dynamic/knapsack.go#L17):  Knapsack solves knapsack problem return maxProfit
 8. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L8):  LongestCommonSubsequence function
 9. [`LongestIncreasingSubsequence`](./dynamic/longestincreasingsubsequence.go#L9):  LongestIncreasingSubsequence returns the longest increasing subsequence where all elements of the subsequence are sorted in increasing order
-10. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L21):  LpsDp function
-11. [`LpsRec`](./dynamic/longestpalindromicsubsequence.go#L7):  LpsRec function
-12. [`MatrixChainDp`](./dynamic/matrixmultiplication.go#L24):  MatrixChainDp function
-13. [`MatrixChainRec`](./dynamic/matrixmultiplication.go#L10):  MatrixChainRec function
-14. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
-15. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
-16. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
+10. [`LongestIncreasingSubsequenceGreedy`](./dynamic/longestincreasingsubsequencegreedy.go#L9):  LongestIncreasingSubsequenceGreedy is a function to find the longest increasing subsequence in a given array using a greedy approach. The dynamic programming approach is implemented alongside this one. Worst Case Time Complexity: O(nlogn) Auxiliary Space: O(n), where n is the length of the array(slice). Reference: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
+11. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L21):  LpsDp function
+12. [`LpsRec`](./dynamic/longestpalindromicsubsequence.go#L7):  LpsRec function
+13. [`MatrixChainDp`](./dynamic/matrixmultiplication.go#L24):  MatrixChainDp function
+14. [`MatrixChainRec`](./dynamic/matrixmultiplication.go#L10):  MatrixChainRec function
+15. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
+16. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
+17. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
 
 ---
 </details><details>
