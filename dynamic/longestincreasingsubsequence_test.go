@@ -7,7 +7,7 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-func TestLongestIncreasingSubsequence(t *testing.T) {
+func longestIncreasingSubsequenceTest(t *testing.T, algorithm func(nums []int) int) {
 	td := []struct {
 		elements    []int
 		expectedLen int
@@ -21,10 +21,18 @@ func TestLongestIncreasingSubsequence(t *testing.T) {
 	}
 	for _, tc := range td {
 		t.Run(fmt.Sprint("test with", tc.elements), func(t *testing.T) {
-			actualLen := dynamic.LongestIncreasingSubsequence(tc.elements)
+			actualLen := algorithm(tc.elements)
 			if tc.expectedLen != actualLen {
 				t.Fatalf("expecting a sequence of len %d to be found but the actual len was %d; input: %v", tc.expectedLen, actualLen, tc.elements)
 			}
 		})
 	}
+}
+
+func TestLongestIncreasingSubsequence(t *testing.T) {
+	longestIncreasingSubsequenceTest(t, dynamic.LongestIncreasingSubsequence)
+}
+
+func TestLongestIncreasingSubsequenceGreedy(t *testing.T) {
+	longestIncreasingSubsequenceTest(t, dynamic.LongestIncreasingSubsequenceGreedy)
 }
