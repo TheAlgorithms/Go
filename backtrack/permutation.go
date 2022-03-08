@@ -1,26 +1,41 @@
 // permutation.go
-// description: generate permutations of a given set
+// description: generate subsets use backtrack algorithm
 // details:
-// In mathematics, a permutation of a set is, loosely speaking, an arrangement of its members into a sequence or linear order, or if the set is already ordered, a rearrangement of its elements. The word "permutation" also refers to the act or process of changing the linear order of an ordered set.
+// In mathematics, a permutation of a set is, loosely speaking,
+// an arrangement of its members into a sequence or linear order,
+// or if the set is already ordered, a rearrangement of its elements.
+// The word "permutation" also refers to the act or process of changing
+// the linear order of an ordered set.
 // author: [sixwaaaay](https://github.com/sixwaaaay)
 // see permutation_test.go
 
 package backtrack
 
-func Permutation(nums []int) (set [][]int) {
+import "sort"
+
+// Permutation is a function to generate all permutations of a given array
+func Permutation(nums []int) [][]int {
+	sort.Ints(nums)
 	n := len(nums)
-	var backtrack func(int)
-	backtrack = func(depth int) {
+	perm := make([]int, n)
+	vis := make([]bool, n)
+	var permutations [][]int
+	var backtrackPerm func(int)
+	backtrackPerm = func(depth int) {
 		if depth == n {
-			set = append(set, append([]int{}, nums...))
+			permutations = append(permutations, append([]int{}, perm...))
 			return
 		}
-		for i := depth; i < len(nums); i++ {
-			nums[depth], nums[i] = nums[i], nums[depth]
-			backtrack(depth + 1)
-			nums[depth], nums[i] = nums[i], nums[depth]
+		for i := range nums {
+			if vis[i] || (i > 0 && !vis[i-1] && nums[i] == nums[i-1]) {
+				continue
+			} // get first element that never used/visited
+			perm[depth] = nums[i]
+			vis[i] = true
+			backtrackPerm(depth + 1)
+			vis[i] = false
 		}
 	}
-	backtrack(0)
-	return
+	backtrackPerm(0)
+	return permutations
 }
