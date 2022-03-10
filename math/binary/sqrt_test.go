@@ -10,6 +10,8 @@ import (
 	"testing"
 )
 
+const epsilon = 0.2
+
 func TestSquareRootCalculation(t *testing.T) {
 	tests := []struct {
 		name   string
@@ -26,8 +28,10 @@ func TestSquareRootCalculation(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := Sqrt(test.number); got != test.want {
-				t.Errorf("Sqrt() = %v, want %v", got, test.want)
+			got := Sqrt(test.number)
+			delta := math.Abs(test.want - float64(got))
+			if delta > epsilon {
+				t.Errorf("Sqrt() = %v, want %v delta %v", got, test.want, delta)
 			}
 		})
 	}
