@@ -5,20 +5,23 @@ import (
 	"github.com/TheAlgorithms/Go/sort"
 )
 
-// FindKthMax use quick sort algorithm to get kth large element in given array
-// return -1 when not found
+// FindKthMax returns the kth large element given an integer slice
+// with nil `error` if found and returns -1 with `error` `search.ErrNotFound`
+// if not found. NOTE: The `nums` slice gets mutated in the process.
 func FindKthMax(nums []int, k int) (int, error) {
 	index := len(nums) - k
 	return kthNumber(nums, index)
 }
 
-// FindKthMin use quick sort algorithm to get kth small element in given array
-// return -1 when not found
+// FindKthMin returns kth small element given an integer slice
+// with nil `error` if found and returns -1 with `error` `search.ErrNotFound`
+// if not found. NOTE: The `nums` slice gets mutated in the process.
 func FindKthMin(nums []int, k int) (int, error) {
 	index := k - 1
 	return kthNumber(nums, index)
 }
 
+// kthNumber use the selection algorithm (based on the partition method - the same one as used in quicksort).
 func kthNumber(nums []int, k int) (int, error) {
 	if k < 0 || k >= len(nums) {
 		return -1, search.ErrNotFound
