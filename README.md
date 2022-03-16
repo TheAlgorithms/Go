@@ -97,7 +97,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 6. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
 7. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
 8. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
-9. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
+9. [`Sqrt`](./math/binary/sqrt.go#L16): No description provided.
+10. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
 
 ---
 </details><details>
@@ -544,8 +545,10 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Abs`](./math/abs.go#L11):  Abs returns absolute value
-2. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-3. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+2. [`FindKthMax`](./math/kthnumber.go#L11):  FindKthMax returns the kth large element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
+3. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
+4. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
+5. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
 
 ---
 </details><details>
@@ -860,13 +863,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 6. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
 7. [`MergeIter`](./sort/mergesort.go#L51): No description provided.
 8. [`Mergesort`](./sort/mergesort.go#L37): Mergesort Perform mergesort on a slice of ints
-9. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-10. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-11. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-12. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-13. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-14. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
-15. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+9. [`Partition`](./sort/quicksort.go#L10): No description provided.
+10. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+11. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
+12. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
+13. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+14. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
+15. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
+16. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
 
 ---
 ##### Types

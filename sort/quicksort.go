@@ -7,7 +7,7 @@
 
 package sort
 
-func partition(arr []int, low, high int) int {
+func Partition(arr []int, low, high int) int {
 	index := low - 1
 	pivotElement := arr[high]
 	for i := low; i < high; i++ {
@@ -27,7 +27,7 @@ func QuickSortRange(arr []int, low, high int) {
 	}
 
 	if low < high {
-		pivot := partition(arr, low, high)
+		pivot := Partition(arr, low, high)
 		QuickSortRange(arr, low, pivot-1)
 		QuickSortRange(arr, pivot+1, high)
 	}
