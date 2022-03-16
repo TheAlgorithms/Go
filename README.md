@@ -388,12 +388,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Distance`](./math/geometry/straightlines.go#L18):  Distance Calculates the shortest distance between two points.
-2. [`Intercept`](./math/geometry/straightlines.go#L37):  Intercept Calculates the Y-Intercept of a line from a specific Point.
-3. [`IsParallel`](./math/geometry/straightlines.go#L42):  IsParallel Checks if two lines are parallel or not.
-4. [`IsPerpendicular`](./math/geometry/straightlines.go#L47):  IsPerpendicular Checks if two lines are perpendicular or not.
-5. [`PointDistance`](./math/geometry/straightlines.go#L53):  PointDistance Calculates the distance of a given Point from a given line. The slice should contain the coefficiet of x, the coefficient of y and the constant in the respective order.
-6. [`Section`](./math/geometry/straightlines.go#L24):  Section Calculates the Point that divides a line in specific ratio. DO NOT specify the ratio in the form m:n, specify it as r, where r = m / n.
-7. [`Slope`](./math/geometry/straightlines.go#L32):  Slope Calculates the slope (gradient) of a line.
+2. [`IsParallel`](./math/geometry/straightlines.go#L42):  IsParallel Checks if two lines are parallel or not.
+3. [`IsPerpendicular`](./math/geometry/straightlines.go#L47):  IsPerpendicular Checks if two lines are perpendicular or not.
+4. [`PointDistance`](./math/geometry/straightlines.go#L53):  PointDistance Calculates the distance of a given Point from a given line. The slice should contain the coefficiet of x, the coefficient of y and the constant in the respective order.
+5. [`Section`](./math/geometry/straightlines.go#L24):  Section Calculates the Point that divides a line in specific ratio. DO NOT specify the ratio in the form m:n, specify it as r, where r = m / n.
+6. [`Slope`](./math/geometry/straightlines.go#L32):  Slope Calculates the slope (gradient) of a line.
+7. [`YIntercept`](./math/geometry/straightlines.go#L37):  YIntercept Calculates the Y-Intercept of a line from a specific Point.
 
 ---
 ##### Types
