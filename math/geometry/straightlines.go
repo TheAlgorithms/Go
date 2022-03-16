@@ -33,8 +33,8 @@ func Slope(l *Line) float64 {
 	return (l.P2.Y - l.P1.Y) / (l.P2.X - l.P1.X)
 }
 
-// Intercept Calculates the Y-Intercept of a line from a specific Point.
-func Intercept(p *Point, slope float64) float64 {
+// YIntercept Calculates the Y-Intercept of a line from a specific Point.
+func YIntercept(p *Point, slope float64) float64 {
 	return p.Y - (slope * p.X)
 }
 
