@@ -51,7 +51,7 @@ func TestTSP(t *testing.T) {
 				t.Errorf("expected cost %d, but got %d", testCase.expectedCost, actualCost)
 			}
 			if len(actualPath) != len(testCase.expectedPath) {
-				t.Errorf("expected path %v, but got %v", testCase.expectedPath, actualPath)
+				t.Errorf("expected path length %v, but got %v", len(testCase.expectedPath), len(actualPath))
 			}
 			if reflect.DeepEqual(actualPath, testCase.expectedPath) == false {
 				t.Errorf("expected path %v, but got %v", testCase.expectedPath, actualPath)

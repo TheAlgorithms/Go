@@ -21,28 +21,29 @@ import "sort"
 func Subset(nums []int) [][]int {
 	sort.Ints(nums)
 	var subsets [][]int
-	n := len(nums)
-	index := make([]bool, n)
-	var backtrackSubset func(int)
-	backtrackSubset = func(depth int) {
-		if depth == n { // use index to record the selected elements
-			var subset []int
-			for i := 0; i < n; i++ {
-				if index[i] {
-					subset = append(subset, nums[i])
-				}
-			} // add index mapped array to subsets
-			subsets = append(subsets, subset)
-			return
-		}
-		backtrackSubset(depth + 1) // not select element at current depth
-		if depth > 0 && !index[depth-1] && nums[depth-1] == nums[depth] {
-			return
-		}
-		index[depth] = true
-		backtrackSubset(depth + 1) // select element at current depth
-		index[depth] = false
-	}
-	backtrackSubset(0)
+	index := make([]bool, len(nums))
+	backtrackSubset(nums, index, 0, &subsets)
 	return subsets
+}
+
+func backtrackSubset(nums []int, index []bool, depth int, subsets *[][]int) {
+
+	if depth == len(nums) { // use index to record the selected elements
+		var subset []int
+		for i := 0; i < len(nums); i++ {
+			if index[i] {
+				subset = append(subset, nums[i])
+			}
+		} // add index mapped array to subsets
+		*subsets = append(*subsets, subset)
+		return
+	}
+	// not select element at current depth (index[depth] equals to false)
+	backtrackSubset(nums, index, depth+1, subsets)
+	if depth > 0 && !index[depth-1] && nums[depth-1] == nums[depth] {
+		return
+	}
+	index[depth] = true // select element at current depth
+	backtrackSubset(nums, index, depth+1, subsets)
+	index[depth] = false
 }

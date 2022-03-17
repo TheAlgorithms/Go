@@ -22,25 +22,26 @@ func TSP(graph [][]int) (int, []int) {
 		x[i] = i
 	} // initialize x as the permutation of the numbers from 0 to n-1
 	bestCost := math.MaxInt32 // best cost
-	var tsp func(int, int)
-	tsp = func(d int, cost int) { // depth, cost so far
-		if d == n {
-			if cost < bestCost {
-				bestCost = cost + graph[x[n-1]][x[0]]
-				copy(bestX, x)
+	backtrackTsp(graph, x, 1, 0, &bestCost, bestX)
+	return bestCost, bestX
+}
+
+func backtrackTsp(graph [][]int, x []int, d int, cost int, bestCost *int, bestX []int) {
+	if d == len(graph) {
+		if cost < *bestCost {
+			*bestCost = cost + graph[x[len(graph)-1]][x[0]]
+			copy(bestX, x)
+		}
+		return
+	} else if d < len(graph) {
+		for i := d; i < len(graph); i++ {
+			x[d], x[i] = x[i], x[d]
+			// if the cost of the current solution is better
+			// than the best solution found so far
+			if cost+graph[x[d-1]][x[d]] < *bestCost {
+				backtrackTsp(graph, x, d+1, cost+graph[x[d-1]][x[d]], bestCost, bestX)
 			}
-			return
-		} else if d < n {
-			for i := d; i < n; i++ {
-				x[d], x[i] = x[i], x[d]
-				// if the cost of the current solution is better than the best solution found so far
-				if cost+graph[x[d-1]][x[d]] < bestCost {
-					tsp(d+1, cost+graph[x[d-1]][x[d]])
-				}
-				x[d], x[i] = x[i], x[d]
-			}
+			x[d], x[i] = x[i], x[d]
 		}
 	}
-	tsp(1, 0) // make start of the tour is the city 0
-	return bestCost, bestX
 }
