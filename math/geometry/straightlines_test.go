@@ -37,9 +37,9 @@ func TestIntercept(t *testing.T) {
 	p := Point{0, 3}
 	var slope float64 = -5
 	var wantedIntercept float64 = 3
-	var calculatedIntercept float64 = Intercept(&p, slope)
+	var calculatedIntercept float64 = YIntercept(&p, slope)
 	if calculatedIntercept != wantedIntercept {
-		t.Fatalf("Failed to calculate Intercept.")
+		t.Fatalf("Failed to calculate YIntercept.")
 	}
 }
 
