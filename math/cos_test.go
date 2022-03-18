@@ -1,4 +1,4 @@
-package trigan
+package math
 
 import (
 	"math"
