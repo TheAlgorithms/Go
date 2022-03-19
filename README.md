@@ -940,6 +940,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> trigan </strong> </summary>	
+
+---
+
+#####  Package trigan for trigonometric functions and algorithms
+
+---
+##### Functions:
+
+1. [`Cos`](./math/geometry/trigan/main_function.go#L10): No description provided.
+
+---
+</details><details>
 	<summary> <strong> xor </strong> </summary>	
 
 ---
