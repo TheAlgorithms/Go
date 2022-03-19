@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-const accuracy = 0.001
+const epsilon = 0.001
 
 func TestCos(t *testing.T) {
 	tests := []struct {
@@ -23,7 +23,7 @@ func TestCos(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			got := Cos(test.n)
-			if math.Abs(got-test.want) >= accuracy {
+			if math.Abs(got-test.want) >= epsilon {
 				t.Errorf("Cos() = %v, want %v", got, test.want)
 				t.Errorf("MATH Cos() = %v", math.Cos(test.n))
 			}
@@ -37,6 +37,7 @@ func BenchmarkCos(b *testing.B) {
 	}
 }
 
+// A function math.Cos is slower because it calculates a more accurate value
 func BenchmarkMathCos(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		math.Cos(180)
