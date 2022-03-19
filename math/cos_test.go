@@ -37,7 +37,7 @@ func BenchmarkCos(b *testing.B) {
 	}
 }
 
-// A function math.Cos is slower because it calculates a more accurate value
+// BenchmarkMathCos is slower because the standard library `math.Cos` calculates a more accurate value.
 func BenchmarkMathCos(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		math.Cos(180)
