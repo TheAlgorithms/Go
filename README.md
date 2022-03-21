@@ -553,6 +553,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 4. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
 5. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
 6. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+7. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
 ---
 </details><details>
