@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-const epsilonSin = 0.01
+const epsilonSin = 0.001
 
 func TestSin(t *testing.T) {
 	tests := []struct {
@@ -17,7 +17,7 @@ func TestSin(t *testing.T) {
 		{"sin(3π/2)", (3 * math.Pi) / 2, -1},
 		{"sin(π/2)", math.Pi / 2, 1},
 		{"sin(π/6)", math.Pi / 6, 0.5},
-		{"sin(90)", 90, 0.893},
+		{"sin(90)", 90, 0.893996663600558},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
