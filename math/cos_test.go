@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-const epsilonCos = 0.001
+const epsilon = 0.001
 
 func TestCos(t *testing.T) {
 	tests := []struct {
@@ -23,7 +23,7 @@ func TestCos(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			got := Cos(test.n)
-			if math.Abs(got-test.want) >= epsilonCos {
+			if math.Abs(got-test.want) >= epsilon {
 				t.Errorf("Cos() = %v, want %v", got, test.want)
 				t.Errorf("MATH Cos() = %v", math.Cos(test.n))
 			}

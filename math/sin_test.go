@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-const epsilonSin = 0.001
-
 func TestSin(t *testing.T) {
 	tests := []struct {
 		name string
@@ -22,7 +20,7 @@ func TestSin(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			got := Sin(test.n)
-			if math.Abs(got-test.want) >= epsilonSin {
+			if math.Abs(got-test.want) >= epsilon {
 				t.Errorf("Sin() = %v, want %v", got, test.want)
 				t.Errorf("MATH Sin() = %v", math.Sin(test.n))
 			}
