@@ -168,7 +168,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Caesar`](./cipher/ceasar.go#L4):  Caesar encrypts by right shift of "key" each character of "input"
+1. [`Caesar`](./cipher/caesar.go#L4):  Caesar encrypts by right shift of "key" each character of "input"
 2. [`RSA`](./cipher/rsa.go#L8):  RSA encrypts based on the RSA algorithm - uses modular exponentitation in math directory
 3. [`Rot13`](./cipher/rot13.go#L5):  Rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher ref: https://en.wikipedia.org/wiki/ROT13
 4. [`Transposition`](./cipher/transposition.go#L44): No description provided.
