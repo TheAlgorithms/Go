@@ -3,15 +3,17 @@ name: golang_lint_and_test
 on: [push, pull_request]
 jobs:
   golang_lint_and_test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
+      matrix:
+        os: [ubuntu-latest]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
       - name: Codespell
         uses: codespell-project/actions-codespell@master
         with:
-          ignore_words_list: "actualy,nwe"
+          ignore_words_list: "actualy,nwe,caesar"
           skip: "go.mod,go.sum"
       - name: Setup Go
         uses: actions/setup-go@v2
