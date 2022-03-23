@@ -169,10 +169,13 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Caesar`](./cipher/caesar.go#L4):  Caesar encrypts by right shift of "key" each character of "input"
-2. [`RSA`](./cipher/rsa.go#L8):  RSA encrypts based on the RSA algorithm - uses modular exponentitation in math directory
-3. [`Rot13`](./cipher/rot13.go#L5):  Rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher ref: https://en.wikipedia.org/wiki/ROT13
-4. [`Transposition`](./cipher/transposition.go#L44): No description provided.
-5. [`Xor`](./cipher/xor.go#L8):  Xor encrypts with Xor encryption after converting each character to byte The returned value might not be readable because there is no guarantee which is within the ASCII range If using other type such as string, []int, or some other types, add the statements for converting the type to []byte.
+2. [`GenerateMutualKey`](./cipher/diffiehellman.go#L19):  GenerateMutualKey : generates a mutual key that can be used by only alice and bob mutualKey = (shareKey^prvKey)%primeNumber
+3. [`GenerateShareKey`](./cipher/diffiehellman.go#L13):  GenerateShareKey : generates a key using client private key , generator and primeNumber this key can be made public shareKey = (g^key)%primeNumber
+4. [`NewPolybius`](./cipher/polybius.go#L19):  NewPolybius returns a pointer to object of polybius. If the size of "chars" is longer than "size", "chars" are truncated to "size".
+5. [`RSA`](./cipher/rsa.go#L8):  RSA encrypts based on the RSA algorithm - uses modular exponentitation in math directory
+6. [`Rot13`](./cipher/rot13.go#L5):  Rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher ref: https://en.wikipedia.org/wiki/ROT13
+7. [`Transposition`](./cipher/transposition.go#L44): No description provided.
+8. [`Xor`](./cipher/xor.go#L8):  Xor encrypts with Xor encryption after converting each character to byte The returned value might not be readable because there is no guarantee which is within the ASCII range If using other type such as string, []int, or some other types, add the statements for converting the type to []byte.
 
 ---
 </details><details>
@@ -249,20 +252,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 3. [`Rot13`](./decipher/rot13.go#L7):  Rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher ref: https://en.wikipedia.org/wiki/ROT13
 4. [`Transposition`](./decipher/transposition.go#L42):  Transposition deciphers the text encrypted using the Transposition cipher.
 5. [`Xor`](./decipher/xor.go#L4):  Xor decrypts with Xor encryption
-
----
-</details><details>
-	<summary> <strong> diffiehellman </strong> </summary>	
-
----
-
-#####  Package diffiehellman implements Deffie Hellman Key Exchange Algorithm for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
-
----
-##### Functions:
-
-1. [`GenerateMutualKey`](./cipher/diffiehellman/diffiehellmankeyexchange.go#L19):  GenerateMutualKey : generates a mutual key that can be used by only alice and bob mutualKey = (shareKey^prvKey)%primeNumber
-2. [`GenerateShareKey`](./cipher/diffiehellman/diffiehellmankeyexchange.go#L13):  GenerateShareKey : generates a key using client private key , generator and primeNumber this key can be made public shareKey = (g^key)%primeNumber
 
 ---
 </details><details>
@@ -701,25 +690,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 1. [`MonteCarloPi`](./math/pi/montecarlopi.go#L17): No description provided.
 2. [`MonteCarloPiConcurrent`](./math/pi/montecarlopi.go#L36):  MonteCarloPiConcurrent approximates the value of pi using the Monte Carlo method. Unlike the MonteCarloPi function (first version), this implementation uses goroutines and channels to parallelize the computation. More details on the Monte Carlo method available at https://en.wikipedia.org/wiki/Monte_Carlo_method. More details on goroutines parallelization available at https://go.dev/doc/effective_go#parallel.
 3. [`Spigot`](./math/pi/spigotpi.go#L12): No description provided.
-
----
-</details><details>
-	<summary> <strong> polybius </strong> </summary>	
-
----
-
-#####  Package polybius is encrypting method with polybius square ref: https://en.wikipedia.org/wiki/Polybius_square#Hybrid_Polybius_Playfair_Cipher
-
----
-##### Functions:
-
-1. [`NewPolybius`](./cipher/polybius/polybius.go#L21):  NewPolybius returns a pointer to object of Polybius. If the size of "chars" is longer than "size", "chars" are truncated to "size".
-
----
-##### Types
-
-1. [`Polybius`](./cipher/polybius/polybius.go#L12): No description provided.
-
 
 ---
 </details><details>
