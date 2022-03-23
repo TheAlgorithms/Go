@@ -1,6 +1,7 @@
-package rot13
+package decipher_test
 
 import (
+	"github.com/TheAlgorithms/Go/decipher"
 	"testing"
 )
 
@@ -41,17 +42,7 @@ var rot13TestData = []struct {
 	},
 }
 
-func TestRot13Encrypt(t *testing.T) {
-	for _, test := range rot13TestData {
-		t.Run(test.description, func(t *testing.T) {
-			input := test.input
-			expected := test.expected
-			assertRot13Output(t, input, expected)
-		})
-	}
-}
-
-func TestRot13Decrypt(t *testing.T) {
+func TestRot13(t *testing.T) {
 	for _, test := range rot13TestData {
 		t.Run(test.description, func(t *testing.T) {
 			input := test.expected
@@ -62,7 +53,10 @@ func TestRot13Decrypt(t *testing.T) {
 }
 
 func assertRot13Output(t *testing.T, input, expected string) {
-	actual := rot13(input)
+	actual, err := decipher.Rot13(input)
+	if err != nil {
+		t.Fatalf("FAIL: no errors expected: %s", err)
+	}
 	if actual != expected {
 		t.Fatalf("With input string '%s' was expecting '%s' but actual was '%s'",
 			input, expected, actual)

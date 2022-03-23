@@ -1,16 +1,12 @@
-// rsa_test.go
-// description: Test for RSA Encrypt and Decrypt algorithms
-// author(s) [Taj](https://github.com/tjgurwara99)
-// see rsa.go
-
-package rsa
+package cipher_test
 
 import (
-	"testing"
-
+	"github.com/TheAlgorithms/Go/cipher"
+	"github.com/TheAlgorithms/Go/decipher"
 	"github.com/TheAlgorithms/Go/math/gcd"
 	"github.com/TheAlgorithms/Go/math/lcm"
 	"github.com/TheAlgorithms/Go/math/modular"
+	"testing"
 )
 
 var rsaTestData = []struct {
@@ -60,12 +56,12 @@ func TestEncryptDecrypt(t *testing.T) {
 		t.Run(test.description, func(t *testing.T) {
 
 			message := []rune(test.input)
-			encrypted, err := Encrypt(message, e, n)
+			encrypted, err := cipher.RSA(message, e, n)
 			if err != nil {
 				t.Fatalf("Failed to Encrypt test string:\n\tDescription: %v\n\tErrMessage: %v", test.description, err)
 			}
 
-			decrypted, err := Decrypt(encrypted, d, n)
+			decrypted, err := decipher.RSA(encrypted, d, n)
 			if err != nil {
 				t.Fatalf("Failed to Decrypt test message:\n\tDescription: %v\n\tErrMessage: %v", test.description, err)
 			}

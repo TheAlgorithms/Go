@@ -1,11 +1,13 @@
-package caesar
+package cipher_test
 
 import (
 	"fmt"
+	"github.com/TheAlgorithms/Go/cipher"
+	"github.com/TheAlgorithms/Go/decipher"
 	"testing"
 )
 
-func TestEncrypt(t *testing.T) {
+func TestCaesar(t *testing.T) {
 	var caesarTestData = []struct {
 		description string
 		input       string
@@ -63,70 +65,11 @@ func TestEncrypt(t *testing.T) {
 	}
 	for _, test := range caesarTestData {
 		t.Run(test.description, func(t *testing.T) {
-			actual := Encrypt(test.input, test.key)
-			if actual != test.expected {
-				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("With input string '%s' and key '%d' was expecting '%s' but actual was '%s'",
-					test.input, test.key, test.expected, actual)
+			actual, err := cipher.Caesar(test.input, test.key)
+			if err != nil {
+				t.Logf("FAIL: No errors expected: %s", err)
+				t.Fatalf("FAIL: %s", test.description)
 			}
-		})
-	}
-}
-
-func TestDecrypt(t *testing.T) {
-	var caesarTestData = []struct {
-		description string
-		input       string
-		key         int
-		expected    string
-	}{
-		{
-			"Basic caesar decryption with letter 'a'",
-			"a",
-			3,
-			"x",
-		},
-		{
-			"Basic caesar decryption wrap around alphabet on letter 'z'",
-			"z",
-			3,
-			"w",
-		},
-		{
-			"Decrypt a simple string with caesar encryiption",
-			"hello",
-			3,
-			"ebiil",
-		},
-		{
-			"Decrypt a simple string with key 13",
-			"hello",
-			13,
-			"uryyb",
-		},
-		{
-			"Decrypt a simple string with key -13",
-			"hello",
-			-13,
-			"uryyb",
-		},
-		{
-			"With key of 26 output should be the same as the input",
-			"no change",
-			26,
-			"no change",
-		},
-		{
-			"Decrypt sentence with key 10",
-			"Dro Aesmu Lbygx Pyh Tewzc yfob dro Vkji Nyq.",
-			10,
-			"The Quick Brown Fox Jumps over the Lazy Dog.",
-		},
-	}
-
-	for _, test := range caesarTestData {
-		t.Run(test.description, func(t *testing.T) {
-			actual := Decrypt(test.input, test.key)
 			if actual != test.expected {
 				t.Logf("FAIL: %s", test.description)
 				t.Fatalf("With input string '%s' and key '%d' was expecting '%s' but actual was '%s'",
@@ -142,10 +85,10 @@ func Example() {
 		input = "The Quick Brown Fox Jumps over the Lazy Dog."
 	)
 
-	encryptedText := Encrypt(input, key)
+	encryptedText, _ := cipher.Caesar(input, key)
 	fmt.Printf("Encrypt=> key: %d, input: %s, encryptedText: %s\n", key, input, encryptedText)
 
-	decryptedText := Decrypt(encryptedText, key)
+	decryptedText, _ := decipher.Caesar(encryptedText, key)
 	fmt.Printf("Decrypt=> key: %d, input: %s, decryptedText: %s\n", key, encryptedText, decryptedText)
 
 	// Output:

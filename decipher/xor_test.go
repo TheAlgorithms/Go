@@ -1,25 +1,25 @@
-package xor
+package decipher_test
 
 import (
 	"fmt"
+	"github.com/TheAlgorithms/Go/cipher"
+	"github.com/TheAlgorithms/Go/decipher"
 	"reflect"
 	"testing"
 )
 
-func Example() {
+func ExampleXor() {
 	const (
 		seed = "Hello World"
 		key  = 97
 	)
 
-	encrypted := Encrypt(byte(key), []byte(seed))
-	fmt.Printf("Encrypt=> key: %d, seed: %s, encryptedText: %v\n", key, seed, encrypted)
+	encrypted, _ := cipher.Xor(byte(key), []byte(seed))
 
-	decrypted := Decrypt(byte(key), encrypted)
+	decrypted, _ := decipher.Xor(byte(key), encrypted)
 	fmt.Printf("Decrypt=> key: %d, encryptedText: %v, DecryptedText: %s\n", key, encrypted, string(decrypted))
 
 	// Output:
-	// Encrypt=> key: 97, seed: Hello World, encryptedText: [41 4 13 13 14 65 54 14 19 13 5]
 	// Decrypt=> key: 97, encryptedText: [41 4 13 13 14 65 54 14 19 13 5], DecryptedText: Hello World
 }
 
@@ -79,22 +79,10 @@ var xorTestData = []struct {
 	},
 }
 
-func TestXorCipherEncrypt(t *testing.T) {
-	for _, test := range xorTestData {
-		t.Run(test.description, func(t *testing.T) {
-			encrypted := Encrypt(byte(test.key), []byte(test.input))
-			if !reflect.DeepEqual(string(encrypted), test.encrypted) {
-				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %s, actual %s", test.encrypted, string(encrypted))
-			}
-		})
-	}
-}
-
 func TestXorCipherDecrypt(t *testing.T) {
 	for _, test := range xorTestData {
 		t.Run(test.description, func(t *testing.T) {
-			decrypted := Decrypt(byte(test.key), []byte(test.encrypted))
+			decrypted, _ := decipher.Xor(byte(test.key), []byte(test.encrypted))
 
 			if !reflect.DeepEqual(string(decrypted), test.input) {
 				t.Logf("FAIL: %s", test.description)
