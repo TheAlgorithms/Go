@@ -1,6 +1,4 @@
-// Package polybius is encrypting method with polybius square
-// ref: https://en.wikipedia.org/wiki/Polybius_square#Hybrid_Polybius_Playfair_Cipher
-package polybius
+package cipher
 
 import (
 	"fmt"
@@ -8,17 +6,17 @@ import (
 	"strings"
 )
 
-// Polybius is struct having size, characters, and key
-type Polybius struct {
+// polybius is struct having size, characters, and key
+type polybius struct {
 	size       int
 	characters string
 	key        string
 }
 
-// NewPolybius returns a pointer to object of Polybius.
+// NewPolybius returns a pointer to object of polybius.
 // If the size of "chars" is longer than "size",
 // "chars" are truncated to "size".
-func NewPolybius(key string, size int, chars string) (*Polybius, error) {
+func NewPolybius(key string, size int, chars string) (*polybius, error) {
 	key = strings.ToUpper(key)
 	chars = strings.ToUpper(chars)[:size]
 	for idx, ch := range chars {
@@ -30,11 +28,11 @@ func NewPolybius(key string, size int, chars string) (*Polybius, error) {
 	if len(key) != size*size {
 		return nil, fmt.Errorf("len(key): %d must be as long as size squared: %d", len(key), size*size)
 	}
-	return &Polybius{size, chars, key}, nil
+	return &polybius{size, chars, key}, nil
 }
 
 // Encrypt encrypts with polybius encryption
-func (p *Polybius) Encrypt(text string) (string, error) {
+func (p *polybius) Encrypt(text string) (string, error) {
 	encryptedText := ""
 	for _, char := range strings.ToUpper(text) {
 		encryptedChar, err := p.encipher(char)
@@ -47,7 +45,7 @@ func (p *Polybius) Encrypt(text string) (string, error) {
 }
 
 // Decrypt decrypts with polybius encryption
-func (p *Polybius) Decrypt(text string) (string, error) {
+func (p *polybius) Decrypt(text string) (string, error) {
 	chars := []rune(strings.ToUpper(text))
 	decryptedText := ""
 	for i := 0; i < len(chars); i += 2 {
@@ -60,7 +58,7 @@ func (p *Polybius) Decrypt(text string) (string, error) {
 	return decryptedText, nil
 }
 
-func (p *Polybius) encipher(char rune) (string, error) {
+func (p *polybius) encipher(char rune) (string, error) {
 	index := strings.IndexRune(p.key, char)
 	if index < 0 {
 		return "", fmt.Errorf("%c does not exist in keys", char)
@@ -71,7 +69,7 @@ func (p *Polybius) encipher(char rune) (string, error) {
 	return string([]rune{chars[row], chars[col]}), nil
 }
 
-func (p *Polybius) decipher(chars []rune) (string, error) {
+func (p *polybius) decipher(chars []rune) (string, error) {
 	if len(chars) != 2 {
 		return "", fmt.Errorf("the size of \"chars\" must be even")
 	}

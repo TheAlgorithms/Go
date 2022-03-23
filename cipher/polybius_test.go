@@ -1,7 +1,8 @@
-package polybius
+package cipher_test
 
 import (
 	"fmt"
+	"github.com/TheAlgorithms/Go/cipher"
 	"log"
 	"testing"
 )
@@ -14,7 +15,7 @@ func ExampleNewPolybius() {
 		characters = "HogeF"
 		key        = "abcdefghijklmnopqrstuvwxy"
 	)
-	p, err := NewPolybius(key, size, characters)
+	p, err := cipher.NewPolybius(key, size, characters)
 	if err != nil {
 		log.Fatalf("failed NewPolybius: %v", err)
 	}
@@ -60,7 +61,7 @@ func TestNewPolybius(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			_, err := NewPolybius(tc.key, tc.size, tc.characters)
+			_, err := cipher.NewPolybius(tc.key, tc.size, tc.characters)
 			if err != nil && err.Error() != tc.wantErr {
 				t.Errorf("failed NewPolybius: %v", err)
 			}
@@ -88,7 +89,7 @@ func TestPolybiusEncrypt(t *testing.T) {
 		characters = "HogeF"
 		key        = "abcdefghijklmnopqrstuvwxy"
 	)
-	p, err := NewPolybius(key, size, characters)
+	p, err := cipher.NewPolybius(key, size, characters)
 	if err != nil {
 		t.Fatalf("failed NewPolybius: %v", err)
 	}
@@ -132,7 +133,7 @@ func TestPolybiusDecrypt(t *testing.T) {
 		characters = "HogeF"
 		key        = "abcdefghijklmnopqrstuvwxy"
 	)
-	p, err := NewPolybius(key, size, characters)
+	p, err := cipher.NewPolybius(key, size, characters)
 	if err != nil {
 		t.Fatalf("failed NewPolybius: %v", err)
 	}
