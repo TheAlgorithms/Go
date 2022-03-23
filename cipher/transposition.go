@@ -5,22 +5,12 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see transposition_test.go
 
-package transposition
+package cipher
 
 import (
 	"sort"
 	"strings"
 )
-
-type NoTextToEncryptError struct{}
-type KeyMissingError struct{}
-
-func (n *NoTextToEncryptError) Error() string {
-	return "No text to encrypt"
-}
-func (n *KeyMissingError) Error() string {
-	return "Missing Key"
-}
 
 func getKey(keyWord string) []int {
 	keyWord = strings.ToLower(keyWord)
@@ -51,16 +41,16 @@ func getIndex(wordSet []rune, subString rune) int {
 	return 0
 }
 
-func Encrypt(text []rune, keyWord string) (string, error) {
+func Transposition(text []rune, keyWord string) (string, error) {
 	key := getKey(keyWord)
 	space := ' '
 	keyLength := len(key)
 	textLength := len(text)
 	if keyLength <= 0 {
-		return "", &KeyMissingError{}
+		return "", KeyMissingError
 	}
 	if textLength <= 0 {
-		return "", &NoTextToEncryptError{}
+		return "", NoTextToEncryptError
 	}
 	n := textLength % keyLength
 
@@ -73,32 +63,6 @@ func Encrypt(text []rune, keyWord string) (string, error) {
 		transposition := make([]rune, keyLength)
 		for j := 0; j < keyLength; j++ {
 			transposition[key[j]-1] = text[i+j]
-		}
-		result += string(transposition)
-	}
-	return result, nil
-}
-
-func Decrypt(text []rune, keyWord string) (string, error) {
-	key := getKey(keyWord)
-	textLength := len(text)
-	if textLength <= 0 {
-		return "", &NoTextToEncryptError{}
-	}
-	keyLength := len(key)
-	if keyLength <= 0 {
-		return "", &KeyMissingError{}
-	}
-	space := ' '
-	n := textLength % keyLength
-	for i := 0; i < keyLength-n; i++ {
-		text = append(text, space)
-	}
-	result := ""
-	for i := 0; i < textLength; i += keyLength {
-		transposition := make([]rune, keyLength)
-		for j := 0; j < keyLength; j++ {
-			transposition[j] = text[i+key[j]-1]
 		}
 		result += string(transposition)
 	}

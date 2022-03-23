@@ -31,7 +31,7 @@ var rsaTestData = []struct {
 	},
 }
 
-func TestEncryptDecrypt(t *testing.T) {
+func TestEncryptDecryptRSA(t *testing.T) {
 	// Both prime numbers
 	p := int64(61)
 	q := int64(53)

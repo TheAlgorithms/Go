@@ -3,10 +3,12 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see transposition.go
 
-package transposition
+package cipher_test
 
 import (
 	"errors"
+	"github.com/TheAlgorithms/Go/cipher"
+	"github.com/TheAlgorithms/Go/decipher"
 	"math/rand"
 	"strings"
 	"testing"
@@ -33,10 +35,10 @@ func getRandomString() string {
 	return string(b)
 }
 
-func TestEncrypt(t *testing.T) {
+func TestTransposition(t *testing.T) {
 	fn := func(text string, keyWord string) (bool, error) {
-		encrypt, err := Encrypt([]rune(text), keyWord)
-		if err != nil && !errors.Is(err, &NoTextToEncryptError{}) && !errors.Is(err, &KeyMissingError{}) {
+		encrypt, err := cipher.Transposition([]rune(text), keyWord)
+		if err != nil && !errors.Is(err, cipher.NoTextToEncryptError) && !errors.Is(err, cipher.KeyMissingError) {
 			t.Error("Unexpected error ", err)
 		}
 		return text == encrypt, err
@@ -51,52 +53,22 @@ func TestEncrypt(t *testing.T) {
 	}
 }
 
-func TestDecrypt(t *testing.T) {
-	for _, s := range getTexts() {
-		keyWord := getRandomString()
-		encrypt, errEncrypt := Encrypt([]rune(s), keyWord)
-		if errEncrypt != nil &&
-			!errors.Is(errEncrypt, &NoTextToEncryptError{}) &&
-			!errors.Is(errEncrypt, &KeyMissingError{}) {
-			t.Error("Unexpected error ", errEncrypt)
-		}
-		if errEncrypt != nil {
-			t.Error(errEncrypt)
-		}
-		decrypt, errDecrypt := Decrypt([]rune(encrypt), keyWord)
-		if errDecrypt != nil &&
-			!errors.Is(errDecrypt, &NoTextToEncryptError{}) &&
-			!errors.Is(errDecrypt, &KeyMissingError{}) {
-			t.Error("Unexpected error ", errDecrypt)
-		}
-		if errDecrypt != nil {
-			t.Error(errDecrypt)
-		}
-		if encrypt == decrypt {
-			t.Error("String ", s, " not encrypted")
-		}
-		if encrypt == s {
-			t.Error("String ", s, " not encrypted")
-		}
-	}
-}
-
-func TestEncryptDecrypt(t *testing.T) {
+func TestEncryptDecryptTransposition(t *testing.T) {
 	text := "Test text for checking the algorithm"
 	key1 := "testKey"
 	key2 := "Test Key2"
-	encrypt, errEncrypt := Encrypt([]rune(text), key1)
+	encrypt, errEncrypt := cipher.Transposition([]rune(text), key1)
 	if errEncrypt != nil {
 		t.Error(errEncrypt)
 	}
-	decrypt, errDecrypt := Decrypt([]rune(encrypt), key1)
+	decrypt, errDecrypt := decipher.Transposition([]rune(encrypt), key1)
 	if errDecrypt != nil {
 		t.Error(errDecrypt)
 	}
 	if strings.Contains(decrypt, text) == false {
 		t.Error("The string was not decrypted correctly")
 	}
-	decrypt, _ = Decrypt([]rune(encrypt), key2)
+	decrypt, _ = decipher.Transposition([]rune(encrypt), key2)
 	if strings.Contains(decrypt, text) == true {
 		t.Error("The string was decrypted with a different key")
 	}
