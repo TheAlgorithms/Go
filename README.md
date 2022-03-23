@@ -129,20 +129,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> caesar </strong> </summary>	
-
----
-
-#####  Package caesar is the shift cipher ref: https://en.wikipedia.org/wiki/Caesar_cipher
-
----
-##### Functions:
-
-1. [`Decrypt`](./cipher/caesar/caesar.go#L27):  Decrypt decrypts by left shift of "key" each character of "input"
-2. [`Encrypt`](./cipher/caesar/caesar.go#L6):  Encrypt encrypts by right shift of "key" each character of "input"
-
----
-</details><details>
 	<summary> <strong> catalan </strong> </summary>	
 
 ---
@@ -162,7 +148,31 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`LuhnAlgorithm`](./checksum/luhn.go#L11):  LuhnAlgorithm This function calculates the checksum using the Luna algorithm
+1. [`CRC8`](./checksum/crc.go#L25):  CRC8 This function calculate CRC8 checksum.
+2. [`LuhnAlgorithm`](./checksum/luhn.go#L11):  LuhnAlgorithm This function calculates the checksum using the Luna algorithm
+
+---
+##### Types
+
+1. [`CRCModel`](./checksum/crc.go#L15): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> cipher </strong> </summary>	
+
+---
+
+#####  Package cipher is a package containing different implementations of certain ciphers
+
+---
+##### Functions:
+
+1. [`Caesar`](./cipher/ceasar.go#L4):  Caesar encrypts by right shift of "key" each character of "input"
+2. [`RSA`](./cipher/rsa.go#L8):  RSA encrypts based on the RSA algorithm - uses modular exponentitation in math directory
+3. [`Rot13`](./cipher/rot13.go#L5):  Rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher ref: https://en.wikipedia.org/wiki/ROT13
+4. [`Transposition`](./cipher/transposition.go#L44): No description provided.
+5. [`Xor`](./cipher/xor.go#L8):  Xor encrypts with Xor encryption after converting each character to byte The returned value might not be readable because there is no guarantee which is within the ASCII range If using other type such as string, []int, or some other types, add the statements for converting the type to []byte.
 
 ---
 </details><details>
@@ -225,22 +235,20 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> crc </strong> </summary>	
+	<summary> <strong> decipher </strong> </summary>	
 
 ---
 
-#####  Package crc describes algorithms for finding various CRC checksums
+#####  Package decipher provides various decryption algorithms for encryption algorithms present in Package encrypt.
 
 ---
 ##### Functions:
 
-1. [`CalculateCRC8`](./checksum/crc/crc8.go#L26):  CalculateCRC8 This function calculate CRC8 checksum.
-
----
-##### Types
-
-1. [`CRCModel`](./checksum/crc/crc8.go#L16): No description provided.
-
+1. [`Caesar`](./decipher/caesar.go#L6):  Caesar decrypts by left shift of "key" each character of "input"
+2. [`RSA`](./decipher/rsa.go#L9):  RSA decrypts encrypted rune slice based on the RSA algorithm
+3. [`Rot13`](./decipher/rot13.go#L7):  Rot13 is a special case, which is fixed the shift of 13, of the Caesar cipher ref: https://en.wikipedia.org/wiki/ROT13
+4. [`Transposition`](./decipher/transposition.go#L42):  Transposition deciphers the text encrypted using the Transposition cipher.
+5. [`Xor`](./decipher/xor.go#L4):  Xor decrypts with Xor encryption
 
 ---
 </details><details>
@@ -786,20 +794,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> rsa </strong> </summary>	
-
----
-
-#####  Package rsa shows a simple implementation of RSA algorithm
-
----
-##### Functions:
-
-1. [`Decrypt`](./cipher/rsa/rsa.go#L43):  Decrypt decrypts encrypted rune slice based on the RSA algorithm
-2. [`Encrypt`](./cipher/rsa/rsa.go#L28):  Encrypt encrypts based on the RSA algorithm - uses modular exponentitation in math directory
-
----
-</details><details>
 	<summary> <strong> search </strong> </summary>	
 
 ---
@@ -903,25 +897,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> transposition </strong> </summary>	
-
----
-
-##### Functions:
-
-1. [`Decrypt`](./cipher/transposition/transposition.go#L82): No description provided.
-2. [`Encrypt`](./cipher/transposition/transposition.go#L54): No description provided.
-
----
-##### Types
-
-1. [`KeyMissingError`](./cipher/transposition/transposition.go#L16): No description provided.
-
-2. [`NoTextToEncryptError`](./cipher/transposition/transposition.go#L15): No description provided.
-
-
----
-</details><details>
 	<summary> <strong> trie </strong> </summary>	
 
 ---
@@ -938,20 +913,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Node`](./structure/trie/trie.go#L7): No description provided.
 
-
----
-</details><details>
-	<summary> <strong> xor </strong> </summary>	
-
----
-
-#####  Package xor is an encryption algorithm that operates the exclusive disjunction(XOR) ref: https://en.wikipedia.org/wiki/XOR_cipher
-
----
-##### Functions:
-
-1. [`Decrypt`](./cipher/xor/xor.go#L19):  Decrypt decrypts with Xor encryption
-2. [`Encrypt`](./cipher/xor/xor.go#L10):  Encrypt encrypts with Xor encryption after converting each character to byte The returned value might not be readable because there is no guarantee which is within the ASCII range If using other type such as string, []int, or some other types, add the statements for converting the type to []byte.
 
 ---
 </details>
