@@ -3,11 +3,7 @@ name: golang_lint_and_test
 on: [push, pull_request]
 jobs:
   golang_lint_and_test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-      fail-fast: true
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Codespell
