@@ -1,11 +1,12 @@
-package math
+package math_test
 
 import (
+	. "github.com/TheAlgorithms/Go/math"
 	"math"
 	"testing"
 )
 
-const epsilon = 0.001
+const Epsilon = 0.001
 
 func TestCos(t *testing.T) {
 	tests := []struct {
@@ -23,7 +24,7 @@ func TestCos(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			got := Cos(test.n)
-			if math.Abs(got-test.want) >= epsilon {
+			if math.Abs(got-test.want) >= Epsilon {
 				t.Errorf("Cos() = %v, want %v", got, test.want)
 				t.Errorf("MATH Cos() = %v", math.Cos(test.n))
 			}
