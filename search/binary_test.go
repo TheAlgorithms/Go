@@ -16,7 +16,7 @@ func TestBinary(t *testing.T) {
 
 func TestBinaryIterative(t *testing.T) {
 	for _, test := range searchTests {
-		actualValue, actualError := BinaryIterative(test.data, test.key, 0, len(test.data)-1)
+		actualValue, actualError := BinaryIterative(test.data, test.key)
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
@@ -28,7 +28,7 @@ func TestBinaryIterative(t *testing.T) {
 
 func TestLowerBound(t *testing.T) {
 	for _, test := range lowerBoundTests {
-		actualValue, actualError := LowerBound(test.data, test.key, 0, len(test.data)-1)
+		actualValue, actualError := LowerBound(test.data, test.key)
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
@@ -40,7 +40,7 @@ func TestLowerBound(t *testing.T) {
 
 func TestUpperBound(t *testing.T) {
 	for _, test := range uppperBoundTests {
-		actualValue, actualError := UpperBound(test.data, test.key, 0, len(test.data)-1)
+		actualValue, actualError := UpperBound(test.data, test.key)
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
@@ -62,6 +62,22 @@ func BenchmarkBinaryIterative(b *testing.B) {
 	testCase := generateBenchmarkTestCase()
 	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
 	for i := 0; i < b.N; i++ {
-		_, _ = BinaryIterative(testCase, i, 0, len(testCase)-1)
+		_, _ = BinaryIterative(testCase, i)
+	}
+}
+
+func BenchmarkLowerBound(b *testing.B) {
+	testCase := generateBenchmarkTestCase()
+	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
+	for i := 0; i < b.N; i++ {
+		_, _ = LowerBound(testCase, i)
+	}
+}
+
+func BenchmarkUpperBound(b *testing.B) {
+	testCase := generateBenchmarkTestCase()
+	b.ResetTimer() // this is important because the generateBenchmarkTestCase() is expensive
+	for i := 0; i < b.N; i++ {
+		_, _ = UpperBound(testCase, i)
 	}
 }

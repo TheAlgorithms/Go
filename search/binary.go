@@ -20,9 +20,9 @@ func Binary(array []int, target int, lowIndex int, highIndex int) (int, error) {
 // BinaryIterative search for target within a sorted array by repeatedly dividing the array in half and comparing the midpoint with the target.
 // Unlike Binary, this function uses iterative method and not recursive.
 // If a target is found, the index of the target is returned. Else the function return -1 and ErrNotFound.
-func BinaryIterative(array []int, target int, lowIndex int, highIndex int) (int, error) {
-	startIndex := lowIndex
-	endIndex := highIndex
+func BinaryIterative(array []int, target int) (int, error) {
+	startIndex := 0
+	endIndex := len(array) - 1
 	var mid int
 	for startIndex <= endIndex {
 		mid = int(startIndex + (endIndex-startIndex)/2)
@@ -37,10 +37,11 @@ func BinaryIterative(array []int, target int, lowIndex int, highIndex int) (int,
 	return -1, ErrNotFound
 }
 
-//Returns index to the first element in the range [lowIndex, highIndex] that is not less than (i.e. greater or equal to) target, or return -1 and ErrNotFound if no such element is found.
-func LowerBound(array []int, target int, lowIndex int, highIndex int) (int, error) {
-	startIndex := lowIndex
-	endIndex := highIndex
+//Returns index to the first element in the range [0, len(array)-1] that is not less than (i.e. greater or equal to) target.
+//return -1 and ErrNotFound if no such element is found.
+func LowerBound(array []int, target int) (int, error) {
+	startIndex := 0
+	endIndex := len(array) - 1
 	var mid int
 	for startIndex <= endIndex {
 		mid = int(startIndex + (endIndex-startIndex)/2)
@@ -52,16 +53,17 @@ func LowerBound(array []int, target int, lowIndex int, highIndex int) (int, erro
 	}
 
 	//when target greater than every element in array, startIndex will out of bounds
-	if startIndex > highIndex {
+	if startIndex >= len(array) {
 		return -1, ErrNotFound
 	}
 	return startIndex, nil
 }
 
-//Returns index to the first element in the range [lowIndex, highIndex] that is greater than target, or return -1 and ErrNotFound if no such element is found.
-func UpperBound(array []int, target int, lowIndex int, highIndex int) (int, error) {
-	startIndex := lowIndex
-	endIndex := highIndex
+//Returns index to the first element in the range [lowIndex, len(array)-1] that is greater than target.
+//return -1 and ErrNotFound if no such element is found.
+func UpperBound(array []int, target int) (int, error) {
+	startIndex := 0
+	endIndex := len(array) - 1
 	var mid int
 	for startIndex <= endIndex {
 		mid = int(startIndex + (endIndex-startIndex)/2)
@@ -73,7 +75,7 @@ func UpperBound(array []int, target int, lowIndex int, highIndex int) (int, erro
 	}
 
 	//when target greater or equal than every element in array, startIndex will out of bounds
-	if startIndex > highIndex {
+	if startIndex >= len(array) {
 		return -1, ErrNotFound
 	}
 	return startIndex, nil
