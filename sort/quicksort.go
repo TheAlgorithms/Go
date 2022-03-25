@@ -7,7 +7,9 @@
 
 package sort
 
-func Partition(arr []int, low, high int) int {
+import "github.com/TheAlgorithms/Go/constraints"
+
+func Partition[T constraints.Ordered](arr []T, low, high int) int {
 	index := low - 1
 	pivotElement := arr[high]
 	for i := low; i < high; i++ {
@@ -21,7 +23,7 @@ func Partition(arr []int, low, high int) int {
 }
 
 // QuickSortRange Sorts the specified range within the array
-func QuickSortRange(arr []int, low, high int) {
+func QuickSortRange[T constraints.Ordered](arr []T, low, high int) {
 	if len(arr) <= 1 {
 		return
 	}
@@ -33,8 +35,8 @@ func QuickSortRange(arr []int, low, high int) {
 	}
 }
 
-// QuickSort Sorts the entire array
-func QuickSort(arr []int) []int {
+// Quick Sorts the entire array
+func Quick[T constraints.Ordered](arr []T) []T {
 	QuickSortRange(arr, 0, len(arr)-1)
 	return arr
 }
