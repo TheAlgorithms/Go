@@ -36,7 +36,7 @@ func merge[T constraints.Ordered](a []T, b []T) []T {
 
 }
 
-//Merge Perform mergesort on a slice
+// Merge Perform merge sort on a slice
 func Merge[T constraints.Ordered](items []T) []T {
 
 	if len(items) < 2 {

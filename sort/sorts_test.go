@@ -104,7 +104,7 @@ func TestCount(t *testing.T) {
 }
 
 func TestQuick(t *testing.T) {
-	testFramework(t, sort.Quick[int])
+	testFramework(t, sort.Quicksort[int])
 }
 
 func TestShell(t *testing.T) {
@@ -205,7 +205,7 @@ func BenchmarkCount(b *testing.B) {
 }
 
 func BenchmarkQuick(b *testing.B) {
-	benchmarkFramework(b, sort.Quick[int])
+	benchmarkFramework(b, sort.Quicksort[int])
 }
 
 func BenchmarkShell(b *testing.B) {
