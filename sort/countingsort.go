@@ -6,11 +6,13 @@
 
 package sort
 
-func Count(data []int) []int {
+import "github.com/TheAlgorithms/Go/constraints"
+
+func Count[T constraints.Number](data []int) []int {
 	var aMin, aMax = -1000, 1000
 	count := make([]int, aMax-aMin+1)
 	for _, x := range data {
-		count[x-aMin]++
+		count[x-aMin]++ // this is the reason for having only Number constraint instead of Ordered.
 	}
 	z := 0
 	for i, c := range count {

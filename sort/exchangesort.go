@@ -3,7 +3,9 @@
 
 package sort
 
-func Exchange(arr []int) []int {
+import "github.com/TheAlgorithms/Go/constraints"
+
+func Exchange[T constraints.Ordered](arr []T) []T {
 	for i := 0; i < len(arr)-1; i++ {
 		for j := i + 1; j < len(arr); j++ {
 			if arr[i] > arr[j] {

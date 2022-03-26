@@ -9,10 +9,10 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-go@v2
         with:
-          go-version: '^1.17'
+          go-version: '^1.18'
       - name: Install GoDocMD
         run: |
-          go install github.com/tjgurwara99/godocmd@v0.1.2
+          go install github.com/tjgurwara99/godocmd@v0.1.3
       - name: Configure Github Action
         run: |
           git config --global user.name github-action

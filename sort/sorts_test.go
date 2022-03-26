@@ -1,6 +1,7 @@
-package sort
+package sort_test
 
 import (
+	"github.com/TheAlgorithms/Go/sort"
 	"reflect"
 	"testing"
 )
@@ -75,63 +76,63 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 //BEGIN TESTS
 
 func TestBubble(t *testing.T) {
-	testFramework(t, bubbleSort)
+	testFramework(t, sort.Bubble[int])
 }
 
 func TestExchange(t *testing.T) {
-	testFramework(t, Exchange)
+	testFramework(t, sort.Exchange[int])
 }
 
 func TestInsertion(t *testing.T) {
-	testFramework(t, InsertionSort)
+	testFramework(t, sort.Insertion[int])
 }
 
 func TestMerge(t *testing.T) {
-	testFramework(t, Mergesort)
+	testFramework(t, sort.Merge[int])
 }
 
 func TestMergeIter(t *testing.T) {
-	testFramework(t, MergeIter)
+	testFramework(t, sort.MergeIter[int])
 }
 
 func TestHeap(t *testing.T) {
-	testFramework(t, HeapSort)
+	testFramework(t, sort.HeapSort)
 }
 
 func TestCount(t *testing.T) {
-	testFramework(t, Count)
+	testFramework(t, sort.Count[int])
 }
 
 func TestQuick(t *testing.T) {
-	testFramework(t, QuickSort)
+	testFramework(t, sort.Quicksort[int])
 }
 
 func TestShell(t *testing.T) {
-	testFramework(t, ShellSort)
+	testFramework(t, sort.Shell[int])
 }
 
 func TestRadix(t *testing.T) {
-	testFramework(t, RadixSort)
+	testFramework(t, sort.RadixSort)
 }
 
 func TestSimple(t *testing.T) {
-	testFramework(t, SimpleSort)
+	testFramework(t, sort.Simple[int])
 }
 
 func TestImprovedSimple(t *testing.T) {
-	testFramework(t, ImprovedSimpleSort)
+	testFramework(t, sort.ImprovedSimple[int])
 }
 
 func TestSelection(t *testing.T) {
-	testFramework(t, SelectionSort)
+	testFramework(t, sort.Selection[int])
 }
 
 func TestComb(t *testing.T) {
-	testFramework(t, Comb)
+	testFramework(t, sort.Comb[int])
 }
 
 func TestPigeonhole(t *testing.T) {
-	testFramework(t, Pigeonhole)
+	testFramework(t, sort.Pigeonhole)
 }
 
 //END TESTS
@@ -176,62 +177,62 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 //BEGIN BENCHMARKS
 
 func BenchmarkBubble(b *testing.B) {
-	benchmarkFramework(b, bubbleSort)
+	benchmarkFramework(b, sort.Bubble[int])
 }
 
 func BenchmarkExchange(b *testing.B) {
-	benchmarkFramework(b, Exchange)
+	benchmarkFramework(b, sort.Exchange[int])
 }
 
 func BenchmarkInsertion(b *testing.B) {
-	benchmarkFramework(b, InsertionSort)
+	benchmarkFramework(b, sort.Insertion[int])
 }
 
 func BenchmarkMerge(b *testing.B) {
-	benchmarkFramework(b, Mergesort)
+	benchmarkFramework(b, sort.Merge[int])
 }
 
 func BenchmarkMergeIter(b *testing.B) {
-	benchmarkFramework(b, MergeIter)
+	benchmarkFramework(b, sort.MergeIter[int])
 }
 
 func BenchmarkHeap(b *testing.B) {
-	benchmarkFramework(b, HeapSort)
+	benchmarkFramework(b, sort.HeapSort)
 }
 
 func BenchmarkCount(b *testing.B) {
-	benchmarkFramework(b, Count)
+	benchmarkFramework(b, sort.Count[int])
 }
 
 func BenchmarkQuick(b *testing.B) {
-	benchmarkFramework(b, QuickSort)
+	benchmarkFramework(b, sort.Quicksort[int])
 }
 
 func BenchmarkShell(b *testing.B) {
-	benchmarkFramework(b, ShellSort)
+	benchmarkFramework(b, sort.Shell[int])
 }
 
 func BenchmarkRadix(b *testing.B) {
-	benchmarkFramework(b, RadixSort)
+	benchmarkFramework(b, sort.RadixSort)
 }
 
 func BenchmarkSimple(b *testing.B) {
-	benchmarkFramework(b, SimpleSort)
+	benchmarkFramework(b, sort.Simple[int])
 }
 
 func BenchmarkImprovedSimple(b *testing.B) {
-	benchmarkFramework(b, ImprovedSimpleSort)
+	benchmarkFramework(b, sort.ImprovedSimple[int])
 }
 
 // Very Slow, consider commenting
 func BenchmarkSelection(b *testing.B) {
-	benchmarkFramework(b, SelectionSort)
+	benchmarkFramework(b, sort.Selection[int])
 }
 
 func BenchmarkComb(b *testing.B) {
-	benchmarkFramework(b, Comb)
+	benchmarkFramework(b, sort.Comb[int])
 }
 
 func BenchmarkPigeonhole(b *testing.B) {
-	benchmarkFramework(b, Pigeonhole)
+	benchmarkFramework(b, sort.Pigeonhole)
 }
