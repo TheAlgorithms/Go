@@ -26,13 +26,9 @@ func findRD(num int64) (int64, int64) {
 	return d, r
 }
 
-// MillerTest This is the intermediate step that repeats within the
-// miller rabin primality test for better probabilitic chances of
-// receiving the correct result.
-func MillerTest(d, num int64) (bool, error) {
-	random := rand.Int63n(num-1) + 2
-
-	res, err := modular.Exponentiation(random, d, num)
+func MillerTest(num, witness int64) (bool, error) {
+	d, _ := findRD(num)
+	res, err := modular.Exponentiation(witness, d, num)
 
 	if err != nil {
 		return false, err
@@ -55,8 +51,55 @@ func MillerTest(d, num int64) (bool, error) {
 	return false, nil
 }
 
-// MillerRabinTest Probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
-func MillerRabinTest(num, rounds int64) (bool, error) {
+// MillerTest This is the intermediate step that repeats within the
+// miller rabin primality test for better probabilitic chances of
+// receiving the correct result.
+func MillerRandomTest(num int64) (bool, error) {
+	random := rand.Int63n(num-1) + 2
+	return MillerTest(num, random)
+}
+
+func MillerTestMultiple(num int64, witnesses ...int64) (bool, error) {
+	for _, witness := range witnesses {
+		prime, err := MillerTest(num, witness)
+		if err != nil {
+			return false, err
+		}
+		
+		if !prime {
+			return false, nil
+		}
+	}
+	
+	return true, nil
+}
+	
+
+// MillerRabinProbabilistic is a probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
+func MillerRabinProbabilistic(num, rounds int64) (bool, error) {
+	if num <= 4 {
+		if num == 2 || num == 3 {
+			return true, nil
+		}
+		return false, nil
+	}
+	if num%2 == 0 {
+		return false, nil
+	}
+
+	for i := int64(0); i < rounds; i++ {
+		val, err := MillerRandomTest(d, num)
+		if err != nil {
+			return false, err
+		}
+		if !val {
+			return false, nil
+		}
+	}
+	return true, nil
+}
+
+func MillerRabinDeterministic(num int64) (bool, error) {
 	if num <= 4 {
 		if num == 2 || num == 3 {
 			return true, nil
@@ -67,15 +110,15 @@ func MillerRabinTest(num, rounds int64) (bool, error) {
 		return false, nil
 	}
 	d, _ := findRD(num)
-
-	for i := int64(0); i < rounds; i++ {
-		val, err := MillerTest(d, num)
-		if err != nil {
-			return false, err
-		}
-		if !val {
-			return false, nil
-		}
+	
+	switch {
+	case num < 1_373_653:
+		return MillerTestMultiple(num, 2, 3)
+	case num < 25_326_001:
+		return MillerTestMultiple(num, 2, 3, 5)
+	case num < 1_122_004_669_633:
+		return MillerTestMultiple(num, 2, 13, 23, 1_662_803)
+	default:
+		return MillerTestMultiple(num, 2, 3, 5, 7, 11, 13, 17, 19, 23, 31, 37)
 	}
-	return true, nil
 }
