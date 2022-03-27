@@ -113,7 +113,7 @@ func MillerRabinProbabilistic(num, rounds int64) (bool, error) {
 	}
 
 	for i := int64(0); i < rounds; i++ {
-		val, err := MillerRandomTest(d, num)
+		val, err := MillerRandomTest(num)
 		if err != nil {
 			return false, err
 		}
