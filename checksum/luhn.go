@@ -7,8 +7,8 @@
 // Package checksum describes algorithms for finding various checksums
 package checksum
 
-// LuhnAlgorithm This function calculates the checksum using the Luna algorithm
-func LuhnAlgorithm(s []rune) bool {
+// Luhn This function calculates the checksum using the Luhn algorithm
+func Luhn(s []rune) bool {
 	n := len(s)
 	number := 0
 	result := 0

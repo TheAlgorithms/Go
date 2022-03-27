@@ -3,11 +3,15 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see luhn.go
 
-package checksum
+package checksum_test
 
-import "testing"
+import (
+	"testing"
 
-func TestLuhnAlgorithm(t *testing.T) {
+	"github.com/TheAlgorithms/Go/checksum"
+)
+
+func TestLuhn(t *testing.T) {
 	tests := []struct {
 		name string
 		s    []rune
@@ -23,7 +27,7 @@ func TestLuhnAlgorithm(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := LuhnAlgorithm(test.s); got != test.want {
+			if got := checksum.Luhn(test.s); got != test.want {
 				t.Errorf("LuhnAlgorithm() = %v, want %v", got, test.want)
 			}
 		})
@@ -32,6 +36,6 @@ func TestLuhnAlgorithm(t *testing.T) {
 
 func BenchmarkBruteForceFactorial(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		LuhnAlgorithm([]rune("4242424242424242"))
+		checksum.Luhn([]rune("4242424242424242"))
 	}
 }
