@@ -36,18 +36,18 @@ func isTrivial(num int64) (trivial bool, prime bool) {
 			// 2 and 3 are primes
 			return true, true
 		}
-		
-		// numbers <= 4 other than 
+
+		// numbers <= 4 other than
 		// 2 or 3 are not primes
 		return true, false
 	}
-	
+
 	if num%2 == 0 {
-		// numbers greater than 4 and 
+		// numbers greater than 4 and
 		// divisible by 2 are not primes
 		return true, false
 	}
-	
+
 	// non-trivial number
 	return false, false
 }
@@ -95,15 +95,14 @@ func MillerTestMultiple(num int64, witnesses ...int64) (bool, error) {
 		if err != nil {
 			return false, err
 		}
-		
+
 		if !prime {
 			return false, nil
 		}
 	}
-	
+
 	return true, nil
 }
-	
 
 // MillerRabinProbabilistic is a probabilistic test for primality
 // of an integer based of the algorithm devised by Miller and Rabin.
@@ -132,7 +131,7 @@ func MillerRabinDeterministic(num int64) (bool, error) {
 		// num is a trivial number
 		return prime, nil
 	}
-	
+
 	switch {
 	case num < 2047:
 		// witness 2 can determine the primality of any number less than 2047
