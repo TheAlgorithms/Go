@@ -1,8 +1,3 @@
-// millerrabinprimality_test.go
-// description: Test for Miller-Rabin Primality Test
-// author(s) [Taj](https://github.com/tjgurwara99)
-// see millerrabinprimalitytest.go
-
 package prime
 
 import "testing"
@@ -31,7 +26,7 @@ func TestMillerRabinTest(t *testing.T) {
 				t.Errorf("For input: %d, expected: %v", test.input, output)
 			}
 		})
-		
+
 		t.Run(test.name, func(t *testing.T) {
 			output, err := MillerRabinDeterministic(test.input)
 			if err != test.err {
@@ -48,7 +43,7 @@ func BenchmarkMillerRabinPrimalityTest(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_, _ = MillerRabinProbabilistic(23, 5)
 	}
-	
+
 	for i := 0; i < b.N; i++ {
 		_, _ = MillerRabinDeterministic(23)
 	}
