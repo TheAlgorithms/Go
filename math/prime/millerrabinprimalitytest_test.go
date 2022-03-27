@@ -33,7 +33,7 @@ func TestMillerRabinTest(t *testing.T) {
 		})
 		
 		t.Run(test.name, func(t *testing.T) {
-			output, err := MillerRabinDeterministic(test.input, test.rounds)
+			output, err := MillerRabinDeterministic(test.input)
 			if err != test.err {
 				t.Errorf("For input: %d, unexpected error: %v, expected error: %v", test.input, err, test.err)
 			}
