@@ -23,7 +23,17 @@ func TestMillerRabinTest(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			output, err := MillerRabinTest(test.input, test.rounds)
+			output, err := MillerRabinProbabilistic(test.input, test.rounds)
+			if err != test.err {
+				t.Errorf("For input: %d, unexpected error: %v, expected error: %v", test.input, err, test.err)
+			}
+			if output != test.expected {
+				t.Errorf("For input: %d, expected: %v", test.input, output)
+			}
+		})
+		
+		t.Run(test.name, func(t *testing.T) {
+			output, err := MillerRabinDeterministic(test.input, test.rounds)
 			if err != test.err {
 				t.Errorf("For input: %d, unexpected error: %v, expected error: %v", test.input, err, test.err)
 			}
@@ -36,6 +46,10 @@ func TestMillerRabinTest(t *testing.T) {
 
 func BenchmarkMillerRabinPrimalityTest(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = MillerRabinTest(23, 5)
+		_, _ = MillerRabinProbabilistic(23, 5)
+	}
+	
+	for i := 0; i < b.N; i++ {
+		_, _ = MillerRabinDeterministic(23)
 	}
 }
