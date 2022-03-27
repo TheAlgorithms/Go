@@ -157,12 +157,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package checksum describes algorithms for finding various checksums
+#####  Package crc describes algorithms for finding various CRC checksums Package checksum describes algorithms for finding various checksums
 
 ---
 ##### Functions:
 
-1. [`LuhnAlgorithm`](./checksum/luhn.go#L11):  LuhnAlgorithm This function calculates the checksum using the Luna algorithm
+1. [`CRC8`](./checksum/crc8.go#L26):  CRC8 This function calculate CRC8 checksum.
+2. [`Luhn`](./checksum/luhn.go#L11):  Luhn This function calculates the checksum using the Luhn algorithm
+
+---
+##### Types
+
+1. [`CRCModel`](./checksum/crc8.go#L16): No description provided.
+
 
 ---
 </details><details>
@@ -222,25 +229,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 7. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
 8. [`Reverse`](./conversion/decimaltobinary.go#L22):  Reverse() function that will take string, and returns the reverse of that string.
 9. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
-
----
-</details><details>
-	<summary> <strong> crc </strong> </summary>	
-
----
-
-#####  Package crc describes algorithms for finding various CRC checksums
-
----
-##### Functions:
-
-1. [`CalculateCRC8`](./checksum/crc/crc8.go#L26):  CalculateCRC8 This function calculate CRC8 checksum.
-
----
-##### Types
-
-1. [`CRCModel`](./checksum/crc/crc8.go#L16): No description provided.
-
 
 ---
 </details><details>
