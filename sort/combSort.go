@@ -3,6 +3,8 @@
 
 package sort
 
+import "github.com/TheAlgorithms/Go/constraints"
+
 func getNextGap(gap int) int {
 	gap = (gap * 10) / 13
 	if gap < 1 {
@@ -11,7 +13,8 @@ func getNextGap(gap int) int {
 	return gap
 }
 
-func Comb(data []int) []int {
+// Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+func Comb[T constraints.Ordered](data []T) []T {
 	n := len(data)
 	gap := n
 	swapped := true
