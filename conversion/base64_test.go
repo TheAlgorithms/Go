@@ -109,3 +109,15 @@ func TestBase64EncodeDecodeInverse(t *testing.T) {
 		}
 	}
 }
+
+func FuzzBase64Encode(f *testing.F) {
+	f.Add([]byte("hello"))
+	f.Fuzz(func(t *testing.T, input []byte) {
+		result := Base64Decode(Base64Encode(input))
+		for i := 0; i < len(input); i++ {
+			if result[i] != input[i] {
+				t.Fatalf("with input '%s' - expected '%s', got '%s' (mismatch at position %d)", input, input, result, i)
+			}
+		}
+	})
+}
