@@ -79,7 +79,7 @@ func MillerTest(num, witness int64) (bool, error) {
 	return false, nil
 }
 
-// MillerTest This is the intermediate step that repeats within the
+// MillerRandomTest This is the intermediate step that repeats within the
 // miller rabin primality test for better probabilitic chances of
 // receiving the correct result with random witnesses.
 func MillerRandomTest(num int64) (bool, error) {
