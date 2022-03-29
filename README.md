@@ -1,4 +1,4 @@
-# The Algorithms - Go
+# The Algorithms - Go 1
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/TheAlgorithms/Go)&nbsp;
 ![golangci-lint](https://github.com/TheAlgorithms/Go/workflows/golangci-lint/badge.svg)
 ![godocmd](https://github.com/tjgurwara99/Go/workflows/godocmd/badge.svg)
