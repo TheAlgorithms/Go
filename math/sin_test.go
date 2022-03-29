@@ -1,8 +1,8 @@
 package math_test
 
 import (
-	. "github.com/TheAlgorithms/Go/math"
-	"math"
+	algmath "github.com/TheAlgorithms/Go/math"
+	stdmath "math"
 	"testing"
 )
 
@@ -13,17 +13,17 @@ func TestSin(t *testing.T) {
 		want float64
 	}{
 		{"sin(0)", 0, 0},
-		{"sin(3π/2)", (3 * math.Pi) / 2, -1},
-		{"sin(π/2)", math.Pi / 2, 1},
-		{"sin(π/6)", math.Pi / 6, 0.5},
+		{"sin(3π/2)", (3 * stdmath.Pi) / 2, -1},
+		{"sin(π/2)", stdmath.Pi / 2, 1},
+		{"sin(π/6)", stdmath.Pi / 6, 0.5},
 		{"sin(90)", 90, 0.893996663600558},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := Sin(test.n)
-			if math.Abs(got-test.want) >= Epsilon {
+			got := algmath.Sin(test.n)
+			if stdmath.Abs(got-test.want) >= epsilon {
 				t.Errorf("Sin() = %v, want %v", got, test.want)
-				t.Errorf("MATH Sin() = %v", math.Sin(test.n))
+				t.Errorf("MATH Sin() = %v", stdmath.Sin(test.n))
 			}
 		})
 	}
@@ -31,13 +31,13 @@ func TestSin(t *testing.T) {
 
 func BenchmarkSin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Sin(180)
+		algmath.Sin(180)
 	}
 }
 
 // BenchmarkMathSin is slower because the standard library `math.Sin` calculates a more accurate value.
 func BenchmarkMathSin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		math.Sin(180)
+		stdmath.Sin(180)
 	}
 }
