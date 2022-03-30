@@ -157,13 +157,13 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package checksum describes algorithms for finding various checksums Package crc describes algorithms for finding various CRC checksums
+#####  Package crc describes algorithms for finding various CRC checksums
 
 ---
 ##### Functions:
 
-1. [`CRC8`](./checksum/crc8.go#L26):  CRC8 This function calculate CRC8 checksum.
-2. [`Luhn`](./checksum/luhn.go#L11):  Luhn This function calculates the checksum using the Luhn algorithm
+1. [`CRC8`](./checksum/crc8.go#L26):  CRC8 calculates CRC8 checksum of the given data.
+2. [`Luhn`](./checksum/luhn.go#L10):  Luhn validates the provided data using the Luhn algorithm.
 
 ---
 ##### Types
