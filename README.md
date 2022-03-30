@@ -162,7 +162,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`LuhnAlgorithm`](./checksum/luhn.go#L11):  LuhnAlgorithm This function calculates the checksum using the Luna algorithm
+1. [`CRC8`](./checksum/crc8.go#L25):  CRC8 calculates CRC8 checksum of the given data.
+2. [`Luhn`](./checksum/luhn.go#L11):  Luhn validates the provided data using the Luhn algorithm.
+
+---
+##### Types
+
+1. [`CRCModel`](./checksum/crc8.go#L15): No description provided.
+
 
 ---
 </details><details>
@@ -217,30 +224,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 2. [`Base64Encode`](./conversion/base64.go#L19):  Base64Encode encodes the received input bytes slice into a base64 string. The implementation follows the RFC4648 standard, which is documented at https://datatracker.ietf.org/doc/html/rfc4648#section-4
 3. [`BinaryToDecimal`](./conversion/binarytodecimal.go#L25):  BinaryToDecimal() function that will take Binary number as string, and return it's Decimal equivalent as integer.
 4. [`DecimalToBinary`](./conversion/decimaltobinary.go#L32):  DecimalToBinary() function that will take Decimal number as int, and return it's Binary equivalent as string.
-5. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
-6. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
-7. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
-8. [`Reverse`](./conversion/decimaltobinary.go#L22):  Reverse() function that will take string, and returns the reverse of that string.
-9. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
-
----
-</details><details>
-	<summary> <strong> crc </strong> </summary>	
-
----
-
-#####  Package crc describes algorithms for finding various CRC checksums
-
----
-##### Functions:
-
-1. [`CalculateCRC8`](./checksum/crc/crc8.go#L26):  CalculateCRC8 This function calculate CRC8 checksum.
-
----
-##### Types
-
-1. [`CRCModel`](./checksum/crc/crc8.go#L16): No description provided.
-
+5. [`FuzzBase64Encode`](./conversion/base64_test.go#L113): No description provided.
+6. [`HEXToRGB`](./conversion/rgbhex.go#L10):  HEXToRGB splits an RGB input (e.g. a color in hex format; 0x<color-code>) into the individual components: red, green and blue
+7. [`IntToRoman`](./conversion/integertoroman.go#L17):  IntToRoman converts an integer value to a roman numeral string. An error is returned if the integer is not between 1 and 3999.
+8. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
+9. [`Reverse`](./conversion/decimaltobinary.go#L22):  Reverse() function that will take string, and returns the reverse of that string.
+10. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
 
 ---
 </details><details>
@@ -860,22 +849,23 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Comb`](./sort/combSort.go#L14): No description provided.
-2. [`Count`](./sort/countingsort.go#L9): No description provided.
-3. [`Exchange`](./sort/exchangesort.go#L6): No description provided.
-4. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
-5. [`ImprovedSimpleSort`](./sort/simplesort.go#L25):  ImprovedSimpleSort is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-6. [`InsertionSort`](./sort/insertionsort.go#L3): No description provided.
-7. [`MergeIter`](./sort/mergesort.go#L51): No description provided.
-8. [`Mergesort`](./sort/mergesort.go#L37): Mergesort Perform mergesort on a slice of ints
-9. [`Partition`](./sort/quicksort.go#L10): No description provided.
-10. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-11. [`QuickSort`](./sort/quicksort.go#L37):  QuickSort Sorts the entire array
-12. [`QuickSortRange`](./sort/quicksort.go#L24):  QuickSortRange Sorts the specified range within the array
-13. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-14. [`SelectionSort`](./sort/selectionsort.go#L3): No description provided.
-15. [`ShellSort`](./sort/shellsort.go#L3): No description provided.
-16. [`SimpleSort`](./sort/simplesort.go#L11): No description provided.
+1. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
+2. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+3. [`Count`](./sort/countingsort.go#L11): No description provided.
+4. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
+5. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
+6. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+7. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
+8. [`Merge`](./sort/mergesort.go#L40):  Merge Perform merge sort on a slice
+9. [`MergeIter`](./sort/mergesort.go#L54): No description provided.
+10. [`Partition`](./sort/quicksort.go#L12): No description provided.
+11. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+12. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+13. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+14. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+15. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+16. [`Shell`](./sort/shellsort.go#L5): No description provided.
+17. [`Simple`](./sort/simplesort.go#L13): No description provided.
 
 ---
 ##### Types

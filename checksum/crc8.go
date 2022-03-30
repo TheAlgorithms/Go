@@ -7,8 +7,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see crc8_test.go
 
-// Package crc describes algorithms for finding various CRC checksums
-package crc
+package checksum
 
 import "math/bits"
 
@@ -22,8 +21,8 @@ type CRCModel struct {
 	Name   string
 }
 
-// CalculateCRC8 This function calculate CRC8 checksum.
-func CalculateCRC8(data []byte, model CRCModel) uint8 {
+// CRC8 calculates CRC8 checksum of the given data.
+func CRC8(data []byte, model CRCModel) uint8 {
 	table := getTable(model)
 	crcResult := model.Init
 	crcResult = addBytes(data, model, crcResult, table)
