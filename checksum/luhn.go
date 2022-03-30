@@ -4,11 +4,10 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see lunh_test.go
 
-// Package checksum describes algorithms for finding various checksums
 package checksum
 
-// Luhn This function calculates the checksum using the Luhn algorithm
-func Luhn(s []rune) bool {
+// Luhn validates the provided data using the Luhn algorithm.
+func Luhn(s []byte) bool {
 	n := len(s)
 	number := 0
 	result := 0

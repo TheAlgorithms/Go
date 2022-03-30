@@ -22,7 +22,7 @@ type CRCModel struct {
 	Name   string
 }
 
-// CRC8 This function calculate CRC8 checksum.
+// CRC8 calculates CRC8 checksum of the given data.
 func CRC8(data []byte, model CRCModel) uint8 {
 	table := getTable(model)
 	crcResult := model.Init
