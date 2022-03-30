@@ -4,6 +4,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see lunh_test.go
 
+// Package checksum describes algorithms for finding various checksums
 package checksum
 
 // Luhn validates the provided data using the Luhn algorithm.

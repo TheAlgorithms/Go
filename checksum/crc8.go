@@ -7,7 +7,6 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see crc8_test.go
 
-// Package crc describes algorithms for finding various CRC checksums
 package checksum
 
 import "math/bits"
