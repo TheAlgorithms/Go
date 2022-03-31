@@ -18,13 +18,12 @@ import (
 // formatNum accepts a number and returns the
 // odd number d such that num = 2^s * d + 1
 func formatNum(num int64) (d int64, s int64) {
-	s := int64(0)
-	d := num - 1
+	d = num - 1
 	for num%2 == 0 {
 		d /= 2
 		s++
 	}
-	return d, s
+	return
 }
 
 // isTrivial checks if num's primality is easy to determine.
@@ -32,24 +31,17 @@ func formatNum(num int64) (d int64, s int64) {
 // it returns false and false.
 func isTrivial(num int64) (prime bool, trivial bool) {
 	if num <= 4 {
-		if num == 2 || num == 3 {
-			// 2 and 3 are primes
-			return true, true
-		}
-
-		// numbers <= 4 other than
-		// 2 or 3 are not primes
-		return false, true
+		// 2 and 3 are primes
+		prime = num == 2 || num == 3
+		trivial = true
+	} else {
+		prime = false
+		// number is trivial prime if
+		// it is divisible by 2
+		trivial = num%2 == 0
 	}
 
-	if num%2 == 0 {
-		// numbers greater than 4 and
-		// divisible by 2 are not primes
-		return false, true
-	}
-
-	// non-trivial number
-	return false, false
+	return
 }
 
 // MillerTest tests whether num is a strong probable prime to a witness.
