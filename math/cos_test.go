@@ -1,7 +1,8 @@
-package math
+package math_test
 
 import (
-	"math"
+	algmath "github.com/TheAlgorithms/Go/math"
+	stdmath "math"
 	"testing"
 )
 
@@ -17,15 +18,15 @@ func TestCos(t *testing.T) {
 		{"cos(90)", 90, -0.447},
 		{"cos(180)", 180, -0.598},
 		{"cos(1)", 1, 0.540},
-		{"cos(1)", math.Pi, -1},
-		{"cos(1)", math.Pi / 2, 0},
+		{"cos(π)", stdmath.Pi, -1},
+		{"cos(π/2)", stdmath.Pi / 2, 0},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			got := Cos(test.n)
-			if math.Abs(got-test.want) >= epsilon {
+			got := algmath.Cos(test.n)
+			if stdmath.Abs(got-test.want) >= epsilon {
 				t.Errorf("Cos() = %v, want %v", got, test.want)
-				t.Errorf("MATH Cos() = %v", math.Cos(test.n))
+				t.Errorf("MATH Cos() = %v", stdmath.Cos(test.n))
 			}
 		})
 	}
@@ -33,13 +34,13 @@ func TestCos(t *testing.T) {
 
 func BenchmarkCos(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Cos(180)
+		algmath.Cos(180)
 	}
 }
 
 // BenchmarkMathCos is slower because the standard library `math.Cos` calculates a more accurate value.
 func BenchmarkMathCos(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		math.Cos(180)
+		stdmath.Cos(180)
 	}
 }
