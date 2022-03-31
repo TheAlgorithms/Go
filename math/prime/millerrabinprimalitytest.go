@@ -30,7 +30,7 @@ func formatNum(num int64) (int64, int64) {
 // isTrivial checks if num's primality is easy to determine.
 // If it is, it returns true and num's primality. Otherwise
 // it returns false and false.
-func isTrivial(num int64) (trivial bool, prime bool) {
+func isTrivial(num int64) (bool, bool) {
 	if num <= 4 {
 		if num == 2 || num == 3 {
 			// 2 and 3 are primes
@@ -39,13 +39,13 @@ func isTrivial(num int64) (trivial bool, prime bool) {
 
 		// numbers <= 4 other than
 		// 2 or 3 are not primes
-		return true, false
+		return false, true
 	}
 
 	if num%2 == 0 {
 		// numbers greater than 4 and
 		// divisible by 2 are not primes
-		return true, false
+		return false, true
 	}
 
 	// non-trivial number
@@ -107,7 +107,7 @@ func MillerTestMultiple(num int64, witnesses ...int64) (bool, error) {
 // MillerRabinProbabilistic is a probabilistic test for primality
 // of an integer based of the algorithm devised by Miller and Rabin.
 func MillerRabinProbabilistic(num, rounds int64) (bool, error) {
-	if trivial, prime := isTrivial(num); trivial {
+	if prime, trivial := isTrivial(num); trivial {
 		// num is a trivial number
 		return prime, nil
 	}
@@ -127,7 +127,7 @@ func MillerRabinProbabilistic(num, rounds int64) (bool, error) {
 // MillerRabinDeterministic is a Deterministic version of the Miller-Rabin
 // test, which returns correct results for all valid int64 numbers.
 func MillerRabinDeterministic(num int64) (bool, error) {
-	if trivial, prime := isTrivial(num); trivial {
+	if prime, trivial := isTrivial(num); trivial {
 		// num is a trivial number
 		return prime, nil
 	}
