@@ -162,7 +162,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`LuhnAlgorithm`](./checksum/luhn.go#L11):  LuhnAlgorithm This function calculates the checksum using the Luna algorithm
+1. [`CRC8`](./checksum/crc8.go#L25):  CRC8 calculates CRC8 checksum of the given data.
+2. [`Luhn`](./checksum/luhn.go#L11):  Luhn validates the provided data using the Luhn algorithm.
+
+---
+##### Types
+
+1. [`CRCModel`](./checksum/crc8.go#L15): No description provided.
+
 
 ---
 </details><details>
@@ -223,25 +230,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 8. [`RGBToHEX`](./conversion/rgbhex.go#L41):  RGBToHEX does exactly the opposite of HEXToRGB: it combines the three components red, green and blue to an RGB value, which can be converted to e.g. Hex
 9. [`Reverse`](./conversion/decimaltobinary.go#L22):  Reverse() function that will take string, and returns the reverse of that string.
 10. [`RomanToInteger`](./conversion/romantointeger.go#L40):  RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers outside the range 1 to 3,999 will return an error. Nil or empty string return 0 with no error thrown.
-
----
-</details><details>
-	<summary> <strong> crc </strong> </summary>	
-
----
-
-#####  Package crc describes algorithms for finding various CRC checksums
-
----
-##### Functions:
-
-1. [`CalculateCRC8`](./checksum/crc/crc8.go#L26):  CalculateCRC8 This function calculate CRC8 checksum.
-
----
-##### Types
-
-1. [`CRCModel`](./checksum/crc/crc8.go#L16): No description provided.
-
 
 ---
 </details><details>
@@ -554,6 +542,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 4. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
 5. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
 6. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+7. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
 ---
 </details><details>
