@@ -17,7 +17,7 @@ import (
 
 // formatNum accepts a number and returns the
 // odd number d such that num = 2^s * d + 1
-func formatNum(num int64) (int64, int64) {
+func formatNum(num int64) (d int64, s int64) {
 	s := int64(0)
 	d := num - 1
 	for num%2 == 0 {
@@ -30,7 +30,7 @@ func formatNum(num int64) (int64, int64) {
 // isTrivial checks if num's primality is easy to determine.
 // If it is, it returns true and num's primality. Otherwise
 // it returns false and false.
-func isTrivial(num int64) (bool, bool) {
+func isTrivial(num int64) (prime bool, trivial bool) {
 	if num <= 4 {
 		if num == 2 || num == 3 {
 			// 2 and 3 are primes
