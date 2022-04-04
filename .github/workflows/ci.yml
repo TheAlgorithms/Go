@@ -1,5 +1,5 @@
 # https://github.com/golangci/golangci-lint
-name: golang_lint_and_test
+name: Continuous Integration
 on:
   push:
     # prevent duplication of tests with
@@ -10,6 +10,7 @@ on:
 
 jobs:
   golang_lint_and_test:
+    name: Code style and tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
