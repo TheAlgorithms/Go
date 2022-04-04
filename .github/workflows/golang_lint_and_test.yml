@@ -1,6 +1,13 @@
 # https://github.com/golangci/golangci-lint
 name: golang_lint_and_test
-on: [push, pull_request]
+on:
+  push:
+    # prevent duplication of tests with
+    # `pull_request` event
+    branches:
+      - master
+  pull_request:
+
 jobs:
   golang_lint_and_test:
     runs-on: ubuntu-latest
