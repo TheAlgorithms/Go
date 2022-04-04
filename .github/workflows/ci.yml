@@ -16,11 +16,6 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - name: Codespell
-        uses: codespell-project/actions-codespell@master
-        with:
-          ignore_words_list: "actualy,nwe"
-          skip: "go.mod,go.sum"
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
@@ -32,3 +27,12 @@ jobs:
           args: -E gofmt
       - name: Run tests
         run: go test ./...
+  codespell:
+    name: Check for spelling errors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          ignore_words_list: "actualy,nwe"
+          skip: "go.mod,go.sum"
