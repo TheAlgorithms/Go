@@ -727,11 +727,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 1. [`Factorize`](./math/prime/primefactorization.go#L5):  Factorize is a function that computes the exponents of each prime in the prime factorization of n
 2. [`Generate`](./math/prime/sieve.go#L26):  Generate returns a int slice of prime numbers up to the limit
 3. [`GenerateChannel`](./math/prime/sieve.go#L9):  Generate generates the sequence of integers starting at 2 and sends it to the channel `ch`
-4. [`MillerRabinTest`](./math/prime/millerrabinprimalitytest.go#L59):  MillerRabinTest Probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
-5. [`MillerTest`](./math/prime/millerrabinprimalitytest.go#L32):  MillerTest This is the intermediate step that repeats within the miller rabin primality test for better probabilitic chances of receiving the correct result.
-6. [`NaiveApproach`](./math/prime/primecheck.go#L8):  NaiveApproach checks if an integer is prime or not. Returns a bool.
-7. [`PairApproach`](./math/prime/primecheck.go#L22):  PairApproach checks primality of an integer and returns a bool. More efficient than the naive approach as number of iterations are less.
-8. [`Sieve`](./math/prime/sieve.go#L16):  Sieve Sieving the numbers that are not prime from the channel - basically removing them from the channels
+4. [`MillerRabinDeterministic`](./math/prime/millerrabinprimalitytest.go#L121):  MillerRabinDeterministic is a Deterministic version of the Miller-Rabin test, which returns correct results for all valid int64 numbers.
+5. [`MillerRabinProbabilistic`](./math/prime/millerrabinprimalitytest.go#L101):  MillerRabinProbabilistic is a probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
+6. [`MillerRandomTest`](./math/prime/millerrabinprimalitytest.go#L77):  MillerRandomTest This is the intermediate step that repeats within the miller rabin primality test for better probabilitic chances of receiving the correct result with random witnesses.
+7. [`MillerTest`](./math/prime/millerrabinprimalitytest.go#L49):  MillerTest tests whether num is a strong probable prime to a witness. Formally: a^d ≡ 1 (mod n) or a^(2^r * d) ≡ -1 (mod n), 0 <= r <= s
+8. [`MillerTestMultiple`](./math/prime/millerrabinprimalitytest.go#L84):  MillerTestMultiple is like MillerTest but runs the test for multiple witnesses.
+9. [`NaiveApproach`](./math/prime/primecheck.go#L8):  NaiveApproach checks if an integer is prime or not. Returns a bool.
+10. [`PairApproach`](./math/prime/primecheck.go#L22):  PairApproach checks primality of an integer and returns a bool. More efficient than the naive approach as number of iterations are less.
+11. [`Sieve`](./math/prime/sieve.go#L16):  Sieve Sieving the numbers that are not prime from the channel - basically removing them from the channels
 
 ---
 </details><details>
