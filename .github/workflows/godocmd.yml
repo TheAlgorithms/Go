@@ -1,7 +1,12 @@
-name: godocmd
-on: [push]
+name: Generate Documentation
+on: 
+  push:
+    branches:
+      - master
+
 jobs:
   generate_readme:
+    name: Markdown Generation
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

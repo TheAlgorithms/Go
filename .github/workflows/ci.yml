@@ -1,18 +1,21 @@
 # https://github.com/golangci/golangci-lint
-name: golang_lint_and_test
-on: [push, pull_request]
+name: Continuous Integration
+on:
+  push:
+    # prevent duplication of tests with
+    # `pull_request` event
+    branches:
+      - master
+  pull_request:
+
 jobs:
   golang_lint_and_test:
+    name: Code style and tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - name: Codespell
-        uses: codespell-project/actions-codespell@master
-        with:
-          ignore_words_list: "actualy,nwe"
-          skip: "go.mod,go.sum"
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
@@ -24,3 +27,12 @@ jobs:
           args: -E gofmt
       - name: Run tests
         run: go test ./...
+  codespell:
+    name: Check for spelling errors
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: codespell-project/actions-codespell@master
+        with:
+          ignore_words_list: "actualy,nwe"
+          skip: "go.mod,go.sum"
