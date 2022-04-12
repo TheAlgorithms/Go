@@ -44,22 +44,12 @@ var parenthesisTestCases = []struct {
 }
 
 func TestParenthesis(t *testing.T) {
-	errors := int(0)
-	testok := true
-
 	for _, tc := range parenthesisTestCases {
 		t.Run(tc.name, func(t *testing.T) {
 			actual := Parenthesis(tc.text)
-			if !reflect.DeepEqual(actual, tc.expected) {
-				testok = false
-				errors++
+			if actual != tc.expected {
 				t.Errorf("Expected %t value from test %s with input %s\n", tc.expected, tc.name, tc.text)
 			}
 		})
 	}
-	if testok {
-		fmt.Println("Pharentesis test is done without errors")
-		return
-	}
-	fmt.Printf("Pharentesis test finished with %d errors\n", errors)
 }

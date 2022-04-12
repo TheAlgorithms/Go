@@ -3,7 +3,7 @@ package search
 func Parenthesis(text string) bool {
 	parcounter := int(0)
 
-	for i := 0; i < len(text); i++ {
+	for i := range text {
 		switch text[i] {
 		case '(':
 			parcounter++
@@ -14,8 +14,5 @@ func Parenthesis(text string) bool {
 			return false
 		}
 	}
-	if parcounter == 0 {
-		return true
-	}
-	return false
+	return parcounter == 0
 }
