@@ -1,8 +1,6 @@
 package search
 
 import (
-	"fmt"
-	"reflect"
 	"testing"
 )
 
