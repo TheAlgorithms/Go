@@ -1,4 +1,4 @@
-package search
+package parenthesis
 
 // Parenthesis algorithm checks if every opened parenthesis
 // is closed correctly
