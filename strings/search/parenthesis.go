@@ -1,9 +1,9 @@
 package search
 
-// Parenthesis algorithm checks if every opened parenthesis 
+// Parenthesis algorithm checks if every opened parenthesis
 // is closed correctly
 
-// when parcounter is less than 0 is because a closing 
+// when parcounter is less than 0 is because a closing
 // parenthesis is detected without an opening parenthesis
 // that surrounds it
 
