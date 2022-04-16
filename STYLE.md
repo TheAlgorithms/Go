@@ -137,12 +137,12 @@ Comment is not a part of the package documentation.
 
 ### Package Naming
 
-Package names should be short and to the point. Keep in mind that this identifer will be used to
+Package names should be short and to the point. Keep in mind that this identifier will be used to
 refer to your package, so make it easy to remember. It should be only composed of lower case
 letters. Prefer `json` to `JSON` or `Json`. If your package name has two words, merge them
 together. Prefer `jsonencodeing` to `jsonEncoding` or `json_encodeing`.
 
-Add the `_test` suffix to your package name to implemet black-box testing for your package.
+Add the `_test` suffix to your package name to implement black-box testing for your package.
 
 ### Symbol Naming
 
@@ -152,7 +152,7 @@ is exported or not. The case when using acronymns in names should be consistent.
 
 For exported symbols, use the package name to your advantage to write concise symbol names. For
 example, if you have a package `png`, instead of defining a `png.PNGFile`, define a `png.File`.
-It is much clearer and avoids repitition.
+It is much clearer and avoids repetition.
 
 ### Function Naming
 
