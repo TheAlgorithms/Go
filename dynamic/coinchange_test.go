@@ -1,8 +1,9 @@
-package dynamic
+package dynamic_test
 
 import (
 	"fmt"
 	"testing"
+	"github.com/TheAlgorithms/Go/dynamic"
 )
 
 func Test_coinChange(t *testing.T) {
@@ -20,7 +21,7 @@ func Test_coinChange(t *testing.T) {
 
 	for _, v := range targets {
 		t.Run(fmt.Sprintf("target: %d ", v.target), func(t *testing.T) {
-			result := coinChange(coinCombination, v.target)
+			result := dynamic.CoinChange(coinCombination, v.target)
 			if result != v.expected {
 				t.Errorf("target: %d Expected %d, got %d", v.target, v.expected, result)
 			}
