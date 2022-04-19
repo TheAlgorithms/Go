@@ -2,8 +2,8 @@ package dynamic_test
 
 import (
 	"fmt"
-	"testing"
 	"github.com/TheAlgorithms/Go/dynamic"
+	"testing"
 )
 
 func Test_coinChange(t *testing.T) {
