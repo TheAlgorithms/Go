@@ -2,7 +2,7 @@ package dynamic
 
 // CoinChange finds the number of possible combinations of coins
 // of different values which can get to the target amount.
-func coinChange(coins []int32, amount int32) int32 {
+func CoinChange(coins []int32, amount int32) int32 {
 	combination := make([]int32, amount)
 	combination[0] = 1
 
