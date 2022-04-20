@@ -82,7 +82,7 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 
 	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
 		//inside the interval
-		//acumulate the lazy node value
+		//accumulate the lazy node value
 		s.LazyTree[node] += value
 		s.Propagate(node, leftNode, rightNode)
 	} else {
