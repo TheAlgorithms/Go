@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func Test_coinChange(t *testing.T) {
+func TestCoinChange(t *testing.T) {
 	coinCombination := []int32{1, 2, 5, 10}
 	targets := []struct {
 		target   int32
