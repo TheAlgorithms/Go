@@ -6,9 +6,9 @@ func CoinChange(coins []int32, amount int32) int32 {
 	combination := make([]int32, amount)
 	combination[0] = 1
 
-	for _, c := range coins { // iterate combination of coin
+	for _, c := range coins {
 		for i := c; i < amount; i++ {
-			// find previous value
+
 			combination[i] += combination[i-c]
 		}
 	}
