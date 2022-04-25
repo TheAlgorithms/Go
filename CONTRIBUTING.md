@@ -6,7 +6,7 @@ Welcome to [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go)! Before submi
 
 ## Contributing
 
-### Maintainer/reviewer
+### Maintainers
 
 Please check the [reviewer code](https://github.com/TheAlgorithms/Go/blob/master/.github/CODEOWNERS) file for maintainers and reviewers.
 
