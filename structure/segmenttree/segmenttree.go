@@ -11,7 +11,7 @@ import (
 	"github.com/TheAlgorithms/Go/math/min"
 )
 
-const emptyLazyNode = -1
+const emptyLazyNode = 0
 
 //SegmentTree with original Array and the Segment Tree Array
 type SegmentTree struct {
@@ -29,11 +29,12 @@ func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
 
 		if leftNode == rightNode {
 			//leaf node
-			s.Array[leftNode] = s.LazyTree[node]
+			s.Array[leftNode] += s.LazyTree[node]
 		} else {
 			//propagate lazy node value for children nodes
-			s.LazyTree[2*node] = s.LazyTree[node]
-			s.LazyTree[2*node+1] = s.LazyTree[node]
+			//may propagate multiple times, children nodes should accumulate lazy node value
+			s.LazyTree[2*node] += s.LazyTree[node]
+			s.LazyTree[2*node+1] += s.LazyTree[node]
 		}
 
 		//clear lazy node
@@ -81,7 +82,8 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 
 	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
 		//inside the interval
-		s.LazyTree[node] = value
+		//accumulate the lazy node value
+		s.LazyTree[node] += value
 		s.Propagate(node, leftNode, rightNode)
 	} else {
 		//update left and right nodes
