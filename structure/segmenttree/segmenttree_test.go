@@ -62,7 +62,7 @@ func TestSegmentTree(t *testing.T) {
 		},
 		{
 			description: "test array with size 11 and range updates",
-			array: []int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			array:       []int{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			updates: []update{{firstIndex: 2, lastIndex: 8, value: 2},
 				{firstIndex: 2, lastIndex: 8, value: 2}},
 			queries: []query{{3, 5}, {7, 8}, {4, 5}, {8, 8}},
