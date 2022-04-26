@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-func Test_log_2(t *testing.T) {
+func TestLogBase2(t *testing.T) {
 	tests := []struct {
 		name string
 		n    uint32
@@ -28,20 +28,20 @@ func Test_log_2(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := Log_2(test.n); got != test.want {
-				t.Errorf("Log_2() = %v, want %v", got, test.want)
+			if got := LogBase2(test.n); got != test.want {
+				t.Errorf("LogBase2() = %v, want %v", got, test.want)
 			}
 		})
 	}
 }
 
-func BenchmarkBitwiseLog_2(b *testing.B) {
+func BenchmarkBitwiseLogBase2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Log_2(1024)
+		LogBase2(1024)
 	}
 }
 
-func BenchmarkMathPAckageLog_2(b *testing.B) {
+func BenchmarkMathPAckageLogBase2(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		math.Log2(1024)
 	}

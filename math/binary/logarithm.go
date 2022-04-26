@@ -3,8 +3,8 @@
 
 package binary
 
-// Log_2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
-func Log_2(n uint32) uint32 {
+// LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
+func LogBase2(n uint32) uint32 {
 	base := [5]uint32{0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000}
 	exponents := [5]uint32{1, 2, 4, 8, 16}
 	var result uint32
