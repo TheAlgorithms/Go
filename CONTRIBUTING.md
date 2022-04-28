@@ -6,9 +6,9 @@ Welcome to [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go)! Before submi
 
 ## Contributing
 
-### Maintainer/reviewer
+### Maintainers
 
-**Please check the [reviewer code](https://github.com/TheAlgorithms/Go/blob/master/DIRECTORY.md) file for maintainers and reviewers.**
+Please check the [`CODEOWNERS`](https://github.com/TheAlgorithms/Go/blob/master/.github/CODEOWNERS) file for a list of repository maintainers.
 
 ### Contributor
 
