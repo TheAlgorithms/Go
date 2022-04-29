@@ -11,7 +11,7 @@ func TrialDivision(n int64) bool {
 		return false
 	}
 
-	for i := 2; i < n; i++ {
+	for i := int64(2); i < n; i++ {
 
 		if n%i == 0 {
 			return false
@@ -21,7 +21,7 @@ func TrialDivision(n int64) bool {
 }
 
 // OptimizedTrialDivision checks primality of an integer using an optimized trial division method.
-// The optimizations include not checking divisibility by the even numbers and only checking upto
+// The optimizations include not checking divisibility by the even numbers and only checking up to
 // the square root of the given number.
 func OptimizedTrialDivision(n int64) bool {
 	// 0 and 1 are not prime
@@ -39,7 +39,7 @@ func OptimizedTrialDivision(n int64) bool {
 		return false
 	}
 
-	for i := 3; i*i <= n; i += 2 {
+	for i := int64(3); i*i <= n; i += 2 {
 		if n%i == 0 {
 			return false
 		}
