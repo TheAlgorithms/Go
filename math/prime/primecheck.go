@@ -6,7 +6,7 @@ package prime
 // Source - Wikipedia https://en.wikipedia.org/wiki/Primality_test
 
 // TrialDivision tests whether a number is prime by trying to divide it by the numbers less than it.
-func TrialDivision(n int) bool {
+func TrialDivision(n int64) bool {
 	if n < 2 {
 		return false
 	}
@@ -23,7 +23,7 @@ func TrialDivision(n int) bool {
 // OptimizedTrialDivision checks primality of an integer using an optimized trial division method.
 // The optimizations include not checking divisibility by the even numbers and only checking upto
 // the square root of the given number.
-func OptimizedTrialDivision(n int) bool {
+func OptimizedTrialDivision(n int64) bool {
 	// 0 and 1 are not prime
 	if n < 2 {
 		return false
