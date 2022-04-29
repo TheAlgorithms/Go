@@ -48,7 +48,7 @@ func millerRabinProbabilisticTester(n int64) bool {
 }
 
 func TestMillerRabinProbabilistic(t *testing.T) {
-	primalityTestTestingHelper(t, "Miller-Rabin Probabilistic", millerRabinProbailisticTester)
+	primalityTestTestingHelper(t, "Miller-Rabin Probabilistic", millerRabinProbabilisticTester)
 }
 
 func BenchmarkMillerRabinProbabilistic(b *testing.B) {
