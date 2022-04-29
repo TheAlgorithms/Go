@@ -8,7 +8,7 @@ import (
 var primeList = []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113}
 var testLimit = 127
 
-type primalityTest func(int64 n) bool
+type primalityTest func(int64) bool
 
 func primalityTestTestingHelper(t *testing.T, name string, f primalityTest) {
 	arrayIndex := 0
