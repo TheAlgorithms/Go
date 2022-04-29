@@ -48,7 +48,7 @@ func millerRabinProbabilisticTester(n int64) bool {
 }
 
 func TestMillerRabinProbabilistic(t *testing.T) {
-	primalityTestTestingHelper(t, millerRabinProbailisticTester)
+	primalityTestTestingHelper(t, "Miller-Rabin Probabilistic", millerRabinProbailisticTester)
 }
 
 func BenchmarkMillerRabinProbabilistic(b *testing.B) {
@@ -67,7 +67,7 @@ func millerRabinDeterministicTester(n int64) bool {
 }
 
 func TestMillerRabinDeterministic(t *testing.T) {
-	primalityTestTestingHelper(t, millerRabinDeterministicTester)
+	primalityTestTestingHelper(t, "Miller-Rabin Deterministic", millerRabinDeterministicTester)
 }
 
 func BenchmarkMillerRabinDeterministic(b *testing.B) {
@@ -77,7 +77,7 @@ func BenchmarkMillerRabinDeterministic(b *testing.B) {
 // Trial Division test
 
 func TestTrialDivision(t *testing.T) {
-	primalityTestTestingHelper(t, TrialDivision)
+	primalityTestTestingHelper(t, "Trial Division", TrialDivision)
 }
 
 func BenchmarkTrialDivision(b *testing.B) {
@@ -87,7 +87,7 @@ func BenchmarkTrialDivision(b *testing.B) {
 // Trial Division (optimized)
 
 func TestOptimizedTrialDivision(t *testing.T) {
-	primalityTestTestingHelper(t, OptimizedTrialDivision)
+	primalityTestTestingHelper(t, "Trial Division (optimized)", OptimizedTrialDivision)
 }
 
 func BenchmarkOptimizedTrialDivision(b *testing.B) {
