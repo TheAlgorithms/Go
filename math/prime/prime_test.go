@@ -8,7 +8,7 @@ import (
 var primeList = []int{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113}
 var testLimit = 127
 
-type primalityTest func(int64 n) (bool, error)
+type primalityTest func(int64 n) bool
 
 func primalityTestTestingHelper(t *testing.T, name string, f primalityTest) {
 	arrayIndex := 0
@@ -17,10 +17,7 @@ func primalityTestTestingHelper(t *testing.T, name string, f primalityTest) {
 
 		testName := fmt.Sprintf("%s(%d)", name, i)
 		t.Run(testName, func(t *testing.T) {
-			result, err := f(int64(i))
-			if err != nil {
-				t.Error(err)
-			}
+			result := f(int64(i))
 
 			if isPrime {
 				arrayIndex++
@@ -41,8 +38,13 @@ func primalityTestBenchmarkHelper(b *testing.B, f primalityTest) {
 
 // Miller-Rabin Probabilistic test
 
-func millerRabinProbabilisticTester(n int64) (bool, error) {
-	return MillerRabinProbabilistic(n, 40)
+func millerRabinProbabilisticTester(n int64) bool {
+	result, err := MillerRabinProbabilistic(n, 40)
+	if err != nil {
+		panic(err)
+	}
+
+	return result
 }
 
 func TestMillerRabinProbabilistic(t *testing.T) {
@@ -55,16 +57,24 @@ func BenchmarkMillerRabinProbabilistic(b *testing.B) {
 
 // Miller-Rabin deterministic test
 
+func millerRabinDeterministicTester(n int64) bool {
+	result, err := MillerRabinDeterministic(n)
+	if err != nil {
+		panic(err)
+	}
+
+	return result
+}
+
 func TestMillerRabinDeterministic(t *testing.T) {
-	primalityTestTestingHelper(t, MillerRabinDeterministic)
+	primalityTestTestingHelper(t, millerRabinDeterministicTester)
 }
 
 func BenchmarkMillerRabinDeterministic(b *testing.B) {
-	primalityTestBenchmarkHelper(b, MillerRabinDeterministic)
+	primalityTestBenchmarkHelper(b, millerRabinDeterministicTester)
 }
 
 // Trial Division test
-
 
 func TestTrialDivision(t *testing.T) {
 	primalityTestTestingHelper(t, TrialDivision)
