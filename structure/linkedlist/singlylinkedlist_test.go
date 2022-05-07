@@ -12,8 +12,8 @@ func TestSingly(t *testing.T) {
 	list.AddAtBeg(3)
 
 	t.Run("Test AddAtBeg()", func(t *testing.T) {
-		want := []interface{}{3, 2, 1}
-		got := []interface{}{}
+		want := []any{3, 2, 1}
+		got := []any{}
 		current := list.Head
 		got = append(got, current.Val)
 		for current.Next != nil {
@@ -28,8 +28,8 @@ func TestSingly(t *testing.T) {
 	list.AddAtEnd(4)
 
 	t.Run("Test AddAtEnd()", func(t *testing.T) {
-		want := []interface{}{3, 2, 1, 4}
-		got := []interface{}{}
+		want := []any{3, 2, 1, 4}
+		got := []any{}
 		current := list.Head
 		got = append(got, current.Val)
 		for current.Next != nil {
@@ -42,7 +42,7 @@ func TestSingly(t *testing.T) {
 	})
 
 	t.Run("Test DelAtBeg()", func(t *testing.T) {
-		want := interface{}(3)
+		want := any(3)
 		got := list.DelAtBeg()
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -50,7 +50,7 @@ func TestSingly(t *testing.T) {
 	})
 
 	t.Run("Test DelAtEnd()", func(t *testing.T) {
-		want := interface{}(4)
+		want := any(4)
 		got := list.DelAtEnd()
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -74,8 +74,8 @@ func TestSingly(t *testing.T) {
 	list2.AddAtBeg(6)
 
 	t.Run("Test Reverse()", func(t *testing.T) {
-		want := []interface{}{1, 2, 3, 4, 5, 6}
-		got := []interface{}{}
+		want := []any{1, 2, 3, 4, 5, 6}
+		got := []any{}
 		list2.Reverse()
 		current := list2.Head
 		got = append(got, current.Val)
@@ -89,8 +89,8 @@ func TestSingly(t *testing.T) {
 	})
 
 	t.Run("Test ReversePartition()", func(t *testing.T) {
-		want := []interface{}{1, 5, 4, 3, 2, 6}
-		got := []interface{}{}
+		want := []any{1, 5, 4, 3, 2, 6}
+		got := []any{}
 		err := list2.ReversePartition(2, 5)
 
 		if err != nil {

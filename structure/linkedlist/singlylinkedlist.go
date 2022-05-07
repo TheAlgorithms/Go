@@ -21,7 +21,7 @@ func NewSingly() *Singly {
 }
 
 // AddAtBeg adds a new snode with given value at the beginning of the list.
-func (ll *Singly) AddAtBeg(val interface{}) {
+func (ll *Singly) AddAtBeg(val any) {
 	n := NewNode(val)
 	n.Next = ll.Head
 	ll.Head = n
@@ -29,7 +29,7 @@ func (ll *Singly) AddAtBeg(val interface{}) {
 }
 
 // AddAtEnd adds a new snode with given value at the end of the list.
-func (ll *Singly) AddAtEnd(val interface{}) {
+func (ll *Singly) AddAtEnd(val any) {
 	n := NewNode(val)
 
 	if ll.Head == nil {
@@ -46,7 +46,7 @@ func (ll *Singly) AddAtEnd(val interface{}) {
 }
 
 // DelAtBeg deletes the snode at the head(beginning) of the list and returns its value. Returns -1 if the list is empty.
-func (ll *Singly) DelAtBeg() interface{} {
+func (ll *Singly) DelAtBeg() any {
 	if ll.Head == nil {
 		return -1
 	}
@@ -59,7 +59,7 @@ func (ll *Singly) DelAtBeg() interface{} {
 }
 
 // DelAtEnd deletes the snode at the tail(end) of the list and returns its value. Returns -1 if the list is empty.
-func (ll *Singly) DelAtEnd() interface{} {
+func (ll *Singly) DelAtEnd() any {
 	if ll.Head == nil {
 		return -1
 	}

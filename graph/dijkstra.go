@@ -7,7 +7,7 @@ type Item struct {
 	dist int
 }
 
-func (a Item) More(b interface{}) bool {
+func (a Item) More(b any) bool {
 	// reverse direction for minheap
 	return a.dist < b.(Item).dist
 }

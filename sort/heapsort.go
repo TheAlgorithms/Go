@@ -107,11 +107,11 @@ func (h MaxHeap) heapifyDown(i int) {
 
 type Comparable interface {
 	Idx() int
-	More(interface{}) bool
+	More(any) bool
 }
 type Int int
 
-func (a Int) More(b interface{}) bool {
+func (a Int) More(b any) bool {
 	return a > b.(Int)
 }
 func (a Int) Idx() int {
