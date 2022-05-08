@@ -109,7 +109,7 @@ func TestQueue(t *testing.T) {
 			}
 		})
 
-		ListQueue = []interface{}{}
+		ListQueue = []any{}
 
 		t.Run("Test Queue isEmpty", func(t *testing.T) {
 
@@ -125,7 +125,7 @@ func TestQueue(t *testing.T) {
 			}
 		})
 
-		ListQueue = []interface{}{}
+		ListQueue = []any{}
 		t.Run("Test Queue Length", func(t *testing.T) {
 			if LenQueue() != 0 {
 				t.Errorf("Test Queue Length is wrong the result must be %v but got %v", 0, LenQueue())

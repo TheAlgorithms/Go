@@ -17,7 +17,7 @@ func NewCyclic() *Cyclic {
 // point to itself. For other cases, the node will be added
 // to the end of the list. End of the list is Prev field of
 // current item. Complexity O(1).
-func (cl *Cyclic) Add(val interface{}) {
+func (cl *Cyclic) Add(val any) {
 	n := NewNode(val)
 	cl.Size++
 	if cl.Head == nil {

@@ -11,7 +11,7 @@ package stack
 
 // Node structure
 type Node struct {
-	Val  interface{}
+	Val  any
 	Next *Node
 }
 
@@ -22,7 +22,7 @@ type Stack struct {
 }
 
 // push add value to last index
-func (ll *Stack) push(n interface{}) {
+func (ll *Stack) push(n any) {
 	newStack := &Node{} // new node
 
 	newStack.Val = n
@@ -33,7 +33,7 @@ func (ll *Stack) push(n interface{}) {
 }
 
 // pop remove last item as first output
-func (ll *Stack) pop() interface{} {
+func (ll *Stack) pop() any {
 	result := ll.top.Val
 	if ll.top.Next == nil {
 		ll.top = nil
@@ -56,12 +56,12 @@ func (ll *Stack) len() int {
 }
 
 // peak return last input value
-func (ll *Stack) peak() interface{} {
+func (ll *Stack) peak() any {
 	return ll.top.Val
 }
 
 // show all value as an interface array
-func (ll *Stack) show() (in []interface{}) {
+func (ll *Stack) show() (in []any) {
 	current := ll.top
 
 	for current != nil {

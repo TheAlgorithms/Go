@@ -9,11 +9,11 @@
 
 package stack
 
-var stackArray []interface{}
+var stackArray []any
 
 // stackPush push to first index of array
-func stackPush(n interface{}) {
-	stackArray = append([]interface{}{n}, stackArray...)
+func stackPush(n any) {
+	stackArray = append([]any{n}, stackArray...)
 }
 
 // stackLength return length of array
@@ -22,7 +22,7 @@ func stackLength() int {
 }
 
 // stackPeak return last input of array
-func stackPeak() interface{} {
+func stackPeak() any {
 	return stackArray[0]
 }
 
@@ -32,7 +32,7 @@ func stackEmpty() bool {
 }
 
 // stackPop return last input and remove it in array
-func stackPop() interface{} {
+func stackPop() any {
 	pop := stackArray[0]
 	stackArray = stackArray[1:]
 	return pop

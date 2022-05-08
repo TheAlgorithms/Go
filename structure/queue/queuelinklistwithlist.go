@@ -22,7 +22,7 @@ type LQueue struct {
 }
 
 // Enqueue will be added new value
-func (lq *LQueue) Enqueue(value interface{}) {
+func (lq *LQueue) Enqueue(value any) {
 	lq.queue.PushBack(value)
 }
 
@@ -40,7 +40,7 @@ func (lq *LQueue) Dequeue() error {
 }
 
 // Front it will return the front value
-func (lq *LQueue) Front() (interface{}, error) {
+func (lq *LQueue) Front() (any, error) {
 	if !lq.Empty() {
 		val := lq.queue.Front().Value
 		return val, nil
@@ -50,7 +50,7 @@ func (lq *LQueue) Front() (interface{}, error) {
 }
 
 // Back it will return the back value
-func (lq *LQueue) Back() (interface{}, error) {
+func (lq *LQueue) Back() (any, error) {
 	if !lq.Empty() {
 		val := lq.queue.Back().Value
 		return val, nil

@@ -11,7 +11,7 @@ package queue
 
 // Node will be store the value and the next node as well
 type Node struct {
-	Data interface{}
+	Data any
 	Next *Node
 }
 
@@ -23,7 +23,7 @@ type Queue struct {
 }
 
 // enqueue it will be added new value into queue
-func (ll *Queue) enqueue(n interface{}) {
+func (ll *Queue) enqueue(n any) {
 	var newNode Node // create new Node
 	newNode.Data = n // set the data
 
@@ -40,7 +40,7 @@ func (ll *Queue) enqueue(n interface{}) {
 }
 
 // dequeue it will be removed the first value into queue (First In First Out)
-func (ll *Queue) dequeue() interface{} {
+func (ll *Queue) dequeue() any {
 	if ll.isEmpty() {
 		return -1 // if is empty return -1
 	}
@@ -67,11 +67,11 @@ func (ll *Queue) len() int {
 }
 
 // frontQueue it will return the front data
-func (ll *Queue) frontQueue() interface{} {
+func (ll *Queue) frontQueue() any {
 	return ll.head.Data
 }
 
 // backQueue it will return the back data
-func (ll *Queue) backQueue() interface{} {
+func (ll *Queue) backQueue() any {
 	return ll.tail.Data
 }
