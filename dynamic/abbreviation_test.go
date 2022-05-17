@@ -6,45 +6,35 @@ import (
 )
 
 func TestAbbreviation(t *testing.T) {
-	aStrings := []string{
-		"uOHlGMdUBc",
-		"kotgDIUagj",
-		"WPTffVkSNl",
-		"CoJsPURrVX",
-		"xasreDHndqvCnFfX",
-		"XFEaWCxpeepGjOnCCsFh",
-		"",
-		"a",
-		"a",
-		"a",
-		"A",
+	tests := []struct {
+		a        string
+		b        string
+		expected bool
+	}{
+		{"uOHlGMdUBc", "uOalGMdUBCasdcavsdf", false},
+		{"kotgDIUagj", "DIU", true},
+		{"WPTffVkSNl", "WPTVSN", true},
+		{"CoJsPURrVX", "CPUVX", false},
+		{"xasreDHndqvCnFfX", "DHndqvCnFX", false},
+		{"XFEaWCxpeepGjOnCCsFh", "XFEAWCPEPGOCCSF", true},
+		{"", "", true},
+		{"a", "", true},
+		{"a", "b", false},
+		{"a", "a", false},
+		{"A", "A", true},
 	}
-	bStrings := []string{
-		"uOalGMdUBCasdcavsdf",
-		"DIU",
-		"WPTVSN",
-		"CPUVX",
-		"DHndqvCnFX",
-		"XFEAWCPEPGOCCSF",
-		"",
-		"",
-		"b",
-		"a",
-		"A",
-	}
-	expected := []bool{false, true, true, false, false, true, true, true, false, false, true}
-	count := len(aStrings)
+	count := len(tests)
 	for i := 0; i < count; i++ {
 		name := fmt.Sprintf(
 			"Test case #%d: string a = \"%s\", string b = \"%s\"",
 			i+1,
-			aStrings[i],
-			bStrings[i],
+			tests[i].a,
+			tests[i].b,
 		)
 		t.Run(name, func(t *testing.T) {
-			result := Abbreviation(aStrings[i], bStrings[i])
-			if result != expected[i] {
-				t.Errorf("Expected the %t, got %t", expected[i], result)
+			result := Abbreviation(tests[i].a, tests[i].b)
+			if result != tests[i].expected {
+				t.Errorf("Expected the %t, got %t", tests[i].expected, result)
 			}
 		})
 	}
