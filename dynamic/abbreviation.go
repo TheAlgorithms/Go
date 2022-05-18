@@ -20,7 +20,7 @@ import (
 	"strings"
 )
 
-// Returns true if it is possible to make a equals b, returns false otherwise
+// Returns true if it is possible to make a equals b (if b is an abbreviation of a), returns false otherwise
 func Abbreviation(a string, b string) bool {
 	dp := make([][]bool, len(a)+1)
 	for i := range dp {
