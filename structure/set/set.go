@@ -4,9 +4,9 @@
 package set
 
 // New gives new set.
-func New(items ...interface{}) Set {
+func New(items ...any) Set {
 	st := set{
-		elements: make(map[interface{}]bool),
+		elements: make(map[any]bool),
 	}
 	for _, item := range items {
 		st.Add(item)
@@ -17,15 +17,15 @@ func New(items ...interface{}) Set {
 // Set is an interface of possible methods on 'set'.
 type Set interface {
 	// Add: adds new element to the set
-	Add(item interface{})
+	Add(item any)
 	// Delete: deletes the passed element from the set if present
-	Delete(item interface{})
+	Delete(item any)
 	// Len: gives the length of the set (total no. of elements in set)
 	Len() int
-	// GetItems: gives the array( []interface{} ) of elements of the set.
-	GetItems() []interface{}
+	// GetItems: gives the array( []any ) of elements of the set.
+	GetItems() []any
 	// In: checks whether item is present in set or not.
-	In(item interface{}) bool
+	In(item any) bool
 	// IsSubsetOf: checks whether set is subset of set2 or not.
 	IsSubsetOf(set2 Set) bool
 	// IsSupersetOf: checks whether set is superset of set2 or not.
@@ -45,19 +45,19 @@ type Set interface {
 }
 
 type set struct {
-	elements map[interface{}]bool
+	elements map[any]bool
 }
 
-func (st *set) Add(value interface{}) {
+func (st *set) Add(value any) {
 	st.elements[value] = true
 }
 
-func (st *set) Delete(value interface{}) {
+func (st *set) Delete(value any) {
 	delete(st.elements, value)
 }
 
-func (st *set) GetItems() []interface{} {
-	keys := make([]interface{}, 0, len(st.elements))
+func (st *set) GetItems() []any {
+	keys := make([]any, 0, len(st.elements))
 	for k := range st.elements {
 		keys = append(keys, k)
 	}
@@ -68,7 +68,7 @@ func (st *set) Len() int {
 	return len(st.elements)
 }
 
-func (st *set) In(value interface{}) bool {
+func (st *set) In(value any) bool {
 	if _, in := st.elements[value]; in {
 		return true
 	}

@@ -24,7 +24,7 @@ func NewDoubly() *Doubly {
 }
 
 // AddAtBeg Add a node to the beginning of the linkedlist
-func (ll *Doubly) AddAtBeg(val interface{}) {
+func (ll *Doubly) AddAtBeg(val any) {
 	n := NewNode(val)
 	n.Next = ll.Head
 
@@ -37,7 +37,7 @@ func (ll *Doubly) AddAtBeg(val interface{}) {
 }
 
 // AddAtEnd Add a node at the end of the linkedlist
-func (ll *Doubly) AddAtEnd(val interface{}) {
+func (ll *Doubly) AddAtEnd(val any) {
 	n := NewNode(val)
 
 	if ll.Head == nil {
@@ -53,7 +53,7 @@ func (ll *Doubly) AddAtEnd(val interface{}) {
 }
 
 // DelAtBeg Delete the node at the beginning of the linkedlist
-func (ll *Doubly) DelAtBeg() interface{} {
+func (ll *Doubly) DelAtBeg() any {
 	if ll.Head == nil {
 		return -1
 	}
@@ -68,7 +68,7 @@ func (ll *Doubly) DelAtBeg() interface{} {
 }
 
 // DetAtEnd Delete a node at the end of the linkedlist
-func (ll *Doubly) DelAtEnd() interface{} {
+func (ll *Doubly) DelAtEnd() any {
 	// no item
 	if ll.Head == nil {
 		return -1
@@ -90,7 +90,7 @@ func (ll *Doubly) DelAtEnd() interface{} {
 }
 
 // Count Number of nodes in the linkedlist
-func (ll *Doubly) Count() interface{} {
+func (ll *Doubly) Count() any {
 	var ctr int = 0
 
 	for cur := ll.Head; cur != nil; cur = cur.Next {

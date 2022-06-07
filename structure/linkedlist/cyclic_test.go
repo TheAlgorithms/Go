@@ -15,8 +15,8 @@ func TestAdd(t *testing.T) {
 	list := NewCyclic()
 	fillList(list, 3)
 
-	want := []interface{}{1, 2, 3}
-	var got []interface{}
+	want := []any{1, 2, 3}
+	var got []any
 	var start *Node
 	start = list.Head
 

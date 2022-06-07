@@ -9,27 +9,27 @@
 
 package queue
 
-var ListQueue []interface{}
+var ListQueue []any
 
 // EnQueue it will be added new value into our list
-func EnQueue(n interface{}) {
+func EnQueue(n any) {
 	ListQueue = append(ListQueue, n)
 }
 
 // DeQueue it will be removed the first value that added into the list
-func DeQueue() interface{} {
+func DeQueue() any {
 	data := ListQueue[0]
 	ListQueue = ListQueue[1:]
 	return data
 }
 
 // FrontQueue return the Front value
-func FrontQueue() interface{} {
+func FrontQueue() any {
 	return ListQueue[0]
 }
 
 // BackQueue return the Back value
-func BackQueue() interface{} {
+func BackQueue() any {
 	return ListQueue[len(ListQueue)-1]
 }
 

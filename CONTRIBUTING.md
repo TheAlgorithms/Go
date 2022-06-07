@@ -6,9 +6,9 @@ Welcome to [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go)! Before submi
 
 ## Contributing
 
-### Maintainer/reviewer
+### Maintainers
 
-**Please check the [reviewer code](https://github.com/TheAlgorithms/Go/blob/master/DIRECTORY.md) file for maintainers and reviewers.**
+Please check the [`CODEOWNERS`](https://github.com/TheAlgorithms/Go/blob/master/.github/CODEOWNERS) file for a list of repository maintainers.
 
 ### Contributor
 
@@ -93,7 +93,7 @@ import (
 // Fprint formats using the default formats for its operands and writes to w.
 // Spaces are added between operands when neither is a string.
 // It returns the number of bytes written, and any write error encountered.
-func Fprint(w io.Writer, a ...interface{}) (n int, err error) {
+func Fprint(w io.Writer, a ...any) (n int, err error) {
     ...
 }
 

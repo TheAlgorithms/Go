@@ -26,7 +26,7 @@ func TestDynamicArray(t *testing.T) {
 		if numbers.IsEmpty() != false {
 			t.Errorf("Expected be false but got %v", numbers.IsEmpty())
 		}
-		var res []interface{}
+		var res []any
 		res = append(res, 10)
 		res = append(res, 20)
 		res = append(res, 30)
@@ -43,7 +43,7 @@ func TestDynamicArray(t *testing.T) {
 		if numbers.IsEmpty() != false {
 			t.Errorf("Expected be false but got %v", numbers.IsEmpty())
 		}
-		var res []interface{}
+		var res []any
 		res = append(res, 10)
 		res = append(res, 30)
 		res = append(res, 40)
