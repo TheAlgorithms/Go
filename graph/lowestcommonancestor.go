@@ -10,6 +10,7 @@ type ITree interface {
 	addEdge(int, int)
 	BuildLCA()
 	GetDepth(int) int
+	GetDad(int) int
 	GetLCA(int, int) int
 }
 
@@ -18,6 +19,7 @@ type Tree struct {
 	root          int
 	MAXLOG        int
 	depth         []int
+	dad           []int
 	jump          [][]int
 	edges         [][]int
 }
@@ -29,6 +31,7 @@ func (tree *Tree) addEdge(u, v int) {
 
 func (tree *Tree) dfs(u, par int) {
 	tree.jump[0][u] = par
+	tree.dad[u] = par
 	for _, v := range tree.edges[u] {
 		if v != par {
 			tree.depth[v] = tree.depth[u] + 1
@@ -49,6 +52,10 @@ func (tree *Tree) BuildLCA() {
 
 func (tree *Tree) GetDepth(u int) int {
 	return tree.depth[u]
+}
+
+func (tree *Tree) GetDad(u int) int {
+	return tree.dad[u]
 }
 
 func (tree *Tree) GetLCA(u, v int) int {
@@ -80,6 +87,7 @@ func NewTree(numbersVertex, root int, edges []TreeEdge) (tree *Tree) {
 	tree = new(Tree)
 	tree.numbersVertex, tree.root, tree.MAXLOG = numbersVertex, root, 0
 	tree.depth = make([]int, numbersVertex)
+	tree.dad = make([]int, numbersVertex)
 
 	for (1 << tree.MAXLOG) <= numbersVertex {
 		(tree.MAXLOG) += 1
