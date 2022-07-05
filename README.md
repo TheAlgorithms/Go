@@ -415,7 +415,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 7. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
 8. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
 9. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-10. [`NewTree`](./graph/lowestcommonancestor.go#L79): No description provided.
+10. [`NewTree`](./graph/lowestcommonancestor.go#L86): No description provided.
 11. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
 12. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
@@ -432,9 +432,9 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 5. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-6. [`Query`](./graph/lowestcommonancestor_test.go#L7): No description provided.
+6. [`Query`](./graph/lowestcommonancestor_test.go#L9): No description provided.
 
-7. [`Tree`](./graph/lowestcommonancestor.go#L16): No description provided.
+7. [`Tree`](./graph/lowestcommonancestor.go#L17): No description provided.
 
 8. [`TreeEdge`](./graph/lowestcommonancestor.go#L3): No description provided.
 
