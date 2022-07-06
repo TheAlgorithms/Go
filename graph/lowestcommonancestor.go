@@ -1,3 +1,12 @@
+// lowestcommonancestor.go
+// description: Implementation of Lowest common ancestor (LCA) algorithm.
+// detail:
+// Let `T` be a tree. The LCA of `u` and `v` in T is the shared ancestor of `u` and `v`
+// that is located farthest from the root.
+// references: [cp-algorithms](https://cp-algorithms.com/graph/lca_binary_lifting.html)
+// author(s) [Dat](https://github.com/datbeohbbh)
+// see lowestcommonancestor_test.go for a test implementation.
+
 package graph
 
 type TreeEdge struct {
@@ -8,7 +17,6 @@ type TreeEdge struct {
 type ITree interface {
 	dfs(int, int)
 	addEdge(int, int)
-	BuildLCA()
 	GetDepth(int) int
 	GetDad(int) int
 	GetLCA(int, int) int
@@ -36,16 +44,6 @@ func (tree *Tree) dfs(u, par int) {
 		if v != par {
 			tree.depth[v] = tree.depth[u] + 1
 			tree.dfs(v, u)
-		}
-	}
-}
-
-func (tree *Tree) BuildLCA() {
-	tree.dfs(tree.root, tree.root)
-
-	for j := 1; j < tree.MAXLOG; j++ {
-		for u := 0; u < tree.numbersVertex; u++ {
-			tree.jump[j][u] = tree.jump[j-1][tree.jump[j-1][u]]
 		}
 	}
 }
@@ -105,4 +103,19 @@ func NewTree(numbersVertex, root int, edges []TreeEdge) (tree *Tree) {
 	}
 
 	return tree
+}
+
+// For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc.
+// Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`.
+// These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
+func LowestCommonAncestor(tree *Tree) {
+	// call dfs to compute depth from the root to each node and the parent of each node.
+	tree.dfs(tree.root, tree.root)
+
+	// compute jump[j][u]
+	for j := 1; j < tree.MAXLOG; j++ {
+		for u := 0; u < tree.numbersVertex; u++ {
+			tree.jump[j][u] = tree.jump[j-1][tree.jump[j-1][u]]
+		}
+	}
 }

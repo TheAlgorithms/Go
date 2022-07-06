@@ -59,17 +59,6 @@ func TestLCA(t *testing.T) {
 		}, {
 			numbersVertex: 9,
 			root:          7,
-			/*
-										7
-									 /
-									6
-								/  \
-							2    8
-						/ | \
-					 0  3  4
-					/   |
-				 1    5
-			*/
 			edges: []TreeEdge{
 				{
 					from: 0,
@@ -133,10 +122,19 @@ func TestLCA(t *testing.T) {
 			},
 		},
 	}
-
+	// Test #2:
+	//							7
+	//						 /
+	//						6
+	//					/  \
+	//				2    8
+	//			/ | \
+	//		 0  3  4
+	//		/   |
+	//	 1    5
 	for idx, test := range testSuites {
 		tree := NewTree(test.numbersVertex, test.root, test.edges)
-		tree.BuildLCA()
+		LowestCommonAncestor(tree)
 
 		for qi, query := range test.queries {
 			actual := tree.GetLCA(query.u, query.v)
@@ -231,12 +229,13 @@ func generateQuery(tree *Tree) []Query {
 	return queries
 }
 
+// Test with the tree with up to 2000 vertices.
 func TestLCAWithLargeTree(t *testing.T) {
 	const MAXTEST int = 20
 
 	for test := 1; test <= MAXTEST; test++ {
 		tree := generateTree()
-		tree.BuildLCA()
+		LowestCommonAncestor(tree)
 
 		queries := generateQuery(tree)
 
