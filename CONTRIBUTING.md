@@ -1,16 +1,21 @@
-# CONTRIBUTION GUIDELINES
+CONTRIBUTION GUIDELINES
+======
 
-## Before contributing
+Before contributing
+------
 
 Welcome to [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go)! Before submitting pull requests, please make sure that you have **read the whole guidelines**. If you have any doubts about this contribution guide, please open [an issue](https://github.com/TheAlgorithms/Go/issues/new/choose) or ask in our [Discord server](https://discord.gg/c7MnfGFGa6) / [Gitter](https://gitter.im/TheAlgorithms), and clearly state your concerns.
 
-## Contributing
+Contributing
+------
 
 ### Maintainers
+---
 
 Please check the [`CODEOWNERS`](https://github.com/TheAlgorithms/Go/blob/master/.github/CODEOWNERS) file for a list of repository maintainers.
 
 ### Contributor
+---
 
 Being a contributor at The Algorithms, we request you to follow the points mentioned below:
 
@@ -19,13 +24,18 @@ Being a contributor at The Algorithms, we request you to follow the points menti
 - Your work will be distributed under the [MIT License](https://github.com/TheAlgorithms/Go/blob/master/LICENSE) once your pull request has been merged.
 - Please follow the repository guidelines and standards mentioned below.
 
-**New implementation** New implementations are welcome!
+#### New implementation
 
-You can add new algorithms or data structures that are **not present in the repository** or that can **improve** the old implementations (**documentation**, **improving test cases**, removing bugs, or in any other reasonable sense)
+- New implementations are welcome!
 
-**Issues** Please avoid opening issues asking to be "assigned” to a particular algorithm. This merely creates unnecessary noise for maintainers. Instead, please submit your implementation in a pull request, and it will be evaluated by project maintainers.
+- You can add new algorithms or data structures that are **not present in the repository** or that can **improve** the old implementations (**documentation**, **improving test cases**, removing bugs, or in any other reasonable sense)
+
+#### Issues
+
+- Please avoid opening issues asking to be "assigned” to a particular algorithm. This merely creates unnecessary noise for maintainers. Instead, please submit your implementation in a pull request, and it will be evaluated by project maintainers.
 
 ### Making Changes
+---
 
 #### Code
 
@@ -56,6 +66,7 @@ You can add new algorithms or data structures that are **not present in the repo
 - Please try to add one or more `Test` functions that will invoke the algorithm implementation on random test data with the expected output.
 
 ### Benchmark
+---
 
 - Make sure to add examples and benchmark cases in your `filename_test.go` or `filename_bench.go` if you want separated test and benchmark files.
 - If you find an algorithm or document without benchmarks, please feel free to create a pull request or issue describing suggested changes.
@@ -158,6 +169,7 @@ Common prefixes:
 - test: Correct existing tests or add new ones
 
 ### For New Gophers
+---
 
 #### Installing Go
 
@@ -192,6 +204,7 @@ go build .
 ```
 
 ### Pull Requests
+---
 
 - Check out our [pull request template](https://github.com/TheAlgorithms/Go/blob/master/.github/PULL_REQUEST_TEMPLATE/pull_request.md
   )
