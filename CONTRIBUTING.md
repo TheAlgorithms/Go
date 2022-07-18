@@ -1,13 +1,10 @@
 # CONTRIBUTION GUIDELINES
-======
 
 ## Before contributing
-------
 
 Welcome to [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go)! Before submitting pull requests, please make sure that you have **read the whole guidelines**. If you have any doubts about this contribution guide, please open [an issue](https://github.com/TheAlgorithms/Go/issues/new/choose) or ask in our [Discord server](https://discord.gg/c7MnfGFGa6) / [Gitter](https://gitter.im/TheAlgorithms), and clearly state your concerns.
 
 ## Contributing
-------
 
 ### Maintainers
 ---
