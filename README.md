@@ -7,7 +7,7 @@
 [![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square)](https://discord.gg/c7MnfGFGa6)&nbsp;
 
 ### Algorithms implemented in Go (for education)
-
+测试
 The repository is a collection of open-source implementation of a variety of algorithms implemented in Go and licensed under [MIT License](LICENSE).
 
 Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
@@ -17,7 +17,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 # Packages:
 
 <details>
-	<summary> <strong> ahocorasick </strong> </summary>	
+	<summary> <strong> ahocorasick </strong> </summary>
 
 ---
 
@@ -48,7 +48,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> armstrong </strong> </summary>	
+	<summary> <strong> armstrong </strong> </summary>
 
 ---
 
@@ -58,7 +58,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> avl </strong> </summary>	
+	<summary> <strong> avl </strong> </summary>
 
 ---
 
@@ -80,7 +80,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> binary </strong> </summary>	
+	<summary> <strong> binary </strong> </summary>
 
 ---
 
@@ -103,7 +103,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> binarytree </strong> </summary>	
+	<summary> <strong> binarytree </strong> </summary>
 
 ---
 
@@ -130,7 +130,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> caesar </strong> </summary>	
+	<summary> <strong> caesar </strong> </summary>
 
 ---
 
@@ -144,7 +144,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> catalan </strong> </summary>	
+	<summary> <strong> catalan </strong> </summary>
 
 ---
 
@@ -154,7 +154,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> checksum </strong> </summary>	
+	<summary> <strong> checksum </strong> </summary>
 
 ---
 
@@ -174,7 +174,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> coloring </strong> </summary>	
+	<summary> <strong> coloring </strong> </summary>
 
 ---
 
@@ -193,7 +193,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> combination </strong> </summary>	
+	<summary> <strong> combination </strong> </summary>
 
 ---
 
@@ -212,7 +212,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> conversion </strong> </summary>	
+	<summary> <strong> conversion </strong> </summary>
 
 ---
 
@@ -234,7 +234,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> diffiehellman </strong> </summary>	
+	<summary> <strong> diffiehellman </strong> </summary>
 
 ---
 
@@ -248,7 +248,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> dynamic </strong> </summary>	
+	<summary> <strong> dynamic </strong> </summary>
 
 ---
 
@@ -279,7 +279,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> dynamicarray </strong> </summary>	
+	<summary> <strong> dynamicarray </strong> </summary>
 
 ---
 
@@ -293,7 +293,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> factorial </strong> </summary>	
+	<summary> <strong> factorial </strong> </summary>
 
 ---
 
@@ -308,7 +308,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> fibonacci </strong> </summary>	
+	<summary> <strong> fibonacci </strong> </summary>
 
 ---
 
@@ -319,7 +319,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> gcd </strong> </summary>	
+	<summary> <strong> gcd </strong> </summary>
 
 ---
 
@@ -337,7 +337,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> generateparentheses </strong> </summary>	
+	<summary> <strong> generateparentheses </strong> </summary>
 
 ---
 
@@ -347,7 +347,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> genetic </strong> </summary>	
+	<summary> <strong> genetic </strong> </summary>
 
 ---
 
@@ -370,7 +370,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> geometry </strong> </summary>	
+	<summary> <strong> geometry </strong> </summary>
 
 ---
 
@@ -397,7 +397,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> graph </strong> </summary>	
+	<summary> <strong> graph </strong> </summary>
 
 ---
 
@@ -444,7 +444,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> hashmap </strong> </summary>	
+	<summary> <strong> hashmap </strong> </summary>
 
 ---
 
@@ -461,7 +461,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> kmp </strong> </summary>	
+	<summary> <strong> kmp </strong> </summary>
 
 ---
 
@@ -477,7 +477,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> lcm </strong> </summary>	
+	<summary> <strong> lcm </strong> </summary>
 
 ---
 
@@ -487,7 +487,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> levenshtein </strong> </summary>	
+	<summary> <strong> levenshtein </strong> </summary>
 
 ---
 
@@ -497,7 +497,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> linkedlist </strong> </summary>	
+	<summary> <strong> linkedlist </strong> </summary>
 
 ---
 
@@ -528,7 +528,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> manacher </strong> </summary>	
+	<summary> <strong> manacher </strong> </summary>
 
 ---
 
@@ -538,7 +538,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> math </strong> </summary>	
+	<summary> <strong> math </strong> </summary>
 
 ---
 
@@ -557,7 +557,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> max </strong> </summary>	
+	<summary> <strong> max </strong> </summary>
 
 ---
 
@@ -568,7 +568,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> maxsubarraysum </strong> </summary>	
+	<summary> <strong> maxsubarraysum </strong> </summary>
 
 ---
 
@@ -581,7 +581,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> min </strong> </summary>	
+	<summary> <strong> min </strong> </summary>
 
 ---
 
@@ -592,7 +592,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> modular </strong> </summary>	
+	<summary> <strong> modular </strong> </summary>
 
 ---
 
@@ -604,7 +604,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> moserdebruijnsequence </strong> </summary>	
+	<summary> <strong> moserdebruijnsequence </strong> </summary>
 
 ---
 
@@ -614,7 +614,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> nested </strong> </summary>	
+	<summary> <strong> nested </strong> </summary>
 
 ---
 
@@ -627,7 +627,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> palindrome </strong> </summary>	
+	<summary> <strong> palindrome </strong> </summary>
 
 ---
 
@@ -638,7 +638,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> pangram </strong> </summary>	
+	<summary> <strong> pangram </strong> </summary>
 
 ---
 
@@ -648,7 +648,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> parenthesis </strong> </summary>	
+	<summary> <strong> parenthesis </strong> </summary>
 
 ---
 
@@ -658,7 +658,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> pascal </strong> </summary>	
+	<summary> <strong> pascal </strong> </summary>
 
 ---
 
@@ -668,7 +668,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> password </strong> </summary>	
+	<summary> <strong> password </strong> </summary>
 
 ---
 
@@ -681,7 +681,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> permutation </strong> </summary>	
+	<summary> <strong> permutation </strong> </summary>
 
 ---
 
@@ -692,7 +692,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> pi </strong> </summary>	
+	<summary> <strong> pi </strong> </summary>
 
 ---
 
@@ -707,7 +707,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> polybius </strong> </summary>	
+	<summary> <strong> polybius </strong> </summary>
 
 ---
 
@@ -726,7 +726,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> power </strong> </summary>	
+	<summary> <strong> power </strong> </summary>
 
 ---
 
@@ -739,7 +739,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> prime </strong> </summary>	
+	<summary> <strong> prime </strong> </summary>
 
 ---
 
@@ -759,7 +759,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> pythagoras </strong> </summary>	
+	<summary> <strong> pythagoras </strong> </summary>
 
 ---
 
@@ -775,7 +775,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> queue </strong> </summary>	
+	<summary> <strong> queue </strong> </summary>
 
 ---
 
@@ -800,7 +800,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> rsa </strong> </summary>	
+	<summary> <strong> rsa </strong> </summary>
 
 ---
 
@@ -814,7 +814,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> search </strong> </summary>	
+	<summary> <strong> search </strong> </summary>
 
 ---
 
@@ -825,7 +825,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> segmenttree </strong> </summary>	
+	<summary> <strong> segmenttree </strong> </summary>
 
 ---
 
@@ -841,7 +841,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> set </strong> </summary>	
+	<summary> <strong> set </strong> </summary>
 
 ---
 
@@ -854,7 +854,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> sha256 </strong> </summary>	
+	<summary> <strong> sha256 </strong> </summary>
 
 ---
 
@@ -864,7 +864,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> sort </strong> </summary>	
+	<summary> <strong> sort </strong> </summary>
 
 ---
 
@@ -894,7 +894,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Types
 
-1. [`Int`](#L0): 
+1. [`Int`](#L0):
 
 	Methods:
 	1. [`More`](./sort/heapsort.go#L114): No description provided.
@@ -903,7 +903,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> stack </strong> </summary>	
+	<summary> <strong> stack </strong> </summary>
 
 ---
 
@@ -918,7 +918,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> transposition </strong> </summary>	
+	<summary> <strong> transposition </strong> </summary>
 
 ---
 
@@ -937,7 +937,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> trie </strong> </summary>	
+	<summary> <strong> trie </strong> </summary>
 
 ---
 
@@ -956,7 +956,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> xor </strong> </summary>	
+	<summary> <strong> xor </strong> </summary>
 
 ---
 
