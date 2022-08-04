@@ -20,7 +20,7 @@ func Patience[T constraints.Ordered](arr []T) []T {
 	for _, card := range arr {
 		left, right := 0, len(piles)
 		for left < right {
-			mid := left + (right-left)/2 
+			mid := left + (right-left)/2
 			if piles[mid][len(piles[mid])-1] >= card {
 				right = mid
 			} else {
