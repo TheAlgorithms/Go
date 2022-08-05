@@ -34,7 +34,7 @@ func (sl *SList) Peak() (any, error) {
 }
 
 // Pop is return last value that insert into our stack
-//also it will remove it in our stack
+// also it will remove it in our stack
 func (sl *SList) Pop() (any, error) {
 	if !sl.Empty() {
 		// get last element that insert into stack
