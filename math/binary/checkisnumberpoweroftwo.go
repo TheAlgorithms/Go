@@ -10,8 +10,7 @@ package binary
 // IsPowerOfTwo This function uses the fact that powers of 2 are represented
 // like 10...0 in binary, and numbers one less than the power of 2
 // are represented like 11...1.
-// Therefore, using the and function:
-//  10...0 & 01...1 = 00...0 -> 0
+// Therefore, using the and function: 10...0 & 01...1 = 00...0 -> 0
 // This is also true for 0, which is not a power of 2, for which we
 // have to add and extra condition.
 func IsPowerOfTwo(x int) bool {
