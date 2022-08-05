@@ -3,13 +3,13 @@
 // Details:
 //   https://www.hackerrank.com/challenges/abbr/problem
 // Problem description (from hackerrank):
-//   You can perform the following operations on the string, a:
-//   1. Capitalize zero or more of a's lowercase letters.
-//   2. Delete all of the remaining lowercase letters in a.
-//   Given 2 strings a and b, determine if it's possible to make a equal to be using above operations.
+// You can perform the following operations on the string, a:
+//  1. Capitalize zero or more of a's lowercase letters.
+//  2. Delete all of the remaining lowercase letters in a.
+//  Given 2 strings a and b, determine if it's possible to make a equal to be using above operations.
 // Example:
-//	 Given a = "ABcde" and b = "ABCD"
-//   We can capitalize "c" and "d" in a to get "ABCde" then delete all the lowercase letters (which is only "e") in a to get "ABCD" which equals b.
+//  Given a = "ABcde" and b = "ABCD"
+//  We can capitalize "c" and "d" in a to get "ABCde" then delete all the lowercase letters (which is only "e") in a to get "ABCD" which equals b.
 // Author: [duongoku](https://github.com/duongoku)
 // See abbreviation_test.go for test cases
 

@@ -1,8 +1,8 @@
-//Given a set of non-negative integers, and a (positive) value sum,
-//determine if there is a subset of the given set with sum
-//equal to given sum.
-//Complexity: O(n*sum)
-//references: https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
+// Given a set of non-negative integers, and a (positive) value sum,
+// determine if there is a subset of the given set with sum
+// equal to given sum.
+// Complexity: O(n*sum)
+// references: https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
 
 package dynamic
 

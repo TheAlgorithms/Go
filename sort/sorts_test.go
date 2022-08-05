@@ -73,7 +73,7 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
-//BEGIN TESTS
+// BEGIN TESTS
 
 func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
@@ -135,7 +135,7 @@ func TestPigeonhole(t *testing.T) {
 	testFramework(t, sort.Pigeonhole)
 }
 
-//END TESTS
+// END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	var sortTests = []struct {
@@ -174,7 +174,7 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	}
 }
 
-//BEGIN BENCHMARKS
+// BEGIN BENCHMARKS
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
