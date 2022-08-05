@@ -50,7 +50,7 @@ func ArticulationPoint(graph *Graph) []bool {
 // articulationPointHelper is a recursive function to traverse the graph
 // and mark articulation points. Based on the depth first search transversal
 // of the graph, however modified to keep track and update the
-// `child_cnt`, `discovery_time`` and `earliest_discovery` slices defined above
+// `child_cnt`, `discovery_time“ and `earliest_discovery` slices defined above
 func articulationPointHelper(
 	apHelperInstance *apHelper,
 	vertex int,

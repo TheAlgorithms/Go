@@ -7,13 +7,13 @@ import (
 
 const float64EqualityThreshold = 1e-9
 
-//almostEqual subtracts two float64 variables and returns true if they differ less then float64EqualityThreshold
-//reference: https://stackoverflow.com/a/47969546
+// almostEqual subtracts two float64 variables and returns true if they differ less then float64EqualityThreshold
+// reference: https://stackoverflow.com/a/47969546
 func almostEqual(a, b float64) bool {
 	return math.Abs(a-b) <= float64EqualityThreshold
 }
 
-//IsAlmostEqualTo verifies if two WeightedGraphs can be considered almost equal
+// IsAlmostEqualTo verifies if two WeightedGraphs can be considered almost equal
 func (a *WeightedGraph) IsAlmostEqualTo(b WeightedGraph) bool {
 	if len(*a) != len(b) {
 		return false
