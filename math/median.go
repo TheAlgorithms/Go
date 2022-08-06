@@ -5,17 +5,18 @@
 package math
 
 import (
-	"golang.org/x/exp/constraints"
-	"golang.org/x/exp/slices"
+	"github.com/TheAlgorithms/Go/constraints"
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 type Data interface {
 	constraints.Float | constraints.Integer
 }
 
-func Median[X Data](values []X) float64 {
+func Median[T Data](values []T) float64 {
 	// Sorting the values in order
-	slices.Sort(values)
+
+	sort.Bubble(values)
 
 	var median float64
 
