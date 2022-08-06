@@ -2,23 +2,41 @@
 // author(s): [CalvinNJK] (https://github.com/CalvinNJK)
 // description: Test for Finding Mode Value In an Array
 
-package math
+package math_test
 
 import (
 	"errors"
 	"testing"
+
+	"github.com/TheAlgorithms/Go/constraints"
+	"github.com/TheAlgorithms/Go/math"
 )
 
-func TestModeInteger(t *testing.T) {
+type testCase[T constraints.Number] struct {
+	name    string
+	numbers []T
+	mode    T
+	err     error
+}
 
-	testCases := []struct {
-		name    string
-		numbers []int
-		mode    int
-		err     error
-	}{
-		// Test Cases
-		// For INTEGER values
+func testModeFramework[T constraints.Number](t *testing.T, testCases []testCase[T]) {
+	for _, test := range testCases {
+		t.Run(test.name, func(t *testing.T) {
+			returnMode, err := math.Mode(test.numbers)
+			if returnMode != test.mode {
+				t.Errorf("\n Failed test %s,\n Numbers: %v,\n Correct Mode: %v,\n Returned Mode: %v\n",
+					test.name, test.numbers, test.mode, returnMode)
+			}
+			if !errors.Is(err, test.err) {
+				t.Errorf("\n Failed test %s,\n Numbers: %v,\n Correct Error: %v,\n Returned Error: %v\n",
+					test.name, test.numbers, test.err, err)
+			}
+		})
+	}
+}
+func TestMode(t *testing.T) {
+	// test cases for integer values
+	intTestCases := []testCase[int]{
 		{
 			name:    "An array of positive whole numbers",
 			numbers: []int{10, 52, 10, 92, 10, 75, 60, 10, 44, 29},
@@ -41,36 +59,12 @@ func TestModeInteger(t *testing.T) {
 			name:    "If array has no value",
 			numbers: []int{},
 			mode:    0,
-			err:     emptyModeArr,
+			err:     math.ErrEmptySlice,
 		},
 	}
-
-	// Run for all the test cases
-	for _, test := range testCases {
-		t.Run(test.name, func(t *testing.T) {
-			returnMode, err := Mode(test.numbers)
-			if returnMode != test.mode {
-				t.Errorf("\n Failed test %s,\n Numbers: %v,\n Correct Mode: %v,\n Returned Mode: %v\n",
-					test.name, test.numbers, test.mode, returnMode)
-			}
-			if !errors.Is(err, test.err) {
-				t.Errorf("\n Failed test %s,\n Numbers: %v,\n Correct Error: %v,\n Returned Error: %v\n",
-					test.name, test.numbers, test.err, err)
-			}
-		})
-	}
-}
-
-func TestModeFloat(t *testing.T) {
-
-	testCases := []struct {
-		name    string
-		numbers []float64
-		mode    float64
-		err     error
-	}{
-		// Test Cases
-		// For FLOAT values
+	testModeFramework(t, intTestCases)
+	// test cases for float64 values
+	floatTestCases := []testCase[float64]{
 		{
 			name:    "An array of positive real numbers",
 			numbers: []float64{1.5, 2.88, 84.4, 77.2, 29.8, 46.2, 33.7, 88.4, 88.4},
@@ -93,22 +87,8 @@ func TestModeFloat(t *testing.T) {
 			name:    "If array has no value",
 			numbers: []float64{},
 			mode:    0,
-			err:     emptyModeArr,
+			err:     math.ErrEmptySlice,
 		},
 	}
-
-	// Run for all the test cases
-	for _, test := range testCases {
-		t.Run(test.name, func(t *testing.T) {
-			returnMode, err := Mode(test.numbers)
-			if returnMode != test.mode {
-				t.Errorf("\n Failed test %s,\n Numbers: %v,\n Correct Mode: %v,\n Returned Mode: %v\n",
-					test.name, test.numbers, test.mode, returnMode)
-			}
-			if !errors.Is(err, test.err) {
-				t.Errorf("\n Failed test %s,\n Numbers: %v,\n Correct Error: %v,\n Returned Error: %v\n",
-					test.name, test.numbers, test.err, err)
-			}
-		})
-	}
+	testModeFramework(t, floatTestCases)
 }
