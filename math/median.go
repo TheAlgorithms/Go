@@ -9,11 +9,7 @@ import (
 	"github.com/TheAlgorithms/Go/sort"
 )
 
-type Data interface {
-	constraints.Float | constraints.Integer
-}
-
-func Median[T Data](values []T) float64 {
+func Median[T constraints.Number](values []T) float64 {
 	// Sorting the values in order
 
 	sort.Bubble(values)
