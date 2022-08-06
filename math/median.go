@@ -13,7 +13,7 @@ type Data interface {
 	constraints.Float | constraints.Integer
 }
 
-func Median[T Data](values []T) float64 {
+func Median[X Data](values []X) float64 {
 	// Sorting the values in order
 	slices.Sort(values)
 
