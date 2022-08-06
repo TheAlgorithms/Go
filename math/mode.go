@@ -20,7 +20,7 @@ type Number interface {
 // Error when array is empty
 var emptyModeArr = errors.New("Array is empty")
 
-func Mode[T Number](numbers []T) (T, error) {
+func Mode[T constraints.Number](numbers []T) (T, error) {
 
 	// Indicate numbers of checking(looping)
 	n := len(numbers)
