@@ -18,7 +18,7 @@ type Number interface {
 }
 
 // Error when array is empty
-var emptyModeArr = errors.New("Array is empty")
+var ErrEmptySlice = errors.New("empty slice provided")
 
 func Mode[T constraints.Number](numbers []T) (T, error) {
 
