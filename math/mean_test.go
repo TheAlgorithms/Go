@@ -1,4 +1,4 @@
-package maths
+package math
 
 import (
 	"testing"
