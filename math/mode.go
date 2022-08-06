@@ -11,7 +11,9 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-// Error when array is empty
+// ErrEmptySlice is the error returned by functions in math package when
+// an empty slice is provided to it as argument when the function expects
+// a non-empty slice.
 var ErrEmptySlice = errors.New("empty slice provided")
 
 func Mode[T constraints.Number](numbers []T) (T, error) {
