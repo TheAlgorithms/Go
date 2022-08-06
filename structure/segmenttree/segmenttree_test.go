@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-//Query interval
+// Query interval
 type query struct {
 	firstIndex int
 	lastIndex  int
