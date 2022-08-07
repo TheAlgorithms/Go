@@ -1,6 +1,7 @@
-package math
+package math_test
 
 import (
+	"github.com/TheAlgorithms/Go/math"
 	"testing"
 )
 
@@ -39,7 +40,7 @@ func TestMean(t *testing.T) {
 
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
-			returnedAverage := Mean(test.testValues)
+			returnedAverage := math.Mean(test.testValues)
 			if returnedAverage != test.average {
 				t.Errorf("\nFailed test: %s\ntestValues: %v\naverage: %v\nbut received: %v\n",
 					test.name, test.testValues, test.average, returnedAverage)
