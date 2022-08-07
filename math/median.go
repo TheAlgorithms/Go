@@ -10,13 +10,11 @@ import (
 )
 
 func Median[T constraints.Number](values []T) float64 {
-	// Sorting the values in order
 
 	sort.Bubble(values)
 
 	var median float64
 
-	// Find the length of values
 	l := len(values)
 
 	switch {
