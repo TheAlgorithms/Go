@@ -20,31 +20,30 @@ func Mode[T constraints.Number](numbers []T) (T, error) {
 
 	n := len(numbers)
 
+	if n == 0 {
+		return 0, ErrEmptySlice
+	}
+
 	maxCount := 0
 	var maxValue T = 0
 
-	if n == 0 {
-		return 0, ErrEmptySlice
-	} else {
+	for i := 0; i < n; i++ {
 
-		for i := 0; i < n; i++ {
+		count := 0
 
-			count := 0
+		for k := 0; k < n; k++ {
 
-			for k := 0; k < n; k++ {
-
-				if numbers[k] == numbers[i] {
-					count++
-				}
-			}
-
-			if count > maxCount {
-				maxCount = count
-				maxValue = numbers[i]
+			if numbers[k] == numbers[i] {
+				count++
 			}
 		}
 
-		return maxValue, nil
-
+		if count > maxCount {
+			maxCount = count
+			maxValue = numbers[i]
+		}
 	}
+
+	return maxValue, nil
+
 }
