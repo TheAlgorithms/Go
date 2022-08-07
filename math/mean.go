@@ -4,11 +4,7 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type Digit interface {
-	constraints.Float | constraints.Integer
-}
-
-func Mean[T Digit](values []T) float64 {
+func Mean[T constraints.Number](values []T) float64 {
 
 	if len(values) == 0 {
 		return 0
