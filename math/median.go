@@ -13,8 +13,6 @@ func Median[T constraints.Number](values []T) float64 {
 
 	sort.Bubble(values)
 
-	var median float64
-
 	l := len(values)
 
 	switch {
@@ -22,11 +20,9 @@ func Median[T constraints.Number](values []T) float64 {
 		return 0
 
 	case l%2 == 0:
-		median = float64((values[l/2-1] + values[l/2]) / 2)
+		return float64((values[l/2-1] + values[l/2]) / 2)
 
 	default:
-		median = float64(values[l/2])
+		return float64(values[l/2])
 	}
-
-	return median
 }
