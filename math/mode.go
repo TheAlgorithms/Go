@@ -34,16 +34,16 @@ func Mode[T constraints.Number](numbers []T) (T, error) {
 		}
 	}
 
-	var mod T
+	var mode T
 	count := 0
 
 	for k, v := range countMap {
 		if v > count {
 			count = v
-			mod = k
+			mode = k
 		}
 	}
 
-	return mod, nil
+	return mode, nil
 
 }
