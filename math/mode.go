@@ -26,12 +26,11 @@ func Mode[T constraints.Number](numbers []T) (T, error) {
 		return 0, ErrEmptySlice
 	}
 
-	for i := range numbers {
-		temp := numbers[i]
-		if value, check := countMap[temp]; check {
-			countMap[temp] = value + 1
+	for _, number := range numbers {
+		if _, check := countMap[number]; check {
+			countMap[number]++
 		} else {
-			countMap[temp] = 1
+			countMap[number] = 1
 		}
 	}
 
