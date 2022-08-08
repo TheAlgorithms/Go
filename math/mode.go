@@ -18,32 +18,34 @@ var ErrEmptySlice = errors.New("empty slice provided")
 
 func Mode[T constraints.Number](numbers []T) (T, error) {
 
+	countMap := make(map[T]int)
+
 	n := len(numbers)
 
 	if n == 0 {
 		return 0, ErrEmptySlice
 	}
 
-	maxCount := 0
-	var maxValue T = 0
-
 	for i := 0; i < n; i++ {
-
-		count := 0
-
-		for k := 0; k < n; k++ {
-
-			if numbers[k] == numbers[i] {
-				count++
-			}
-		}
-
-		if count > maxCount {
-			maxCount = count
-			maxValue = numbers[i]
+		temp := numbers[i]
+		value, check := countMap[temp]
+		if check == false {
+			countMap[temp] = 1
+		} else {
+			countMap[temp] = value + 1
 		}
 	}
 
-	return maxValue, nil
+	var mod T
+	count := 0
+
+	for k, v := range countMap {
+		if v > count {
+			count = v
+			mod = k
+		}
+	}
+
+	return mod, nil
 
 }
