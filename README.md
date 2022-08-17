@@ -91,8 +91,8 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Abs`](./math/binary/abs.go#L10):  Abs returns absolute value using binary operation Principle of operation: 1) Get the mask by right shift by the base 2) Base is the size of an integer variable in bits, for example, for int32 it will be 32, for int64 it will be 64 3) For negative numbers, above step sets mask as 1 1 1 1 1 1 1 1 and 0 0 0 0 0 0 0 0 for positive numbers. 4) Add the mask to the given number. 5) XOR of mask + n and mask gives the absolute value.
 2. [`BitCounter`](./math/binary/bitcounter.go#L11):  BitCounter - The function returns the number of set bits for an unsigned integer number
-3. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
-4. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
+3. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L21):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:	  10...0	& 01...1	  00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
+4. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L28):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
 5. [`LogBase2`](./math/binary/logarithm.go#L7):  LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
 6. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
 7. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
@@ -238,7 +238,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package diffiehellman implements Deffie Hellman Key Exchange Algorithm for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
+#####  Package diffiehellman implements Diffie-Hellman Key Exchange Algorithm for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
 
 ---
 ##### Functions:
@@ -552,8 +552,11 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 3. [`FindKthMax`](./math/kthnumber.go#L11):  FindKthMax returns the kth large element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
 4. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
 5. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-6. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
-7. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
+6. [`Mean`](./math/mean.go#L7): No description provided.
+7. [`Median`](./math/median.go#L12): No description provided.
+8. [`Mode`](./math/mode.go#L19): No description provided.
+9. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+10. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
 ---
 </details><details>
@@ -623,7 +626,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`IsBalanced`](./other/nested/nestedbrackets.go#L20):  IsBalanced returns true if provided input string is properly nested. Input is a sequence of brackets: '(', ')', '[', ']', '{', '}'. A sequence of brackets `s` is considered properly nested if any of the following conditions are true: 	- `s` is empty; 	- `s` has the form (U) or [U] or {U} where U is a properly nested string; 	- `s` has the form VW where V and W are properly nested strings. For example, the string "()()[()]" is properly nested but "[(()]" is not. **Note** Providing characters other then brackets would return false, despite brackets sequence in the string. Make sure to filter input before usage.
+1. [`IsBalanced`](./other/nested/nestedbrackets.go#L20):  IsBalanced returns true if provided input string is properly nested. Input is a sequence of brackets: '(', ')', '[', ']', '{', '}'. A sequence of brackets `s` is considered properly nested if any of the following conditions are true:   - `s` is empty;   - `s` has the form (U) or [U] or {U} where U is a properly nested string;   - `s` has the form VW where V and W are properly nested strings. For example, the string "()()[()]" is properly nested but "[(()]" is not. **Note** Providing characters other then brackets would return false, despite brackets sequence in the string. Make sure to filter input before usage.
 
 ---
 </details><details>
@@ -765,7 +768,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Distance`](./math/pythagoras/pythagoras.go#L15): Distance calculates the distance between to vectors with the   Pythagoras theorem
+1. [`Distance`](./math/pythagoras/pythagoras.go#L15):  Distance calculates the distance between to vectors with the   Pythagoras theorem
 
 ---
 ##### Types
@@ -868,7 +871,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package sort a package for demonstrating sorting algorithms in Go
+#####  Package sort a package for demonstrating sorting algorithms in Go Package sort Patience sorting is a sorting algorithm inspired by the card game patience.  For more details check out those links below here: GeeksForGeeks article : https://www.geeksforgeeks.org/patience-sorting/ Wikipedia article: https://en.wikipedia.org/wiki/Patience_sorting authors [guuzaa](https://github.com/guuzaa) see patiencesort.go
 
 ---
 ##### Functions:
@@ -883,13 +886,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 8. [`Merge`](./sort/mergesort.go#L40):  Merge Perform merge sort on a slice
 9. [`MergeIter`](./sort/mergesort.go#L54): No description provided.
 10. [`Partition`](./sort/quicksort.go#L12): No description provided.
-11. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-12. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
-13. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
-14. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-15. [`Selection`](./sort/selectionsort.go#L5): No description provided.
-16. [`Shell`](./sort/shellsort.go#L5): No description provided.
-17. [`Simple`](./sort/simplesort.go#L13): No description provided.
+11. [`Patience`](./sort/patiencesort.go#L13): No description provided.
+12. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+13. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+14. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+15. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
+16. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+17. [`Shell`](./sort/shellsort.go#L5): No description provided.
+18. [`Simple`](./sort/simplesort.go#L13): No description provided.
 
 ---
 ##### Types
