@@ -1,4 +1,4 @@
-// Package diffiehellman implements Deffie Hellman Key Exchange Algorithm
+// Package diffiehellman implements Diffie-Hellman Key Exchange Algorithm
 // for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
 package diffiehellman
 
