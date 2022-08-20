@@ -2,7 +2,7 @@
 ***
 ## What is it?
 ***
-Linked list is a data structure that is a linear chain of data elements whose order is not given by their phyisical placement in memory. This structure is built up of nodes which point to the element ahead or behind this particular node (depending on the type of Linked List).
+[Linked list](https://www.scaler.com/topics/linked-list/) is a data structure that is a linear chain of data elements whose order is not given by their phyisical placement in memory. This structure is built up of nodes which point to the element ahead or behind this particular node (depending on the type of Linked List).
 
 # Types of Linked List implemented within this repository
 
