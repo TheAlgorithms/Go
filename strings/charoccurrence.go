@@ -4,7 +4,7 @@
 // author(s) [Moein](https://github.com/mo1ein)
 // see charoccurrence_test.go
 
-package charoccurrence
+package strings
 
 func Count(text string) map[rune]int {
 	charOccurrence := make(map[rune]int, 0)
