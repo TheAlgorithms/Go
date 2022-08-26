@@ -1,4 +1,4 @@
-package charoccurrence
+package charoccurrence_test
 
 import (
 	"reflect"
@@ -6,9 +6,9 @@ import (
 )
 
 var testCases = []struct {
-	name     string       // test description
-	input    string       // user input
-	expected map[rune]int // expected return
+	name     string
+	input    string
+	expected map[rune]int
 }{
 	{
 		"english text",
@@ -31,9 +31,8 @@ func TestCount(t *testing.T) {
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
 			funcResult := Count(test.input)
-			eq := reflect.DeepEqual(test.expected, funcResult)
-			if !eq {
-				t.Errorf("Expected answer '%v' for string '%s' but answer given was %v", test.expected, test.input, funcResult)
+			if !reflect.DeepEqual(test.expected, funcResult) {
+				t.Errorf("expected: %v, got %v", test.expected, test.input, funcResult)
 			}
 		})
 	}
