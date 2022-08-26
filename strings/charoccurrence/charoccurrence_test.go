@@ -32,7 +32,7 @@ func TestCount(t *testing.T) {
 		t.Run(test.name, func(t *testing.T) {
 			funcResult := Count(test.input)
 			if !reflect.DeepEqual(test.expected, funcResult) {
-				t.Errorf("expected: %v, got %v", test.expected, test.input, funcResult)
+				t.Errorf("expected: %v, got %v", test.expected, funcResult)
 			}
 		})
 	}
