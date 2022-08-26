@@ -9,11 +9,10 @@ package charoccurrence
 func Count(text string) map[rune]int {
 	charOccurrence := make(map[rune]int, 0)
 	for _, c := range text {
-		if _, ok := charOccurrence[c]; ok {
-			charOccurrence[c]++
-		} else {
-			charOccurrence[c] = 1
+		if _, ok := charOccurrence[c]; !ok {
+			charOccurrence[c] = 0
 		}
+		charOccurrence[c]++
 	}
 	return charOccurrence
 }
