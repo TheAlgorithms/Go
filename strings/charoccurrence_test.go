@@ -1,6 +1,7 @@
 package strings_test
 
 import (
+	"github.com/TheAlgorithms/Go/strings"
 	"reflect"
 	"testing"
 )
