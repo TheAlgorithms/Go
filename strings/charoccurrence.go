@@ -1,5 +1,6 @@
 // charoccurrence.go
-// description: Chars occurrence in the sentence
+// description: An algorithm which counts the number
+// of times a character occurred in a string.
 // details: An algorithm which counts the number
 // of times a character occurred in a string.
 // author(s) [Moein](https://github.com/mo1ein)
