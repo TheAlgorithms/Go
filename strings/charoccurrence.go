@@ -6,6 +6,8 @@
 
 package strings
 
+// CountChars count chars occurrence from string
+// It returns the map of rune:int
 func CountChars(text string) map[rune]int {
 	charMap := make(map[rune]int, 0)
 	for _, c := range text {
