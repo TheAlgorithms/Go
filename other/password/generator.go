@@ -25,7 +25,7 @@ func Generate(minLength int, maxLength int) string {
 
 	newPassword := make([]byte, intLength)
 	randomData := make([]byte, intLength+intLength/4)
-	clen := byte(len(chars))
+	charLen := byte(len(chars))
 	maxrb := byte(256 - (256 % len(chars)))
 	i := 0
 	for {
@@ -36,7 +36,7 @@ func Generate(minLength int, maxLength int) string {
 			if c >= maxrb {
 				continue
 			}
-			newPassword[i] = chars[c%clen]
+			newPassword[i] = chars[c%charLen]
 			i++
 			if i == intLength {
 				return string(newPassword)
