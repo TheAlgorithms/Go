@@ -5,19 +5,19 @@ import (
 	"testing"
 )
 
-func fillList(list *Cyclic, n int) {
+func fillList(list *Cyclic[int], n int) {
 	for i := 1; i <= n; i++ {
 		list.Add(i)
 	}
 }
 
 func TestAdd(t *testing.T) {
-	list := NewCyclic()
+	list := NewCyclic[int]()
 	fillList(list, 3)
 
 	want := []any{1, 2, 3}
 	var got []any
-	var start *Node
+	var start *Node[int]
 	start = list.Head
 
 	for i := 0; i < list.Size; i++ {
@@ -30,7 +30,7 @@ func TestAdd(t *testing.T) {
 }
 
 func TestWalk(t *testing.T) {
-	list := NewCyclic()
+	list := NewCyclic[int]()
 	fillList(list, 3)
 
 	want := 1
@@ -46,7 +46,7 @@ func TestRotate(t *testing.T) {
 		param        int
 		wantToReturn int
 	}
-	list := NewCyclic()
+	list := NewCyclic[int]()
 	fillList(list, 3)
 
 	testCases := []testCase{
@@ -69,7 +69,7 @@ func TestRotate(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	list := NewCyclic()
+	list := NewCyclic[int]()
 	fillList(list, 3)
 
 	want := 2
@@ -85,7 +85,7 @@ func TestDelete(t *testing.T) {
 }
 
 func TestDestroy(t *testing.T) {
-	list := NewCyclic()
+	list := NewCyclic[int]()
 	fillList(list, 3)
 	wantSize := 0
 	list.Destroy()
@@ -119,7 +119,7 @@ func TestJosephusProblem(t *testing.T) {
 	}
 
 	for _, tCase := range testCases {
-		list := NewCyclic()
+		list := NewCyclic[int]()
 		fillList(list, tCase.listCount)
 		got := JosephusProblem(list, tCase.param)
 		if got != tCase.wantToReturn {
