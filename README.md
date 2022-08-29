@@ -501,7 +501,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package linkedlist demonstates different implementations on linkedlists.
+#####  Package linkedlist demonstrates different implementations on linkedlists.
 
 ---
 ##### Functions:
