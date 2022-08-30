@@ -5,7 +5,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see pollard_test.go
 
-package pollard
+package math
 
 import (
 	"errors"

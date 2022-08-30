@@ -3,7 +3,7 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see pollard.go
 
-package pollard
+package math
 
 import (
 	"math/big"
