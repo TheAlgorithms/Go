@@ -16,9 +16,9 @@ import (
 func DefaultPolynomial(x, n *big.Int) *big.Int {
 	bigOne := big.NewInt(1)
 	bigTwo := big.NewInt(2)
-	xSquared := new(big.Int).Exp(x, bigTwo, n) // x^2 % n
-	xSquared.Add(xSquared, bigOne)             // (x^2 % n) + 1
-	xSquared.Mod(xSquared, n)                  // (x^2 + 1) % n
+	xSquared := new(big.Int).Exp(x, bigTwo, n) // see: https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm#Core_ideas
+	xSquared.Add(xSquared, bigOne)
+	xSquared.Mod(xSquared, n)
 	return xSquared
 }
 
