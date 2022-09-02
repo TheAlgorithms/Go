@@ -22,9 +22,9 @@ func DefaultPolynomial(x, n *big.Int) *big.Int {
 	return xSquared
 }
 
-// Rho is an implementation of Pollard's rho factorization algorithm
+// PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm
 // using the default parameters x = y = 2
-func Rho(n *big.Int, g func(*big.Int, *big.Int) *big.Int) (*big.Int, error) {
+func PollardsRhoFactorization(n *big.Int, g func(*big.Int, *big.Int) *big.Int) (*big.Int, error) {
 	x, y, d := big.NewInt(2), big.NewInt(2), big.NewInt(1)
 	bigOne := big.NewInt(1)
 
