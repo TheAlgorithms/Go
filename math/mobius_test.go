@@ -3,10 +3,12 @@
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see mobius.go
 
-package math
+package math_test
 
 import (
 	"testing"
+
+	algmath "github.com/TheAlgorithms/Go/math"
 )
 
 func getTestsForMu() []struct {
@@ -34,7 +36,7 @@ func TestMu(t *testing.T) {
 
 	tests := getTestsForMu()
 	for _, test := range tests {
-		result := Mu(test.n)
+		result := algmath.Mu(test.n)
 		t.Log(test.n, " ", result)
 		if result != test.expected {
 			t.Errorf("Wrong result! Expected:%v, returned:%v ", test.expected, result)
@@ -44,6 +46,6 @@ func TestMu(t *testing.T) {
 
 func BenchmarkMu(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Mu(65536)
+		algmath.Mu(65536)
 	}
 }
