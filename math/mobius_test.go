@@ -3,7 +3,7 @@
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see mobius.go
 
-package mobius
+package math
 
 import (
 	"testing"
