@@ -19,13 +19,10 @@ import (
 // Mu is the Mobius function
 // This function returns μ(n) for given number
 func Mu(n int) int {
-
 	if n <= 1 {
 		return 1
 	}
-
 	primeFactorCount := 0
-
 	for i := 1; i <= n; i++ {
 		if n%i == 0 && p.OptimizedTrialDivision(int64(i)) {
 			if n%(i*i) == 0 {
@@ -34,7 +31,6 @@ func Mu(n int) int {
 			primeFactorCount += 1
 		}
 	}
-
 	if primeFactorCount%2 == 0 {
 		return 1
 	}
