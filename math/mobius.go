@@ -10,7 +10,7 @@
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see mobius_test.go
 
-package mobius
+package math
 
 import (
 	p "github.com/TheAlgorithms/Go/math/prime"
@@ -30,15 +30,13 @@ func Mu(n int) int {
 		if n%i == 0 && p.OptimizedTrialDivision(int64(i)) {
 			if n%(i*i) == 0 {
 				return 0
-			} else {
-				primeFactorCount += 1
 			}
+			primeFactorCount += 1
 		}
 	}
 
 	if primeFactorCount%2 == 0 {
 		return 1
-	} else {
-		return -1
 	}
+	return -1
 }
