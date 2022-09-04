@@ -9,11 +9,74 @@ on:
   pull_request:
 
 jobs:
-  golang_lint_and_test:
-    name: Code style and tests
-    runs-on: ubuntu-latest
+  golang_lint:
+    name: Code style
     strategy:
+      matrix:
+        os: [ubuntu-latest]
       fail-fast: false
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        id: checkout
+
+      - name: Run Golang CI Lint
+        uses: golangci/golangci-lint-action@v3
+        id: lint
+        with: 
+          version: v1.49.0
+          only-new-issues: true
+
+  golang_test:
+    name: Code tests
+    strategy:
+      matrix:
+        go: [1.19]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        id: checkout
+
+      - name: Setup go environemnt
+        uses: actions/setup-go@v3
+        id: setup
+        with: 
+          go-version: ${{ matrix.go }}
+
+      - run: go version
+
+      - name: Setup gotestfmt
+        uses: haveyoudebuggedit/gotestfmt-action@v2
+        id: testfmt
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run go tests
+        id: test
+        run: |
+          set -euo pipefail
+          go test -json -v ./... 2>&1 | tee /tmp/gotest.log | gotestfmt
+
+      - name: Upload test info as artifact
+        uses: actions/upload-artifact@v3
+        id: artifact-upload
+        with: 
+          path: /tmp/gotest.log
+          if-no-files-found: error
+
+  golang_coverage:
+    name: Code coverage
+    strategy:
+      matrix:
+        go: [1.19]
+        os: [ubuntu-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -22,37 +85,25 @@ jobs:
         with:
           fetch-depth: 10
 
-      - name: Run Golang CI Lint
-        uses: reviewdog/action-golangci-lint@v2
-        id: lint
+      - name: Setup go environemnt
+        uses: actions/setup-go@v3
+        id: setup
         with: 
-          # Checks are implemented only for new changes
-          golangci_lint_flags: "--new-from-rev=HEAD~1"
+          go-version: ${{ matrix.go }}
 
-      - name: Setup gotestfmt
-        uses: haveyoudebuggedit/gotestfmt-action@v2
-        id: testfmt
-
-      - name: Run go tests
-        id: test
-        run: |
-          set -euo pipefail
-          go test -json -v ./... 2>&1 | tee /tmp/gotest.log | gotestfmt
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
+      - run: go version
+          
       - name: Generate coverage doc
         uses: gwatts/go-coverage-action@v1
         id: coverage
         with:
-          coverage-threshold: 90
+          coverage-threshold: 85
       
       - name: Upload coverage doc as artifact
         uses: actions/upload-artifact@v3
         id: artifact-upload
+        if: always()
         with: 
-          path: |
-            ${{ steps.coverage.outputs.report-pathname }}
-            /tmp/gotest.log
+          path: ${{ steps.coverage.outputs.report-pathname }}
           if-no-files-found: error
 
