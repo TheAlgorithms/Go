@@ -22,7 +22,7 @@ func Mu(n int) int {
 	if n <= 1 {
 		return 1
 	}
-	primeFactorCount := 0
+	var primeFactorCount int
 	for i := 1; i <= n; i++ {
 		if n%i == 0 && p.OptimizedTrialDivision(int64(i)) {
 			if n%(i*i) == 0 {
