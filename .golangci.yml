@@ -1,8 +1,11 @@
 run:
-  go: 1.19
+  go: '1.19'
+linters-settings:
+  cyclop:
+    skip-tests: true
 linters:
-  disable:
-    - gosimple
-    - staticcheck
-    - structcheck
-    - unused
+  enable:
+    - cyclop
+    - gofmt
+    - misspell
+

@@ -14,25 +14,45 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Go
-        uses: actions/setup-go@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
+        id: checkout
         with:
-          go-version: '^1.18'
+          fetch-depth: 10
+
       - name: Run Golang CI Lint
-        uses: golangci/golangci-lint-action@v2
+        uses: reviewdog/action-golangci-lint@v2
+        id: lint
+        with: 
+          # Checks are implemented only for new changes
+          golangci_lint_flags: "--new-from-rev=HEAD~1"
+
+      - name: Setup gotestfmt
+        uses: haveyoudebuggedit/gotestfmt-action@v2
+        id: testfmt
+
+      - name: Run go tests
+        id: test
+        run: |
+          set -euo pipefail
+          go test -json -v ./... 2>&1 | tee /tmp/gotest.log | gotestfmt
         with:
-          version: latest
-          args: -E gofmt
-      - name: Run tests
-        run: go test ./...
-  codespell:
-    name: Check for spelling errors
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: codespell-project/actions-codespell@master
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate coverage doc
+        uses: gwatts/go-coverage-action@v1
+        id: coverage
         with:
-          ignore_words_list: "actualy,nwe"
-          skip: "go.mod,go.sum"
+          coverage-threshold: 90
+      
+      - name: Upload coverage doc as artifact
+        uses: actions/upload-artifact@v3
+        id: artifact-upload
+        with: 
+          path: |
+            ${{ steps.coverage.outputs.report-pathname }}
+            /tmp/gotest.log
+          if-no-files-found: error
+
