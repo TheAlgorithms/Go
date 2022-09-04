@@ -11,10 +11,7 @@ import (
 	algmath "github.com/TheAlgorithms/Go/math"
 )
 
-func getTestsForMu() []struct {
-	n        int
-	expected int
-} {
+func TestMu(t *testing.T) {
 	var tests = []struct {
 		n        int
 		expected int
@@ -29,12 +26,6 @@ func getTestsForMu() []struct {
 		{99, 0},
 		{100, 0},
 	}
-	return tests
-}
-
-func TestMu(t *testing.T) {
-
-	tests := getTestsForMu()
 	for _, test := range tests {
 		result := algmath.Mu(test.n)
 		t.Log(test.n, " ", result)
@@ -43,7 +34,6 @@ func TestMu(t *testing.T) {
 		}
 	}
 }
-
 func BenchmarkMu(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		algmath.Mu(65536)
