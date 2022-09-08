@@ -207,18 +207,25 @@ func TestBubble(t *testing.T) {
 func TestExchange(t *testing.T) {
 	testInt(t, sort.Exchange[int])
 	testStrings(t, sort.Exchange[string])
+	testFloats(t, sort.Exchange[float32])
 }
 
 func TestInsertion(t *testing.T) {
 	testInt(t, sort.Insertion[int])
+	testStrings(t, sort.Insertion[string])
+	testFloats(t, sort.Insertion[float32])
 }
 
 func TestMerge(t *testing.T) {
 	testInt(t, sort.Merge[int])
+	testStrings(t, sort.Merge[string])
+	testFloats(t, sort.Merge[float32])
 }
 
 func TestMergeIter(t *testing.T) {
 	testInt(t, sort.MergeIter[int])
+	testStrings(t, sort.MergeIter[string])
+	testFloats(t, sort.MergeIter[float32])
 }
 
 func TestHeap(t *testing.T) {
@@ -231,10 +238,14 @@ func TestCount(t *testing.T) {
 
 func TestQuick(t *testing.T) {
 	testInt(t, sort.Quicksort[int])
+	testStrings(t, sort.Quicksort[string])
+	testFloats(t, sort.Quicksort[float32])
 }
 
 func TestShell(t *testing.T) {
 	testInt(t, sort.Shell[int])
+	testStrings(t, sort.Shell[string])
+	testFloats(t, sort.Shell[float32])
 }
 
 func TestRadix(t *testing.T) {
@@ -243,18 +254,26 @@ func TestRadix(t *testing.T) {
 
 func TestSimple(t *testing.T) {
 	testInt(t, sort.Simple[int])
+	testStrings(t, sort.Simple[string])
+	testFloats(t, sort.Simple[float32])
 }
 
 func TestImprovedSimple(t *testing.T) {
 	testInt(t, sort.ImprovedSimple[int])
+	testStrings(t, sort.ImprovedSimple[string])
+	testFloats(t, sort.ImprovedSimple[float32])
 }
 
 func TestSelection(t *testing.T) {
 	testInt(t, sort.Selection[int])
+	testStrings(t, sort.Selection[string])
+	testFloats(t, sort.Selection[float32])
 }
 
 func TestComb(t *testing.T) {
 	testInt(t, sort.Comb[int])
+	testStrings(t, sort.Comb[string])
+	testFloats(t, sort.Comb[float32])
 }
 
 func TestPigeonhole(t *testing.T) {
@@ -263,6 +282,8 @@ func TestPigeonhole(t *testing.T) {
 
 func TestPatience(t *testing.T) {
 	testInt(t, sort.Patience[int])
+	testStrings(t, sort.Patience[string])
+	testFloats(t, sort.Patience[float32])
 }
 
 //END TESTS
