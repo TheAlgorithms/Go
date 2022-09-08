@@ -104,17 +104,11 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 			expected: []float32{-9.14, -7.45, -3.12, 1.23, 5.67},
 			name:     "Reversed Signed float",
 		},
-		//Reversed slice, even length
-		{
-			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
-			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Signed #2",
-		},
 		//Random order with repetitions
 		{
-			input:    []int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
-			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10},
-			name:     "Random order Signed",
+			input:    []float32{-5.52, 3.14, -1.23, -9.34, 7.6, 3.14, 2.12, -3.45},
+			expected: []float32{-9.34, -5.52, -3.45, -1.23, 2.12, 3.14, 3.14, 7.6},
+			name:     "Random order Signed float",
 		},
 		//Single-entry slice
 		{
