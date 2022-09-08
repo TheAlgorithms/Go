@@ -99,8 +99,8 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 		},
 		//Random order with repetitions
 		{
-			input:    []int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
-			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10},
+			input:    []string{"tea", "coffee", "books", "ant", "belt", "books"},
+			expected: []string{"amt", "belt", "books", "books", "coffee", "tea"},
 			name:     "Random order Signed",
 		},
 		//Single-entry slice
@@ -111,8 +111,8 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 		},
 		// Empty slice
 		{
-			input:    []int{},
-			expected: []int{},
+			input:    []string{},
+			expected: []string{},
 			name:     "Empty Slice",
 		},
 	}
