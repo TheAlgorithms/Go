@@ -105,8 +105,8 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 		},
 		//Single-entry slice
 		{
-			input:    []int{1},
-			expected: []int{1},
+			input:    []string{"hello"},
+			expected: []string{"hello"},
 			name:     "Singleton",
 		},
 		// Empty slice
