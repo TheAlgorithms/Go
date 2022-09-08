@@ -107,8 +107,8 @@ func testStrings(t *testing.T, sortingFunction func([]string) []string) {
 		//Random order with repetitions
 		{
 			input:    []string{"tea", "coffee", "books", "ant", "belt", "books"},
-			expected: []string{"amt", "belt", "books", "books", "coffee", "tea"},
-			name:     "Random order Signed",
+			expected: []string{"ant", "belt", "books", "books", "coffee", "tea"},
+			name:     "Random order Strings",
 		},
 		//Single-entry slice
 		{
