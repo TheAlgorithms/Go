@@ -1,13 +1,14 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"reflect"
 	"testing"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
-	sortTests := []struct {
+	sortTestsInt := []struct {
 		input    []int
 		expected []int
 		name     string
@@ -61,7 +62,7 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 			name:     "Empty Slice",
 		},
 	}
-	for _, test := range sortTests {
+	for _, test := range sortTestsInt {
 		t.Run(test.name, func(t *testing.T) {
 			actual := sortingFunction(test.input)
 			sorted := reflect.DeepEqual(actual, test.expected)
@@ -142,7 +143,7 @@ func TestPatience(t *testing.T) {
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
-	var sortTests = []struct {
+	var sortTestsInt = []struct {
 		input    []int
 		expected []int
 		name     string
@@ -172,7 +173,7 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for _, test := range sortTests {
+		for _, test := range sortTestsInt {
 			f(test.input)
 		}
 	}
