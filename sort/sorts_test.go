@@ -17,49 +17,49 @@ func testInt(t *testing.T, sortingFunction func([]int) []int) {
 		{
 			input:    []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			expected: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Sorted Unsigned",
+			name:     "Sorted Unsigned int",
 		},
 		//Reversed slice
 		{
 			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
 			expected: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Unsigned",
+			name:     "Reversed Unsigned int",
 		},
 		//Sorted slice
 		{
 			input:    []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Sorted Signed",
+			name:     "Sorted Signed int",
 		},
 		//Reversed slice
 		{
 			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Signed",
+			name:     "Reversed Signed int",
 		},
 		//Reversed slice, even length
 		{
 			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Signed #2",
+			name:     "Reversed Signed #2 int",
 		},
 		//Random order with repetitions
 		{
 			input:    []int{-5, 7, 4, -2, 6, 5, 8, 3, 2, -7, -1, 0, -3, 9, -6, -4, 10, 9, 1, -8, -9, -10},
 			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 10},
-			name:     "Random order Signed",
+			name:     "Random order Signed int",
 		},
 		//Single-entry slice
 		{
 			input:    []int{1},
 			expected: []int{1},
-			name:     "Singleton",
+			name:     "Singleton int",
 		},
 		// Empty slice
 		{
 			input:    []int{},
 			expected: []int{},
-			name:     "Empty Slice",
+			name:     "Empty Slice int",
 		},
 	}
 	for _, test := range sortTestsInt {
@@ -114,13 +114,13 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 		{
 			input:    []float32{1.23},
 			expected: []float32{1.23},
-			name:     "Singleton",
+			name:     "Singleton float",
 		},
 		// Empty slice
 		{
 			input:    []float32{},
 			expected: []float32{},
-			name:     "Empty Slice",
+			name:     "Empty Slice float",
 		},
 	}
 	for _, test := range sortTestsFloat {
@@ -175,13 +175,13 @@ func testStrings(t *testing.T, sortingFunction func([]string) []string) {
 		{
 			input:    []string{"hello"},
 			expected: []string{"hello"},
-			name:     "Singleton",
+			name:     "Singleton string",
 		},
 		// Empty slice
 		{
 			input:    []string{},
 			expected: []string{},
-			name:     "Empty Slice",
+			name:     "Empty Slice string",
 		},
 	}
 	for _, test := range sortTestsString {
