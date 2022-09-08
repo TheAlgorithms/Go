@@ -144,6 +144,7 @@ func TestBubble(t *testing.T) {
 
 func TestExchange(t *testing.T) {
 	testInt(t, sort.Exchange[int])
+	testStrings(t, sort.Exchange[string])
 }
 
 func TestInsertion(t *testing.T) {
