@@ -112,14 +112,14 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 		},
 		//Single-entry slice
 		{
-			input:    []int{1},
-			expected: []int{1},
+			input:    []float32{1.23},
+			expected: []float32{1.23},
 			name:     "Singleton",
 		},
 		// Empty slice
 		{
-			input:    []int{},
-			expected: []int{},
+			input:    []float32{},
+			expected: []float32{},
 			name:     "Empty Slice",
 		},
 	}
