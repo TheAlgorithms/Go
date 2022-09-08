@@ -75,7 +75,7 @@ func testInt(t *testing.T, sortingFunction func([]int) []int) {
 }
 
 func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
-	sortTestsInt := []struct {
+	sortTestsFloat := []struct {
 		input    []float32
 		expected []float32
 		name     string
@@ -123,7 +123,7 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 			name:     "Empty Slice",
 		},
 	}
-	for _, test := range sortTestsInt {
+	for _, test := range sortTestsFloat {
 		t.Run(test.name, func(t *testing.T) {
 			actual := sortingFunction(test.input)
 			sorted := reflect.DeepEqual(actual, test.expected)
@@ -201,6 +201,7 @@ func testStrings(t *testing.T, sortingFunction func([]string) []string) {
 func TestBubble(t *testing.T) {
 	testInt(t, sort.Bubble[int])
 	testStrings(t, sort.Bubble[string])
+	testFloats(t, sort.Bubble[float32])
 }
 
 func TestExchange(t *testing.T) {
