@@ -7,6 +7,7 @@ import (
 	"github.com/TheAlgorithms/Go/sort"
 )
 
+// Integer Test Cases
 func testInt(t *testing.T, sortingFunction func([]int) []int) {
 	sortTestsInt := []struct {
 		input    []int
@@ -74,6 +75,7 @@ func testInt(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
+// Float Test Cases
 func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 	sortTestsFloat := []struct {
 		input    []float32
@@ -135,6 +137,7 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 	}
 }
 
+// String Test Cases
 func testStrings(t *testing.T, sortingFunction func([]string) []string) {
 	sortTestsString := []struct {
 		input    []string
