@@ -7,7 +7,7 @@ import (
 	"github.com/TheAlgorithms/Go/sort"
 )
 
-func testFramework(t *testing.T, sortingFunction func([]int) []int) {
+func testInt(t *testing.T, sortingFunction func([]int) []int) {
 	sortTestsInt := []struct {
 		input    []int
 		expected []int
@@ -62,6 +62,19 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 			name:     "Empty Slice",
 		},
 	}
+	for _, test := range sortTestsInt {
+		t.Run(test.name, func(t *testing.T) {
+			actual := sortingFunction(test.input)
+			sorted := reflect.DeepEqual(actual, test.expected)
+			if !sorted {
+				t.Errorf("test %s failed", test.name)
+				t.Errorf("actual %v expected %v", actual, test.expected)
+			}
+		})
+	}
+}
+
+func testStrings(t *testing.T, sortingFunction func([]string) []string) {
 	sortTestsString := []struct {
 		input    []string
 		expected []string
@@ -91,12 +104,6 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 			expected: []string{"aab", "bbc", "dab"},
 			name:     "Reversed String",
 		},
-		//Reversed slice, even length
-		{
-			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
-			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Signed #2",
-		},
 		//Random order with repetitions
 		{
 			input:    []string{"tea", "coffee", "books", "ant", "belt", "books"},
@@ -116,7 +123,7 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 			name:     "Empty Slice",
 		},
 	}
-	for _, test := range sortTestsInt {
+	for _, test := range sortTestsString {
 		t.Run(test.name, func(t *testing.T) {
 			actual := sortingFunction(test.input)
 			sorted := reflect.DeepEqual(actual, test.expected)
@@ -131,67 +138,68 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 //BEGIN TESTS
 
 func TestBubble(t *testing.T) {
-	testFramework(t, sort.Bubble[int])
+	testInt(t, sort.Bubble[int])
+	testStrings(t, sort.Bubble[string])
 }
 
 func TestExchange(t *testing.T) {
-	testFramework(t, sort.Exchange[int])
+	testInt(t, sort.Exchange[int])
 }
 
 func TestInsertion(t *testing.T) {
-	testFramework(t, sort.Insertion[int])
+	testInt(t, sort.Insertion[int])
 }
 
 func TestMerge(t *testing.T) {
-	testFramework(t, sort.Merge[int])
+	testInt(t, sort.Merge[int])
 }
 
 func TestMergeIter(t *testing.T) {
-	testFramework(t, sort.MergeIter[int])
+	testInt(t, sort.MergeIter[int])
 }
 
 func TestHeap(t *testing.T) {
-	testFramework(t, sort.HeapSort)
+	testInt(t, sort.HeapSort)
 }
 
 func TestCount(t *testing.T) {
-	testFramework(t, sort.Count[int])
+	testInt(t, sort.Count[int])
 }
 
 func TestQuick(t *testing.T) {
-	testFramework(t, sort.Quicksort[int])
+	testInt(t, sort.Quicksort[int])
 }
 
 func TestShell(t *testing.T) {
-	testFramework(t, sort.Shell[int])
+	testInt(t, sort.Shell[int])
 }
 
 func TestRadix(t *testing.T) {
-	testFramework(t, sort.RadixSort)
+	testInt(t, sort.RadixSort)
 }
 
 func TestSimple(t *testing.T) {
-	testFramework(t, sort.Simple[int])
+	testInt(t, sort.Simple[int])
 }
 
 func TestImprovedSimple(t *testing.T) {
-	testFramework(t, sort.ImprovedSimple[int])
+	testInt(t, sort.ImprovedSimple[int])
 }
 
 func TestSelection(t *testing.T) {
-	testFramework(t, sort.Selection[int])
+	testInt(t, sort.Selection[int])
 }
 
 func TestComb(t *testing.T) {
-	testFramework(t, sort.Comb[int])
+	testInt(t, sort.Comb[int])
 }
 
 func TestPigeonhole(t *testing.T) {
-	testFramework(t, sort.Pigeonhole)
+	testInt(t, sort.Pigeonhole)
 }
 
 func TestPatience(t *testing.T) {
-	testFramework(t, sort.Patience[int])
+	testInt(t, sort.Patience[int])
 }
 
 //END TESTS
