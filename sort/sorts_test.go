@@ -87,9 +87,9 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 		},
 		//Reversed slice
 		{
-			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10},
-			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Signed",
+			input:    []string{"dab", "bbc", "aab"},
+			expected: []string{"aab", "bbc", "dab"},
+			name:     "Reversed String",
 		},
 		//Reversed slice, even length
 		{
