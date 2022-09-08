@@ -88,9 +88,9 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 		},
 		//Reversed slice
 		{
-			input:    []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1},
-			expected: []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Reversed Unsigned",
+			input:    []float32{6.76, 5.61, 3.98, 2.11},
+			expected: []float32{2.11, 3.98, 5.61, 6.76},
+			name:     "Reversed Unsigned float",
 		},
 		//Sorted slice
 		{
