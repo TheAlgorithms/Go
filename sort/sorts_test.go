@@ -137,7 +137,7 @@ func testFloats(t *testing.T, sortingFunction func([]float32) []float32) {
 	}
 }
 
-// String Test Cases
+// String Test Casea
 func testStrings(t *testing.T, sortingFunction func([]string) []string) {
 	sortTestsString := []struct {
 		input    []string
