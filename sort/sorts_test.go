@@ -71,19 +71,19 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 		{
 			input:    []string{"a", "b", "c", "d"},
 			expected: []string{"a", "b", "c", "d"},
-			name:     "Sorted Unsigned",
+			name:     "Sorted Chars",
 		},
 		//Reversed slice
 		{
 			input:    []string{"d", "c", "b", "a"},
 			expected: []string{"a", "b", "c", "d"},
-			name:     "Reversed Unsigned",
+			name:     "Reversed Chars",
 		},
 		//Sorted slice
 		{
-			input:    []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			expected: []int{-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
-			name:     "Sorted Signed",
+			input:    []string{"aab", "bbc", "dab"},
+			expected: []string{"aab", "bbc", "dab"},
+			name:     "Sorted String",
 		},
 		//Reversed slice
 		{
