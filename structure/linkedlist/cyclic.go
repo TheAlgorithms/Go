@@ -3,21 +3,21 @@ package linkedlist
 import "fmt"
 
 // Cyclic Struct which cycles the linked list in this implementation.
-type Cyclic struct {
+type Cyclic[T any] struct {
 	Size int
-	Head *Node
+	Head *Node[T]
 }
 
 // Create new list.
-func NewCyclic() *Cyclic {
-	return &Cyclic{0, nil}
+func NewCyclic[T any]() *Cyclic[T] {
+	return &Cyclic[T]{}
 }
 
 // Inserting the first node is a special case. It will
 // point to itself. For other cases, the node will be added
 // to the end of the list. End of the list is Prev field of
 // current item. Complexity O(1).
-func (cl *Cyclic) Add(val any) {
+func (cl *Cyclic[T]) Add(val T) {
 	n := NewNode(val)
 	cl.Size++
 	if cl.Head == nil {
@@ -46,7 +46,7 @@ func (cl *Cyclic) Add(val any) {
 // places is the same as moving N - P places back.
 // Therefore, if P > N / 2, you can turn the list by N-P places back.
 // Complexity O(n).
-func (cl *Cyclic) Rotate(places int) {
+func (cl *Cyclic[T]) Rotate(places int) {
 	if cl.Size > 0 {
 		if places < 0 {
 			multiple := cl.Size - 1 - places/cl.Size
@@ -71,9 +71,9 @@ func (cl *Cyclic) Rotate(places int) {
 }
 
 // Delete the current item.
-func (cl *Cyclic) Delete() bool {
+func (cl *Cyclic[T]) Delete() bool {
 	var deleted bool
-	var prevItem, thisItem, nextItem *Node
+	var prevItem, thisItem, nextItem *Node[T]
 
 	if cl.Size == 0 {
 		return deleted
@@ -97,15 +97,15 @@ func (cl *Cyclic) Delete() bool {
 }
 
 // Destroy all items in the list.
-func (cl *Cyclic) Destroy() {
+func (cl *Cyclic[T]) Destroy() {
 	for cl.Delete() {
 		continue
 	}
 }
 
 // Show list body.
-func (cl *Cyclic) Walk() *Node {
-	var start *Node
+func (cl *Cyclic[T]) Walk() *Node[T] {
+	var start *Node[T]
 	start = cl.Head
 
 	for i := 0; i < cl.Size; i++ {
@@ -117,13 +117,13 @@ func (cl *Cyclic) Walk() *Node {
 
 // https://en.wikipedia.org/wiki/Josephus_problem
 // This is a struct-based solution for Josephus problem.
-func JosephusProblem(cl *Cyclic, k int) int {
+func JosephusProblem(cl *Cyclic[int], k int) int {
 	for cl.Size > 1 {
 		cl.Rotate(k)
 		cl.Delete()
 		cl.Rotate(-1)
 	}
-	retval := cl.Head.Val.(int)
+	retval := cl.Head.Val
 	cl.Destroy()
 	return retval
 }

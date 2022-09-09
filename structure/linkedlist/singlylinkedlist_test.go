@@ -6,7 +6,7 @@ import (
 )
 
 func TestSingly(t *testing.T) {
-	list := NewSingly()
+	list := NewSingly[int]()
 	list.AddAtBeg(1)
 	list.AddAtBeg(2)
 	list.AddAtBeg(3)
@@ -43,7 +43,10 @@ func TestSingly(t *testing.T) {
 
 	t.Run("Test DelAtBeg()", func(t *testing.T) {
 		want := any(3)
-		got := list.DelAtBeg()
+		got, ok := list.DelAtBeg()
+		if !ok {
+			t.Error("unexpected not-ok")
+		}
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
@@ -51,7 +54,10 @@ func TestSingly(t *testing.T) {
 
 	t.Run("Test DelAtEnd()", func(t *testing.T) {
 		want := any(4)
-		got := list.DelAtEnd()
+		got, ok := list.DelAtEnd()
+		if !ok {
+			t.Error("unexpected not-ok")
+		}
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
@@ -65,7 +71,7 @@ func TestSingly(t *testing.T) {
 		}
 	})
 
-	list2 := Singly{}
+	list2 := Singly[int]{}
 	list2.AddAtBeg(1)
 	list2.AddAtBeg(2)
 	list2.AddAtBeg(3)

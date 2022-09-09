@@ -15,16 +15,16 @@ import "fmt"
 // `import "github.com/TheAlgorithms/Go/structure/linkedlist"`
 //
 // and call linkedlist.Doubly to create a new doubly linked list.
-type Doubly struct {
-	Head *Node
+type Doubly[T any] struct {
+	Head *Node[T]
 }
 
-func NewDoubly() *Doubly {
-	return &Doubly{nil}
+func NewDoubly[T any]() *Doubly[T] {
+	return &Doubly[T]{}
 }
 
 // AddAtBeg Add a node to the beginning of the linkedlist
-func (ll *Doubly) AddAtBeg(val any) {
+func (ll *Doubly[T]) AddAtBeg(val T) {
 	n := NewNode(val)
 	n.Next = ll.Head
 
@@ -37,7 +37,7 @@ func (ll *Doubly) AddAtBeg(val any) {
 }
 
 // AddAtEnd Add a node at the end of the linkedlist
-func (ll *Doubly) AddAtEnd(val any) {
+func (ll *Doubly[T]) AddAtEnd(val T) {
 	n := NewNode(val)
 
 	if ll.Head == nil {
@@ -53,9 +53,10 @@ func (ll *Doubly) AddAtEnd(val any) {
 }
 
 // DelAtBeg Delete the node at the beginning of the linkedlist
-func (ll *Doubly) DelAtBeg() any {
+func (ll *Doubly[T]) DelAtBeg() (T, bool) {
 	if ll.Head == nil {
-		return -1
+		var r T
+		return r, false
 	}
 
 	cur := ll.Head
@@ -64,14 +65,15 @@ func (ll *Doubly) DelAtBeg() any {
 	if ll.Head != nil {
 		ll.Head.Prev = nil
 	}
-	return cur.Val
+	return cur.Val, true
 }
 
 // DetAtEnd Delete a node at the end of the linkedlist
-func (ll *Doubly) DelAtEnd() any {
+func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 	// no item
 	if ll.Head == nil {
-		return -1
+		var r T
+		return r, false
 	}
 
 	// only one item
@@ -86,11 +88,11 @@ func (ll *Doubly) DelAtEnd() any {
 
 	retval := cur.Next.Val
 	cur.Next = nil
-	return retval
+	return retval, true
 }
 
 // Count Number of nodes in the linkedlist
-func (ll *Doubly) Count() any {
+func (ll *Doubly[T]) Count() int {
 	var ctr int = 0
 
 	for cur := ll.Head; cur != nil; cur = cur.Next {
@@ -101,8 +103,8 @@ func (ll *Doubly) Count() any {
 }
 
 // Reverse Reverse the order of the linkedlist
-func (ll *Doubly) Reverse() {
-	var Prev, Next *Node
+func (ll *Doubly[T]) Reverse() {
+	var Prev, Next *Node[T]
 	cur := ll.Head
 
 	for cur != nil {
@@ -117,7 +119,7 @@ func (ll *Doubly) Reverse() {
 }
 
 // Display display the linked list
-func (ll *Doubly) Display() {
+func (ll *Doubly[T]) Display() {
 	for cur := ll.Head; cur != nil; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
 	}
@@ -126,11 +128,11 @@ func (ll *Doubly) Display() {
 }
 
 // DisplayReverse Display the linkedlist in reverse order
-func (ll *Doubly) DisplayReverse() {
+func (ll *Doubly[T]) DisplayReverse() {
 	if ll.Head == nil {
 		return
 	}
-	var cur *Node
+	var cur *Node[T]
 	for cur = ll.Head; cur.Next != nil; cur = cur.Next {
 	}
 

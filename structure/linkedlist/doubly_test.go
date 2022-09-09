@@ -6,7 +6,7 @@ import (
 )
 
 func TestDoubly(t *testing.T) {
-	newList := NewDoubly()
+	newList := NewDoubly[int]()
 
 	newList.AddAtBeg(1)
 	newList.AddAtBeg(2)
@@ -20,11 +20,11 @@ func TestDoubly(t *testing.T) {
 		// check from Next address
 		current := newList.Head
 
-		got = append(got, current.Val.(int))
+		got = append(got, current.Val)
 
 		for current.Next != nil {
 			current = current.Next
-			got = append(got, current.Val.(int))
+			got = append(got, current.Val)
 		}
 
 		if !reflect.DeepEqual(got, wantNext) {
@@ -33,11 +33,11 @@ func TestDoubly(t *testing.T) {
 
 		// check from Prev address
 		got = []int{}
-		got = append(got, current.Val.(int))
+		got = append(got, current.Val)
 
 		for current.Prev != nil {
 			current = current.Prev
-			got = append(got, current.Val.(int))
+			got = append(got, current.Val)
 		}
 
 		if !reflect.DeepEqual(got, wantPrev) {
@@ -51,10 +51,10 @@ func TestDoubly(t *testing.T) {
 		want := []int{3, 2, 1, 4}
 		got := []int{}
 		current := newList.Head
-		got = append(got, current.Val.(int))
+		got = append(got, current.Val)
 		for current.Next != nil {
 			current = current.Next
-			got = append(got, current.Val.(int))
+			got = append(got, current.Val)
 		}
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -63,7 +63,10 @@ func TestDoubly(t *testing.T) {
 
 	t.Run("Test DelAtBeg", func(t *testing.T) {
 		want := 3
-		got := newList.DelAtBeg()
+		got, ok := newList.DelAtBeg()
+		if !ok {
+			t.Error("unexpected not-ok")
+		}
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
@@ -71,7 +74,10 @@ func TestDoubly(t *testing.T) {
 
 	t.Run("Test DelAtEnd", func(t *testing.T) {
 		want := 4
-		got := newList.DelAtEnd()
+		got, ok := newList.DelAtEnd()
+		if !ok {
+			t.Error("unexpected not-ok")
+		}
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
@@ -85,7 +91,7 @@ func TestDoubly(t *testing.T) {
 		}
 	})
 
-	newList2 := NewDoubly()
+	newList2 := NewDoubly[int]()
 	newList2.AddAtBeg(1)
 	newList2.AddAtBeg(2)
 	newList2.AddAtBeg(3)
@@ -94,10 +100,10 @@ func TestDoubly(t *testing.T) {
 		got := []int{}
 		newList2.Reverse()
 		current := newList2.Head
-		got = append(got, current.Val.(int))
+		got = append(got, current.Val)
 		for current.Next != nil {
 			current = current.Next
-			got = append(got, current.Val.(int))
+			got = append(got, current.Val)
 		}
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
