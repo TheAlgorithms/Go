@@ -13,7 +13,7 @@
 package math
 
 import (
-	p "github.com/TheAlgorithms/Go/math/prime"
+	"github.com/TheAlgorithms/Go/math/prime"
 )
 
 // Mu is the Mobius function
@@ -24,7 +24,7 @@ func Mu(n int) int {
 	}
 	var primeFactorCount int
 	for i := 1; i <= n; i++ {
-		if n%i == 0 && p.OptimizedTrialDivision(int64(i)) {
+		if n%i == 0 && prime.OptimizedTrialDivision(int64(i)) {
 			if n%(i*i) == 0 {
 				return 0
 			}
