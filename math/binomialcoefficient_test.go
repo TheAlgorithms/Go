@@ -34,6 +34,6 @@ func TestC(t *testing.T) {
 }
 func BenchmarkBinomialCoefficient(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		algmath.C(65536, 65536)
+		_, _ = algmath.C(65536, 65536)
 	}
 }
