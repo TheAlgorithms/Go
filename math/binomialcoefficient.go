@@ -1,7 +1,7 @@
 // binomialcoefficient.go
 // description: Returns C(n, k)
 // details:
-// a binomial cofficient C(n,k) gives number ways
+// a binomial coefficient C(n,k) gives number ways
 // in which k objects can be chosen from n objects.
 // wikipedia: https://en.wikipedia.org/wiki/Binomial_coefficient
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
