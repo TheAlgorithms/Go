@@ -16,8 +16,9 @@ import (
 // C is Binomial Coefficient function
 // This function returns C(n, k) for given n and k
 func C(n int, k int) (int, error) {
+	var ErrPosArgsOnly error = errors.New("arguments must be positive")
 	if n < 0 || k < 0 {
-		return -1, errors.New("arguments must be positive")
+		return -1, ErrPosArgsOnly
 	}
 	if k > (n - k) {
 		k = n - k
