@@ -8,7 +8,7 @@ package math_test
 import (
 	"testing"
 
-	algmath "github.com/TheAlgorithms/Go/math"
+	"github.com/TheAlgorithms/Go/math"
 )
 
 func TestC(t *testing.T) {
@@ -25,7 +25,7 @@ func TestC(t *testing.T) {
 		{-1, -1, -1},
 	}
 	for _, test := range tests {
-		result, error := algmath.C(test.n, test.k)
+		result, error := math.C(test.n, test.k)
 		t.Log(test.n, " ", result, " ", error)
 		if result != test.expected {
 			t.Errorf("Wrong result! Expected:%v, Returned:%v, Error:%v", test.expected, result, error.Error())
@@ -34,6 +34,6 @@ func TestC(t *testing.T) {
 }
 func BenchmarkBinomialCoefficient(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = algmath.C(65536, 65536)
+		_, _ = math.C(65536, 65536)
 	}
 }
