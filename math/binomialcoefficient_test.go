@@ -30,7 +30,6 @@ func TestCombinations(t *testing.T) {
 		t.Run("", func(t *testing.T) {
 			var expectedError error = errors.New("arguments must be positive")
 			result, error := math.Combinations(test.n, test.k)
-			t.Log(test.n, " ", result, " ", error)
 			if result != test.expected {
 				t.Errorf("Wrong result! Expected:%v, Returned:%v", test.expected, result)
 			}
