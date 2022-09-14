@@ -6,8 +6,6 @@
 package math_test
 
 import (
-	"errors"
-	"strings"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math"
@@ -15,32 +13,24 @@ import (
 
 func TestCombinations(t *testing.T) {
 	var tests = []struct {
-		n        int
-		k        int
-		expected int
+		name          string
+		n             int
+		k             int
+		expectedValue int
+		expectedError error
 	}{
-		{5, 2, 10},
-		{7, 4, 35},
-		{0, 0, 1},
-		{-1, 1, -1},
-		{1, -1, -1},
-		{-1, -1, -1},
+		{"n = 5, k = 2", 5, 2, 10, nil},
+		{"n = 7, k = 4", 7, 4, 35, nil},
+		{"n = 0, k = 0", 0, 0, 1, nil},
+		{"n = -1, k = 1", -1, 1, -1, math.ErrPosArgsOnly},
+		{"n = 1, k = -1", 1, -1, -1, math.ErrPosArgsOnly},
+		{"n = -1, k = -1", -1, -1, -1, math.ErrPosArgsOnly},
 	}
 	for _, test := range tests {
-		t.Run("", func(t *testing.T) {
-			var expectedError error = errors.New("arguments must be positive")
+		t.Run(test.name, func(t *testing.T) {
 			result, error := math.Combinations(test.n, test.k)
-			if result != test.expected {
-				t.Errorf("Wrong result! Expected:%v, Returned:%v", test.expected, result)
-			}
-			if result == -1 && error == nil {
-				t.Errorf("Wrong result! Expected:%v, Returned:%v", expectedError, error.Error())
-			}
-			if result != -1 && error != nil {
-				t.Errorf("Wrong result! Expected:%v, Returned:%v", nil, error.Error())
-			}
-			if result == -1 && !strings.EqualFold(expectedError.Error(), error.Error()) {
-				t.Errorf("Wrong result! Expected:%v, Returned:%v", expectedError.Error(), error.Error())
+			if result != test.expectedValue || test.expectedError != error {
+				t.Errorf("expected error: %s, got: %s; expected value: %v, got: %v", test.expectedError, error, test.expectedValue, result)
 			}
 		})
 	}
