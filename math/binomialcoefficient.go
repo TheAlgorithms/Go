@@ -13,10 +13,11 @@ import (
 	"errors"
 )
 
+var ErrPosArgsOnly error = errors.New("arguments must be positive")
+
 // C is Binomial Coefficient function
 // This function returns C(n, k) for given n and k
 func Combinations(n int, k int) (int, error) {
-	var ErrPosArgsOnly error = errors.New("arguments must be positive")
 	if n < 0 || k < 0 {
 		return -1, ErrPosArgsOnly
 	}
