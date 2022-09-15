@@ -28,9 +28,9 @@ func TestCombinations(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result, error := math.Combinations(test.n, test.k)
-			if result != test.expectedValue || test.expectedError != error {
-				t.Errorf("expected error: %s, got: %s; expected value: %v, got: %v", test.expectedError, error, test.expectedValue, result)
+			result, err := math.Combinations(test.n, test.k)
+			if result != test.expectedValue || test.expectedError != err {
+				t.Errorf("expected error: %s, got: %s; expected value: %v, got: %v", test.expectedError, err, test.expectedValue, result)
 			}
 		})
 	}
