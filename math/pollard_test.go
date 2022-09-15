@@ -25,7 +25,7 @@ func TestDefaultPolynomial(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := DefaultPolynomial(test.x, test.n); !reflect.DeepEqual(got, test.want) {
+			if got := DefaultPolynomial(test.n)(test.x); !reflect.DeepEqual(got, test.want) {
 				t.Errorf("DefaultPolynomial() = %v, want %v", got, test.want)
 			}
 		})
@@ -36,7 +36,7 @@ func TestRho(t *testing.T) {
 	tests := []struct {
 		name    string
 		n       *big.Int
-		g       func(*big.Int, *big.Int) *big.Int
+		g       func(n *big.Int) func(*big.Int) *big.Int
 		want    *big.Int
 		wantErr bool
 	}{
@@ -65,7 +65,7 @@ func TestRho(t *testing.T) {
 
 func BenchmarkDefaultPolynomial(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		DefaultPolynomial(big.NewInt(535), big.NewInt(11235))
+		DefaultPolynomial(big.NewInt(535))(big.NewInt(11235))
 	}
 }
 
