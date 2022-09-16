@@ -34,6 +34,6 @@ func TestLambda(t *testing.T) {
 }
 func BenchmarkLambda(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		math.Lambda(65536)
+		_, _ = math.Lambda(65536)
 	}
 }
