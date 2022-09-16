@@ -922,6 +922,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> strings </strong> </summary>	
+
+---
+
+#####  Package strings is a package that contains all algorithms that are used to analyse and manipulate strings.
+
+---
+##### Functions:
+
+1. [`CountChars`](./strings/charoccurrence.go#L12):  CountChars counts the number of a times a character has occurred in the provided string argument and returns a map with `rune` as keys and the count as value.
+
+---
+</details><details>
 	<summary> <strong> transposition </strong> </summary>	
 
 ---
