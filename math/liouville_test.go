@@ -11,7 +11,7 @@ import (
 	"github.com/TheAlgorithms/Go/math"
 )
 
-func TestLambda(t *testing.T) {
+func TestLiouvilleLambda(t *testing.T) {
 	var tests = []struct {
 		name          string
 		n             int
@@ -25,15 +25,15 @@ func TestLambda(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result, err := math.Lambda(test.n)
+			result, err := math.LiouvilleLambda(test.n)
 			if result != test.expectedValue || test.expectedError != err {
 				t.Errorf("expected error: %s, got: %s; expected value: %v, got: %v", test.expectedError, err, test.expectedValue, result)
 			}
 		})
 	}
 }
-func BenchmarkLambda(b *testing.B) {
+func BenchmarkLiouvilleLambda(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = math.Lambda(65536)
+		_, _ = math.LiouvilleLambda(65536)
 	}
 }
