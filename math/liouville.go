@@ -22,14 +22,14 @@ var ErrNonZeroArgsOnly error = errors.New("arguments must be greater than zero")
 // Lambda is the liouville function
 // This function returns λ(n) for given number
 func LiouvilleLambda(n int) (int, error) {
-	if n < 0 {
+	switch {
+	case n < 0:
 		return 0, ErrPosArgsOnly
-	}
-	if n == 0 {
+	case n == 0:
 		return 0, ErrNonZeroArgsOnly
-	}
-	if len(prime.Factorize(int64(n)))%2 == 0 {
+	case len(prime.Factorize(int64(n)))%2 == 0:
 		return 1, nil
+	default:
+		return -1, nil
 	}
-	return -1, nil
 }
