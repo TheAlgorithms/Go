@@ -17,7 +17,7 @@ import (
 	"github.com/TheAlgorithms/Go/math/prime"
 )
 
-var ErrNonZeroArgsOnly error = errors.New("arguments must be greater than zero")
+var ErrNonZeroArgsOnly error = errors.New("arguments cannot be zero")
 
 // Lambda is the liouville function
 // This function returns λ(n) for given number
