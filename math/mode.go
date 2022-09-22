@@ -27,11 +27,7 @@ func Mode[T constraints.Number](numbers []T) (T, error) {
 	}
 
 	for _, number := range numbers {
-		if _, check := countMap[number]; check {
-			countMap[number]++
-		} else {
-			countMap[number] = 1
-		}
+		countMap[number]++
 	}
 
 	var mode T
