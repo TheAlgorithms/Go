@@ -1,4 +1,3 @@
-// Package sort
 // Patience sorting is a sorting algorithm inspired by the card game patience.
 //
 // For more details check out those links below here:
@@ -6,6 +5,7 @@
 // Wikipedia article: https://en.wikipedia.org/wiki/Patience_sorting
 // authors [guuzaa](https://github.com/guuzaa)
 // see patiencesort.go
+
 package sort
 
 import "github.com/TheAlgorithms/Go/constraints"
