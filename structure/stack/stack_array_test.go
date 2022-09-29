@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func Test_ArrayStack(t *testing.T) {
+func Test_StackArray(t *testing.T) {
 	stack := NewStackArray[int]()
 	if stack.Peek() != nil {
 		t.Error("Expected nil value from peak operation")

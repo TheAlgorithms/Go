@@ -12,34 +12,34 @@ package stack
 /*
 The methods can also be implemented directly on the slice.
 ```
-type ArrayStack[T any] []T
+type StackArray[T any] []T
 ```
 However, this exposes the underlaying storage (slice) outside the package.
 A struct is used instead, so that the underlying storage is not accessible outside the package.
 */
 
-// ArrayStack is an implementation of stack with slice as underlying storage.
+// StackArray is an implementation of stack with slice as underlying storage.
 // ```
-// stack := new(ArrayStack[int])
+// stack := new(StackArray[int])
 // ```
-type ArrayStack[T any] struct {
+type StackArray[T any] struct {
 	store []T
 }
 
-func NewStackArray[T any]() *ArrayStack[T] {
-	return new(ArrayStack[T])
+func NewStackArray[T any]() *StackArray[T] {
+	return new(StackArray[T])
 }
 
 // Push inserts a new element to the stack
 // Push on a nil stack will panic
-func (s *ArrayStack[T]) Push(val T) {
+func (s *StackArray[T]) Push(val T) {
 	s.store = append(s.store, val)
 }
 
 // Peek the last inserted element without removing it from the stack
 // Return type is a pointer to represent an optional value.
 // If the stack is empty, nil value is returned
-func (s *ArrayStack[T]) Peek() *T {
+func (s *StackArray[T]) Peek() *T {
 	if s.Empty() {
 		return nil
 	}
@@ -49,20 +49,20 @@ func (s *ArrayStack[T]) Peek() *T {
 	return &element
 }
 
-func (s *ArrayStack[T]) Len() int {
+func (s *StackArray[T]) Len() int {
 	if s == nil {
 		return 0
 	}
 	return len(s.store)
 }
 
-func (s *ArrayStack[T]) Empty() bool {
+func (s *StackArray[T]) Empty() bool {
 	return s.Len() == 0
 }
 
 // Pop returns last inserted element and removes it from the underlaying storage
 // The return type is a pointer to represent optional value. If the stack is empty, nil is returned
-func (s *ArrayStack[T]) Pop() *T {
+func (s *StackArray[T]) Pop() *T {
 	if s.Empty() {
 		return nil
 	}
@@ -73,7 +73,7 @@ func (s *ArrayStack[T]) Pop() *T {
 
 // Clear removes all elements.
 // The allocated capacity remains the same and will be reused for subsequent push operations
-func (s *ArrayStack[T]) Clear() {
+func (s *StackArray[T]) Clear() {
 	if s == nil {
 		return
 	}
@@ -81,7 +81,7 @@ func (s *ArrayStack[T]) Clear() {
 }
 
 // Truncate removes all elements and underlaying storage
-func (s *ArrayStack[T]) Truncate() {
+func (s *StackArray[T]) Truncate() {
 	if s == nil {
 		return
 	}
