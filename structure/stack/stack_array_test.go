@@ -7,10 +7,10 @@ import (
 func Test_StackArray(t *testing.T) {
 	stack := NewStackArray[int]()
 	if stack.Peek() != nil {
-		t.Error("Expected nil value from peak operation")
+		t.Error("Expected nil value from Peek operation")
 	}
 	if stack.Pop() != nil {
-		t.Error("Expected nil value from pop operation")
+		t.Error("Expected nil value from Pop operation")
 	}
 	stack.Push(2)
 	stack.Push(3)
