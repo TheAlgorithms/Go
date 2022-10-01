@@ -6,7 +6,7 @@ import (
 )
 
 func Test_StackArray(t *testing.T) {
-	stack := NewStackArray[int]()
+	stack := NewArray[int]()
 	_, err := stack.Peek()
 	if !errors.Is(err, ErrStackEmpty) {
 		t.Errorf("Expected error ErrStackEmpty from Peek operation, got %v", err)
