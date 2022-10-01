@@ -1,13 +1,15 @@
-// Stack Array
-// description: based on `geeksforgeeks` description Stack is a linear data structure which follows a particular order in which the operations are performed.
-//	The order may be LIFO(Last In First Out) or FILO(First In Last Out).
-// details:
+// Stack implementation using Array
+// Stack is a linear data structure in which the push and pop operations occur only at one end of the structure, referred to as the top of the stack.
+// The order in which an element added to or removed from a stack is described as last in, first out (LIFO).
+// Details:
 // 	Stack Data Structure : https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
 // 	Stack (abstract data type) : https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
-// author [Milad](https://github.com/miraddo)
-// see stacklinkedlist.go, stacklinkedlistwithlist.go, stack_test.go
 
 package stack
+
+import "errors"
+
+var ErrStackEmpty = errors.New("stack is empty")
 
 /*
 The methods can also be implemented directly on the slice.
@@ -37,16 +39,13 @@ func (s *StackArray[T]) Push(val T) {
 }
 
 // Peek the last inserted element without removing it from the stack
-// Return type is a pointer to represent an optional value.
-// If the stack is empty, nil value is returned
-func (s *StackArray[T]) Peek() *T {
+// If the stack is empty, ErrStackEmpty error is returned
+func (s *StackArray[T]) Peek() (T, error) {
+	var element T
 	if s.Empty() {
-		return nil
+		return element, ErrStackEmpty
 	}
-	//do not return &s.store[s.Len()-1] directly. A Pop(), followed by another Push() can overwrite
-	// that memory location in the underlaying array of the slice. Assigning it to a new variable creates a copy.
-	element := s.store[s.Len()-1]
-	return &element
+	return s.store[s.Len()-1], nil
 }
 
 func (s *StackArray[T]) Len() int {
@@ -61,14 +60,15 @@ func (s *StackArray[T]) Empty() bool {
 }
 
 // Pop returns last inserted element and removes it from the underlaying storage
-// The return type is a pointer to represent optional value. If the stack is empty, nil is returned
-func (s *StackArray[T]) Pop() *T {
+// If the stack is empty, ErrStackEmpty error is returned
+func (s *StackArray[T]) Pop() (T, error) {
+	var element T
 	if s.Empty() {
-		return nil
+		return element, ErrStackEmpty
 	}
-	element := s.store[s.Len()-1]
+	element = s.store[s.Len()-1]
 	s.store = s.store[:s.Len()-1]
-	return &element
+	return element, nil
 }
 
 // Clear removes all elements.

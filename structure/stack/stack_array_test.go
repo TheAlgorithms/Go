@@ -1,30 +1,41 @@
 package stack
 
 import (
+	"errors"
 	"testing"
 )
 
 func Test_StackArray(t *testing.T) {
 	stack := NewStackArray[int]()
-	if stack.Peek() != nil {
-		t.Error("Expected nil value from Peek operation")
+	_, err := stack.Peek()
+	if !errors.Is(err, ErrStackEmpty) {
+		t.Errorf("Expected error ErrStackEmpty from Peek operation, got %v", err)
 	}
-	if stack.Pop() != nil {
-		t.Error("Expected nil value from Pop operation")
+
+	_, err = stack.Pop()
+	if !errors.Is(err, ErrStackEmpty) {
+		t.Errorf("Expected error ErrStackEmpty from Pop operation, got %v", err)
 	}
+
 	stack.Push(2)
 	stack.Push(3)
-	pop := stack.Pop()
+	pop, err := stack.Pop()
+	if err != nil {
+		t.Errorf("Expected no errors in Pop operation, got %v", err)
+	}
 	if stack.Len() != 1 {
 		t.Errorf("Expected stack length 1, got %d", stack.Len())
 	}
-	if *pop != 3 {
-		t.Errorf("Expected popped element to be 3, got %d", *pop)
+	if pop != 3 {
+		t.Errorf("Expected popped element to be 3, got %d", pop)
 	}
 
-	peek := stack.Peek()
-	if *peek != 2 {
-		t.Errorf("Expected peek operation return element 3, got %d", *peek)
+	peek, err := stack.Peek()
+	if err != nil {
+		t.Errorf("Expected no errors in Peek operation, got %v", err)
+	}
+	if peek != 2 {
+		t.Errorf("Expected peek operation to return element 3, got %d", peek)
 	}
 
 	stack.Clear()
