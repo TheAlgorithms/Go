@@ -33,47 +33,52 @@ var rsaTestData = []struct {
 		"Encrypt full sentence from rsacipher.go main function",
 		"I think RSA is really great",
 	},
+	{
+		"Encrypt uncommon unicode",
+		string("\x82"),
+	},
 }
 
-func TestEncryptDecrypt(t *testing.T) {
+func FuzzEncryptDecrypt(f *testing.F) {
 	// Both prime numbers
-	p := int64(61)
-	q := int64(53)
+	p := int64(3079)
+	q := int64(983)
 
 	n := p * q
 
 	delta := lcm.Lcm(p-1, q-1)
 
-	e := int64(17) // Coprime with delta
+	e := int64(2837) // Coprime with delta
 
 	if gcd.Recursive(e, delta) != 1 {
-		t.Fatal("Algorithm failed in preamble stage:\n\tPrime numbers are chosen statically and it shouldn't fail at this stage")
+		f.Fatal("Algorithm failed in preamble stage:\n\tPrime numbers are chosen statically and it shouldn't fail at this stage")
 	}
 
 	d, err := modular.Inverse(e, delta)
 
 	if err != nil {
-		t.Fatalf("Algorithm failed in preamble stage:\n\tProblem with a modular directory dependency: %v", err)
+		f.Fatalf("Algorithm failed in preamble stage:\n\tProblem with a modular directory dependency: %v", err)
 	}
 
 	for _, test := range rsaTestData {
-		t.Run(test.description, func(t *testing.T) {
-
-			message := []rune(test.input)
-			encrypted, err := Encrypt(message, e, n)
-			if err != nil {
-				t.Fatalf("Failed to Encrypt test string:\n\tDescription: %v\n\tErrMessage: %v", test.description, err)
-			}
-
-			decrypted, err := Decrypt(encrypted, d, n)
-			if err != nil {
-				t.Fatalf("Failed to Decrypt test message:\n\tDescription: %v\n\tErrMessage: %v", test.description, err)
-			}
-
-			if actual := test.input; actual != decrypted {
-				t.Logf("FAIL: %s", test.description)
-				t.Fatalf("Expecting %v, actual %v", decrypted, actual)
-			}
-		})
+		f.Add(test.input)
 	}
+
+	f.Fuzz(func(t *testing.T, input string) {
+		message := []rune(input)
+		encrypted, err := Encrypt(message, e, n)
+		if err != nil {
+			t.Fatalf("Failed to Encrypt test string:\n\tInput:%s\n\tErrMessage: %v", input, err)
+		}
+
+		decrypted, err := Decrypt(encrypted, d, n)
+		if err != nil {
+			t.Fatalf("Failed to Decrypt test message:\n\tInput:%s\n\tErrMessage: %v", input, err)
+		}
+
+		if string(message) != decrypted {
+			t.Fatalf("Decrypted ciphertext does not match input: Expecting %v, actual %v", []byte(input), []byte(decrypted))
+		}
+	})
+
 }
