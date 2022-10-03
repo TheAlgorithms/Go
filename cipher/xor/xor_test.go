@@ -1,6 +1,7 @@
 package xor
 
 import (
+	"bytes"
 	"fmt"
 	"reflect"
 	"testing"
@@ -102,4 +103,15 @@ func TestXorCipherDecrypt(t *testing.T) {
 			}
 		})
 	}
+}
+
+func FuzzXOR(f *testing.F) {
+	f.Add([]byte("The Quick Brown Fox Jumps over the Lazy Dog."), byte('X'))
+	f.Fuzz(func(t *testing.T, input []byte, key byte) {
+		cipherText := Encrypt(key, input)
+		result := Decrypt(key, cipherText)
+		if !bytes.Equal(input, result) {
+			t.Errorf("Before: %s, after: %s, key: %d", input, result, key)
+		}
+	})
 }
