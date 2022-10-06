@@ -814,8 +814,23 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/rbtree/rbtree_test.go#L135): No description provided.
-2. [`NewRBTree`](./structure/rbtree/rbtree.go#L39):  Create a new Red-Black Tree
+1. [`NewRBTree`](./structure/rbtree/rbtree.go#L39):  Create a new Red-Black Tree
+
+2. [`Insert`](./structure/rbtree/rbtree.go#L53):  Insert a key into the tree
+
+3. [`InOrder`](./structure/rbtree/rbtree.go#L98):  Traverse the tree via inorder
+
+4. [`Delete`](./structure/rbtree/rbtree.go#L102):  Delete a node of Red-Black Tree
+
+5. [`Max`](./structure/rbtree/rbtree.go#L107):  Return the max value of the tree
+
+6. [`Min`](./structure/rbtree/rbtree.go#L117):  Return the min value of the tree
+
+7. [`Has`](./structure/rbtree/rbtree.go#L126):  Determine the tree has the node of key
+
+8. [`Predecessor`](./structure/rbtree/rbtree.go#L135):  Return the predecessor of the node of key
+
+9. [`Successor`](./structure/rbtree/rbtree.go#L147):  Return the successor of the node of key
 
 ---
 ##### Types

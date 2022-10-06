@@ -99,6 +99,8 @@ func (r *RBTree[T]) InOrder() []T {
 	return r.inOrderHelper(r.root)
 }
 
+// Delete a node of Red-Black Tree
+// Returns false if the node does not exist, otherwise returns true.
 func (r *RBTree[T]) Delete(data T) bool {
 	return r.deleteNodeHelper(r.root, data)
 }
