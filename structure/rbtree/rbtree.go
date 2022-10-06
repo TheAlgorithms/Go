@@ -1,3 +1,12 @@
+// Red-Black Tree is a kind of self-balancing binary search tree.
+// Each node stores "color" ("red" or "black"), used to ensure that the tree remains balanced during insertions and deletions.
+//
+// For more details check out those links below here:
+// Programiz article : https://www.programiz.com/dsa/red-black-tree
+// Wikipedia article: https://en.wikipedia.org/wiki/Red_black_tree
+// authors [guuzaa](https://github.com/guuzaa)
+// see rbtree.go
+
 package rbtree
 
 import (
@@ -23,21 +32,24 @@ type Node[T constraints.Ordered] struct {
 
 type RBTree[T constraints.Ordered] struct {
 	root *Node[T]
-	NIL  *Node[T]
+	NIL  *Node[T] // NIL denotes the leaf node of Red-Black Tree
 }
 
+// Create a new Red-Black Tree
 func NewRBTree[T constraints.Ordered]() *RBTree[T] {
-	nilNode := &Node[T]{color: Black, left: nil, right: nil}
+	leaf := &Node[T]{color: Black, left: nil, right: nil}
 	return &RBTree[T]{
-		root: nilNode,
-		NIL:  nilNode,
+		root: leaf,
+		NIL:  leaf,
 	}
 }
 
+// Determine node is a leaf node
 func (r *RBTree[T]) isNil(node *Node[T]) bool {
 	return node == r.NIL
 }
 
+// Insert a key into the tree
 func (r *RBTree[T]) Insert(key T) {
 	node := &Node[T]{
 		data:   key,
@@ -81,6 +93,8 @@ func (r *RBTree[T]) Insert(key T) {
 	r.insertFix(node)
 }
 
+// Traverse the tree via inorder.
+// Because of the Red-Black tree is a binary search tree, the sequence of inorder traversal is sorted accendingly.
 func (r *RBTree[T]) InOrder() []T {
 	return r.inOrderHelper(r.root)
 }
@@ -89,6 +103,7 @@ func (r *RBTree[T]) Delete(data T) bool {
 	return r.deleteNodeHelper(r.root, data)
 }
 
+// Return the max value of the tree
 func (r *RBTree[T]) Max() (T, bool) {
 	ret := r.maximum(r.root)
 	if r.isNil(ret) {
@@ -98,6 +113,7 @@ func (r *RBTree[T]) Max() (T, bool) {
 	return ret.data, true
 }
 
+// Return the min value of the tree
 func (r *RBTree[T]) Min() (T, bool) {
 	ret := r.minimum(r.root)
 	if r.isNil(ret) {
@@ -107,11 +123,15 @@ func (r *RBTree[T]) Min() (T, bool) {
 	return ret.data, true
 }
 
+// Determine the tree has the node of key
 func (r *RBTree[T]) Has(key T) bool {
 	_, ok := r.searchTreeHelper(r.root, key)
 	return ok
 }
 
+// Return the predecessor of the node of key
+// if there is no predecessor, return default value of type T and false
+// otherwise return the key of predecessor and true
 func (r *RBTree[T]) Predecessor(key T) (T, bool) {
 	node, ok := r.searchTreeHelper(r.root, key)
 	if !ok {
@@ -121,6 +141,9 @@ func (r *RBTree[T]) Predecessor(key T) (T, bool) {
 	return r.predecessorHelper(node)
 }
 
+// Return the successor of the node of key
+// if there is no successor, return default value of type T and false
+// otherwise return the key of predecessor and true
 func (r *RBTree[T]) Successor(key T) (T, bool) {
 	node, ok := r.searchTreeHelper(r.root, key)
 	if !ok {
