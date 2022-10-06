@@ -94,7 +94,7 @@ func (r *RBTree[T]) Insert(key T) {
 }
 
 // Traverse the tree via inorder.
-// Because of the Red-Black tree is a binary search tree, the sequence of inorder traversal is sorted accendingly.
+// Because of the Red-Black tree is a binary search tree, the sequence of inorder traversal is sorted ascendingly.
 func (r *RBTree[T]) InOrder() []T {
 	return r.inOrderHelper(r.root)
 }
