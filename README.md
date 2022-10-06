@@ -815,14 +815,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/rbtree/rbtree_test.go#L135): No description provided.
-2. [`NewRBTree`](./structure/rbtree/rbtree.go#L29): No description provided.
+2. [`NewRBTree`](./structure/rbtree/rbtree.go#L39):  Create a new Red-Black Tree
 
 ---
 ##### Types
 
-1. [`Node`](./structure/rbtree/rbtree.go#L16): No description provided.
+1. [`Node`](./structure/rbtree/rbtree.go#L25): No description provided.
 
-2. [`RBTree`](./structure/rbtree/rbtree.go#L24): No description provided.
+2. [`RBTree`](./structure/rbtree/rbtree.go#L33): No description provided.
 
 
 ---
