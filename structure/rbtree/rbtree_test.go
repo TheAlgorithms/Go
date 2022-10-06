@@ -4,6 +4,7 @@ import (
 	"math/rand"
 	"sort"
 	"testing"
+	"time"
 )
 
 func TestRBTreeInsert(t *testing.T) {
@@ -132,13 +133,13 @@ func TestRBTreeHas(t *testing.T) {
 }
 
 func FuzzRBTreeSuccessorAndPredecesor(f *testing.F) {
-	testcases := []int{100, 200, 1000, 10000, 100000}
+	testcases := []int{100, 200, 1000, 10000}
 	for _, tc := range testcases {
 		f.Add(tc)
 	}
 
 	f.Fuzz(func(t *testing.T, a int) {
-		// rand.Seed(time.Now().Unix())
+		rand.Seed(time.Now().Unix())
 		tree := NewRBTree[int]()
 		nums := rand.Perm(a)
 		for i := 0; i < len(nums); i++ {

@@ -27,7 +27,7 @@ type RBTree[T constraints.Ordered] struct {
 }
 
 func NewRBTree[T constraints.Ordered]() *RBTree[T] {
-	nilNode := &Node[T]{color: Red, left: nil, right: nil}
+	nilNode := &Node[T]{color: Black, left: nil, right: nil}
 	return &RBTree[T]{
 		root: nilNode,
 		NIL:  nilNode,
@@ -306,7 +306,7 @@ func (r *RBTree[T]) deleteFix(x *Node[T]) {
 	for x != r.root && x.color == Black {
 		if x == x.parent.left {
 			s = x.parent.right
-			if x.color == Red {
+			if s.color == Red {
 				s.color = Black
 				x.parent.color = Red
 				r.leftRotate(x.parent)
