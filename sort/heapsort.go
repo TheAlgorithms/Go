@@ -39,7 +39,7 @@ func (h *MaxHeap[T]) Pop() T {
 
 	h.slice[0] = h.slice[h.heapSize]
 	h.updateidx(0)
-	heapifyDown(h.slice, h.Size(), i.Idx(), h.more, h.swap)
+	heapifyDown(h.slice, h.Size(), 0, h.more, h.swap)
 
 	h.slice = h.slice[0:h.heapSize]
 	return i
