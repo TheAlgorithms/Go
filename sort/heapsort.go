@@ -2,15 +2,15 @@ package sort
 
 import "github.com/TheAlgorithms/Go/constraints"
 
-type MaxHeap struct {
-	slice    []Comparable
+type MaxHeap[T Comparable] struct {
+	slice    []T
 	heapSize int
 	indices  map[int]int
 }
 
-func (h *MaxHeap) Init(slice []Comparable) {
+func (h *MaxHeap[T]) Init(slice []T) {
 	if slice == nil {
-		slice = make([]Comparable, 0)
+		slice = make([]T, 0)
 	}
 
 	h.slice = slice
@@ -19,18 +19,19 @@ func (h *MaxHeap) Init(slice []Comparable) {
 	h.Heapify()
 }
 
-func (h MaxHeap) Heapify() {
+func (h MaxHeap[T]) Heapify() {
 	for i, v := range h.slice {
 		h.indices[v.Idx()] = i
 	}
 	for i := h.heapSize / 2; i >= 0; i-- {
-		h.heapifyDown(i)
+		heapifyDown(h.slice, h.Size(), i, h.more, h.swap)
 	}
 }
 
-func (h *MaxHeap) Pop() Comparable {
+func (h *MaxHeap[T]) Pop() T {
+	var zero T
 	if h.heapSize == 0 {
-		return nil
+		return zero
 	}
 
 	i := h.slice[0]
@@ -38,62 +39,69 @@ func (h *MaxHeap) Pop() Comparable {
 
 	h.slice[0] = h.slice[h.heapSize]
 	h.updateidx(0)
-	h.heapifyDown(0)
+	heapifyDown(h.slice, h.Size(), i.Idx(), h.more, h.swap)
 
 	h.slice = h.slice[0:h.heapSize]
 	return i
 }
 
-func (h *MaxHeap) Push(i Comparable) {
+func (h *MaxHeap[T]) Push(i T) {
 	h.slice = append(h.slice, i)
 	h.updateidx(h.heapSize)
 	h.heapifyUp(h.heapSize)
 	h.heapSize++
 }
 
-func (h MaxHeap) Size() int {
+func (h MaxHeap[T]) Size() int {
 	return h.heapSize
 }
 
-func (h MaxHeap) Update(i Comparable) {
+func (h MaxHeap[T]) Update(i T) {
 	h.slice[h.indices[i.Idx()]] = i
 	h.heapifyUp(h.indices[i.Idx()])
-	h.heapifyDown(h.indices[i.Idx()])
+	heapifyDown(h.slice, h.Size(), i.Idx(), h.more, h.swap)
 }
 
-func (h MaxHeap) updateidx(i int) {
+func (h MaxHeap[T]) updateidx(i int) {
 	h.indices[h.slice[i].Idx()] = i
 }
 
-func (h MaxHeap) heapifyUp(i int) {
+func (h *MaxHeap[T]) swap(i, j int) {
+	h.slice[i], h.slice[j] = h.slice[j], h.slice[i]
+	h.updateidx(i)
+	h.updateidx(j)
+}
+
+func (h MaxHeap[T]) more(i, j int) bool {
+	return h.slice[i].More(h.slice[j])
+}
+
+func (h MaxHeap[T]) heapifyUp(i int) {
 	if i == 0 {
 		return
 	}
 	p := i / 2
 
 	if h.slice[i].More(h.slice[p]) {
-		h.slice[i], h.slice[p] = h.slice[p], h.slice[i]
-		h.updateidx(i)
-		h.updateidx(p)
+		h.swap(i, p)
 		h.heapifyUp(p)
 	}
 }
 
-func (h MaxHeap) heapifyDown(i int) {
+func heapifyDown[T any](slice []T, N, i int, moreFunc func(i, j int) bool, swapFunc func(i, j int)) {
 	l, r := 2*i+1, 2*i+2
 	max := i
 
-	if l < h.heapSize && h.slice[l].More(h.slice[max]) {
+	if l < N && moreFunc(l, max) {
 		max = l
 	}
-	if r < h.heapSize && h.slice[r].More(h.slice[max]) {
+	if r < N && moreFunc(r, max) {
 		max = r
 	}
 	if max != i {
-		h.slice[i], h.slice[max] = h.slice[max], h.slice[i]
-		h.updateidx(i)
-		h.updateidx(max)
-		h.heapifyDown(max)
+		swapFunc(i, max)
+
+		heapifyDown(slice, N, max, moreFunc, swapFunc)
 	}
 }
 
@@ -101,47 +109,25 @@ type Comparable interface {
 	Idx() int
 	More(any) bool
 }
-type Int int
-
-func (a Int) More(b any) bool {
-	return a > b.(Int)
-}
-func (a Int) Idx() int {
-	return int(a)
-}
-
-func heapify[T constraints.Ordered](slice []T, N, i int) {
-	largest := i
-	l := 2*i + 1
-	r := 2*i + 2
-
-	if l < N && slice[largest] < slice[l] {
-		largest = l
-	}
-	if r < N && slice[largest] < slice[r] {
-		largest = r
-	}
-
-	// change root, if needed
-	if largest != i {
-		slice[i], slice[largest] = slice[largest], slice[i]
-
-		// heapify the root
-		heapify(slice, N, largest)
-	}
-}
 
 func HeapSort[T constraints.Ordered](slice []T) []T {
 	N := len(slice)
 
+	moreFunc := func(i, j int) bool {
+		return slice[i] > slice[j]
+	}
+	swapFunc := func(i, j int) {
+		slice[i], slice[j] = slice[j], slice[i]
+	}
+
 	// build a maxheap
 	for i := N/2 - 1; i >= 0; i-- {
-		heapify(slice, N, i)
+		heapifyDown(slice, N, i, moreFunc, swapFunc)
 	}
 
 	for i := N - 1; i > 0; i-- {
 		slice[i], slice[0] = slice[0], slice[i]
-		heapify(slice, i, 0)
+		heapifyDown(slice, i, 0, moreFunc, swapFunc)
 	}
 
 	return slice

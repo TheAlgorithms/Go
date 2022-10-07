@@ -23,7 +23,7 @@ func (g *Graph) Dijkstra(start, end int) (int, bool) {
 		dist: 0,
 		node: start,
 	}
-	pq := sort.MaxHeap{}
+	pq := sort.MaxHeap[Item]{}
 	pq.Init(nil)
 	pq.Push(*nodes[start])
 
@@ -47,7 +47,7 @@ func (g *Graph) Dijkstra(start, end int) (int, bool) {
 	}
 
 	for pq.Size() > 0 {
-		curr := pq.Pop().(Item)
+		curr := pq.Pop()
 		if curr.node == end {
 			break
 		}
