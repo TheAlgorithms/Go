@@ -67,15 +67,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Delete`](./structure/avl/avl.go#L72):  Delete : remove given key from the tree
-2. [`Get`](./structure/avl/avl.go#L20):  Get : return node with given key
-3. [`Insert`](./structure/avl/avl.go#L35):  Insert a new item
-4. [`NewTree`](./structure/avl/avl.go#L15):  NewTree create a new AVL tree
+1. [`Delete`](./structure/binarytree/avl/avl.go#L72):  Delete : remove given key from the tree
+2. [`Get`](./structure/binarytree/avl/avl.go#L20):  Get : return node with given key
+3. [`Insert`](./structure/binarytree/avl/avl.go#L35):  Insert a new item
+4. [`NewTree`](./structure/binarytree/avl/avl.go#L15):  NewTree create a new AVL tree
 
 ---
 ##### Types
 
-1. [`Node`](./structure/avl/avl.go#L8): No description provided.
+1. [`Node`](./structure/binarytree/avl/avl.go#L8): No description provided.
 
 
 ---
@@ -109,23 +109,23 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`AccessNodesByLayer`](./structure/binarysearchtree/bstree.go#L145):  AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
-2. [`BstDelete`](./structure/binarysearchtree/bstree.go#L44):  BstDelete removes the node
-3. [`InOrder`](./structure/binarysearchtree/bstree.go#L79):  Travers the tree in the following order left --> root --> right
-4. [`InOrderSuccessor`](./structure/binarysearchtree/bstree.go#L35):  InOrderSuccessor Goes to the left
-5. [`Insert`](./structure/binarysearchtree/bstree.go#L17):  Insert a value in the BSTree
-6. [`LevelOrder`](./structure/binarysearchtree/bstree.go#L138): No description provided.
-7. [`Max`](./structure/binarysearchtree/bstree.go#L174):  Max Function that returns max of two numbers - possibly already declared.
-8. [`NewNode`](./structure/binarysearchtree/node.go#L11):  NewNode Returns a new pointer to an empty Node
-9. [`PostOrder`](./structure/binarysearchtree/bstree.go#L113):  Travers the tree in the following order left --> right --> root
-10. [`PreOrder`](./structure/binarysearchtree/bstree.go#L96):  Travers the tree in the following order root --> left --> right
+1. [`AccessNodesByLayer`](./structure/binarytree/binarysearchtree/bstree.go#L145):  AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
+2. [`BstDelete`](./structure/binarytree/binarysearchtree/bstree.go#L44):  BstDelete removes the node
+3. [`InOrder`](./structure/binarytree/binarysearchtree/bstree.go#L79):  Travers the tree in the following order left --> root --> right
+4. [`InOrderSuccessor`](./structure/binarytree/binarysearchtree/bstree.go#L35):  InOrderSuccessor Goes to the left
+5. [`Insert`](./structure/binarytree/binarysearchtree/bstree.go#L17):  Insert a value in the BSTree
+6. [`LevelOrder`](./structure/binarytree/binarysearchtree/bstree.go#L138): No description provided.
+7. [`Max`](./structure/binarytree/binarysearchtree/bstree.go#L174):  Max Function that returns max of two numbers - possibly already declared.
+8. [`NewNode`](./structure/binarytree/binarysearchtree/node.go#L11):  NewNode Returns a new pointer to an empty Node
+9. [`PostOrder`](./structure/binarytree/binarysearchtree/bstree.go#L113):  Travers the tree in the following order left --> right --> root
+10. [`PreOrder`](./structure/binarytree/binarysearchtree/bstree.go#L96):  Travers the tree in the following order root --> left --> right
 
 ---
 ##### Types
 
-1. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
+1. [`BSTree`](./structure/binarytree/binarysearchtree/bstree.go#L4): No description provided.
 
-2. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
+2. [`Node`](./structure/binarytree/binarysearchtree/node.go#L4): No description provided.
 
 
 ---
@@ -814,15 +814,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/rbtree/rbtree_test.go#L135): No description provided.
-2. [`NewRBTree`](./structure/rbtree/rbtree.go#L39):  Create a new Red-Black Tree
+1. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/binarytree/rbtree/rbtree_test.go#L135): No description provided.
+2. [`NewRBTree`](./structure/binarytree/rbtree/rbtree.go#L39):  Create a new Red-Black Tree
 
 ---
 ##### Types
 
-1. [`Node`](./structure/rbtree/rbtree.go#L25): No description provided.
+1. [`Node`](./structure/binarytree/rbtree/rbtree.go#L25): No description provided.
 
-2. [`RBTree`](./structure/rbtree/rbtree.go#L33): No description provided.
+2. [`RBTree`](./structure/binarytree/rbtree/rbtree.go#L33): No description provided.
 
 
 ---
