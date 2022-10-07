@@ -9,7 +9,7 @@
 // https://mathworld.wolfram.com/PerfectNumber.html
 // https://oeis.org/A000396
 // author(s) [Piotr Idzik](https://github.com/vil02)
-// see perfectnumbeer_test.go
+// see perfectnumber_test.go
 
 package math
 
