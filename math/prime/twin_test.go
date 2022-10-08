@@ -3,10 +3,12 @@
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see twin.go
 
-package prime
+package prime_test
 
 import (
 	"testing"
+
+	"github.com/TheAlgorithms/Go/math/prime"
 )
 
 func TestTwin(t *testing.T) {
@@ -23,7 +25,7 @@ func TestTwin(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result, hasTwin := Twin(test.n)
+			result, hasTwin := prime.Twin(test.n)
 			if result != test.expectedValue || hasTwin != test.hasTwin {
 				t.Errorf("expected value: %v and %v, got: %v and %v", test.expectedValue, test.hasTwin, result, hasTwin)
 			}
@@ -32,6 +34,6 @@ func TestTwin(t *testing.T) {
 }
 func BenchmarkTwin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_, _ = Twin(65536)
+		_, _ = prime.Twin(65536)
 	}
 }
