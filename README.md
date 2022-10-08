@@ -58,28 +58,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> avl </strong> </summary>	
-
----
-
-#####  Package avl is a Adelson-Velskii and Landis tree implemnation avl is self-balancing tree, i.e for all node in a tree, height difference between its left and right child will not exceed 1 more information : https://en.wikipedia.org/wiki/AVL_tree
-
----
-##### Functions:
-
-1. [`Delete`](./structure/tree/avl/avl.go#L72):  Delete : remove given key from the tree
-2. [`Get`](./structure/tree/avl/avl.go#L20):  Get : return node with given key
-3. [`Insert`](./structure/tree/avl/avl.go#L35):  Insert a new item
-4. [`NewAVLTree`](./structure/tree/avl/avl.go#L15):  NewAVLTree create a new AVL tree
-
----
-##### Types
-
-1. [`AVLNode`](./structure/tree/avl/avl.go#L8): No description provided.
-
-
----
-</details><details>
 	<summary> <strong> binary </strong> </summary>	
 
 ---
@@ -936,31 +914,31 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+#####  Package avl is a Adelson-Velskii and Landis tree implemnation avl is self-balancing tree, i.e for all node in a tree, height difference between its left and right child will not exceed 1 more information : https://en.wikipedia.org/wiki/AVL_tree
+
+---
 ##### Functions:
 
-1. [`AccessNodesByLayer`](./structure/tree/bstree.go#L145):  AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
-2. [`BstDelete`](./structure/tree/bstree.go#L44):  BstDelete removes the node
-3. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/tree/rbtree_test.go#L135): No description provided.
-4. [`InOrder`](./structure/tree/bstree.go#L79):  Travers the tree in the following order left --> root --> right
-5. [`InOrderSuccessor`](./structure/tree/bstree.go#L35):  InOrderSuccessor Goes to the left
-6. [`Insert`](./structure/tree/bstree.go#L17):  Insert a value in the BSTree
-7. [`LevelOrder`](./structure/tree/bstree.go#L138): No description provided.
-8. [`Max`](./structure/tree/bstree.go#L174):  Max Function that returns max of two numbers - possibly already declared.
-9. [`NewNode`](./structure/tree/node.go#L12):  NewNode Returns a new pointer to an empty Node
-10. [`NewRBTree`](./structure/tree/rbtree.go#L24):  Create a new Red-Black Tree
-11. [`PostOrder`](./structure/tree/bstree.go#L113):  Travers the tree in the following order left --> right --> root
-12. [`PreOrder`](./structure/tree/bstree.go#L96):  Travers the tree in the following order root --> left --> right
+1. [`Delete`](./structure/tree/avl.go#L65):  Delete : remove given key from the tree
+2. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/tree/rbtree_test.go#L135): No description provided.
+3. [`Get`](./structure/tree/avl.go#L13):  Get : return node with given key
+4. [`Insert`](./structure/tree/avl.go#L28):  Insert a new item
+5. [`NewAVLTree`](./structure/tree/avl.go#L8):  NewAVLTree create a new AVL tree
+6. [`NewNode`](./structure/tree/bstree.go#L15):  NewNode Returns a new pointer to an empty Node
+7. [`NewRBTree`](./structure/tree/rbtree.go#L24):  Create a new Red-Black Tree
 
 ---
 ##### Types
 
-1. [`BSTree`](./structure/tree/bstree.go#L4): No description provided.
+1. [`AVLNode`](./structure/tree/node.go#L13): No description provided.
 
-2. [`Node`](./structure/tree/node.go#L5): No description provided.
+2. [`BSTree`](./structure/tree/bstree.go#L19): No description provided.
 
-3. [`RBNode`](./structure/tree/node.go#L24): No description provided.
+3. [`Node`](./structure/tree/node.go#L6): No description provided.
 
-4. [`RBTree`](./structure/tree/rbtree.go#L18): No description provided.
+4. [`RBNode`](./structure/tree/node.go#L27): No description provided.
+
+5. [`RBTree`](./structure/tree/rbtree.go#L18): No description provided.
 
 
 ---
