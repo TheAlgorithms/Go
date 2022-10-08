@@ -112,4 +112,44 @@ func TestSingly(t *testing.T) {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
 	})
+
+	t.Run("Test front()", func(t *testing.T) {
+		list3 := NewSingly[int]()
+		s1, e1 := list3.front()
+		if e1 == nil {
+			t.Error("expected an error as the list is empty")
+		}
+		if s1 != nil {
+			t.Error("expected the node to be nil")
+		}
+		list3.AddAtBeg(1)
+		s2, e2 := list3.front()
+		if e2 != nil {
+			t.Errorf("unexpected error %v", e2)
+		}
+		if s2 == nil || s2.Prev != nil || s2.Next != nil || s2.Val != 1 {
+			t.Error("unexpected values from node")
+		}
+	})
+
+	t.Run("Test back()", func(t *testing.T) {
+		list3 := NewSingly[int]()
+		s1, e1 := list3.back()
+		if e1 == nil {
+			t.Error("expected an error as the list is empty")
+		}
+		if s1 != nil {
+			t.Error("expected the node to be nil")
+		}
+		list3.AddAtBeg(1)
+		list3.AddAtBeg(2)
+		s2, e2 := list3.back()
+		if e2 != nil {
+			t.Errorf("unexpected error %v", e2)
+		}
+		if s2 == nil || s2.Prev != nil || s2.Next != nil || s2.Val != 1 {
+			t.Error("unexpected values from node")
+		}
+
+	})
 }

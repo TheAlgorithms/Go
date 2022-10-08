@@ -20,9 +20,32 @@ func NewSingly[T any]() *Singly[T] {
 	return &Singly[T]{}
 }
 
+// front returns the reference to the first element of a list
+// throws an error if the list is empty
+func (ll *Singly[T]) front() (*Node[T], error) {
+	// if empty return nil value and throw an error
+	if ll.length == 0 {
+		return nil, errors.New("received an empty linked list")
+	}
+	return ll.Head, nil
+}
+
+// back returns a reference to the last element of a list
+// throws an error if the list is empty
+func (ll *Singly[T]) back() (*Node[T], error) {
+	// if empty return nil value and throw an error
+	if ll.length == 0 {
+		return nil, errors.New("received an empty linked list")
+	}
+	cur := ll.Head
+	for ; cur.Next != nil; cur = cur.Next {
+	}
+	return cur, nil
+}
+
 // AddAtBeg adds a new snode with given value at the beginning of the list.
 func (ll *Singly[T]) AddAtBeg(val T) {
-	n := NewNode[T](val)
+	n := NewNode(val)
 	n.Next = ll.Head
 	ll.Head = n
 	ll.length++
