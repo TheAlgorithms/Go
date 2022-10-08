@@ -9,7 +9,10 @@ type SumOfProperDivisorsExample struct {
 	expected uint
 }
 
-//example data verified with https://oeis.org/A001065/b001065.txt
+// getSumOfProperDivisorsExamples returns an array of example data
+// for the tests of the function SumOfProperDivisors.
+// Example data was verified using [A001065].
+// [A001065]: https://oeis.org/A001065/b001065.txt
 func getSumOfProperDivisorsExamples() []SumOfProperDivisorsExample {
 	return []SumOfProperDivisorsExample{
 		{1, 0},
@@ -97,17 +100,9 @@ func BenchmarkSumOfProperDivisors(b *testing.B) {
 	}
 }
 
-//example data verified with https://oeis.org/A000396
-var perfectNumberExamples = []struct {
-	perfectNumber uint
-}{
-	{6},
-	{28},
-	{496},
-	{8128},
-	{33550336},
-}
-
+// getPerfectNumberExamples returns an array of some perfect numbers.
+// Example data was verified using [A000396].
+// [A000396]: https://oeis.org/A000396
 func getPerfectNumberExamples() []uint {
 	return []uint{
 		6,
