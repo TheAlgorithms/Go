@@ -14,23 +14,24 @@ func TestTwin(t *testing.T) {
 		name          string
 		n             int
 		expectedValue int
+		hasTwin       bool
 	}{
-		{"n = 3, should return 5", 3, 5},
-		{"n = 4, should return -1", 4, -1},
-		{"n = 5, should return 7", 5, 7},
-		{"n = 17, should return 19", 17, 19},
+		{"n = 3, should return 5", 3, 5, true},
+		{"n = 4, should return -1", 4, -1, false},
+		{"n = 5, should return 7", 5, 7, true},
+		{"n = 17, should return 19", 17, 19, true},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result := Twin(test.n)
-			if result != test.expectedValue {
-				t.Errorf("expected value: %v, got: %v", test.expectedValue, result)
+			result, hasTwin := Twin(test.n)
+			if result != test.expectedValue || hasTwin != test.hasTwin {
+				t.Errorf("expected value: %v and %v, got: %v and %v", test.expectedValue, test.hasTwin, result, hasTwin)
 			}
 		})
 	}
 }
 func BenchmarkTwin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		Twin(65536)
+		_, _ = Twin(65536)
 	}
 }
