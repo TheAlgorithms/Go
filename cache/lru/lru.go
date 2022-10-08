@@ -1,6 +1,8 @@
 package lru
 
-import "container/list"
+import (
+	"github.com/TheAlgorithms/Go/structure/linkedlist"
+)
 
 type item struct {
 	key   string
@@ -8,17 +10,17 @@ type item struct {
 }
 
 type LRU struct {
-	dl          *list.List
+	dl          *linkedlist.Doubly[any]
 	capacity    int
 	maxCapacity int
-	storage     map[string]*list.Element
+	storage     map[string]*linkedlist.Node[any]
 }
 
 // New lru cache with capacity
 func New(capacity int) LRU {
 	return LRU{
-		dl:          list.New(),
-		storage:     make(map[string]*list.Element, capacity),
+		dl:          linkedlist.NewDoubly[any](),
+		storage:     make(map[string]*linkedlist.Node[any], capacity),
 		capacity:    0,
 		maxCapacity: capacity,
 	}
@@ -30,7 +32,7 @@ func (c *LRU) Get(key string) any {
 	v, ok := c.storage[key]
 	if ok {
 		c.dl.MoveToBack(v)
-		return v.Value.(item).value
+		return v.Val.(item).value
 	}
 
 	return nil
@@ -40,23 +42,24 @@ func (c *LRU) Get(key string) any {
 func (c *LRU) Put(key string, value any) {
 	e, ok := c.storage[key]
 	if ok {
-		n := e.Value.(item)
+		n := e.Val.(item)
 		n.value = value
-		e.Value = n
+		e.Val = n
 		c.dl.MoveToBack(e)
 		return
 	}
 
 	if c.capacity >= c.maxCapacity {
 		e := c.dl.Front()
-		dk := e.Value.(item).key
+		dk := e.Val.(item).key
 		c.dl.Remove(e)
 		delete(c.storage, dk)
 		c.capacity--
 	}
 
 	n := item{key: key, value: value}
-	ne := c.dl.PushBack(n)
+	c.dl.AddAtEnd(n)
+	ne := c.dl.Back()
 	c.storage[key] = ne
 	c.capacity++
 }

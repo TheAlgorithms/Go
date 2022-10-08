@@ -18,11 +18,11 @@ func TestDoubly(t *testing.T) {
 		got := []int{}
 
 		// check from Next address
-		current := newList.Head
+		current := newList.Head.Next
 
 		got = append(got, current.Val)
 
-		for current.Next != nil {
+		for current.Next != &newList.Head {
 			current = current.Next
 			got = append(got, current.Val)
 		}
@@ -35,7 +35,7 @@ func TestDoubly(t *testing.T) {
 		got = []int{}
 		got = append(got, current.Val)
 
-		for current.Prev != nil {
+		for current.Prev != &newList.Head {
 			current = current.Prev
 			got = append(got, current.Val)
 		}
@@ -50,9 +50,9 @@ func TestDoubly(t *testing.T) {
 	t.Run("Test AddAtEnd", func(t *testing.T) {
 		want := []int{3, 2, 1, 4}
 		got := []int{}
-		current := newList.Head
+		current := newList.Head.Next
 		got = append(got, current.Val)
-		for current.Next != nil {
+		for current.Next != &newList.Head {
 			current = current.Next
 			got = append(got, current.Val)
 		}
@@ -99,9 +99,9 @@ func TestDoubly(t *testing.T) {
 		want := []int{1, 2, 3}
 		got := []int{}
 		newList2.Reverse()
-		current := newList2.Head
+		current := newList2.Head.Next
 		got = append(got, current.Val)
-		for current.Next != nil {
+		for current.Next != &newList2.Head {
 			current = current.Next
 			got = append(got, current.Val)
 		}
