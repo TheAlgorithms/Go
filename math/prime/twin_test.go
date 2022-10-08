@@ -1,17 +1,15 @@
-// twinprime_test.go
+// twin_test.go
 // description: Returns Twin Prime of n
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
-// see twinprime.go
+// see twin.go
 
-package math_test
+package prime
 
 import (
 	"testing"
-
-	"github.com/TheAlgorithms/Go/math"
 )
 
-func TestTwinPrime(t *testing.T) {
+func TestTwin(t *testing.T) {
 	var tests = []struct {
 		name          string
 		n             int
@@ -24,15 +22,15 @@ func TestTwinPrime(t *testing.T) {
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			result := math.TwinPrime(test.n)
+			result := Twin(test.n)
 			if result != test.expectedValue {
 				t.Errorf("expected value: %v, got: %v", test.expectedValue, result)
 			}
 		})
 	}
 }
-func BenchmarkTwinPrime(b *testing.B) {
+func BenchmarkTwin(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		math.TwinPrime(65536)
+		Twin(65536)
 	}
 }
