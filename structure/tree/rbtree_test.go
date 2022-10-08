@@ -1,4 +1,4 @@
-package rbtree
+package tree
 
 import (
 	"math/rand"

@@ -1,4 +1,4 @@
-package binarytree
+package tree
 
 // BSTree Returns a binary search tree structure which contains only a root Node
 type BSTree struct {
@@ -18,7 +18,7 @@ func Insert(root *Node, val int) *Node {
 	if root == nil {
 		return NewNode(val)
 	}
-	if val < root.val {
+	if val < root.key {
 		root.left = Insert(root.left, val)
 	} else {
 		root.right = Insert(root.right, val)
@@ -45,9 +45,9 @@ func BstDelete(root *Node, val int) *Node {
 	if root == nil {
 		return nil
 	}
-	if val < root.val {
+	if val < root.key {
 		root.left = BstDelete(root.left, val)
-	} else if val > root.val {
+	} else if val > root.key {
 		root.right = BstDelete(root.right, val)
 	} else {
 		// this is the node to delete
@@ -70,7 +70,7 @@ func BstDelete(root *Node, val int) *Node {
 func inOrderRecursive(n *Node, traversal *[]int) {
 	if n != nil {
 		inOrderRecursive(n.left, traversal)
-		*traversal = append(*traversal, n.val)
+		*traversal = append(*traversal, n.key)
 		inOrderRecursive(n.right, traversal)
 	}
 }
@@ -87,7 +87,7 @@ func preOrderRecursive(n *Node, traversal *[]int) {
 	if n == nil {
 		return
 	}
-	*traversal = append(*traversal, n.val)
+	*traversal = append(*traversal, n.key)
 	preOrderRecursive(n.left, traversal)
 	preOrderRecursive(n.right, traversal)
 }
@@ -106,7 +106,7 @@ func postOrderRecursive(n *Node, traversal *[]int) {
 	}
 	postOrderRecursive(n.left, traversal)
 	postOrderRecursive(n.right, traversal)
-	*traversal = append(*traversal, n.val)
+	*traversal = append(*traversal, n.key)
 }
 
 // Travers the tree in the following order left --> right --> root
@@ -125,7 +125,7 @@ func levelOrderRecursive(root *Node, traversal *[]int) {
 
 	for len(q) != 0 {
 		n, q = q[0], q[1:]
-		*traversal = append(*traversal, n.val)
+		*traversal = append(*traversal, n.key)
 		if n.left != nil {
 			q = append(q, n.left)
 		}
@@ -157,7 +157,7 @@ func AccessNodesByLayer(root *Node) [][]int {
 		qLen := len(q)
 		for i := 0; i < qLen; i++ {
 			n, q = q[0], q[1:]
-			res[idx] = append(res[idx], n.val)
+			res[idx] = append(res[idx], n.key)
 			if n.left != nil {
 				q = append(q, n.left)
 			}

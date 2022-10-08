@@ -5,113 +5,113 @@ import (
 )
 
 func TestInsert(t *testing.T) {
-	t.Run("LLRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+	t.Run("LLRotation-Test", func(t *testing.T) {
+		root := NewAVLTree()
 		Insert(&root, 5)
 		Insert(&root, 4)
 		Insert(&root, 3)
 
-		if root.Key != 4 {
+		if root.key != 4 {
 			t.Errorf("root should have value = 4")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 3 {
+		if root.left.key != 3 {
 			t.Errorf("left child should have value = 3")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 5 {
+		if root.right.key != 5 {
 			t.Errorf("right child should have value = 5")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 
 	})
 	t.Run("LRRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 		Insert(&root, 5)
 		Insert(&root, 3)
 		Insert(&root, 4)
 
-		if root.Key != 4 {
+		if root.key != 4 {
 			t.Errorf("root should have value = 4")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 3 {
+		if root.left.key != 3 {
 			t.Errorf("left child should have value = 3")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 5 {
+		if root.right.key != 5 {
 			t.Errorf("right child should have value = 5")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 	})
 
 	t.Run("RRRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 		Insert(&root, 3)
 		Insert(&root, 4)
 		Insert(&root, 5)
 
-		if root.Key != 4 {
+		if root.key != 4 {
 			t.Errorf("root should have value = 4")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 3 {
+		if root.left.key != 3 {
 			t.Errorf("left child should have value = 3")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 5 {
+		if root.right.key != 5 {
 			t.Errorf("right child should have value = 5")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 	})
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 		Insert(&root, 3)
 		Insert(&root, 5)
 		Insert(&root, 4)
 
-		if root.Key != 4 {
+		if root.key != 4 {
 			t.Errorf("root should have value = 4")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 3 {
+		if root.left.key != 3 {
 			t.Errorf("left child should have value = 3")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 5 {
+		if root.right.key != 5 {
 			t.Errorf("right child should have value = 5")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 	})
@@ -119,7 +119,7 @@ func TestInsert(t *testing.T) {
 
 func TestDelete(t *testing.T) {
 	t.Run("LLRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 
 		Insert(&root, 5)
 		Insert(&root, 4)
@@ -128,30 +128,30 @@ func TestDelete(t *testing.T) {
 
 		Delete(&root, 5)
 
-		if root.Key != 3 {
+		if root.key != 3 {
 			t.Errorf("root should have value = 3")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 2 {
+		if root.left.key != 2 {
 			t.Errorf("left child should have value = 2")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 4 {
+		if root.right.key != 4 {
 			t.Errorf("right child should have value = 5")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 	})
 
 	t.Run("LRRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 
 		Insert(&root, 10)
 		Insert(&root, 8)
@@ -160,31 +160,31 @@ func TestDelete(t *testing.T) {
 
 		Delete(&root, 10)
 
-		if root.Key != 7 {
+		if root.key != 7 {
 			t.Errorf("root should have value = 7")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 6 {
+		if root.left.key != 6 {
 			t.Errorf("left child should have value = 6")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 8 {
+		if root.right.key != 8 {
 			t.Errorf("right child should have value = 8")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 
 	})
 
 	t.Run("RRRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 
 		Insert(&root, 2)
 		Insert(&root, 3)
@@ -193,31 +193,31 @@ func TestDelete(t *testing.T) {
 
 		Delete(&root, 2)
 
-		if root.Key != 4 {
+		if root.key != 4 {
 			t.Errorf("root should have value = 4")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 3 {
+		if root.left.key != 3 {
 			t.Errorf("left child should have value = 3")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 5 {
+		if root.right.key != 5 {
 			t.Errorf("right child should have value = 5")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 
 	})
 
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		root := NewTree()
+		root := NewAVLTree()
 
 		Insert(&root, 7)
 		Insert(&root, 6)
@@ -226,24 +226,24 @@ func TestDelete(t *testing.T) {
 
 		Delete(&root, 6)
 
-		if root.Key != 8 {
+		if root.key != 8 {
 			t.Errorf("root should have value = 8")
 		}
-		if root.Height != 2 {
+		if root.height != 2 {
 			t.Errorf("height of root should be = 2")
 		}
 
-		if root.Left.Key != 7 {
+		if root.left.key != 7 {
 			t.Errorf("left child should have value = 7")
 		}
-		if root.Left.Height != 1 {
+		if root.left.height != 1 {
 			t.Errorf("height of left child should be 1")
 		}
 
-		if root.Right.Key != 9 {
+		if root.right.key != 9 {
 			t.Errorf("right child should have value = 9")
 		}
-		if root.Right.Height != 1 {
+		if root.right.height != 1 {
 			t.Errorf("height of right should be 1")
 		}
 
@@ -252,7 +252,7 @@ func TestDelete(t *testing.T) {
 
 func TestGet(t *testing.T) {
 
-	root := NewTree()
+	root := NewAVLTree()
 
 	if Get(root, 5) != nil {
 		t.Error("no item should exists in newly created AVL tree")
@@ -263,14 +263,14 @@ func TestGet(t *testing.T) {
 	Insert(&root, 3)
 
 	n := Get(root, 4)
-	if n.Key != 4 {
+	if n.key != 4 {
 		t.Error("key should be 4")
 	}
-	if n.Right.Key != 5 {
+	if n.right.key != 5 {
 		t.Error("right child should have value 5")
 	}
 
-	if n.Left.Key != 3 {
+	if n.left.key != 3 {
 		t.Error("left child should have value 3")
 	}
 

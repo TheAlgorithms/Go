@@ -1,4 +1,4 @@
-package binarytree
+package tree
 
 import (
 	"reflect"
@@ -15,15 +15,15 @@ func TestInsert(t *testing.T) {
 	Insert(root, 80)
 	Insert(root, 100)
 
-	if root.val != 90 {
+	if root.key != 90 {
 		t.Errorf("root should have value = 90")
 	}
 
-	if root.left.val != 80 {
+	if root.left.key != 80 {
 		t.Errorf("left child should have value = 80")
 	}
 
-	if root.right.val != 100 {
+	if root.right.key != 100 {
 		t.Errorf("right child should have value = 100")
 	}
 
@@ -45,11 +45,11 @@ func TestDelete(t *testing.T) {
 
 		BstDelete(root, 100)
 
-		if root.val != 90 {
+		if root.key != 90 {
 			t.Errorf("root should have value = 90")
 		}
 
-		if root.left.val != 80 {
+		if root.left.key != 80 {
 			t.Errorf("left child should have value = 80")
 		}
 
@@ -75,15 +75,15 @@ func TestDelete(t *testing.T) {
 
 		BstDelete(root, 80)
 
-		if root.val != 90 {
+		if root.key != 90 {
 			t.Errorf("root should have value = 90")
 		}
 
-		if root.right.val != 100 {
+		if root.right.key != 100 {
 			t.Errorf("right child should have value = 100")
 		}
 
-		if root.left.val != 70 {
+		if root.left.key != 70 {
 			t.Errorf("left child should have value = 70")
 		}
 
@@ -106,15 +106,15 @@ func TestDelete(t *testing.T) {
 
 		BstDelete(root, 80)
 
-		if root.val != 90 {
+		if root.key != 90 {
 			t.Errorf("root should have value = 90")
 		}
 
-		if root.left.val != 85 {
+		if root.left.key != 85 {
 			t.Errorf("left child should have value = 85")
 		}
 
-		if root.right.val != 100 {
+		if root.right.key != 100 {
 			t.Errorf("right child should have value = 100")
 		}
 

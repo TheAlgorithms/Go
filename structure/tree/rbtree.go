@@ -7,7 +7,7 @@
 // authors [guuzaa](https://github.com/guuzaa)
 // see rbtree.go
 
-package rbtree
+package tree
 
 import (
 	"fmt"
@@ -15,29 +15,14 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type Color byte
-
-const (
-	Black Color = iota
-	Red
-)
-
-type Node[T constraints.Ordered] struct {
-	data   T
-	parent *Node[T]
-	left   *Node[T]
-	right  *Node[T]
-	color  Color
-}
-
 type RBTree[T constraints.Ordered] struct {
-	root *Node[T]
-	NIL  *Node[T] // NIL denotes the leaf node of Red-Black Tree
+	root *RBNode[T]
+	NIL  *RBNode[T] // NIL denotes the leaf node of Red-Black Tree
 }
 
 // Create a new Red-Black Tree
 func NewRBTree[T constraints.Ordered]() *RBTree[T] {
-	leaf := &Node[T]{color: Black, left: nil, right: nil}
+	leaf := &RBNode[T]{color: Black, left: nil, right: nil}
 	return &RBTree[T]{
 		root: leaf,
 		NIL:  leaf,
@@ -45,26 +30,26 @@ func NewRBTree[T constraints.Ordered]() *RBTree[T] {
 }
 
 // Determine node is a leaf node
-func (r *RBTree[T]) isNil(node *Node[T]) bool {
+func (r *RBTree[T]) isNil(node *RBNode[T]) bool {
 	return node == r.NIL
 }
 
 // Insert a key into the tree
 func (r *RBTree[T]) Insert(key T) {
-	node := &Node[T]{
-		data:   key,
+	node := &RBNode[T]{
+		key:    key,
 		left:   r.NIL,
 		right:  r.NIL,
 		parent: nil,
 		color:  Red,
 	}
 
-	var y *Node[T]
+	var y *RBNode[T]
 	x := r.root
 
 	for !r.isNil(x) {
 		y = x
-		if node.data < x.data {
+		if node.key < x.key {
 			x = x.left
 		} else {
 			x = x.right
@@ -75,7 +60,7 @@ func (r *RBTree[T]) Insert(key T) {
 	node.parent = y
 	if y == nil {
 		r.root = node
-	} else if node.data < y.data {
+	} else if node.key < y.key {
 		y.left = node
 	} else {
 		y.right = node
@@ -109,20 +94,20 @@ func (r *RBTree[T]) Delete(data T) bool {
 func (r *RBTree[T]) Max() (T, bool) {
 	ret := r.maximum(r.root)
 	if r.isNil(ret) {
-		return r.NIL.data, false
+		return r.NIL.key, false
 	}
 
-	return ret.data, true
+	return ret.key, true
 }
 
 // Return the min value of the tree
 func (r *RBTree[T]) Min() (T, bool) {
 	ret := r.minimum(r.root)
 	if r.isNil(ret) {
-		return r.NIL.data, false
+		return r.NIL.key, false
 	}
 
-	return ret.data, true
+	return ret.key, true
 }
 
 // Determine the tree has the node of key
@@ -137,7 +122,7 @@ func (r *RBTree[T]) Has(key T) bool {
 func (r *RBTree[T]) Predecessor(key T) (T, bool) {
 	node, ok := r.searchTreeHelper(r.root, key)
 	if !ok {
-		return r.NIL.data, ok
+		return r.NIL.key, ok
 	}
 
 	return r.predecessorHelper(node)
@@ -149,13 +134,13 @@ func (r *RBTree[T]) Predecessor(key T) (T, bool) {
 func (r *RBTree[T]) Successor(key T) (T, bool) {
 	node, ok := r.searchTreeHelper(r.root, key)
 	if !ok {
-		return r.NIL.data, ok
+		return r.NIL.key, ok
 	}
 
 	return r.successorHelper(node)
 }
 
-func (r *RBTree[T]) leftRotate(x *Node[T]) {
+func (r *RBTree[T]) leftRotate(x *RBNode[T]) {
 	y := x.right
 	x.right = y.left
 
@@ -176,7 +161,7 @@ func (r *RBTree[T]) leftRotate(x *Node[T]) {
 	x.parent = y
 }
 
-func (r *RBTree[T]) rightRotate(x *Node[T]) {
+func (r *RBTree[T]) rightRotate(x *RBNode[T]) {
 	y := x.left
 	x.left = y.right
 	if !r.isNil(y.right) {
@@ -195,8 +180,8 @@ func (r *RBTree[T]) rightRotate(x *Node[T]) {
 	x.parent = y
 }
 
-func (r *RBTree[T]) insertFix(k *Node[T]) {
-	var u *Node[T]
+func (r *RBTree[T]) insertFix(k *RBNode[T]) {
+	var u *RBNode[T]
 	for k.parent.color == Red {
 		if k.parent == k.parent.parent.right {
 			u = k.parent.parent.left
@@ -239,8 +224,8 @@ func (r *RBTree[T]) insertFix(k *Node[T]) {
 	r.root.color = Black
 }
 
-func (r *RBTree[T]) inOrderHelper(node *Node[T]) []T {
-	stack := []*Node[T]{}
+func (r *RBTree[T]) inOrderHelper(node *RBNode[T]) []T {
+	stack := []*RBNode[T]{}
 	ret := []T{}
 
 	for !r.isNil(node) || len(stack) > 0 {
@@ -251,48 +236,48 @@ func (r *RBTree[T]) inOrderHelper(node *Node[T]) []T {
 
 		node = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		ret = append(ret, node.data)
+		ret = append(ret, node.key)
 		node = node.right
 	}
 
 	return ret
 }
 
-func (r *RBTree[T]) searchTreeHelper(node *Node[T], key T) (*Node[T], bool) {
+func (r *RBTree[T]) searchTreeHelper(node *RBNode[T], key T) (*RBNode[T], bool) {
 	if node == nil || r.isNil(node) {
 		return node, false
 	}
 
-	if key == node.data {
+	if key == node.key {
 		return node, true
 	}
 
-	if key < node.data {
+	if key < node.key {
 		return r.searchTreeHelper(node.left, key)
 	}
 	return r.searchTreeHelper(node.right, key)
 }
 
-func (r *RBTree[T]) deleteNodeHelper(node *Node[T], key T) bool {
+func (r *RBTree[T]) deleteNodeHelper(node *RBNode[T], key T) bool {
 	z := r.NIL
 	for !r.isNil(node) {
 		switch {
-		case node.data == key:
+		case node.key == key:
 			z = node
 			fallthrough
-		case node.data <= key:
+		case node.key <= key:
 			node = node.right
-		case node.data > key:
+		case node.key > key:
 			node = node.left
 		}
 	}
 
 	if r.isNil(z) {
-		fmt.Println("Key not found in the tree")
+		fmt.Println("key not found in the tree")
 		return false
 	}
 
-	var x *Node[T]
+	var x *RBNode[T]
 	y := z
 	yOriginColor := y.color
 	if r.isNil(z.left) {
@@ -326,8 +311,8 @@ func (r *RBTree[T]) deleteNodeHelper(node *Node[T], key T) bool {
 	return true
 }
 
-func (r *RBTree[T]) deleteFix(x *Node[T]) {
-	var s *Node[T]
+func (r *RBTree[T]) deleteFix(x *RBNode[T]) {
+	var s *RBNode[T]
 	for x != r.root && x.color == Black {
 		if x == x.parent.left {
 			s = x.parent.right
@@ -387,7 +372,7 @@ func (r *RBTree[T]) deleteFix(x *Node[T]) {
 	x.color = Black
 }
 
-func (r *RBTree[T]) minimum(node *Node[T]) *Node[T] {
+func (r *RBTree[T]) minimum(node *RBNode[T]) *RBNode[T] {
 	if r.isNil(node) {
 		return node
 	}
@@ -398,7 +383,7 @@ func (r *RBTree[T]) minimum(node *Node[T]) *Node[T] {
 	return node
 }
 
-func (r *RBTree[T]) maximum(node *Node[T]) *Node[T] {
+func (r *RBTree[T]) maximum(node *RBNode[T]) *RBNode[T] {
 	if r.isNil(node) {
 		return node
 	}
@@ -410,7 +395,7 @@ func (r *RBTree[T]) maximum(node *Node[T]) *Node[T] {
 	return node
 }
 
-func (r *RBTree[T]) rbTransplant(u, v *Node[T]) {
+func (r *RBTree[T]) rbTransplant(u, v *RBNode[T]) {
 	if u.parent == nil {
 		r.root = v
 	} else if u == u.parent.left {
@@ -422,9 +407,9 @@ func (r *RBTree[T]) rbTransplant(u, v *Node[T]) {
 	v.parent = u.parent
 }
 
-func (r *RBTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
+func (r *RBTree[T]) predecessorHelper(node *RBNode[T]) (T, bool) {
 	if !r.isNil(node.left) {
-		return r.maximum(node.left).data, true
+		return r.maximum(node.left).key, true
 	}
 
 	p := node.parent
@@ -434,14 +419,14 @@ func (r *RBTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
 	}
 
 	if p == nil {
-		return r.NIL.data, false
+		return r.NIL.key, false
 	}
-	return p.data, true
+	return p.key, true
 }
 
-func (r *RBTree[T]) successorHelper(node *Node[T]) (T, bool) {
+func (r *RBTree[T]) successorHelper(node *RBNode[T]) (T, bool) {
 	if !r.isNil(node.right) {
-		return r.minimum(node.right).data, true
+		return r.minimum(node.right).key, true
 	}
 
 	p := node.parent
@@ -451,7 +436,7 @@ func (r *RBTree[T]) successorHelper(node *Node[T]) (T, bool) {
 	}
 
 	if p == nil {
-		return r.NIL.data, false
+		return r.NIL.key, false
 	}
-	return p.data, true
+	return p.key, true
 }
