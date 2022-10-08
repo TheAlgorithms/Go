@@ -1,7 +1,9 @@
-package dynamic
+package dynamic_test
 
 import (
 	"testing"
+
+	"github.com/TheAlgorithms/Go/dynamic"
 )
 
 var rodCuttingExamples = []struct {
@@ -25,9 +27,9 @@ func CutRobSolutionFunctionTemplate(t *testing.T, cutRodSolutionFunction func([]
 }
 
 func TestCutRodRec(t *testing.T) {
-	CutRobSolutionFunctionTemplate(t, CutRodRec)
+	CutRobSolutionFunctionTemplate(t, dynamic.CutRodRec)
 }
 
 func TestCutRodDp(t *testing.T) {
-	CutRobSolutionFunctionTemplate(t, CutRodDp)
+	CutRobSolutionFunctionTemplate(t, dynamic.CutRodDp)
 }
