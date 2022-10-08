@@ -39,6 +39,7 @@ func (bt *BSTree[T]) InOrderSuccessor(root *Node[T]) *Node[T] {
 	return cur
 }
 
+// // Delete removes the node of val
 func (bt *BSTree[T]) Delete(val T) *Node[T] {
 	return bt.deleteHelper(bt.root, val)
 }
@@ -64,12 +65,14 @@ func (bt *BSTree[T]) PostOrder() []T {
 	return traversal
 }
 
+// LevelOrder returns the level order traversal of the tree
 func (bt *BSTree[T]) LevelOrder() []T {
 	traversal := make([]T, 0)
 	bt.levelOrderHelper(bt.root, &traversal)
 	return traversal
 }
 
+// AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
 func (bt *BSTree[T]) AccessNodesByLayer() [][]T {
 	var res [][]T
 	root := bt.root
