@@ -17,6 +17,7 @@ type SumOfProperDivisorsExample struct {
 // [A001065]: https://oeis.org/A001065/b001065.txt
 func getSumOfProperDivisorsExamples() []SumOfProperDivisorsExample {
 	return []SumOfProperDivisorsExample{
+		{0, 0},
 		{1, 0},
 		{2, 1},
 		{3, 1},
