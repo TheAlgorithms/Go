@@ -60,3 +60,28 @@ func MergeIter[T constraints.Ordered](items []T) []T {
 	}
 	return items
 }
+
+func MergeParallel[T constraints.Ordered](items []T) []T {
+
+	if len(items) < 2 {
+		return items
+
+	}
+
+	if len(items) < 2048 {
+		return Merge(items)
+	}
+
+	done := make(chan struct{})
+	defer close(done)
+
+	var middle = len(items) / 2
+	var a []T
+	go func() {
+		a = MergeParallel(items[:middle])
+		done <- struct{}{}
+	}()
+	var b = MergeParallel(items[middle:])
+	<-done
+	return merge(a, b)
+}
