@@ -91,6 +91,45 @@ func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 	return retval, true
 }
 
+// DelAtMiddleByPos deletes node at middle based on position in list
+// and returns value. If empty or position of node is less than linked list length, returns false
+func (ll *Singly[T]) DelAtMiddleByPos(pos int) (T, bool) {
+	if ll.Head == nil {
+		var r T
+		return r, false
+	}
+
+	if pos-1 > ll.length {
+		var r T
+		return r, false
+	}
+
+	if pos-1 == 0 {
+		return ll.DelAtBeg()
+	}
+
+	if pos-1 == ll.length {
+		return ll.DelAtEnd()
+	}
+
+	var prev *Node[T]
+	var val T
+	cur := ll.Head
+	count := 0
+
+	for count < pos-1 {
+		prev = cur
+		cur = cur.Next
+		count++
+	}
+
+	cur.Next.Prev = prev
+	val = cur.Val
+	prev.Next = cur.Next
+	ll.length--
+	return val, true
+}
+
 // Count Number of nodes in the linkedlist
 func (ll *Doubly[T]) Count() int {
 	var ctr int = 0
