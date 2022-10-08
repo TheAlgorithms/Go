@@ -1,10 +1,10 @@
-package avl
+package tree
 
 import (
 	"testing"
 )
 
-func TestInsert(t *testing.T) {
+func TestAVLInsert(t *testing.T) {
 	t.Run("LLRotation-Test", func(t *testing.T) {
 		root := NewAVLTree()
 		Insert(&root, 5)
@@ -117,7 +117,7 @@ func TestInsert(t *testing.T) {
 	})
 }
 
-func TestDelete(t *testing.T) {
+func TestAVLDelete(t *testing.T) {
 	t.Run("LLRotaion-Test", func(t *testing.T) {
 		root := NewAVLTree()
 
@@ -250,7 +250,7 @@ func TestDelete(t *testing.T) {
 	})
 }
 
-func TestGet(t *testing.T) {
+func TestAVLGet(t *testing.T) {
 
 	root := NewAVLTree()
 

@@ -1,38 +1,37 @@
+// Binary search tree.
+//
+// For more details check out those links below here:
+// Wikipedia article: https://en.wikipedia.org/wiki/Binary_search_tree
+// see bstree.go
+
 package tree
 
-// BSTree Returns a binary search tree structure which contains only a root Node
-type BSTree struct {
-	Root *Node
+import (
+	"github.com/TheAlgorithms/Go/constraints"
+	"github.com/TheAlgorithms/Go/math/max"
+)
+
+// NewNode Returns a new pointer to an empty Node
+func NewNode[T constraints.Ordered](val T) *Node[T] {
+	return &Node[T]{key: val, left: nil, right: nil}
 }
 
-// calculateDepth helper function for BSTree's depth()
-func calculateDepth(n *Node, depth int) int {
-	if n == nil {
-		return depth
-	}
-	return Max(calculateDepth(n.left, depth+1), calculateDepth(n.right, depth+1))
+type BSTree[T constraints.Ordered] struct {
+	root *Node[T]
 }
 
 // Insert a value in the BSTree
-func Insert(root *Node, val int) *Node {
-	if root == nil {
-		return NewNode(val)
-	}
-	if val < root.key {
-		root.left = Insert(root.left, val)
-	} else {
-		root.right = Insert(root.right, val)
-	}
-	return root
+func (bt *BSTree[T]) Insert(val T) *Node[T] {
+	return bt.insertHelper(bt.root, val)
 }
 
-// Depth returns the calculated depth of a binary saerch tree
-func (t *BSTree) Depth() int {
-	return calculateDepth(t.Root, 0)
+// Depth returns the calculated depth of a binary search tree
+func (bt *BSTree[T]) Depth() int {
+	return bt.calculateDepth(bt.root, 0)
 }
 
 // InOrderSuccessor Goes to the left
-func InOrderSuccessor(root *Node) *Node {
+func (bt *BSTree[T]) InOrderSuccessor(root *Node[T]) *Node[T] {
 	cur := root
 	for cur.left != nil {
 		cur = cur.left
@@ -40,120 +39,50 @@ func InOrderSuccessor(root *Node) *Node {
 	return cur
 }
 
-// BstDelete removes the node
-func BstDelete(root *Node, val int) *Node {
-	if root == nil {
-		return nil
-	}
-	if val < root.key {
-		root.left = BstDelete(root.left, val)
-	} else if val > root.key {
-		root.right = BstDelete(root.right, val)
-	} else {
-		// this is the node to delete
-		// node with one child
-		if root.left == nil {
-			return root.right
-		} else if root.right == nil {
-			return root.left
-		} else {
-			n := root.right
-			d := InOrderSuccessor(n)
-			d.left = root.left
-			return root.right
-		}
-	}
-	return root
+func (bt *BSTree[T]) Delete(val T) *Node[T] {
+	return bt.deleteHelper(bt.root, val)
 }
 
-// InOrder add's children to a node in order left first then right recursively
-func inOrderRecursive(n *Node, traversal *[]int) {
-	if n != nil {
-		inOrderRecursive(n.left, traversal)
-		*traversal = append(*traversal, n.key)
-		inOrderRecursive(n.right, traversal)
-	}
-}
-
-// Travers the tree in the following order left --> root --> right
-func InOrder(root *Node) []int {
-	traversal := make([]int, 0)
-	inOrderRecursive(root, &traversal)
+// Traverses the tree in the following order left --> root --> right
+func (bt *BSTree[T]) InOrder() []T {
+	traversal := make([]T, 0)
+	bt.inOrderRecursive(bt.root, &traversal)
 	return traversal
 }
 
-// PreOrder Preorder
-func preOrderRecursive(n *Node, traversal *[]int) {
-	if n == nil {
-		return
-	}
-	*traversal = append(*traversal, n.key)
-	preOrderRecursive(n.left, traversal)
-	preOrderRecursive(n.right, traversal)
-}
-
-// Travers the tree in the following order root --> left --> right
-func PreOrder(root *Node) []int {
-	traversal := make([]int, 0)
-	preOrderRecursive(root, &traversal)
+// Traverses the tree in the following order root --> left --> right
+func (bt *BSTree[T]) PreOrder() []T {
+	traversal := make([]T, 0)
+	bt.preOrderRecursive(bt.root, &traversal)
 	return traversal
 }
 
-// PostOrder PostOrder
-func postOrderRecursive(n *Node, traversal *[]int) {
-	if n == nil {
-		return
-	}
-	postOrderRecursive(n.left, traversal)
-	postOrderRecursive(n.right, traversal)
-	*traversal = append(*traversal, n.key)
-}
-
-// Travers the tree in the following order left --> right --> root
-func PostOrder(root *Node) []int {
-	traversal := make([]int, 0)
-	postOrderRecursive(root, &traversal)
+// Traverses the tree in the following order left --> right --> root
+func (bt *BSTree[T]) PostOrder() []T {
+	traversal := make([]T, 0)
+	bt.postOrderRecursive(bt.root, &traversal)
 	return traversal
 }
 
-// LevelOrder LevelOrder
-func levelOrderRecursive(root *Node, traversal *[]int) {
-	var q []*Node // queue
-	var n *Node   // temporary node
-
-	q = append(q, root)
-
-	for len(q) != 0 {
-		n, q = q[0], q[1:]
-		*traversal = append(*traversal, n.key)
-		if n.left != nil {
-			q = append(q, n.left)
-		}
-		if n.right != nil {
-			q = append(q, n.right)
-		}
-	}
-}
-
-func LevelOrder(root *Node) []int {
-	traversal := make([]int, 0)
-	levelOrderRecursive(root, &traversal)
+func (bt *BSTree[T]) LevelOrder() []T {
+	traversal := make([]T, 0)
+	bt.levelOrderHelper(bt.root, &traversal)
 	return traversal
 }
 
-// AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
-func AccessNodesByLayer(root *Node) [][]int {
-	var res [][]int
+func (bt *BSTree[T]) AccessNodesByLayer() [][]T {
+	var res [][]T
+	root := bt.root
 	if root == nil {
 		return res
 	}
-	var q []*Node
-	var n *Node
+	var q []*Node[T]
+	var n *Node[T]
 	var idx = 0
 	q = append(q, root)
 
 	for len(q) != 0 {
-		res = append(res, []int{})
+		res = append(res, []T{})
 		qLen := len(q)
 		for i := 0; i < qLen; i++ {
 			n, q = q[0], q[1:]
@@ -170,10 +99,94 @@ func AccessNodesByLayer(root *Node) [][]int {
 	return res
 }
 
-// Max Function that returns max of two numbers - possibly already declared.
-func Max(a, b int) int {
-	if a > b {
-		return a
+func (bt *BSTree[T]) insertHelper(root *Node[T], val T) *Node[T] {
+	if root == nil {
+		return NewNode(val)
 	}
-	return b
+	if val < root.key {
+		root.left = bt.insertHelper(root.left, val)
+	} else {
+		root.right = bt.insertHelper(root.right, val)
+	}
+	return root
+}
+
+func (bt *BSTree[T]) calculateDepth(n *Node[T], depth int) int {
+	if n == nil {
+		return depth
+	}
+	return max.Int(bt.calculateDepth(n.left, depth+1), bt.calculateDepth(n.right, depth+1))
+}
+
+func (bt *BSTree[T]) deleteHelper(root *Node[T], val T) *Node[T] {
+	if root == nil {
+		return nil
+	}
+	if val < root.key {
+		root.left = bt.deleteHelper(root.left, val)
+	} else if val > root.key {
+		root.right = bt.deleteHelper(root.right, val)
+	} else {
+		// this is the node to delete
+		// node with one child
+		if root.left == nil {
+			return root.right
+		} else if root.right == nil {
+			return root.left
+		} else {
+			n := root.right
+			d := bt.InOrderSuccessor(n)
+			d.left = root.left
+			return root.right
+		}
+	}
+	return root
+}
+
+func (bt *BSTree[T]) inOrderRecursive(n *Node[T], traversal *[]T) {
+	if n == nil {
+		return
+	}
+
+	bt.inOrderRecursive(n.left, traversal)
+	*traversal = append(*traversal, n.key)
+	bt.inOrderRecursive(n.right, traversal)
+}
+
+func (bt *BSTree[T]) preOrderRecursive(n *Node[T], traversal *[]T) {
+	if n == nil {
+		return
+	}
+
+	*traversal = append(*traversal, n.key)
+	bt.preOrderRecursive(n.left, traversal)
+	bt.preOrderRecursive(n.right, traversal)
+}
+
+func (bt *BSTree[T]) postOrderRecursive(n *Node[T], traversal *[]T) {
+	if n == nil {
+		return
+	}
+
+	bt.postOrderRecursive(n.left, traversal)
+	bt.postOrderRecursive(n.right, traversal)
+	*traversal = append(*traversal, n.key)
+}
+
+func (bt *BSTree[T]) levelOrderHelper(root *Node[T], traversal *[]T) {
+	var q []*Node[T] // queue
+	var n *Node[T]   // temporary node
+
+	q = append(q, root)
+
+	for len(q) != 0 {
+		n, q = q[0], q[1:]
+		*traversal = append(*traversal, n.key)
+		if n.left != nil {
+			q = append(q, n.left)
+		}
+		if n.right != nil {
+			q = append(q, n.right)
+		}
+	}
 }

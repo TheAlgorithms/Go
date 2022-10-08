@@ -2,15 +2,18 @@ package tree
 
 import "github.com/TheAlgorithms/Go/constraints"
 
-type Node struct {
-	key   int
-	left  *Node
-	right *Node
+// Node of a binary-search tree
+type Node[T constraints.Ordered] struct {
+	key   T
+	left  *Node[T]
+	right *Node[T]
 }
 
-// NewNode Returns a new pointer to an empty Node
-func NewNode(val int) *Node {
-	return &Node{key: val, left: nil, right: nil}
+// AVLNode of a AVL tree
+type AVLNode struct {
+	key         int
+	height      int
+	left, right *AVLNode
 }
 
 type Color byte
@@ -20,7 +23,7 @@ const (
 	Red
 )
 
-// Node of Red-Black Tree
+// RBNode: Node of Red-Black Tree
 type RBNode[T constraints.Ordered] struct {
 	key    T
 	parent *RBNode[T]

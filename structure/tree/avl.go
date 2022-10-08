@@ -2,14 +2,7 @@
 // avl is self-balancing tree, i.e for all node in a tree, height difference
 // between its left and right child will not exceed 1
 // more information : https://en.wikipedia.org/wiki/AVL_tree
-package avl
-
-// AVLNode of a tree
-type AVLNode struct {
-	key         int
-	height      int
-	left, right *AVLNode
-}
+package tree
 
 // NewAVLTree create a new AVL tree
 func NewAVLTree() *AVLNode {
