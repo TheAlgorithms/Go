@@ -92,7 +92,9 @@ func TestSumOfProperDivisors(t *testing.T) {
 	for _, tc := range getSumOfProperDivisorsExamples() {
 		actual := math.SumOfProperDivisors(tc.input)
 		if actual != tc.expected {
-			t.Errorf("Expected SumOfProperDivisors(%d) to be: %d, but got: %d", tc.input, tc.expected, actual)
+			t.Errorf(
+				"Expected SumOfProperDivisors(%d) to be: %d, but got: %d",
+				tc.input, tc.expected, actual)
 		}
 	}
 }
