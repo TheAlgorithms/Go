@@ -1,7 +1,9 @@
-package math
+package math_test
 
 import (
 	"testing"
+
+	"github.com/TheAlgorithms/Go/math"
 )
 
 type SumOfProperDivisorsExample struct {
@@ -87,7 +89,7 @@ func getSumOfProperDivisorsExamples() []SumOfProperDivisorsExample {
 
 func TestSumOfProperDivisors(t *testing.T) {
 	for _, tc := range getSumOfProperDivisorsExamples() {
-		actual := SumOfProperDivisors(tc.input)
+		actual := math.SumOfProperDivisors(tc.input)
 		if actual != tc.expected {
 			t.Errorf("Expected SumOfProperDivisors(%d) to be: %d, but got: %d", tc.input, tc.expected, actual)
 		}
@@ -96,7 +98,7 @@ func TestSumOfProperDivisors(t *testing.T) {
 
 func BenchmarkSumOfProperDivisors(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		SumOfProperDivisors(800)
+		math.SumOfProperDivisors(800)
 	}
 }
 
@@ -114,7 +116,7 @@ func getPerfectNumberExamples() []uint {
 
 func TestIsPerfectNumber(t *testing.T) {
 	for _, tc := range getPerfectNumberExamples() {
-		if !IsPerfectNumber(tc) {
+		if !math.IsPerfectNumber(tc) {
 			t.Errorf("%d is expected to be a perfect number.", tc)
 		}
 	}
@@ -139,7 +141,7 @@ func getNotPerfectNumberExamples() []uint {
 
 func TestIsNotPerfectNumber(t *testing.T) {
 	for _, tc := range getNotPerfectNumberExamples() {
-		if IsPerfectNumber(tc) {
+		if math.IsPerfectNumber(tc) {
 			t.Errorf("%d is expected not to be a perfect number.", tc)
 		}
 	}
@@ -147,6 +149,6 @@ func TestIsNotPerfectNumber(t *testing.T) {
 
 func BenchmarkIsPerfectNumber(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		IsPerfectNumber(8128)
+		math.IsPerfectNumber(8128)
 	}
 }
