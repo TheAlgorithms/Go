@@ -17,9 +17,9 @@ var rodCuttingExamples = []struct {
 	{[]int{0, 3, 5, 8, 9, 10, 17, 17, 20}, 8, 24},
 }
 
-func CutRobSolutionFunctionTemplate(t *testing.T, cutRodSolutionFunction func([]int, int) int) {
+func cutRobSolTestFunc(t *testing.T, cutRodSolFunc func([]int, int) int) {
 	for _, tc := range rodCuttingExamples {
-		actual := cutRodSolutionFunction(tc.price, tc.length)
+		actual := cutRodSolFunc(tc.price, tc.length)
 		if actual != tc.expected {
 			t.Errorf("for the price: %d and length %d expected %d, but got: %d", tc.price, tc.length, tc.expected, actual)
 		}
@@ -27,9 +27,9 @@ func CutRobSolutionFunctionTemplate(t *testing.T, cutRodSolutionFunction func([]
 }
 
 func TestCutRodRec(t *testing.T) {
-	CutRobSolutionFunctionTemplate(t, dynamic.CutRodRec)
+	cutRobSolTestFunc(t, dynamic.CutRodRec)
 }
 
 func TestCutRodDp(t *testing.T) {
-	CutRobSolutionFunctionTemplate(t, dynamic.CutRodDp)
+	cutRobSolTestFunc(t, dynamic.CutRodDp)
 }
