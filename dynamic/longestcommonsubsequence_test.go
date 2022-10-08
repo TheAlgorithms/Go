@@ -1,7 +1,9 @@
-package dynamic
+package dynamic_test
 
 import (
 	"testing"
+
+	"github.com/TheAlgorithms/Go/dynamic"
 )
 
 var longestCommonSubsequenceExamples = []struct {
@@ -26,7 +28,7 @@ var longestCommonSubsequenceExamples = []struct {
 
 func TestLongestCommonSubsequence(t *testing.T) {
 	for _, tc := range longestCommonSubsequenceExamples {
-		actual := LongestCommonSubsequence(
+		actual := dynamic.LongestCommonSubsequence(
 			tc.stringA, tc.stringB,
 			len(tc.stringA), len(tc.stringB))
 		if actual != tc.expected {
@@ -39,7 +41,7 @@ func TestLongestCommonSubsequence(t *testing.T) {
 
 func TestLongestCommonSubsequenceIsSymmetric(t *testing.T) {
 	for _, tc := range longestCommonSubsequenceExamples {
-		actual := LongestCommonSubsequence(
+		actual := dynamic.LongestCommonSubsequence(
 			tc.stringB, tc.stringA,
 			len(tc.stringB), len(tc.stringA))
 		if actual != tc.expected {
