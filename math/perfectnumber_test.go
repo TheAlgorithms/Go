@@ -6,7 +6,7 @@ import (
 	"github.com/TheAlgorithms/Go/math"
 )
 
-type SumOfProperDivisorsExample struct {
+type sumOfProperDivisorsExample struct {
 	input    uint
 	expected uint
 }
@@ -15,8 +15,8 @@ type SumOfProperDivisorsExample struct {
 // for the tests of the function SumOfProperDivisors.
 // Example data was verified using [A001065].
 // [A001065]: https://oeis.org/A001065/b001065.txt
-func getSumOfProperDivisorsExamples() []SumOfProperDivisorsExample {
-	return []SumOfProperDivisorsExample{
+func getSumOfProperDivisorsExamples() []sumOfProperDivisorsExample {
+	return []sumOfProperDivisorsExample{
 		{0, 0},
 		{1, 0},
 		{2, 1},
