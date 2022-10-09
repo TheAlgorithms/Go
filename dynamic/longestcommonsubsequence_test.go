@@ -6,14 +6,14 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-type LongestCommonSubsequenceExample struct {
+type longestCommonSubsequenceExample struct {
 	stringA  string
 	stringB  string
 	expected int
 }
 
-func getLongestCommonSubsequenceExamples() []LongestCommonSubsequenceExample {
-	return []LongestCommonSubsequenceExample{
+func getLongestCommonSubsequenceExamples() []longestCommonSubsequenceExample {
+	return []longestCommonSubsequenceExample{
 		{"ABCDGH", "AEDFHR", 3},
 		{"AGGTAB", "GXTXAYB", 4},
 		{"programming", "gaming", 6},
