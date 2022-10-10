@@ -6,14 +6,14 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-type longestCommonSubsequenceExample struct {
+type testCase struct {
 	stringA  string
 	stringB  string
 	expected int
 }
 
-func getLongestCommonSubsequenceExamples() []longestCommonSubsequenceExample {
-	return []longestCommonSubsequenceExample{
+func getTestCases() []testCase {
+	return []testCase{
 		{"ABCDGH", "AEDFHR", 3},
 		{"AGGTAB", "GXTXAYB", 4},
 		{"programming", "gaming", 6},
@@ -31,7 +31,7 @@ func getLongestCommonSubsequenceExamples() []longestCommonSubsequenceExample {
 }
 
 func TestLongestCommonSubsequence(t *testing.T) {
-	for _, tc := range getLongestCommonSubsequenceExamples() {
+	for _, tc := range getTestCases() {
 		actual := dynamic.LongestCommonSubsequence(
 			tc.stringA, tc.stringB,
 			len(tc.stringA), len(tc.stringB))
@@ -44,7 +44,7 @@ func TestLongestCommonSubsequence(t *testing.T) {
 }
 
 func TestLongestCommonSubsequenceIsSymmetric(t *testing.T) {
-	for _, tc := range getLongestCommonSubsequenceExamples() {
+	for _, tc := range getTestCases() {
 		actual := dynamic.LongestCommonSubsequence(
 			tc.stringB, tc.stringA,
 			len(tc.stringB), len(tc.stringA))
