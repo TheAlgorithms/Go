@@ -914,14 +914,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package avl is a Adelson-Velskii and Landis tree implemnation avl is self-balancing tree, i.e for all node in a tree, height difference between its left and right child will not exceed 1 more information : https://en.wikipedia.org/wiki/AVL_tree
+#####  Package avl is a Adelson-Velskii and Landis tree implemnation avl is self-balancing tree, i.e for all node in a tree, Height difference between its Left and Right child will not exceed 1 more information : https://en.wikipedia.org/wiki/AVL_tree
 
 ---
 ##### Functions:
 
-1. [`Delete`](./structure/tree/avl.go#L65):  Delete : remove given key from the tree
+1. [`Delete`](./structure/tree/avl.go#L65):  Delete : remove given Key from the tree
 2. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/tree/rbtree_test.go#L135): No description provided.
-3. [`Get`](./structure/tree/avl.go#L13):  Get : return node with given key
+3. [`Get`](./structure/tree/avl.go#L13):  Get : return node with given Key
 4. [`Insert`](./structure/tree/avl.go#L28):  Insert a new item
 5. [`NewAVLTree`](./structure/tree/avl.go#L8):  NewAVLTree create a new AVL tree
 6. [`NewNode`](./structure/tree/bstree.go#L15):  NewNode Returns a new pointer to an empty Node
