@@ -1,6 +1,6 @@
 // Package avl is a Adelson-Velskii and Landis tree implemnation
-// avl is self-balancing tree, i.e for all node in a tree, height difference
-// between its left and right child will not exceed 1
+// avl is self-balancing tree, i.e for all node in a tree, Height difference
+// between its Left and Right child will not exceed 1
 // more information : https://en.wikipedia.org/wiki/AVL_tree
 package tree
 
@@ -9,17 +9,17 @@ func NewAVLTree() *AVLNode {
 	return nil
 }
 
-// Get : return node with given key
+// Get : return node with given Key
 func Get(root *AVLNode, key int) *AVLNode {
 	if root == nil {
 		return nil
 	}
-	if root.key == key {
+	if root.Key == key {
 		return root
-	} else if root.key < key {
-		root = root.right
+	} else if root.Key < key {
+		root = root.Right
 	} else {
-		root = root.left
+		root = root.Left
 	}
 	return Get(root, key)
 }
@@ -28,31 +28,31 @@ func Get(root *AVLNode, key int) *AVLNode {
 func Insert(root **AVLNode, key int) {
 	if *root == nil {
 		*root = &AVLNode{
-			key:    key,
-			height: 1,
+			Key:    key,
+			Height: 1,
 		}
 		return
 	}
-	if (*root).key < key {
-		Insert(&(*root).right, key)
-	} else if (*root).key > key {
-		Insert(&(*root).left, key)
+	if (*root).Key < key {
+		Insert(&(*root).Right, key)
+	} else if (*root).Key > key {
+		Insert(&(*root).Left, key)
 	}
 
-	// update height
-	(*root).height = height(*root)
+	// update Height
+	(*root).Height = height(*root)
 
 	bFactor := balanceFactor(*root)
 
 	if bFactor == 2 { // L
-		bFactor = balanceFactor((*root).left)
+		bFactor = balanceFactor((*root).Left)
 		if bFactor == 1 { // LL
 			llRotation(root)
 		} else if bFactor == -1 { // LR
 			lrRotation(root)
 		}
 	} else if bFactor == -2 { // R
-		bFactor = balanceFactor((*root).right)
+		bFactor = balanceFactor((*root).Right)
 		if bFactor == 1 { // RL
 			rlRotation(root)
 		} else if bFactor == -1 { // RR
@@ -61,41 +61,41 @@ func Insert(root **AVLNode, key int) {
 	}
 }
 
-// Delete : remove given key from the tree
+// Delete : remove given Key from the tree
 func Delete(root **AVLNode, key int) {
 	if root == nil {
 		return
 	}
-	if (*root).key < key {
-		Delete(&(*root).right, key)
-	} else if (*root).key > key {
-		Delete(&(*root).left, key)
+	if (*root).Key < key {
+		Delete(&(*root).Right, key)
+	} else if (*root).Key > key {
+		Delete(&(*root).Left, key)
 	} else {
 		// 3 cases
 		// 1. No Child
 		// 2. With One Child
 		// 3. With Two Child
-		if (*root).left == nil && (*root).right == nil {
+		if (*root).Left == nil && (*root).Right == nil {
 			*root = nil
-		} else if (*root).left == nil {
-			*root = (*root).right
-		} else if (*root).right == nil {
-			*root = (*root).left
+		} else if (*root).Left == nil {
+			*root = (*root).Right
+		} else if (*root).Right == nil {
+			*root = (*root).Left
 		} else {
-			minVal := min((*root).right)
-			(*root).key = minVal
+			minVal := min((*root).Right)
+			(*root).Key = minVal
 			Delete(root, minVal)
 		}
 		return
 	}
 
-	// update height
-	(*root).height = height(*root)
+	// update Height
+	(*root).Height = height(*root)
 
 	bFactor := balanceFactor(*root)
 
 	if bFactor == 2 { // L
-		switch balanceFactor((*root).left) {
+		switch balanceFactor((*root).Left) {
 		case 1: // LL
 			llRotation(root)
 		case -1: // LR
@@ -104,7 +104,7 @@ func Delete(root **AVLNode, key int) {
 			llRotation(root)
 		}
 	} else if bFactor == -2 { // L
-		switch balanceFactor((*root).right) {
+		switch balanceFactor((*root).Right) {
 		case 1: // RL
 			rlRotation(root)
 		case -1: // RR
@@ -121,68 +121,68 @@ func Delete(root **AVLNode, key int) {
 // 3. RR
 // 4. RL
 func llRotation(root **AVLNode) {
-	b := (*root).left
-	br := b.right
-	b.right = *root
-	(*root).left = br
-	(*root).height = height(*root)
-	b.height = height(b)
+	b := (*root).Left
+	br := b.Right
+	b.Right = *root
+	(*root).Left = br
+	(*root).Height = height(*root)
+	b.Height = height(b)
 	*root = b
 }
 func lrRotation(root **AVLNode) {
-	c := (*root).left.right
-	cl := c.left
-	cr := c.right
+	c := (*root).Left.Right
+	cl := c.Left
+	cr := c.Right
 
-	c.left = (*root).left
-	c.right = (*root)
-	c.left.right = cl
+	c.Left = (*root).Left
+	c.Right = (*root)
+	c.Left.Right = cl
 
-	(*root).left = cr
+	(*root).Left = cr
 
-	(*root).height = height(*root)
-	c.left.height = height(c.left)
-	c.height = height(c)
+	(*root).Height = height(*root)
+	c.Left.Height = height(c.Left)
+	c.Height = height(c)
 
 	*root = c
 
 }
 func rrRotation(root **AVLNode) {
-	b := (*root).right
-	bl := b.left
-	b.left = *root
+	b := (*root).Right
+	bl := b.Left
+	b.Left = *root
 
-	(*root).right = bl
-	(*root).height = height(*root)
-	b.height = height(b)
+	(*root).Right = bl
+	(*root).Height = height(*root)
+	b.Height = height(b)
 	*root = b
 
 }
 func rlRotation(root **AVLNode) {
-	c := (*root).right.left
-	cl := c.left
-	cr := c.right
+	c := (*root).Right.Left
+	cl := c.Left
+	cr := c.Right
 
-	c.right = (*root).right
-	c.right.left = cr
-	c.left = *root
-	(*root).right = cl
+	c.Right = (*root).Right
+	c.Right.Left = cr
+	c.Left = *root
+	(*root).Right = cl
 
-	(*root).height = height(*root)
-	c.right.height = height(c.right)
-	c.height = height(c)
+	(*root).Height = height(*root)
+	c.Right.Height = height(c.Right)
+	c.Height = height(c)
 	*root = c
 }
 
-// balanceFactor : -ve balance factor means subtree root is heavy toward left
-// and +ve balance factor means subtree root is heavy toward right side
+// balanceFactor : -ve balance factor means subtree Root is heavy toward Left
+// and +ve balance factor means subtree Root is heavy toward Right side
 func balanceFactor(root *AVLNode) int {
 	var leftHeight, rightHeight int
-	if root.left != nil {
-		leftHeight = root.left.height
+	if root.Left != nil {
+		leftHeight = root.Left.Height
 	}
-	if root.right != nil {
-		rightHeight = root.right.height
+	if root.Right != nil {
+		rightHeight = root.Right.Height
 	}
 	return leftHeight - rightHeight
 }
@@ -192,11 +192,11 @@ func height(root *AVLNode) int {
 		return 0
 	}
 	var leftHeight, rightHeight int
-	if root.left != nil {
-		leftHeight = root.left.height
+	if root.Left != nil {
+		leftHeight = root.Left.Height
 	}
-	if root.right != nil {
-		rightHeight = root.right.height
+	if root.Right != nil {
+		rightHeight = root.Right.Height
 	}
 	max := leftHeight
 	if rightHeight > leftHeight {
@@ -206,8 +206,8 @@ func height(root *AVLNode) int {
 }
 
 func min(root *AVLNode) int {
-	if root.left == nil {
-		return root.key
+	if root.Left == nil {
+		return root.Key
 	}
-	return min(root.left)
+	return min(root.Left)
 }

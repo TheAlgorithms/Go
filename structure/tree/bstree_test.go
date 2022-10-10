@@ -7,22 +7,22 @@ import (
 
 func TestInsert(t *testing.T) {
 	bst := BSTree[int]{
-		root: NewNode[int](90),
+		Root: NewNode[int](90),
 	}
 
 	bst.Insert(80)
 	bst.Insert(100)
 
-	if bst.root.key != 90 {
-		t.Errorf("root should have value = 90")
+	if bst.Root.Key != 90 {
+		t.Errorf("Root should have value = 90")
 	}
 
-	if bst.root.left.key != 80 {
-		t.Errorf("left child should have value = 80")
+	if bst.Root.Left.Key != 80 {
+		t.Errorf("Left child should have value = 80")
 	}
 
-	if bst.root.right.key != 100 {
-		t.Errorf("right child should have value = 100")
+	if bst.Root.Right.Key != 100 {
+		t.Errorf("Right child should have value = 100")
 	}
 
 	if bst.Depth() != 2 {
@@ -33,26 +33,26 @@ func TestInsert(t *testing.T) {
 func TestDelete(t *testing.T) {
 	t.Run("Delete a node with no child", func(t *testing.T) {
 		bst := BSTree[int]{
-			root: NewNode[int](90),
+			Root: NewNode[int](90),
 		}
 
-		root := bst.root
+		root := bst.Root
 
 		bst.Insert(80)
 		bst.Insert(100)
 
 		bst.Delete(100)
 
-		if root.key != 90 {
-			t.Errorf("root should have value = 90")
+		if root.Key != 90 {
+			t.Errorf("Root should have value = 90")
 		}
 
-		if root.left.key != 80 {
-			t.Errorf("left child should have value = 80")
+		if root.Left.Key != 80 {
+			t.Errorf("Left child should have value = 80")
 		}
 
-		if root.right != nil {
-			t.Errorf("right child should have value = nil")
+		if root.Right != nil {
+			t.Errorf("Right child should have value = nil")
 		}
 
 		if bst.Depth() != 2 {
@@ -62,10 +62,10 @@ func TestDelete(t *testing.T) {
 
 	t.Run("Delete a node with one child", func(t *testing.T) {
 		bst := BSTree[int]{
-			root: NewNode[int](90),
+			Root: NewNode[int](90),
 		}
 
-		root := bst.root
+		root := bst.Root
 
 		bst.Insert(80)
 		bst.Insert(100)
@@ -73,16 +73,16 @@ func TestDelete(t *testing.T) {
 
 		bst.Delete(80)
 
-		if root.key != 90 {
-			t.Errorf("root should have value = 90")
+		if root.Key != 90 {
+			t.Errorf("Root should have value = 90")
 		}
 
-		if root.right.key != 100 {
-			t.Errorf("right child should have value = 100")
+		if root.Right.Key != 100 {
+			t.Errorf("Right child should have value = 100")
 		}
 
-		if root.left.key != 70 {
-			t.Errorf("left child should have value = 70")
+		if root.Left.Key != 70 {
+			t.Errorf("Left child should have value = 70")
 		}
 
 		if bst.Depth() != 2 {
@@ -92,10 +92,10 @@ func TestDelete(t *testing.T) {
 
 	t.Run("Delete a node with two children", func(t *testing.T) {
 		bst := BSTree[int]{
-			root: NewNode[int](90),
+			Root: NewNode[int](90),
 		}
 
-		root := bst.root
+		root := bst.Root
 
 		bst.Insert(80)
 		bst.Insert(100)
@@ -104,16 +104,16 @@ func TestDelete(t *testing.T) {
 
 		bst.Delete(80)
 
-		if root.key != 90 {
-			t.Errorf("root should have value = 90")
+		if root.Key != 90 {
+			t.Errorf("Root should have value = 90")
 		}
 
-		if root.left.key != 85 {
-			t.Errorf("left child should have value = 85")
+		if root.Left.Key != 85 {
+			t.Errorf("Left child should have value = 85")
 		}
 
-		if root.right.key != 100 {
-			t.Errorf("right child should have value = 100")
+		if root.Right.Key != 100 {
+			t.Errorf("Right child should have value = 100")
 		}
 
 		if bst.Depth() != 3 {
@@ -124,7 +124,7 @@ func TestDelete(t *testing.T) {
 
 func TestInOrder(t *testing.T) {
 	bst := BSTree[int]{
-		root: NewNode[int](90),
+		Root: NewNode[int](90),
 	}
 
 	bst.Insert(80)
@@ -144,7 +144,7 @@ func TestInOrder(t *testing.T) {
 
 func TestPreOrder(t *testing.T) {
 	bst := BSTree[int]{
-		root: NewNode[int](90),
+		Root: NewNode[int](90),
 	}
 
 	bst.Insert(80)
@@ -164,7 +164,7 @@ func TestPreOrder(t *testing.T) {
 
 func TestPostOrder(t *testing.T) {
 	bst := BSTree[int]{
-		root: NewNode[int](90),
+		Root: NewNode[int](90),
 	}
 
 	bst.Insert(80)
@@ -184,7 +184,7 @@ func TestPostOrder(t *testing.T) {
 
 func TestLevelOrder(t *testing.T) {
 	bst := BSTree[int]{
-		root: NewNode[int](90),
+		Root: NewNode[int](90),
 	}
 
 	bst.Insert(80)
@@ -204,7 +204,7 @@ func TestLevelOrder(t *testing.T) {
 
 func TestAccessNodesByLayer(t *testing.T) {
 	bst := BSTree[int]{
-		root: NewNode[int](90),
+		Root: NewNode[int](90),
 	}
 
 	bst.Insert(80)

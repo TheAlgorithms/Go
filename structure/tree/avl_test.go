@@ -11,25 +11,25 @@ func TestAVLInsert(t *testing.T) {
 		Insert(&root, 4)
 		Insert(&root, 3)
 
-		if root.key != 4 {
-			t.Errorf("root should have value = 4")
+		if root.Key != 4 {
+			t.Errorf("Root should have value = 4")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 3 {
-			t.Errorf("left child should have value = 3")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 5 {
-			t.Errorf("right child should have value = 5")
+		if root.Left.Key != 3 {
+			t.Errorf("Left child should have value = 3")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 5 {
+			t.Errorf("Right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 
 	})
@@ -39,25 +39,25 @@ func TestAVLInsert(t *testing.T) {
 		Insert(&root, 3)
 		Insert(&root, 4)
 
-		if root.key != 4 {
-			t.Errorf("root should have value = 4")
+		if root.Key != 4 {
+			t.Errorf("Root should have value = 4")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 3 {
-			t.Errorf("left child should have value = 3")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 5 {
-			t.Errorf("right child should have value = 5")
+		if root.Left.Key != 3 {
+			t.Errorf("Left child should have value = 3")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 5 {
+			t.Errorf("Right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 	})
 
@@ -67,25 +67,25 @@ func TestAVLInsert(t *testing.T) {
 		Insert(&root, 4)
 		Insert(&root, 5)
 
-		if root.key != 4 {
-			t.Errorf("root should have value = 4")
+		if root.Key != 4 {
+			t.Errorf("Root should have value = 4")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 3 {
-			t.Errorf("left child should have value = 3")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 5 {
-			t.Errorf("right child should have value = 5")
+		if root.Left.Key != 3 {
+			t.Errorf("Left child should have value = 3")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 5 {
+			t.Errorf("Right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 	})
 	t.Run("RLRotaion-Test", func(t *testing.T) {
@@ -94,25 +94,25 @@ func TestAVLInsert(t *testing.T) {
 		Insert(&root, 5)
 		Insert(&root, 4)
 
-		if root.key != 4 {
-			t.Errorf("root should have value = 4")
+		if root.Key != 4 {
+			t.Errorf("Root should have value = 4")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 3 {
-			t.Errorf("left child should have value = 3")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 5 {
-			t.Errorf("right child should have value = 5")
+		if root.Left.Key != 3 {
+			t.Errorf("Left child should have value = 3")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 5 {
+			t.Errorf("Right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 	})
 }
@@ -128,25 +128,25 @@ func TestAVLDelete(t *testing.T) {
 
 		Delete(&root, 5)
 
-		if root.key != 3 {
-			t.Errorf("root should have value = 3")
+		if root.Key != 3 {
+			t.Errorf("Root should have value = 3")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 2 {
-			t.Errorf("left child should have value = 2")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 4 {
-			t.Errorf("right child should have value = 5")
+		if root.Left.Key != 2 {
+			t.Errorf("Left child should have value = 2")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 4 {
+			t.Errorf("Right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 	})
 
@@ -160,25 +160,25 @@ func TestAVLDelete(t *testing.T) {
 
 		Delete(&root, 10)
 
-		if root.key != 7 {
-			t.Errorf("root should have value = 7")
+		if root.Key != 7 {
+			t.Errorf("Root should have value = 7")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 6 {
-			t.Errorf("left child should have value = 6")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 8 {
-			t.Errorf("right child should have value = 8")
+		if root.Left.Key != 6 {
+			t.Errorf("Left child should have value = 6")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 8 {
+			t.Errorf("Right child should have value = 8")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 
 	})
@@ -193,25 +193,25 @@ func TestAVLDelete(t *testing.T) {
 
 		Delete(&root, 2)
 
-		if root.key != 4 {
-			t.Errorf("root should have value = 4")
+		if root.Key != 4 {
+			t.Errorf("Root should have value = 4")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 3 {
-			t.Errorf("left child should have value = 3")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 5 {
-			t.Errorf("right child should have value = 5")
+		if root.Left.Key != 3 {
+			t.Errorf("Left child should have value = 3")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 5 {
+			t.Errorf("Right child should have value = 5")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 
 	})
@@ -226,25 +226,25 @@ func TestAVLDelete(t *testing.T) {
 
 		Delete(&root, 6)
 
-		if root.key != 8 {
-			t.Errorf("root should have value = 8")
+		if root.Key != 8 {
+			t.Errorf("Root should have value = 8")
 		}
-		if root.height != 2 {
-			t.Errorf("height of root should be = 2")
-		}
-
-		if root.left.key != 7 {
-			t.Errorf("left child should have value = 7")
-		}
-		if root.left.height != 1 {
-			t.Errorf("height of left child should be 1")
+		if root.Height != 2 {
+			t.Errorf("Height of Root should be = 2")
 		}
 
-		if root.right.key != 9 {
-			t.Errorf("right child should have value = 9")
+		if root.Left.Key != 7 {
+			t.Errorf("Left child should have value = 7")
 		}
-		if root.right.height != 1 {
-			t.Errorf("height of right should be 1")
+		if root.Left.Height != 1 {
+			t.Errorf("Height of Left child should be 1")
+		}
+
+		if root.Right.Key != 9 {
+			t.Errorf("Right child should have value = 9")
+		}
+		if root.Right.Height != 1 {
+			t.Errorf("Height of Right should be 1")
 		}
 
 	})
@@ -263,15 +263,15 @@ func TestAVLGet(t *testing.T) {
 	Insert(&root, 3)
 
 	n := Get(root, 4)
-	if n.key != 4 {
-		t.Error("key should be 4")
+	if n.Key != 4 {
+		t.Error("Key should be 4")
 	}
-	if n.right.key != 5 {
-		t.Error("right child should have value 5")
+	if n.Right.Key != 5 {
+		t.Error("Right child should have value 5")
 	}
 
-	if n.left.key != 3 {
-		t.Error("left child should have value 3")
+	if n.Left.Key != 3 {
+		t.Error("Left child should have value 3")
 	}
 
 }
