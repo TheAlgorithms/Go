@@ -21,7 +21,7 @@ func getTestCases() []testCase {
 	}
 }
 
-func cutRobSolTestFunc(t *testing.T, cutRodSolFunc func([]int, int) int) {
+func cutRodSolTestFunc(t *testing.T, cutRodSolFunc func([]int, int) int) {
 	for _, tc := range getTestCases() {
 		actual := cutRodSolFunc(tc.price, tc.length)
 		if actual != tc.expected {
@@ -33,9 +33,9 @@ func cutRobSolTestFunc(t *testing.T, cutRodSolFunc func([]int, int) int) {
 }
 
 func TestCutRodRec(t *testing.T) {
-	cutRobSolTestFunc(t, dynamic.CutRodRec)
+	cutRodSolTestFunc(t, dynamic.CutRodRec)
 }
 
 func TestCutRodDp(t *testing.T) {
-	cutRobSolTestFunc(t, dynamic.CutRodDp)
+	cutRodSolTestFunc(t, dynamic.CutRodDp)
 }
