@@ -1,10 +1,18 @@
+// radixsort.go
+// description: Implementation of in-place radixsort algorithm
+// details:
+// A simple in-place quicksort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Radix_sort)
+
 package sort
 
-import "github.com/TheAlgorithms/Go/math/max"
+import (
+	"github.com/TheAlgorithms/Go/constraints"
+	"github.com/TheAlgorithms/Go/math/max"
+)
 
-func countSort(arr []int, exp int) []int {
+func countSort[T constraints.Integer](arr []T, exp T) []T {
 	var digits [10]int
-	var output = make([]int, len(arr))
+	var output = make([]T, len(arr))
 
 	for _, item := range arr {
 		digits[(item/exp)%10]++
@@ -21,22 +29,22 @@ func countSort(arr []int, exp int) []int {
 	return output
 }
 
-func unsignedRadixSort(arr []int) []int {
+func unsignedRadixSort[T constraints.Integer](arr []T) []T {
 	if len(arr) == 0 {
 		return arr
 	}
 	maxElement := max.Int(arr...)
-	for exp := 1; maxElement/exp > 0; exp *= 10 {
+	for exp := T(1); maxElement/exp > 0; exp *= 10 {
 		arr = countSort(arr, exp)
 	}
 	return arr
 }
 
-func RadixSort(arr []int) []int {
+func RadixSort[T constraints.Integer](arr []T) []T {
 	if len(arr) < 1 {
 		return arr
 	}
-	var negatives, nonNegatives []int
+	var negatives, nonNegatives []T
 
 	for _, item := range arr {
 		if item < 0 {

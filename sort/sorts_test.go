@@ -112,7 +112,7 @@ func TestShell(t *testing.T) {
 }
 
 func TestRadix(t *testing.T) {
-	testFramework(t, sort.RadixSort)
+	testFramework(t, sort.RadixSort[int])
 }
 
 func TestSimple(t *testing.T) {
@@ -217,7 +217,7 @@ func BenchmarkShell(b *testing.B) {
 }
 
 func BenchmarkRadix(b *testing.B) {
-	benchmarkFramework(b, sort.RadixSort)
+	benchmarkFramework(b, sort.RadixSort[int])
 }
 
 func BenchmarkSimple(b *testing.B) {
