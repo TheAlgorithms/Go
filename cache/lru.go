@@ -1,4 +1,4 @@
-package lru
+package cache
 
 import (
 	"github.com/TheAlgorithms/Go/structure/linkedlist"

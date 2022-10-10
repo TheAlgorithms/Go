@@ -1,9 +1,9 @@
-package lru_test
+package cache_test
 
 import (
 	"testing"
 
-	"github.com/TheAlgorithms/Go/cache/lru"
+	lru "github.com/TheAlgorithms/Go/cache"
 )
 
 func TestLRU(t *testing.T) {
