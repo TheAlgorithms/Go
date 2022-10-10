@@ -16,8 +16,8 @@ type LRU struct {
 	storage     map[string]*linkedlist.Node[any]
 }
 
-// New lru cache with capacity
-func New(capacity int) LRU {
+// NewLRU represent initiate lru cache with capacity
+func NewLRU(capacity int) LRU {
 	return LRU{
 		dl:          linkedlist.NewDoubly[any](),
 		storage:     make(map[string]*linkedlist.Node[any], capacity),

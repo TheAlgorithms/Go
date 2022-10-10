@@ -3,12 +3,11 @@ package cache_test
 import (
 	"testing"
 
-	lru "github.com/TheAlgorithms/Go/cache"
+	"github.com/TheAlgorithms/Go/cache"
 )
 
 func TestLRU(t *testing.T) {
-
-	cache := lru.New(3)
+	cache := cache.NewLRU(3)
 
 	t.Run("Test 1: Put number and Get is correct", func(t *testing.T) {
 		key, value := "1", 1
