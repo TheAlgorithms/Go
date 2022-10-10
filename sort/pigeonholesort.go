@@ -4,12 +4,13 @@
 package sort
 
 import (
+	"github.com/TheAlgorithms/Go/constraints"
 	"github.com/TheAlgorithms/Go/math/max"
 	"github.com/TheAlgorithms/Go/math/min"
 )
 
 // Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-func Pigeonhole(arr []int) []int {
+func Pigeonhole[T constraints.Integer](arr []T) []T {
 	if len(arr) == 0 {
 		return arr
 	}
@@ -19,7 +20,7 @@ func Pigeonhole(arr []int) []int {
 
 	size := max - min + 1
 
-	holes := make([]int, size)
+	holes := make([]T, size)
 
 	for _, element := range arr {
 		holes[element-min]++
@@ -27,7 +28,7 @@ func Pigeonhole(arr []int) []int {
 
 	i := 0
 
-	for j := 0; j < size; j++ {
+	for j := T(0); j < size; j++ {
 		for holes[j] > 0 {
 			holes[j]--
 			arr[i] = j + min

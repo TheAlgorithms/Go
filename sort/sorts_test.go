@@ -132,7 +132,7 @@ func TestComb(t *testing.T) {
 }
 
 func TestPigeonhole(t *testing.T) {
-	testFramework(t, sort.Pigeonhole)
+	testFramework(t, sort.Pigeonhole[int])
 }
 
 func TestPatience(t *testing.T) {
@@ -238,7 +238,7 @@ func BenchmarkComb(b *testing.B) {
 }
 
 func BenchmarkPigeonhole(b *testing.B) {
-	benchmarkFramework(b, sort.Pigeonhole)
+	benchmarkFramework(b, sort.Pigeonhole[int])
 }
 
 func BenchmarkPatience(b *testing.B) {
