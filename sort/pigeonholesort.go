@@ -10,6 +10,8 @@ import (
 )
 
 // Pigeonhole sorts a slice using pigeonhole sorting algorithm.
+// NOTE: To maintain time complexity O(n + N), this is the reason for having
+// only Integer constraint instead of Ordered.
 func Pigeonhole[T constraints.Integer](arr []T) []T {
 	if len(arr) == 0 {
 		return arr
@@ -21,7 +23,7 @@ func Pigeonhole[T constraints.Integer](arr []T) []T {
 	size := max - min + 1
 
 	holes := make([]T, size)
-	// To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
+
 	for _, element := range arr {
 		holes[element-min]++
 	}
