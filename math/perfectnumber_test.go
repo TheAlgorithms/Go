@@ -6,17 +6,17 @@ import (
 	"github.com/TheAlgorithms/Go/math"
 )
 
-type sumOfProperDivisorsExample struct {
+type testCaseSumOfProperDivisors struct {
 	input    uint
 	expected uint
 }
 
-// getSumOfProperDivisorsExamples returns an array of example data
+// getSumOfProperDivisorsTestCases returns an array of example data
 // for the tests of the function SumOfProperDivisors.
 // Example data was verified using [A001065].
 // [A001065]: https://oeis.org/A001065/b001065.txt
-func getSumOfProperDivisorsExamples() []sumOfProperDivisorsExample {
-	return []sumOfProperDivisorsExample{
+func getSumOfProperDivisorsTestCases() []testCaseSumOfProperDivisors {
+	return []testCaseSumOfProperDivisors{
 		{0, 0},
 		{1, 0},
 		{2, 1},
@@ -89,7 +89,7 @@ func getSumOfProperDivisorsExamples() []sumOfProperDivisorsExample {
 }
 
 func TestSumOfProperDivisors(t *testing.T) {
-	for _, tc := range getSumOfProperDivisorsExamples() {
+	for _, tc := range getSumOfProperDivisorsTestCases() {
 		actual := math.SumOfProperDivisors(tc.input)
 		if actual != tc.expected {
 			t.Errorf(
