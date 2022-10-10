@@ -6,14 +6,14 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-type testCase struct {
+type testCaseRodCutting struct {
 	price    []int
 	length   int
 	expected int
 }
 
-func getTestCases() []testCase {
-	return []testCase{
+func getRodCuttingTestCases() []testCaseRodCutting {
+	return []testCaseRodCutting{
 		{[]int{0, 1, 5, 8, 9}, 4, 10},
 		{[]int{0, 2, 5, 7, 8, 0}, 5, 12},
 		{[]int{0, 1, 5, 8, 9, 10, 17, 17, 20}, 8, 22},
@@ -22,7 +22,7 @@ func getTestCases() []testCase {
 }
 
 func cutRodSolTestFunc(t *testing.T, cutRodSolFunc func([]int, int) int) {
-	for _, tc := range getTestCases() {
+	for _, tc := range getRodCuttingTestCases() {
 		actual := cutRodSolFunc(tc.price, tc.length)
 		if actual != tc.expected {
 			t.Errorf(
