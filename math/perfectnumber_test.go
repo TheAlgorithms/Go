@@ -105,47 +105,41 @@ func BenchmarkSumOfProperDivisors(b *testing.B) {
 	}
 }
 
-// getPerfectNumberExamples returns an array of some perfect numbers.
+type perfectNumberTestCase struct {
+	number    uint
+	isPerfect bool
+}
+
+// getPerfectNumberTestCases returns an array of example data
+// for the tests of the function IsPerfectNumber
 // Example data was verified using [A000396].
 // [A000396]: https://oeis.org/A000396
-func getPerfectNumberExamples() []uint {
-	return []uint{
-		6,
-		28,
-		496,
-		8128,
-		33550336}
+func getPerfectNumberTestCases() []perfectNumberTestCase {
+	return []perfectNumberTestCase{
+		{6, true},
+		{28, true},
+		{496, true},
+		{8128, true},
+		{33550336, true},
+		{0, false},
+		{1, false},
+		{2, false},
+		{3, false},
+		{4, false},
+		{5, false},
+		{7, false},
+		{100, false},
+		{219, false},
+		{997, false},
+		{33550335, false},
+		{33550337, false},
+	}
 }
 
 func TestIsPerfectNumber(t *testing.T) {
-	for _, tc := range getPerfectNumberExamples() {
-		if !math.IsPerfectNumber(tc) {
-			t.Errorf("%d is expected to be a perfect number.", tc)
-		}
-	}
-}
-
-func getNotPerfectNumberExamples() []uint {
-	return []uint{
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		7,
-		100,
-		219,
-		997,
-		33550335,
-		33550337,
-	}
-}
-
-func TestIsNotPerfectNumber(t *testing.T) {
-	for _, tc := range getNotPerfectNumberExamples() {
-		if math.IsPerfectNumber(tc) {
-			t.Errorf("%d is expected not to be a perfect number.", tc)
+	for _, tc := range getPerfectNumberTestCases() {
+		if math.IsPerfectNumber(tc.number) != tc.isPerfect {
+			t.Errorf("Unexpected output for %d", tc.number)
 		}
 	}
 }
