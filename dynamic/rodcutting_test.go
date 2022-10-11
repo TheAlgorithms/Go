@@ -6,14 +6,14 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-type testCaseRodCutting struct {
+type rodCuttingTestCase struct {
 	price    []int
 	length   int
 	expected int
 }
 
-func getRodCuttingTestCases() []testCaseRodCutting {
-	return []testCaseRodCutting{
+func getRodCuttingTestCases() []rodCuttingTestCase {
+	return []rodCuttingTestCase{
 		{[]int{0, 1, 5, 8, 9}, 4, 10},
 		{[]int{0, 2, 5, 7, 8, 0}, 5, 12},
 		{[]int{0, 1, 5, 8, 9, 10, 17, 17, 20}, 8, 22},
