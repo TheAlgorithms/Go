@@ -105,17 +105,17 @@ func BenchmarkSumOfProperDivisors(b *testing.B) {
 	}
 }
 
-type perfectNumberTestCase struct {
+type isPerfectNumberTestCase struct {
 	number    uint
 	isPerfect bool
 }
 
-// getPerfectNumberTestCases returns an array of example data
+// getIsPerfectNumberTestCases returns an array of example data
 // for the tests of the function IsPerfectNumber
 // Example data was verified using [A000396].
 // [A000396]: https://oeis.org/A000396
-func getPerfectNumberTestCases() []perfectNumberTestCase {
-	return []perfectNumberTestCase{
+func getIsPerfectNumberTestCases() []isPerfectNumberTestCase {
+	return []isPerfectNumberTestCase{
 		{6, true},
 		{28, true},
 		{496, true},
@@ -137,7 +137,7 @@ func getPerfectNumberTestCases() []perfectNumberTestCase {
 }
 
 func TestIsPerfectNumber(t *testing.T) {
-	for _, tc := range getPerfectNumberTestCases() {
+	for _, tc := range getIsPerfectNumberTestCases() {
 		if math.IsPerfectNumber(tc.number) != tc.isPerfect {
 			t.Errorf("Unexpected output for %d", tc.number)
 		}
