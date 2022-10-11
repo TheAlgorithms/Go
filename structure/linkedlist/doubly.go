@@ -16,13 +16,14 @@ import "fmt"
 //
 // and call linkedlist.Doubly to create a new doubly linked list.
 type Doubly[T any] struct {
-	Head Node[T]
+	Head *Node[T]
 }
 
 // Init initializes double linked list
 func (ll *Doubly[T]) Init() *Doubly[T] {
-	ll.Head.Next = &ll.Head
-	ll.Head.Prev = &ll.Head
+	ll.Head = &Node[T]{}
+	ll.Head.Next = ll.Head
+	ll.Head.Prev = ll.Head
 
 	return ll
 }
@@ -54,7 +55,7 @@ func (ll *Doubly[T]) insertValue(val T, at *Node[T]) *Node[T] {
 // AddAtBeg Add a node to the beginning of the linkedlist
 func (ll *Doubly[T]) AddAtBeg(val T) {
 	ll.lazyInit()
-	ll.insertValue(val, &ll.Head)
+	ll.insertValue(val, ll.Head)
 }
 
 // AddAtEnd Add a node at the end of the linkedlist
@@ -108,7 +109,7 @@ func (ll *Doubly[T]) Count() int {
 		return 0
 	}
 
-	for cur := ll.Head.Next; cur != &ll.Head; cur = cur.Next {
+	for cur := ll.Head.Next; cur != ll.Head; cur = cur.Next {
 		ctr += 1
 	}
 
@@ -118,7 +119,7 @@ func (ll *Doubly[T]) Count() int {
 // Reverse Reverse the order of the linkedlist
 func (ll *Doubly[T]) Reverse() {
 	var Prev, Next *Node[T]
-	cur := &ll.Head
+	cur := ll.Head
 
 	for cur != nil {
 		Next = cur.Next
@@ -128,12 +129,12 @@ func (ll *Doubly[T]) Reverse() {
 		cur = Next
 	}
 
-	ll.Head = *Prev
+	ll.Head = Prev
 }
 
 // Display display the linked list
 func (ll *Doubly[T]) Display() {
-	for cur := ll.Head.Next; cur != &ll.Head; cur = cur.Next {
+	for cur := ll.Head.Next; cur != ll.Head; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
 	}
 
@@ -142,11 +143,11 @@ func (ll *Doubly[T]) Display() {
 
 // DisplayReverse Display the linkedlist in reverse order
 func (ll *Doubly[T]) DisplayReverse() {
-	if &ll.Head == nil {
+	if ll.Head == nil {
 		return
 	}
 	var cur *Node[T]
-	for cur = ll.Head.Prev; cur != &ll.Head; cur = cur.Prev {
+	for cur = ll.Head.Prev; cur != ll.Head; cur = cur.Prev {
 		fmt.Print(cur.Val, " ")
 	}
 
