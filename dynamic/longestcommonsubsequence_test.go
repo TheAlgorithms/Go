@@ -38,7 +38,7 @@ func TestLongestCommonSubsequence(t *testing.T) {
 		if actual != tc.expected {
 			t.Errorf(
 				"expected to be: %d, but got: %d",
-				tc.stringA, tc.stringB, tc.expected, actual)
+				tc.expected, actual)
 		}
 	}
 }
@@ -51,7 +51,7 @@ func TestLongestCommonSubsequenceIsSymmetric(t *testing.T) {
 		if actual != tc.expected {
 			t.Errorf(
 				"expected to be: %d, but got: %d",
-				tc.stringB, tc.stringA, tc.expected, actual)
+				tc.expected, actual)
 		}
 	}
 }
