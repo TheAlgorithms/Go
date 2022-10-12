@@ -61,7 +61,7 @@ func MergeIter[T constraints.Ordered](items []T) []T {
 	return items
 }
 
-// MergeParallel Perform merge sort on a slice using goroutines
+// ParallelMerge Perform merge sort on a slice using goroutines
 func ParallelMerge[T constraints.Ordered](items []T) []T {
 
 	if len(items) < 2 {
@@ -79,10 +79,10 @@ func ParallelMerge[T constraints.Ordered](items []T) []T {
 	var middle = len(items) / 2
 	var a []T
 	go func() {
-		a = MergeParallel(items[:middle])
+		a = ParallelMerge(items[:middle])
 		done <- struct{}{}
 	}()
-	var b = MergeParallel(items[middle:])
+	var b = ParallelMerge(items[middle:])
 	<-done
 	return merge(a, b)
 }
