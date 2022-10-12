@@ -13,7 +13,7 @@ type testCaseSumOfProperDivisors struct {
 
 // getSumOfProperDivisorsTestCases returns an array of test data
 // for the tests of the function SumOfProperDivisors.
-// Example data was verified using [A001065].
+// Data was verified using [A001065].
 // [A001065]: https://oeis.org/A001065/b001065.txt
 func getSumOfProperDivisorsTestCases() []testCaseSumOfProperDivisors {
 	return []testCaseSumOfProperDivisors{
@@ -112,7 +112,7 @@ type isPerfectNumberTestCase struct {
 
 // getIsPerfectNumberTestCases returns an array of test data
 // for the tests of the function IsPerfectNumber
-// Example data was verified using [A000396].
+// Data was verified using [A000396].
 // [A000396]: https://oeis.org/A000396
 func getIsPerfectNumberTestCases() []isPerfectNumberTestCase {
 	return []isPerfectNumberTestCase{
