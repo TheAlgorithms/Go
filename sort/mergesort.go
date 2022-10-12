@@ -62,7 +62,7 @@ func MergeIter[T constraints.Ordered](items []T) []T {
 }
 
 // MergeParallel Perform merge sort on a slice using goroutines
-func MergeParallel[T constraints.Ordered](items []T) []T {
+func ParallelMerge[T constraints.Ordered](items []T) []T {
 
 	if len(items) < 2 {
 		return items
