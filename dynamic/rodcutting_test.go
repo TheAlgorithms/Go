@@ -26,7 +26,7 @@ func cutRodSolTestFunc(t *testing.T, cutRodSolFunc func([]int, int) int) {
 		actual := cutRodSolFunc(tc.price, tc.length)
 		if actual != tc.expected {
 			t.Errorf(
-				"for the price: %d and length %d expected %d, but got: %d",
+				"expected: %d,  got: %d",
 				tc.price, tc.length, tc.expected, actual)
 		}
 	}
