@@ -66,7 +66,6 @@ func ParallelMerge[T constraints.Ordered](items []T) []T {
 
 	if len(items) < 2 {
 		return items
-
 	}
 
 	if len(items) < 2048 {
