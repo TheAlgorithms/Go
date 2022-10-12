@@ -31,23 +31,25 @@ func getLCSTestCases() []testCaseLCS {
 }
 
 func TestLongestCommonSubsequence(t *testing.T) {
-	for _, tc := range getLCSTestCases() {
-		actual := dynamic.LongestCommonSubsequence(
-			tc.stringA, tc.stringB,
-			len(tc.stringA), len(tc.stringB))
-		if actual != tc.expected {
-			t.Errorf("expected to be: %d, but got: %d", tc.expected, actual)
+	t.Run("Simple test", func(t *testing.T) {
+		for _, tc := range getLCSTestCases() {
+			actual := dynamic.LongestCommonSubsequence(
+				tc.stringA, tc.stringB,
+				len(tc.stringA), len(tc.stringB))
+			if actual != tc.expected {
+				t.Errorf("expected: %d, but got: %d", tc.expected, actual)
+			}
 		}
-	}
-}
+	})
 
-func TestLongestCommonSubsequenceIsSymmetric(t *testing.T) {
-	for _, tc := range getLCSTestCases() {
-		actual := dynamic.LongestCommonSubsequence(
-			tc.stringB, tc.stringA,
-			len(tc.stringB), len(tc.stringA))
-		if actual != tc.expected {
-			t.Errorf("expected to be: %d, but got: %d", tc.expected, actual)
+	t.Run("Symmetry test", func(t *testing.T) {
+		for _, tc := range getLCSTestCases() {
+			actual := dynamic.LongestCommonSubsequence(
+				tc.stringB, tc.stringA,
+				len(tc.stringB), len(tc.stringA))
+			if actual != tc.expected {
+				t.Errorf("expected: %d, but got: %d", tc.expected, actual)
+			}
 		}
-	}
+	})
 }
