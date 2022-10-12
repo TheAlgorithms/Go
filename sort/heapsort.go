@@ -2,15 +2,15 @@ package sort
 
 import "github.com/TheAlgorithms/Go/constraints"
 
-type MaxHeap[T Comparable] struct {
-	slice    []T
+type MaxHeap struct {
+	slice    []Comparable
 	heapSize int
 	indices  map[int]int
 }
 
-func (h *MaxHeap[T]) Init(slice []T) {
+func (h *MaxHeap) Init(slice []Comparable) {
 	if slice == nil {
-		slice = make([]T, 0)
+		slice = make([]Comparable, 0)
 	}
 
 	h.slice = slice
@@ -19,7 +19,7 @@ func (h *MaxHeap[T]) Init(slice []T) {
 	h.Heapify()
 }
 
-func (h MaxHeap[T]) Heapify() {
+func (h MaxHeap) Heapify() {
 	for i, v := range h.slice {
 		h.indices[v.Idx()] = i
 	}
@@ -28,10 +28,9 @@ func (h MaxHeap[T]) Heapify() {
 	}
 }
 
-func (h *MaxHeap[T]) Pop() T {
-	var zero T
+func (h *MaxHeap) Pop() Comparable {
 	if h.heapSize == 0 {
-		return zero
+		return nil
 	}
 
 	i := h.slice[0]
@@ -45,38 +44,38 @@ func (h *MaxHeap[T]) Pop() T {
 	return i
 }
 
-func (h *MaxHeap[T]) Push(i T) {
+func (h *MaxHeap) Push(i Comparable) {
 	h.slice = append(h.slice, i)
 	h.updateidx(h.heapSize)
 	h.heapifyUp(h.heapSize)
 	h.heapSize++
 }
 
-func (h MaxHeap[T]) Size() int {
+func (h MaxHeap) Size() int {
 	return h.heapSize
 }
 
-func (h MaxHeap[T]) Update(i T) {
+func (h MaxHeap) Update(i Comparable) {
 	h.slice[h.indices[i.Idx()]] = i
 	h.heapifyUp(h.indices[i.Idx()])
-	heapifyDown(h.slice, h.Size(), i.Idx(), h.more, h.swap)
+	h.heapifyDown(h.indices[i.Idx()])
 }
 
-func (h MaxHeap[T]) updateidx(i int) {
+func (h MaxHeap) updateidx(i int) {
 	h.indices[h.slice[i].Idx()] = i
 }
 
-func (h *MaxHeap[T]) swap(i, j int) {
+func (h *MaxHeap) swap(i, j int) {
 	h.slice[i], h.slice[j] = h.slice[j], h.slice[i]
 	h.updateidx(i)
 	h.updateidx(j)
 }
 
-func (h MaxHeap[T]) more(i, j int) bool {
+func (h MaxHeap) more(i, j int) bool {
 	return h.slice[i].More(h.slice[j])
 }
 
-func (h MaxHeap[T]) heapifyUp(i int) {
+func (h MaxHeap) heapifyUp(i int) {
 	if i == 0 {
 		return
 	}
@@ -86,6 +85,10 @@ func (h MaxHeap[T]) heapifyUp(i int) {
 		h.swap(i, p)
 		h.heapifyUp(p)
 	}
+}
+
+func (h MaxHeap) heapifyDown(i int) {
+	heapifyDown(h.slice, h.heapSize, i, h.more, h.swap)
 }
 
 func heapifyDown[T any](slice []T, N, i int, moreFunc func(i, j int) bool, swapFunc func(i, j int)) {
