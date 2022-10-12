@@ -24,7 +24,7 @@ func (h MaxHeap) Heapify() {
 		h.indices[v.Idx()] = i
 	}
 	for i := h.heapSize / 2; i >= 0; i-- {
-		heapifyDown(h.slice, h.Size(), i, h.more, h.swap)
+		h.heapifyDown(i)
 	}
 }
 
@@ -38,7 +38,7 @@ func (h *MaxHeap) Pop() Comparable {
 
 	h.slice[0] = h.slice[h.heapSize]
 	h.updateidx(0)
-	heapifyDown(h.slice, h.Size(), 0, h.more, h.swap)
+	h.heapifyDown(0)
 
 	h.slice = h.slice[0:h.heapSize]
 	return i
