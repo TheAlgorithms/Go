@@ -11,7 +11,7 @@ type testCaseSumOfProperDivisors struct {
 	expected uint
 }
 
-// getSumOfProperDivisorsTestCases returns an array of example data
+// getSumOfProperDivisorsTestCases returns an array of test data
 // for the tests of the function SumOfProperDivisors.
 // Example data was verified using [A001065].
 // [A001065]: https://oeis.org/A001065/b001065.txt
@@ -110,7 +110,7 @@ type isPerfectNumberTestCase struct {
 	isPerfect bool
 }
 
-// getIsPerfectNumberTestCases returns an array of example data
+// getIsPerfectNumberTestCases returns an array of test data
 // for the tests of the function IsPerfectNumber
 // Example data was verified using [A000396].
 // [A000396]: https://oeis.org/A000396
