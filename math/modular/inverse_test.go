@@ -26,4 +26,22 @@ func TestInverse(t *testing.T) {
 			t.Fatalf("Test failed:\n\tExpected values: %v\n\tReturned value: %v", 12, inv)
 		}
 	})
+	t.Run("Testing a = 2 and m = 6: ", func(t *testing.T) {
+		inv, err := Inverse(2, 6)
+		if err != ErrorInverse {
+			t.Fatalf("Error was not raised when it should")
+		}
+		if inv != 0 {
+			t.Fatalf("Test failed:\n\tExpected values: %v\n\tReturned value: %v", 0, inv)
+		}
+	})
+	t.Run("Testing a = 1 and m = 0: ", func(t *testing.T) {
+		inv, err := Inverse(1, 0)
+		if err != ErrorInverse {
+			t.Fatalf("Error was not raised when it should")
+		}
+		if inv != 0 {
+			t.Fatalf("Test failed:\n\tExpected values: %v\n\tReturned value: %v", 0, inv)
+		}
+	})
 }
