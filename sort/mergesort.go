@@ -3,6 +3,7 @@ package sort
 import (
 	"github.com/TheAlgorithms/Go/constraints"
 	"github.com/TheAlgorithms/Go/math/min"
+	"sync"
 )
 
 func merge[T constraints.Ordered](a []T, b []T) []T {
@@ -59,4 +60,29 @@ func MergeIter[T constraints.Ordered](items []T) []T {
 		}
 	}
 	return items
+}
+
+// ParallelMerge Perform merge sort on a slice using goroutines
+func ParallelMerge[T constraints.Ordered](items []T) []T {
+	if len(items) < 2 {
+		return items
+	}
+
+	if len(items) < 2048 {
+		return Merge(items)
+	}
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	var middle = len(items) / 2
+	var a []T
+	go func() {
+		defer wg.Done()
+		a = ParallelMerge(items[:middle])
+	}()
+	var b = ParallelMerge(items[middle:])
+
+	wg.Wait()
+	return merge(a, b)
 }
