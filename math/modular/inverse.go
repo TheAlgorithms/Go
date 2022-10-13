@@ -17,11 +17,11 @@ import (
 var ErrorInverse = errors.New("no Modular Inverse exists")
 
 // Inverse Modular function
-func Inverse(a, b int64) (int64, error) {
-	gcd, x, _ := gcd.Extended(a, b)
-	if gcd != 1 || b == 0 {
+func Inverse(a, m int64) (int64, error) {
+	gcd, x, _ := gcd.Extended(a, m)
+	if gcd != 1 || m == 0 {
 		return 0, ErrorInverse
 	}
 
-	return ((b + (x % b)) % b), nil // this is necessary because of Go's use of architecture specific instruction for the % operator.
+	return ((m + (x % m)) % m), nil // this is necessary because of Go's use of architecture specific instruction for the % operator.
 }
