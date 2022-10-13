@@ -4,19 +4,24 @@
 
 package dynamic
 
-// LongestCommonSubsequence function
-func LongestCommonSubsequence(a string, b string, m int, n int) int {
-	// m is the length of string a and n is the length of string b
+import (
+	"unicode/utf8"
+)
 
-	// here we are making a 2d slice of size (m+1)*(n+1)
-	lcs := make([][]int, m+1)
-	for i := 0; i <= m; i++ {
-		lcs[i] = make([]int, n+1)
+// LongestCommonSubsequence function
+func LongestCommonSubsequence(a string, b string) int {
+	var a_len = utf8.RuneCountInString(a)
+	var b_len = utf8.RuneCountInString(b)
+
+	// here we are making a 2d slice of size (a_len+1)*(b_len+1)
+	lcs := make([][]int, a_len+1)
+	for i := 0; i <= a_len; i++ {
+		lcs[i] = make([]int, b_len+1)
 	}
 
 	// block that implements LCS
-	for i := 0; i <= m; i++ {
-		for j := 0; j <= n; j++ {
+	for i := 0; i <= a_len; i++ {
+		for j := 0; j <= b_len; j++ {
 			if i == 0 || j == 0 {
 				lcs[i][j] = 0
 			} else if a[i-1] == b[j-1] {
@@ -27,7 +32,7 @@ func LongestCommonSubsequence(a string, b string, m int, n int) int {
 		}
 	}
 	// returning the length of longest common subsequence
-	return lcs[m][n]
+	return lcs[a_len][b_len]
 }
 
 // func main(){
@@ -36,5 +41,5 @@ func LongestCommonSubsequence(a string, b string, m int, n int) int {
 // 	var a,b string
 // 	fmt.Scan(&a, &b)
 // 	// calling the LCS function
-// 	fmt.Println("The length of longest common subsequence is:", longestCommonSubsequence(a,b, len(a), len(b)))
+// 	fmt.Println("The length of longest common subsequence is:", longestCommonSubsequence(a,b))
 // }
