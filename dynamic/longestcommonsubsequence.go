@@ -10,18 +10,18 @@ import (
 
 // LongestCommonSubsequence function
 func LongestCommonSubsequence(a string, b string) int {
-	var a_len = utf8.RuneCountInString(a)
-	var b_len = utf8.RuneCountInString(b)
+	var aLen = utf8.RuneCountInString(a)
+	var bLen = utf8.RuneCountInString(b)
 
-	// here we are making a 2d slice of size (a_len+1)*(b_len+1)
-	lcs := make([][]int, a_len+1)
-	for i := 0; i <= a_len; i++ {
-		lcs[i] = make([]int, b_len+1)
+	// here we are making a 2d slice of size (aLen+1)*(bLen+1)
+	lcs := make([][]int, aLen+1)
+	for i := 0; i <= aLen; i++ {
+		lcs[i] = make([]int, bLen+1)
 	}
 
 	// block that implements LCS
-	for i := 0; i <= a_len; i++ {
-		for j := 0; j <= b_len; j++ {
+	for i := 0; i <= aLen; i++ {
+		for j := 0; j <= bLen; j++ {
 			if i == 0 || j == 0 {
 				lcs[i][j] = 0
 			} else if a[i-1] == b[j-1] {
@@ -32,7 +32,7 @@ func LongestCommonSubsequence(a string, b string) int {
 		}
 	}
 	// returning the length of longest common subsequence
-	return lcs[a_len][b_len]
+	return lcs[aLen][bLen]
 }
 
 // func main(){
