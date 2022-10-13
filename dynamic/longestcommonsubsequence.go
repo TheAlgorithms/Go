@@ -34,12 +34,3 @@ func LongestCommonSubsequence(a string, b string) int {
 	// returning the length of longest common subsequence
 	return lcs[aLen][bLen]
 }
-
-// func main(){
-// 	// declaring two strings and asking for input
-
-// 	var a,b string
-// 	fmt.Scan(&a, &b)
-// 	// calling the LCS function
-// 	fmt.Println("The length of longest common subsequence is:", longestCommonSubsequence(a,b))
-// }
