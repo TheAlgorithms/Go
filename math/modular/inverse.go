@@ -13,7 +13,6 @@ import (
 	"github.com/TheAlgorithms/Go/math/gcd"
 )
 
-// ErrorIntOverflow For asserting that the values do not overflow in Int64
 var ErrorInverse = errors.New("no Modular Inverse exists")
 
 // Inverse Modular function
