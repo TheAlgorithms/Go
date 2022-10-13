@@ -19,7 +19,7 @@ var ErrorInverse = errors.New("no Modular Inverse exists")
 // Inverse Modular function
 func Inverse(a, b int64) (int64, error) {
 	gcd, x, _ := gcd.Extended(a, b)
-	if gcd != 1 {
+	if gcd != 1 || b == 0 {
 		return 0, ErrorInverse
 	}
 
