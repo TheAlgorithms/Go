@@ -6,16 +6,15 @@ import (
 
 func TestAVLInsert(t *testing.T) {
 	t.Run("LLRotation-Test", func(t *testing.T) {
-		root := NewAVLTree()
-		Insert(&root, 5)
-		Insert(&root, 4)
-		Insert(&root, 3)
+		tree := NewAVLTree[int]()
+		tree.Insert(5, 4, 3)
 
+		root := tree.Root
 		if root.Key != 4 {
-			t.Errorf("Root should have value = 4")
+			t.Errorf("Root should have value = 4, not %v", root.Key)
 		}
 		if root.Height != 2 {
-			t.Errorf("Height of Root should be = 2")
+			t.Errorf("Height of Root should be = 2, not %d", root.Height)
 		}
 
 		if root.Left.Key != 3 {
@@ -33,12 +32,11 @@ func TestAVLInsert(t *testing.T) {
 		}
 
 	})
-	t.Run("LRRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
-		Insert(&root, 5)
-		Insert(&root, 3)
-		Insert(&root, 4)
+	t.Run("LRRotation-Test", func(t *testing.T) {
+		tree := NewAVLTree[int]()
+		tree.Insert(5, 3, 4)
 
+		root := tree.Root
 		if root.Key != 4 {
 			t.Errorf("Root should have value = 4")
 		}
@@ -61,12 +59,13 @@ func TestAVLInsert(t *testing.T) {
 		}
 	})
 
-	t.Run("RRRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
-		Insert(&root, 3)
-		Insert(&root, 4)
-		Insert(&root, 5)
+	t.Run("RRRotation-Test", func(t *testing.T) {
+		tree := NewAVLTree[int]()
+		tree.Insert(3)
+		tree.Insert(4)
+		tree.Insert(5)
 
+		root := tree.Root
 		if root.Key != 4 {
 			t.Errorf("Root should have value = 4")
 		}
@@ -89,11 +88,12 @@ func TestAVLInsert(t *testing.T) {
 		}
 	})
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
-		Insert(&root, 3)
-		Insert(&root, 5)
-		Insert(&root, 4)
+		tree := NewAVLTree[int]()
+		tree.Insert(3)
+		tree.Insert(5)
+		tree.Insert(4)
 
+		root := tree.Root
 		if root.Key != 4 {
 			t.Errorf("Root should have value = 4")
 		}
@@ -119,15 +119,16 @@ func TestAVLInsert(t *testing.T) {
 
 func TestAVLDelete(t *testing.T) {
 	t.Run("LLRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
+		tree := NewAVLTree[int]()
 
-		Insert(&root, 5)
-		Insert(&root, 4)
-		Insert(&root, 3)
-		Insert(&root, 2)
+		tree.Insert(5)
+		tree.Insert(4)
+		tree.Insert(3)
+		tree.Insert(2)
 
-		Delete(&root, 5)
+		tree.Delete(5)
 
+		root := tree.Root
 		if root.Key != 3 {
 			t.Errorf("Root should have value = 3")
 		}
@@ -151,15 +152,16 @@ func TestAVLDelete(t *testing.T) {
 	})
 
 	t.Run("LRRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
+		tree := NewAVLTree[int]()
 
-		Insert(&root, 10)
-		Insert(&root, 8)
-		Insert(&root, 6)
-		Insert(&root, 7)
+		tree.Insert(10)
+		tree.Insert(8)
+		tree.Insert(6)
+		tree.Insert(7)
 
-		Delete(&root, 10)
+		tree.Delete(10)
 
+		root := tree.Root
 		if root.Key != 7 {
 			t.Errorf("Root should have value = 7")
 		}
@@ -184,15 +186,16 @@ func TestAVLDelete(t *testing.T) {
 	})
 
 	t.Run("RRRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
+		tree := NewAVLTree[int]()
 
-		Insert(&root, 2)
-		Insert(&root, 3)
-		Insert(&root, 4)
-		Insert(&root, 5)
+		tree.Insert(2)
+		tree.Insert(3)
+		tree.Insert(4)
+		tree.Insert(5)
 
-		Delete(&root, 2)
+		tree.Delete(2)
 
+		root := tree.Root
 		if root.Key != 4 {
 			t.Errorf("Root should have value = 4")
 		}
@@ -217,15 +220,16 @@ func TestAVLDelete(t *testing.T) {
 	})
 
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		root := NewAVLTree()
+		tree := NewAVLTree[int]()
 
-		Insert(&root, 7)
-		Insert(&root, 6)
-		Insert(&root, 9)
-		Insert(&root, 8)
+		tree.Insert(7)
+		tree.Insert(6)
+		tree.Insert(9)
+		tree.Insert(8)
 
-		Delete(&root, 6)
+		tree.Delete(6)
 
+		root := tree.Root
 		if root.Key != 8 {
 			t.Errorf("Root should have value = 8")
 		}
@@ -248,30 +252,4 @@ func TestAVLDelete(t *testing.T) {
 		}
 
 	})
-}
-
-func TestAVLGet(t *testing.T) {
-
-	root := NewAVLTree()
-
-	if Get(root, 5) != nil {
-		t.Error("no item should exists in newly created AVL tree")
-	}
-
-	Insert(&root, 5)
-	Insert(&root, 4)
-	Insert(&root, 3)
-
-	n := Get(root, 4)
-	if n.Key != 4 {
-		t.Error("Key should be 4")
-	}
-	if n.Right.Key != 5 {
-		t.Error("Right child should have value 5")
-	}
-
-	if n.Left.Key != 3 {
-		t.Error("Left child should have value 3")
-	}
-
 }

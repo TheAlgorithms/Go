@@ -26,9 +26,7 @@ func TestRBTreeInsert(t *testing.T) {
 
 	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 88, 1 << 32}
 
-	for _, num := range nums {
-		tree.Insert(num)
-	}
+	tree.Insert(nums...)
 
 	ret = tree.InOrder()
 
@@ -50,10 +48,7 @@ func TestRBTreeDelete(t *testing.T) {
 	var ok bool
 
 	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 88, 1 << 32}
-
-	for _, num := range nums {
-		tree.Insert(num)
-	}
+	tree.Insert(nums...)
 
 	ok = tree.Delete(188)
 
@@ -90,49 +85,7 @@ func TestRBTreeDelete(t *testing.T) {
 	}
 }
 
-func TestRBTreeHas(t *testing.T) {
-	tree := NewRBTree[int]()
-
-	if tree.Has(100) {
-		t.Errorf("Error with Has")
-	}
-
-	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 88, 1 << 32}
-
-	for _, num := range nums {
-		tree.Insert(num)
-	}
-
-	if !tree.Has(188) {
-		t.Errorf("Error with Has")
-	}
-	tree.Delete(188)
-	if tree.Has(188) {
-		t.Errorf("Error with Has")
-	}
-
-	if !tree.Has(4) {
-		t.Errorf("Error with Has")
-	}
-	tree.Delete(4)
-	if !tree.Has(4) {
-		t.Errorf("Error with Has")
-	}
-
-	if !tree.Has(1 << 32) {
-		t.Errorf("Error with Has")
-	}
-	tree.Delete(1 << 32)
-	if tree.Has(1 << 32) {
-		t.Errorf("Error with Has")
-	}
-
-	if tree.Has(-100) {
-		t.Errorf("Error with Has")
-	}
-}
-
-func FuzzRBTreeSuccessorAndPredecesor(f *testing.F) {
+func FuzzRBTree(f *testing.F) {
 	testcases := []int{100, 200, 1000, 10000}
 	for _, tc := range testcases {
 		f.Add(tc)
@@ -142,9 +95,7 @@ func FuzzRBTreeSuccessorAndPredecesor(f *testing.F) {
 		rand.Seed(time.Now().Unix())
 		tree := NewRBTree[int]()
 		nums := rand.Perm(a)
-		for i := 0; i < len(nums); i++ {
-			tree.Insert(nums[i])
-		}
+		tree.Insert(nums...)
 
 		rets := tree.InOrder()
 		if !sort.IntsAreSorted(rets) {
@@ -169,13 +120,11 @@ func FuzzRBTreeSuccessorAndPredecesor(f *testing.F) {
 	})
 }
 
-func TestRBTreePredecesorAndSuccessor(t *testing.T) {
+func TestRBTreePredecessorAndSuccessor(t *testing.T) {
 	tree := NewRBTree[int]()
 
 	nums := []int{10, 8, 88, 888, 4, -1, 100}
-	for _, num := range nums {
-		tree.Insert(num)
-	}
+	tree.Insert(nums...)
 
 	if ret, ok := tree.Predecessor(100); !ok && ret == 88 {
 		t.Errorf("Error with Predecessor")

@@ -1,182 +1,162 @@
-// Package avl is a Adelson-Velskii and Landis tree implemnation
-// avl is self-balancing tree, i.e for all node in a tree, Height difference
-// between its Left and Right child will not exceed 1
-// more information : https://en.wikipedia.org/wiki/AVL_tree
 package tree
 
-// NewAVLTree create a new AVL tree
-func NewAVLTree() *AVLNode {
-	return nil
+import (
+	"github.com/TheAlgorithms/Go/constraints"
+	"github.com/TheAlgorithms/Go/math/max"
+)
+
+type AVLTree[T constraints.Ordered] struct {
+	*binaryTree[T]
 }
 
-// Get : return node with given Key
-func Get(root *AVLNode, key int) *AVLNode {
+// NewAVLTree create a novel AVL tree
+func NewAVLTree[T constraints.Ordered]() *AVLTree[T] {
+	return &AVLTree[T]{
+		binaryTree: &binaryTree[T]{
+			Root: nil,
+			NIL:  nil,
+		},
+	}
+}
+
+// Insert a chain of Node's into the AVL Tree
+func (avl *AVLTree[T]) Insert(keys ...T) {
+	for _, k := range keys {
+		avl.Root = avl.insertHelper(avl.Root, k)
+	}
+}
+
+// Delete a Node from the AVL Tree
+func (avl *AVLTree[T]) Delete(key T) bool {
+	tmp := avl.deleteHelper(avl.Root, key)
+	if tmp == nil {
+		return false
+	}
+
+	avl.Root = tmp
+	return true
+}
+
+func (avl *AVLTree[T]) insertHelper(root *Node[T], key T) *Node[T] {
 	if root == nil {
-		return nil
-	}
-	if root.Key == key {
-		return root
-	} else if root.Key < key {
-		root = root.Right
-	} else {
-		root = root.Left
-	}
-	return Get(root, key)
-}
-
-// Insert a new item
-func Insert(root **AVLNode, key int) {
-	if *root == nil {
-		*root = &AVLNode{
+		return &Node[T]{
 			Key:    key,
 			Height: 1,
 		}
-		return
-	}
-	if (*root).Key < key {
-		Insert(&(*root).Right, key)
-	} else if (*root).Key > key {
-		Insert(&(*root).Left, key)
 	}
 
-	// update Height
-	(*root).Height = height(*root)
+	switch {
+	case key < root.Key:
+		root.Left = avl.insertHelper(root.Left, key)
+	case key > root.Key:
+		root.Right = avl.insertHelper(root.Right, key)
+	default:
+		return root
+	}
 
-	bFactor := balanceFactor(*root)
-
-	if bFactor == 2 { // L
-		bFactor = balanceFactor((*root).Left)
-		if bFactor == 1 { // LL
-			llRotation(root)
-		} else if bFactor == -1 { // LR
-			lrRotation(root)
-		}
-	} else if bFactor == -2 { // R
-		bFactor = balanceFactor((*root).Right)
-		if bFactor == 1 { // RL
-			rlRotation(root)
-		} else if bFactor == -1 { // RR
-			rrRotation(root)
+	// balance the tree
+	root.Height = avl.height(root)
+	bFactor := avl.balanceFactor(root)
+	if bFactor > 1 {
+		switch {
+		case key < root.Left.Key:
+			return avl.rightRotate(root)
+		case key > root.Left.Key:
+			root.Left = avl.leftRotate(root.Left)
+			return avl.rightRotate(root)
 		}
 	}
+
+	if bFactor < -1 {
+		switch {
+		case key > root.Right.Key:
+			return avl.leftRotate(root)
+		case key < root.Right.Key:
+			root.Right = avl.rightRotate(root.Right)
+			return avl.leftRotate(root)
+		}
+	}
+
+	return root
 }
 
-// Delete : remove given Key from the tree
-func Delete(root **AVLNode, key int) {
+func (avl *AVLTree[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 	if root == nil {
-		return
+		return root
 	}
-	if (*root).Key < key {
-		Delete(&(*root).Right, key)
-	} else if (*root).Key > key {
-		Delete(&(*root).Left, key)
-	} else {
-		// 3 cases
-		// 1. No Child
-		// 2. With One Child
-		// 3. With Two Child
-		if (*root).Left == nil && (*root).Right == nil {
-			*root = nil
-		} else if (*root).Left == nil {
-			*root = (*root).Right
-		} else if (*root).Right == nil {
-			*root = (*root).Left
+
+	switch {
+	case key < root.Key:
+		root.Left = avl.deleteHelper(root.Left, key)
+	case key > root.Key:
+		root.Right = avl.deleteHelper(root.Right, key)
+	default:
+		if root.Left == nil || root.Right == nil {
+			tmp := root.Left
+			if root.Left != nil {
+				tmp = root.Right
+			}
+
+			if tmp == nil {
+				tmp = root
+				root = nil
+			} else {
+				*root = *tmp
+			}
 		} else {
-			minVal := min((*root).Right)
-			(*root).Key = minVal
-			Delete(root, minVal)
-		}
-		return
-	}
-
-	// update Height
-	(*root).Height = height(*root)
-
-	bFactor := balanceFactor(*root)
-
-	if bFactor == 2 { // L
-		switch balanceFactor((*root).Left) {
-		case 1: // LL
-			llRotation(root)
-		case -1: // LR
-			lrRotation(root)
-		case 0: //  LL OR LR
-			llRotation(root)
-		}
-	} else if bFactor == -2 { // L
-		switch balanceFactor((*root).Right) {
-		case 1: // RL
-			rlRotation(root)
-		case -1: // RR
-			rrRotation(root)
-		case 0: // RL OR RR
-			rrRotation(root)
+			tmp := avl.minimum(root.Right)
+			root.Key = tmp.Key
+			root.Right = avl.deleteHelper(root.Right, tmp.Key)
 		}
 	}
+
+	if root == nil {
+		return root
+	}
+
+	// balance the tree
+	root.Height = avl.height(root)
+	bFactor := avl.balanceFactor(root)
+	switch {
+	case bFactor > 1:
+		switch {
+		case avl.balanceFactor(root.Left) >= 0:
+			return avl.rightRotate(root)
+		default:
+			root.Left = avl.leftRotate(root.Left)
+			return avl.rightRotate(root)
+		}
+	case bFactor < -1:
+		switch {
+		case avl.balanceFactor(root.Right) <= 0:
+			return avl.leftRotate(root)
+		default:
+			root.Right = avl.rightRotate(root.Right)
+			return avl.leftRotate(root)
+		}
+	}
+
+	return root
 }
 
-// rotations
-// 1. LL
-// 2. LR
-// 3. RR
-// 4. RL
-func llRotation(root **AVLNode) {
-	b := (*root).Left
-	br := b.Right
-	b.Right = *root
-	(*root).Left = br
-	(*root).Height = height(*root)
-	b.Height = height(b)
-	*root = b
-}
-func lrRotation(root **AVLNode) {
-	c := (*root).Left.Right
-	cl := c.Left
-	cr := c.Right
+func (avl *AVLTree[T]) height(root *Node[T]) int {
+	if root == nil {
+		return 0
+	}
 
-	c.Left = (*root).Left
-	c.Right = (*root)
-	c.Left.Right = cl
-
-	(*root).Left = cr
-
-	(*root).Height = height(*root)
-	c.Left.Height = height(c.Left)
-	c.Height = height(c)
-
-	*root = c
-
-}
-func rrRotation(root **AVLNode) {
-	b := (*root).Right
-	bl := b.Left
-	b.Left = *root
-
-	(*root).Right = bl
-	(*root).Height = height(*root)
-	b.Height = height(b)
-	*root = b
-
-}
-func rlRotation(root **AVLNode) {
-	c := (*root).Right.Left
-	cl := c.Left
-	cr := c.Right
-
-	c.Right = (*root).Right
-	c.Right.Left = cr
-	c.Left = *root
-	(*root).Right = cl
-
-	(*root).Height = height(*root)
-	c.Right.Height = height(c.Right)
-	c.Height = height(c)
-	*root = c
+	var leftHeight, rightHeight int
+	if root.Left != nil {
+		leftHeight = root.Left.Height
+	}
+	if root.Right != nil {
+		rightHeight = root.Right.Height
+	}
+	return 1 + max.Int(leftHeight, rightHeight)
 }
 
-// balanceFactor : -ve balance factor means subtree Root is heavy toward Left
-// and +ve balance factor means subtree Root is heavy toward Right side
-func balanceFactor(root *AVLNode) int {
+// balanceFactor : negative balance factor means subtree Root is heavy toward Left
+// and positive balance factor means subtree Root is heavy toward Right side
+func (avl *AVLTree[T]) balanceFactor(root *Node[T]) int {
 	var leftHeight, rightHeight int
 	if root.Left != nil {
 		leftHeight = root.Left.Height
@@ -187,27 +167,24 @@ func balanceFactor(root *AVLNode) int {
 	return leftHeight - rightHeight
 }
 
-func height(root *AVLNode) int {
-	if root == nil {
-		return 0
-	}
-	var leftHeight, rightHeight int
-	if root.Left != nil {
-		leftHeight = root.Left.Height
-	}
-	if root.Right != nil {
-		rightHeight = root.Right.Height
-	}
-	max := leftHeight
-	if rightHeight > leftHeight {
-		max = rightHeight
-	}
-	return 1 + max
+func (avl *AVLTree[T]) leftRotate(root *Node[T]) *Node[T] {
+	y := root.Right
+	yl := y.Left
+	y.Left = root
+	root.Right = yl
+
+	root.Height = avl.height(root)
+	y.Height = avl.height(y)
+	return y
 }
 
-func min(root *AVLNode) int {
-	if root.Left == nil {
-		return root.Key
-	}
-	return min(root.Left)
+func (avl *AVLTree[T]) rightRotate(root *Node[T]) *Node[T] {
+	y := root.Left
+	yr := y.Right
+	y.Right = root
+	root.Left = yr
+
+	root.Height = avl.height(root)
+	y.Height = avl.height(y)
+	return y
 }
