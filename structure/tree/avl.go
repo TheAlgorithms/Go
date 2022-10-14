@@ -98,7 +98,6 @@ func (avl *AVLTree[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 			}
 
 			if tmp == nil {
-				tmp = root
 				root = nil
 			} else {
 				*root = *tmp
