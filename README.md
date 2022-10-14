@@ -914,31 +914,26 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package avl is a Adelson-Velskii and Landis tree implemnation avl is self-balancing tree, i.e for all node in a tree, Height difference between its Left and Right child will not exceed 1 more information : https://en.wikipedia.org/wiki/AVL_tree
+#####  For more details check out those links below here: Wikipedia article: https://en.wikipedia.org/wiki/Binary_search_tree authors [guuzaa](https://github.com/guuzaa)
 
 ---
 ##### Functions:
 
-1. [`Delete`](./structure/tree/avl.go#L65):  Delete : remove given Key from the tree
-2. [`FuzzRBTreeSuccessorAndPredecesor`](./structure/tree/rbtree_test.go#L135): No description provided.
-3. [`Get`](./structure/tree/avl.go#L13):  Get : return node with given Key
-4. [`Insert`](./structure/tree/avl.go#L28):  Insert a new item
-5. [`NewAVLTree`](./structure/tree/avl.go#L8):  NewAVLTree create a new AVL tree
-6. [`NewNode`](./structure/tree/bstree.go#L15):  NewNode Returns a new pointer to an empty Node
-7. [`NewRBTree`](./structure/tree/rbtree.go#L24):  Create a new Red-Black Tree
+1. [`FuzzRBTree`](./structure/tree/rbtree_test.go#L88): No description provided.
+2. [`NewAVLTree`](./structure/tree/avl.go#L13):  NewAVLTree create a novel AVL tree
+3. [`NewBSTree`](./structure/tree/bstree.go#L18):  NewBSTree create a novel Binary-Search tree
+4. [`NewRBTree`](./structure/tree/rbtree.go#L23):  Create a new Red-Black Tree
 
 ---
 ##### Types
 
-1. [`AVLNode`](./structure/tree/node.go#L13): No description provided.
+1. [`AVLTree`](./structure/tree/avl.go#L8): No description provided.
 
-2. [`BSTree`](./structure/tree/bstree.go#L19): No description provided.
+2. [`BSTree`](./structure/tree/bstree.go#L13): No description provided.
 
-3. [`Node`](./structure/tree/node.go#L6): No description provided.
+3. [`Node`](./structure/tree/tree.go#L23): No description provided.
 
-4. [`RBNode`](./structure/tree/node.go#L27): No description provided.
-
-5. [`RBTree`](./structure/tree/rbtree.go#L18): No description provided.
+4. [`RBTree`](./structure/tree/rbtree.go#L18): No description provided.
 
 
 ---
