@@ -90,7 +90,7 @@ func TestTreePreOrder(t *testing.T) {
 		}
 	})
 
-	t.Run("Test for AVL Tree", func(t *testing.T) {
+	t.Run("Test for Red-Black Tree", func(t *testing.T) {
 		tests := []struct {
 			input []int
 			want  []int
