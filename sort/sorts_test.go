@@ -118,7 +118,7 @@ func TestMergeParallel(t *testing.T) {
 }
 
 func TestHeap(t *testing.T) {
-	testFramework(t, sort.HeapSort)
+	testFramework(t, sort.HeapSort[int])
 }
 
 func TestCount(t *testing.T) {
@@ -227,7 +227,7 @@ func BenchmarkMergeParallel(b *testing.B) {
 }
 
 func BenchmarkHeap(b *testing.B) {
-	benchmarkFramework(b, sort.HeapSort)
+	benchmarkFramework(b, sort.HeapSort[int])
 }
 
 func BenchmarkCount(b *testing.B) {
