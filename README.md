@@ -931,7 +931,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 2. [`BSTree`](./structure/tree/bstree.go#L13): No description provided.
 
-3. [`Node`](./structure/tree/tree.go#L23): No description provided.
+3. [`Node`](./structure/tree/tree.go#L25): No description provided.
 
 4. [`RBTree`](./structure/tree/rbtree.go#L18): No description provided.
 
