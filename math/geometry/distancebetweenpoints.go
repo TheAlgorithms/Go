@@ -16,7 +16,7 @@ import (
 // This function calculates the distance based on Cartesian Plane Distance Formula
 // Formula: √((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))
 // Takes x and y coordinates of two point
-// Returns distnce in floating number
+// Returns distance in floating number
 func FindDistanceBetweenTwoPoints(x1 float64, y1 float64, x2 float64, y2 float64) float64 {
 	// Find difference between x-coordinates
 	xDiff := x2 - x1
