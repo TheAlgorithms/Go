@@ -8,6 +8,8 @@
 package tree
 
 import (
+	"fmt"
+
 	"github.com/TheAlgorithms/Go/constraints"
 	"github.com/TheAlgorithms/Go/math/max"
 )
@@ -96,6 +98,11 @@ func (t *binaryTree[T]) LevelOrder() []T {
 	traversal := make([]T, 0)
 	t.levelOrderHelper(t.Root, &traversal)
 	return traversal
+}
+
+// Print the tree horizontally
+func (t *binaryTree[T]) Print() {
+	t.printHelper(t.Root, "", false)
 }
 
 // Determines node is a leaf node
@@ -208,4 +215,39 @@ func (t *binaryTree[T]) levelOrderHelper(root *Node[T], traversal *[]T) {
 			q = append(q, tmp.Right)
 		}
 	}
+}
+
+// Reference: https://stackoverflow.com/a/51730733/15437172
+func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
+	if t.isNil(root) {
+		return
+	}
+
+	fmt.Print(indent)
+	if isLeft {
+		fmt.Print("├──")
+		indent += "│  "
+	} else {
+		fmt.Print("└──")
+		indent += "   "
+	}
+
+	if t.isRBTree() {
+		color := "Black"
+		if root.Color == Red {
+			color = "Red"
+		}
+
+		fmt.Println(root.Key, "(", color, ")")
+	} else {
+		fmt.Println(root.Key)
+	}
+
+	t.printHelper(root.Left, indent, true)
+	t.printHelper(root.Right, indent, false)
+}
+
+// Determines the tree is RBTree
+func (t *binaryTree[T]) isRBTree() bool {
+	return t.NIL != nil
 }

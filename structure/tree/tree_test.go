@@ -359,6 +359,62 @@ func TestTreeDepth(t *testing.T) {
 	})
 }
 
+func TestTreePrint(t *testing.T) {
+	t.Run("Test for Binary-Search Tree", func(t *testing.T) {
+		tests := []struct {
+			input []int
+			want  []int
+		}{
+			{[]int{90, 80, 100, 70, 85, 95, 105}, []int{70, 85, 80, 95, 105, 100, 90}},
+			{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71},
+				[]int{61, 51, 41, 31, 21, 1, 71, 70, 85, 80, 95, 105, 100, 90}},
+			{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
+		}
+		for _, tt := range tests {
+			tree := NewBSTree[int]()
+			t.Log(reflect.TypeOf(tree).String())
+			tree.Insert(tt.input...)
+			tree.Print()
+		}
+	})
+
+	t.Run("Test for AVL Tree", func(t *testing.T) {
+		tests := []struct {
+			input []int
+			want  []int
+		}{
+			{[]int{90, 80, 100, 70, 85, 95, 105}, []int{70, 85, 80, 95, 105, 100, 90}},
+			{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71},
+				[]int{1, 31, 21, 61, 51, 41, 71, 85, 80, 95, 105, 100, 90, 70}},
+			{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, []int{1, 2, 4, 6, 5, 3, 8, 10, 9, 7}},
+		}
+		for _, tt := range tests {
+			tree := NewAVLTree[int]()
+			t.Log(reflect.TypeOf(tree).String())
+			tree.Insert(tt.input...)
+			tree.Print()
+		}
+	})
+
+	t.Run("Test for Red-Black Tree", func(t *testing.T) {
+		tests := []struct {
+			input []int
+			want  []int
+		}{
+			{[]int{90, 80, 100, 70, 85, 95, 105}, []int{70, 85, 80, 95, 105, 100, 90}},
+			{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71},
+				[]int{1, 31, 21, 51, 71, 70, 61, 41, 85, 95, 105, 100, 90, 80}},
+			{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, []int{1, 2, 4, 3, 6, 5, 8, 10, 9, 7}},
+		}
+		for _, tt := range tests {
+			tree := NewRBTree[int]()
+			t.Log(reflect.TypeOf(tree).String() == "*tree.RBTree[int]")
+			tree.Insert(tt.input...)
+			tree.Print()
+		}
+	})
+}
+
 // Benchmark the comparisons between BST, AVL and RB Tree
 const testNum = 10_000
 
