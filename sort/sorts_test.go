@@ -2,8 +2,10 @@ package sort_test
 
 import (
 	"github.com/TheAlgorithms/Go/sort"
+	"math/rand"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -95,8 +97,28 @@ func TestMergeIter(t *testing.T) {
 	testFramework(t, sort.MergeIter[int])
 }
 
+func TestMergeParallel(t *testing.T) {
+	testFramework(t, sort.ParallelMerge[int])
+
+	// Test parallel merge sort with a large slice
+	t.Run("ParallelMerge on large slice", func(t *testing.T) {
+		rand.Seed(time.Now().UnixNano())
+		size := 100000
+		randomLargeSlice := make([]int, size)
+		for i := range randomLargeSlice {
+			randomLargeSlice[i] = rand.Intn(size)
+		}
+		sortedSlice := sort.ParallelMerge[int](randomLargeSlice)
+		for i := 0; i < len(sortedSlice)-1; i++ {
+			if sortedSlice[i] > sortedSlice[i+1] {
+				t.Errorf("ParallelMerge failed")
+			}
+		}
+	})
+}
+
 func TestHeap(t *testing.T) {
-	testFramework(t, sort.HeapSort)
+	testFramework(t, sort.HeapSort[int])
 }
 
 func TestCount(t *testing.T) {
@@ -112,7 +134,7 @@ func TestShell(t *testing.T) {
 }
 
 func TestRadix(t *testing.T) {
-	testFramework(t, sort.RadixSort)
+	testFramework(t, sort.RadixSort[int])
 }
 
 func TestSimple(t *testing.T) {
@@ -132,7 +154,7 @@ func TestComb(t *testing.T) {
 }
 
 func TestPigeonhole(t *testing.T) {
-	testFramework(t, sort.Pigeonhole)
+	testFramework(t, sort.Pigeonhole[int])
 }
 
 func TestPatience(t *testing.T) {
@@ -200,8 +222,12 @@ func BenchmarkMergeIter(b *testing.B) {
 	benchmarkFramework(b, sort.MergeIter[int])
 }
 
+func BenchmarkMergeParallel(b *testing.B) {
+	benchmarkFramework(b, sort.ParallelMerge[int])
+}
+
 func BenchmarkHeap(b *testing.B) {
-	benchmarkFramework(b, sort.HeapSort)
+	benchmarkFramework(b, sort.HeapSort[int])
 }
 
 func BenchmarkCount(b *testing.B) {
@@ -217,7 +243,7 @@ func BenchmarkShell(b *testing.B) {
 }
 
 func BenchmarkRadix(b *testing.B) {
-	benchmarkFramework(b, sort.RadixSort)
+	benchmarkFramework(b, sort.RadixSort[int])
 }
 
 func BenchmarkSimple(b *testing.B) {
@@ -238,7 +264,7 @@ func BenchmarkComb(b *testing.B) {
 }
 
 func BenchmarkPigeonhole(b *testing.B) {
-	benchmarkFramework(b, sort.Pigeonhole)
+	benchmarkFramework(b, sort.Pigeonhole[int])
 }
 
 func BenchmarkPatience(b *testing.B) {
