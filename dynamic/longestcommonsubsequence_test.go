@@ -27,15 +27,14 @@ func getLCSTestCases() []testCaseLCS {
 		{"abcdef", "aXbXcXXXdeXXf", 6},
 		{"", "abc", 0},
 		{"", "", 0},
+		{"££", "££", 2},
 	}
 }
 
 func TestLongestCommonSubsequence(t *testing.T) {
 	t.Run("Simple test", func(t *testing.T) {
 		for _, tc := range getLCSTestCases() {
-			actual := dynamic.LongestCommonSubsequence(
-				tc.stringA, tc.stringB,
-				len(tc.stringA), len(tc.stringB))
+			actual := dynamic.LongestCommonSubsequence(tc.stringA, tc.stringB)
 			if actual != tc.expected {
 				t.Errorf("expected: %d, but got: %d", tc.expected, actual)
 			}
@@ -44,9 +43,7 @@ func TestLongestCommonSubsequence(t *testing.T) {
 
 	t.Run("Symmetry test", func(t *testing.T) {
 		for _, tc := range getLCSTestCases() {
-			actual := dynamic.LongestCommonSubsequence(
-				tc.stringB, tc.stringA,
-				len(tc.stringB), len(tc.stringA))
+			actual := dynamic.LongestCommonSubsequence(tc.stringB, tc.stringA)
 			if actual != tc.expected {
 				t.Errorf("expected: %d, but got: %d", tc.expected, actual)
 			}
