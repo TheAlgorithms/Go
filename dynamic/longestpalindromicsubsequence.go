@@ -49,12 +49,3 @@ func LpsDp(word string) int {
 
 	return dp[0][N-1]
 }
-
-/*
-func main() {
-	// word := "aaabbbbababbabbabbabf"
-	word := "aaaabbbba"
-	fmt.Printf("%d\n", lpsRec(word, 0, len(word)-1))
-	fmt.Printf("%d\n", lpsDp(word))
-}
-*/
