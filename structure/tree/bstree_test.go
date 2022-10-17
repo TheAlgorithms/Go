@@ -6,7 +6,7 @@ import (
 	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
 
-func TestInsert(t *testing.T) {
+func TestPush(t *testing.T) {
 	bst := bt.NewBinarySearch[int]()
 
 	bst.Push(90)
@@ -38,7 +38,13 @@ func TestDelete(t *testing.T) {
 		bst.Push(80)
 		bst.Push(100)
 
-		bst.Delete(100)
+		if !bst.Delete(100) {
+			t.Errorf("There is a node, whose value is 100")
+		}
+
+		if bst.Delete(105) {
+			t.Errorf("There is no node, whose value is 105")
+		}
 
 		root := bst.Root
 		if root.Key != 90 {
@@ -80,7 +86,13 @@ func TestDelete(t *testing.T) {
 		bst.Push(100)
 		bst.Push(70)
 
-		bst.Delete(80)
+		if bst.Delete(102) {
+			t.Errorf("There is no node, whose value is 102")
+		}
+
+		if !bst.Delete(80) {
+			t.Errorf("There is a node, whose value is 80")
+		}
 
 		root := bst.Root
 		if root.Key != 90 {
@@ -109,7 +121,13 @@ func TestDelete(t *testing.T) {
 		bst.Push(70)
 		bst.Push(85)
 
-		bst.Delete(80)
+		if !bst.Delete(80) {
+			t.Errorf("There is a node, whose value is 80")
+		}
+
+		if bst.Delete(102) {
+			t.Errorf("There is no node, whose value is 102")
+		}
 
 		root := bst.Root
 		if root.Key != 90 {
@@ -129,22 +147,3 @@ func TestDelete(t *testing.T) {
 		}
 	})
 }
-
-// func TestAccessNodesByLayer(t *testing.T) {
-// 	bst := bt.NewBinarySearch[int]()
-//
-// 	bst.Push(90)
-// 	bst.Push(80)
-// 	bst.Push(100)
-// 	bst.Push(70)
-// 	bst.Push(85)
-// 	bst.Push(95)
-// 	bst.Push(105)
-//
-// 	a := bst.AccessNodesByLayer()
-// 	b := [][]int{{90}, {80, 100}, {70, 85, 95, 105}}
-//
-// 	if !reflect.DeepEqual(a, b) {
-// 		t.Errorf("Nodes should have value = [[90] [80 100] [70 85 95 105]]")
-// 	}
-// }

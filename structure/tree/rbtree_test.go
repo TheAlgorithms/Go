@@ -9,7 +9,7 @@ import (
 	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
 
-func TestRBTreeInsert(t *testing.T) {
+func TestRBTreePush(t *testing.T) {
 	tree := bt.NewRB[int]()
 
 	ret := tree.InOrder()

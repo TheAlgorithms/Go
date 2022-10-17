@@ -28,12 +28,11 @@ func (avl *AVL[T]) Push(keys ...T) {
 
 // Delete a Node from the AVL Tree
 func (avl *AVL[T]) Delete(key T) bool {
-	tmp := avl.deleteHelper(avl.Root, key)
-	if tmp == nil {
+	if !avl.Has(key) {
 		return false
 	}
 
-	avl.Root = tmp
+	avl.Root = avl.deleteHelper(avl.Root, key)
 	return true
 }
 

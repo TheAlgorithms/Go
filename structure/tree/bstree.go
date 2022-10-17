@@ -32,8 +32,12 @@ func (t *BinarySearch[T]) Push(keys ...T) {
 }
 
 // Delete removes the node of val
-func (t *BinarySearch[T]) Delete(val T) *Node[T] {
-	return t.deleteHelper(t.Root, val)
+func (t *BinarySearch[T]) Delete(val T) bool {
+	if !t.Has(val) {
+		return false
+	}
+	t.deleteHelper(t.Root, val)
+	return true
 }
 
 func (t *BinarySearch[T]) pushHelper(root *Node[T], val T) *Node[T] {

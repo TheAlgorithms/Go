@@ -120,7 +120,7 @@ func TestAVLPush(t *testing.T) {
 }
 
 func TestAVLDelete(t *testing.T) {
-	t.Run("LLRotaion-Test", func(t *testing.T) {
+	t.Run("LLRotation-Test", func(t *testing.T) {
 		tree := bt.NewAVL[int]()
 
 		tree.Push(5)
@@ -128,7 +128,13 @@ func TestAVLDelete(t *testing.T) {
 		tree.Push(3)
 		tree.Push(2)
 
-		tree.Delete(5)
+		if !tree.Delete(5) {
+			t.Errorf("There is a node, whose value is 5")
+		}
+
+		if tree.Delete(50) {
+			t.Errorf("There is no node, whose value is 50")
+		}
 
 		root := tree.Root
 		if root.Key != 3 {
@@ -153,7 +159,7 @@ func TestAVLDelete(t *testing.T) {
 		}
 	})
 
-	t.Run("LRRotaion-Test", func(t *testing.T) {
+	t.Run("LRRotation-Test", func(t *testing.T) {
 		tree := bt.NewAVL[int]()
 
 		tree.Push(10)
@@ -161,7 +167,13 @@ func TestAVLDelete(t *testing.T) {
 		tree.Push(6)
 		tree.Push(7)
 
-		tree.Delete(10)
+		if !tree.Delete(10) {
+			t.Errorf("There is a node, whose value is 10")
+		}
+
+		if tree.Delete(5) {
+			t.Errorf("There is no node, whose value is 5")
+		}
 
 		root := tree.Root
 		if root.Key != 7 {
@@ -187,7 +199,7 @@ func TestAVLDelete(t *testing.T) {
 
 	})
 
-	t.Run("RRRotaion-Test", func(t *testing.T) {
+	t.Run("RRRotation-Test", func(t *testing.T) {
 		tree := bt.NewAVL[int]()
 
 		tree.Push(2)
@@ -195,7 +207,13 @@ func TestAVLDelete(t *testing.T) {
 		tree.Push(4)
 		tree.Push(5)
 
-		tree.Delete(2)
+		if !tree.Delete(2) {
+			t.Errorf("There is a node, whose value is 2")
+		}
+
+		if tree.Delete(15) {
+			t.Errorf("There is no node, whose value is 15")
+		}
 
 		root := tree.Root
 		if root.Key != 4 {

@@ -102,15 +102,15 @@ func (t *binaryTree[T]) LevelOrder() []T {
 
 // AccessNodesByLayer accesses nodes layer by layer (2-D array),  instead of printing the results as 1-D array.
 func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
-	var res [][]T
 	root := t.Root
 	if t.isNil(root) {
-		return res
+		return [][]T{}
 	}
 	var q []*Node[T]
 	var n *Node[T]
 	var idx = 0
 	q = append(q, root)
+	var res [][]T
 
 	for len(q) != 0 {
 		res = append(res, []T{})
