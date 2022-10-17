@@ -47,7 +47,7 @@ func LpsDp(word string) int {
 		}
 	}
 
-	return dp[1][N-1]
+	return dp[0][N-1]
 }
 
 /*
