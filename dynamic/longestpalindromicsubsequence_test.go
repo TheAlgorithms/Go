@@ -7,7 +7,7 @@ import (
 	"github.com/TheAlgorithms/Go/dynamic"
 )
 
-func LpsTestTemplate(t *testing.T, algorithm func(input string) int) {
+func lpsTestTemplate(t *testing.T, algorithm func(input string) int) {
 	testCases := []struct {
 		input    string
 		expected int
@@ -32,9 +32,9 @@ func LpsTestTemplate(t *testing.T, algorithm func(input string) int) {
 }
 
 func TestLpsRec(t *testing.T) {
-	LpsTestTemplate(t, dynamic.LpsRec)
+	lpsTestTemplate(t, dynamic.LpsRec)
 }
 
 func TestLpsDp(t *testing.T) {
-	LpsTestTemplate(t, dynamic.LpsDp)
+	lpsTestTemplate(t, dynamic.LpsDp)
 }
