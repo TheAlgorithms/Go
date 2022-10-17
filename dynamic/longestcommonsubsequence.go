@@ -8,10 +8,14 @@ import (
 	"unicode/utf8"
 )
 
+func extractData(inStr string) (int, []rune) {
+	return utf8.RuneCountInString(inStr), []rune(inStr)
+}
+
 // LongestCommonSubsequence function
 func LongestCommonSubsequence(a string, b string) int {
-	var aLen = utf8.RuneCountInString(a)
-	var bLen = utf8.RuneCountInString(b)
+	aLen, aRunes := extractData(a)
+	bLen, bRunes := extractData(b)
 
 	// here we are making a 2d slice of size (aLen+1)*(bLen+1)
 	lcs := make([][]int, aLen+1)
@@ -24,7 +28,7 @@ func LongestCommonSubsequence(a string, b string) int {
 		for j := 0; j <= bLen; j++ {
 			if i == 0 || j == 0 {
 				lcs[i][j] = 0
-			} else if a[i-1] == b[j-1] {
+			} else if aRunes[i-1] == bRunes[j-1] {
 				lcs[i][j] = lcs[i-1][j-1] + 1
 			} else {
 				lcs[i][j] = Max(lcs[i-1][j], lcs[i][j-1])
