@@ -919,22 +919,31 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`FuzzRBTree`](./structure/tree/rbtree_test.go#L88): No description provided.
-2. [`NewAVLTree`](./structure/tree/avl.go#L13):  NewAVLTree create a novel AVL tree
-3. [`NewBSTree`](./structure/tree/bstree.go#L18):  NewBSTree create a novel Binary-Search tree
-4. [`NewRBTree`](./structure/tree/rbtree.go#L23):  Create a new Red-Black Tree
+1. [`NewAVL`](./structure/tree/avl.go#L13):  NewAVL create a novel AVL tree
+2. [`NewBinarySearch`](./structure/tree/bstree.go#L18):  NewBinarySearch create a novel Binary-Search tree
+3. [`NewRB`](./structure/tree/rbtree.go#L23):  Create a new Red-Black Tree
 
 ---
 ##### Types
 
-1. [`AVLTree`](./structure/tree/avl.go#L8): No description provided.
+1. [`AVL`](./structure/tree/avl.go#L8): No description provided.
 
-2. [`BSTree`](./structure/tree/bstree.go#L13): No description provided.
+2. [`BinarySearch`](./structure/tree/bstree.go#L13): No description provided.
 
 3. [`Node`](./structure/tree/tree.go#L25): No description provided.
 
-4. [`RBTree`](./structure/tree/rbtree.go#L18): No description provided.
+4. [`RB`](./structure/tree/rbtree.go#L18): No description provided.
 
+
+---
+</details><details>
+	<summary> <strong> tree_test </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`FuzzRBTree`](./structure/tree/rbtree_test.go#L90): No description provided.
 
 ---
 </details><details>
