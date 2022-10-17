@@ -15,14 +15,14 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type RBTree[T constraints.Ordered] struct {
+type RB[T constraints.Ordered] struct {
 	*binaryTree[T]
 }
 
 // Create a new Red-Black Tree
-func NewRBTree[T constraints.Ordered]() *RBTree[T] {
+func NewRB[T constraints.Ordered]() *RB[T] {
 	leaf := &Node[T]{Color: Black, Left: nil, Right: nil}
-	return &RBTree[T]{
+	return &RB[T]{
 		binaryTree: &binaryTree[T]{
 			Root: leaf,
 			NIL:  leaf,
@@ -30,23 +30,23 @@ func NewRBTree[T constraints.Ordered]() *RBTree[T] {
 	}
 }
 
-// Insert a chain of Node's into the Red-Black Tree
-func (t *RBTree[T]) Insert(keys ...T) {
+// Push a chain of Node's into the Red-Black Tree
+func (t *RB[T]) Push(keys ...T) {
 	for _, key := range keys {
-		t.insertHelper(t.Root, key)
+		t.pushHelper(t.Root, key)
 	}
 }
 
 // Delete a node of Red-Black Tree
 // Returns false if the node does not exist, otherwise returns true.
-func (t *RBTree[T]) Delete(data T) bool {
+func (t *RB[T]) Delete(data T) bool {
 	return t.deleteHelper(t.Root, data)
 }
 
 // Return the Predecessor of the node of Key
 // if there is no predecessor, return default value of type T and false
 // otherwise return the Key of predecessor and true
-func (t *RBTree[T]) Predecessor(key T) (T, bool) {
+func (t *RB[T]) Predecessor(key T) (T, bool) {
 	node, ok := t.searchTreeHelper(t.Root, key)
 	if !ok {
 		return t.NIL.Key, ok
@@ -57,7 +57,7 @@ func (t *RBTree[T]) Predecessor(key T) (T, bool) {
 // Return the Successor of the node of Key
 // if there is no successor, return default value of type T and false
 // otherwise return the Key of successor and true
-func (t *RBTree[T]) Successor(key T) (T, bool) {
+func (t *RB[T]) Successor(key T) (T, bool) {
 	node, ok := t.searchTreeHelper(t.Root, key)
 	if !ok {
 		return t.NIL.Key, ok
@@ -66,7 +66,7 @@ func (t *RBTree[T]) Successor(key T) (T, bool) {
 	return t.successorHelper(node)
 }
 
-func (t *RBTree[T]) insertHelper(x *Node[T], key T) {
+func (t *RB[T]) pushHelper(x *Node[T], key T) {
 	node := &Node[T]{
 		Key:    key,
 		Left:   t.NIL,
@@ -104,10 +104,10 @@ func (t *RBTree[T]) insertHelper(x *Node[T], key T) {
 		return
 	}
 
-	t.insertFix(node)
+	t.pushFix(node)
 }
 
-func (t *RBTree[T]) leftRotate(x *Node[T]) {
+func (t *RB[T]) leftRotate(x *Node[T]) {
 	y := x.Right
 	x.Right = y.Left
 
@@ -128,12 +128,13 @@ func (t *RBTree[T]) leftRotate(x *Node[T]) {
 	x.Parent = y
 }
 
-func (t *RBTree[T]) rightRotate(x *Node[T]) {
+func (t *RB[T]) rightRotate(x *Node[T]) {
 	y := x.Left
 	x.Left = y.Right
 	if !t.isNil(y.Right) {
 		y.Right.Parent = x
 	}
+
 	y.Parent = x.Parent
 	if x.Parent == nil {
 		t.Root = y
@@ -147,7 +148,7 @@ func (t *RBTree[T]) rightRotate(x *Node[T]) {
 	x.Parent = y
 }
 
-func (t *RBTree[T]) insertFix(k *Node[T]) {
+func (t *RB[T]) pushFix(k *Node[T]) {
 	var u *Node[T]
 	for k.Parent.Color == Red {
 		if k.Parent == k.Parent.Parent.Right {
@@ -191,7 +192,7 @@ func (t *RBTree[T]) insertFix(k *Node[T]) {
 	t.Root.Color = Black
 }
 
-func (t *RBTree[T]) deleteHelper(node *Node[T], key T) bool {
+func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 	z := t.NIL
 	for !t.isNil(node) {
 		switch {
@@ -244,7 +245,7 @@ func (t *RBTree[T]) deleteHelper(node *Node[T], key T) bool {
 	return true
 }
 
-func (t *RBTree[T]) deleteFix(x *Node[T]) {
+func (t *RB[T]) deleteFix(x *Node[T]) {
 	var s *Node[T]
 	for x != t.Root && x.Color == Black {
 		if x == x.Parent.Left {
@@ -305,19 +306,19 @@ func (t *RBTree[T]) deleteFix(x *Node[T]) {
 	x.Color = Black
 }
 
-func (t *RBTree[T]) rbTransplant(u, v *Node[T]) {
-	if u.Parent == nil {
+func (t *RB[T]) rbTransplant(u, v *Node[T]) {
+	switch {
+	case u.Parent == nil:
 		t.Root = v
-	} else if u == u.Parent.Left {
+	case u == u.Parent.Left:
 		u.Parent.Left = v
-	} else {
+	default:
 		u.Parent.Right = v
 	}
-
 	v.Parent = u.Parent
 }
 
-func (t *RBTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
+func (t *RB[T]) predecessorHelper(node *Node[T]) (T, bool) {
 	if !t.isNil(node.Left) {
 		return t.maximum(node.Left).Key, true
 	}
@@ -334,7 +335,7 @@ func (t *RBTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
 	return p.Key, true
 }
 
-func (t *RBTree[T]) successorHelper(node *Node[T]) (T, bool) {
+func (t *RB[T]) successorHelper(node *Node[T]) (T, bool) {
 	if !t.isNil(node.Right) {
 		return t.minimum(node.Right).Key, true
 	}

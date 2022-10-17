@@ -5,13 +5,13 @@ import (
 	"github.com/TheAlgorithms/Go/math/max"
 )
 
-type AVLTree[T constraints.Ordered] struct {
+type AVL[T constraints.Ordered] struct {
 	*binaryTree[T]
 }
 
-// NewAVLTree create a novel AVL tree
-func NewAVLTree[T constraints.Ordered]() *AVLTree[T] {
-	return &AVLTree[T]{
+// NewAVL create a novel AVL tree
+func NewAVL[T constraints.Ordered]() *AVL[T] {
+	return &AVL[T]{
 		binaryTree: &binaryTree[T]{
 			Root: nil,
 			NIL:  nil,
@@ -19,15 +19,15 @@ func NewAVLTree[T constraints.Ordered]() *AVLTree[T] {
 	}
 }
 
-// Insert a chain of Node's into the AVL Tree
-func (avl *AVLTree[T]) Insert(keys ...T) {
+// Push a chain of Node's into the AVL Tree
+func (avl *AVL[T]) Push(keys ...T) {
 	for _, k := range keys {
-		avl.Root = avl.insertHelper(avl.Root, k)
+		avl.Root = avl.pushHelper(avl.Root, k)
 	}
 }
 
 // Delete a Node from the AVL Tree
-func (avl *AVLTree[T]) Delete(key T) bool {
+func (avl *AVL[T]) Delete(key T) bool {
 	tmp := avl.deleteHelper(avl.Root, key)
 	if tmp == nil {
 		return false
@@ -37,7 +37,7 @@ func (avl *AVLTree[T]) Delete(key T) bool {
 	return true
 }
 
-func (avl *AVLTree[T]) insertHelper(root *Node[T], key T) *Node[T] {
+func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
 	if root == nil {
 		return &Node[T]{
 			Key:    key,
@@ -47,9 +47,9 @@ func (avl *AVLTree[T]) insertHelper(root *Node[T], key T) *Node[T] {
 
 	switch {
 	case key < root.Key:
-		root.Left = avl.insertHelper(root.Left, key)
+		root.Left = avl.pushHelper(root.Left, key)
 	case key > root.Key:
-		root.Right = avl.insertHelper(root.Right, key)
+		root.Right = avl.pushHelper(root.Right, key)
 	default:
 		return root
 	}
@@ -80,7 +80,7 @@ func (avl *AVLTree[T]) insertHelper(root *Node[T], key T) *Node[T] {
 	return root
 }
 
-func (avl *AVLTree[T]) deleteHelper(root *Node[T], key T) *Node[T] {
+func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 	if root == nil {
 		return root
 	}
@@ -138,7 +138,7 @@ func (avl *AVLTree[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 	return root
 }
 
-func (avl *AVLTree[T]) height(root *Node[T]) int {
+func (avl *AVL[T]) height(root *Node[T]) int {
 	if root == nil {
 		return 0
 	}
@@ -155,7 +155,7 @@ func (avl *AVLTree[T]) height(root *Node[T]) int {
 
 // balanceFactor : negative balance factor means subtree Root is heavy toward Left
 // and positive balance factor means subtree Root is heavy toward Right side
-func (avl *AVLTree[T]) balanceFactor(root *Node[T]) int {
+func (avl *AVL[T]) balanceFactor(root *Node[T]) int {
 	var leftHeight, rightHeight int
 	if root.Left != nil {
 		leftHeight = root.Left.Height
@@ -166,7 +166,7 @@ func (avl *AVLTree[T]) balanceFactor(root *Node[T]) int {
 	return leftHeight - rightHeight
 }
 
-func (avl *AVLTree[T]) leftRotate(root *Node[T]) *Node[T] {
+func (avl *AVL[T]) leftRotate(root *Node[T]) *Node[T] {
 	y := root.Right
 	yl := y.Left
 	y.Left = root
@@ -177,7 +177,7 @@ func (avl *AVLTree[T]) leftRotate(root *Node[T]) *Node[T] {
 	return y
 }
 
-func (avl *AVLTree[T]) rightRotate(root *Node[T]) *Node[T] {
+func (avl *AVL[T]) rightRotate(root *Node[T]) *Node[T] {
 	y := root.Left
 	yr := y.Right
 	y.Right = root

@@ -1,13 +1,15 @@
-package tree
+package tree_test
 
 import (
 	"testing"
+
+	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
 
-func TestAVLInsert(t *testing.T) {
+func TestAVLPush(t *testing.T) {
 	t.Run("LLRotation-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
-		tree.Insert(5, 4, 3)
+		tree := bt.NewAVL[int]()
+		tree.Push(5, 4, 3)
 
 		root := tree.Root
 		if root.Key != 4 {
@@ -33,8 +35,8 @@ func TestAVLInsert(t *testing.T) {
 
 	})
 	t.Run("LRRotation-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
-		tree.Insert(5, 3, 4)
+		tree := bt.NewAVL[int]()
+		tree.Push(5, 3, 4)
 
 		root := tree.Root
 		if root.Key != 4 {
@@ -60,10 +62,10 @@ func TestAVLInsert(t *testing.T) {
 	})
 
 	t.Run("RRRotation-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
-		tree.Insert(3)
-		tree.Insert(4)
-		tree.Insert(5)
+		tree := bt.NewAVL[int]()
+		tree.Push(3)
+		tree.Push(4)
+		tree.Push(5)
 
 		root := tree.Root
 		if root.Key != 4 {
@@ -88,10 +90,10 @@ func TestAVLInsert(t *testing.T) {
 		}
 	})
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
-		tree.Insert(3)
-		tree.Insert(5)
-		tree.Insert(4)
+		tree := bt.NewAVL[int]()
+		tree.Push(3)
+		tree.Push(5)
+		tree.Push(4)
 
 		root := tree.Root
 		if root.Key != 4 {
@@ -119,12 +121,12 @@ func TestAVLInsert(t *testing.T) {
 
 func TestAVLDelete(t *testing.T) {
 	t.Run("LLRotaion-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
+		tree := bt.NewAVL[int]()
 
-		tree.Insert(5)
-		tree.Insert(4)
-		tree.Insert(3)
-		tree.Insert(2)
+		tree.Push(5)
+		tree.Push(4)
+		tree.Push(3)
+		tree.Push(2)
 
 		tree.Delete(5)
 
@@ -152,12 +154,12 @@ func TestAVLDelete(t *testing.T) {
 	})
 
 	t.Run("LRRotaion-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
+		tree := bt.NewAVL[int]()
 
-		tree.Insert(10)
-		tree.Insert(8)
-		tree.Insert(6)
-		tree.Insert(7)
+		tree.Push(10)
+		tree.Push(8)
+		tree.Push(6)
+		tree.Push(7)
 
 		tree.Delete(10)
 
@@ -186,12 +188,12 @@ func TestAVLDelete(t *testing.T) {
 	})
 
 	t.Run("RRRotaion-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
+		tree := bt.NewAVL[int]()
 
-		tree.Insert(2)
-		tree.Insert(3)
-		tree.Insert(4)
-		tree.Insert(5)
+		tree.Push(2)
+		tree.Push(3)
+		tree.Push(4)
+		tree.Push(5)
 
 		tree.Delete(2)
 
@@ -220,12 +222,12 @@ func TestAVLDelete(t *testing.T) {
 	})
 
 	t.Run("RLRotaion-Test", func(t *testing.T) {
-		tree := NewAVLTree[int]()
+		tree := bt.NewAVL[int]()
 
-		tree.Insert(7)
-		tree.Insert(6)
-		tree.Insert(9)
-		tree.Insert(8)
+		tree.Push(7)
+		tree.Push(6)
+		tree.Push(9)
+		tree.Push(8)
 
 		tree.Delete(6)
 

@@ -10,13 +10,13 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type BSTree[T constraints.Ordered] struct {
+type BinarySearch[T constraints.Ordered] struct {
 	*binaryTree[T]
 }
 
-// NewBSTree create a novel Binary-Search tree
-func NewBSTree[T constraints.Ordered]() *BSTree[T] {
-	return &BSTree[T]{
+// NewBinarySearch create a novel Binary-Search tree
+func NewBinarySearch[T constraints.Ordered]() *BinarySearch[T] {
+	return &BinarySearch[T]{
 		binaryTree: &binaryTree[T]{
 			Root: nil,
 			NIL:  nil,
@@ -24,61 +24,31 @@ func NewBSTree[T constraints.Ordered]() *BSTree[T] {
 	}
 }
 
-// Insert a chain of Node's into the BSTree
-func (t *BSTree[T]) Insert(keys ...T) {
+// Push a chain of Node's into the BinarySearch
+func (t *BinarySearch[T]) Push(keys ...T) {
 	for _, key := range keys {
-		t.Root = t.insertHelper(t.Root, key)
+		t.Root = t.pushHelper(t.Root, key)
 	}
 }
 
-// // Delete removes the node of val
-func (t *BSTree[T]) Delete(val T) *Node[T] {
+// Delete removes the node of val
+func (t *BinarySearch[T]) Delete(val T) *Node[T] {
 	return t.deleteHelper(t.Root, val)
 }
 
-// AccessNodesByLayer  accesses nodes layer by layer instead of printing the results as one line.
-func (t *BSTree[T]) AccessNodesByLayer() [][]T {
-	var res [][]T
-	root := t.Root
-	if root == nil {
-		return res
-	}
-	var q []*Node[T]
-	var n *Node[T]
-	var idx = 0
-	q = append(q, root)
-
-	for len(q) != 0 {
-		res = append(res, []T{})
-		qLen := len(q)
-		for i := 0; i < qLen; i++ {
-			n, q = q[0], q[1:]
-			res[idx] = append(res[idx], n.Key)
-			if n.Left != nil {
-				q = append(q, n.Left)
-			}
-			if n.Right != nil {
-				q = append(q, n.Right)
-			}
-		}
-		idx++
-	}
-	return res
-}
-
-func (t *BSTree[T]) insertHelper(root *Node[T], val T) *Node[T] {
+func (t *BinarySearch[T]) pushHelper(root *Node[T], val T) *Node[T] {
 	if root == nil {
 		return &Node[T]{Key: val, Left: nil, Right: nil}
 	}
 	if val < root.Key {
-		root.Left = t.insertHelper(root.Left, val)
+		root.Left = t.pushHelper(root.Left, val)
 	} else {
-		root.Right = t.insertHelper(root.Right, val)
+		root.Right = t.pushHelper(root.Right, val)
 	}
 	return root
 }
 
-func (t *BSTree[T]) deleteHelper(root *Node[T], val T) *Node[T] {
+func (t *BinarySearch[T]) deleteHelper(root *Node[T], val T) *Node[T] {
 	if root == nil {
 		return nil
 	}

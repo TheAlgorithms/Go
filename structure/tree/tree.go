@@ -31,7 +31,7 @@ type Node[T constraints.Ordered] struct {
 	Height int   // for AVL Tree
 }
 
-// binaryTree is a base-struct for BSTree, AVLTree, RBTree, etc.
+// binaryTree is a base-struct for BinarySearch, AVL, RB, etc.
 // Note: to avoid instantiation, we make the base struct un-exported.
 type binaryTree[T constraints.Ordered] struct {
 	Root *Node[T]
@@ -98,6 +98,36 @@ func (t *binaryTree[T]) LevelOrder() []T {
 	traversal := make([]T, 0)
 	t.levelOrderHelper(t.Root, &traversal)
 	return traversal
+}
+
+// AccessNodesByLayer accesses nodes layer by layer (2-D array),  instead of printing the results as 1-D array.
+func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
+	var res [][]T
+	root := t.Root
+	if t.isNil(root) {
+		return res
+	}
+	var q []*Node[T]
+	var n *Node[T]
+	var idx = 0
+	q = append(q, root)
+
+	for len(q) != 0 {
+		res = append(res, []T{})
+		qLen := len(q)
+		for i := 0; i < qLen; i++ {
+			n, q = q[0], q[1:]
+			res[idx] = append(res[idx], n.Key)
+			if !t.isNil(n.Left) {
+				q = append(q, n.Left)
+			}
+			if !t.isNil(n.Right) {
+				q = append(q, n.Right)
+			}
+		}
+		idx++
+	}
+	return res
 }
 
 // Print the tree horizontally
@@ -247,7 +277,7 @@ func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
 	t.printHelper(root.Right, indent, false)
 }
 
-// Determines the tree is RBTree
+// Determines the tree is RB
 func (t *binaryTree[T]) isRBTree() bool {
 	return t.NIL != nil
 }

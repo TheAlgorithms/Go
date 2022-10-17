@@ -1,19 +1,21 @@
-package tree
+package tree_test
 
 import (
 	"math/rand"
 	"sort"
 	"testing"
 	"time"
+
+	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
 
 func TestRBTreeInsert(t *testing.T) {
-	tree := NewRBTree[int]()
+	tree := bt.NewRB[int]()
 
 	ret := tree.InOrder()
 
 	if !sort.IntsAreSorted(ret) || len(ret) != 0 {
-		t.Errorf("Error with Insert: %v", ret)
+		t.Errorf("Error with Push: %v", ret)
 	}
 
 	if r, ok := tree.Min(); ok {
@@ -26,12 +28,12 @@ func TestRBTreeInsert(t *testing.T) {
 
 	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 88, 1 << 32}
 
-	tree.Insert(nums...)
+	tree.Push(nums...)
 
 	ret = tree.InOrder()
 
 	if !sort.IntsAreSorted(ret) || len(ret) != len(nums) {
-		t.Errorf("Error with Insert: %v", ret)
+		t.Errorf("Error with Push: %v", ret)
 	}
 
 	if r, ok := tree.Min(); !ok || ret[0] != r {
@@ -44,11 +46,11 @@ func TestRBTreeInsert(t *testing.T) {
 }
 
 func TestRBTreeDelete(t *testing.T) {
-	tree := NewRBTree[int]()
+	tree := bt.NewRB[int]()
 	var ok bool
 
 	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 88, 1 << 32}
-	tree.Insert(nums...)
+	tree.Push(nums...)
 
 	ok = tree.Delete(188)
 
@@ -93,13 +95,13 @@ func FuzzRBTree(f *testing.F) {
 
 	f.Fuzz(func(t *testing.T, a int) {
 		rand.Seed(time.Now().Unix())
-		tree := NewRBTree[int]()
+		tree := bt.NewRB[int]()
 		nums := rand.Perm(a)
-		tree.Insert(nums...)
+		tree.Push(nums...)
 
 		rets := tree.InOrder()
 		if !sort.IntsAreSorted(rets) {
-			t.Error("Error with Insert")
+			t.Error("Error with Push")
 		}
 
 		if res, ok := tree.Min(); !ok || res != rets[0] {
@@ -121,10 +123,10 @@ func FuzzRBTree(f *testing.F) {
 }
 
 func TestRBTreePredecessorAndSuccessor(t *testing.T) {
-	tree := NewRBTree[int]()
+	tree := bt.NewRB[int]()
 
 	nums := []int{10, 8, 88, 888, 4, -1, 100}
-	tree.Insert(nums...)
+	tree.Push(nums...)
 
 	if ret, ok := tree.Predecessor(100); !ok && ret == 88 {
 		t.Errorf("Error with Predecessor")
@@ -172,7 +174,7 @@ func TestRBTreePredecessorAndSuccessor(t *testing.T) {
 }
 
 func TestRBTreeString(t *testing.T) {
-	tree := NewRBTree[string]()
+	tree := bt.NewRB[string]()
 
 	if tree.Has("Golang") {
 		t.Errorf("Error with Has when T is string.")
@@ -180,7 +182,7 @@ func TestRBTreeString(t *testing.T) {
 
 	strs := []string{"Hello", "World", "Golang", "Python", "Rust", "C", "JavaScript", "Haskell", "Pascal", "ZZ"}
 	for _, str := range strs {
-		tree.Insert(str)
+		tree.Push(str)
 	}
 
 	if !tree.Has("Golang") {
@@ -205,7 +207,7 @@ func TestRBTreeString(t *testing.T) {
 
 	ret := tree.InOrder()
 	if !sort.StringsAreSorted(ret) {
-		t.Errorf("Error with Insert when T is string")
+		t.Errorf("Error with Push when T is string")
 	}
 
 	if ret, ok := tree.Min(); !ok || ret != "C" {
