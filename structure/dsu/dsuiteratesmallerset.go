@@ -7,9 +7,9 @@
 package dsu
 
 type dsuIterateSmallerSet struct {
-	n      int
-	parent []int
-	childs [][]int
+	n        int
+	parent   []int
+	children [][]int
 }
 
 //finds the root of the set which v belongs to
@@ -23,7 +23,7 @@ func (d *dsuIterateSmallerSet) FindRoot(v int) int {
 //during merging two sets we use this method to iterate the smaller set and assign the new root as a parent for each node
 func (d *dsuIterateSmallerSet) setNewParent(v, newParent int) {
 	d.parent[v] = newParent
-	for _, u := range d.childs[v] {
+	for _, u := range d.children[v] {
 		d.parent[u] = newParent
 	}
 }
@@ -34,13 +34,13 @@ func (d *dsuIterateSmallerSet) Merge(v, u int) bool {
 	if v == u {
 		return false
 	}
-	if len(d.childs[v]) < len(d.childs[u]) {
+	if len(d.children[v]) < len(d.children[u]) {
 		v, u = u, v
 	}
 	d.setNewParent(u, v)
-	d.childs[v] = append(d.childs[v], u)
-	d.childs[v] = append(d.childs[v], d.childs[u]...)
-	d.childs[u] = make([]int, 0)
+	d.children[v] = append(d.children[v], u)
+	d.children[v] = append(d.children[v], d.children[u]...)
+	d.children[u] = make([]int, 0)
 	return true
 }
 
@@ -50,12 +50,12 @@ func (d *dsuIterateSmallerSet) AreInTheSameSet(v, u int) bool {
 
 func NewDsuIterateSmallerSet(n int) *dsuIterateSmallerSet {
 	d := &dsuIterateSmallerSet{
-		n:      n,
-		parent: make([]int, n),
-		childs: make([][]int, n),
+		n:        n,
+		parent:   make([]int, n),
+		children: make([][]int, n),
 	}
 	for i := 0; i < n; i++ {
-		d.childs[i] = make([]int, 0)
+		d.children[i] = make([]int, 0)
 		d.parent[i] = -1
 	}
 	return d
