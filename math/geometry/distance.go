@@ -10,7 +10,7 @@ import (
 	"math"
 )
 
-// Point defines a point with x and y coordinates.
+// EuclideanPoint defines a point with x and y coordinates.
 type EuclideanPoint []float64
 
 var ErrDimMismatch = errors.New("mismatched dimensions")
