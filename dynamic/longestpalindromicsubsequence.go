@@ -3,8 +3,7 @@
 
 package dynamic
 
-// LpsRec function
-func LpsRec(word string, i, j int) int {
+func lpsRec(word string, i, j int) int {
 	if i == j {
 		return 1
 	}
@@ -12,9 +11,14 @@ func LpsRec(word string, i, j int) int {
 		return 0
 	}
 	if word[i] == word[j] {
-		return 2 + LpsRec(word, i+1, j-1)
+		return 2 + lpsRec(word, i+1, j-1)
 	}
-	return Max(LpsRec(word, i, j-1), LpsRec(word, i+1, j))
+	return Max(lpsRec(word, i, j-1), lpsRec(word, i+1, j))
+}
+
+// LpsRec function
+func LpsRec(word string) int {
+	return lpsRec(word, 0, len(word)-1)
 }
 
 // LpsDp function
@@ -43,14 +47,5 @@ func LpsDp(word string) int {
 		}
 	}
 
-	return dp[1][N-1]
+	return dp[0][N-1]
 }
-
-/*
-func main() {
-	// word := "aaabbbbababbabbabbabf"
-	word := "aaaabbbba"
-	fmt.Printf("%d\n", lpsRec(word, 0, len(word)-1))
-	fmt.Printf("%d\n", lpsDp(word))
-}
-*/
