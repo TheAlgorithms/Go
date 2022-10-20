@@ -94,49 +94,25 @@ func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 // DelInMiddle deletes the node in middle of linked list and returns its value.
 // Returns false if list is empty
 func (ll *Doubly[T]) DelInMiddle() (T, bool) {
-	if ll.Head == nil {
-		var r T
-		return r, false
-	}
-
-	mid := 0
-	length := ll.Count()
-	mid = int(length / 2)
-
-	var prev *Node[T]
-	cur := ll.Head
-	count := 0
-	for count < mid {
-		prev = cur
-		cur = cur.Next
-		count++
-	}
-
-	prev.Next = cur.Next
-	return cur.Val, true
+	return ll.DelByPos(ll.Count() / 2)
 }
 
 // DelByPos deletes node at middle based on position in list
 // and returns value. If empty or position of node is less than linked list length, returns false
 func (ll *Doubly[T]) DelByPos(pos int) (T, bool) {
-	if ll.Head == nil {
+
+	switch {
+	case ll.Head == nil:
 		var r T
 		return r, false
-	}
-
-	if pos-1 > ll.Count() {
-		var r T
-		return r, false
-	}
-
-	if pos-1 == 0 {
+	case pos-1 == 0:
 		return ll.DelAtBeg()
-	}
-
-	if pos-1 == ll.Count() {
+	case pos-1 == ll.Count():
 		return ll.DelAtEnd()
+	case pos-1 > ll.Count():
+		var r T
+		return r, false
 	}
-
 	var prev *Node[T]
 	var val T
 	cur := ll.Head
