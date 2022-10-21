@@ -1,6 +1,6 @@
-name: New/Optimize implementation
-description: Propose an enhancement or a new algorithm implementation.
-title: ""
+name: "New or optimize implementation"
+description: "Propose an enhancement or a new algorithm implementation."
+title: "[ENHANCEMENT]"
 labels: ["enhancement"]
 body:
   - type: textarea
@@ -14,7 +14,7 @@ body:
     attributes:
       value: |
         "
-        For new implementations, please specifiy the name and problem statement for the algorithm.
+        For new implementations, please specify the name and problem statement for the algorithm.
         For algorithm enhancements, specify what needs to be changed and why. For example:
 
         - Adding tests.

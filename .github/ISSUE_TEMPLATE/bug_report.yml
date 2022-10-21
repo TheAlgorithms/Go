@@ -16,12 +16,10 @@ body:
       label: "Steps to reproduce"
       description: "Steps to reproduce the behavior (if applicable)"
       placeholder: |
-      "
-        1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
-        4. See error
-      "
+       1. Go to '...'
+       2. Click on '....'
+       3. Scroll down to '....'
+       4. See error
     validations:
       required: false
   - type: textarea
