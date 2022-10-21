@@ -1,12 +1,3 @@
-// Stack Test
-// description: based on `geeksforgeeks` description Stack is a linear data structure which follows a particular order in which the operations are performed.
-//	The order may be LIFO(Last In First Out) or FILO(First In Last Out).
-// details:
-// 	Stack Data Structure : https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
-// 	Stack (abstract data type) : https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
-// author [Milad](https://github.com/miraddo)
-// see stackarray.go, stacklinkedlist.go, stacklinkedlistwithlist.go
-
 package stack
 
 import (

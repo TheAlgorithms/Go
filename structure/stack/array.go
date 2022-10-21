@@ -1,10 +1,3 @@
-// Stack implementation using Array
-// Stack is a linear data structure in which the push and pop operations occur only at one end of the structure, referred to as the top of the stack.
-// The order in which an element added to or removed from a stack is described as last in, first out (LIFO).
-// Details:
-// 	Stack Data Structure : https://www.geeksforgeeks.org/stack-data-structure-introduction-program/
-// 	Stack (abstract data type) : https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
-
 package stack
 
 import "errors"
