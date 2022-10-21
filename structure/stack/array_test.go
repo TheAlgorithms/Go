@@ -40,12 +40,6 @@ func Test_StackArray(t *testing.T) {
 
 	stack.Clear()
 	if stack.Len() != 0 && !stack.Empty() {
-		t.Errorf("Expected stack to be emtpy after Clear. Got len=%d, empty=%t", stack.Len(), stack.Empty())
-	}
-
-	stack.Truncate()
-	storeCapacity := cap(stack.store)
-	if storeCapacity != 0 {
-		t.Errorf("Expected store capacity to be zero after truncate. Got capacity=%d", storeCapacity)
+		t.Errorf("Expected stack to be empty after Clear. Got len=%d, empty=%t", stack.Len(), stack.Empty())
 	}
 }

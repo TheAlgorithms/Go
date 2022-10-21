@@ -11,24 +11,22 @@ import "errors"
 
 var ErrStackEmpty = errors.New("stack is empty")
 
-/*
-The methods can also be implemented directly on the slice.
-```
-type Array[T any] []T
-```
-However, this exposes the underlaying storage (slice) outside the package.
-A struct is used instead, so that the underlying storage is not accessible outside the package.
-*/
-
 // Array is an implementation of stack with slice as underlying storage.
 // ```
 // stack := stack.NewArray[int]()
 // ```
+// Note that the type `Array` could also be implemented directly using a slice.
+// ```
+// type Array[T any] []T
+// ```
+// However, this exposes the underlying storage (slice) outside the package.
+// A struct is used instead, so that the underlying storage is not accessible
+// outside the package.
 type Array[T any] struct {
 	store []T
 }
 
-func NewArray[T any]() *Array[T] {
+func NewArray[T any]() Interface[T] {
 	return new(Array[T])
 }
 
@@ -59,7 +57,7 @@ func (s *Array[T]) Empty() bool {
 	return s.Len() == 0
 }
 
-// Pop returns last inserted element and removes it from the underlaying storage
+// Pop returns last inserted element and removes it from the underlying storage
 // If the stack is empty, ErrStackEmpty error is returned
 func (s *Array[T]) Pop() (T, error) {
 	var element T
@@ -80,10 +78,8 @@ func (s *Array[T]) Clear() {
 	s.store = s.store[:0]
 }
 
-// Truncate removes all elements and underlaying storage
-func (s *Array[T]) Truncate() {
-	if s == nil {
-		return
-	}
-	s.store = nil
+func (s *Array[T]) ToSlice() []T {
+	out := make([]T, len(s.store))
+	copy(out, s.store)
+	return out
 }
