@@ -71,10 +71,11 @@ func Kmp(text string, word string) Result {
 	m, i, c := 0, 0, 0
 	t := kmpTable(word)
 	for m+i < len(text) {
-		fmt.Printf("\n   comparing characters %c %c at positions %d %d", text[m+i], word[i], m+i, i)
+		message := fmt.Sprintf("\tcomparing characters %c %c at positions %d %d", text[m+i], word[i], m+i, i)
+
 		c++
 		if word[i] == text[m+i] {
-			fmt.Printf(" - match")
+			fmt.Printf("%s - match\n", message)
 			if i == len(word)-1 {
 				return Result{
 					m, c,
@@ -82,6 +83,7 @@ func Kmp(text string, word string) Result {
 			}
 			i++
 		} else {
+			fmt.Printf("%s\n", message)
 			m = m + i - t[i]
 			if t[i] > -1 {
 				i = t[i]
