@@ -43,29 +43,6 @@ func (t *RB[T]) Delete(data T) bool {
 	return t.deleteHelper(t.Root, data)
 }
 
-// Return the Predecessor of the node of Key
-// if there is no predecessor, return default value of type T and false
-// otherwise return the Key of predecessor and true
-func (t *RB[T]) Predecessor(key T) (T, bool) {
-	node, ok := t.searchTreeHelper(t.Root, key)
-	if !ok {
-		return t.NIL.Key, ok
-	}
-	return t.predecessorHelper(node)
-}
-
-// Return the Successor of the node of Key
-// if there is no successor, return default value of type T and false
-// otherwise return the Key of successor and true
-func (t *RB[T]) Successor(key T) (T, bool) {
-	node, ok := t.searchTreeHelper(t.Root, key)
-	if !ok {
-		return t.NIL.Key, ok
-	}
-
-	return t.successorHelper(node)
-}
-
 func (t *RB[T]) pushHelper(x *Node[T], key T) {
 	node := &Node[T]{
 		Key:    key,
@@ -316,38 +293,4 @@ func (t *RB[T]) rbTransplant(u, v *Node[T]) {
 		u.Parent.Right = v
 	}
 	v.Parent = u.Parent
-}
-
-func (t *RB[T]) predecessorHelper(node *Node[T]) (T, bool) {
-	if !t.isNil(node.Left) {
-		return t.maximum(node.Left).Key, true
-	}
-
-	p := node.Parent
-	for p != nil && !t.isNil(p) && node == p.Left {
-		node = p
-		p = p.Parent
-	}
-
-	if p == nil {
-		return t.NIL.Key, false
-	}
-	return p.Key, true
-}
-
-func (t *RB[T]) successorHelper(node *Node[T]) (T, bool) {
-	if !t.isNil(node.Right) {
-		return t.minimum(node.Right).Key, true
-	}
-
-	p := node.Parent
-	for p != nil && !t.isNil(p) && node == p.Right {
-		node = p
-		p = p.Parent
-	}
-
-	if p == nil {
-		return t.NIL.Key, false
-	}
-	return p.Key, true
 }

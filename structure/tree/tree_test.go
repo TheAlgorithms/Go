@@ -480,6 +480,105 @@ func TestTreeAccessNodesByLayer(t *testing.T) {
 	})
 }
 
+func TestTreePredecessorAndSuccessor(t *testing.T) {
+	nums := []int{10, 8, 88, 888, 4, -1, 100}
+	t.Run("Test for Binary Search Tree", func(t *testing.T) {
+		tree := bt.NewBinarySearch[int]()
+		tree.Push(nums...)
+		if ret, ok := tree.Predecessor(100); !ok && ret == 88 {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if _, ok := tree.Predecessor(-1); ok {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if _, ok := tree.Predecessor(-12); ok {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if ret, ok := tree.Predecessor(4); !ok && ret == -1 {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if ret, ok := tree.Successor(4); !ok && ret == 8 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(8); !ok && ret == 88 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(88); !ok && ret == 100 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(100); !ok && ret == 888 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(-1); !ok && ret == 4 {
+			t.Errorf("Error with Successor")
+		}
+
+		if _, ok := tree.Successor(888); ok {
+			t.Errorf("Error with Successor")
+		}
+
+		if _, ok := tree.Successor(188); ok {
+			t.Errorf("Error with Successor")
+		}
+	})
+
+	t.Run("Test for Red-Black Tree", func(t *testing.T) {
+		tree := bt.NewRB[int]()
+		tree.Push(nums...)
+		if ret, ok := tree.Predecessor(100); !ok && ret == 88 {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if _, ok := tree.Predecessor(-1); ok {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if _, ok := tree.Predecessor(-12); ok {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if ret, ok := tree.Predecessor(4); !ok && ret == -1 {
+			t.Errorf("Error with Predecessor")
+		}
+
+		if ret, ok := tree.Successor(4); !ok && ret == 8 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(8); !ok && ret == 88 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(88); !ok && ret == 100 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(100); !ok && ret == 888 {
+			t.Errorf("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(-1); !ok && ret == 4 {
+			t.Errorf("Error with Successor")
+		}
+
+		if _, ok := tree.Successor(888); ok {
+			t.Errorf("Error with Successor")
+		}
+
+		if _, ok := tree.Successor(188); ok {
+			t.Errorf("Error with Successor")
+		}
+	})
+}
+
 // Benchmark the comparisons between BST, AVL and RB Tree
 const testNum = 10_000
 

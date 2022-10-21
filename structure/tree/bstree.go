@@ -27,52 +27,57 @@ func NewBinarySearch[T constraints.Ordered]() *BinarySearch[T] {
 // Push a chain of Node's into the BinarySearch
 func (t *BinarySearch[T]) Push(keys ...T) {
 	for _, key := range keys {
-		t.Root = t.pushHelper(t.Root, key)
+		t.pushHelper(t.Root, key)
 	}
 }
 
 // Delete removes the node of val
 func (t *BinarySearch[T]) Delete(val T) bool {
-	if !t.Has(val) {
+	node, ok := t.Get(val)
+	if !ok {
 		return false
 	}
-	t.deleteHelper(t.Root, val)
+	t.deleteHelper(node)
 	return true
 }
 
-func (t *BinarySearch[T]) pushHelper(root *Node[T], val T) *Node[T] {
-	if root == nil {
-		return &Node[T]{Key: val, Left: nil, Right: nil}
-	}
-	if val < root.Key {
-		root.Left = t.pushHelper(root.Left, val)
-	} else {
-		root.Right = t.pushHelper(root.Right, val)
-	}
-	return root
-}
-
-func (t *BinarySearch[T]) deleteHelper(root *Node[T], val T) *Node[T] {
-	if root == nil {
-		return nil
-	}
-	if val < root.Key {
-		root.Left = t.deleteHelper(root.Left, val)
-	} else if val > root.Key {
-		root.Right = t.deleteHelper(root.Right, val)
-	} else {
-		// this is the node to delete
-		// node with one child
-		if root.Left == nil {
-			return root.Right
-		} else if root.Right == nil {
-			return root.Left
+func (t *BinarySearch[T]) pushHelper(x *Node[T], val T) {
+	z := &Node[T]{Key: val, Left: nil, Right: nil}
+	var y *Node[T]
+	for !t.isNil(x) {
+		y = x
+		if val < x.Key {
+			x = x.Left
 		} else {
-			n := root.Right
-			d := t.minimum(n)
-			d.Left = root.Left
-			return root.Right
+			x = x.Right
 		}
 	}
-	return root
+	z.Parent = y
+	if t.isNil(y) {
+		t.Root = z
+	} else if val < y.Key {
+		y.Left = z
+	} else {
+		y.Right = z
+	}
+}
+
+func (t *BinarySearch[T]) deleteHelper(z *Node[T]) {
+	switch {
+	case z.Left == nil:
+		t.transplant(z, z.Right)
+	case z.Right == nil:
+		t.transplant(z, z.Left)
+	default:
+		y := t.minimum(z.Right)
+		if y.Parent != z {
+			t.transplant(y, y.Right)
+			y.Right = z.Right
+			y.Right.Parent = y
+		}
+
+		t.transplant(z, y)
+		y.Left = z.Left
+		y.Left.Parent = y
+	}
 }

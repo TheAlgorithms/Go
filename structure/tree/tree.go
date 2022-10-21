@@ -135,6 +135,31 @@ func (t *binaryTree[T]) Print() {
 	t.printHelper(t.Root, "", false)
 }
 
+// Return the Predecessor of the node of Key
+// if there is no predecessor, return default value of type T and false
+// otherwise return the Key of predecessor and true
+func (t *binaryTree[T]) Predecessor(key T) (T, bool) {
+	node, ok := t.searchTreeHelper(t.Root, key)
+	if !ok {
+		var dummy T
+		return dummy, ok
+	}
+	return t.predecessorHelper(node)
+}
+
+// Return the Successor of the node of Key
+// if there is no successor, return default value of type T and false
+// otherwise return the Key of successor and true
+func (t *binaryTree[T]) Successor(key T) (T, bool) {
+	node, ok := t.searchTreeHelper(t.Root, key)
+	if !ok {
+		var dummy T
+		return dummy, ok
+	}
+
+	return t.successorHelper(node)
+}
+
 // Determines node is a leaf node
 func (t *binaryTree[T]) isNil(node *Node[T]) bool {
 	return node == t.NIL
@@ -280,4 +305,54 @@ func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
 // Determines the tree is RB
 func (t *binaryTree[T]) isRBTree() bool {
 	return t.NIL != nil
+}
+
+func (t *binaryTree[T]) transplant(u, v *Node[T]) {
+	if t.isNil(u.Parent) {
+		t.Root = v
+	} else if u == u.Parent.Left {
+		u.Parent.Left = v
+	} else {
+		u.Parent.Right = v
+	}
+
+	if v != nil {
+		v.Parent = u.Parent
+	}
+}
+
+func (t *binaryTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
+	if !t.isNil(node.Left) {
+		return t.maximum(node.Left).Key, true
+	}
+
+	p := node.Parent
+	for p != nil && !t.isNil(p) && node == p.Left {
+		node = p
+		p = p.Parent
+	}
+
+	if p == nil {
+		var dummy T
+		return dummy, false
+	}
+	return p.Key, true
+}
+
+func (t *binaryTree[T]) successorHelper(node *Node[T]) (T, bool) {
+	if !t.isNil(node.Right) {
+		return t.minimum(node.Right).Key, true
+	}
+
+	p := node.Parent
+	for p != nil && !t.isNil(p) && node == p.Right {
+		node = p
+		p = p.Parent
+	}
+
+	if p == nil {
+		var dummy T
+		return dummy, false
+	}
+	return p.Key, true
 }
