@@ -1,30 +1,46 @@
-// Package caesar is the shift cipher
-// ref: https://en.wikipedia.org/wiki/Caesar_cipher
-package caesar
+package main
 
-// Encrypt encrypts by right shift of "key" each character of "input"
-func Encrypt(input string, key int) string {
-	// if key is negative value,
-	// updates "key" the number which congruents to "key" modulo 26
-	key8 := byte(key%26+26) % 26
+func cipher(text string, direction int) string {
 
-	var outputBuffer []byte
-	// b is a byte, which is the equivalent of uint8.
-	for _, b := range []byte(input) {
-		newByte := b
-		if 'A' <= b && b <= 'Z' {
-			outputBuffer = append(outputBuffer, 'A'+(newByte-'A'+key8)%26)
-		} else if 'a' <= b && b <= 'z' {
-			outputBuffer = append(outputBuffer, 'a'+(newByte-'a'+key8)%26)
-		} else {
-			outputBuffer = append(outputBuffer, newByte)
+	shift, offset := rune(3), rune(26)
+
+	
+	runes := []rune(text)
+
+	for index, char := range runes {
+		
+		switch direction {
+		case -1: 
+			if char >= 'a'+shift && char <= 'z' ||
+				char >= 'A'+shift && char <= 'Z' {
+				char = char - shift
+			} else if char >= 'a' && char < 'a'+shift ||
+				char >= 'A' && char < 'A'+shift {
+				char = char - shift + offset
+			}
+		case +1: // decoding
+			if char >= 'a' && char <= 'z'-shift ||
+				char >= 'A' && char <= 'Z'-shift {
+				char = char + shift
+			} else if char > 'z'-shift && char <= 'z' ||
+				char > 'Z'-shift && char <= 'Z' {
+				char = char + shift - offset
+			}
 		}
-	}
-	return string(outputBuffer)
-}
 
-// Decrypt decrypts by left shift of "key" each character of "input"
-func Decrypt(input string, key int) string {
-	// left shift of "key" is same as right shift of 26-"key"
-	return Encrypt(input, 26-key)
+		
+		runes[index] = char
+	}
+
+	return string(runes)
+}
+func encode(text string) string { return cipher(text, -1) }
+func decode(text string) string { return cipher(text, +1) }
+
+func main() {
+	println("the text is `Hacktoberfest`")
+	encoded := encode("das fuchedes 666")
+	println("  encoded: " + encoded)
+	decoded := decode(encoded)
+	println("  decoded: " + decoded)
 }
