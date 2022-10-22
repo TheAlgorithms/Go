@@ -4,65 +4,12 @@ import (
 	"fmt"
 )
 
-// User defined.
-// Set to true to read input from two command line arguments
-// Set to false to read input from two files "pattern.txt" and "text.txt"
-
-// const isTakingInputFromCommandLine bool = true
-
 const notFoundPosition int = -1
 
 type Result struct {
 	resultPosition     int
 	numberOfComparison int
 }
-
-// Implementation of Knuth-Morris-Pratt algorithm (Prefix based approach).
-// Requires either a two command line arguments separated by a single space,
-// or two files in the same folder: "pattern.txt" containing the string to
-// be searched for, "text.txt" containing the text to be searched in.
-// func main() {
-// 	var text string
-// 	var word string
-
-// 	if isTakingInputFromCommandLine { // case of command line input
-// 		args := os.Args
-// 		if len(args) <= 2 {
-// 			log.Fatal("Not enough arguments. Two string arguments separated by spaces are required!")
-// 		}
-// 		word = args[1]
-// 		text = args[2]
-// 		for i := 3; i < len(args); i++ {
-// 			text = text + " " + args[i]
-// 		}
-// 	} else { // case of file input
-// 		patFile, err := ioutil.ReadFile("../pattern.txt")
-// 		if err != nil {
-// 			log.Fatal(err)
-// 		}
-// 		textFile, err := ioutil.ReadFile("../text.txt")
-// 		if err != nil {
-// 			log.Fatal(err)
-// 		}
-// 		text = string(textFile)
-// 		word = string(patFile)
-// 	}
-
-// 	if len(word) > len(text) {
-// 		log.Fatal("Pattern is longer than text!")
-// 	}
-// 	fmt.Printf("\nRunning: Knuth-Morris-Pratt algorithm.\n\n")
-// 	fmt.Printf("Search word (%d chars long): %q.\n", len(word), word)
-// 	fmt.Printf("Text        (%d chars long): %q.\n\n", len(text), text)
-
-// 	r := kmp(text, word)
-// 	if r.resultPosition == notFoundPosition {
-// 		fmt.Printf("\n\nWord was not found.\n%d comparisons were done.", r.numberOfComparison)
-// 	} else {
-// 		fmt.Printf("\n\nWord %q was found at position %d in %q. \n%d comparisons were done.", word,
-// 			r.resultPosition, text, r.numberOfComparison)
-// 	}
-// }
 
 // Kmp Function kmp performing the Knuth-Morris-Pratt algorithm.
 // Prints whether the word/pattern was found and on what position in the text or not.
