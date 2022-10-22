@@ -4,18 +4,15 @@
 
 package dynamic
 
-import (
-	"unicode/utf8"
-)
-
-func extractData(inStr string) (int, []rune) {
-	return utf8.RuneCountInString(inStr), []rune(inStr)
+func strToRuneSlice(s string) (r []rune, size int) {
+	r = []rune(s)
+	return r, len(r)
 }
 
 // LongestCommonSubsequence function
 func LongestCommonSubsequence(a string, b string) int {
-	aLen, aRunes := extractData(a)
-	bLen, bRunes := extractData(b)
+	aRunes, aLen := strToRuneSlice(a)
+	bRunes, bLen := strToRuneSlice(b)
 
 	// here we are making a 2d slice of size (aLen+1)*(bLen+1)
 	lcs := make([][]int, aLen+1)
