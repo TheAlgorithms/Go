@@ -307,32 +307,18 @@ func (t *binaryTree[T]) isRBTree() bool {
 	return t.NIL != nil
 }
 
-func (t *binaryTree[T]) transplant(u, v *Node[T]) {
-	if t.isNil(u.Parent) {
-		t.Root = v
-	} else if u == u.Parent.Left {
-		u.Parent.Left = v
-	} else {
-		u.Parent.Right = v
-	}
-
-	if v != nil {
-		v.Parent = u.Parent
-	}
-}
-
 func (t *binaryTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
 	if !t.isNil(node.Left) {
 		return t.maximum(node.Left).Key, true
 	}
 
 	p := node.Parent
-	for p != nil && !t.isNil(p) && node == p.Left {
+	for !t.isNil(p) && node == p.Left {
 		node = p
 		p = p.Parent
 	}
 
-	if p == nil {
+	if t.isNil(p) {
 		var dummy T
 		return dummy, false
 	}
@@ -345,14 +331,29 @@ func (t *binaryTree[T]) successorHelper(node *Node[T]) (T, bool) {
 	}
 
 	p := node.Parent
-	for p != nil && !t.isNil(p) && node == p.Right {
+	for !t.isNil(p) && node == p.Right {
 		node = p
 		p = p.Parent
 	}
 
-	if p == nil {
+	if t.isNil(p) {
 		var dummy T
 		return dummy, false
 	}
 	return p.Key, true
+}
+
+func (t *binaryTree[T]) transplant(u, v *Node[T]) {
+	switch {
+	case t.isNil(u.Parent):
+		t.Root = v
+	case u == u.Parent.Left:
+		u.Parent.Left = v
+	default:
+		u.Parent.Right = v
+	}
+
+	if v != nil {
+		v.Parent = u.Parent
+	}
 }

@@ -22,6 +22,7 @@ type RB[T constraints.Ordered] struct {
 // Create a new Red-Black Tree
 func NewRB[T constraints.Ordered]() *RB[T] {
 	leaf := &Node[T]{Color: Black, Left: nil, Right: nil}
+	leaf.Parent = leaf
 	return &RB[T]{
 		binaryTree: &binaryTree[T]{
 			Root: leaf,
@@ -48,11 +49,11 @@ func (t *RB[T]) pushHelper(x *Node[T], key T) {
 		Key:    key,
 		Left:   t.NIL,
 		Right:  t.NIL,
-		Parent: nil,
+		Parent: t.NIL,
 		Color:  Red,
 	}
 
-	var y *Node[T]
+	y := t.NIL
 	for !t.isNil(x) {
 		y = x
 		if node.Key < x.Key {
@@ -64,7 +65,7 @@ func (t *RB[T]) pushHelper(x *Node[T], key T) {
 	}
 
 	node.Parent = y
-	if y == nil {
+	if t.isNil(y) {
 		t.Root = node
 	} else if node.Key < y.Key {
 		y.Left = node
@@ -72,12 +73,12 @@ func (t *RB[T]) pushHelper(x *Node[T], key T) {
 		y.Right = node
 	}
 
-	if node.Parent == nil {
+	if t.isNil(node.Parent) {
 		node.Color = Black
 		return
 	}
 
-	if node.Parent.Parent == nil {
+	if t.isNil(node.Parent.Parent) {
 		return
 	}
 
@@ -93,7 +94,7 @@ func (t *RB[T]) leftRotate(x *Node[T]) {
 	}
 
 	y.Parent = x.Parent
-	if x.Parent == nil {
+	if t.isNil(x.Parent) {
 		t.Root = y
 	} else if x == x.Parent.Left {
 		x.Parent.Left = y
@@ -113,7 +114,7 @@ func (t *RB[T]) rightRotate(x *Node[T]) {
 	}
 
 	y.Parent = x.Parent
-	if x.Parent == nil {
+	if t.isNil(x.Parent) {
 		t.Root = y
 	} else if x == y.Parent.Right {
 		y.Parent.Right = y
@@ -126,11 +127,10 @@ func (t *RB[T]) rightRotate(x *Node[T]) {
 }
 
 func (t *RB[T]) pushFix(k *Node[T]) {
-	var u *Node[T]
 	for k.Parent.Color == Red {
 		if k.Parent == k.Parent.Parent.Right {
-			u = k.Parent.Parent.Left
-			if u != nil && u.Color == Red {
+			u := k.Parent.Parent.Left
+			if u.Color == Red {
 				u.Color = Black
 				k.Parent.Color = Black
 				k.Parent.Parent.Color = Red
@@ -145,8 +145,8 @@ func (t *RB[T]) pushFix(k *Node[T]) {
 				t.leftRotate(k.Parent.Parent)
 			}
 		} else {
-			u = k.Parent.Parent.Right
-			if u != nil && u.Color == Red {
+			u := k.Parent.Parent.Right
+			if u.Color == Red {
 				u.Color = Black
 				k.Parent.Color = Black
 				k.Parent.Parent.Color = Red
@@ -193,10 +193,10 @@ func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 	yOriginColor := y.Color
 	if t.isNil(z.Left) {
 		x = z.Right
-		t.rbTransplant(z, z.Right)
+		t.transplant(z, z.Right)
 	} else if t.isNil(z.Right) {
 		x = z.Left
-		t.rbTransplant(z, z.Left)
+		t.transplant(z, z.Left)
 	} else {
 		y = t.minimum(z.Right)
 		yOriginColor = y.Color
@@ -204,12 +204,12 @@ func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 		if y.Parent == z {
 			x.Parent = y
 		} else {
-			t.rbTransplant(y, y.Right)
+			t.transplant(y, y.Right)
 			y.Right = z.Right
 			y.Right.Parent = y
 		}
 
-		t.rbTransplant(z, y)
+		t.transplant(z, y)
 		y.Left = z.Left
 		y.Left.Parent = y
 		y.Color = z.Color
@@ -281,16 +281,4 @@ func (t *RB[T]) deleteFix(x *Node[T]) {
 	}
 
 	x.Color = Black
-}
-
-func (t *RB[T]) rbTransplant(u, v *Node[T]) {
-	switch {
-	case u.Parent == nil:
-		t.Root = v
-	case u == u.Parent.Left:
-		u.Parent.Left = v
-	default:
-		u.Parent.Right = v
-	}
-	v.Parent = u.Parent
 }

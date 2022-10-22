@@ -11,10 +11,11 @@ type AVL[T constraints.Ordered] struct {
 
 // NewAVL create a novel AVL tree
 func NewAVL[T constraints.Ordered]() *AVL[T] {
+	var leaf *Node[T]
 	return &AVL[T]{
 		binaryTree: &binaryTree[T]{
-			Root: nil,
-			NIL:  nil,
+			Root: leaf,
+			NIL:  leaf,
 		},
 	}
 }
@@ -37,9 +38,12 @@ func (avl *AVL[T]) Delete(key T) bool {
 }
 
 func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
-	if root == nil {
+	if avl.isNil(root) {
 		return &Node[T]{
 			Key:    key,
+			Left:   avl.NIL,
+			Right:  avl.NIL,
+			Parent: avl.NIL,
 			Height: 1,
 		}
 	}
@@ -80,7 +84,7 @@ func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
 }
 
 func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
-	if root == nil {
+	if avl.isNil(root) {
 		return root
 	}
 
@@ -90,14 +94,14 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 	case key > root.Key:
 		root.Right = avl.deleteHelper(root.Right, key)
 	default:
-		if root.Left == nil || root.Right == nil {
+		if avl.isNil(root.Left) || avl.isNil(root.Right) {
 			tmp := root.Left
-			if root.Left != nil {
+			if !avl.isNil(root.Left) {
 				tmp = root.Right
 			}
 
-			if tmp == nil {
-				root = nil
+			if avl.isNil(tmp) {
+				root = avl.NIL
 			} else {
 				*root = *tmp
 			}
@@ -108,7 +112,7 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 		}
 	}
 
-	if root == nil {
+	if avl.isNil(root) {
 		return root
 	}
 
@@ -138,15 +142,15 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 }
 
 func (avl *AVL[T]) height(root *Node[T]) int {
-	if root == nil {
+	if avl.isNil(root) {
 		return 0
 	}
 
 	var leftHeight, rightHeight int
-	if root.Left != nil {
+	if !avl.isNil(root.Left) {
 		leftHeight = root.Left.Height
 	}
-	if root.Right != nil {
+	if !avl.isNil(root.Right) {
 		rightHeight = root.Right.Height
 	}
 	return 1 + max.Int(leftHeight, rightHeight)
@@ -156,10 +160,10 @@ func (avl *AVL[T]) height(root *Node[T]) int {
 // and positive balance factor means subtree Root is heavy toward Right side
 func (avl *AVL[T]) balanceFactor(root *Node[T]) int {
 	var leftHeight, rightHeight int
-	if root.Left != nil {
+	if !avl.isNil(root.Left) {
 		leftHeight = root.Left.Height
 	}
-	if root.Right != nil {
+	if !avl.isNil(root.Right) {
 		rightHeight = root.Right.Height
 	}
 	return leftHeight - rightHeight

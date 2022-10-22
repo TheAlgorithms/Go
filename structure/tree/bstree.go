@@ -16,10 +16,11 @@ type BinarySearch[T constraints.Ordered] struct {
 
 // NewBinarySearch create a novel Binary-Search tree
 func NewBinarySearch[T constraints.Ordered]() *BinarySearch[T] {
+	var leaf *Node[T]
 	return &BinarySearch[T]{
 		binaryTree: &binaryTree[T]{
-			Root: nil,
-			NIL:  nil,
+			Root: leaf,
+			NIL:  leaf,
 		},
 	}
 }
@@ -42,7 +43,7 @@ func (t *BinarySearch[T]) Delete(val T) bool {
 }
 
 func (t *BinarySearch[T]) pushHelper(x *Node[T], val T) {
-	z := &Node[T]{Key: val, Left: nil, Right: nil}
+	z := &Node[T]{Key: val, Left: t.NIL, Right: t.NIL}
 	var y *Node[T]
 	for !t.isNil(x) {
 		y = x
@@ -64,9 +65,9 @@ func (t *BinarySearch[T]) pushHelper(x *Node[T], val T) {
 
 func (t *BinarySearch[T]) deleteHelper(z *Node[T]) {
 	switch {
-	case z.Left == nil:
+	case t.isNil(z.Left):
 		t.transplant(z, z.Right)
-	case z.Right == nil:
+	case t.isNil(z.Right):
 		t.transplant(z, z.Left)
 	default:
 		y := t.minimum(z.Right)
