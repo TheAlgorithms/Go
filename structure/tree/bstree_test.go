@@ -1,7 +1,10 @@
 package tree_test
 
 import (
+	"math/rand"
+	"sort"
 	"testing"
+	"time"
 
 	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
@@ -144,6 +147,37 @@ func TestDelete(t *testing.T) {
 
 		if bst.Depth() != 3 {
 			t.Errorf("Depth should have value = 3")
+		}
+	})
+
+	t.Run("Random Test", func(t *testing.T) {
+		tests := []int{100, 500, 1000, 10_000}
+		for _, n := range tests {
+			rand.Seed(time.Now().Unix())
+			tree := bt.NewBinarySearch[int]()
+			nums := rand.Perm(n)
+			tree.Push(nums...)
+
+			rets := tree.InOrder()
+			if !sort.IntsAreSorted(rets) {
+				t.Error("Error with Push")
+			}
+
+			if res, ok := tree.Min(); !ok || res != rets[0] {
+				t.Errorf("Error with Min, get %d, want: %d", res, rets[0])
+			}
+
+			if res, ok := tree.Max(); !ok || res != rets[n-1] {
+				t.Errorf("Error with Max, get %d, want: %d", res, rets[n-1])
+			}
+
+			for i := 0; i < n-1; i++ {
+				ok := tree.Delete(nums[i])
+				rets = tree.InOrder()
+				if !ok || !sort.IntsAreSorted(rets) {
+					t.Errorf("Error With Delete")
+				}
+			}
 		}
 	})
 }

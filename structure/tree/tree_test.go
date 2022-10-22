@@ -10,47 +10,42 @@ import (
 )
 
 func TestTreeGetOrHas(t *testing.T) {
+	helper := func(tree bt.Tree[int], nums []int) {
+		tree.Push(nums...)
+		for _, num := range nums {
+			if !tree.Has(num) {
+				t.Errorf("Error with Has or Push method")
+			}
+		}
+
+		min, _ := tree.Min()
+		max, _ := tree.Max()
+
+		if _, ok := tree.Get(min - 1); ok {
+			t.Errorf("Error with Get method")
+		}
+
+		if _, ok := tree.Get(max + 1); ok {
+			t.Errorf("Error with Get method")
+		}
+	}
+
 	lens := []int{100, 1_000, 10_000, 100_000}
 	for _, ll := range lens {
 		nums := rand.Perm(ll)
 		t.Run("Test Binary Search Tree", func(t *testing.T) {
 			bsTree := bt.NewBinarySearch[int]()
-			bsTree.Push(nums...)
-			for _, num := range nums {
-				if !bsTree.Has(num) {
-					t.Errorf("Error with Has or Push method")
-				}
-			}
-			min, _ := bsTree.Min()
-			max, _ := bsTree.Max()
-
-			if _, ok := bsTree.Get(min - 1); ok {
-				t.Errorf("Error with Get method")
-			}
-
-			if _, ok := bsTree.Get(max + 1); ok {
-				t.Errorf("Error with Get method")
-			}
+			helper(bsTree, nums)
 		})
 
 		t.Run("Test Red-Black Tree", func(t *testing.T) {
 			rbTree := bt.NewRB[int]()
-			rbTree.Push(nums...)
-			for _, num := range nums {
-				if !rbTree.Has(num) {
-					t.Errorf("Error with Has or Push method")
-				}
-			}
+			helper(rbTree, nums)
 		})
 
 		t.Run("Test AVL Tree", func(t *testing.T) {
 			avlTree := bt.NewAVL[int]()
-			avlTree.Push(nums...)
-			for _, num := range nums {
-				if !avlTree.Has(num) {
-					t.Errorf("Error with Has or Push method")
-				}
-			}
+			helper(avlTree, nums)
 		})
 	}
 }
@@ -362,16 +357,15 @@ func TestTreeDepth(t *testing.T) {
 }
 
 func TestTreePrint(t *testing.T) {
+	tests := []struct {
+		input []int
+	}{
+		{[]int{90, 80, 100, 70, 85, 95, 105}},
+		{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71}},
+		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}},
+	}
+
 	t.Run("Test for Binary-Search Tree", func(t *testing.T) {
-		tests := []struct {
-			input []int
-			want  []int
-		}{
-			{[]int{90, 80, 100, 70, 85, 95, 105}, []int{70, 85, 80, 95, 105, 100, 90}},
-			{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71},
-				[]int{61, 51, 41, 31, 21, 1, 71, 70, 85, 80, 95, 105, 100, 90}},
-			{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}},
-		}
 		for _, tt := range tests {
 			tree := bt.NewBinarySearch[int]()
 			t.Log(reflect.TypeOf(tree).String())
@@ -381,15 +375,6 @@ func TestTreePrint(t *testing.T) {
 	})
 
 	t.Run("Test for AVL Tree", func(t *testing.T) {
-		tests := []struct {
-			input []int
-			want  []int
-		}{
-			{[]int{90, 80, 100, 70, 85, 95, 105}, []int{70, 85, 80, 95, 105, 100, 90}},
-			{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71},
-				[]int{1, 31, 21, 61, 51, 41, 71, 85, 80, 95, 105, 100, 90, 70}},
-			{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, []int{1, 2, 4, 6, 5, 3, 8, 10, 9, 7}},
-		}
 		for _, tt := range tests {
 			tree := bt.NewAVL[int]()
 			t.Log(reflect.TypeOf(tree).String())
@@ -399,15 +384,6 @@ func TestTreePrint(t *testing.T) {
 	})
 
 	t.Run("Test for Red-Black Tree", func(t *testing.T) {
-		tests := []struct {
-			input []int
-			want  []int
-		}{
-			{[]int{90, 80, 100, 70, 85, 95, 105}, []int{70, 85, 80, 95, 105, 100, 90}},
-			{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71},
-				[]int{1, 31, 21, 51, 71, 70, 61, 41, 85, 95, 105, 100, 90, 80}},
-			{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}, []int{1, 2, 4, 3, 6, 5, 8, 10, 9, 7}},
-		}
 		for _, tt := range tests {
 			tree := bt.NewRB[int]()
 			t.Log(reflect.TypeOf(tree).String() == "*tree.RB[int]")
@@ -481,101 +457,77 @@ func TestTreeAccessNodesByLayer(t *testing.T) {
 }
 
 func TestTreePredecessorAndSuccessor(t *testing.T) {
-	nums := []int{10, 8, 88, 888, 4, -1, 100}
-	t.Run("Test for Binary Search Tree", func(t *testing.T) {
-		tree := bt.NewBinarySearch[int]()
+	helper := func(tree bt.Tree[int]) {
+		nums := []int{10, 8, 88, 888, 4, -1, 100}
 		tree.Push(nums...)
-		if ret, ok := tree.Predecessor(100); !ok && ret == 88 {
-			t.Errorf("Error with Predecessor")
+		if ret, ok := tree.Predecessor(100); !ok || ret != 88 {
+			t.Error("Error with Predecessor")
 		}
 
 		if _, ok := tree.Predecessor(-1); ok {
-			t.Errorf("Error with Predecessor")
+			t.Error("Error with Predecessor")
+		}
+
+		tree.Push(-100)
+		if ret, ok := tree.Predecessor(-1); !ok || ret != -100 {
+			t.Error("Error with Predecessor")
 		}
 
 		if _, ok := tree.Predecessor(-12); ok {
-			t.Errorf("Error with Predecessor")
+			t.Error("Error with Predecessor")
 		}
 
-		if ret, ok := tree.Predecessor(4); !ok && ret == -1 {
-			t.Errorf("Error with Predecessor")
+		if ret, ok := tree.Predecessor(4); !ok || ret != -1 {
+			t.Error("Error with Predecessor")
 		}
 
-		if ret, ok := tree.Successor(4); !ok && ret == 8 {
-			t.Errorf("Error with Successor")
+		if ret, ok := tree.Successor(4); !ok || ret != 8 {
+			t.Error("Error with Successor")
 		}
 
-		if ret, ok := tree.Successor(8); !ok && ret == 88 {
-			t.Errorf("Error with Successor")
+		if ret, ok := tree.Successor(8); !ok || ret != 10 {
+			t.Error("Error with Successor")
 		}
 
-		if ret, ok := tree.Successor(88); !ok && ret == 100 {
-			t.Errorf("Error with Successor")
+		if ret, ok := tree.Successor(88); !ok || ret != 100 {
+			t.Error("Error with Successor")
 		}
 
-		if ret, ok := tree.Successor(100); !ok && ret == 888 {
-			t.Errorf("Error with Successor")
+		if ret, ok := tree.Successor(100); !ok || ret != 888 {
+			t.Error("Error with Successor")
 		}
 
-		if ret, ok := tree.Successor(-1); !ok && ret == 4 {
-			t.Errorf("Error with Successor")
+		tree.Delete(888)
+		if _, ok := tree.Successor(100); ok {
+			t.Error("Error with Successor")
+		}
+
+		if ret, ok := tree.Successor(-1); !ok || ret != 4 {
+			t.Error("Error with Successor")
 		}
 
 		if _, ok := tree.Successor(888); ok {
-			t.Errorf("Error with Successor")
+			t.Error("Error with Successor")
 		}
 
 		if _, ok := tree.Successor(188); ok {
-			t.Errorf("Error with Successor")
+			t.Error("Error with Successor")
 		}
+	}
+
+	t.Run("Test for Binary Search Tree", func(t *testing.T) {
+		tree := bt.NewBinarySearch[int]()
+		helper(tree)
 	})
 
 	t.Run("Test for Red-Black Tree", func(t *testing.T) {
 		tree := bt.NewRB[int]()
-		tree.Push(nums...)
-		if ret, ok := tree.Predecessor(100); !ok && ret == 88 {
-			t.Errorf("Error with Predecessor")
-		}
+		helper(tree)
+	})
 
-		if _, ok := tree.Predecessor(-1); ok {
-			t.Errorf("Error with Predecessor")
-		}
-
-		if _, ok := tree.Predecessor(-12); ok {
-			t.Errorf("Error with Predecessor")
-		}
-
-		if ret, ok := tree.Predecessor(4); !ok && ret == -1 {
-			t.Errorf("Error with Predecessor")
-		}
-
-		if ret, ok := tree.Successor(4); !ok && ret == 8 {
-			t.Errorf("Error with Successor")
-		}
-
-		if ret, ok := tree.Successor(8); !ok && ret == 88 {
-			t.Errorf("Error with Successor")
-		}
-
-		if ret, ok := tree.Successor(88); !ok && ret == 100 {
-			t.Errorf("Error with Successor")
-		}
-
-		if ret, ok := tree.Successor(100); !ok && ret == 888 {
-			t.Errorf("Error with Successor")
-		}
-
-		if ret, ok := tree.Successor(-1); !ok && ret == 4 {
-			t.Errorf("Error with Successor")
-		}
-
-		if _, ok := tree.Successor(888); ok {
-			t.Errorf("Error with Successor")
-		}
-
-		if _, ok := tree.Successor(188); ok {
-			t.Errorf("Error with Successor")
-		}
+	t.Run("Test for AVL Tree", func(t *testing.T) {
+		tree := bt.NewAVL[int]()
+		helper(tree)
 	})
 }
 

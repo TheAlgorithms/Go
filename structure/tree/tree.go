@@ -21,10 +21,28 @@ const (
 	Black
 )
 
+type Tree[T constraints.Ordered] interface {
+	Push(...T)
+	Delete(T) bool
+	Get(T) (*Node[T], bool)
+	Has(T) bool
+	PreOrder() []T
+	InOrder() []T
+	PostOrder() []T
+	Depth() int
+	Max() (T, bool)
+	Min() (T, bool)
+	LevelOrder() []T
+	AccessNodesByLayer() [][]T
+	Print()
+	Predecessor(T) (T, bool)
+	Successor(T) (T, bool)
+}
+
 // Node of a binary tree
 type Node[T constraints.Ordered] struct {
 	Key    T
-	Parent *Node[T] // for Red-Black Tree
+	Parent *Node[T]
 	Left   *Node[T]
 	Right  *Node[T]
 	Color  Color // for Red-Black Tree

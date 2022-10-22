@@ -50,9 +50,13 @@ func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
 
 	switch {
 	case key < root.Key:
-		root.Left = avl.pushHelper(root.Left, key)
+		tmp := avl.pushHelper(root.Left, key)
+		tmp.Parent = root
+		root.Left = tmp
 	case key > root.Key:
-		root.Right = avl.pushHelper(root.Right, key)
+		tmp := avl.pushHelper(root.Right, key)
+		tmp.Parent = root
+		root.Right = tmp
 	default:
 		return root
 	}
@@ -90,25 +94,38 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 
 	switch {
 	case key < root.Key:
-		root.Left = avl.deleteHelper(root.Left, key)
+		tmp := avl.deleteHelper(root.Left, key)
+		root.Left = tmp
+		if !avl.isNil(tmp) {
+			tmp.Parent = root
+		}
 	case key > root.Key:
-		root.Right = avl.deleteHelper(root.Right, key)
+		tmp := avl.deleteHelper(root.Right, key)
+		root.Right = tmp
+		if !avl.isNil(tmp) {
+			tmp.Parent = root
+		}
 	default:
 		if avl.isNil(root.Left) || avl.isNil(root.Right) {
 			tmp := root.Left
-			if !avl.isNil(root.Left) {
+			if !avl.isNil(root.Right) {
 				tmp = root.Right
 			}
 
 			if avl.isNil(tmp) {
 				root = avl.NIL
 			} else {
-				*root = *tmp
+				tmp.Parent = root.Parent
+				root = tmp
 			}
 		} else {
 			tmp := avl.minimum(root.Right)
 			root.Key = tmp.Key
-			root.Right = avl.deleteHelper(root.Right, tmp.Key)
+			del := avl.deleteHelper(root.Right, tmp.Key)
+			root.Right = del
+			if !avl.isNil(del) {
+				del.Parent = root
+			}
 		}
 	}
 
@@ -169,24 +186,38 @@ func (avl *AVL[T]) balanceFactor(root *Node[T]) int {
 	return leftHeight - rightHeight
 }
 
-func (avl *AVL[T]) leftRotate(root *Node[T]) *Node[T] {
-	y := root.Right
+func (avl *AVL[T]) leftRotate(x *Node[T]) *Node[T] {
+	y := x.Right
 	yl := y.Left
-	y.Left = root
-	root.Right = yl
+	y.Left = x
+	x.Right = yl
 
-	root.Height = avl.height(root)
+	if !avl.isNil(yl) {
+		yl.Parent = x
+	}
+
+	y.Parent = x.Parent
+	x.Parent = y
+
+	x.Height = avl.height(x)
 	y.Height = avl.height(y)
 	return y
 }
 
-func (avl *AVL[T]) rightRotate(root *Node[T]) *Node[T] {
-	y := root.Left
+func (avl *AVL[T]) rightRotate(x *Node[T]) *Node[T] {
+	y := x.Left
 	yr := y.Right
-	y.Right = root
-	root.Left = yr
+	y.Right = x
+	x.Left = yr
 
-	root.Height = avl.height(root)
+	if !avl.isNil(yr) {
+		yr.Parent = x
+	}
+
+	y.Parent = x.Parent
+	x.Parent = y
+
+	x.Height = avl.height(x)
 	y.Height = avl.height(y)
 	return y
 }

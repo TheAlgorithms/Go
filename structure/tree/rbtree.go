@@ -61,7 +61,6 @@ func (t *RB[T]) pushHelper(x *Node[T], key T) {
 		} else {
 			x = x.Right
 		}
-
 	}
 
 	node.Parent = y

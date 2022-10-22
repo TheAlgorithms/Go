@@ -1,9 +1,11 @@
 package tree_test
 
 import (
-	"testing"
-
 	bt "github.com/TheAlgorithms/Go/structure/tree"
+	"math/rand"
+	"sort"
+	"testing"
+	"time"
 )
 
 func TestAVLPush(t *testing.T) {
@@ -89,7 +91,7 @@ func TestAVLPush(t *testing.T) {
 			t.Errorf("Height of Right should be 1")
 		}
 	})
-	t.Run("RLRotaion-Test", func(t *testing.T) {
+	t.Run("RLRotation-Test", func(t *testing.T) {
 		tree := bt.NewAVL[int]()
 		tree.Push(3)
 		tree.Push(5)
@@ -122,6 +124,9 @@ func TestAVLPush(t *testing.T) {
 func TestAVLDelete(t *testing.T) {
 	t.Run("LLRotation-Test", func(t *testing.T) {
 		tree := bt.NewAVL[int]()
+		if tree.Delete(5) {
+			t.Errorf("There is no node, whose value is 5")
+		}
 
 		tree.Push(5)
 		tree.Push(4)
@@ -239,7 +244,7 @@ func TestAVLDelete(t *testing.T) {
 
 	})
 
-	t.Run("RLRotaion-Test", func(t *testing.T) {
+	t.Run("RLRotation-Test", func(t *testing.T) {
 		tree := bt.NewAVL[int]()
 
 		tree.Push(7)
@@ -271,5 +276,36 @@ func TestAVLDelete(t *testing.T) {
 			t.Errorf("Height of Right should be 1")
 		}
 
+	})
+
+	t.Run("Random Test", func(t *testing.T) {
+		nums := []int{100, 500, 1000, 10_000}
+		for _, n := range nums {
+			rand.Seed(time.Now().Unix())
+			tree := bt.NewAVL[int]()
+			nums := rand.Perm(n)
+			tree.Push(nums...)
+
+			rets := tree.InOrder()
+			if !sort.IntsAreSorted(rets) {
+				t.Error("Error with Push")
+			}
+
+			if res, ok := tree.Min(); !ok || res != rets[0] {
+				t.Errorf("Error with Min, get %d, want: %d", res, rets[0])
+			}
+
+			if res, ok := tree.Max(); !ok || res != rets[n-1] {
+				t.Errorf("Error with Max, get %d, want: %d", res, rets[n-1])
+			}
+
+			for i := 0; i < n-1; i++ {
+				ok := tree.Delete(nums[i])
+				rets = tree.InOrder()
+				if !ok || !sort.IntsAreSorted(rets) {
+					t.Errorf("Error With Delete")
+				}
+			}
+		}
 	})
 }
