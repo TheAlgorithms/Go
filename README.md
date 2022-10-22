@@ -421,12 +421,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 1. [`Kmp`](./strings/kmp/kmp.go#L70):  Kmp Function kmp performing the Knuth-Morris-Pratt algorithm. Prints whether the word/pattern was found and on what position in the text or not. m - current match in text, i - current character in w, c - amount of comparisons.
 
 ---
-##### Types
-
-1. [`Result`](./strings/kmp/kmp.go#L15): No description provided.
-
-
----
 </details><details>
 	<summary> <strong> lcm </strong> </summary>	
 
