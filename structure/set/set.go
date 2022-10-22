@@ -28,8 +28,16 @@ type Set interface {
 	In(item any) bool
 	// IsSubsetOf: checks whether set is subset of set2 or not.
 	IsSubsetOf(set2 Set) bool
+	// IsProperSubsetOf: checks whether set is proper subset of set2 or not.
+	// ex: [1,2,3] proper subset of [1,2,3,4] -> true
+	// ex: [1,2,3] proper subset of [2,3,1] -> false
+	IsProperSubsetOf(set2 Set) bool
 	// IsSupersetOf: checks whether set is superset of set2 or not.
 	IsSupersetOf(set2 Set) bool
+	// IsProperSupersetOf: checks whether set is proper superset of set2 or not.
+	// ex: [1,2,3,4] proper superset of [1,2,3] -> true
+	// ex: [1,2,3] proper superset of [2,3,1] -> false
+	IsProperSupersetOf(set2 Set) bool
 	// Union: gives new union set of both sets.
 	// ex: [1,2,3] union [3,4,5] -> [1,2,3,4,5]
 	Union(set2 Set) Set
@@ -88,8 +96,16 @@ func (st *set) IsSubsetOf(superSet Set) bool {
 	return true
 }
 
+func (st *set) IsProperSubsetOf(superSet Set) bool {
+	return st.IsSubsetOf(superSet) && st.Len() != superSet.Len()
+}
+
 func (st *set) IsSupersetOf(subSet Set) bool {
 	return subSet.IsSubsetOf(st)
+}
+
+func (st *set) IsProperSupersetOf(subSet Set) bool {
+	return st.IsSupersetOf(subSet) && st.Len() != subSet.Len()
 }
 
 func (st *set) Union(st2 Set) Set {
