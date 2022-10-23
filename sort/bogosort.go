@@ -3,18 +3,18 @@
 // details:
 // A simple bogosort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Bogosort)
 // author(s): [Focusucof](https://github.com/Focusucof)
-// see sorts_test.go for testing
+// see bogosort_test.go for tests
 
 package sort
 
 import (
 	"github.com/TheAlgorithms/Go/constraints"
-	"sort"
 	"math/rand"
+	"sort"
 )
 
 // shuffles the given int array
-func shuffle[T constraints.Ordered](arr *[]int) {
+func shuffle(arr *[]int) {
 	rand.Shuffle(len(*arr), func(i, j int) {
 		(*arr)[i], (*arr)[j] = (*arr)[j], (*arr)[i] // swap values
 	})
