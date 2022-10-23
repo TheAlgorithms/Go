@@ -3,7 +3,7 @@
 // details:
 // A simple bogosort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Bogosort)
 // author(s): [Focusucof](https://github.com/Focusucof)
-// see sorts_test.go for test
+// see sorts_test.go for testing
 
 package sort
 
