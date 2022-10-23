@@ -39,6 +39,7 @@ func TestDelete(t *testing.T) {
 
 		bst.Push(90)
 		bst.Push(80)
+		bst.Push(80)
 		bst.Push(100)
 
 		if !bst.Delete(100) {
@@ -172,6 +173,14 @@ func TestDelete(t *testing.T) {
 			}
 
 			for i := 0; i < n-1; i++ {
+				if ret, ok := tree.Successor(rets[0]); ret != rets[1] || !ok {
+					t.Error("Error with Successor")
+				}
+
+				if ret, ok := tree.Predecessor(rets[1]); ret != rets[0] || !ok {
+					t.Error("Error with Predecessor")
+				}
+
 				ok := tree.Delete(nums[i])
 				rets = tree.InOrder()
 				if !ok || !sort.IntsAreSorted(rets) {

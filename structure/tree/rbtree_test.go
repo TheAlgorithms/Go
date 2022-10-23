@@ -26,13 +26,13 @@ func TestRBTreePush(t *testing.T) {
 		t.Errorf("Error with Max: %v", r)
 	}
 
-	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 88, 1 << 32}
+	nums := []int{10, 8, 88, 888, 4, 1<<63 - 1, -(1 << 62), 188, -188, 4, 1 << 32}
 
 	tree.Push(nums...)
 
 	ret = tree.InOrder()
 
-	if !sort.IntsAreSorted(ret) || len(ret) != len(nums) {
+	if !sort.IntsAreSorted(ret) {
 		t.Errorf("Error with Push: %v", ret)
 	}
 
@@ -54,27 +54,22 @@ func TestRBTreeDelete(t *testing.T) {
 
 	ok = tree.Delete(188)
 
-	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) || len(ret) != len(nums)-1 {
+	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) {
 		t.Errorf("Error with Delete: %v", ret)
 	}
 
 	ok = tree.Delete(188)
-	if ret := tree.InOrder(); ok || !sort.IntsAreSorted(ret) || len(ret) != len(nums)-1 {
+	if ret := tree.InOrder(); ok || !sort.IntsAreSorted(ret) {
 		t.Errorf("Error with Delete: %v", ret)
 	}
 
 	ok = tree.Delete(1<<63 - 1)
-	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) || len(ret) != len(nums)-2 {
+	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) {
 		t.Errorf("Error with Delete: %v", ret)
 	}
 
 	ok = tree.Delete(4)
-	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) || len(ret) != len(nums)-3 {
-		t.Errorf("Error with Delete: %v", ret)
-	}
-
-	ok = tree.Delete(4)
-	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) || len(ret) != len(nums)-4 {
+	if ret := tree.InOrder(); !ok || !sort.IntsAreSorted(ret) {
 		t.Errorf("Error with Delete: %v", ret)
 	}
 
@@ -87,16 +82,12 @@ func TestRBTreeDelete(t *testing.T) {
 	}
 }
 
-func FuzzRBTree(f *testing.F) {
+func TestRBTree(t *testing.T) {
 	testcases := []int{100, 200, 1000, 10000}
-	for _, tc := range testcases {
-		f.Add(tc)
-	}
-
-	f.Fuzz(func(t *testing.T, a int) {
+	for _, n := range testcases {
 		rand.Seed(time.Now().Unix())
 		tree := bt.NewRB[int]()
-		nums := rand.Perm(a)
+		nums := rand.Perm(n)
 		tree.Push(nums...)
 
 		rets := tree.InOrder()
@@ -108,18 +99,25 @@ func FuzzRBTree(f *testing.F) {
 			t.Errorf("Error with Min, get %d, want: %d", res, rets[0])
 		}
 
-		if res, ok := tree.Max(); !ok || res != rets[a-1] {
-			t.Errorf("Error with Max, get %d, want: %d", res, rets[a-1])
+		if res, ok := tree.Max(); !ok || res != rets[n-1] {
+			t.Errorf("Error with Max, get %d, want: %d", res, rets[n-1])
 		}
 
-		for i := 0; i < a-1; i++ {
+		for i := 0; i < n-1; i++ {
+			if ret, ok := tree.Successor(rets[0]); ret != rets[1] || !ok {
+				t.Error("Error with Successor")
+			}
+			if ret, ok := tree.Predecessor(rets[1]); ret != rets[0] || !ok {
+				t.Error("Error with Predecessor")
+			}
+
 			ok := tree.Delete(nums[i])
 			rets = tree.InOrder()
 			if !ok || !sort.IntsAreSorted(rets) {
 				t.Errorf("Error With Delete")
 			}
 		}
-	})
+	}
 }
 
 func TestRBTreeString(t *testing.T) {

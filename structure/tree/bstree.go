@@ -43,17 +43,20 @@ func (t *BinarySearch[T]) Delete(val T) bool {
 }
 
 func (t *BinarySearch[T]) pushHelper(x *Node[T], val T) {
-	z := &Node[T]{Key: val, Left: t.NIL, Right: t.NIL}
-	var y *Node[T]
+	y := t.NIL
 	for !t.isNil(x) {
 		y = x
-		if val < x.Key {
+		switch {
+		case val < x.Key:
 			x = x.Left
-		} else {
+		case val > x.Key:
 			x = x.Right
+		default:
+			return
 		}
 	}
-	z.Parent = y
+
+	z := &Node[T]{Key: val, Left: t.NIL, Right: t.NIL, Parent: y}
 	if t.isNil(y) {
 		t.Root = z
 	} else if val < y.Key {

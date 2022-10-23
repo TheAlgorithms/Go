@@ -45,25 +45,26 @@ func (t *RB[T]) Delete(data T) bool {
 }
 
 func (t *RB[T]) pushHelper(x *Node[T], key T) {
+	y := t.NIL
+	for !t.isNil(x) {
+		y = x
+		switch {
+		case key < x.Key:
+			x = x.Left
+		case key > x.Key:
+			x = x.Right
+		default:
+			return
+		}
+	}
+
 	node := &Node[T]{
 		Key:    key,
 		Left:   t.NIL,
 		Right:  t.NIL,
-		Parent: t.NIL,
+		Parent: y,
 		Color:  Red,
 	}
-
-	y := t.NIL
-	for !t.isNil(x) {
-		y = x
-		if node.Key < x.Key {
-			x = x.Left
-		} else {
-			x = x.Right
-		}
-	}
-
-	node.Parent = y
 	if t.isNil(y) {
 		t.Root = node
 	} else if node.Key < y.Key {

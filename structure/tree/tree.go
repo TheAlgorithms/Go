@@ -26,17 +26,17 @@ type Tree[T constraints.Ordered] interface {
 	Delete(T) bool
 	Get(T) (*Node[T], bool)
 	Has(T) bool
-	PreOrder() []T
-	InOrder() []T
-	PostOrder() []T
 	Depth() int
 	Max() (T, bool)
 	Min() (T, bool)
+	Predecessor(T) (T, bool)
+	Successor(T) (T, bool)
+	PreOrder() []T
+	InOrder() []T
+	PostOrder() []T
 	LevelOrder() []T
 	AccessNodesByLayer() [][]T
 	Print()
-	Predecessor(T) (T, bool)
-	Successor(T) (T, bool)
 }
 
 // Node of a binary tree
@@ -50,6 +50,7 @@ type Node[T constraints.Ordered] struct {
 }
 
 // binaryTree is a base-struct for BinarySearch, AVL, RB, etc.
+// Assumption: all keys in the binaryTree are different.
 // Note: to avoid instantiation, we make the base struct un-exported.
 type binaryTree[T constraints.Ordered] struct {
 	Root *Node[T]

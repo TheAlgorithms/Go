@@ -169,6 +169,7 @@ func TestAVLDelete(t *testing.T) {
 
 		tree.Push(10)
 		tree.Push(8)
+		tree.Push(8)
 		tree.Push(6)
 		tree.Push(7)
 
@@ -209,6 +210,7 @@ func TestAVLDelete(t *testing.T) {
 
 		tree.Push(2)
 		tree.Push(3)
+		tree.Push(3)
 		tree.Push(4)
 		tree.Push(5)
 
@@ -248,6 +250,7 @@ func TestAVLDelete(t *testing.T) {
 		tree := bt.NewAVL[int]()
 
 		tree.Push(7)
+		tree.Push(6)
 		tree.Push(6)
 		tree.Push(9)
 		tree.Push(8)
@@ -300,6 +303,13 @@ func TestAVLDelete(t *testing.T) {
 			}
 
 			for i := 0; i < n-1; i++ {
+				if ret, ok := tree.Successor(rets[0]); ret != rets[1] || !ok {
+					t.Error("Error with Successor")
+				}
+				if ret, ok := tree.Predecessor(rets[1]); ret != rets[0] || !ok {
+					t.Error("Error with Predecessor")
+				}
+
 				ok := tree.Delete(nums[i])
 				rets = tree.InOrder()
 				if !ok || !sort.IntsAreSorted(rets) {
