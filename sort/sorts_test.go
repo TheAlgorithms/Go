@@ -161,6 +161,10 @@ func TestPatience(t *testing.T) {
 	testFramework(t, sort.Patience[int])
 }
 
+func TestBogo(t *testing.T) {
+	testFramework(t, sort.BogoSort[int])
+}
+
 //END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -269,4 +273,8 @@ func BenchmarkPigeonhole(b *testing.B) {
 
 func BenchmarkPatience(b *testing.B) {
 	benchmarkFramework(b, sort.Patience[int])
+}
+
+func BenchmarkBogo(b *testing.B) {
+	benchmarkFramework(b, sort.BogoSort[int])
 }
