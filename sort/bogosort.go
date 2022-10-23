@@ -20,7 +20,7 @@ func shuffle(arr *[]int) {
 }
 
 // loops until array is sorted
-func bogosort(arr []int) []int {
+func BogoSort(arr []int) []int {
 	for {
 		if sort.IntsAreSorted(arr) { // if array is sorted, break loop and return it
 			return arr
