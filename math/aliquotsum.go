@@ -17,6 +17,8 @@ func AliquotSum(n int) (int, error) {
 		return 0, ErrPosArgsOnly
 	case n == 0:
 		return 0, ErrNonZeroArgsOnly
+	case n == 1:
+		return 0, nil
 	default:
 		var sum int
 		for i := 1; i < n-1; i++ {
