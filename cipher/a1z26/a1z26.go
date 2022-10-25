@@ -22,7 +22,7 @@ var encryptionMap = []string{"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "
 func indexOfLetter(slice []string, item string) string {
     for i := range slice {
         if slice[i] == item {
-            return strconv.Itoa(i)
+            return strconv.Itoa(i + 1)
         }
     }
 	return ""
@@ -57,7 +57,7 @@ func Decrypt(input string) string {
 		letters := strings.Fields(word) // split letters into a slice
 		for _, i := range letters {
 			index, _ := strconv.Atoi(string(i)) // convert char to int so we can use it as an array index
-			result += encryptionMap[index]
+			result += encryptionMap[index - 1]
 		}
 		result += " "
 	}
