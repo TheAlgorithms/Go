@@ -1,12 +1,15 @@
-package geometry
+package geometry_test
 
 import (
+	"errors"
 	"testing"
+
+	geometry "github.com/TheAlgorithms/Go/math/geometry"
 )
 
 type args struct {
-	p1 EuclideanPoint
-	p2 EuclideanPoint
+	p1 geometry.EuclideanPoint
+	p2 geometry.EuclideanPoint
 }
 
 func TestFindDistanceBetweenTwoPoints(t *testing.T) {
@@ -19,8 +22,8 @@ func TestFindDistanceBetweenTwoPoints(t *testing.T) {
 		{
 			"(0,0) and (2,-2)",
 			args{
-				EuclideanPoint{0, 0},
-				EuclideanPoint{2, -2},
+				geometry.EuclideanPoint{0, 0},
+				geometry.EuclideanPoint{2, -2},
 			},
 			2.8284271247461903,
 			false,
@@ -28,8 +31,8 @@ func TestFindDistanceBetweenTwoPoints(t *testing.T) {
 		{
 			"(-20,23) and (-15,68)",
 			args{
-				EuclideanPoint{-20, 23},
-				EuclideanPoint{-15, 68},
+				geometry.EuclideanPoint{-20, 23},
+				geometry.EuclideanPoint{-15, 68},
 			},
 			45.27692569068709,
 			false,
@@ -37,8 +40,8 @@ func TestFindDistanceBetweenTwoPoints(t *testing.T) {
 		{
 			"(2,2) and (14,11)",
 			args{
-				EuclideanPoint{2, 2},
-				EuclideanPoint{14, 11},
+				geometry.EuclideanPoint{2, 2},
+				geometry.EuclideanPoint{14, 11},
 			},
 			15,
 			false,
@@ -46,8 +49,8 @@ func TestFindDistanceBetweenTwoPoints(t *testing.T) {
 		{
 			"Return error for mismatched dimensions(2,2) and ()",
 			args{
-				EuclideanPoint{2, 2},
-				EuclideanPoint{},
+				geometry.EuclideanPoint{2, 2},
+				geometry.EuclideanPoint{},
 			},
 			-1,
 			true,
@@ -55,8 +58,8 @@ func TestFindDistanceBetweenTwoPoints(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := EuclideanDistance(tt.args.p1, tt.args.p2)
-			if (err != nil) != tt.wantErr {
+			got, err := geometry.EuclideanDistance(tt.args.p1, tt.args.p2)
+			if (err != nil) != tt.wantErr && errors.Is(err, geometry.ErrDimMismatch) {
 				t.Errorf("EuclideanDistance() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
@@ -68,10 +71,10 @@ func TestFindDistanceBetweenTwoPoints(t *testing.T) {
 }
 
 func BenchmarkFindDistanceBetweenTwoPoints(b *testing.B) {
-	p1 := EuclideanPoint{0, 0}
-	p2 := EuclideanPoint{2, -2}
+	p1 := geometry.EuclideanPoint{0, 0}
+	p2 := geometry.EuclideanPoint{2, -2}
 
 	for i := 0; i < b.N; i++ {
-		_, _ = EuclideanDistance(p1, p2)
+		_, _ = geometry.EuclideanDistance(p1, p2)
 	}
 }
