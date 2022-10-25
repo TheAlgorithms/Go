@@ -1,7 +1,7 @@
 // a1z26.go
 // description: Implementation of the a1z26 cipher
 // details:
-// The A1Z26 cipher is a simple substiution cipher where each letter is
+// The A1Z26 cipher is a simple substitution cipher where each letter is
 // replaced by the number of the order they're in. For example, A corresponds to
 // 1, B = 2, C = 3, etc..
 //
