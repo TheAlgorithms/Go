@@ -64,7 +64,19 @@ func TestRot13Decrypt(t *testing.T) {
 func assertRot13Output(t *testing.T, input, expected string) {
 	actual := rot13(input)
 	if actual != expected {
-		t.Fatalf("With input string '%s' was expecting '%s' but actual was '%s'",
+		t.Fatalf("With input string %q was expecting %q but actual was %q",
 			input, expected, actual)
 	}
+}
+
+func FuzzRot13(f *testing.F) {
+	for _, rot13TestInput := range rot13TestData {
+		f.Add(rot13TestInput.input)
+	}
+	f.Fuzz(func(t *testing.T, input string) {
+		if result := rot13(rot13(input)); result != input {
+			t.Fatalf("With input string %q was expecting %q but actual was %q",
+				input, input, result)
+		}
+	})
 }
