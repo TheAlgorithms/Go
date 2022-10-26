@@ -82,6 +82,16 @@ func TestIsSubsetOf(t *testing.T) {
 	}
 }
 
+func TestIsProperSubsetOf(t *testing.T) {
+	s1, s2 := New(1, 2, 3), New(1, 2, 3, 4)
+	if !s1.IsProperSubsetOf(s2) {
+		t.Errorf("expecting %v to be a proper subset of %v", s1, s2)
+	}
+	if s3 := New(3, 2, 1); s1.IsProperSubsetOf(s3) {
+		t.Errorf("expecting %v not to be a proper subset of %v", s1, s3)
+	}
+}
+
 func TestIsSupersetOf(t *testing.T) {
 	s1, s2 := New(1, 2, 3), New(1, 2, 3, 4)
 	if !s2.IsSupersetOf(s1) {
@@ -92,6 +102,16 @@ func TestIsSupersetOf(t *testing.T) {
 	}
 	if s3 := New(1, 2, 5); s2.IsSupersetOf(s3) {
 		t.Errorf("expecting %v not to be a superset of %v", s2, s3)
+	}
+}
+
+func TestIsProperSupersetOf(t *testing.T) {
+	s1, s2 := New(1, 2, 3), New(1, 2, 3, 4)
+	if !s2.IsProperSupersetOf(s1) {
+		t.Errorf("expecting %v to be a proper superset of %v", s2, s1)
+	}
+	if s3 := New(3, 2, 1); s1.IsProperSupersetOf(s3) {
+		t.Errorf("expecting %v not to be a proper superset of %v", s1, s3)
 	}
 }
 
