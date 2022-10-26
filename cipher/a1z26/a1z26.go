@@ -35,7 +35,7 @@ func Encrypt(input string) string {
 	for _, char := range input {
 		if string(char) != " " {
 			result += indexOfLetter(encryptionMap, string(char)) // replace letter with the corresponding number
-			result += "-"                                        // seperate letters in the same word by dashes
+			result += "-"                                        // separate letters in the same word by dashes
 		} else {
 			result = result[:len(result)-1] // remove remove dash and replace with a space
 			result += " "
