@@ -1,7 +1,7 @@
 // bogosort_test.go
 // description: Test implementations for bogosort.go
 // details:
-// Test case implentations for the bogosort algorithm
+// Test case implementationfor the bogosort algorithm
 // author(s): [Focusucof](https://github.com/Focusucof)
 // see bogosort.go
 
