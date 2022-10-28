@@ -9,18 +9,18 @@
 package math
 
 // This function returns true if argument passed to the function is pronic, false otherwise.
-func PronicNumber(n int) (bool, error) {
+func PronicNumber(n int) bool {
 	switch {
 	case n < 0:
-		return false, ErrPosArgsOnly
+		return false
 	case n == 0:
-		return true, nil
+		return true
 	default:
 		for i := 1; i <= n/2; i++ {
 			if i*(i+1) == n && i != n {
-				return true, nil
+				return true
 			}
 		}
-		return false, nil
+		return false
 	}
 }
