@@ -8,6 +8,8 @@
 
 package math
 
+import "math"
+
 // This function returns true if argument passed to the function is pronic, false otherwise.
 func PronicNumber(n int) bool {
 	switch {
@@ -16,11 +18,7 @@ func PronicNumber(n int) bool {
 	case n == 0:
 		return true
 	default:
-		for i := 1; i <= n/2; i++ {
-			if i*(i+1) == n && i != n {
-				return true
-			}
-		}
-		return false
+		x := math.Floor(math.Sqrt(float64(n)))
+		return n == int(x*(x+1))
 	}
 }
