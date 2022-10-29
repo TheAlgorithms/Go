@@ -12,13 +12,9 @@ import stdMath "math"
 
 // This function returns true if argument passed to the function is pronic, false otherwise.
 func PronicNumber(n int) bool {
-	switch {
-	case n < 0 || n%2 == 1:
+	if n < 0 || n%2 == 1 {
 		return false
-	case n == 0:
-		return true
-	default:
-		x := stdMath.Floor(stdMath.Sqrt(float64(n)))
-		return n == int(x*(x+1))
 	}
+	x := stdMath.Floor(stdMath.Sqrt(float64(n)))
+	return n == int(x*(x+1))
 }
