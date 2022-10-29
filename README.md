@@ -613,7 +613,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Parenthesis`](./strings/parenthesis/parenthesis.go#L12):  parcounter will be 0 if all open parenthesis are closed correctly
+1. [`BalancedParenthesis`](./strings/parenthesis/parenthesis.go#L12):  length of the stack will be 0 if all opened parenthesis are closed correctly
 
 ---
 </details><details>

@@ -1,27 +1,43 @@
 package parenthesis
 
-// Parenthesis algorithm checks if every opened parenthesis
+// BalancedParenthesis algorithm checks if every opened parenthesis
 // is closed correctly
 
-// when parcounter is less than 0 is because a closing
-// parenthesis is detected without an opening parenthesis
-// that surrounds it
+// this implementation uses a stack
 
-// parcounter will be 0 if all open parenthesis are closed
-// correctly
-func Parenthesis(text string) bool {
-	parcounter := 0
+func BalancedParenthesis(text string) bool {
 
-	for _, r := range text {
-		switch r {
-		case '(':
-			parcounter++
-		case ')':
-			parcounter--
-		}
-		if parcounter < 0 {
-			return false
+	// set up stack and opener-closer map
+	var stack []rune
+	openerCloser := map[rune]rune{
+		'(': ')',
+		'[': ']',
+		'{': '}',
+	}
+
+	for _, c := range text {
+		// ignore characters other than brackets
+		if c == '(' || c == ')' || c == '[' || c == ']' || c == '{' || c == '}' {
+			// if the current character is an opening bracket,
+			// push its closer into the stack and continue
+			if closer, ok := openerCloser[c]; ok {
+				stack = append(stack, closer)
+				continue
+			}
+
+			// else we are dealing with a closer
+			// the stack should not be empty and the top
+			// of the stack should be the current character
+			l := len(stack) - 1
+			if l < 0 || c != stack[l] {
+				return false
+			}
+
+			// remove the top element of stack
+			stack = stack[:l]
 		}
 	}
-	return parcounter == 0
+
+	// if the stack is empty, return true, otherwise false
+	return len(stack) == 0
 }

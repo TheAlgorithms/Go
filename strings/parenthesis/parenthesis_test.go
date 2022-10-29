@@ -15,17 +15,17 @@ var parenthesisTestCases = []struct {
 		true,
 	},
 	{
-		"three nested pharentesis with three deep level",
+		"three nested parenthesis with three deep level",
 		"(-1*(5+2^(3-4)*(7.44-12)+6.66/(3.43-(1+2)))*(sqrt(3-4)))",
 		true,
 	},
 	{
-		"one opened pharentesis without be closed",
+		"one opened parenthesis without corresponding closed",
 		"(2*9-17)*((7+3/3)*2*(-1+4)",
 		false,
 	},
 	{
-		"one open pharentesis for each close one but not in pairs",
+		"one open parenthesis for each close one but not in pairs",
 		"(4*(39.22-7.4)/6.77))(",
 		false,
 	},
@@ -35,8 +35,18 @@ var parenthesisTestCases = []struct {
 		true,
 	},
 	{
-		"inverted pharentesis",
+		"inverted parenthesis",
 		")()()()()(",
+		false,
+	},
+	{
+		"multiple types of parenthesis - valid",
+		"31 * ( 12 + ( 0.56 * [321] - 42 ) / {1.12} * [0.75 - 0.21] + 9)",
+		true,
+	},
+	{
+		"multiple types of parenthesis - invalid",
+		"(31 * ( 12 + 1.123] - 54 ) / {1.21} * [13.1] + 8)",
 		false,
 	},
 }
@@ -44,7 +54,7 @@ var parenthesisTestCases = []struct {
 func TestParenthesis(t *testing.T) {
 	for _, tc := range parenthesisTestCases {
 		t.Run(tc.name, func(t *testing.T) {
-			actual := Parenthesis(tc.text)
+			actual := BalancedParenthesis(tc.text)
 			if actual != tc.expected {
 				t.Errorf("Expected %t value from test %s with input %s\n", tc.expected, tc.name, tc.text)
 			}
