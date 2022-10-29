@@ -8,7 +8,7 @@
 
 package math
 
-import "math"
+import stdMath "math"
 
 // This function returns true if argument passed to the function is pronic, false otherwise.
 func PronicNumber(n int) bool {
@@ -18,7 +18,7 @@ func PronicNumber(n int) bool {
 	case n == 0:
 		return true
 	default:
-		x := math.Floor(math.Sqrt(float64(n)))
+		x := stdMath.Floor(stdMath.Sqrt(float64(n)))
 		return n == int(x*(x+1))
 	}
 }
