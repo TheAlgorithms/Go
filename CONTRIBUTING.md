@@ -25,7 +25,7 @@ Being a contributor at The Algorithms, we request you to follow the points menti
 
 - New implementations are welcome!
 
-- You can add new algorithms or data structures that are **not present in the repository** or that can **improve** the old implementations (**documentation**, **improving test cases**, removing bugs, or in any other reasonable sense)
+- You can add new algorithms or data structures that are **not present in the repository** or that can **improve** the old implementations (**documentation**, **improving test cases**, **removing bugs**, or in any other reasonable sense)
 
 #### Issues
 
