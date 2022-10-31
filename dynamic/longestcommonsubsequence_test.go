@@ -28,6 +28,8 @@ func getLCSTestCases() []testCaseLCS {
 		{"", "abc", 0},
 		{"", "", 0},
 		{"££", "££", 2},
+		{"x笑x笑", "aaa笑a笑", 2},
+		{"xYxY", "aaaYaY", 2},
 	}
 }
 
