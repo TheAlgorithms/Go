@@ -3,7 +3,7 @@
 // wiki: https://en.wikipedia.org/wiki/Heterogram_(literature)#Isograms
 // Author: M3talM0nk3y
 
-package isogram
+package strings
 
 import (
 	"regexp"

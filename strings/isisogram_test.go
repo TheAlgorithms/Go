@@ -1,7 +1,9 @@
-package isogram
+package strings_test
 
 import (
 	"testing"
+
+	"github.com/TheAlgorithms/Go/strings"
 )
 
 var testCases = []struct {
@@ -49,7 +51,7 @@ var testCases = []struct {
 func TestIsIsogram(t *testing.T) {
 	for _, test := range testCases {
 		t.Run(test.name, func(t *testing.T) {
-			actual := IsIsogram(test.input)
+			actual := strings.IsIsogram(test.input)
 
 			if test.expected != actual {
 				t.Errorf("Expected to be %v for string %s but was %v.", test.expected, test.input, actual)
