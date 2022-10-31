@@ -39,3 +39,21 @@ func TestDiffieHellmanKeyExchange(t *testing.T) {
 		}
 	})
 }
+
+func FuzzGenSharedKey(f *testing.F) {
+	f.Add(int64(13))
+	f.Fuzz(func(t *testing.T, prvKey int64) {
+		// explicitly ignoring the return value
+		// here we want to test that no strange behaviors are raised when executing GenerateShareKey
+		_ = GenerateShareKey(prvKey)
+	})
+}
+
+func FuzzGenMutualKey(f *testing.F) {
+	f.Add(int64(5), int64(17))
+	f.Fuzz(func(t *testing.T, prvKey, shrdKey int64) {
+		// explicitly ignoring the return value
+		// here we want to test that no strange behaviors are raised when executing GenerateMutualKey
+		_ = GenerateMutualKey(prvKey, shrdKey)
+	})
+}
