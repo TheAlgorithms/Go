@@ -21,7 +21,7 @@ func TestKmp(t *testing.T) {
 			args: args{
 				word:         "ab",
 				text:         "ababacaab",
-				patternTable: Table("ababacaab"),
+				patternTable: table("ababacaab"),
 			},
 			want: []int{0, 2, 7},
 		},
@@ -54,7 +54,7 @@ func TestTable(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Table(tt.args.w); !reflect.DeepEqual(got, tt.want) {
+			if got := table(tt.args.w); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("Table() = %v, want %v", got, tt.want)
 			}
 		})

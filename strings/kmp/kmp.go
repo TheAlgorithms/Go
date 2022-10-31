@@ -32,8 +32,8 @@ func Kmp(word, text string, patternTable []int) []int {
 	return matches
 }
 
-// Table building for kmp algorithm.
-func Table(w string) []int {
+// table building for kmp algorithm.
+func table(w string) []int {
 	var (
 		t []int = []int{-1}
 		k int
