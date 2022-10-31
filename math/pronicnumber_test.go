@@ -419,6 +419,7 @@ func TestPronicNumber(t *testing.T) {
 		{"n = 398", 398, false},
 		{"n = 399", 399, false},
 		{"n = 400", 400, false},
+		{"n = 2147441940", 2147441940, true},
 	}
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
