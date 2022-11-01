@@ -1,11 +1,12 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"math/rand"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -75,26 +76,58 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
+
+func testFrameworkWithStrings(t *testing.T, sortingFunction func([]string) []string) {
+	sortTests := []struct {
+		input    []string
+		expected []string
+		name     string
+	}{
+		//Sorted slice
+		{
+			input:    []string{"1", "2", "3", "4", "5", "6", "7", "8", "10", "9"},
+			expected: []string{"1", "10", "2", "3", "4", "5", "6", "7", "8", "9"},
+			name:     "Sorted Unsigned",
+		},
+		
+	}
+	for _, test := range sortTests {
+		t.Run(test.name, func(t *testing.T) {
+			actual := sortingFunction(test.input)
+			sorted := reflect.DeepEqual(actual, test.expected)
+			if !sorted {
+				t.Errorf("test %s failed", test.name)
+				t.Errorf("actual %v expected %v", actual, test.expected)
+			}
+		})
+	}
+}
+
 //BEGIN TESTS
 
 func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
+	testFrameworkWithStrings(t, sort.Bubble[string])
 }
 
 func TestExchange(t *testing.T) {
 	testFramework(t, sort.Exchange[int])
+	testFrameworkWithStrings(t, sort.Exchange[string])
 }
 
 func TestInsertion(t *testing.T) {
 	testFramework(t, sort.Insertion[int])
+	testFrameworkWithStrings(t, sort.Insertion[string])
 }
 
 func TestMerge(t *testing.T) {
 	testFramework(t, sort.Merge[int])
+	testFrameworkWithStrings(t, sort.Merge[string])
 }
 
 func TestMergeIter(t *testing.T) {
 	testFramework(t, sort.MergeIter[int])
+	testFrameworkWithStrings(t, sort.MergeIter[string])
 }
 
 func TestMergeParallel(t *testing.T) {
@@ -119,6 +152,7 @@ func TestMergeParallel(t *testing.T) {
 
 func TestHeap(t *testing.T) {
 	testFramework(t, sort.HeapSort[int])
+	testFrameworkWithStrings(t, sort.HeapSort[string])
 }
 
 func TestCount(t *testing.T) {
@@ -127,10 +161,12 @@ func TestCount(t *testing.T) {
 
 func TestQuick(t *testing.T) {
 	testFramework(t, sort.Quicksort[int])
+	testFrameworkWithStrings(t, sort.Quicksort[string])
 }
 
 func TestShell(t *testing.T) {
 	testFramework(t, sort.Shell[int])
+	testFrameworkWithStrings(t, sort.Shell[string])
 }
 
 func TestRadix(t *testing.T) {
@@ -139,18 +175,22 @@ func TestRadix(t *testing.T) {
 
 func TestSimple(t *testing.T) {
 	testFramework(t, sort.Simple[int])
+	testFrameworkWithStrings(t, sort.Simple[string])
 }
 
 func TestImprovedSimple(t *testing.T) {
 	testFramework(t, sort.ImprovedSimple[int])
+	testFrameworkWithStrings(t, sort.ImprovedSimple[string])
 }
 
 func TestSelection(t *testing.T) {
 	testFramework(t, sort.Selection[int])
+	testFrameworkWithStrings(t, sort.Selection[string])
 }
 
 func TestComb(t *testing.T) {
 	testFramework(t, sort.Comb[int])
+	testFrameworkWithStrings(t, sort.Comb[string])
 }
 
 func TestPigeonhole(t *testing.T) {
@@ -159,6 +199,7 @@ func TestPigeonhole(t *testing.T) {
 
 func TestPatience(t *testing.T) {
 	testFramework(t, sort.Patience[int])
+	testFrameworkWithStrings(t, sort.Patience[string])
 }
 
 //END TESTS
