@@ -76,7 +76,6 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
-
 func testFrameworkWithStrings(t *testing.T, sortingFunction func([]string) []string) {
 	sortTests := []struct {
 		input    []string
@@ -85,11 +84,40 @@ func testFrameworkWithStrings(t *testing.T, sortingFunction func([]string) []str
 	}{
 		//Sorted slice
 		{
-			input:    []string{"1", "2", "3", "4", "5", "6", "7", "8", "10", "9"},
+			input:    []string{"1", "10", "2", "3", "4", "5", "6", "7", "8", "9"},
 			expected: []string{"1", "10", "2", "3", "4", "5", "6", "7", "8", "9"},
-			name:     "Sorted Unsigned",
+			name:     "Sorted String slice",
 		},
-		
+		//Reversed slice
+		{
+			input:    []string{"9", "7", "6", "5", "4", "3", "2", "10", "1"},
+			expected: []string{"1", "10", "2", "3", "4", "5", "6", "7", "9"},
+			name:     "Reversed String slice",
+		},
+		//Alphanumeric slice
+		{
+			input:    []string{"a1", "b2", "b3", "b1", "c1", "c5", "cc", "c4", "a4", "d22", "e12", "12r", "9f", "f", "t", "a", "g5"},
+			expected: []string{"12r", "9f", "a", "a1", "a4", "b1", "b2", "b3", "c1", "c4", "c5", "cc", "d22", "e12", "f", "g5", "t"},
+			name:     "Alphanumeric String slice",
+		},
+		//Strings with repetitions
+		{
+			input:    []string{"a", "b2", "b2", "b1", "c1", "c5", "cc", "c4", "a", "d22", "e12", "12r", "9f", "e12", "t", "a", "g5"},
+			expected: []string{"12r", "9f", "a", "a", "a", "b1", "b2", "b2", "c1", "c4", "c5", "cc", "d22", "e12", "e12", "g5", "t"},
+			name:     "Repetitive String",
+		},
+		//Single-entry slice
+		{
+			input:    []string{"a"},
+			expected: []string{"a"},
+			name:     "Singleton",
+		},
+		// Empty slice
+		{
+			input:    []string{},
+			expected: []string{},
+			name:     "Empty Slice",
+		},
 	}
 	for _, test := range sortTests {
 		t.Run(test.name, func(t *testing.T) {
@@ -132,6 +160,7 @@ func TestMergeIter(t *testing.T) {
 
 func TestMergeParallel(t *testing.T) {
 	testFramework(t, sort.ParallelMerge[int])
+	testFrameworkWithStrings(t, sort.ParallelMerge[string])
 
 	// Test parallel merge sort with a large slice
 	t.Run("ParallelMerge on large slice", func(t *testing.T) {
