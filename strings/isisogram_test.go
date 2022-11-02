@@ -46,6 +46,31 @@ var testCases = []struct {
 		"Uncopyrightable",
 		true,
 	},
+	{
+		"Second order isogram 1",
+		"Caucasus",
+		true,
+	},
+	{
+		"Second order isogram 2",
+		"Couscous",
+		true,
+	},
+	{
+		"Third order isogram 1",
+		"Deeded",
+		true,
+	},
+	{
+		"Third order isogram 2",
+		"Sestettes",
+		true,
+	},
+	{
+		"Not an isogram",
+		"Pneumonoultramicroscopicsilicovolcanoconiosis",
+		false,
+	},
 }
 
 func TestIsIsogram(t *testing.T) {

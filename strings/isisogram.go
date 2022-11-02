@@ -1,5 +1,7 @@
 // Checks if a given string is an isogram.
-// An isogram is a word, phrase, or sentence in which no letter of the alphabet occurs more than once.
+// A first-order isogram is a word in which no letter of the alphabet occurs more than once.
+// A second-order isogram is a word in which each letter appears twice.
+// A third-order isogram is a word in which each letter appears three times.
 // wiki: https://en.wikipedia.org/wiki/Heterogram_(literature)#Isograms
 // Author: M3talM0nk3y
 
@@ -32,10 +34,21 @@ func IsIsogram(text string) bool {
 	for _, c := range text {
 		l := string(c)
 		if _, ok := letters[l]; ok {
-			return false
+			letters[l] += 1
+
+			if letters[l] > 3 {
+				return false
+			}
+
+			continue
 		}
 		letters[l] = 1
 	}
 
-	return len(letters) == len(text)
+	mapVals := make(map[int]bool)
+	for _, v := range letters {
+		mapVals[v] = true
+	}
+
+	return len(mapVals) == 1
 }
