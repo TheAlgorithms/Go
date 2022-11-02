@@ -16,11 +16,10 @@ type BinarySearch[T constraints.Ordered] struct {
 
 // NewBinarySearch create a novel Binary-Search tree
 func NewBinarySearch[T constraints.Ordered]() *BinarySearch[T] {
-	var leaf *Node[T]
 	return &BinarySearch[T]{
 		binaryTree: &binaryTree[T]{
-			Root: leaf,
-			NIL:  leaf,
+			Root: nil,
+			NIL:  nil,
 		},
 	}
 }

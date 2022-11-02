@@ -11,11 +11,10 @@ type AVL[T constraints.Ordered] struct {
 
 // NewAVL create a novel AVL tree
 func NewAVL[T constraints.Ordered]() *AVL[T] {
-	var leaf *Node[T]
 	return &AVL[T]{
 		binaryTree: &binaryTree[T]{
-			Root: leaf,
-			NIL:  leaf,
+			Root: nil,
+			NIL:  nil,
 		},
 	}
 }
