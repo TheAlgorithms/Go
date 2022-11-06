@@ -8,8 +8,15 @@
 package strings
 
 import (
+	"errors"
 	"regexp"
 	"strings"
+)
+
+const (
+	firstOrder  int = 1
+	secondOrder int = 2
+	thirdOrder  int = 3
 )
 
 func hasDigit(text string) bool {
@@ -22,12 +29,16 @@ func hasSymbol(text string) bool {
 	return re.MatchString(text)
 }
 
-func IsIsogram(text string) bool {
+func IsIsogram(text string, order int) (bool, error) {
+	if order != firstOrder && order != secondOrder && order != thirdOrder {
+		return false, errors.New("Invalid isogram order provided")
+	}
+
 	text = strings.ToLower(text)
 	text = strings.Join(strings.Fields(text), "")
 
 	if hasDigit(text) || hasSymbol(text) {
-		return false
+		return false, errors.New("Cannot contain numbers or symbols")
 	}
 
 	letters := make(map[string]int)
@@ -37,7 +48,7 @@ func IsIsogram(text string) bool {
 			letters[l] += 1
 
 			if letters[l] > 3 {
-				return false
+				return false, nil
 			}
 
 			continue
@@ -50,5 +61,9 @@ func IsIsogram(text string) bool {
 		mapVals[v] = true
 	}
 
-	return len(mapVals) == 1
+	if _, ok := mapVals[order]; ok && len(mapVals) == 1 {
+		return true, nil
+	}
+
+	return false, nil
 }
