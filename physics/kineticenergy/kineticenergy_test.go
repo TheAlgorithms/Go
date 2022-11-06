@@ -1,18 +1,20 @@
-package physics_test
+package kineticenergy
 
 import (
-	"errors"
 	"testing"
-
-	"github.com/TheAlgorithms/Go/physics/kineticenergy"
 )
 
 func TestKineticEnergy(t *testing.T) {
-	tests := getTests()
+	tests := getTestCases()
 	for _, test := range tests {
 		t.Run(test.description, func(t *testing.T) {
-			if res := KineticEnergy(test.mass, test.velocity); res != test.expected {
-				t.Errorf("KineticEnergy() = %v, expected %v", res, test.expected)
+			actual, err := KineticEnergy(test.mass, test.velocity)
+			if err != test.err {
+				t.Errorf("description:%v KineticEnergy() = %v, expected err: %v", test.description, err, test.err)
+			}
+			
+			if actual != test.expected {
+				t.Errorf("KineticEnergy() = %v, expected %v", actual, test.expected)
 			}
 		})
 	}
@@ -23,12 +25,14 @@ func getTestCases() []struct {
 	mass float64
 	velocity float64
 	expected float64
+	err error
 } {
 	testCases := []struct {
 		description string
 		mass float64
 		velocity float64
 		expected float64
+		err error
 	}{
 		{
 			description: "success",
@@ -64,7 +68,8 @@ func getTestCases() []struct {
 			description: "Negative mass",
 			mass: -5,
 			velocity: 10,
-			expected: errors.New("the mass of an object cannot be less than zero"),
+			expected: 0,
+			err: ErrNegativeMass,
 		},
 	}
 

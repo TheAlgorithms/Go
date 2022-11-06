@@ -1,18 +1,20 @@
-package physics_test
+package potentialenergy
 
 import (
-	"errors"
 	"testing"
-
-	"github.com/hypntc/Go/physics/potentialenergy"
 )
 
 func TestPotentialEnergy(t *testing.T) {
-	tests := getTests()
+	tests := getTestCases()
 	for _, test := range tests {
 		t.Run(test.description, func(t *testing.T) {
-			if res := PotentialEnergy(test.mass, test.height); res != test.expected {
-				t.Errorf("PotentialEnergy() = %v, expected %v", res, test.expected)
+			actual, err := PotentialEnergy(test.mass, test.height)
+			if err != test.err {
+				t.Errorf("description:%v PotentialEnergy() = %v, expected err: %v", test.description, err, test.err)
+			}
+			
+			if actual != test.expected {
+				t.Errorf("PotentialEnergy() = %v, expected %v", actual, test.expected)
 			}
 		})
 	}
@@ -23,12 +25,14 @@ func getTestCases() []struct {
 	mass float64
 	height float64
 	expected float64
+	err error
 } {
 	testCases := []struct {
 		description string
 		mass float64
 		height float64
 		expected float64
+		err error
 	}{
 		{
 			description: "success",
@@ -58,13 +62,15 @@ func getTestCases() []struct {
 			description: "Negative mass",
 			mass: -5,
 			height: 10,
-			expected: errors.New("the mass of an object cannot be negative"),
+			expected: 0,
+			err: ErrNegativeMass,
 		},
 		{
 			description: "negative height",
 			mass: 10,
 			height: -20,
-			expected: errors.New("the height of an object cannot be negative"),
+			expected: 0,
+			err: ErrNegativeHeight,
 		},
 	}
 

@@ -9,9 +9,13 @@ import (
 	"math"
 )
 
+var (
+	ErrNegativeMass = errors.New("the mass of an object cannot be negative")
+)
+
 func KineticEnergy(mass, velocity float64) (float64, error) {
 	if mass < 0 {
-		return 0, errors.New("the mass of an object cannot be less than zero")
+		return 0, ErrNegativeMass
 	}
 
 	return 0.5 * mass * math.Abs(velocity) * math.Abs(velocity), nil

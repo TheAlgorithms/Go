@@ -12,13 +12,18 @@ const (
 	g = 9.80665
 )
 
+var (
+	ErrNegativeMass = errors.New("the mass of an object cannot be negative")
+	ErrNegativeHeight = errors.New("the height of an object cannot be negative")
+)
+
 func PotentialEnergy(mass, height float64) (float64, error) {
 	if mass < 0 {
-		return 0, errors.New("the mass of an object cannot be negative")
+		return 0, ErrNegativeMass
 	}
 
 	if height < 0 {
-		return 0, errors.New("the height of an object cannot be negative")
+		return 0, ErrNegativeHeight
 	}
 
 	return mass * g * height, nil
