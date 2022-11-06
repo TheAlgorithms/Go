@@ -9,6 +9,7 @@ import (
 )
 
 const (
+	// gravitational acceleration
 	g = 9.80665
 )
 
@@ -17,11 +18,14 @@ var (
 	ErrNegativeHeight = errors.New("the height of an object cannot be negative")
 )
 
+// calculate the potential energy of an object
 func PotentialEnergy(mass, height float64) (float64, error) {
+	// return an error if the mass is negative
 	if mass < 0 {
 		return 0, ErrNegativeMass
 	}
 
+	// return an error if the height is negative
 	if height < 0 {
 		return 0, ErrNegativeHeight
 	}

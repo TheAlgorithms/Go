@@ -13,7 +13,9 @@ var (
 	ErrNegativeMass = errors.New("the mass of an object cannot be negative")
 )
 
+// calculate the kinetic energy of an object
 func KineticEnergy(mass, velocity float64) (float64, error) {
+	// return an error if the mass is negative
 	if mass < 0 {
 		return 0, ErrNegativeMass
 	}
