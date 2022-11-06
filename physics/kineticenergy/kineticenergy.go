@@ -1,9 +1,6 @@
 // kineticenergy.go
-// description: Kinetic Energy
-// details:
-// In physics, the kinetic energy of an object is the energy that it possesses due to its motion. [Kinetic Energy](https://en.wikipedia.org/wiki/Kinetic_energy) is defined as:
-// author(s) [hypntc](https://github.com/hypntc)
-// see kineticenergy_test.go
+// description: In physics, the kinetic energy of an object is the energy that it possesses due to its motion. [Kinetic Energy](https://en.wikipedia.org/wiki/Kinetic_energy) is defined as:
+// [hypntc](https://github.com/hypntc)
 
 package kineticenergy
 

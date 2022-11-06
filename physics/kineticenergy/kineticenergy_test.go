@@ -1,7 +1,7 @@
 package physics_test
 
 import (
-	"error"
+	"errors"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/physics/kineticenergy"
