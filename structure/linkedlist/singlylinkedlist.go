@@ -84,12 +84,6 @@ func (ll *Singly[T]) DelAtEnd() (T, bool) {
 
 }
 
-// DelInMiddle deletes the node in middle of linked list and returns its value.
-// Returns false if list is empty
-func (ll *Singly[T]) DelInMiddle() (T, bool) {
-	return ll.DelByPos(ll.Count() / 2)
-}
-
 // DelByPos deletes the node at the middle based on position in the list
 // and returns its value. Returns false if the list is empty or length is not more than given position
 func (ll *Singly[T]) DelByPos(pos int) (T, bool) {
