@@ -13,10 +13,12 @@ import (
 	"strings"
 )
 
+type IsogramOrder int
+
 const (
-	firstOrder  int = 1
-	secondOrder int = 2
-	thirdOrder  int = 3
+	First IsogramOrder = iota + 1
+	Second
+	Third
 )
 
 func hasDigit(text string) bool {
@@ -29,8 +31,8 @@ func hasSymbol(text string) bool {
 	return re.MatchString(text)
 }
 
-func IsIsogram(text string, order int) (bool, error) {
-	if order != firstOrder && order != secondOrder && order != thirdOrder {
+func IsIsogram(text string, order IsogramOrder) (bool, error) {
+	if order < First || order > Third {
 		return false, errors.New("Invalid isogram order provided")
 	}
 
@@ -61,7 +63,7 @@ func IsIsogram(text string, order int) (bool, error) {
 		mapVals[v] = true
 	}
 
-	if _, ok := mapVals[order]; ok && len(mapVals) == 1 {
+	if _, ok := mapVals[int(order)]; ok && len(mapVals) == 1 {
 		return true, nil
 	}
 

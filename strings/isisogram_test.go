@@ -10,7 +10,7 @@ import (
 var testCases = []struct {
 	name        string
 	input       string
-	order       int
+	order       strings.IsogramOrder
 	expectedVal bool
 	expectedErr error
 }{
@@ -104,6 +104,13 @@ var testCases = []struct {
 		4,
 		false,
 		errors.New("Invalid isogram order provided"),
+	},
+	{
+		"Third order isogram checked as first order",
+		"Deeded",
+		1,
+		false,
+		nil,
 	},
 }
 
