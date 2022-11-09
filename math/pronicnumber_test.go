@@ -1,5 +1,4 @@
 // pronicnumber_test.go
-// description: Returns true if number is pronic, false otherwise
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see pronicnumber.go
 
