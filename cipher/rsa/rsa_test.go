@@ -35,30 +35,28 @@ var rsaTestData = []struct {
 	},
 }
 
-func TestEncryptDecrypt(t *testing.T) {
+func testPrecondition(t *testing.T) (int64, int64, int64) {
 	// Both prime numbers
+	t.Helper()
 	p := int64(61)
 	q := int64(53)
-
 	n := p * q
-
 	delta := lcm.Lcm(p-1, q-1)
-
 	e := int64(17) // Coprime with delta
-
 	if gcd.Recursive(e, delta) != 1 {
-		t.Fatal("Algorithm failed in preamble stage:\n\tPrime numbers are chosen statically and it shouldn't fail at this stage")
+		t.Fatal("something went wrong: prime numbers are chosen statically and it shouldn't fail at this stage")
 	}
-
 	d, err := modular.Inverse(e, delta)
-
 	if err != nil {
-		t.Fatalf("Algorithm failed in preamble stage:\n\tProblem with a modular directory dependency: %v", err)
+		t.Fatalf("something went wrong: problem with %q: %v", "modular.Inverse", err)
 	}
+	return e, d, n
+}
 
+func TestEncryptDecrypt(t *testing.T) {
 	for _, test := range rsaTestData {
 		t.Run(test.description, func(t *testing.T) {
-
+			e, d, n := testPrecondition(t)
 			message := []rune(test.input)
 			encrypted, err := Encrypt(message, e, n)
 			if err != nil {
@@ -76,4 +74,24 @@ func TestEncryptDecrypt(t *testing.T) {
 			}
 		})
 	}
+}
+
+func FuzzRsa(f *testing.F) {
+	for _, rsaTestInput := range rsaTestData {
+		f.Add(rsaTestInput.input)
+	}
+	f.Fuzz(func(t *testing.T, input string) {
+		e, d, n := testPrecondition(t)
+		encrypted, err := Encrypt([]rune(input), e, n)
+		if err != nil {
+			t.Fatalf("failed to encrypt string: %v", err)
+		}
+		decrypted, err := Decrypt(encrypted, d, n)
+		if err != nil {
+			t.Fatalf("failed to decrypt string: %v", err)
+		}
+		if decrypted != input {
+			t.Fatalf("expected: %q, got: %q", input, decrypted)
+		}
+	})
 }
