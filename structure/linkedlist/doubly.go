@@ -19,76 +19,86 @@ type Doubly[T any] struct {
 	Head *Node[T]
 }
 
+// Init initializes double linked list
+func (ll *Doubly[T]) Init() *Doubly[T] {
+	ll.Head = &Node[T]{}
+	ll.Head.Next = ll.Head
+	ll.Head.Prev = ll.Head
+
+	return ll
+}
+
 func NewDoubly[T any]() *Doubly[T] {
-	return &Doubly[T]{}
+	return new(Doubly[T]).Init()
+}
+
+// lazyInit lazily initializes a zero List value.
+func (ll *Doubly[T]) lazyInit() {
+	if ll.Head.Next == nil {
+		ll.Init()
+	}
+}
+
+func (ll *Doubly[T]) insert(n, at *Node[T]) *Node[T] {
+	n.Prev = at
+	n.Next = at.Next
+	n.Prev.Next = n
+	n.Next.Prev = n
+
+	return n
+}
+
+func (ll *Doubly[T]) insertValue(val T, at *Node[T]) *Node[T] {
+	return ll.insert(NewNode(val), at)
 }
 
 // AddAtBeg Add a node to the beginning of the linkedlist
 func (ll *Doubly[T]) AddAtBeg(val T) {
-	n := NewNode(val)
-	n.Next = ll.Head
-
-	if ll.Head != nil {
-		ll.Head.Prev = n
-	}
-
-	ll.Head = n
-
+	ll.lazyInit()
+	ll.insertValue(val, ll.Head)
 }
 
 // AddAtEnd Add a node at the end of the linkedlist
 func (ll *Doubly[T]) AddAtEnd(val T) {
-	n := NewNode(val)
+	ll.lazyInit()
+	ll.insertValue(val, ll.Head.Prev)
+}
 
-	if ll.Head == nil {
-		ll.Head = n
-		return
-	}
+func (ll *Doubly[T]) Remove(n *Node[T]) T {
+	n.Prev.Next = n.Next
+	n.Next.Prev = n.Prev
+	n.Next = nil
+	n.Prev = nil
 
-	cur := ll.Head
-	for ; cur.Next != nil; cur = cur.Next {
-	}
-	cur.Next = n
-	n.Prev = cur
+	return n.Val
 }
 
 // DelAtBeg Delete the node at the beginning of the linkedlist
 func (ll *Doubly[T]) DelAtBeg() (T, bool) {
-	if ll.Head == nil {
+	// no item
+	if ll.Head.Next == nil {
 		var r T
 		return r, false
 	}
 
-	cur := ll.Head
-	ll.Head = cur.Next
-
-	if ll.Head != nil {
-		ll.Head.Prev = nil
-	}
-	return cur.Val, true
+	n := ll.Head.Next
+	val := n.Val
+	ll.Remove(n)
+	return val, true
 }
 
 // DetAtEnd Delete a node at the end of the linkedlist
 func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 	// no item
-	if ll.Head == nil {
+	if ll.Head.Prev == nil {
 		var r T
 		return r, false
 	}
 
-	// only one item
-	if ll.Head.Next == nil {
-		return ll.DelAtBeg()
-	}
-
-	// more than one, go to second last
-	cur := ll.Head
-	for ; cur.Next.Next != nil; cur = cur.Next {
-	}
-
-	retval := cur.Next.Val
-	cur.Next = nil
-	return retval, true
+	n := ll.Head.Prev
+	val := n.Val
+	ll.Remove(n)
+	return val, true
 }
 
 // DelByPos deletes node at middle based on position in list
@@ -128,7 +138,11 @@ func (ll *Doubly[T]) DelByPos(pos int) (T, bool) {
 func (ll *Doubly[T]) Count() int {
 	var ctr int = 0
 
-	for cur := ll.Head; cur != nil; cur = cur.Next {
+	if ll.Head.Next == nil {
+		return 0
+	}
+
+	for cur := ll.Head.Next; cur != ll.Head; cur = cur.Next {
 		ctr += 1
 	}
 
@@ -153,7 +167,7 @@ func (ll *Doubly[T]) Reverse() {
 
 // Display display the linked list
 func (ll *Doubly[T]) Display() {
-	for cur := ll.Head; cur != nil; cur = cur.Next {
+	for cur := ll.Head.Next; cur != ll.Head; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
 	}
 
@@ -166,12 +180,47 @@ func (ll *Doubly[T]) DisplayReverse() {
 		return
 	}
 	var cur *Node[T]
-	for cur = ll.Head; cur.Next != nil; cur = cur.Next {
-	}
-
-	for ; cur != nil; cur = cur.Prev {
+	for cur = ll.Head.Prev; cur != ll.Head; cur = cur.Prev {
 		fmt.Print(cur.Val, " ")
 	}
 
 	fmt.Print("\n")
+}
+
+func (ll *Doubly[T]) Front() *Node[T] {
+	if ll.Count() == 0 {
+		return nil
+	}
+
+	return ll.Head.Next
+}
+
+func (ll *Doubly[T]) Back() *Node[T] {
+	if ll.Count() == 0 {
+		return nil
+	}
+
+	return ll.Head.Prev
+}
+
+func (ll *Doubly[T]) MoveToBack(n *Node[T]) {
+	if ll.Head.Prev == n {
+		return
+	}
+
+	ll.move(n, ll.Head.Prev)
+}
+
+func (ll *Doubly[T]) move(n, at *Node[T]) {
+	if n == at {
+		return
+	}
+
+	n.Prev.Next = n.Next
+	n.Next.Prev = n.Prev
+
+	n.Prev = at
+	n.Next = at.Next
+	n.Prev.Next = n
+	n.Next.Prev = n
 }
