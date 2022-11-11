@@ -301,7 +301,7 @@ func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
 		indent += "   "
 	}
 
-	if t.isRBTree() {
+	if t.isRB() {
 		color := "Black"
 		if root.Color == Red {
 			color = "Red"
@@ -316,8 +316,8 @@ func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
 	t.printHelper(root.Right, indent, false)
 }
 
-// Determines the tree is RB
-func (t *binaryTree[T]) isRBTree() bool {
+// Determines the binary tree is RB, whose NIL != nil
+func (t *binaryTree[T]) isRB() bool {
 	return t.NIL != nil
 }
 
@@ -367,7 +367,7 @@ func (t *binaryTree[T]) transplant(u, v *Node[T]) {
 		u.Parent.Right = v
 	}
 
-	if t.isRBTree() || v != t.NIL {
+	if t.isRB() || v != t.NIL {
 		v.Parent = u.Parent
 	}
 }
