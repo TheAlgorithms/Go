@@ -22,7 +22,7 @@ func NewSingly[T any]() *Singly[T] {
 
 // AddAtBeg adds a new snode with given value at the beginning of the list.
 func (ll *Singly[T]) AddAtBeg(val T) {
-	n := NewNode[T](val)
+	n := NewNode(val)
 	n.Next = ll.Head
 	ll.Head = n
 	ll.length++
@@ -82,6 +82,40 @@ func (ll *Singly[T]) DelAtEnd() (T, bool) {
 	ll.length--
 	return retval, true
 
+}
+
+// DelByPos deletes the node at the middle based on position in the list
+// and returns its value. Returns false if the list is empty or length is not more than given position
+func (ll *Singly[T]) DelByPos(pos int) (T, bool) {
+	switch {
+	case ll.Head == nil:
+		var r T
+		return r, false
+	case pos-1 > ll.length:
+		var r T
+		return r, false
+	case pos-1 == 0:
+		return ll.DelAtBeg()
+	case pos-1 == ll.Count():
+		return ll.DelAtEnd()
+	}
+
+	var prev *Node[T]
+	var val T
+	cur := ll.Head
+	count := 0
+
+	for count < pos-1 {
+		prev = cur
+		cur = cur.Next
+		count++
+	}
+
+	val = cur.Val
+	prev.Next = cur.Next
+	ll.length--
+
+	return val, true
 }
 
 // Count returns the current size of the list.
