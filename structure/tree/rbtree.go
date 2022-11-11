@@ -19,6 +19,9 @@ type RB[T constraints.Ordered] struct {
 	*binaryTree[T]
 }
 
+// Verify Interface Compliance for RB
+var _ Tree[int] = (*RB[int])(nil)
+
 // Create a new Red-Black Tree
 func NewRB[T constraints.Ordered]() *RB[T] {
 	leaf := &Node[T]{Color: Black, Left: nil, Right: nil}
@@ -46,7 +49,7 @@ func (t *RB[T]) Delete(data T) bool {
 
 func (t *RB[T]) pushHelper(x *Node[T], key T) {
 	y := t.NIL
-	for !t.isNil(x) {
+	for x != t.NIL {
 		y = x
 		switch {
 		case key < x.Key:
@@ -65,7 +68,7 @@ func (t *RB[T]) pushHelper(x *Node[T], key T) {
 		Parent: y,
 		Color:  Red,
 	}
-	if t.isNil(y) {
+	if y == t.NIL {
 		t.Root = node
 	} else if node.Key < y.Key {
 		y.Left = node
@@ -73,12 +76,12 @@ func (t *RB[T]) pushHelper(x *Node[T], key T) {
 		y.Right = node
 	}
 
-	if t.isNil(node.Parent) {
+	if node.Parent == t.NIL {
 		node.Color = Black
 		return
 	}
 
-	if t.isNil(node.Parent.Parent) {
+	if node.Parent.Parent == t.NIL {
 		return
 	}
 
@@ -89,12 +92,12 @@ func (t *RB[T]) leftRotate(x *Node[T]) {
 	y := x.Right
 	x.Right = y.Left
 
-	if !t.isNil(y.Left) {
+	if y.Left != t.NIL {
 		y.Left.Parent = x
 	}
 
 	y.Parent = x.Parent
-	if t.isNil(x.Parent) {
+	if x.Parent == t.NIL {
 		t.Root = y
 	} else if x == x.Parent.Left {
 		x.Parent.Left = y
@@ -109,12 +112,12 @@ func (t *RB[T]) leftRotate(x *Node[T]) {
 func (t *RB[T]) rightRotate(x *Node[T]) {
 	y := x.Left
 	x.Left = y.Right
-	if !t.isNil(y.Right) {
+	if y.Right != t.NIL {
 		y.Right.Parent = x
 	}
 
 	y.Parent = x.Parent
-	if t.isNil(x.Parent) {
+	if x.Parent == t.NIL {
 		t.Root = y
 	} else if x == y.Parent.Right {
 		y.Parent.Right = y
@@ -171,7 +174,7 @@ func (t *RB[T]) pushFix(k *Node[T]) {
 
 func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 	z := t.NIL
-	for !t.isNil(node) {
+	for node != t.NIL {
 		switch {
 		case node.Key == key:
 			z = node
@@ -183,7 +186,7 @@ func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 		}
 	}
 
-	if t.isNil(z) {
+	if z == t.NIL {
 		fmt.Println("Key not found in the tree")
 		return false
 	}
@@ -191,10 +194,10 @@ func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 	var x *Node[T]
 	y := z
 	yOriginColor := y.Color
-	if t.isNil(z.Left) {
+	if z.Left == t.NIL {
 		x = z.Right
 		t.transplant(z, z.Right)
-	} else if t.isNil(z.Right) {
+	} else if z.Right == t.NIL {
 		x = z.Left
 		t.transplant(z, z.Left)
 	} else {

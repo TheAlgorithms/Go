@@ -9,6 +9,9 @@ type AVL[T constraints.Ordered] struct {
 	*binaryTree[T]
 }
 
+// Verify Interface Compliance for AVL
+var _ Tree[int] = (*AVL[int])(nil)
+
 // NewAVL create a novel AVL tree
 func NewAVL[T constraints.Ordered]() *AVL[T] {
 	return &AVL[T]{
@@ -37,7 +40,7 @@ func (avl *AVL[T]) Delete(key T) bool {
 }
 
 func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
-	if avl.isNil(root) {
+	if root == avl.NIL {
 		return &Node[T]{
 			Key:    key,
 			Left:   avl.NIL,
@@ -87,7 +90,7 @@ func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
 }
 
 func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
-	if avl.isNil(root) {
+	if root == avl.NIL {
 		return root
 	}
 
@@ -95,23 +98,23 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 	case key < root.Key:
 		tmp := avl.deleteHelper(root.Left, key)
 		root.Left = tmp
-		if !avl.isNil(tmp) {
+		if tmp != avl.NIL {
 			tmp.Parent = root
 		}
 	case key > root.Key:
 		tmp := avl.deleteHelper(root.Right, key)
 		root.Right = tmp
-		if !avl.isNil(tmp) {
+		if tmp != avl.NIL {
 			tmp.Parent = root
 		}
 	default:
-		if avl.isNil(root.Left) || avl.isNil(root.Right) {
+		if root.Left == avl.NIL || root.Right == avl.NIL {
 			tmp := root.Left
-			if !avl.isNil(root.Right) {
+			if root.Right != avl.NIL {
 				tmp = root.Right
 			}
 
-			if avl.isNil(tmp) {
+			if tmp == avl.NIL {
 				root = avl.NIL
 			} else {
 				tmp.Parent = root.Parent
@@ -122,13 +125,13 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 			root.Key = tmp.Key
 			del := avl.deleteHelper(root.Right, tmp.Key)
 			root.Right = del
-			if !avl.isNil(del) {
+			if del != avl.NIL {
 				del.Parent = root
 			}
 		}
 	}
 
-	if avl.isNil(root) {
+	if root == avl.NIL {
 		return root
 	}
 
@@ -158,15 +161,15 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 }
 
 func (avl *AVL[T]) height(root *Node[T]) int {
-	if avl.isNil(root) {
+	if root == avl.NIL {
 		return 0
 	}
 
 	var leftHeight, rightHeight int
-	if !avl.isNil(root.Left) {
+	if root.Left != avl.NIL {
 		leftHeight = root.Left.Height
 	}
-	if !avl.isNil(root.Right) {
+	if root.Right != avl.NIL {
 		rightHeight = root.Right.Height
 	}
 	return 1 + max.Int(leftHeight, rightHeight)
@@ -176,10 +179,10 @@ func (avl *AVL[T]) height(root *Node[T]) int {
 // and positive balance factor means subtree Root is heavy toward Right side
 func (avl *AVL[T]) balanceFactor(root *Node[T]) int {
 	var leftHeight, rightHeight int
-	if !avl.isNil(root.Left) {
+	if root.Left != avl.NIL {
 		leftHeight = root.Left.Height
 	}
-	if !avl.isNil(root.Right) {
+	if root.Right != avl.NIL {
 		rightHeight = root.Right.Height
 	}
 	return leftHeight - rightHeight
@@ -191,7 +194,7 @@ func (avl *AVL[T]) leftRotate(x *Node[T]) *Node[T] {
 	y.Left = x
 	x.Right = yl
 
-	if !avl.isNil(yl) {
+	if yl != avl.NIL {
 		yl.Parent = x
 	}
 
@@ -209,7 +212,7 @@ func (avl *AVL[T]) rightRotate(x *Node[T]) *Node[T] {
 	y.Right = x
 	x.Left = yr
 
-	if !avl.isNil(yr) {
+	if yr != avl.NIL {
 		yr.Parent = x
 	}
 

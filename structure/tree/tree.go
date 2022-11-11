@@ -54,7 +54,7 @@ type Node[T constraints.Ordered] struct {
 // Note: to avoid instantiation, we make the base struct un-exported.
 type binaryTree[T constraints.Ordered] struct {
 	Root *Node[T]
-	NIL  *Node[T] // NIL denotes the leaf node of Red-Black Tree
+	NIL  *Node[T] // NIL denotes the leaf node, which is `nil` in BinarySearch and AVL and a sentinel value in RB
 }
 
 // Get a Node from the binary-search Tree
@@ -95,7 +95,7 @@ func (t *binaryTree[T]) Depth() int {
 // Returns the Max value of the tree
 func (t *binaryTree[T]) Max() (T, bool) {
 	ret := t.maximum(t.Root)
-	if t.isNil(ret) {
+	if ret == t.NIL {
 		return t.NIL.Key, false
 	}
 
@@ -105,7 +105,7 @@ func (t *binaryTree[T]) Max() (T, bool) {
 // Return the Min value of the tree
 func (t *binaryTree[T]) Min() (T, bool) {
 	ret := t.minimum(t.Root)
-	if t.isNil(ret) {
+	if ret == t.NIL {
 		return t.NIL.Key, false
 	}
 
@@ -122,7 +122,7 @@ func (t *binaryTree[T]) LevelOrder() []T {
 // AccessNodesByLayer accesses nodes layer by layer (2-D array),  instead of printing the results as 1-D array.
 func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
 	root := t.Root
-	if t.isNil(root) {
+	if root == t.NIL {
 		return [][]T{}
 	}
 	var q []*Node[T]
@@ -137,10 +137,10 @@ func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
 		for i := 0; i < qLen; i++ {
 			n, q = q[0], q[1:]
 			res[idx] = append(res[idx], n.Key)
-			if !t.isNil(n.Left) {
+			if n.Left != t.NIL {
 				q = append(q, n.Left)
 			}
-			if !t.isNil(n.Right) {
+			if n.Right != t.NIL {
 				q = append(q, n.Right)
 			}
 		}
@@ -179,13 +179,8 @@ func (t *binaryTree[T]) Successor(key T) (T, bool) {
 	return t.successorHelper(node)
 }
 
-// Determines node is a leaf node
-func (t *binaryTree[T]) isNil(node *Node[T]) bool {
-	return node == t.NIL
-}
-
 func (t *binaryTree[T]) searchTreeHelper(node *Node[T], key T) (*Node[T], bool) {
-	if node == nil || t.isNil(node) {
+	if node == t.NIL {
 		return node, false
 	}
 
@@ -205,8 +200,8 @@ func (t *binaryTree[T]) inOrderHelper(node *Node[T]) []T {
 	var stack []*Node[T]
 	var ret []T
 
-	for !t.isNil(node) || len(stack) > 0 {
-		for !t.isNil(node) {
+	for node != t.NIL || len(stack) > 0 {
+		for node != t.NIL {
 			stack = append(stack, node)
 			node = node.Left
 		}
@@ -221,7 +216,7 @@ func (t *binaryTree[T]) inOrderHelper(node *Node[T]) []T {
 }
 
 func (t *binaryTree[T]) preOrderRecursive(n *Node[T], traversal *[]T) {
-	if t.isNil(n) {
+	if n == t.NIL {
 		return
 	}
 
@@ -231,7 +226,7 @@ func (t *binaryTree[T]) preOrderRecursive(n *Node[T], traversal *[]T) {
 }
 
 func (t *binaryTree[T]) postOrderRecursive(n *Node[T], traversal *[]T) {
-	if t.isNil(n) {
+	if n == t.NIL {
 		return
 	}
 
@@ -241,7 +236,7 @@ func (t *binaryTree[T]) postOrderRecursive(n *Node[T], traversal *[]T) {
 }
 
 func (t *binaryTree[T]) calculateDepth(n *Node[T], depth int) int {
-	if t.isNil(n) {
+	if n == t.NIL {
 		return depth
 	}
 
@@ -250,11 +245,11 @@ func (t *binaryTree[T]) calculateDepth(n *Node[T], depth int) int {
 
 // Returns the minimum value of node of the tree
 func (t *binaryTree[T]) minimum(node *Node[T]) *Node[T] {
-	if t.isNil(node) {
+	if node == t.NIL {
 		return node
 	}
 
-	for !t.isNil(node.Left) {
+	for node.Left != t.NIL {
 		node = node.Left
 	}
 	return node
@@ -262,11 +257,11 @@ func (t *binaryTree[T]) minimum(node *Node[T]) *Node[T] {
 
 // Returns the maximum value of node of the tree
 func (t *binaryTree[T]) maximum(node *Node[T]) *Node[T] {
-	if t.isNil(node) {
+	if node == t.NIL {
 		return node
 	}
 
-	for !t.isNil(node.Right) {
+	for node.Right != t.NIL {
 		node = node.Right
 	}
 	return node
@@ -281,11 +276,11 @@ func (t *binaryTree[T]) levelOrderHelper(root *Node[T], traversal *[]T) {
 	for len(q) != 0 {
 		tmp, q = q[0], q[1:]
 		*traversal = append(*traversal, tmp.Key)
-		if !t.isNil(tmp.Left) {
+		if tmp.Left != t.NIL {
 			q = append(q, tmp.Left)
 		}
 
-		if !t.isNil(tmp.Right) {
+		if tmp.Right != t.NIL {
 			q = append(q, tmp.Right)
 		}
 	}
@@ -293,7 +288,7 @@ func (t *binaryTree[T]) levelOrderHelper(root *Node[T], traversal *[]T) {
 
 // Reference: https://stackoverflow.com/a/51730733/15437172
 func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
-	if t.isNil(root) {
+	if root == t.NIL {
 		return
 	}
 
@@ -327,17 +322,17 @@ func (t *binaryTree[T]) isRBTree() bool {
 }
 
 func (t *binaryTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
-	if !t.isNil(node.Left) {
+	if node.Left != t.NIL {
 		return t.maximum(node.Left).Key, true
 	}
 
 	p := node.Parent
-	for !t.isNil(p) && node == p.Left {
+	for p != t.NIL && node == p.Left {
 		node = p
 		p = p.Parent
 	}
 
-	if t.isNil(p) {
+	if p == t.NIL {
 		var dummy T
 		return dummy, false
 	}
@@ -345,17 +340,17 @@ func (t *binaryTree[T]) predecessorHelper(node *Node[T]) (T, bool) {
 }
 
 func (t *binaryTree[T]) successorHelper(node *Node[T]) (T, bool) {
-	if !t.isNil(node.Right) {
+	if node.Right != t.NIL {
 		return t.minimum(node.Right).Key, true
 	}
 
 	p := node.Parent
-	for !t.isNil(p) && node == p.Right {
+	for p != t.NIL && node == p.Right {
 		node = p
 		p = p.Parent
 	}
 
-	if t.isNil(p) {
+	if p == t.NIL {
 		var dummy T
 		return dummy, false
 	}
@@ -364,7 +359,7 @@ func (t *binaryTree[T]) successorHelper(node *Node[T]) (T, bool) {
 
 func (t *binaryTree[T]) transplant(u, v *Node[T]) {
 	switch {
-	case t.isNil(u.Parent):
+	case u.Parent == t.NIL:
 		t.Root = v
 	case u == u.Parent.Left:
 		u.Parent.Left = v
@@ -372,7 +367,7 @@ func (t *binaryTree[T]) transplant(u, v *Node[T]) {
 		u.Parent.Right = v
 	}
 
-	if v != nil {
+	if t.isRBTree() || v != t.NIL {
 		v.Parent = u.Parent
 	}
 }
