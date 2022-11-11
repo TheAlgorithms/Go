@@ -19,11 +19,22 @@ type Polybius struct {
 // If the size of "chars" is longer than "size",
 // "chars" are truncated to "size".
 func NewPolybius(key string, size int, chars string) (*Polybius, error) {
+	if size < 0 {
+		return nil, fmt.Errorf("provided size %d cannot be negative", size)
+	}
 	key = strings.ToUpper(key)
+	if size > len(chars) {
+		return nil, fmt.Errorf("provided size %d is too small to use to slice string %q of len %d", size, chars, len(chars))
+	}
+	for _, r := range chars {
+		if (r < 'a' || r > 'z') && (r < 'A' || r > 'Z') {
+			return nil, fmt.Errorf("provided string %q should only contain latin characters", chars)
+		}
+	}
 	chars = strings.ToUpper(chars)[:size]
-	for idx, ch := range chars {
-		if strings.Contains(chars[idx+1:], string(ch)) {
-			return nil, fmt.Errorf("\"chars\" contains same character: %c", ch)
+	for i, r := range chars {
+		if strings.ContainsRune(chars[i+1:], r) {
+			return nil, fmt.Errorf("%q contains same character %q", chars[i+1:], r)
 		}
 	}
 
@@ -63,7 +74,7 @@ func (p *Polybius) Decrypt(text string) (string, error) {
 func (p *Polybius) encipher(char rune) (string, error) {
 	index := strings.IndexRune(p.key, char)
 	if index < 0 {
-		return "", fmt.Errorf("%c does not exist in keys", char)
+		return "", fmt.Errorf("%q does not exist in keys", char)
 	}
 	row := index / p.size
 	col := index % p.size
@@ -83,5 +94,5 @@ func (p *Polybius) decipher(chars []rune) (string, error) {
 	if col < 0 {
 		return "", fmt.Errorf("%c does not exist in characters", chars[1])
 	}
-	return string([]rune(p.key)[row*p.size+col]), nil
+	return string(p.key[row*p.size+col]), nil
 }
