@@ -234,7 +234,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 7. [`EditDistanceRecursive`](./dynamic/editdistance.go#L10):  EditDistanceRecursive is a naive implementation with exponential time complexity.
 8. [`IsSubsetSum`](./dynamic/subsetsum.go#L14): No description provided.
 9. [`Knapsack`](./dynamic/knapsack.go#L17):  Knapsack solves knapsack problem return maxProfit
-10. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L12):  LongestCommonSubsequence function
+10. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L13):  LongestCommonSubsequence function
 11. [`LongestIncreasingSubsequence`](./dynamic/longestincreasingsubsequence.go#L9):  LongestIncreasingSubsequence returns the longest increasing subsequence where all elements of the subsequence are sorted in increasing order
 12. [`LongestIncreasingSubsequenceGreedy`](./dynamic/longestincreasingsubsequencegreedy.go#L9):  LongestIncreasingSubsequenceGreedy is a function to find the longest increasing subsequence in a given array using a greedy approach. The dynamic programming approach is implemented alongside this one. Worst Case Time Complexity: O(nlogn) Auxiliary Space: O(n), where n is the length of the array(slice). Reference: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
 13. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L25):  LpsDp function
@@ -777,6 +777,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 3. [`Queue`](./structure/queue/queuelinkedlist.go#L19): No description provided.
 
+
+---
+</details><details>
+	<summary> <strong> rot13 </strong> </summary>	
+
+---
+
+#####  Package rot13 is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the alphabet. ref: https://en.wikipedia.org/wiki/ROT13
+
+---
+##### Functions:
+
+1. [`FuzzRot13`](./cipher/rot13/rot13_test.go#L72): No description provided.
 
 ---
 </details><details>
