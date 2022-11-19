@@ -5,21 +5,56 @@ import (
 	"github.com/TheAlgorithms/Go/math/max"
 )
 
-type AVL[T constraints.Ordered] struct {
-	*binaryTree[T]
+// Verify Interface Compliance
+var (
+	_ Tree[int] = (*AVL[int])(nil)
+	_ Node[int] = &AVLNode[int]{}
+)
+
+type AVLNode[T constraints.Ordered] struct {
+	key    T
+	parent *AVLNode[T]
+	left   *AVLNode[T]
+	right  *AVLNode[T]
+	height int
 }
 
-// Verify Interface Compliance for AVL
-var _ Tree[int] = (*AVL[int])(nil)
+func (n *AVLNode[T]) Key() T {
+	return n.key
+}
+
+func (n *AVLNode[T]) Parent() Node[T] {
+	return n.parent
+}
+
+func (n *AVLNode[T]) Left() Node[T] {
+	return n.left
+}
+
+func (n *AVLNode[T]) Right() Node[T] {
+	return n.right
+}
+
+func (n *AVLNode[T]) Height() int {
+	return n.height
+}
+
+type AVL[T constraints.Ordered] struct {
+	Root *AVLNode[T]
+	_NIL *AVLNode[T] // a sentinel value for nil
+}
 
 // NewAVL create a novel AVL tree
 func NewAVL[T constraints.Ordered]() *AVL[T] {
 	return &AVL[T]{
-		binaryTree: &binaryTree[T]{
-			Root: nil,
-			NIL:  nil,
-		},
+		Root: nil,
+		_NIL: nil,
 	}
+}
+
+// Empty determines the AVL tree is empty
+func (avl *AVL[T]) Empty() bool {
+	return avl.Root == avl._NIL
 }
 
 // Push a chain of Node's into the AVL Tree
@@ -39,49 +74,140 @@ func (avl *AVL[T]) Delete(key T) bool {
 	return true
 }
 
-func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
-	if root == avl.NIL {
-		return &Node[T]{
-			Key:    key,
-			Left:   avl.NIL,
-			Right:  avl.NIL,
-			Parent: avl.NIL,
-			Height: 1,
+// Get a Node from the Binary Search Tree
+func (avl *AVL[T]) Get(key T) (Node[T], bool) {
+	return searchTreeHelper[T](avl.Root, avl._NIL, key)
+}
+
+// Has Determines the tree has the node of Key
+func (avl *AVL[T]) Has(key T) bool {
+	_, ok := searchTreeHelper[T](avl.Root, avl._NIL, key)
+	return ok
+}
+
+// PreOrder Traverses the tree in the following order Root --> Left --> Right
+func (avl *AVL[T]) PreOrder() []T {
+	traversal := make([]T, 0)
+	preOrderRecursive[T](avl.Root, avl._NIL, &traversal)
+	return traversal
+}
+
+// InOrder Traverses the tree in the following order Left --> Root --> Right
+func (avl *AVL[T]) InOrder() []T {
+	return inOrderHelper[T](avl.Root, avl._NIL)
+}
+
+// PostOrder traverses the tree in the following order Left --> Right --> Root
+func (avl *AVL[T]) PostOrder() []T {
+	traversal := make([]T, 0)
+	postOrderRecursive[T](avl.Root, avl._NIL, &traversal)
+	return traversal
+}
+
+// LevelOrder returns the level order traversal of the tree
+func (avl *AVL[T]) LevelOrder() []T {
+	traversal := make([]T, 0)
+	levelOrderHelper[T](avl.Root, avl._NIL, &traversal)
+	return traversal
+}
+
+// AccessNodesByLayer accesses nodes layer by layer (2-D array),  instead of printing the results as 1-D array.
+func (avl *AVL[T]) AccessNodesByLayer() [][]T {
+	return accessNodeByLayerHelper[T](avl.Root, avl._NIL)
+}
+
+// Depth returns the calculated depth of a binary search tree
+func (avl *AVL[T]) Depth() int {
+	return calculateDepth[T](avl.Root, avl._NIL, 0)
+}
+
+// Max returns the Max value of the tree
+func (avl *AVL[T]) Max() (T, bool) {
+	ret := maximum[T](avl.Root, avl._NIL)
+	if ret == avl._NIL {
+		var dft T
+		return dft, false
+	}
+	return ret.Key(), true
+}
+
+// Min returns the Min value of the tree
+func (avl *AVL[T]) Min() (T, bool) {
+	ret := minimum[T](avl.Root, avl._NIL)
+	if ret == avl._NIL {
+		var dft T
+		return dft, false
+	}
+	return ret.Key(), true
+}
+
+// Predecessor returns the Predecessor of the node of Key
+// if there is no predecessor, return default value of type T and false
+// otherwise return the Key of predecessor and true
+func (avl *AVL[T]) Predecessor(key T) (T, bool) {
+	node, ok := searchTreeHelper[T](avl.Root, avl._NIL, key)
+	if !ok {
+		var dft T
+		return dft, ok
+	}
+	return predecessorHelper[T](node, avl._NIL)
+}
+
+// Successor returns the Successor of the node of Key
+// if there is no successor, return default value of type T and false
+// otherwise return the Key of successor and true
+func (avl *AVL[T]) Successor(key T) (T, bool) {
+	node, ok := searchTreeHelper[T](avl.Root, avl._NIL, key)
+	if !ok {
+		var dft T
+		return dft, ok
+	}
+	return successorHelper[T](node, avl._NIL)
+}
+
+func (avl *AVL[T]) pushHelper(root *AVLNode[T], key T) *AVLNode[T] {
+	if root == avl._NIL {
+		return &AVLNode[T]{
+			key:    key,
+			left:   avl._NIL,
+			right:  avl._NIL,
+			parent: avl._NIL,
+			height: 1,
 		}
 	}
 
 	switch {
-	case key < root.Key:
-		tmp := avl.pushHelper(root.Left, key)
-		tmp.Parent = root
-		root.Left = tmp
-	case key > root.Key:
-		tmp := avl.pushHelper(root.Right, key)
-		tmp.Parent = root
-		root.Right = tmp
+	case key < root.key:
+		tmp := avl.pushHelper(root.left, key)
+		tmp.parent = root
+		root.left = tmp
+	case key > root.key:
+		tmp := avl.pushHelper(root.right, key)
+		tmp.parent = root
+		root.right = tmp
 	default:
 		return root
 	}
 
 	// balance the tree
-	root.Height = avl.height(root)
+	root.height = avl.height(root)
 	bFactor := avl.balanceFactor(root)
 	if bFactor > 1 {
 		switch {
-		case key < root.Left.Key:
+		case key < root.left.key:
 			return avl.rightRotate(root)
-		case key > root.Left.Key:
-			root.Left = avl.leftRotate(root.Left)
+		case key > root.left.key:
+			root.left = avl.leftRotate(root.left)
 			return avl.rightRotate(root)
 		}
 	}
 
 	if bFactor < -1 {
 		switch {
-		case key > root.Right.Key:
+		case key > root.right.key:
 			return avl.leftRotate(root)
-		case key < root.Right.Key:
-			root.Right = avl.rightRotate(root.Right)
+		case key < root.right.key:
+			root.right = avl.rightRotate(root.right)
 			return avl.leftRotate(root)
 		}
 	}
@@ -89,70 +215,70 @@ func (avl *AVL[T]) pushHelper(root *Node[T], key T) *Node[T] {
 	return root
 }
 
-func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
-	if root == avl.NIL {
+func (avl *AVL[T]) deleteHelper(root *AVLNode[T], key T) *AVLNode[T] {
+	if root == avl._NIL {
 		return root
 	}
 
 	switch {
-	case key < root.Key:
-		tmp := avl.deleteHelper(root.Left, key)
-		root.Left = tmp
-		if tmp != avl.NIL {
-			tmp.Parent = root
+	case key < root.key:
+		tmp := avl.deleteHelper(root.left, key)
+		root.left = tmp
+		if tmp != avl._NIL {
+			tmp.parent = root
 		}
-	case key > root.Key:
-		tmp := avl.deleteHelper(root.Right, key)
-		root.Right = tmp
-		if tmp != avl.NIL {
-			tmp.Parent = root
+	case key > root.key:
+		tmp := avl.deleteHelper(root.right, key)
+		root.right = tmp
+		if tmp != avl._NIL {
+			tmp.parent = root
 		}
 	default:
-		if root.Left == avl.NIL || root.Right == avl.NIL {
-			tmp := root.Left
-			if root.Right != avl.NIL {
-				tmp = root.Right
+		if root.left == avl._NIL || root.right == avl._NIL {
+			tmp := root.left
+			if root.right != avl._NIL {
+				tmp = root.right
 			}
 
-			if tmp == avl.NIL {
-				root = avl.NIL
+			if tmp == avl._NIL {
+				root = avl._NIL
 			} else {
-				tmp.Parent = root.Parent
+				tmp.parent = root.parent
 				root = tmp
 			}
 		} else {
-			tmp := avl.minimum(root.Right)
-			root.Key = tmp.Key
-			del := avl.deleteHelper(root.Right, tmp.Key)
-			root.Right = del
-			if del != avl.NIL {
-				del.Parent = root
+			tmp := minimum[T](root.right, avl._NIL).(*AVLNode[T])
+			root.key = tmp.key
+			del := avl.deleteHelper(root.right, tmp.key)
+			root.right = del
+			if del != avl._NIL {
+				del.parent = root
 			}
 		}
 	}
 
-	if root == avl.NIL {
+	if root == avl._NIL {
 		return root
 	}
 
 	// balance the tree
-	root.Height = avl.height(root)
+	root.height = avl.height(root)
 	bFactor := avl.balanceFactor(root)
 	switch {
 	case bFactor > 1:
 		switch {
-		case avl.balanceFactor(root.Left) >= 0:
+		case avl.balanceFactor(root.left) >= 0:
 			return avl.rightRotate(root)
 		default:
-			root.Left = avl.leftRotate(root.Left)
+			root.left = avl.leftRotate(root.left)
 			return avl.rightRotate(root)
 		}
 	case bFactor < -1:
 		switch {
-		case avl.balanceFactor(root.Right) <= 0:
+		case avl.balanceFactor(root.right) <= 0:
 			return avl.leftRotate(root)
 		default:
-			root.Right = avl.rightRotate(root.Right)
+			root.right = avl.rightRotate(root.right)
 			return avl.leftRotate(root)
 		}
 	}
@@ -160,66 +286,66 @@ func (avl *AVL[T]) deleteHelper(root *Node[T], key T) *Node[T] {
 	return root
 }
 
-func (avl *AVL[T]) height(root *Node[T]) int {
-	if root == avl.NIL {
+func (avl *AVL[T]) height(root *AVLNode[T]) int {
+	if root == avl._NIL {
 		return 0
 	}
 
 	var leftHeight, rightHeight int
-	if root.Left != avl.NIL {
-		leftHeight = root.Left.Height
+	if root.left != avl._NIL {
+		leftHeight = root.left.height
 	}
-	if root.Right != avl.NIL {
-		rightHeight = root.Right.Height
+	if root.right != avl._NIL {
+		rightHeight = root.right.height
 	}
 	return 1 + max.Int(leftHeight, rightHeight)
 }
 
 // balanceFactor : negative balance factor means subtree Root is heavy toward Left
 // and positive balance factor means subtree Root is heavy toward Right side
-func (avl *AVL[T]) balanceFactor(root *Node[T]) int {
+func (avl *AVL[T]) balanceFactor(root *AVLNode[T]) int {
 	var leftHeight, rightHeight int
-	if root.Left != avl.NIL {
-		leftHeight = root.Left.Height
+	if root.left != avl._NIL {
+		leftHeight = root.left.height
 	}
-	if root.Right != avl.NIL {
-		rightHeight = root.Right.Height
+	if root.right != avl._NIL {
+		rightHeight = root.right.height
 	}
 	return leftHeight - rightHeight
 }
 
-func (avl *AVL[T]) leftRotate(x *Node[T]) *Node[T] {
-	y := x.Right
-	yl := y.Left
-	y.Left = x
-	x.Right = yl
+func (avl *AVL[T]) leftRotate(x *AVLNode[T]) *AVLNode[T] {
+	y := x.right
+	yl := y.left
+	y.left = x
+	x.right = yl
 
-	if yl != avl.NIL {
-		yl.Parent = x
+	if yl != avl._NIL {
+		yl.parent = x
 	}
 
-	y.Parent = x.Parent
-	x.Parent = y
+	y.parent = x.parent
+	x.parent = y
 
-	x.Height = avl.height(x)
-	y.Height = avl.height(y)
+	x.height = avl.height(x)
+	y.height = avl.height(y)
 	return y
 }
 
-func (avl *AVL[T]) rightRotate(x *Node[T]) *Node[T] {
-	y := x.Left
-	yr := y.Right
-	y.Right = x
-	x.Left = yr
+func (avl *AVL[T]) rightRotate(x *AVLNode[T]) *AVLNode[T] {
+	y := x.left
+	yr := y.right
+	y.right = x
+	x.left = yr
 
-	if yr != avl.NIL {
-		yr.Parent = x
+	if yr != avl._NIL {
+		yr.parent = x
 	}
 
-	y.Parent = x.Parent
-	x.Parent = y
+	y.parent = x.parent
+	x.parent = y
 
-	x.Height = avl.height(x)
-	y.Height = avl.height(y)
+	x.height = avl.height(x)
+	y.height = avl.height(y)
 	return y
 }

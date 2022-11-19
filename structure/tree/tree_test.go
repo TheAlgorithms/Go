@@ -256,43 +256,38 @@ func TestTreeLevelOrder(t *testing.T) {
 }
 
 func TestTreeMinAndMax(t *testing.T) {
+	helper := func(tree bt.Tree[int], nums []int) {
+		ll := len(nums)
+		if _, ok := tree.Min(); ok {
+			t.Errorf("Error with Min method.")
+		}
+		if _, ok := tree.Max(); ok {
+			t.Errorf("Error with Max method.")
+		}
+		tree.Push(nums...)
+		if min, ok := tree.Min(); !ok || min != nums[0] {
+			t.Errorf("Error with Min method.")
+		}
+		if max, ok := tree.Max(); !ok || max != nums[ll-1] {
+			t.Errorf("Error with Max method.")
+		}
+	}
+
 	lens := []int{500, 1_000, 10_000}
 	for _, ll := range lens {
 		nums := rand.Perm(ll)
 		sort.Ints(nums)
 
 		t.Run("Test Binary Search Tree", func(t *testing.T) {
-			bsTree := bt.NewBinarySearch[int]()
-			bsTree.Push(nums...)
-			if min, ok := bsTree.Min(); !ok || min != nums[0] {
-				t.Errorf("Error with Min method.")
-			}
-			if max, ok := bsTree.Max(); !ok || max != nums[ll-1] {
-				t.Errorf("Error with Max method.")
-			}
+			helper(bt.NewBinarySearch[int](), nums)
 		})
 
 		t.Run("Test Red-Black Tree", func(t *testing.T) {
-			rbTree := bt.NewRB[int]()
-			rbTree.Push(nums...)
-			if min, ok := rbTree.Min(); !ok || min != nums[0] {
-				t.Errorf("Error with Min method.")
-			}
-			if max, ok := rbTree.Max(); !ok || max != nums[ll-1] {
-				t.Errorf("Error with Max method.")
-			}
+			helper(bt.NewRB[int](), nums)
 		})
 
 		t.Run("Test AVL Tree", func(t *testing.T) {
-			avlTree := bt.NewAVL[int]()
-			avlTree.Push(nums...)
-			if min, ok := avlTree.Min(); !ok || min != nums[0] {
-				t.Errorf("Error with Min method.")
-			}
-
-			if max, ok := avlTree.Max(); !ok || max != nums[ll-1] {
-				t.Errorf("Error with Max method.")
-			}
+			helper(bt.NewAVL[int](), nums)
 		})
 	}
 }
@@ -352,43 +347,6 @@ func TestTreeDepth(t *testing.T) {
 			if ret := tree.Depth(); ret != tt.want {
 				t.Errorf("#%d Error with Depth", i)
 			}
-		}
-	})
-}
-
-func TestTreePrint(t *testing.T) {
-	tests := []struct {
-		input []int
-	}{
-		{[]int{90, 80, 100, 70, 85, 95, 105}},
-		{[]int{90, 80, 100, 70, 85, 95, 105, 1, 21, 31, 41, 51, 61, 71}},
-		{[]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}},
-	}
-
-	t.Run("Test for Binary-Search Tree", func(t *testing.T) {
-		for _, tt := range tests {
-			tree := bt.NewBinarySearch[int]()
-			t.Log(reflect.TypeOf(tree).String())
-			tree.Push(tt.input...)
-			tree.Print()
-		}
-	})
-
-	t.Run("Test for AVL Tree", func(t *testing.T) {
-		for _, tt := range tests {
-			tree := bt.NewAVL[int]()
-			t.Log(reflect.TypeOf(tree).String())
-			tree.Push(tt.input...)
-			tree.Print()
-		}
-	})
-
-	t.Run("Test for Red-Black Tree", func(t *testing.T) {
-		for _, tt := range tests {
-			tree := bt.NewRB[int]()
-			t.Log(reflect.TypeOf(tree).String() == "*tree.RB[int]")
-			tree.Push(tt.input...)
-			tree.Print()
 		}
 	})
 }

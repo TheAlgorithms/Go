@@ -16,15 +16,15 @@ func TestPush(t *testing.T) {
 	bst.Push(80)
 	bst.Push(100)
 
-	if bst.Root.Key != 90 {
+	if bst.Root.Key() != 90 {
 		t.Errorf("Root should have value = 90")
 	}
 
-	if bst.Root.Left.Key != 80 {
+	if bst.Root.Left().Key() != 80 {
 		t.Errorf("Left child should have value = 80")
 	}
 
-	if bst.Root.Right.Key != 100 {
+	if bst.Root.Right().Key() != 100 {
 		t.Errorf("Right child should have value = 100")
 	}
 
@@ -51,15 +51,15 @@ func TestDelete(t *testing.T) {
 		}
 
 		root := bst.Root
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Left.Key != 80 {
+		if root.Left().Key() != 80 {
 			t.Errorf("Left child should have value = 80")
 		}
 
-		if root.Right != nil {
+		if root.Right().(*bt.BSNode[int]) != nil {
 			t.Errorf("Right child should have value = nil")
 		}
 
@@ -69,11 +69,11 @@ func TestDelete(t *testing.T) {
 
 		bst.Delete(80)
 
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Left != nil {
+		if root.Left().(*bt.BSNode[int]) != nil {
 			t.Errorf("Left child should have value = nil")
 		}
 
@@ -99,15 +99,15 @@ func TestDelete(t *testing.T) {
 		}
 
 		root := bst.Root
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Right.Key != 100 {
+		if root.Right().Key() != 100 {
 			t.Errorf("Right child should have value = 100")
 		}
 
-		if root.Left.Key != 70 {
+		if root.Left().Key() != 70 {
 			t.Errorf("Left child should have value = 70")
 		}
 
@@ -134,15 +134,15 @@ func TestDelete(t *testing.T) {
 		}
 
 		root := bst.Root
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Left.Key != 85 {
+		if root.Left().Key() != 85 {
 			t.Errorf("Left child should have value = 85")
 		}
 
-		if root.Right.Key != 100 {
+		if root.Right().Key() != 100 {
 			t.Errorf("Right child should have value = 100")
 		}
 
