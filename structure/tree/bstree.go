@@ -11,11 +11,9 @@ import (
 )
 
 // Verify Interface Compliance
-var (
-	_ Tree[int] = (*BinarySearch[int])(nil)
-	_ Node[int] = &BSNode[int]{}
-)
+var _ Node[int] = &BSNode[int]{}
 
+// BSNode represents a single node in the BinarySearch.
 type BSNode[T constraints.Ordered] struct {
 	key    T
 	parent *BSNode[T]
@@ -39,12 +37,14 @@ func (n *BSNode[T]) Right() Node[T] {
 	return n.right
 }
 
+// BinarySearch represents a Binary-Search tree.
+// By default, _NIL = nil.
 type BinarySearch[T constraints.Ordered] struct {
 	Root *BSNode[T]
 	_NIL *BSNode[T] // a sentinel value for nil
 }
 
-// NewBinarySearch create a novel Binary-Search tree
+// NewBinarySearch creates a novel Binary-Search tree
 func NewBinarySearch[T constraints.Ordered]() *BinarySearch[T] {
 	return &BinarySearch[T]{
 		Root: nil,
@@ -166,7 +166,6 @@ func (t *BinarySearch[T]) Successor(key T) (T, bool) {
 }
 
 func (t *BinarySearch[T]) pushHelper(x *BSNode[T], val T) {
-	// var y *BSNode[T]
 	y := t._NIL
 	for x != t._NIL {
 		y = x

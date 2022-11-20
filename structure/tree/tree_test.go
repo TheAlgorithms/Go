@@ -10,7 +10,7 @@ import (
 )
 
 func TestTreeGetOrHas(t *testing.T) {
-	helper := func(tree bt.Tree[int], nums []int) {
+	helper := func(tree TestTree[int], nums []int) {
 		tree.Push(nums...)
 		for _, num := range nums {
 			if !tree.Has(num) {
@@ -256,7 +256,7 @@ func TestTreeLevelOrder(t *testing.T) {
 }
 
 func TestTreeMinAndMax(t *testing.T) {
-	helper := func(tree bt.Tree[int], nums []int) {
+	helper := func(tree TestTree[int], nums []int) {
 		ll := len(nums)
 		if _, ok := tree.Min(); ok {
 			t.Errorf("Error with Min method.")
@@ -415,7 +415,7 @@ func TestTreeAccessNodesByLayer(t *testing.T) {
 }
 
 func TestTreePredecessorAndSuccessor(t *testing.T) {
-	helper := func(tree bt.Tree[int]) {
+	helper := func(tree TestTree[int]) {
 		nums := []int{10, 8, 88, 888, 4, -1, 100}
 		tree.Push(nums...)
 		if ret, ok := tree.Predecessor(100); !ok || ret != 88 {

@@ -23,11 +23,9 @@ const (
 )
 
 // Verify Interface Compliance
-var (
-	_ Tree[int] = (*RB[int])(nil)
-	_ Node[int] = &RBNode[int]{}
-)
+var _ Node[int] = &RBNode[int]{}
 
+// RBNode represents a single node in the RB.
 type RBNode[T constraints.Ordered] struct {
 	key    T
 	parent *RBNode[T]
@@ -52,12 +50,14 @@ func (n *RBNode[T]) Right() Node[T] {
 	return n.right
 }
 
+// RB represents a red-black tree.
+// By default, _NIL = leaf, a dummy variable.
 type RB[T constraints.Ordered] struct {
 	Root *RBNode[T]
 	_NIL *RBNode[T] // a sentinel value for nil
 }
 
-// Create a new Red-Black Tree
+// NewRB creates a new Red-Black Tree
 func NewRB[T constraints.Ordered]() *RB[T] {
 	leaf := &RBNode[T]{color: Black, left: nil, right: nil}
 	leaf.parent = leaf

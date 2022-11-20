@@ -2,13 +2,38 @@ package tree_test
 
 import (
 	"fmt"
+	"github.com/TheAlgorithms/Go/constraints"
 	"testing"
 
 	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
 
-// BinarySearch, AVL and RB have completed the `bt.Tree` interface.
-var tree bt.Tree[int]
+type TestTree[T constraints.Ordered] interface {
+	Push(...T)
+	Delete(T) bool
+	Get(T) (bt.Node[T], bool)
+	Empty() bool
+	Has(T) bool
+	Depth() int
+	Max() (T, bool)
+	Min() (T, bool)
+	Predecessor(T) (T, bool)
+	Successor(T) (T, bool)
+	PreOrder() []T
+	InOrder() []T
+	PostOrder() []T
+	LevelOrder() []T
+	AccessNodesByLayer() [][]T
+}
+
+// BinarySearch, AVL and RB have completed the `TestTree` interface.
+var (
+	_ TestTree[int] = (*bt.BinarySearch[int])(nil)
+	_ TestTree[int] = (*bt.AVL[int])(nil)
+	_ TestTree[int] = (*bt.RB[int])(nil)
+)
+
+var tree TestTree[int]
 
 func TestBinarySearch(t *testing.T) {
 	tree = bt.NewBinarySearch[int]()

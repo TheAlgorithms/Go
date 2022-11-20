@@ -12,24 +12,6 @@ import (
 	"github.com/TheAlgorithms/Go/math/max"
 )
 
-type Tree[T constraints.Ordered] interface {
-	Push(...T)
-	Delete(T) bool
-	Get(T) (Node[T], bool)
-	Empty() bool
-	Has(T) bool
-	Depth() int
-	Max() (T, bool)
-	Min() (T, bool)
-	Predecessor(T) (T, bool)
-	Successor(T) (T, bool)
-	PreOrder() []T
-	InOrder() []T
-	PostOrder() []T
-	LevelOrder() []T
-	AccessNodesByLayer() [][]T
-}
-
 type Node[T constraints.Ordered] interface {
 	Key() T
 	Parent() Node[T]
@@ -69,7 +51,7 @@ func accessNodeByLayerHelper[T constraints.Ordered](root, nilNode Node[T]) [][]T
 
 func searchTreeHelper[T constraints.Ordered](node, nilNode Node[T], key T) (Node[T], bool) {
 	if node == nilNode {
-		return nilNode, false
+		return node, false
 	}
 
 	if key == node.Key() {
@@ -182,8 +164,8 @@ func predecessorHelper[T constraints.Ordered](node, nilNode Node[T]) (T, bool) {
 	}
 
 	if p == nilNode {
-		var dummy T
-		return dummy, false
+		var dft T
+		return dft, false
 	}
 	return p.Key(), true
 }
@@ -200,8 +182,8 @@ func successorHelper[T constraints.Ordered](node, nilNode Node[T]) (T, bool) {
 	}
 
 	if p == nilNode {
-		var dummy T
-		return dummy, false
+		var dft T
+		return dft, false
 	}
 	return p.Key(), true
 }

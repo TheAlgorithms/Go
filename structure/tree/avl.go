@@ -1,3 +1,9 @@
+// AVL tree is a self-balancing binary search tree.
+//
+// For more details check out those link below here:
+// Wikipedia article: https://en.wikipedia.org/wiki/AVL_tree
+// see avl.go
+
 package tree
 
 import (
@@ -6,11 +12,9 @@ import (
 )
 
 // Verify Interface Compliance
-var (
-	_ Tree[int] = (*AVL[int])(nil)
-	_ Node[int] = &AVLNode[int]{}
-)
+var _ Node[int] = &AVLNode[int]{}
 
+// AVLNode represents a single node in the AVL.
 type AVLNode[T constraints.Ordered] struct {
 	key    T
 	parent *AVLNode[T]
@@ -39,12 +43,14 @@ func (n *AVLNode[T]) Height() int {
 	return n.height
 }
 
+// AVL represents a AVL tree.
+// By default, _NIL = nil.
 type AVL[T constraints.Ordered] struct {
 	Root *AVLNode[T]
 	_NIL *AVLNode[T] // a sentinel value for nil
 }
 
-// NewAVL create a novel AVL tree
+// NewAVL creates a novel AVL tree
 func NewAVL[T constraints.Ordered]() *AVL[T] {
 	return &AVL[T]{
 		Root: nil,
@@ -288,7 +294,7 @@ func (avl *AVL[T]) deleteHelper(root *AVLNode[T], key T) *AVLNode[T] {
 
 func (avl *AVL[T]) height(root *AVLNode[T]) int {
 	if root == avl._NIL {
-		return 0
+		return 1
 	}
 
 	var leftHeight, rightHeight int
