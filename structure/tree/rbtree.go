@@ -46,7 +46,7 @@ func (n *RBNode[T]) Right() Node[T] {
 	return n.right
 }
 
-// RB represents a red-black tree.
+// RB represents a Red-Black tree.
 // By default, _NIL = leaf, a dummy variable.
 type RB[T constraints.Ordered] struct {
 	Root *RBNode[T]
@@ -63,7 +63,7 @@ func NewRB[T constraints.Ordered]() *RB[T] {
 	}
 }
 
-// Empty determines the red-black tree is empty
+// Empty determines the Red-Black tree is empty
 func (t *RB[T]) Empty() bool {
 	return t.Root == t._NIL
 }
@@ -81,7 +81,7 @@ func (t *RB[T]) Delete(data T) bool {
 	return t.deleteHelper(t.Root, data)
 }
 
-// Get a Node from the Binary Search Tree
+// Get a Node from the Red-Black Tree
 func (t *RB[T]) Get(key T) (Node[T], bool) {
 	return searchTreeHelper[T](t.Root, t._NIL, key)
 }
@@ -123,7 +123,7 @@ func (t *RB[T]) AccessNodesByLayer() [][]T {
 	return accessNodeByLayerHelper[T](t.Root, t._NIL)
 }
 
-// Depth returns the calculated depth of a binary search tree
+// Depth returns the calculated depth of a Red-Black tree
 func (t *RB[T]) Depth() int {
 	return calculateDepth[T](t.Root, t._NIL, 0)
 }

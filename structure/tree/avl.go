@@ -80,7 +80,7 @@ func (avl *AVL[T]) Delete(key T) bool {
 	return true
 }
 
-// Get a Node from the Binary Search Tree
+// Get a Node from the AVL Tree
 func (avl *AVL[T]) Get(key T) (Node[T], bool) {
 	return searchTreeHelper[T](avl.Root, avl._NIL, key)
 }
@@ -122,7 +122,7 @@ func (avl *AVL[T]) AccessNodesByLayer() [][]T {
 	return accessNodeByLayerHelper[T](avl.Root, avl._NIL)
 }
 
-// Depth returns the calculated depth of a binary search tree
+// Depth returns the calculated depth of the AVL tree
 func (avl *AVL[T]) Depth() int {
 	return calculateDepth[T](avl.Root, avl._NIL, 0)
 }

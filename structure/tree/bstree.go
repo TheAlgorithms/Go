@@ -50,7 +50,7 @@ func NewBinarySearch[T constraints.Ordered]() *BinarySearch[T] {
 	}
 }
 
-// Empty determines the binary search tree is empty
+// Empty determines the Binary-Search tree is empty
 func (t *BinarySearch[T]) Empty() bool {
 	return t.Root == t._NIL
 }
@@ -72,7 +72,7 @@ func (t *BinarySearch[T]) Delete(val T) bool {
 	return true
 }
 
-// Get a Node from the Binary Search Tree
+// Get a Node from the Binary-Search Tree
 func (t *BinarySearch[T]) Get(key T) (Node[T], bool) {
 	return searchTreeHelper[T](t.Root, t._NIL, key)
 }
