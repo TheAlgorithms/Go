@@ -9,11 +9,7 @@
 
 package tree
 
-import (
-	"fmt"
-
-	"github.com/TheAlgorithms/Go/constraints"
-)
+import "github.com/TheAlgorithms/Go/constraints"
 
 type Color byte
 
@@ -316,7 +312,6 @@ func (t *RB[T]) deleteHelper(node *RBNode[T], key T) bool {
 	}
 
 	if z == t._NIL {
-		fmt.Println("Key not found in the tree")
 		return false
 	}
 

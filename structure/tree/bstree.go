@@ -6,9 +6,7 @@
 
 package tree
 
-import (
-	"github.com/TheAlgorithms/Go/constraints"
-)
+import "github.com/TheAlgorithms/Go/constraints"
 
 // Verify Interface Compliance
 var _ Node[int] = &BSNode[int]{}
