@@ -15,6 +15,7 @@ func Bubble[T constraints.Ordered](arr []T) []T {
 			if arr[i+1] < arr[i] {
 				arr[i+1], arr[i] = arr[i], arr[i+1]
 				swapped = true
+				sortedIdx++
 			}
 		}
 	}
