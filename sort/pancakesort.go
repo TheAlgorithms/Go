@@ -4,7 +4,7 @@ import "github.com/TheAlgorithms/Go/constraints"
 
 // Pancake sorts a slice using flip operations,
 // where flip refers to the idea of reversing the
-// slice from index `0` to `I`.
+// slice from index `0` to `i`.
 func Pancake[T constraints.Ordered](arr []T) []T {
 	// early return if the array too small
 	if len(arr) <= 1 {
