@@ -34,7 +34,7 @@ func Pancake[T constraints.Ordered](arr []T) []T {
 	return arr
 }
 
-// flip reverses the input slice from `0` to `I`.
+// flip reverses the input slice from `0` to `i`.
 func flip[T constraints.Ordered](arr []T, i int) []T {
 	for j := 0; j < i; j++ {
 		arr[j], arr[i] = arr[i], arr[j]
