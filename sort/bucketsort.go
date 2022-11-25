@@ -2,8 +2,8 @@ package sort
 
 import "github.com/TheAlgorithms/Go/constraints"
 
-// sorting an array using buckets
-// mainly useful when input is uniformly distributed over a range
+// Bucket sorts a slice. It is mainly useful
+// when input is uniformly distributed over a range.
 func BucketSort[T constraints.Number](arr []T) []T {
 	// early return if the array too small
 	if len(arr) <= 1 {
