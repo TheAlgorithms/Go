@@ -4,7 +4,7 @@ import "github.com/TheAlgorithms/Go/constraints"
 
 // Bucket sorts a slice. It is mainly useful
 // when input is uniformly distributed over a range.
-func BucketSort[T constraints.Number](arr []T) []T {
+func Bucket[T constraints.Number](arr []T) []T {
 	// early return if the array too small
 	if len(arr) <= 1 {
 		return arr

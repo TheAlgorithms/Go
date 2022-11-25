@@ -2,9 +2,10 @@ package sort
 
 import "github.com/TheAlgorithms/Go/constraints"
 
-// sorting an array using flip operations
-// flip: reverse the array from 0 to i
-func PancakeSort[T constraints.Ordered](arr []T) []T {
+// Pancake sorts a slice using flip operations,
+// where flip refers to the idea of reversing the
+// slice from index `0` to `I`.
+func Pancake[T constraints.Ordered](arr []T) []T {
 	// early return if the array too small
 	if len(arr) <= 1 {
 		return arr
@@ -33,7 +34,7 @@ func PancakeSort[T constraints.Ordered](arr []T) []T {
 	return arr
 }
 
-// reverses arr from 0 to i
+// flip reverses the input slice from `0` to `I`.
 func flip[T constraints.Ordered](arr []T, i int) []T {
 	for j := 0; j < i; j++ {
 		arr[j], arr[i] = arr[i], arr[j]
