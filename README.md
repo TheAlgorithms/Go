@@ -867,24 +867,26 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
-2. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
-3. [`Count`](./sort/countingsort.go#L11): No description provided.
-4. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
-5. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
-6. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-7. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
-8. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
-9. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
-10. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
-11. [`Partition`](./sort/quicksort.go#L12): No description provided.
-12. [`Patience`](./sort/patiencesort.go#L13): No description provided.
-13. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
-14. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
-15. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
-16. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
-17. [`Selection`](./sort/selectionsort.go#L5): No description provided.
-18. [`Shell`](./sort/shellsort.go#L5): No description provided.
-19. [`Simple`](./sort/simplesort.go#L13): No description provided.
+2. [`Bucket Sort`](./sort/bucketsort.go#L5): Bucket Sort works with the idea of distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+3. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+4. [`Count`](./sort/countingsort.go#L11): No description provided.
+5. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
+6. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
+7. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+8. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
+9. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
+10. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
+11. [`Pancake Sort`](./sort/pancakesort.go#L7): Pancake Sort is a sorting algorithm that is similar to selection sort that reverses elements of an array. The Pancake Sort uses the flip operation to sort the array.
+12. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
+13. [`Partition`](./sort/quicksort.go#L12): No description provided.
+14. [`Patience`](./sort/patiencesort.go#L13): No description provided.
+15. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
+16. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+17. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+18. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
+19. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+20. [`Shell`](./sort/shellsort.go#L5): No description provided.
+21. [`Simple`](./sort/simplesort.go#L13): No description provided.
 
 ---
 ##### Types
