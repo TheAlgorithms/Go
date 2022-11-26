@@ -46,6 +46,11 @@ func (h *Heap[T]) Empty() bool {
 	return len(h.heaps) == 0
 }
 
+// Size returns the size of the heap
+func (h *Heap[T]) Size() int {
+	return len(h.heaps)
+}
+
 func (h *Heap[T]) swap(i, j int) {
 	h.heaps[i], h.heaps[j] = h.heaps[j], h.heaps[i]
 }

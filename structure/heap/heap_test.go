@@ -37,20 +37,20 @@ const (
 	testEmpty = 4
 )
 
-type testOp struct {
+type testOp[T heap.Interface[T]] struct {
 	typ     testOpType
-	x       testInt
+	x       T
 	isEmpty bool
 }
 
 func TestHeap(t *testing.T) {
 	tests := []struct {
 		name string
-		ops  []testOp
+		ops  []testOp[testInt]
 	}{
 		{
 			name: "example",
-			ops: []testOp{
+			ops: []testOp[testInt]{
 				{typ: testEmpty, isEmpty: true},
 				{typ: testPush, x: 10},
 				{typ: testEmpty, isEmpty: false},
@@ -83,12 +83,22 @@ func TestHeap(t *testing.T) {
 			for i, op := range tt.ops {
 				switch op.typ {
 				case testPush:
+					oldSize := h.Size()
 					h.Push(op.x)
+					newSize := h.Size()
+					if oldSize+1 != newSize {
+						t.Errorf("op %d testPush %v failed", i, op.x)
+					}
 				case testPop:
+					oldSize := h.Size()
 					h.Pop()
+					newSize := h.Size()
+					if oldSize-1 != newSize {
+						t.Errorf("op %d testPop %v failed", i, op.x)
+					}
 				case testTop:
 					if got := h.Top(); got != op.x {
-						t.Errorf("op %d Test() = %v, want %v", i, got, op.x)
+						t.Errorf("op %d testTop %v, want %v", i, got, op.x)
 					}
 				case testEmpty:
 					if got := h.Empty(); got != op.isEmpty {
