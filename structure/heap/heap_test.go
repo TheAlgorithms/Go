@@ -1,6 +1,7 @@
 package heap_test
 
 import (
+	"github.com/TheAlgorithms/Go/structure/heap"
 	"testing"
 )
 
@@ -19,7 +20,7 @@ func TestHeap_Empty(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h := New[testInt]()
+			h := heap.New[testInt]()
 			if got := h.Empty(); got != tt.want {
 				t.Errorf("Empty() = %v, want %v", got, tt.want)
 			}
@@ -78,7 +79,7 @@ func TestHeap(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h := New[testInt]()
+			h := heap.New[testInt]()
 			for i, op := range tt.ops {
 				switch op.typ {
 				case testPush:
