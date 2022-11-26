@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-type _int int
+type testInt int
 
-func (u _int) Less(o _int) bool {
+func (u testInt) Less(o testInt) bool {
 	return u < o
 }
 
@@ -19,7 +19,7 @@ func TestHeap_Empty(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h := New[_int]()
+			h := New[testInt]()
 			if got := h.Empty(); got != tt.want {
 				t.Errorf("Empty() = %v, want %v", got, tt.want)
 			}
@@ -27,69 +27,69 @@ func TestHeap_Empty(t *testing.T) {
 	}
 }
 
-type _opType int
+type testOpType int
 
 const (
-	_push  = 1
-	_pop   = 2
-	_test  = 3
-	_empty = 4
+	testPush  = 1
+	testPop   = 2
+	testTop   = 3
+	testEmpty = 4
 )
 
-type _op struct {
-	typ     _opType
-	x       _int
+type testOp struct {
+	typ     testOpType
+	x       testInt
 	isEmpty bool
 }
 
 func TestHeap(t *testing.T) {
 	tests := []struct {
 		name string
-		ops  []_op
+		ops  []testOp
 	}{
 		{
 			name: "example",
-			ops: []_op{
-				{typ: _empty, isEmpty: true},
-				{typ: _push, x: 10},
-				{typ: _empty, isEmpty: false},
-				{typ: _test, x: 10},
-				{typ: _pop},
-				{typ: _empty, isEmpty: true},
-				{typ: _push, x: 9},
-				{typ: _push, x: 8},
-				{typ: _pop},
-				{typ: _push, x: 3},
-				{typ: _test, x: 3},
-				{typ: _push, x: 2},
-				{typ: _test, x: 2},
-				{typ: _push, x: 4},
-				{typ: _push, x: 6},
-				{typ: _push, x: 5},
-				{typ: _test, x: 2},
-				{typ: _pop},
-				{typ: _test, x: 3},
-				{typ: _pop},
-				{typ: _pop},
-				{typ: _test, x: 5},
-				{typ: _empty, isEmpty: false},
+			ops: []testOp{
+				{typ: testEmpty, isEmpty: true},
+				{typ: testPush, x: 10},
+				{typ: testEmpty, isEmpty: false},
+				{typ: testTop, x: 10},
+				{typ: testPop},
+				{typ: testEmpty, isEmpty: true},
+				{typ: testPush, x: 9},
+				{typ: testPush, x: 8},
+				{typ: testPop},
+				{typ: testPush, x: 3},
+				{typ: testTop, x: 3},
+				{typ: testPush, x: 2},
+				{typ: testTop, x: 2},
+				{typ: testPush, x: 4},
+				{typ: testPush, x: 6},
+				{typ: testPush, x: 5},
+				{typ: testTop, x: 2},
+				{typ: testPop},
+				{typ: testTop, x: 3},
+				{typ: testPop},
+				{typ: testPop},
+				{typ: testTop, x: 5},
+				{typ: testEmpty, isEmpty: false},
 			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h := New[_int]()
+			h := New[testInt]()
 			for i, op := range tt.ops {
 				switch op.typ {
-				case _push:
+				case testPush:
 					h.Push(op.x)
-				case _pop:
+				case testPop:
 					h.Pop()
-				case _test:
+				case testTop:
 					if got := h.Top(); got != op.x {
 						t.Errorf("op %d Test() = %v, want %v", i, got, op.x)
 					}
-				case _empty:
+				case testEmpty:
 					if got := h.Empty(); got != op.isEmpty {
 						t.Errorf("op %d Empty() = %v, want %v", i, got, op.isEmpty)
 					}
