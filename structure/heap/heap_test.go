@@ -1,4 +1,4 @@
-package heap
+package heap_test
 
 import (
 	"testing"
