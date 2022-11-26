@@ -2,6 +2,7 @@ package heap_test
 
 import (
 	"github.com/TheAlgorithms/Go/structure/heap"
+	"reflect"
 	"testing"
 )
 
@@ -9,6 +10,18 @@ type testInt int
 
 func (u testInt) Less(o testInt) bool {
 	return u < o
+}
+
+type testStudent struct {
+	Name  string
+	Score int64
+}
+
+func (u testStudent) Less(o testStudent) bool {
+	if u.Score == o.Score {
+		return u.Name < o.Name
+	}
+	return u.Score > o.Score
 }
 
 func TestHeap_Empty(t *testing.T) {
@@ -43,13 +56,15 @@ type testOp[T heap.Interface[T]] struct {
 	isEmpty bool
 }
 
-func TestHeap(t *testing.T) {
-	tests := []struct {
-		name string
-		ops  []testOp[testInt]
-	}{
+type testStruct[T heap.Interface[T]] struct {
+	name string
+	ops  []testOp[T]
+}
+
+func TestHeapExample1(t *testing.T) {
+	tests1 := []testStruct[testInt]{
 		{
-			name: "example",
+			name: "example 1",
 			ops: []testOp[testInt]{
 				{typ: testEmpty, isEmpty: true},
 				{typ: testPush, x: 10},
@@ -77,9 +92,30 @@ func TestHeap(t *testing.T) {
 			},
 		},
 	}
+	testFunc(t, tests1)
+}
+
+func TestHeapExample2(t *testing.T) {
+	tests1 := []testStruct[testStudent]{
+		{
+			name: "example 2",
+			ops: []testOp[testStudent]{
+				{typ: testPush, x: testStudent{Name: "Alan", Score: 87}},
+				{typ: testPush, x: testStudent{Name: "Bob", Score: 98}},
+				{typ: testTop, x: testStudent{Name: "Bob", Score: 98}},
+				{typ: testPop},
+				{typ: testPush, x: testStudent{Name: "Carl", Score: 70}},
+				{typ: testTop, x: testStudent{Name: "Alan", Score: 87}},
+			},
+		},
+	}
+	testFunc(t, tests1)
+}
+
+func testFunc[T heap.Interface[T]](t *testing.T, tests []testStruct[T]) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h := heap.New[testInt]()
+			h := heap.New[T]()
 			for i, op := range tt.ops {
 				switch op.typ {
 				case testPush:
@@ -97,7 +133,7 @@ func TestHeap(t *testing.T) {
 						t.Errorf("op %d testPop %v failed", i, op.x)
 					}
 				case testTop:
-					if got := h.Top(); got != op.x {
+					if got := h.Top(); !reflect.DeepEqual(got, op.x) {
 						t.Errorf("op %d testTop %v, want %v", i, got, op.x)
 					}
 				case testEmpty:
