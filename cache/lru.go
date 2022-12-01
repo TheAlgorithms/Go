@@ -10,19 +10,19 @@ type item struct {
 }
 
 type LRU struct {
-	dl          *linkedlist.Doubly[any]
-	capacity    int
-	maxCapacity int
-	storage     map[string]*linkedlist.Node[any]
+	dl       *linkedlist.Doubly[any]
+	size     int
+	capacity int
+	storage  map[string]*linkedlist.Node[any]
 }
 
 // NewLRU represent initiate lru cache with capacity
 func NewLRU(capacity int) LRU {
 	return LRU{
-		dl:          linkedlist.NewDoubly[any](),
-		storage:     make(map[string]*linkedlist.Node[any], capacity),
-		capacity:    0,
-		maxCapacity: capacity,
+		dl:       linkedlist.NewDoubly[any](),
+		storage:  make(map[string]*linkedlist.Node[any], capacity),
+		size:     0,
+		capacity: capacity,
 	}
 }
 
@@ -49,17 +49,17 @@ func (c *LRU) Put(key string, value any) {
 		return
 	}
 
-	if c.capacity >= c.maxCapacity {
+	if c.size >= c.capacity {
 		e := c.dl.Front()
 		dk := e.Val.(item).key
 		c.dl.Remove(e)
 		delete(c.storage, dk)
-		c.capacity--
+		c.size--
 	}
 
 	n := item{key: key, value: value}
 	c.dl.AddAtEnd(n)
 	ne := c.dl.Back()
 	c.storage[key] = ne
-	c.capacity++
+	c.size++
 }
