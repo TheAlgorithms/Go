@@ -11,15 +11,14 @@ Usage example:
 
 	type MyInt32 int32
 
-	func (a MyInt32) PriorTo(o MyInt32) bool {
-		return a < o
+	func (a MyInt32) PriorTo(b MyInt32) bool {
+		return a < b
 	}
 	func main() {
-		h := heap.NewBinaryHeap[MyInt32, int32]()
-		h.Push(1)
+		h := heap.NewBinaryHeapFromSlice[MyInt32, int32]([]MyInt32{4, 2})
+		h.Push(3)
 		fmt.Println(h.Pop())
 	}
-
 */
 
 import (
