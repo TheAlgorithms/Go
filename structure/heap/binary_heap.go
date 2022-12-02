@@ -70,10 +70,10 @@ func (h *BinaryHeap[T, I]) heapifyDown(index I) bool {
 				j--
 			}
 		} else {
-			if j <= h.Len() && !h.s[j].PriorTo(h.s[index]) {
-				h.s[j], h.s[index] = h.s[index], h.s[j]
+			j--
+			if j >= h.Len() {
+				break
 			}
-			break
 		}
 		if h.s[j].PriorTo(h.s[index]) {
 			h.s[j], h.s[index] = h.s[index], h.s[j]
