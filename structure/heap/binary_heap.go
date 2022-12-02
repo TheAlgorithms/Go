@@ -3,11 +3,24 @@ package heap
 /*
 This is an implementation of a Binary heap (or simply heap), is parameterized with:
 T: The type of elements
-I: The type of the cardinality of the binary heap as a vector 
+I: The type of the cardinality of the binary heap as a vector
 
 P.s. If you want use a primitive type you have to wrap it into a custom type and then implement the Prioritizable interface
-*/
 
+Usage example:
+
+	type MyInt32 int32
+
+	func (a MyInt32) PriorTo(o MyInt32) bool {
+		return a < o
+	}
+	func main() {
+		h := heap.NewBinaryHeap[MyInt32, int32]()
+		h.Push(1)
+		fmt.Println(h.Pop())
+	}
+
+*/
 
 import (
 	"github.com/TheAlgorithms/Go/constraints"
