@@ -3,6 +3,7 @@ package polybius
 import (
 	"fmt"
 	"log"
+	"strings"
 	"testing"
 )
 
@@ -54,7 +55,7 @@ func TestNewPolybius(t *testing.T) {
 			name: "invalid key", size: 5, characters: "HogeFuga", key: "abcdefghi", wantErr: "len(key): 9 must be as long as size squared: 25",
 		},
 		{
-			name: "invalid characters", size: 5, characters: "HogeH", key: "abcdefghijklmnopqrstuvwxy", wantErr: "\"chars\" contains same character: H",
+			name: "invalid characters", size: 5, characters: "HogeH", key: "abcdefghijklmnopqrstuvwxy", wantErr: "\"OGEH\" contains same character 'H'",
 		},
 	}
 
@@ -79,7 +80,7 @@ func TestPolybiusEncrypt(t *testing.T) {
 			name: "correct encryption", text: "HogeFugaPiyoSpam", want: "OGGFOOHFOHFHOOHHEHOEFFGFEEEHHHGG",
 		},
 		{
-			name: "invalid encryption", text: "hogz", want: "failed encipher: Z does not exist in keys",
+			name: "invalid encryption", text: "hogz", want: "failed encipher: 'Z' does not exist in keys",
 		},
 	}
 	// initialize
@@ -148,4 +149,42 @@ func TestPolybiusDecrypt(t *testing.T) {
 			}
 		})
 	}
+}
+
+func FuzzPolybius(f *testing.F) {
+	const (
+		size       = 5
+		characters = "HogeF"
+		key        = "abcdefghijklmnopqrstuvwxy"
+	)
+	f.Add(size, characters, key)
+	f.Fuzz(func(t *testing.T, size int, characters, key string) {
+		p, err := NewPolybius(key, size, characters)
+		switch {
+		case err == nil:
+		case strings.Contains(err.Error(), "cannot be negative"),
+			strings.Contains(err.Error(), "is too small"),
+			strings.Contains(err.Error(), "should only contain latin characters"),
+			strings.Contains(err.Error(), "contains same character"),
+			strings.Contains(err.Error(), "must be as long as size squared"):
+			return
+		default:
+			t.Fatalf("unexpected error when creating a new polybius variable: %v", err)
+		}
+		encrypted, err := p.Encrypt(characters)
+		switch {
+		case err == nil:
+		case strings.Contains(err.Error(), "does not exist in keys"):
+			return
+		default:
+			t.Fatalf("unexpected error during encryption: %v", err)
+		}
+		decrypted, err := p.Decrypt(encrypted)
+		if err != nil {
+			t.Fatalf("unexpected error during decryption: %v", err)
+		}
+		if decrypted != strings.ToUpper(characters) {
+			t.Errorf("Expecting output to match with %q but was %q", characters, decrypted)
+		}
+	})
 }
