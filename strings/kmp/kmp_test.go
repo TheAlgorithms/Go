@@ -5,48 +5,57 @@ import (
 	"testing"
 )
 
-var testCases = []struct {
-	name     string
-	word     string
-	text     string
-	expected Result
-}{
-	{
-		"String comparison on single pattern match",
-		"announce",
-		"CPM_annual_conference_announce",
-		Result{
-			22,
-			32,
+func TestKmp(t *testing.T) {
+	type args struct {
+		word         string
+		text         string
+		patternTable []int
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{
+			name: "test1",
+			args: args{
+				word:         "ab",
+				text:         "ababacaab",
+				patternTable: table("ababacaab"),
+			},
+			want: []int{0, 2, 7},
 		},
-	},
-	{
-		"String comparison on multiple pattern match",
-		"AABA",
-		"AABAACAADAABAABA",
-		Result{
-			0,
-			4,
-		},
-	},
-	{
-		"String comparison with not found pattern",
-		"AABC",
-		"AABAACAADAABAABA",
-		Result{
-			-1,
-			23,
-		},
-	},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := Kmp(tt.args.word, tt.args.text, tt.args.patternTable); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Kmp() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
 
-func TestKMP(t *testing.T) {
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			actual := Kmp(tc.text, tc.word)
-			if !reflect.DeepEqual(actual, tc.expected) {
-				t.Errorf("Expected matches for pattern '%s' for string '%s' are: %v steps at position %v, but actual matches are: %v steps at position %v",
-					tc.word, tc.text, tc.expected.numberOfComparison, tc.expected.resultPosition, actual.numberOfComparison, actual.resultPosition)
+func TestTable(t *testing.T) {
+	type args struct {
+		w string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		{
+			name: "test1",
+			args: args{
+				w: "ababacaab",
+			},
+			want: []int{-1, 0, 0, 1, 2, 3, 0, 1, 1},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := table(tt.args.w); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("Table() = %v, want %v", got, tt.want)
 			}
 		})
 	}
