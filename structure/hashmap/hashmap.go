@@ -40,11 +40,21 @@ func Make(size, capacity uint64) HashMap {
 // Get returns value associated with given key
 func (hm *HashMap) Get(key any) any {
 	node := hm.getNodeByHash(hm.hash(key))
-
-	if node != nil {
-		return node.value
+	if node == nil {
+		return nil
 	}
 
+	if node.key == key {
+		return node
+	}
+
+	next := node.next
+	for next != nil {
+		if next.key == key {
+			return next
+		}
+		next = next.next
+	}
 	return nil
 }
 
@@ -55,7 +65,7 @@ func (hm *HashMap) Put(key any, value any) any {
 
 // Contains checks if given key is stored in hashmap
 func (hm *HashMap) Contains(key any) bool {
-	node := hm.getNodeByHash(hm.hash(key))
+	node := hm.Get(key)
 	return node != nil
 }
 
