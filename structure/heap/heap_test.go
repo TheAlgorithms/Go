@@ -50,13 +50,13 @@ const (
 	testEmpty = 4
 )
 
-type testOp[T heap.Interface[T]] struct {
+type testOp[T any] struct {
 	typ     testOpType
 	x       T
 	isEmpty bool
 }
 
-type testStruct[T heap.Interface[T]] struct {
+type testStruct[T any] struct {
 	name string
 	ops  []testOp[T]
 }
@@ -92,7 +92,7 @@ func TestHeapExample1(t *testing.T) {
 			},
 		},
 	}
-	testFunc(t, tests1)
+	testFunc(t, tests1, testInt.Less)
 }
 
 func TestHeapExample2(t *testing.T) {
@@ -109,13 +109,16 @@ func TestHeapExample2(t *testing.T) {
 			},
 		},
 	}
-	testFunc(t, tests1)
+	testFunc(t, tests1, testStudent.Less)
 }
 
-func testFunc[T heap.Interface[T]](t *testing.T, tests []testStruct[T]) {
+func testFunc[T any](t *testing.T, tests []testStruct[T], less func(a, b T) bool) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			h := heap.New[T]()
+			h, err := heap.NewAny[T](less)
+			if err != nil {
+				t.Errorf("New Heap err %v", err)
+			}
 			for i, op := range tt.ops {
 				switch op.typ {
 				case testPush:

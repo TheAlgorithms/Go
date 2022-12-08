@@ -1,19 +1,33 @@
 package heap
 
-// The Interface type describes the requirements
-// for a type using the routines in this package.
-type Interface[T any] interface {
-	Less(o T) bool
-}
+import (
+	"errors"
+	"github.com/TheAlgorithms/Go/constraints"
+)
 
 // Heap heap implementation using generic.
-type Heap[T Interface[T]] struct {
-	heaps []T
+type Heap[T any] struct {
+	heaps    []T
+	lessFunc func(a, b T) bool
 }
 
 // New gives a new heap object.
-func New[T Interface[T]]() *Heap[T] {
-	return &Heap[T]{}
+func New[T constraints.Ordered]() *Heap[T] {
+	less := func(a, b T) bool {
+		return a < b
+	}
+	h, _ := NewAny[T](less)
+	return h
+}
+
+// NewAny gives a new heap object. element can be anything, but must provide less function.
+func NewAny[T any](less func(a, b T) bool) (*Heap[T], error) {
+	if less == nil {
+		return nil, errors.New("less func is necessary")
+	}
+	return &Heap[T]{
+		lessFunc: less,
+	}, nil
 }
 
 // Push pushes the element t onto the heap.
@@ -60,7 +74,7 @@ func (h *Heap[T]) up(child int) {
 		return
 	}
 	parent := (child - 1) >> 1
-	if !h.heaps[child].Less(h.heaps[parent]) {
+	if !h.lessFunc(h.heaps[child], h.heaps[parent]) {
 		return
 	}
 	h.swap(child, parent)
@@ -70,10 +84,10 @@ func (h *Heap[T]) up(child int) {
 func (h *Heap[T]) down(parent int) {
 	lessIdx := parent
 	lChild, rChild := (parent<<1)+1, (parent<<1)+2
-	if lChild < len(h.heaps) && h.heaps[lChild].Less(h.heaps[lessIdx]) {
+	if lChild < len(h.heaps) && h.lessFunc(h.heaps[lChild], h.heaps[lessIdx]) {
 		lessIdx = lChild
 	}
-	if rChild < len(h.heaps) && h.heaps[rChild].Less(h.heaps[lessIdx]) {
+	if rChild < len(h.heaps) && h.lessFunc(h.heaps[rChild], h.heaps[lessIdx]) {
 		lessIdx = rChild
 	}
 	if lessIdx == parent {
