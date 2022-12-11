@@ -25,25 +25,33 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type Prioritizable[T any] interface {
-	PriorTo(x T) bool // If you take this as a relation: if (a,b) in R => (b,a) not in R
-}
-
-type BinaryHeap[T Prioritizable[T], I constraints.Signed] struct {
+type BinaryHeap[T any, I constraints.Unsigned] struct {
 	s []T
+	prior func(T, T) bool 
 }
 
-func NewBinaryHeapFromSlice[T Prioritizable[T], I constraints.Signed](s []T) (h *BinaryHeap[T, I]) {
+// Note for function Prior: It's a strict order relation
+func NewBinaryHeapFromSlice[T any, I constraints.Unsigned](
+	s []T,
+	Prior func(T, T) bool) (h *BinaryHeap[T, I]) {
 	h = &BinaryHeap[T, I]{
 		s: s,
+		prior: Prior,
 	}
-	for i := (h.Len() - 2) / 2; i >= 0; i-- {
-		h.heapifyDown(i)
+	if h.Len() > 1 {
+		i := (h.Len() - 2) / 2
+		for {
+			h.heapifyDown(i)
+			if i == 0 {
+				break
+			}
+			i--
+		}
 	}
 	return
 }
-func NewBinaryHeap[T Prioritizable[T], I constraints.Signed]() *BinaryHeap[T, I] {
-	return &BinaryHeap[T, I]{s: make([]T, 0)}
+func NewBinaryHeap[T any, I constraints.Unsigned](Prior func(T, T) bool) *BinaryHeap[T, I] {
+	return &BinaryHeap[T, I]{s: make([]T, 0), prior: Prior}
 }
 func (h *BinaryHeap[T, I]) Len() I {
 	return I(len(h.s))
@@ -65,7 +73,7 @@ func (h *BinaryHeap[T, I]) heapifyDown(index I) bool {
 	for {
 		j := index*2 + 2
 		if j < h.Len() {
-			if h.s[j-1].PriorTo(h.s[j]) {
+			if h.prior(h.s[j-1], h.s[j]) {
 				j--
 			}
 		} else {
@@ -74,7 +82,7 @@ func (h *BinaryHeap[T, I]) heapifyDown(index I) bool {
 				break
 			}
 		}
-		if h.s[j].PriorTo(h.s[index]) {
+		if h.prior(h.s[j], h.s[index]) {
 			h.s[j], h.s[index] = h.s[index], h.s[j]
 			index = j
 		} else {
@@ -85,8 +93,11 @@ func (h *BinaryHeap[T, I]) heapifyDown(index I) bool {
 }
 func (h *BinaryHeap[T, I]) heapifyUp(index I) {
 	for {
+		if index == 0 {
+			break
+		}
 		parent := (index - 1) / 2
-		if parent == index || h.s[parent].PriorTo(h.s[index]) {
+		if h.prior(h.s[parent], h.s[index]) {
 			break
 		}
 		h.s[index], h.s[parent] = h.s[parent], h.s[index]
@@ -95,4 +106,7 @@ func (h *BinaryHeap[T, I]) heapifyUp(index I) {
 }
 func (h *BinaryHeap[T, I]) Preview() T {
 	return h.s[0]
+}
+func (h BinaryHeap[T, I]) String() string {
+	return "" // #TODO
 }
