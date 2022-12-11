@@ -1,4 +1,4 @@
-package sqrt_decomposition
+package sqrtdecompositionsimple
 
 import "math"
 

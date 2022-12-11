@@ -1,0 +1,14 @@
+{
+	"name": "Go",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"golang.Go",
+				"SantaCodes.santacodes-region-viewer"
+			]
+		}
+	}
+}
