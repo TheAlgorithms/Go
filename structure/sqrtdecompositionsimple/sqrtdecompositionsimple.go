@@ -1,32 +1,23 @@
+// Sqrt (or Square Root) Decomposition is a technique used for query an array and perform updates
+// Inside this package is described its most simple data structure, you can find more at: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
+//
+//
+// Formally, You can use SqrtDecompositionSimple only if:
+// 
+// Given a function $Query:E_1,...,E_n\rightarrow Q$
+// 
+// if $\exist unionQ:Q,Q\rightarrow Q$
+// 
+// s.t.
+// 
+// - $\forall n\in \N > 1, 1\le i<n, E_1,..., E_n\in E \\ query(E_1,..., E_n)=unionQ(query(E_1,..., E_i), query(E_{i+1},...,E_n))$
+// 
+// - (Only if you want use $update$ function)
+// $\forall n\in \N > 0, E_1,..., E_n\in E \\ query(E_1,...,E_{new},..., E_n)=updateQ(query(E_1,...,E_{old},...,E_n), indexof(E_{old}), E_{new})$
 package sqrtdecompositionsimple
 
 import "math"
 
-/*
-You can use SqrtDecompositionSimple only if:
-
-Given a function $Query:E_1,...,E_n\rightarrow Q$
-
-if $\exist unionQ:Q,Q\rightarrow Q$
-
-s.t.
-
-- $\forall n\in \N > 1, 1\le i<n, E_1,..., E_n\in E \\ query(E_1,..., E_n)=unionQ(query(E_1,..., E_i), query(E_{i+1},...,E_n))$
-
-- (Only if you want use $update$ function)
-$\forall n\in \N > 0, E_1,..., E_n\in E \\ query(E_1,...,E_{new},..., E_n)=updateQ(query(E_1,...,E_{old},...,E_n), indexof(E_{old}), E_{new})$
-
-
-Usage example:
-	slice := []int32{1, 2, 3, 4, 5, 6}
-	s := NewSqrtDecompositionSimple(slice,
-		func(e int32) int32 { return e },
-		func(q1, q2 int32) int32 { return q1 + q2 },
-		func(q, a, b int32) int32 { return q - a + b },
-	)
-	s.Update(3, 10)
-	println(s.Query(1, 6)) // 26
-*/
 type SqrtDecompositionSimple[E any, Q any] struct {
 	querySingleElement func(element E) Q
 	unionQ             func(q1 Q, q2 Q) Q
@@ -37,7 +28,7 @@ type SqrtDecompositionSimple[E any, Q any] struct {
 	blockSize uint64
 }
 
-// len(elements) > 0
+// Assumption: len(elements) > 0
 func NewSqrtDecompositionSimple[E any, Q any](
 	elements []E,
 	querySingleElement func(element E) Q,
@@ -65,7 +56,7 @@ func NewSqrtDecompositionSimple[E any, Q any](
 	return sqrtDec
 }
 
-// start < end (non included). Both are valid
+// Assumption: start < end (non included). Both are valid
 func (s *SqrtDecompositionSimple[E, Q]) Query(start uint64, end uint64) Q {
 	firstIndexNextBlock := ((start / s.blockSize) + 1) * s.blockSize
 	q := s.querySingleElement(s.elements[start])
@@ -97,7 +88,7 @@ func (s *SqrtDecompositionSimple[E, Q]) Query(start uint64, end uint64) Q {
 	return q
 }
 
-// index is valid
+// Assumption: index is valid
 func (s *SqrtDecompositionSimple[E, Q]) Update(index uint64, newElement E) {
 	i := index / s.blockSize
 	s.blocks[i] = s.updateQ(s.blocks[i], s.elements[index], newElement)
