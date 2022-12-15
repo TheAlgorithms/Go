@@ -8,7 +8,11 @@ import (
 func TestNew(t *testing.T) {
 	t.Run("check for allowed characters", func(t *testing.T) {
 		allowedChars := "0123456789abcdef-"
-		guid := New()
+		guid, err := New()
+		if err != nil {
+			t.Errorf(`the test failed, an error occurred: %s`, err.Error())
+		}
+
 		for _, char := range guid {
 			if !strings.Contains(allowedChars, string(char)) {
 				t.Errorf(`allowed only "%s" characters, but got %v`, allowedChars, char)
@@ -17,7 +21,10 @@ func TestNew(t *testing.T) {
 	})
 
 	t.Run("check string length", func(t *testing.T) {
-		guid := New()
+		guid, err := New()
+		if err != nil {
+			t.Errorf(`the test failed, an error occurred: %s`, err.Error())
+		}
 
 		if len(guid) != len(pattern) {
 			t.Errorf(`the length of the string should be "%d", but got %d`, len(pattern), len(guid))
@@ -27,7 +34,11 @@ func TestNew(t *testing.T) {
 	t.Run("check for version index", func(t *testing.T) {
 		expected := "4"
 		versionIndex := strings.Index(pattern, expected)
-		guid := New()
+		guid, err := New()
+		if err != nil {
+			t.Errorf(`the test failed, an error occurred: %s`, err.Error())
+		}
+
 		result := string(guid[versionIndex])
 
 		if expected != result {
@@ -37,7 +48,11 @@ func TestNew(t *testing.T) {
 
 	t.Run("check the number of dashes", func(t *testing.T) {
 		expected := strings.Count(pattern, "-")
-		guid := New()
+		guid, err := New()
+		if err != nil {
+			t.Errorf(`the test failed, an error occurred: %s`, err.Error())
+		}
+		
 		result := strings.Count(guid, "-")
 
 		if expected != result {
