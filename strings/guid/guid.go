@@ -21,11 +21,10 @@ import (
 	"strings"
 )
 
-// GUID v4
 const pattern string = "xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx"
 
-// Return a random globally unique identifier.
-func New() string {
+// New returns a randomly generated global unique identifier.
+func New() (string, error) {
 	var guid strings.Builder
 
 	for i := range pattern {
@@ -34,7 +33,7 @@ func New() string {
 		if char == "x" {
 			random, err := rand.Int(rand.Reader, big.NewInt(16))
 			if err != nil {
-				panic(err)
+				return "", err
 			}
 
 			char = fmt.Sprintf("%x", random.Int64())
@@ -43,5 +42,5 @@ func New() string {
 		guid.WriteString(char)
 	}
 
-	return guid.String()
+	return guid.String(), nil
 }
