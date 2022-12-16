@@ -45,13 +45,13 @@ func (hm *HashMap) Get(key any) any {
 	}
 
 	if node.key == key {
-		return node
+		return node.value
 	}
 
 	next := node.next
 	for next != nil {
 		if next.key == key {
-			return next
+			return next.value
 		}
 		next = next.next
 	}
