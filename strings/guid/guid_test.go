@@ -52,7 +52,7 @@ func TestNew(t *testing.T) {
 		if err != nil {
 			t.Errorf(`the test failed, an error occurred: %s`, err.Error())
 		}
-		
+
 		result := strings.Count(guid, "-")
 
 		if expected != result {
