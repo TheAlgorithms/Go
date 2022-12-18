@@ -45,3 +45,13 @@ func Formula(n uint) uint {
 	powPhi := math.Pow(phi, float64(n))
 	return uint(powPhi/sqrt5 + 0.5)
 }
+
+func FibForSlice(n int, k []int) int {
+	k[0] = 1
+	k[1] = 1
+	for i := 2; i <= n; i++ {
+		k[i] = k[i-1] + k[i-2]
+	}
+	return k[n]
+
+}
