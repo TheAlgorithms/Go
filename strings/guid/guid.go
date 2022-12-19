@@ -27,19 +27,20 @@ const pattern string = "xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx"
 func New() (string, error) {
 	var guid strings.Builder
 
-	for i := range pattern {
-		char := string(pattern[i])
-
-		if char == "x" {
-			random, err := rand.Int(rand.Reader, big.NewInt(16))
-			if err != nil {
-				return "", err
-			}
-
-			char = fmt.Sprintf("%x", random.Int64())
+	for i, ch := range pattern {
+		if i == 14 {
+			guid.WriteRune(ch)
+			continue
 		}
-
-		guid.WriteString(char)
+		if ch == '-' {
+			guid.WriteRune(ch)
+			continue
+		}
+		random, err := rand.Int(rand.Reader, big.NewInt(16))
+		if err != nil {
+			return "", err
+		}
+		guid.WriteString(fmt.Sprintf("%x", random.Int64()))
 	}
 
 	return guid.String(), nil
