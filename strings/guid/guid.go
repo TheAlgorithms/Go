@@ -22,13 +22,14 @@ import (
 )
 
 const pattern string = "xxxxxxxx-xxxx-4xxx-xxxx-xxxxxxxxxxxx"
+const versionIndex int = 14
 
 // New returns a randomly generated global unique identifier.
 func New() (string, error) {
 	var guid strings.Builder
 
 	for i, ch := range pattern {
-		if i == 14 {
+		if i == versionIndex {
 			guid.WriteRune(ch)
 			continue
 		}
