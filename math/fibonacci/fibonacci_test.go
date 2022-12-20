@@ -1,8 +1,9 @@
 package fibonacci
 
 import (
-	"github.com/TheAlgorithms/Go/dynamic"
 	"testing"
+
+	"github.com/TheAlgorithms/Go/dynamic"
 )
 
 func getTests() []struct {
@@ -64,6 +65,17 @@ func TestFormula(t *testing.T) {
 	}
 }
 
+func TestForSlice(t *testing.T) {
+	tests := getTests()
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			if got := ForSlice(test.n); got != test.want {
+				t.Errorf("Return value = %v, want %v", got, test.want)
+			}
+		})
+	}
+}
+
 func BenchmarkNthFibonacci(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		dynamic.NthFibonacci(90)
@@ -79,5 +91,11 @@ func BenchmarkMatrix(b *testing.B) {
 func BenchmarkFormula(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		Formula(90)
+	}
+}
+
+func BenchmarkForSlice(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		ForSlice(90)
 	}
 }

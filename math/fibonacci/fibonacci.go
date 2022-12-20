@@ -45,3 +45,18 @@ func Formula(n uint) uint {
 	powPhi := math.Pow(phi, float64(n))
 	return uint(powPhi/sqrt5 + 0.5)
 }
+
+func ForSlice(n uint) uint {
+
+	if n == 0 {
+		return 0
+	}
+	k := make([]uint, n+1)
+	k[0] = 1
+	k[1] = 1
+	var i uint = 2
+	for ; i <= n; i++ {
+		k[i] = k[i-1] + k[i-2]
+	}
+	return k[n-1]
+}
