@@ -81,6 +81,10 @@ func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
 }
 
+func TestBucketSort(t *testing.T) {
+	testFramework(t, sort.Bucket[int])
+}
+
 func TestExchange(t *testing.T) {
 	testFramework(t, sort.Exchange[int])
 }
@@ -153,6 +157,10 @@ func TestComb(t *testing.T) {
 	testFramework(t, sort.Comb[int])
 }
 
+func TestPancakeSort(t *testing.T) {
+	testFramework(t, sort.Pancake[int])
+}
+
 func TestPigeonhole(t *testing.T) {
 	testFramework(t, sort.Pigeonhole[int])
 }
@@ -204,6 +212,10 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
+}
+
+func BenchmarkBucketSort(b *testing.B) {
+	benchmarkFramework(b, sort.Bucket[int])
 }
 
 func BenchmarkExchange(b *testing.B) {
@@ -261,6 +273,10 @@ func BenchmarkSelection(b *testing.B) {
 
 func BenchmarkComb(b *testing.B) {
 	benchmarkFramework(b, sort.Comb[int])
+}
+
+func BenchmarkPancakeSort(b *testing.B) {
+	benchmarkFramework(b, sort.Pancake[int])
 }
 
 func BenchmarkPigeonhole(b *testing.B) {
