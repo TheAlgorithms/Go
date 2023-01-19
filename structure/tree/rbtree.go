@@ -1,5 +1,5 @@
 // Red-Black Tree is a kind of self-balancing binary search tree.
-// Each node stores "Color" ("red" or "black"), used to ensure that the tree remains balanced during insertions and deletions.
+// Each node stores "color" ("red" or "black"), used to ensure that the tree remains balanced during insertions and deletions.
 //
 // For more details check out those links below here:
 // Programiz article : https://www.programiz.com/dsa/red-black-tree
@@ -9,25 +9,63 @@
 
 package tree
 
-import (
-	"fmt"
+import "github.com/TheAlgorithms/Go/constraints"
 
-	"github.com/TheAlgorithms/Go/constraints"
+type Color byte
+
+const (
+	Red Color = iota
+	Black
 )
 
-type RB[T constraints.Ordered] struct {
-	*binaryTree[T]
+// Verify Interface Compliance
+var _ Node[int] = &RBNode[int]{}
+
+// RBNode represents a single node in the RB.
+type RBNode[T constraints.Ordered] struct {
+	key    T
+	parent *RBNode[T]
+	left   *RBNode[T]
+	right  *RBNode[T]
+	color  Color
 }
 
-// Create a new Red-Black Tree
+func (n *RBNode[T]) Key() T {
+	return n.key
+}
+
+func (n *RBNode[T]) Parent() Node[T] {
+	return n.parent
+}
+
+func (n *RBNode[T]) Left() Node[T] {
+	return n.left
+}
+
+func (n *RBNode[T]) Right() Node[T] {
+	return n.right
+}
+
+// RB represents a Red-Black tree.
+// By default, _NIL = leaf, a dummy variable.
+type RB[T constraints.Ordered] struct {
+	Root *RBNode[T]
+	_NIL *RBNode[T] // a sentinel value for nil
+}
+
+// NewRB creates a new Red-Black Tree
 func NewRB[T constraints.Ordered]() *RB[T] {
-	leaf := &Node[T]{Color: Black, Left: nil, Right: nil}
+	leaf := &RBNode[T]{color: Black, left: nil, right: nil}
+	leaf.parent = leaf
 	return &RB[T]{
-		binaryTree: &binaryTree[T]{
-			Root: leaf,
-			NIL:  leaf,
-		},
+		Root: leaf,
+		_NIL: leaf,
 	}
+}
+
+// Empty determines the Red-Black tree is empty
+func (t *RB[T]) Empty() bool {
+	return t.Root == t._NIL
 }
 
 // Push a chain of Node's into the Red-Black Tree
@@ -43,145 +81,212 @@ func (t *RB[T]) Delete(data T) bool {
 	return t.deleteHelper(t.Root, data)
 }
 
-// Return the Predecessor of the node of Key
+// Get a Node from the Red-Black Tree
+func (t *RB[T]) Get(key T) (Node[T], bool) {
+	return searchTreeHelper[T](t.Root, t._NIL, key)
+}
+
+// Has Determines the tree has the node of Key
+func (t *RB[T]) Has(key T) bool {
+	_, ok := searchTreeHelper[T](t.Root, t._NIL, key)
+	return ok
+}
+
+// PreOrder Traverses the tree in the following order Root --> Left --> Right
+func (t *RB[T]) PreOrder() []T {
+	traversal := make([]T, 0)
+	preOrderRecursive[T](t.Root, t._NIL, &traversal)
+	return traversal
+}
+
+// InOrder Traverses the tree in the following order Left --> Root --> Right
+func (t *RB[T]) InOrder() []T {
+	return inOrderHelper[T](t.Root, t._NIL)
+}
+
+// PostOrder traverses the tree in the following order Left --> Right --> Root
+func (t *RB[T]) PostOrder() []T {
+	traversal := make([]T, 0)
+	postOrderRecursive[T](t.Root, t._NIL, &traversal)
+	return traversal
+}
+
+// LevelOrder returns the level order traversal of the tree
+func (t *RB[T]) LevelOrder() []T {
+	traversal := make([]T, 0)
+	levelOrderHelper[T](t.Root, t._NIL, &traversal)
+	return traversal
+}
+
+// AccessNodesByLayer accesses nodes layer by layer (2-D array),  instead of printing the results as 1-D array.
+func (t *RB[T]) AccessNodesByLayer() [][]T {
+	return accessNodeByLayerHelper[T](t.Root, t._NIL)
+}
+
+// Depth returns the calculated depth of a Red-Black tree
+func (t *RB[T]) Depth() int {
+	return calculateDepth[T](t.Root, t._NIL, 0)
+}
+
+// Max returns the Max value of the tree
+func (t *RB[T]) Max() (T, bool) {
+	ret := maximum[T](t.Root, t._NIL)
+	if ret == t._NIL {
+		var dft T
+		return dft, false
+	}
+	return ret.Key(), true
+}
+
+// Min returns the Min value of the tree
+func (t *RB[T]) Min() (T, bool) {
+	ret := minimum[T](t.Root, t._NIL)
+	if ret == t._NIL {
+		var dft T
+		return dft, false
+	}
+	return ret.Key(), true
+}
+
+// Predecessor returns the Predecessor of the node of Key
 // if there is no predecessor, return default value of type T and false
 // otherwise return the Key of predecessor and true
 func (t *RB[T]) Predecessor(key T) (T, bool) {
-	node, ok := t.searchTreeHelper(t.Root, key)
+	node, ok := searchTreeHelper[T](t.Root, t._NIL, key)
 	if !ok {
-		return t.NIL.Key, ok
+		var dft T
+		return dft, ok
 	}
-	return t.predecessorHelper(node)
+	return predecessorHelper[T](node, t._NIL)
 }
 
-// Return the Successor of the node of Key
+// Successor returns the Successor of the node of Key
 // if there is no successor, return default value of type T and false
 // otherwise return the Key of successor and true
 func (t *RB[T]) Successor(key T) (T, bool) {
-	node, ok := t.searchTreeHelper(t.Root, key)
+	node, ok := searchTreeHelper[T](t.Root, t._NIL, key)
 	if !ok {
-		return t.NIL.Key, ok
+		var dft T
+		return dft, ok
 	}
-
-	return t.successorHelper(node)
+	return successorHelper[T](node, t._NIL)
 }
 
-func (t *RB[T]) pushHelper(x *Node[T], key T) {
-	node := &Node[T]{
-		Key:    key,
-		Left:   t.NIL,
-		Right:  t.NIL,
-		Parent: nil,
-		Color:  Red,
-	}
-
-	var y *Node[T]
-	for !t.isNil(x) {
+func (t *RB[T]) pushHelper(x *RBNode[T], key T) {
+	y := t._NIL
+	for x != t._NIL {
 		y = x
-		if node.Key < x.Key {
-			x = x.Left
-		} else {
-			x = x.Right
+		switch {
+		case key < x.Key():
+			x = x.left
+		case key > x.Key():
+			x = x.right
+		default:
+			return
 		}
-
 	}
 
-	node.Parent = y
-	if y == nil {
+	node := &RBNode[T]{
+		key:    key,
+		left:   t._NIL,
+		right:  t._NIL,
+		parent: y,
+		color:  Red,
+	}
+	if y == t._NIL {
 		t.Root = node
-	} else if node.Key < y.Key {
-		y.Left = node
+	} else if node.key < y.key {
+		y.left = node
 	} else {
-		y.Right = node
+		y.right = node
 	}
 
-	if node.Parent == nil {
-		node.Color = Black
+	if node.parent == t._NIL {
+		node.color = Black
 		return
 	}
 
-	if node.Parent.Parent == nil {
+	if node.parent.parent == t._NIL {
 		return
 	}
 
 	t.pushFix(node)
 }
 
-func (t *RB[T]) leftRotate(x *Node[T]) {
-	y := x.Right
-	x.Right = y.Left
+func (t *RB[T]) leftRotate(x *RBNode[T]) {
+	y := x.right
+	x.right = y.left
 
-	if !t.isNil(y.Left) {
-		y.Left.Parent = x
+	if y.left != t._NIL {
+		y.left.parent = x
 	}
 
-	y.Parent = x.Parent
-	if x.Parent == nil {
+	y.parent = x.parent
+	if x.parent == t._NIL {
 		t.Root = y
-	} else if x == x.Parent.Left {
-		x.Parent.Left = y
+	} else if x == x.parent.left {
+		x.parent.left = y
 	} else {
-		x.Parent.Right = y
+		x.parent.right = y
 	}
 
-	y.Left = x
-	x.Parent = y
+	y.left = x
+	x.parent = y
 }
 
-func (t *RB[T]) rightRotate(x *Node[T]) {
-	y := x.Left
-	x.Left = y.Right
-	if !t.isNil(y.Right) {
-		y.Right.Parent = x
+func (t *RB[T]) rightRotate(x *RBNode[T]) {
+	y := x.left
+	x.left = y.right
+	if y.right != t._NIL {
+		y.right.parent = x
 	}
 
-	y.Parent = x.Parent
-	if x.Parent == nil {
+	y.parent = x.parent
+	if x.parent == t._NIL {
 		t.Root = y
-	} else if x == y.Parent.Right {
-		y.Parent.Right = y
+	} else if x == y.parent.right {
+		y.parent.right = y
 	} else {
-		y.Parent.Left = y
+		y.parent.left = y
 	}
 
-	y.Right = x
-	x.Parent = y
+	y.right = x
+	x.parent = y
 }
 
-func (t *RB[T]) pushFix(k *Node[T]) {
-	var u *Node[T]
-	for k.Parent.Color == Red {
-		if k.Parent == k.Parent.Parent.Right {
-			u = k.Parent.Parent.Left
-			if u != nil && u.Color == Red {
-				u.Color = Black
-				k.Parent.Color = Black
-				k.Parent.Parent.Color = Red
-				k = k.Parent.Parent
+func (t *RB[T]) pushFix(k *RBNode[T]) {
+	for k.parent.color == Red {
+		if k.parent == k.parent.parent.right {
+			u := k.parent.parent.left
+			if u.color == Red {
+				u.color = Black
+				k.parent.color = Black
+				k.parent.parent.color = Red
+				k = k.parent.parent
 			} else {
-				if k == k.Parent.Left {
-					k = k.Parent
+				if k == k.parent.left {
+					k = k.parent
 					t.rightRotate(k)
 				}
-				k.Parent.Color = Black
-				k.Parent.Parent.Color = Red
-				t.leftRotate(k.Parent.Parent)
+				k.parent.color = Black
+				k.parent.parent.color = Red
+				t.leftRotate(k.parent.parent)
 			}
 		} else {
-			u = k.Parent.Parent.Right
-			if u != nil && u.Color == Red {
-				u.Color = Black
-				k.Parent.Color = Black
-				k.Parent.Parent.Color = Red
-				k = k.Parent.Parent
+			u := k.parent.parent.right
+			if u.color == Red {
+				u.color = Black
+				k.parent.color = Black
+				k.parent.parent.color = Red
+				k = k.parent.parent
 			} else {
-				if k == k.Parent.Right {
-					k = k.Parent
+				if k == k.parent.right {
+					k = k.parent
 					t.leftRotate(k)
 				}
-				k.Parent.Color = Black
-				k.Parent.Parent.Color = Red
-				t.rightRotate(k.Parent.Parent)
+				k.parent.color = Black
+				k.parent.parent.color = Red
+				t.rightRotate(k.parent.parent)
 			}
 		}
 		if k == t.Root {
@@ -189,53 +294,52 @@ func (t *RB[T]) pushFix(k *Node[T]) {
 		}
 	}
 
-	t.Root.Color = Black
+	t.Root.color = Black
 }
 
-func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
-	z := t.NIL
-	for !t.isNil(node) {
+func (t *RB[T]) deleteHelper(node *RBNode[T], key T) bool {
+	z := t._NIL
+	for node != t._NIL {
 		switch {
-		case node.Key == key:
+		case node.key == key:
 			z = node
 			fallthrough
-		case node.Key <= key:
-			node = node.Right
-		case node.Key > key:
-			node = node.Left
+		case node.key <= key:
+			node = node.right
+		case node.key > key:
+			node = node.left
 		}
 	}
 
-	if t.isNil(z) {
-		fmt.Println("Key not found in the tree")
+	if z == t._NIL {
 		return false
 	}
 
-	var x *Node[T]
+	var x *RBNode[T]
 	y := z
-	yOriginColor := y.Color
-	if t.isNil(z.Left) {
-		x = z.Right
-		t.rbTransplant(z, z.Right)
-	} else if t.isNil(z.Right) {
-		x = z.Left
-		t.rbTransplant(z, z.Left)
+	yOriginColor := y.color
+	if z.left == t._NIL {
+		x = z.right
+		t.transplant(z, z.right)
+	} else if z.right == t._NIL {
+		x = z.left
+		t.transplant(z, z.left)
 	} else {
-		y = t.minimum(z.Right)
-		yOriginColor = y.Color
-		x = y.Right
-		if y.Parent == z {
-			x.Parent = y
+		y = minimum[T](z.right, t._NIL).(*RBNode[T])
+		yOriginColor = y.color
+		x = y.right
+		if y.parent == z {
+			x.parent = y
 		} else {
-			t.rbTransplant(y, y.Right)
-			y.Right = z.Right
-			y.Right.Parent = y
+			t.transplant(y, y.right)
+			y.right = z.right
+			y.right.parent = y
 		}
 
-		t.rbTransplant(z, y)
-		y.Left = z.Left
-		y.Left.Parent = y
-		y.Color = z.Color
+		t.transplant(z, y)
+		y.left = z.left
+		y.left.parent = y
+		y.color = z.color
 	}
 
 	if yOriginColor == Black {
@@ -245,109 +349,76 @@ func (t *RB[T]) deleteHelper(node *Node[T], key T) bool {
 	return true
 }
 
-func (t *RB[T]) deleteFix(x *Node[T]) {
-	var s *Node[T]
-	for x != t.Root && x.Color == Black {
-		if x == x.Parent.Left {
-			s = x.Parent.Right
-			if s.Color == Red {
-				s.Color = Black
-				x.Parent.Color = Red
-				t.leftRotate(x.Parent)
-				s = x.Parent.Right
+func (t *RB[T]) deleteFix(x *RBNode[T]) {
+	var s *RBNode[T]
+	for x != t.Root && x.color == Black {
+		if x == x.parent.left {
+			s = x.parent.right
+			if s.color == Red {
+				s.color = Black
+				x.parent.color = Red
+				t.leftRotate(x.parent)
+				s = x.parent.right
 			}
 
-			if s.Left.Color == Black && s.Right.Color == Black {
-				s.Color = Red
-				x = x.Parent
+			if s.left.color == Black && s.right.color == Black {
+				s.color = Red
+				x = x.parent
 			} else {
-				if s.Right.Color == Black {
-					s.Left.Color = Black
-					s.Color = Red
+				if s.right.color == Black {
+					s.left.color = Black
+					s.color = Red
 					t.rightRotate(s)
-					s = x.Parent.Right
+					s = x.parent.right
 				}
 
-				s.Color = x.Parent.Color
-				x.Parent.Color = Black
-				s.Right.Color = Black
-				t.leftRotate(x.Parent)
+				s.color = x.parent.color
+				x.parent.color = Black
+				s.right.color = Black
+				t.leftRotate(x.parent)
 				x = t.Root
 			}
 		} else {
-			s = x.Parent.Left
-			if s.Color == Red {
-				s.Color = Black
-				x.Parent.Color = Red
-				t.rightRotate(x.Parent)
-				s = x.Parent.Left
+			s = x.parent.left
+			if s.color == Red {
+				s.color = Black
+				x.parent.color = Red
+				t.rightRotate(x.parent)
+				s = x.parent.left
 			}
 
-			if s.Right.Color == Black && s.Left.Color == Black {
-				s.Color = Red
-				x = x.Parent
+			if s.right.color == Black && s.left.color == Black {
+				s.color = Red
+				x = x.parent
 			} else {
-				if s.Left.Color == Black {
-					s.Right.Color = Black
-					s.Color = Red
+				if s.left.color == Black {
+					s.right.color = Black
+					s.color = Red
 					t.leftRotate(s)
-					s = x.Parent.Left
+					s = x.parent.left
 				}
 
-				s.Color = x.Parent.Color
-				x.Parent.Color = Black
-				s.Left.Color = Black
-				t.rightRotate(x.Parent)
+				s.color = x.parent.color
+				x.parent.color = Black
+				s.left.color = Black
+				t.rightRotate(x.parent)
 				x = t.Root
 			}
 		}
 	}
 
-	x.Color = Black
+	x.color = Black
 }
 
-func (t *RB[T]) rbTransplant(u, v *Node[T]) {
+func (t *RB[T]) transplant(u, v *RBNode[T]) {
 	switch {
-	case u.Parent == nil:
+	case u.parent == t._NIL:
 		t.Root = v
-	case u == u.Parent.Left:
-		u.Parent.Left = v
+	case u == u.parent.left:
+		u.parent.left = v
 	default:
-		u.Parent.Right = v
-	}
-	v.Parent = u.Parent
-}
-
-func (t *RB[T]) predecessorHelper(node *Node[T]) (T, bool) {
-	if !t.isNil(node.Left) {
-		return t.maximum(node.Left).Key, true
+		u.parent.right = v
 	}
 
-	p := node.Parent
-	for p != nil && !t.isNil(p) && node == p.Left {
-		node = p
-		p = p.Parent
-	}
-
-	if p == nil {
-		return t.NIL.Key, false
-	}
-	return p.Key, true
-}
-
-func (t *RB[T]) successorHelper(node *Node[T]) (T, bool) {
-	if !t.isNil(node.Right) {
-		return t.minimum(node.Right).Key, true
-	}
-
-	p := node.Parent
-	for p != nil && !t.isNil(p) && node == p.Right {
-		node = p
-		p = p.Parent
-	}
-
-	if p == nil {
-		return t.NIL.Key, false
-	}
-	return p.Key, true
+	v.parent = u.parent
 }
