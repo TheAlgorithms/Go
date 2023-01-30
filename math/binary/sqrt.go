@@ -14,11 +14,11 @@ import (
 const threeHalves = 1.5
 
 func Sqrt(number float32) float32 {
-	var halfHumber, y float32
-	halfHumber = number * 0.5
+	var halfNumber, y float32
+	halfNumber = number * 0.5
 	z := math.Float32bits(number)
 	z = 0x5f3759df - (z >> 1) // floating point bit level hacking
 	y = math.Float32frombits(z)
-	y = y * (threeHalves - (halfHumber * y * y)) // Newton's approximation
+	y = y * (threeHalves - (halfNumber * y * y)) // Newton's approximation
 	return 1 / y
 }
