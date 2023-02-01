@@ -26,10 +26,7 @@ func IsPowerOfTwo(x int) bool {
 // by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000,
 // which in decimal system is 8 or = 2 * 2 * 2
 func IsPowerOfTwoLeftShift(number uint) bool {
-	if number == 0 {
-		return false
-	}
-	for p := uint(1); p > 0; p = p << 1 {
+	for p := uint(1); p <= number; p = p << 1 {
 		if number == p {
 			return true
 		}
