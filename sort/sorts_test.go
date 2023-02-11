@@ -1,11 +1,12 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"math/rand"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
