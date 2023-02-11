@@ -92,7 +92,7 @@ func GeneticString(target string, charmap []rune, conf *Conf) (*Result, error) {
 	debug := conf.Debug
 
 	// Just a seed to improve randomness required by the algorithm
-	rand.Seed(time.Now().UnixNano())
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	// Verify that the target contains no genes besides the ones inside genes variable.
 	for position, r := range target {
@@ -113,7 +113,7 @@ func GeneticString(target string, charmap []rune, conf *Conf) (*Result, error) {
 	for i := 0; i < populationNum; i++ {
 		key := ""
 		for x := 0; x < utf8.RuneCountInString(target); x++ {
-			choice := rand.Intn(len(charmap))
+			choice := rnd.Intn(len(charmap))
 			key += string(charmap[choice])
 		}
 		pop[i] = PopulationItem{key, 0}
@@ -165,18 +165,18 @@ func GeneticString(target string, charmap []rune, conf *Conf) (*Result, error) {
 				nChild = 10
 			}
 			for x := 0.0; x < nChild; x++ {
-				parent2 := pop[rand.Intn(selectionNum)]
+				parent2 := pop[rnd.Intn(selectionNum)]
 				// Crossover
-				split := rand.Intn(utf8.RuneCountInString(target))
+				split := rnd.Intn(utf8.RuneCountInString(target))
 				child1 := append([]rune(parent1.Key)[:split], []rune(parent2.Key)[split:]...)
 				child2 := append([]rune(parent2.Key)[:split], []rune(parent1.Key)[split:]...)
 				// Clean fitness value
 				// Mutate
-				if rand.Float64() < mutationProb {
-					child1[rand.Intn(len(child1))] = charmap[rand.Intn(len(charmap))]
+				if rnd.Float64() < mutationProb {
+					child1[rnd.Intn(len(child1))] = charmap[rnd.Intn(len(charmap))]
 				}
-				if rand.Float64() < mutationProb {
-					child2[rand.Intn(len(child2))] = charmap[rand.Intn(len(charmap))]
+				if rnd.Float64() < mutationProb {
+					child2[rnd.Intn(len(child2))] = charmap[rnd.Intn(len(charmap))]
 				}
 				// Push into 'popChildren'
 				popChildren = append(popChildren, PopulationItem{string(child1), 0})

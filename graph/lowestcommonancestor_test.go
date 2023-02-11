@@ -147,11 +147,11 @@ func TestLCA(t *testing.T) {
 }
 
 func generateTree() *Tree {
-	rand.Seed(time.Now().UnixNano())
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	const MAXVERTEX int = 2000
-	var numbersVertex int = rand.Intn(MAXVERTEX) + 1
-	var root int = rand.Intn(numbersVertex)
+	var numbersVertex int = rnd.Intn(MAXVERTEX) + 1
+	var root int = rnd.Intn(numbersVertex)
 	var edges []TreeEdge
 
 	var fullGraph []TreeEdge
@@ -163,7 +163,7 @@ func generateTree() *Tree {
 			})
 		}
 	}
-	rand.Shuffle(len(fullGraph), func(i, j int) {
+	rnd.Shuffle(len(fullGraph), func(i, j int) {
 		fullGraph[i], fullGraph[j] = fullGraph[j], fullGraph[i]
 	})
 
@@ -201,7 +201,7 @@ func generateTree() *Tree {
 }
 
 func generateQuery(tree *Tree) []Query {
-	rand.Seed(time.Now().UnixNano())
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	const MAXQUERY = 50
 	var queries []Query
 
@@ -217,8 +217,8 @@ func generateQuery(tree *Tree) []Query {
 	}
 
 	for q := 1; q <= MAXQUERY; q++ {
-		u := rand.Intn(tree.numbersVertex)
-		v := rand.Intn(tree.numbersVertex)
+		u := rnd.Intn(tree.numbersVertex)
+		v := rnd.Intn(tree.numbersVertex)
 		queries = append(queries, Query{
 			u:        u,
 			v:        v,

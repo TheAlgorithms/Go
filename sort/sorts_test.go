@@ -1,11 +1,12 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"math/rand"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -106,11 +107,11 @@ func TestMergeParallel(t *testing.T) {
 
 	// Test parallel merge sort with a large slice
 	t.Run("ParallelMerge on large slice", func(t *testing.T) {
-		rand.Seed(time.Now().UnixNano())
+		rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 		size := 100000
 		randomLargeSlice := make([]int, size)
 		for i := range randomLargeSlice {
-			randomLargeSlice[i] = rand.Intn(size)
+			randomLargeSlice[i] = rnd.Intn(size)
 		}
 		sortedSlice := sort.ParallelMerge[int](randomLargeSlice)
 		for i := 0; i < len(sortedSlice)-1; i++ {
