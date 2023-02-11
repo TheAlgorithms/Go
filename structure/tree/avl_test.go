@@ -1,12 +1,11 @@
 package tree_test
 
 import (
+	bt "github.com/TheAlgorithms/Go/structure/tree"
 	"math/rand"
 	"sort"
 	"testing"
 	"time"
-
-	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
 
 func TestAVLPush(t *testing.T) {
