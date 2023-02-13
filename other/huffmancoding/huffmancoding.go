@@ -26,10 +26,17 @@ type SymbolFreq struct {
 	freq   int
 }
 
+// The algorithm operates on []SymbolFreq sorted by frequency
+type ByFreq []SymbolFreq
+
+func (x ByFreq) Len() int           { return len(x) }
+func (x ByFreq) Less(i, j int) bool { return x[i].freq < x[j].freq }
+func (x ByFreq) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+
 // BuildTree returns the root Node of the Huffman tree by compressing listfreq.
 // The compression produces the most optimal code lengths, provided listfreq is ordered,
 // i.e.: listfreq[i] <= listfreq[j], whenever i < j.
-func BuildTree(listfreq []SymbolFreq) Node {
+func BuildTree(listfreq ByFreq) Node {
 	if len(listfreq) < 1 {
 		panic("huffman: calling BuildTree with an empty list of symbol-frequency pairs")
 	}
