@@ -6,7 +6,7 @@
 // author(s) [pedromsrocha](https://github.com/pedromsrocha)
 // see also huffmancoding_test.go
 
-// Package huffman provides primitives for doing Huffman compression, encodding adn decoding.
+// Package huffman provides primitives for doing Huffman compression, encodding and decoding.
 package huffman
 
 // A Node of an Huffman tree, which can either be a leaf or an internal node.
