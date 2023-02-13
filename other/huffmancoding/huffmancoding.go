@@ -18,6 +18,9 @@ type SymbolFreq struct {
 }
 
 func BuildTree(listfreq []SymbolFreq) Node {
+	if len(listfreq) < 1 {
+		panic("huffman: calling BuildTree with an empty list of symbol-frequency pairs")
+	}
 	q1 := make([]Node, len(listfreq))
 	q2 := make([]Node, 0, len(listfreq))
 	for i, x := range listfreq {
