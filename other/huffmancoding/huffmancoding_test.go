@@ -6,36 +6,48 @@
 package huffman
 
 import (
+	"sort"
 	"testing"
 )
 
-func TestHuffman(t *testing.T) {
-	var tests = []struct {
-		message  string
-		listfreq []SymbolFreq
-	}{
-		{"hello world \U0001F600",
-			[]SymbolFreq{
-				{'h', 1},
-				{'e', 1},
-				{'w', 1},
-				{'r', 1},
-				{'d', 1},
-				{' ', 1},
-				{'\U0001F600', 1},
-				{'\n', 1},
-				{'o', 2},
-				{'l', 3}}},
+func SymbolCountOrd(message string) ByFreq {
+	runeCount := make(map[rune]int)
+	for _, s := range message {
+		runeCount[s]++
 	}
-	for _, test := range tests {
-		t.Run("huffman: "+test.message, func(t *testing.T) {
-			tree := BuildTree(test.listfreq)
+	listfreq := make(ByFreq, len(runeCount))
+	i := 0
+	for s, n := range runeCount {
+		listfreq[i] = SymbolFreq{symbol: s, freq: n}
+		i++
+	}
+	sort.Sort(listfreq)
+	return listfreq
+}
+
+func TestHuffman(t *testing.T) {
+	messages := []string{
+		"hello world \U0001F600",
+		"colorless green ideas sleep furiously",
+		"the quick brown fox jumps over the lazy dog",
+		`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+		aliquip ex ea commodo consequat.`,
+	}
+
+	for _, message := range messages {
+		t.Run("huffman: "+message, func(t *testing.T) {
+			tree := BuildTree(SymbolCountOrd(message))
 			dict := make(map[rune][]bool)
 			BuildDict(&tree, nil, dict)
-			messageCoded := Encode(dict, test.message)
+			for s, n := range dict {
+				t.Logf("%q\t%v", s, n)
+			}
+			messageCoded := Encode(dict, message)
 			messageDecoded := Decode(&tree, &tree, messageCoded, "")
-			if messageDecoded != test.message {
-				t.Errorf("got: %v but expected: %v", messageDecoded, test.message)
+			if messageDecoded != message {
+				t.Errorf("got: %q\nbut expected: %q", messageDecoded, message)
 
 			}
 		})
