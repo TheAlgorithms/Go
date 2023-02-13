@@ -10,6 +10,7 @@ import (
 	"testing"
 )
 
+// SymbolCountOrd computes sorted symbol-frequency list of input message
 func SymbolCountOrd(message string) ByFreq {
 	runeCount := make(map[rune]int)
 	for _, s := range message {
@@ -41,9 +42,6 @@ func TestHuffman(t *testing.T) {
 			tree := BuildTree(SymbolCountOrd(message))
 			dict := make(map[rune][]bool)
 			BuildDict(&tree, nil, dict)
-			for s, n := range dict {
-				t.Logf("%q\t%v", s, n)
-			}
 			messageCoded := Encode(dict, message)
 			messageDecoded := Decode(&tree, &tree, messageCoded, "")
 			if messageDecoded != message {
