@@ -12,12 +12,16 @@ type Node struct {
 	weight int
 }
 
-func BuildTree(symbols []rune, weights []int) Node {
-	lenSymbols := len(symbols)
-	q1 := make([]Node, lenSymbols)
-	q2 := make([]Node, 0, lenSymbols)
-	for i, s := range symbols {
-		q1[i] = Node{left: nil, right: nil, symbol: s, weight: weights[i]}
+type SymbolFreq struct {
+	symbol rune
+	freq   int
+}
+
+func BuildTree(listfreq []SymbolFreq) Node {
+	q1 := make([]Node, len(listfreq))
+	q2 := make([]Node, 0, len(listfreq))
+	for i, x := range listfreq {
+		q1[i] = Node{left: nil, right: nil, symbol: x.symbol, weight: x.freq}
 	}
 	for len(q1)+len(q2) > 1 {
 		var node1, node2 Node
