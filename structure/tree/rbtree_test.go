@@ -85,9 +85,9 @@ func TestRBTreeDelete(t *testing.T) {
 func TestRBTree(t *testing.T) {
 	testcases := []int{100, 200, 1000, 10000}
 	for _, n := range testcases {
-		rand.Seed(time.Now().Unix())
+		rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 		tree := bt.NewRB[int]()
-		nums := rand.Perm(n)
+		nums := rnd.Perm(n)
 		tree.Push(nums...)
 
 		rets := tree.InOrder()

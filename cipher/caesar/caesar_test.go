@@ -156,10 +156,10 @@ func Example() {
 }
 
 func FuzzCaesar(f *testing.F) {
-	rand.Seed(time.Now().Unix())
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	f.Add("The Quick Brown Fox Jumps over the Lazy Dog.")
 	f.Fuzz(func(t *testing.T, input string) {
-		key := rand.Intn(26)
+		key := rnd.Intn(26)
 		if result := Decrypt(Encrypt(input, key), key); result != input {
 			t.Fatalf("With input: '%s' and key: %d\n\tExpected: '%s'\n\tGot: '%s'", input, key, input, result)
 		}
