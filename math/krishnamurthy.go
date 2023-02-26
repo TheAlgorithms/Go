@@ -6,8 +6,10 @@
 // see krishnamurthy_test.go
 package math
 
+import "github.com/TheAlgorithms/Go/constraints"
+
 // IsKrishnamurthyNumber returns if the provided number n is a Krishnamurthy number or not.
-func IsKrishnamurthyNumber[T int32 | int64 | int | uint32 | uint64 | uint](n T) bool {
+func IsKrishnamurthyNumber[T constraints.Integer](n T) bool {
 	if n <= 0 {
 		return false
 	}
