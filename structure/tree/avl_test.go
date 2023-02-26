@@ -284,9 +284,9 @@ func TestAVLDelete(t *testing.T) {
 	t.Run("Random Test", func(t *testing.T) {
 		nums := []int{100, 500, 1000, 10_000}
 		for _, n := range nums {
-			rand.Seed(time.Now().Unix())
+			rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 			tree := bt.NewAVL[int]()
-			nums := rand.Perm(n)
+			nums := rnd.Perm(n)
 			tree.Push(nums...)
 
 			rets := tree.InOrder()
