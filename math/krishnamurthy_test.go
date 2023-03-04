@@ -34,7 +34,7 @@ func TestIsKrishnamurthyNumber(t *testing.T) {
 		t.Run(fmt.Sprintf("%d %s a Krishnamurthy Number", test.input, test.outputString), func(t *testing.T) {
 			res := IsKrishnamurthyNumber(test.input)
 			if res != test.output {
-				t.Errorf("For input %d ,Expected: %t ,Found: %t", test.input, test.output, res)
+				t.Errorf("for input %d, expected: %t, found: %t", test.input, test.output, res)
 			}
 		})
 	}
