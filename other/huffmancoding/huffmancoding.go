@@ -115,7 +115,6 @@ func Decode(root, current *Node, in []bool, out string) string {
 	}
 	if in[0] {
 		return Decode(root, current.right, in[1:], out)
-	} else {
-		return Decode(root, current.left, in[1:], out)
 	}
+	return Decode(root, current.left, in[1:], out)
 }
