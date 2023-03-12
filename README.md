@@ -4,7 +4,7 @@
 ![godocmd](https://github.com/tjgurwara99/Go/workflows/godocmd/badge.svg)
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Go.svg?label=Repo%20size&style=flat-square)&nbsp;
 ![update_directory_md](https://github.com/TheAlgorithms/Go/workflows/update_directory_md/badge.svg)
-[![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square)](https://discord.gg/c7MnfGFGa6)&nbsp;
+[![Discord chat](https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square)](https://the-algorithms.com/discord/)&nbsp;
 
 ### Algorithms implemented in Go (for education)
 
@@ -58,28 +58,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> avl </strong> </summary>	
-
----
-
-#####  Package avl is a Adelson-Velskii and Landis tree implemnation avl is self-balancing tree, i.e for all node in a tree, height difference between its left and right child will not exceed 1 more information : https://en.wikipedia.org/wiki/AVL_tree
-
----
-##### Functions:
-
-1. [`Delete`](./structure/avl/avl.go#L72):  Delete : remove given key from the tree
-2. [`Get`](./structure/avl/avl.go#L20):  Get : return node with given key
-3. [`Insert`](./structure/avl/avl.go#L35):  Insert a new item
-4. [`NewTree`](./structure/avl/avl.go#L15):  NewTree create a new AVL tree
-
----
-##### Types
-
-1. [`Node`](./structure/avl/avl.go#L8): No description provided.
-
-
----
-</details><details>
 	<summary> <strong> binary </strong> </summary>	
 
 ---
@@ -91,40 +69,30 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Abs`](./math/binary/abs.go#L10):  Abs returns absolute value using binary operation Principle of operation: 1) Get the mask by right shift by the base 2) Base is the size of an integer variable in bits, for example, for int32 it will be 32, for int64 it will be 64 3) For negative numbers, above step sets mask as 1 1 1 1 1 1 1 1 and 0 0 0 0 0 0 0 0 for positive numbers. 4) Add the mask to the given number. 5) XOR of mask + n and mask gives the absolute value.
 2. [`BitCounter`](./math/binary/bitcounter.go#L11):  BitCounter - The function returns the number of set bits for an unsigned integer number
-3. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L19):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:    10...0  & 01...1    00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
-4. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L26):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
-5. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
-6. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
-7. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
-8. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
-9. [`Sqrt`](./math/binary/sqrt.go#L16): No description provided.
-10. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
+3. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L21):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:	  10...0	& 01...1	  00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
+4. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L28):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
+5. [`LogBase2`](./math/binary/logarithm.go#L7):  LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
+6. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
+7. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
+8. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
+9. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
+10. [`Sqrt`](./math/binary/sqrt.go#L16): No description provided.
+11. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
 
 ---
 </details><details>
-	<summary> <strong> binarytree </strong> </summary>	
+	<summary> <strong> cache </strong> </summary>	
 
 ---
 
 ##### Functions:
 
-1. [`AccessNodesByLayer`](./structure/binarysearchtree/bstree.go#L145):  AccessNodesByLayer Function that access nodes layer by layer instead of printing the results as one line.
-2. [`BstDelete`](./structure/binarysearchtree/bstree.go#L44):  BstDelete removes the node
-3. [`InOrder`](./structure/binarysearchtree/bstree.go#L79):  Travers the tree in the following order left --> root --> right
-4. [`InOrderSuccessor`](./structure/binarysearchtree/bstree.go#L35):  InOrderSuccessor Goes to the left
-5. [`Insert`](./structure/binarysearchtree/bstree.go#L17):  Insert a value in the BSTree
-6. [`LevelOrder`](./structure/binarysearchtree/bstree.go#L138): No description provided.
-7. [`Max`](./structure/binarysearchtree/bstree.go#L174):  Max Function that returns max of two numbers - possibly already declared.
-8. [`NewNode`](./structure/binarysearchtree/node.go#L11):  NewNode Returns a new pointer to an empty Node
-9. [`PostOrder`](./structure/binarysearchtree/bstree.go#L113):  Travers the tree in the following order left --> right --> root
-10. [`PreOrder`](./structure/binarysearchtree/bstree.go#L96):  Travers the tree in the following order root --> left --> right
+1. [`NewLRU`](./cache/lru.go#L20):  NewLRU represent initiate lru cache with capacity
 
 ---
 ##### Types
 
-1. [`BSTree`](./structure/binarysearchtree/bstree.go#L4): No description provided.
-
-2. [`Node`](./structure/binarysearchtree/node.go#L4): No description provided.
+1. [`LRU`](./cache/lru.go#L12): No description provided.
 
 
 ---
@@ -140,6 +108,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Decrypt`](./cipher/caesar/caesar.go#L27):  Decrypt decrypts by left shift of "key" each character of "input"
 2. [`Encrypt`](./cipher/caesar/caesar.go#L6):  Encrypt encrypts by right shift of "key" each character of "input"
+3. [`FuzzCaesar`](./cipher/caesar/caesar_test.go#L158): No description provided.
 
 ---
 </details><details>
@@ -237,7 +206,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package diffiehellman implements Deffie Hellman Key Exchange Algorithm for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
+#####  Package diffiehellman implements Diffie-Hellman Key Exchange Algorithm for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
 
 ---
 ##### Functions:
@@ -256,23 +225,25 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Bin2`](./dynamic/binomialcoefficient.go#L21):  Bin2 function
-2. [`CutRodDp`](./dynamic/rodcutting.go#L21):  CutRodDp solve the same problem using dynamic programming
-3. [`CutRodRec`](./dynamic/rodcutting.go#L8):  CutRodRec solve the problem recursively: initial approach
-4. [`EditDistanceDP`](./dynamic/editdistance.go#L35):  EditDistanceDP is an optimised implementation which builds on the ideas of the recursive implementation. We use dynamic programming to compute the DP table where dp[i][j] denotes the edit distance value of first[0..i-1] and second[0..j-1]. Time complexity is O(m * n) where m and n are lengths of the strings, first and second respectively.
-5. [`EditDistanceRecursive`](./dynamic/editdistance.go#L10):  EditDistanceRecursive is a naive implementation with exponential time complexity.
-6. [`IsSubsetSum`](./dynamic/subsetsum.go#L14): No description provided.
-7. [`Knapsack`](./dynamic/knapsack.go#L17):  Knapsack solves knapsack problem return maxProfit
-8. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L8):  LongestCommonSubsequence function
-9. [`LongestIncreasingSubsequence`](./dynamic/longestincreasingsubsequence.go#L9):  LongestIncreasingSubsequence returns the longest increasing subsequence where all elements of the subsequence are sorted in increasing order
-10. [`LongestIncreasingSubsequenceGreedy`](./dynamic/longestincreasingsubsequencegreedy.go#L9):  LongestIncreasingSubsequenceGreedy is a function to find the longest increasing subsequence in a given array using a greedy approach. The dynamic programming approach is implemented alongside this one. Worst Case Time Complexity: O(nlogn) Auxiliary Space: O(n), where n is the length of the array(slice). Reference: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
-11. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L21):  LpsDp function
-12. [`LpsRec`](./dynamic/longestpalindromicsubsequence.go#L7):  LpsRec function
-13. [`MatrixChainDp`](./dynamic/matrixmultiplication.go#L24):  MatrixChainDp function
-14. [`MatrixChainRec`](./dynamic/matrixmultiplication.go#L10):  MatrixChainRec function
-15. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
-16. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
-17. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
+1. [`Abbreviation`](./dynamic/abbreviation.go#L24):  Returns true if it is possible to make a equals b (if b is an abbreviation of a), returns false otherwise
+2. [`Bin2`](./dynamic/binomialcoefficient.go#L21):  Bin2 function
+3. [`CoinChange`](./dynamic/coinchange.go#L5):  CoinChange finds the number of possible combinations of coins of different values which can get to the target amount.
+4. [`CutRodDp`](./dynamic/rodcutting.go#L21):  CutRodDp solve the same problem using dynamic programming
+5. [`CutRodRec`](./dynamic/rodcutting.go#L8):  CutRodRec solve the problem recursively: initial approach
+6. [`EditDistanceDP`](./dynamic/editdistance.go#L35):  EditDistanceDP is an optimised implementation which builds on the ideas of the recursive implementation. We use dynamic programming to compute the DP table where dp[i][j] denotes the edit distance value of first[0..i-1] and second[0..j-1]. Time complexity is O(m * n) where m and n are lengths of the strings, first and second respectively.
+7. [`EditDistanceRecursive`](./dynamic/editdistance.go#L10):  EditDistanceRecursive is a naive implementation with exponential time complexity.
+8. [`IsSubsetSum`](./dynamic/subsetsum.go#L14): No description provided.
+9. [`Knapsack`](./dynamic/knapsack.go#L17):  Knapsack solves knapsack problem return maxProfit
+10. [`LongestCommonSubsequence`](./dynamic/longestcommonsubsequence.go#L13):  LongestCommonSubsequence function
+11. [`LongestIncreasingSubsequence`](./dynamic/longestincreasingsubsequence.go#L9):  LongestIncreasingSubsequence returns the longest increasing subsequence where all elements of the subsequence are sorted in increasing order
+12. [`LongestIncreasingSubsequenceGreedy`](./dynamic/longestincreasingsubsequencegreedy.go#L9):  LongestIncreasingSubsequenceGreedy is a function to find the longest increasing subsequence in a given array using a greedy approach. The dynamic programming approach is implemented alongside this one. Worst Case Time Complexity: O(nlogn) Auxiliary Space: O(n), where n is the length of the array(slice). Reference: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
+13. [`LpsDp`](./dynamic/longestpalindromicsubsequence.go#L25):  LpsDp function
+14. [`LpsRec`](./dynamic/longestpalindromicsubsequence.go#L20):  LpsRec function
+15. [`MatrixChainDp`](./dynamic/matrixmultiplication.go#L24):  MatrixChainDp function
+16. [`MatrixChainRec`](./dynamic/matrixmultiplication.go#L10):  MatrixChainRec function
+17. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
+18. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
+19. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
 
 ---
 </details><details>
@@ -410,10 +381,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 5. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 6. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
 7. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
-8. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-9. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-10. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-11. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+8. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
+9. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
+10. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
+11. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+12. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
+13. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
 ---
 ##### Types
@@ -428,7 +401,13 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 5. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-6. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
+6. [`Query`](./graph/lowestcommonancestor_test.go#L9): No description provided.
+
+7. [`Tree`](./graph/lowestcommonancestor.go#L25): No description provided.
+
+8. [`TreeEdge`](./graph/lowestcommonancestor.go#L12): No description provided.
+
+9. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
 
 
 ---
@@ -456,13 +435,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Kmp`](./strings/kmp/kmp.go#L70):  Kmp Function kmp performing the Knuth-Morris-Pratt algorithm. Prints whether the word/pattern was found and on what position in the text or not. m - current match in text, i - current character in w, c - amount of comparisons.
-
----
-##### Types
-
-1. [`Result`](./strings/kmp/kmp.go#L15): No description provided.
-
+1. [`Kmp`](./strings/kmp/kmp.go#L4):  Kmp Function kmp performing the Knuth-Morris-Pratt algorithm. 
 
 ---
 </details><details>
@@ -490,14 +463,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package linkedlist demonstates different implementations on linkedlists.
+#####  Package linkedlist demonstrates different implementations on linkedlists.
 
 ---
 ##### Functions:
 
 1. [`JosephusProblem`](./structure/linkedlist/cyclic.go#L120):  https://en.wikipedia.org/wiki/Josephus_problem This is a struct-based solution for Josephus problem.
 2. [`NewCyclic`](./structure/linkedlist/cyclic.go#L12):  Create new list.
-3. [`NewDoubly`](./structure/linkedlist/doubly.go#L22): No description provided.
+3. [`NewDoubly`](./structure/linkedlist/doubly.go#L31): No description provided.
 4. [`NewNode`](./structure/linkedlist/shared.go#L12):  Create new node.
 5. [`NewSingly`](./structure/linkedlist/singlylinkedlist.go#L19):  NewSingly returns a new instance of a linked list
 
@@ -537,12 +510,23 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Abs`](./math/abs.go#L11):  Abs returns absolute value
-2. [`Cos`](./math/cos.go#L10):  Cos  returns the cosine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine) [Based on the idea of Bhaskara approximation of cos(x)](https://math.stackexchange.com/questions/3886552/bhaskara-approximation-of-cosx)
-3. [`FindKthMax`](./math/kthnumber.go#L11):  FindKthMax returns the kth large element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
-4. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
-5. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-6. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
-7. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
+2. [`Combinations`](./math/binomialcoefficient.go#L20):  C is Binomial Coefficient function This function returns C(n, k) for given n and k
+3. [`Cos`](./math/cos.go#L10):  Cos  returns the cosine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine) [Based on the idea of Bhaskara approximation of cos(x)](https://math.stackexchange.com/questions/3886552/bhaskara-approximation-of-cosx)
+4. [`DefaultPolynomial`](./math/pollard.go#L16):  DefaultPolynomial is the commonly used polynomial g(x) = (x^2 + 1) mod n
+5. [`FindKthMax`](./math/kthnumber.go#L11):  FindKthMax returns the kth large element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
+6. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
+7. [`IsPerfectNumber`](./math/perfectnumber.go#L34):  Checks if inNumber is a perfect number
+8. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
+9. [`Lerp`](./math/lerp.go#L5):  Lerp or Linear interpolation This function will return new value in 't' percentage  between 'v0' and 'v1'
+10. [`LiouvilleLambda`](./math/liouville.go#L24):  Lambda is the liouville function This function returns λ(n) for given number
+11. [`Mean`](./math/mean.go#L7): No description provided.
+12. [`Median`](./math/median.go#L12): No description provided.
+13. [`Mode`](./math/mode.go#L19): No description provided.
+14. [`Mu`](./math/mobius.go#L21):  Mu is the Mobius function This function returns μ(n) for given number
+15. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+16. [`PollardsRhoFactorization`](./math/pollard.go#L29):  PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm using the default parameters x = y = 2
+17. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
+18. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
 
 ---
 </details><details>
@@ -553,7 +537,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Bitwise`](./math/max/bitwisemax.go#L11):  Bitwise computes using bitwise operator the maximum of all the integer input and returns it
-2. [`Int`](./math/max/max.go#L4):  Int is a function which returns the maximum of all the integers provided as arguments.
+2. [`Int`](./math/max/max.go#L6):  Int is a function which returns the maximum of all the integers provided as arguments.
 
 ---
 </details><details>
@@ -577,7 +561,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Bitwise`](./math/min/bitwisemin.go#L11):  Bitwise This function returns the minimum integer using bit operations
-2. [`Int`](./math/min/min.go#L4):  Int is a function which returns the minimum of all the integers provided as arguments.
+2. [`Int`](./math/min/min.go#L6):  Int is a function which returns the minimum of all the integers provided as arguments.
 
 ---
 </details><details>
@@ -588,7 +572,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Exponentiation`](./math/modular/exponentiation.go#L22):  Exponentiation returns base^exponent % mod
-2. [`Inverse`](./math/modular/inverse.go#L20):  Inverse Modular function
+2. [`Inverse`](./math/modular/inverse.go#L19):  Inverse Modular function
 3. [`Multiply64BitInt`](./math/modular/exponentiation.go#L51):  Multiply64BitInt Checking if the integer multiplication overflows
 
 ---
@@ -612,7 +596,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`IsBalanced`](./other/nested/nestedbrackets.go#L20):  IsBalanced returns true if provided input string is properly nested. Input is a sequence of brackets: '(', ')', '[', ']', '{', '}'. A sequence of brackets `s` is considered properly nested if any of the following conditions are true: 	- `s` is empty; 	- `s` has the form (U) or [U] or {U} where U is a properly nested string; 	- `s` has the form VW where V and W are properly nested strings. For example, the string "()()[()]" is properly nested but "[(()]" is not. **Note** Providing characters other then brackets would return false, despite brackets sequence in the string. Make sure to filter input before usage.
+1. [`IsBalanced`](./other/nested/nestedbrackets.go#L20):  IsBalanced returns true if provided input string is properly nested. Input is a sequence of brackets: '(', ')', '[', ']', '{', '}'. A sequence of brackets `s` is considered properly nested if any of the following conditions are true:   - `s` is empty;   - `s` has the form (U) or [U] or {U} where U is a properly nested string;   - `s` has the form VW where V and W are properly nested strings. For example, the string "()()[()]" is properly nested but "[(()]" is not. **Note** Providing characters other then brackets would return false, despite brackets sequence in the string. Make sure to filter input before usage.
 
 ---
 </details><details>
@@ -634,6 +618,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`IsPangram`](./strings/pangram/ispangram.go#L21): No description provided.
+
+---
+</details><details>
+	<summary> <strong> parenthesis </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Parenthesis`](./strings/parenthesis/parenthesis.go#L12):  parcounter will be 0 if all open parenthesis are closed correctly
 
 ---
 </details><details>
@@ -727,11 +721,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 1. [`Factorize`](./math/prime/primefactorization.go#L5):  Factorize is a function that computes the exponents of each prime in the prime factorization of n
 2. [`Generate`](./math/prime/sieve.go#L26):  Generate returns a int slice of prime numbers up to the limit
 3. [`GenerateChannel`](./math/prime/sieve.go#L9):  Generate generates the sequence of integers starting at 2 and sends it to the channel `ch`
-4. [`MillerRabinTest`](./math/prime/millerrabinprimalitytest.go#L59):  MillerRabinTest Probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
-5. [`MillerTest`](./math/prime/millerrabinprimalitytest.go#L32):  MillerTest This is the intermediate step that repeats within the miller rabin primality test for better probabilitic chances of receiving the correct result.
-6. [`NaiveApproach`](./math/prime/primecheck.go#L8):  NaiveApproach checks if an integer is prime or not. Returns a bool.
-7. [`PairApproach`](./math/prime/primecheck.go#L22):  PairApproach checks primality of an integer and returns a bool. More efficient than the naive approach as number of iterations are less.
-8. [`Sieve`](./math/prime/sieve.go#L16):  Sieve Sieving the numbers that are not prime from the channel - basically removing them from the channels
+4. [`MillerRabinDeterministic`](./math/prime/millerrabintest.go#L121):  MillerRabinDeterministic is a Deterministic version of the Miller-Rabin test, which returns correct results for all valid int64 numbers.
+5. [`MillerRabinProbabilistic`](./math/prime/millerrabintest.go#L101):  MillerRabinProbabilistic is a probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
+6. [`MillerRandomTest`](./math/prime/millerrabintest.go#L77):  MillerRandomTest This is the intermediate step that repeats within the miller rabin primality test for better probabilitic chances of receiving the correct result with random witnesses.
+7. [`MillerTest`](./math/prime/millerrabintest.go#L49):  MillerTest tests whether num is a strong probable prime to a witness. Formally: a^d ≡ 1 (mod n) or a^(2^r * d) ≡ -1 (mod n), 0 <= r <= s
+8. [`MillerTestMultiple`](./math/prime/millerrabintest.go#L84):  MillerTestMultiple is like MillerTest but runs the test for multiple witnesses.
+9. [`OptimizedTrialDivision`](./math/prime/primecheck.go#L26):  OptimizedTrialDivision checks primality of an integer using an optimized trial division method. The optimizations include not checking divisibility by the even numbers and only checking up to the square root of the given number.
+10. [`Sieve`](./math/prime/sieve.go#L16):  Sieve Sieving the numbers that are not prime from the channel - basically removing them from the channels
+11. [`TrialDivision`](./math/prime/primecheck.go#L9):  TrialDivision tests whether a number is prime by trying to divide it by the numbers less than it.
+12. [`Twin`](./math/prime/twin.go#L15):  This function returns twin prime for given number returns (n + 2) if both n and (n + 2) are prime -1 otherwise
 
 ---
 </details><details>
@@ -741,7 +739,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Distance`](./math/pythagoras/pythagoras.go#L15): Distance calculates the distance between to vectors with the   Pythagoras theorem
+1. [`Distance`](./math/pythagoras/pythagoras.go#L15):  Distance calculates the distance between to vectors with the   Pythagoras theorem
 
 ---
 ##### Types
@@ -776,6 +774,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> rot13 </strong> </summary>	
+
+---
+
+#####  Package rot13 is a simple letter substitution cipher that replaces a letter with the 13th letter after it in the alphabet. ref: https://en.wikipedia.org/wiki/ROT13
+
+---
+##### Functions:
+
+1. [`FuzzRot13`](./cipher/rot13/rot13_test.go#L72): No description provided.
+
+---
+</details><details>
 	<summary> <strong> rsa </strong> </summary>	
 
 ---
@@ -807,7 +818,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`NewSegmentTree`](./structure/segmenttree/segmenttree.go#L114): No description provided.
+1. [`NewSegmentTree`](./structure/segmenttree/segmenttree.go#L116): No description provided.
 
 ---
 ##### Types
@@ -850,31 +861,31 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
-2. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
-3. [`Count`](./sort/countingsort.go#L11): No description provided.
-4. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
-5. [`HeapSort`](./sort/heapsort.go#L121): No description provided.
-6. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-7. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
-8. [`Merge`](./sort/mergesort.go#L40):  Merge Perform merge sort on a slice
-9. [`MergeIter`](./sort/mergesort.go#L54): No description provided.
-10. [`Partition`](./sort/quicksort.go#L12): No description provided.
-11. [`Pigeonhole`](./sort/pigeonholesort.go#L12):  Pigeonhole sorts a slice using pigeonhole sorting algorithm.
-12. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
-13. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
-14. [`RadixSort`](./sort/radixsort.go#L35): No description provided.
-15. [`Selection`](./sort/selectionsort.go#L5): No description provided.
-16. [`Shell`](./sort/shellsort.go#L5): No description provided.
-17. [`Simple`](./sort/simplesort.go#L13): No description provided.
+2. [`Bucket Sort`](./sort/bucketsort.go#L5): Bucket Sort works with the idea of distributing the elements of an array into a number of buckets. Each bucket is then sorted individually, either using a different sorting algorithm, or by recursively applying the bucket sorting algorithm.
+3. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+4. [`Count`](./sort/countingsort.go#L11): No description provided.
+5. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
+6. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
+7. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+8. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
+9. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
+10. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
+11. [`Pancake Sort`](./sort/pancakesort.go#L7): Pancake Sort is a sorting algorithm that is similar to selection sort that reverses elements of an array. The Pancake Sort uses the flip operation to sort the array.
+12. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
+13. [`Partition`](./sort/quicksort.go#L12): No description provided.
+14. [`Patience`](./sort/patiencesort.go#L13): No description provided.
+15. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
+16. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+17. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+18. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
+19. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+20. [`Shell`](./sort/shellsort.go#L5): No description provided.
+21. [`Simple`](./sort/simplesort.go#L13): No description provided.
 
 ---
 ##### Types
 
-1. [`Int`](#L0): 
-
-	Methods:
-	1. [`More`](./sort/heapsort.go#L114): No description provided.
-2. [`MaxHeap`](./sort/heapsort.go#L3): No description provided.
+1. [`MaxHeap`](./sort/heapsort.go#L5): No description provided.
 
 
 ---
@@ -894,6 +905,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> strings </strong> </summary>	
+
+---
+
+#####  Package strings is a package that contains all algorithms that are used to analyse and manipulate strings.
+
+---
+##### Functions:
+
+1. [`CountChars`](./strings/charoccurrence.go#L12):  CountChars counts the number of a times a character has occurred in the provided string argument and returns a map with `rune` as keys and the count as value.
+
+---
+</details><details>
 	<summary> <strong> transposition </strong> </summary>	
 
 ---
@@ -910,6 +934,43 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 2. [`NoTextToEncryptError`](./cipher/transposition/transposition.go#L15): No description provided.
 
+
+---
+</details><details>
+	<summary> <strong> tree </strong> </summary>	
+
+---
+
+#####  For more details check out those links below here: Wikipedia article: https://en.wikipedia.org/wiki/Binary_search_tree authors [guuzaa](https://github.com/guuzaa)
+
+---
+##### Functions:
+
+1. [`NewAVL`](./structure/tree/avl.go#L13):  NewAVL create a novel AVL tree
+2. [`NewBinarySearch`](./structure/tree/bstree.go#L18):  NewBinarySearch create a novel Binary-Search tree
+3. [`NewRB`](./structure/tree/rbtree.go#L23):  Create a new Red-Black Tree
+
+---
+##### Types
+
+1. [`AVL`](./structure/tree/avl.go#L8): No description provided.
+
+2. [`BinarySearch`](./structure/tree/bstree.go#L13): No description provided.
+
+3. [`Node`](./structure/tree/tree.go#L25): No description provided.
+
+4. [`RB`](./structure/tree/rbtree.go#L18): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> tree_test </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`FuzzRBTree`](./structure/tree/rbtree_test.go#L90): No description provided.
 
 ---
 </details><details>
@@ -943,6 +1004,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Decrypt`](./cipher/xor/xor.go#L19):  Decrypt decrypts with Xor encryption
 2. [`Encrypt`](./cipher/xor/xor.go#L10):  Encrypt encrypts with Xor encryption after converting each character to byte The returned value might not be readable because there is no guarantee which is within the ASCII range If using other type such as string, []int, or some other types, add the statements for converting the type to []byte.
+3. [`FuzzXOR`](./cipher/xor/xor_test.go#L108): No description provided.
 
 ---
 </details>

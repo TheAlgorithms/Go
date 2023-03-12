@@ -2,7 +2,9 @@ package caesar
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestEncrypt(t *testing.T) {
@@ -151,4 +153,15 @@ func Example() {
 	// Output:
 	// Encrypt=> key: 10, input: The Quick Brown Fox Jumps over the Lazy Dog., encryptedText: Dro Aesmu Lbygx Pyh Tewzc yfob dro Vkji Nyq.
 	// Decrypt=> key: 10, input: Dro Aesmu Lbygx Pyh Tewzc yfob dro Vkji Nyq., decryptedText: The Quick Brown Fox Jumps over the Lazy Dog.
+}
+
+func FuzzCaesar(f *testing.F) {
+	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
+	f.Add("The Quick Brown Fox Jumps over the Lazy Dog.")
+	f.Fuzz(func(t *testing.T, input string) {
+		key := rnd.Intn(26)
+		if result := Decrypt(Encrypt(input, key), key); result != input {
+			t.Fatalf("With input: '%s' and key: %d\n\tExpected: '%s'\n\tGot: '%s'", input, key, input, result)
+		}
+	})
 }

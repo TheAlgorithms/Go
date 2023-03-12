@@ -75,7 +75,7 @@ func MillerTest(num, witness int64) (bool, error) {
 // miller rabin primality test for better probabilitic chances of
 // receiving the correct result with random witnesses.
 func MillerRandomTest(num int64) (bool, error) {
-	random := rand.Int63n(num-1) + 2
+	random := rand.Int63n(num-2) + 2
 	return MillerTest(num, random)
 }
 

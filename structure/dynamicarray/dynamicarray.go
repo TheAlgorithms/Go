@@ -21,11 +21,11 @@ var defaultCapacity = 10
 type DynamicArray struct {
 	Size        int
 	Capacity    int
-	ElementData []interface{}
+	ElementData []any
 }
 
 // Put function is change/update the value in array with the index and new value
-func (da *DynamicArray) Put(index int, element interface{}) error {
+func (da *DynamicArray) Put(index int, element any) error {
 	err := da.CheckRangeFromIndex(index)
 
 	if err != nil {
@@ -38,7 +38,7 @@ func (da *DynamicArray) Put(index int, element interface{}) error {
 }
 
 // Add function is add new element to our array
-func (da *DynamicArray) Add(element interface{}) {
+func (da *DynamicArray) Add(element any) {
 	if da.Size == da.Capacity {
 		da.NewCapacity()
 	}
@@ -64,7 +64,7 @@ func (da *DynamicArray) Remove(index int) error {
 }
 
 // Get function is return one element with the index of array
-func (da *DynamicArray) Get(index int) (interface{}, error) {
+func (da *DynamicArray) Get(index int) (any, error) {
 	err := da.CheckRangeFromIndex(index)
 
 	if err != nil {
@@ -80,7 +80,7 @@ func (da *DynamicArray) IsEmpty() bool {
 }
 
 // GetData function return all value of array
-func (da *DynamicArray) GetData() []interface{} {
+func (da *DynamicArray) GetData() []any {
 	return da.ElementData[:da.Size]
 }
 
@@ -100,7 +100,7 @@ func (da *DynamicArray) NewCapacity() {
 		da.Capacity = da.Capacity << 1
 	}
 
-	newDataElement := make([]interface{}, da.Capacity)
+	newDataElement := make([]any, da.Capacity)
 
 	copy(newDataElement, da.ElementData)
 

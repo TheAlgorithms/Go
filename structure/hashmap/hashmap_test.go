@@ -59,7 +59,7 @@ func TestHashMap(t *testing.T) {
 	})
 
 	t.Run("Test 7: Checking if the key does not exist Get func returns nil", func(t *testing.T) {
-		want := interface{}(nil)
+		want := any(nil)
 		got := mp.Get(2)
 		if got != want {
 			t.Errorf("Key '2' does not exists in the map but it says otherwise")

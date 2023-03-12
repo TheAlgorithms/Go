@@ -18,7 +18,7 @@ var distanceTest = []struct {
 	{"random short vectors", Vector{1, 1, 1}, Vector{2, 2, 2}, 1.73},
 }
 
-//TestDistance tests the Function Distance with 2 vectors
+// TestDistance tests the Function Distance with 2 vectors
 func TestDistance(t *testing.T) {
 	t.Parallel() // marks TestDistance as capable of running in parallel with other tests
 	for _, tt := range distanceTest {

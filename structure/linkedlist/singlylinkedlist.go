@@ -7,21 +7,21 @@ import (
 )
 
 // Singly structure with length of the list and its head
-type Singly struct {
+type Singly[T any] struct {
 	length int
 
 	// Note that Node here holds both Next and Prev Node
 	// however only the Next node is used in Singly methods.
-	Head *Node
+	Head *Node[T]
 }
 
 // NewSingly returns a new instance of a linked list
-func NewSingly() *Singly {
-	return &Singly{}
+func NewSingly[T any]() *Singly[T] {
+	return &Singly[T]{}
 }
 
 // AddAtBeg adds a new snode with given value at the beginning of the list.
-func (ll *Singly) AddAtBeg(val interface{}) {
+func (ll *Singly[T]) AddAtBeg(val T) {
 	n := NewNode(val)
 	n.Next = ll.Head
 	ll.Head = n
@@ -29,7 +29,7 @@ func (ll *Singly) AddAtBeg(val interface{}) {
 }
 
 // AddAtEnd adds a new snode with given value at the end of the list.
-func (ll *Singly) AddAtEnd(val interface{}) {
+func (ll *Singly[T]) AddAtEnd(val T) {
 	n := NewNode(val)
 
 	if ll.Head == nil {
@@ -45,23 +45,27 @@ func (ll *Singly) AddAtEnd(val interface{}) {
 	ll.length++
 }
 
-// DelAtBeg deletes the snode at the head(beginning) of the list and returns its value. Returns -1 if the list is empty.
-func (ll *Singly) DelAtBeg() interface{} {
+// DelAtBeg deletes the snode at the head(beginning) of the list
+// and returns its value. Returns false if the list is empty.
+func (ll *Singly[T]) DelAtBeg() (T, bool) {
 	if ll.Head == nil {
-		return -1
+		var r T
+		return r, false
 	}
 
 	cur := ll.Head
 	ll.Head = cur.Next
 	ll.length--
 
-	return cur.Val
+	return cur.Val, true
 }
 
-// DelAtEnd deletes the snode at the tail(end) of the list and returns its value. Returns -1 if the list is empty.
-func (ll *Singly) DelAtEnd() interface{} {
+// DelAtEnd deletes the snode at the tail(end) of the list
+// and returns its value. Returns false if the list is empty.
+func (ll *Singly[T]) DelAtEnd() (T, bool) {
 	if ll.Head == nil {
-		return -1
+		var r T
+		return r, false
 	}
 
 	if ll.Head.Next == nil {
@@ -76,18 +80,52 @@ func (ll *Singly) DelAtEnd() interface{} {
 	retval := cur.Next.Val
 	cur.Next = nil
 	ll.length--
-	return retval
+	return retval, true
 
 }
 
+// DelByPos deletes the node at the middle based on position in the list
+// and returns its value. Returns false if the list is empty or length is not more than given position
+func (ll *Singly[T]) DelByPos(pos int) (T, bool) {
+	switch {
+	case ll.Head == nil:
+		var r T
+		return r, false
+	case pos-1 > ll.length:
+		var r T
+		return r, false
+	case pos-1 == 0:
+		return ll.DelAtBeg()
+	case pos-1 == ll.Count():
+		return ll.DelAtEnd()
+	}
+
+	var prev *Node[T]
+	var val T
+	cur := ll.Head
+	count := 0
+
+	for count < pos-1 {
+		prev = cur
+		cur = cur.Next
+		count++
+	}
+
+	val = cur.Val
+	prev.Next = cur.Next
+	ll.length--
+
+	return val, true
+}
+
 // Count returns the current size of the list.
-func (ll *Singly) Count() int {
+func (ll *Singly[T]) Count() int {
 	return ll.length
 }
 
 // Reverse reverses the list.
-func (ll *Singly) Reverse() {
-	var prev, Next *Node
+func (ll *Singly[T]) Reverse() {
+	var prev, Next *Node[T]
 	cur := ll.Head
 
 	for cur != nil {
@@ -101,12 +139,12 @@ func (ll *Singly) Reverse() {
 }
 
 // ReversePartition Reverse the linked list from the ath to the bth node
-func (ll *Singly) ReversePartition(left, right int) error {
+func (ll *Singly[T]) ReversePartition(left, right int) error {
 	err := ll.CheckRangeFromIndex(left, right)
 	if err != nil {
 		return err
 	}
-	tmpNode := NewNode(-1)
+	tmpNode := &Node[T]{}
 	tmpNode.Next = ll.Head
 	pre := tmpNode
 	for i := 0; i < left-1; i++ {
@@ -122,7 +160,7 @@ func (ll *Singly) ReversePartition(left, right int) error {
 	ll.Head = tmpNode.Next
 	return nil
 }
-func (ll *Singly) CheckRangeFromIndex(left, right int) error {
+func (ll *Singly[T]) CheckRangeFromIndex(left, right int) error {
 	if left > right {
 		return errors.New("left boundary must smaller than right")
 	} else if left < 1 {
@@ -134,7 +172,7 @@ func (ll *Singly) CheckRangeFromIndex(left, right int) error {
 }
 
 // Display prints out the elements of the list.
-func (ll *Singly) Display() {
+func (ll *Singly[T]) Display() {
 	for cur := ll.Head; cur != nil; cur = cur.Next {
 		fmt.Print(cur.Val, " ")
 	}

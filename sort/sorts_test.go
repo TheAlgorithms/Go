@@ -2,8 +2,10 @@ package sort_test
 
 import (
 	"github.com/TheAlgorithms/Go/sort"
+	"math/rand"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -79,6 +81,10 @@ func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
 }
 
+func TestBucketSort(t *testing.T) {
+	testFramework(t, sort.Bucket[int])
+}
+
 func TestExchange(t *testing.T) {
 	testFramework(t, sort.Exchange[int])
 }
@@ -95,8 +101,28 @@ func TestMergeIter(t *testing.T) {
 	testFramework(t, sort.MergeIter[int])
 }
 
+func TestMergeParallel(t *testing.T) {
+	testFramework(t, sort.ParallelMerge[int])
+
+	// Test parallel merge sort with a large slice
+	t.Run("ParallelMerge on large slice", func(t *testing.T) {
+		rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
+		size := 100000
+		randomLargeSlice := make([]int, size)
+		for i := range randomLargeSlice {
+			randomLargeSlice[i] = rnd.Intn(size)
+		}
+		sortedSlice := sort.ParallelMerge[int](randomLargeSlice)
+		for i := 0; i < len(sortedSlice)-1; i++ {
+			if sortedSlice[i] > sortedSlice[i+1] {
+				t.Errorf("ParallelMerge failed")
+			}
+		}
+	})
+}
+
 func TestHeap(t *testing.T) {
-	testFramework(t, sort.HeapSort)
+	testFramework(t, sort.HeapSort[int])
 }
 
 func TestCount(t *testing.T) {
@@ -112,7 +138,7 @@ func TestShell(t *testing.T) {
 }
 
 func TestRadix(t *testing.T) {
-	testFramework(t, sort.RadixSort)
+	testFramework(t, sort.RadixSort[int])
 }
 
 func TestSimple(t *testing.T) {
@@ -131,8 +157,16 @@ func TestComb(t *testing.T) {
 	testFramework(t, sort.Comb[int])
 }
 
+func TestPancakeSort(t *testing.T) {
+	testFramework(t, sort.Pancake[int])
+}
+
 func TestPigeonhole(t *testing.T) {
-	testFramework(t, sort.Pigeonhole)
+	testFramework(t, sort.Pigeonhole[int])
+}
+
+func TestPatience(t *testing.T) {
+	testFramework(t, sort.Patience[int])
 }
 
 //END TESTS
@@ -180,6 +214,10 @@ func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
 }
 
+func BenchmarkBucketSort(b *testing.B) {
+	benchmarkFramework(b, sort.Bucket[int])
+}
+
 func BenchmarkExchange(b *testing.B) {
 	benchmarkFramework(b, sort.Exchange[int])
 }
@@ -196,8 +234,12 @@ func BenchmarkMergeIter(b *testing.B) {
 	benchmarkFramework(b, sort.MergeIter[int])
 }
 
+func BenchmarkMergeParallel(b *testing.B) {
+	benchmarkFramework(b, sort.ParallelMerge[int])
+}
+
 func BenchmarkHeap(b *testing.B) {
-	benchmarkFramework(b, sort.HeapSort)
+	benchmarkFramework(b, sort.HeapSort[int])
 }
 
 func BenchmarkCount(b *testing.B) {
@@ -213,7 +255,7 @@ func BenchmarkShell(b *testing.B) {
 }
 
 func BenchmarkRadix(b *testing.B) {
-	benchmarkFramework(b, sort.RadixSort)
+	benchmarkFramework(b, sort.RadixSort[int])
 }
 
 func BenchmarkSimple(b *testing.B) {
@@ -233,6 +275,14 @@ func BenchmarkComb(b *testing.B) {
 	benchmarkFramework(b, sort.Comb[int])
 }
 
+func BenchmarkPancakeSort(b *testing.B) {
+	benchmarkFramework(b, sort.Pancake[int])
+}
+
 func BenchmarkPigeonhole(b *testing.B) {
-	benchmarkFramework(b, sort.Pigeonhole)
+	benchmarkFramework(b, sort.Pigeonhole[int])
+}
+
+func BenchmarkPatience(b *testing.B) {
+	benchmarkFramework(b, sort.Patience[int])
 }

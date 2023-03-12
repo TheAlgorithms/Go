@@ -11,16 +11,16 @@ import (
 	"github.com/TheAlgorithms/Go/math/min"
 )
 
-const emptyLazyNode = -1
+const emptyLazyNode = 0
 
-//SegmentTree with original Array and the Segment Tree Array
+// SegmentTree with original Array and the Segment Tree Array
 type SegmentTree struct {
 	Array       []int
 	SegmentTree []int
 	LazyTree    []int
 }
 
-//Propagate lazy tree node values
+// Propagate lazy tree node values
 func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
 	if s.LazyTree[node] != emptyLazyNode {
 		//add lazy node value multiplied by (right-left+1), which represents all interval
@@ -29,11 +29,12 @@ func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
 
 		if leftNode == rightNode {
 			//leaf node
-			s.Array[leftNode] = s.LazyTree[node]
+			s.Array[leftNode] += s.LazyTree[node]
 		} else {
 			//propagate lazy node value for children nodes
-			s.LazyTree[2*node] = s.LazyTree[node]
-			s.LazyTree[2*node+1] = s.LazyTree[node]
+			//may propagate multiple times, children nodes should accumulate lazy node value
+			s.LazyTree[2*node] += s.LazyTree[node]
+			s.LazyTree[2*node+1] += s.LazyTree[node]
 		}
 
 		//clear lazy node
@@ -41,8 +42,8 @@ func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
 	}
 }
 
-//Query on interval [firstIndex, leftIndex]
-//node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
+// Query on interval [firstIndex, leftIndex]
+// node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
 func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex int, lastIndex int) int {
 	if (firstIndex > lastIndex) || (leftNode > rightNode) {
 		//outside the interval
@@ -66,10 +67,10 @@ func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex in
 	return leftNodeSum + rightNodeSum
 }
 
-//Update Segment Tree
-//node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
-//index is the Array index that you want to update
-//value is the value that you want to override
+// Update Segment Tree
+// node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
+// index is the Array index that you want to update
+// value is the value that you want to override
 func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex int, lastIndex int, value int) {
 	//propagate lazy tree
 	s.Propagate(node, leftNode, rightNode)
@@ -81,7 +82,8 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 
 	if (leftNode >= firstIndex) && (rightNode <= lastIndex) {
 		//inside the interval
-		s.LazyTree[node] = value
+		//accumulate the lazy node value
+		s.LazyTree[node] += value
 		s.Propagate(node, leftNode, rightNode)
 	} else {
 		//update left and right nodes
@@ -94,8 +96,8 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 	}
 }
 
-//Build Segment Tree
-//node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
+// Build Segment Tree
+// node, leftNode and rightNode always should start with 1, 0 and len(Array)-1
 func (s *SegmentTree) Build(node int, left int, right int) {
 	if left == right {
 		//leaf node

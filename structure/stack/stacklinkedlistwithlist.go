@@ -20,12 +20,12 @@ type SList struct {
 }
 
 // Push add a value into our stack
-func (sl *SList) Push(val interface{}) {
+func (sl *SList) Push(val any) {
 	sl.stack.PushFront(val)
 }
 
 // Peak is return last value that insert into our stack
-func (sl *SList) Peak() (interface{}, error) {
+func (sl *SList) Peak() (any, error) {
 	if !sl.Empty() {
 		element := sl.stack.Front()
 		return element.Value, nil
@@ -34,8 +34,8 @@ func (sl *SList) Peak() (interface{}, error) {
 }
 
 // Pop is return last value that insert into our stack
-//also it will remove it in our stack
-func (sl *SList) Pop() (interface{}, error) {
+// also it will remove it in our stack
+func (sl *SList) Pop() (any, error) {
 	if !sl.Empty() {
 		// get last element that insert into stack
 		element := sl.stack.Front()
