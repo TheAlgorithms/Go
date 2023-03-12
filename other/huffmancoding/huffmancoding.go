@@ -9,6 +9,8 @@
 // Package huffman provides primitives for doing Huffman compression, encodding and decoding.
 package huffman
 
+import "fmt"
+
 // A Node of an Huffman tree, which can either be a leaf or an internal node.
 // Each node has a weight.
 // A leaf node has an associated symbol, but no children (i.e., left == right == nil).
@@ -36,9 +38,9 @@ func (x ByFreq) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
 // BuildTree returns the root Node of the Huffman tree by compressing listfreq.
 // The compression produces the most optimal code lengths, provided listfreq is ordered,
 // i.e.: listfreq[i] <= listfreq[j], whenever i < j.
-func BuildTree(listfreq ByFreq) Node {
+func BuildTree(listfreq ByFreq) (*Node, error) {
 	if len(listfreq) < 1 {
-		panic("huffman: calling BuildTree with an empty list of symbol-frequency pairs")
+		return nil, fmt.Errorf("huffman coding: BuildTree : calling method with empty list of symbol-frequency pairs")
 	}
 	q1 := make([]Node, len(listfreq))
 	q2 := make([]Node, 0, len(listfreq))
@@ -55,9 +57,9 @@ func BuildTree(listfreq ByFreq) Node {
 		q2 = append(q2, node)
 	}
 	if len(q1) == 1 { // returns the remaining node in q1, q2
-		return q1[0]
+		return &q1[0], nil
 	}
-	return q2[0]
+	return &q2[0], nil
 }
 
 // least removes the node with lowest weight from q1, q2.
