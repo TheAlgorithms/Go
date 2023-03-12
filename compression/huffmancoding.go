@@ -6,8 +6,7 @@
 // author(s) [pedromsrocha](https://github.com/pedromsrocha)
 // see also huffmancoding_test.go
 
-// Package huffman provides primitives for doing Huffman compression, encodding and decoding.
-package huffman
+package compression
 
 import "fmt"
 
