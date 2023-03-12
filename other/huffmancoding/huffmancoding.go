@@ -56,9 +56,8 @@ func BuildTree(listfreq ByFreq) Node {
 	}
 	if len(q1) == 1 { // returns the remaining node in q1, q2
 		return q1[0]
-	} else {
-		return q2[0]
 	}
+	return q2[0]
 }
 
 // least removes the node with lowest weight from q1, q2.
