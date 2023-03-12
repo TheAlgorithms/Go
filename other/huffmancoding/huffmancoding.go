@@ -83,16 +83,17 @@ func least(q1 []Node, q2 []Node) (Node, []Node, []Node) {
 func BuildDict(node *Node, prefix []bool, dict map[rune][]bool) {
 	if node.symbol != -1 { //base case
 		dict[node.symbol] = prefix
-	} else { // inductive step
-		prefixLeft := make([]bool, len(prefix))
-		copy(prefixLeft, prefix)
-		prefixLeft = append(prefixLeft, false)
-		BuildDict(node.left, prefixLeft, dict)
-		prefixRight := make([]bool, len(prefix))
-		copy(prefixRight, prefix)
-		prefixRight = append(prefixRight, true)
-		BuildDict(node.right, prefixRight, dict)
+        return
 	}
+    // inductive step
+    prefixLeft := make([]bool, len(prefix))
+    copy(prefixLeft, prefix)
+	prefixLeft = append(prefixLeft, false)
+	BuildDict(node.left, prefixLeft, dict)
+	prefixRight := make([]bool, len(prefix))
+	copy(prefixRight, prefix)
+	prefixRight = append(prefixRight, true)
+	BuildDict(node.right, prefixRight, dict)
 }
 
 // Encode encodes the string in using dictionary dict.
