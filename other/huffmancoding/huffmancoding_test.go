@@ -40,9 +40,9 @@ func TestHuffman(t *testing.T) {
 	for _, message := range messages {
 		t.Run("huffman: "+message, func(t *testing.T) {
 			tree, _ := BuildTree(SymbolCountOrd(message))
-			dict := make(map[rune][]bool)
-			GetEncoding(tree, nil, dict)
-			messageCoded := Encode(dict, message)
+			codes := make(map[rune][]bool)
+			GetEncoding(tree, nil, codes)
+			messageCoded := Encode(codes, message)
 			messageDecoded := Decode(tree, tree, messageCoded, "")
 			if messageDecoded != message {
 				t.Errorf("got: %q\nbut expected: %q", messageDecoded, message)
