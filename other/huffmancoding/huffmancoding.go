@@ -77,30 +77,31 @@ func least(q1 []Node, q2 []Node) (Node, []Node, []Node) {
 	return q2[0], q1, q2[1:]
 }
 
-// BuildDict recursively traverses the Huffman tree pointed by node to build dict, that maps symbols to binary codes,
-// each code being prefixed by prefix.
-// left and right children are labelled with the booleans false and true, respectively.
-func BuildDict(node *Node, prefix []bool, dict map[rune][]bool) {
+// GetEncoding recursively traverses the Huffman tree pointed by node to obtain
+// the map codes, that associates a rune with a slice of booleans.
+// Each code is prefixed by prefix and left and right children are labelled with
+// the booleans false and true, respectively.
+func GetEncoding(node *Node, prefix []bool, codes map[rune][]bool) {
 	if node.symbol != -1 { //base case
-		dict[node.symbol] = prefix
-        return
+		codes[node.symbol] = prefix
+		return
 	}
-    // inductive step
-    prefixLeft := make([]bool, len(prefix))
-    copy(prefixLeft, prefix)
+	// inductive step
+	prefixLeft := make([]bool, len(prefix))
+	copy(prefixLeft, prefix)
 	prefixLeft = append(prefixLeft, false)
-	BuildDict(node.left, prefixLeft, dict)
+	GetEncoding(node.left, prefixLeft, codes)
 	prefixRight := make([]bool, len(prefix))
 	copy(prefixRight, prefix)
 	prefixRight = append(prefixRight, true)
-	BuildDict(node.right, prefixRight, dict)
+	GetEncoding(node.right, prefixRight, codes)
 }
 
-// Encode encodes the string in using dictionary dict.
-func Encode(dict map[rune][]bool, in string) []bool {
+// Encode encodes the string in by applying the mapping defined by codes.
+func Encode(codes map[rune][]bool, in string) []bool {
 	out := make([]bool, 0)
 	for _, s := range in {
-		out = append(out, dict[s]...)
+		out = append(out, codes[s]...)
 	}
 	return out
 }

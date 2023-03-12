@@ -41,7 +41,7 @@ func TestHuffman(t *testing.T) {
 		t.Run("huffman: "+message, func(t *testing.T) {
 			tree, _ := BuildTree(SymbolCountOrd(message))
 			dict := make(map[rune][]bool)
-			BuildDict(tree, nil, dict)
+			GetEncoding(tree, nil, dict)
 			messageCoded := Encode(dict, message)
 			messageDecoded := Decode(tree, tree, messageCoded, "")
 			if messageDecoded != message {
