@@ -71,9 +71,8 @@ func least(q1 []Node, q2 []Node) (Node, []Node, []Node) {
 	}
 	if q1[0].weight <= q2[0].weight {
 		return q1[0], q1[1:], q2
-	} else {
-		return q2[0], q1, q2[1:]
 	}
+	return q2[0], q1, q2[1:]
 }
 
 // BuildDict recursively traverses the Huffman tree pointed by node to build dict, that maps symbols to binary codes,
