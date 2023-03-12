@@ -10,6 +10,13 @@ import (
 	"testing"
 )
 
+// The algorithm operates on []SymbolFreq sorted by frequency
+type ByFreq []SymbolFreq
+
+func (x ByFreq) Len() int           { return len(x) }
+func (x ByFreq) Less(i, j int) bool { return x[i].freq < x[j].freq }
+func (x ByFreq) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
+
 // SymbolCountOrd computes sorted symbol-frequency list of input message
 func SymbolCountOrd(message string) ByFreq {
 	runeCount := make(map[rune]int)
