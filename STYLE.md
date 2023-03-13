@@ -24,7 +24,7 @@ this document, the maintainers of this repository should be consulted.
 ## Formatting
 
 All go code should be formatted with the official formatting tool `gofmt`. This requirement is
-implemented and verified by the repository workflows.
+verified by the repository workflows.
 
 It is also required for the code to pass the `go vet` checks.
 
