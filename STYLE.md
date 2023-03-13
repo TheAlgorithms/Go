@@ -142,7 +142,7 @@ refer to your package, so make it easy to remember. It should be only composed o
 letters. Prefer `json` to `JSON` or `Json`. If your package name has two words, merge them
 together. Prefer `jsonencoding` to `jsonEncoding` or `json_encoding`. Although, there is almost always a word to succinctly describe the package with an appropriate name. So if you have a name that describes the package nicely, please use that.
 
-Add the `_test` suffix to your package name to implement black-box testing for your package.
+Add the `_test` suffix to your package name to implement black-box testing for your package in the test files.
 
 ### Symbol Naming
 
