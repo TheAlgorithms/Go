@@ -146,7 +146,7 @@ Add the `_test` suffix to your package name to implement black-box testing for y
 
 ### Symbol Naming
 
-Go symbols should be named in the `camelCase` or `UpperCamelCase`, depending of whether the symbol
+Go symbols should be named in the `camelCase` or `PascalCase`, depending of whether the symbol
 is exported or not. The case when using acronymns in names should be consistent. Use `json` or
 `JSON` instead of `Json`.
 
