@@ -61,7 +61,7 @@ C++ style line comments should be preferred over C-style block comments.
 ### Package Comments
 
 Package comments should start with the word "Package" followed by the package name. For packages
-with multiple files or with a large documentation, use a separate `doc.go` file for the  comment.
+spanning multiple files or with a need for a large documentation, use a separate `doc.go` file for package level documentation comment.
 
 <table>
 <thead><tr><th>Bad</th><th>Good</th></tr></thead>
