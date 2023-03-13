@@ -2,7 +2,7 @@
 
 This guide contains a set of go idioms and best practices which should be followed while writing
 code whenever they are applicable. The instructions in this document should be given precedence
-if there is a conflict between this document and [contribution guidlines](./CONTRIBUTING.md). If you find any issue or ambiguity in
+if there is a conflict between this document and [contribution guidelines](./CONTRIBUTING.md). If you find any issue or ambiguity in
 this document, the maintainers of this repository should be consulted.
 
 ## Table of Contents
