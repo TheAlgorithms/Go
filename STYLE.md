@@ -140,7 +140,7 @@ Comment is not a part of the package documentation.
 Package names should be short and to the point. Keep in mind that this identifier will be used to
 refer to your package, so make it easy to remember. It should be only composed of lower case
 letters. Prefer `json` to `JSON` or `Json`. If your package name has two words, merge them
-together. Prefer `jsonencodeing` to `jsonEncoding` or `json_encodeing`.
+together. Prefer `jsonencoding` to `jsonEncoding` or `json_encoding`. Although, there is almost always a word to succinctly describe the package with an appropriate name. So if you have a name that describes the package nicely, please use that.
 
 Add the `_test` suffix to your package name to implement black-box testing for your package.
 
