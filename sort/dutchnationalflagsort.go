@@ -5,8 +5,8 @@ package sort
 
 import "github.com/TheAlgorithms/Go/constraints"
 
-// DutchNationalFlagSort sorts an array of integers with the Dutch National Flag algorithm
-func DutchNationalFlagSort[T constraints.Signed](arr []T) []T {
+// DutchNationalFlag sorts an array of integers with the Dutch National Flag algorithm
+func DutchNationalFlag[T constraints.Signed](arr []T) []T {
 	low, mid, high := 0, 0, len(arr)-1
 	for mid <= high {
 		switch arr[mid] {
