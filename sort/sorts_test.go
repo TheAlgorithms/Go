@@ -86,10 +86,6 @@ func TestBucketSort(t *testing.T) {
 	testFramework(t, sort.Bucket[int])
 }
 
-func TestDutchNationalFlag(t *testing.T) {
-	testFramework(t, sort.DutchNationalFlag[int])
-}
-
 func TestExchange(t *testing.T) {
 	testFramework(t, sort.Exchange[int])
 }

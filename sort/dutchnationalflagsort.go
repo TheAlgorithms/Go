@@ -1,5 +1,7 @@
 // Implementation of Dutch National Flag Sort algorithm
 // Reference: https://en.wikipedia.org/wiki/Dutch_national_flag_problem
+// Input: [0, 1, 2, 0, 1, 2]
+// Output: [0, 0, 1, 1, 2, 2]
 
 package sort
 
