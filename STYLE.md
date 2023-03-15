@@ -163,6 +163,8 @@ Some valid names are `reader.New()`, `metainfo.NewFile()`.
 
 #### Getter Naming
 
+Usage of Getters and Setters are discouraged. Use exported variables instead.
+
 Getters should use the name of the field that is being fetched. For example, prefer a getter
 name like `user.Name()` to `user.GetName()`.
 
