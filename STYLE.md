@@ -156,8 +156,10 @@ It is much clearer and avoids repetition.
 
 #### Constructor Naming
 
-Constructors should use the naming format `New<Type>()`. If the package only exports a single
-constructor, use the name `New()`. Some valid names are `reader.New()`, `metainfo.NewFile()`.
+Constructors should use the naming format `New<Type>()` for constructors which return pointers and
+`Make<Type>()` for constructors which return values in accordance with the Go Programming Language's
+`new` and `make` functions. If the package only exports a single constructor, use the name `New()`.
+Some valid names are `reader.New()`, `metainfo.NewFile()`.
 
 #### Getter Naming
 
