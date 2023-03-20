@@ -1,4 +1,4 @@
-package sort
+package sort_test
 
 import (
 	"reflect"
