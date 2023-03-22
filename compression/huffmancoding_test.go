@@ -12,26 +12,19 @@ import (
 	"github.com/TheAlgorithms/Go/compression"
 )
 
-// The algorithm operates on []SymbolFreq sorted by frequency
-type ByFreq []compression.SymbolFreq
-
-func (x ByFreq) Len() int           { return len(x) }
-func (x ByFreq) Less(i, j int) bool { return x[i].Freq < x[j].Freq }
-func (x ByFreq) Swap(i, j int)      { x[i], x[j] = x[j], x[i] }
-
 // SymbolCountOrd computes sorted symbol-frequency list of input message
-func SymbolCountOrd(message string) ByFreq {
+func SymbolCountOrd(message string) []compression.SymbolFreq {
 	runeCount := make(map[rune]int)
 	for _, s := range message {
 		runeCount[s]++
 	}
-	listfreq := make(ByFreq, len(runeCount))
+	listfreq := make([]compression.SymbolFreq, len(runeCount))
 	i := 0
 	for s, n := range runeCount {
 		listfreq[i] = compression.SymbolFreq{Symbol: s, Freq: n}
 		i++
 	}
-	sort.Sort(listfreq)
+	sort.Slice(listfreq, func(i, j int) bool { return listfreq[i].Freq < listfreq[j].Freq })
 	return listfreq
 }
 
