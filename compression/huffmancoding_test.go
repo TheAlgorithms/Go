@@ -3,7 +3,7 @@
 // author(s) [pedromsrocha](https://github.com/pedromsrocha)
 // see huffmancoding.go
 
-package compression
+package compression_test
 
 import (
 	"sort"
