@@ -23,21 +23,21 @@ type Node struct {
 
 // A SymbolFreq is a pair of a symbol and its associated frequency.
 type SymbolFreq struct {
-	symbol rune
-	freq   int
+	Symbol rune
+	Freq   int
 }
 
-// BuildTree returns the root Node of the Huffman tree by compressing listfreq.
+// HuffTree returns the root Node of the Huffman tree by compressing listfreq.
 // The compression produces the most optimal code lengths, provided listfreq is ordered,
 // i.e.: listfreq[i] <= listfreq[j], whenever i < j.
-func BuildTree(listfreq []SymbolFreq) (*Node, error) {
+func HuffTree(listfreq []SymbolFreq) (*Node, error) {
 	if len(listfreq) < 1 {
-		return nil, fmt.Errorf("huffman coding: BuildTree : calling method with empty list of symbol-frequency pairs")
+		return nil, fmt.Errorf("huffman coding: HuffTree : calling method with empty list of symbol-frequency pairs")
 	}
 	q1 := make([]Node, len(listfreq))
 	q2 := make([]Node, 0, len(listfreq))
 	for i, x := range listfreq { // after the loop, q1 is a slice of leaf nodes representing listfreq
-		q1[i] = Node{left: nil, right: nil, symbol: x.symbol, weight: x.freq}
+		q1[i] = Node{left: nil, right: nil, symbol: x.Symbol, weight: x.Freq}
 	}
 	//loop invariant: q1, q2 are ordered by increasing weights
 	for len(q1)+len(q2) > 1 {
@@ -69,11 +69,11 @@ func least(q1 []Node, q2 []Node) (Node, []Node, []Node) {
 	return q2[0], q1, q2[1:]
 }
 
-// GetEncoding recursively traverses the Huffman tree pointed by node to obtain
+// HuffEncoding recursively traverses the Huffman tree pointed by node to obtain
 // the map codes, that associates a rune with a slice of booleans.
 // Each code is prefixed by prefix and left and right children are labelled with
 // the booleans false and true, respectively.
-func GetEncoding(node *Node, prefix []bool, codes map[rune][]bool) {
+func HuffEncoding(node *Node, prefix []bool, codes map[rune][]bool) {
 	if node.symbol != -1 { //base case
 		codes[node.symbol] = prefix
 		return
@@ -82,15 +82,15 @@ func GetEncoding(node *Node, prefix []bool, codes map[rune][]bool) {
 	prefixLeft := make([]bool, len(prefix))
 	copy(prefixLeft, prefix)
 	prefixLeft = append(prefixLeft, false)
-	GetEncoding(node.left, prefixLeft, codes)
+	HuffEncoding(node.left, prefixLeft, codes)
 	prefixRight := make([]bool, len(prefix))
 	copy(prefixRight, prefix)
 	prefixRight = append(prefixRight, true)
-	GetEncoding(node.right, prefixRight, codes)
+	HuffEncoding(node.right, prefixRight, codes)
 }
 
-// Encode encodes the string in by applying the mapping defined by codes.
-func Encode(codes map[rune][]bool, in string) []bool {
+// HuffEncode encodes the string in by applying the mapping defined by codes.
+func HuffEncode(codes map[rune][]bool, in string) []bool {
 	out := make([]bool, 0)
 	for _, s := range in {
 		out = append(out, codes[s]...)
@@ -98,19 +98,19 @@ func Encode(codes map[rune][]bool, in string) []bool {
 	return out
 }
 
-// Decode recursively decodes the binary code in, by traversing the Huffman compression tree pointed by root.
+// HuffDecode recursively decodes the binary code in, by traversing the Huffman compression tree pointed by root.
 // current stores the current node of the traversing algorithm.
 // out stores the current decoded string.
-func Decode(root, current *Node, in []bool, out string) string {
+func HuffDecode(root, current *Node, in []bool, out string) string {
 	if current.symbol != -1 {
 		out += string(current.symbol)
-		return Decode(root, root, in, out)
+		return HuffDecode(root, root, in, out)
 	}
 	if len(in) == 0 {
 		return out
 	}
 	if in[0] {
-		return Decode(root, current.right, in[1:], out)
+		return HuffDecode(root, current.right, in[1:], out)
 	}
-	return Decode(root, current.left, in[1:], out)
+	return HuffDecode(root, current.left, in[1:], out)
 }
