@@ -38,7 +38,7 @@ Being a contributor at The Algorithms, we request you to follow the points menti
 
 - Please use the directory structure of the repository.
 - Make sure the file extensions should be `*.go`.
-- Use meaning variable names.
+- Use meaningful variable names.
 - Use standard library inside your code and avoid to import packages from other repositories
 - If an implementation of the algorithm already exists, please refer to the [filename section below](#new-file-name-guidelines).
 - You can suggest reasonable changes to existing algorithms.
