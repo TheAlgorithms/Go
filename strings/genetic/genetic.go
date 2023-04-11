@@ -60,7 +60,7 @@ type Result struct {
 	Best PopulationItem
 }
 
-// GeneticString generates PopultaionItem based on the imputed target
+// GeneticString generates PopulationItem based on the imputed target
 // string, and a set of possible runes to build a string with. In order
 // to optimise string generation additional configurations can be provided
 // with Conf instance. Empty instance of Conf (&Conf{}) can be provided,

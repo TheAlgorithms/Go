@@ -324,7 +324,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`GeneticString`](./strings/genetic/genetic.go#L71):  GeneticString generates PopultaionItem based on the imputed target string, and a set of possible runes to build a string with. In order to optimise string generation additional configurations can be provided with Conf instance. Empty instance of Conf (&Conf{}) can be provided, then default values would be set. Link to the same algorithm implemented in python: https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_string.py
+1. [`GeneticString`](./strings/genetic/genetic.go#L71):  GeneticString generates PopulationItem based on the imputed target string, and a set of possible runes to build a string with. In order to optimise string generation additional configurations can be provided with Conf instance. Empty instance of Conf (&Conf{}) can be provided, then default values would be set. Link to the same algorithm implemented in python: https://github.com/TheAlgorithms/Python/blob/master/genetic_algorithm/basic_string.py
 
 ---
 ##### Types

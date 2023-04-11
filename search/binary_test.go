@@ -39,7 +39,7 @@ func TestLowerBound(t *testing.T) {
 }
 
 func TestUpperBound(t *testing.T) {
-	for _, test := range uppperBoundTests {
+	for _, test := range upperBoundTests {
 		actualValue, actualError := UpperBound(test.data, test.key)
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
