@@ -7,20 +7,20 @@ package dynamic
 // Auxiliary Space: O(n), where n is the length of the array(slice).
 // Reference: https://www.geeksforgeeks.org/construction-of-longest-monotonically-increasing-subsequence-n-log-n/
 func LongestIncreasingSubsequenceGreedy(nums []int) int {
-	longestIncreasingSubsequnce := make([]int, 0)
+	longestIncreasingSubsequence := make([]int, 0)
 
 	for _, num := range nums {
-		// find the leftmost index in longestIncreasingSubsequnce with value >= num
-		leftmostIndex := lowerBound(longestIncreasingSubsequnce, num)
+		// find the leftmost index in longestIncreasingSubsequence with value >= num
+		leftmostIndex := lowerBound(longestIncreasingSubsequence, num)
 
-		if leftmostIndex == len(longestIncreasingSubsequnce) {
-			longestIncreasingSubsequnce = append(longestIncreasingSubsequnce, num)
+		if leftmostIndex == len(longestIncreasingSubsequence) {
+			longestIncreasingSubsequence = append(longestIncreasingSubsequence, num)
 		} else {
-			longestIncreasingSubsequnce[leftmostIndex] = num
+			longestIncreasingSubsequence[leftmostIndex] = num
 		}
 	}
 
-	return len(longestIncreasingSubsequnce)
+	return len(longestIncreasingSubsequence)
 }
 
 // Function to find the leftmost index in arr with value >= val, mimicking the inbuild lower_bound function in C++

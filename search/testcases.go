@@ -43,7 +43,7 @@ var lowerBoundTests = []searchTest{
 	{[]int{}, 2, -1, ErrNotFound, "Empty"},
 }
 
-var uppperBoundTests = []searchTest{
+var upperBoundTests = []searchTest{
 	//Sanity
 	{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, -25, 0, nil, "Sanity"},
 	{[]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 1, 1, nil, "Sanity"},

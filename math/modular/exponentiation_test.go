@@ -1,5 +1,5 @@
 // exponentiation_test.go
-// description: Test for ModularExponentation
+// description: Test for ModularExponentiation
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see exponentiation.go
 
