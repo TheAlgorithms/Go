@@ -1,6 +1,6 @@
 # The Algorithms - Go
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/TheAlgorithms/Go)&nbsp;
-![golangci-lint](https://github.com/TheAlgorithms/Go/workflows/golangci-lint/badge.svg)
+[![Continuous Integration](https://github.com/TheAlgorithms/Go/actions/workflows/ci.yml/badge.svg)](https://github.com/TheAlgorithms/Go/actions/workflows/ci.yml)
 ![godocmd](https://github.com/tjgurwara99/Go/workflows/godocmd/badge.svg)
 ![](https://img.shields.io/github/repo-size/TheAlgorithms/Go.svg?label=Repo%20size&style=flat-square)&nbsp;
 ![update_directory_md](https://github.com/TheAlgorithms/Go/workflows/update_directory_md/badge.svg)
