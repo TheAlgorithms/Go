@@ -8,106 +8,25 @@
 package tree
 
 import (
-	"fmt"
-
 	"github.com/TheAlgorithms/Go/constraints"
 	"github.com/TheAlgorithms/Go/math/max"
 )
 
-type Color byte
-
-const (
-	Red Color = iota
-	Black
-)
-
-// Node of a binary tree
-type Node[T constraints.Ordered] struct {
-	Key    T
-	Parent *Node[T] // for Red-Black Tree
-	Left   *Node[T]
-	Right  *Node[T]
-	Color  Color // for Red-Black Tree
-	Height int   // for AVL Tree
+type Node[T constraints.Ordered] interface {
+	Key() T
+	Parent() Node[T]
+	Left() Node[T]
+	Right() Node[T]
 }
 
-// binaryTree is a base-struct for BinarySearch, AVL, RB, etc.
-// Note: to avoid instantiation, we make the base struct un-exported.
-type binaryTree[T constraints.Ordered] struct {
-	Root *Node[T]
-	NIL  *Node[T] // NIL denotes the leaf node of Red-Black Tree
-}
+// The following is a collection of helper functions for BinarySearch, AVL and RB.
 
-// Get a Node from the binary-search Tree
-func (t *binaryTree[T]) Get(key T) (*Node[T], bool) {
-	return t.searchTreeHelper(t.Root, key)
-}
-
-// Determines the tree has the node of Key
-func (t *binaryTree[T]) Has(key T) bool {
-	_, ok := t.searchTreeHelper(t.Root, key)
-	return ok
-}
-
-// Traverses the tree in the following order Root --> Left --> Right
-func (t *binaryTree[T]) PreOrder() []T {
-	traversal := make([]T, 0)
-	t.preOrderRecursive(t.Root, &traversal)
-	return traversal
-}
-
-// Traverses the tree in the following order Left --> Root --> Right
-func (t *binaryTree[T]) InOrder() []T {
-	return t.inOrderHelper(t.Root)
-}
-
-// Traverses the tree in the following order Left --> Right --> Root
-func (t *binaryTree[T]) PostOrder() []T {
-	traversal := make([]T, 0)
-	t.postOrderRecursive(t.Root, &traversal)
-	return traversal
-}
-
-// Depth returns the calculated depth of a binary search tree
-func (t *binaryTree[T]) Depth() int {
-	return t.calculateDepth(t.Root, 0)
-}
-
-// Returns the Max value of the tree
-func (t *binaryTree[T]) Max() (T, bool) {
-	ret := t.maximum(t.Root)
-	if t.isNil(ret) {
-		return t.NIL.Key, false
-	}
-
-	return ret.Key, true
-}
-
-// Return the Min value of the tree
-func (t *binaryTree[T]) Min() (T, bool) {
-	ret := t.minimum(t.Root)
-	if t.isNil(ret) {
-		return t.NIL.Key, false
-	}
-
-	return ret.Key, true
-}
-
-// LevelOrder returns the level order traversal of the tree
-func (t *binaryTree[T]) LevelOrder() []T {
-	traversal := make([]T, 0)
-	t.levelOrderHelper(t.Root, &traversal)
-	return traversal
-}
-
-// AccessNodesByLayer accesses nodes layer by layer (2-D array),  instead of printing the results as 1-D array.
-func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
-	root := t.Root
-	if t.isNil(root) {
+func accessNodeByLayerHelper[T constraints.Ordered](root, nilNode Node[T]) [][]T {
+	if root == nilNode {
 		return [][]T{}
 	}
-	var q []*Node[T]
-	var n *Node[T]
+	var q []Node[T]
+	var n Node[T]
 	var idx = 0
 	q = append(q, root)
 	var res [][]T
@@ -117,12 +36,12 @@ func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
 		qLen := len(q)
 		for i := 0; i < qLen; i++ {
 			n, q = q[0], q[1:]
-			res[idx] = append(res[idx], n.Key)
-			if !t.isNil(n.Left) {
-				q = append(q, n.Left)
+			res[idx] = append(res[idx], n.Key())
+			if n.Left() != nilNode {
+				q = append(q, n.Left())
 			}
-			if !t.isNil(n.Right) {
-				q = append(q, n.Right)
+			if n.Right() != nilNode {
+				q = append(q, n.Right())
 			}
 		}
 		idx++
@@ -130,154 +49,141 @@ func (t *binaryTree[T]) AccessNodesByLayer() [][]T {
 	return res
 }
 
-// Print the tree horizontally
-func (t *binaryTree[T]) Print() {
-	t.printHelper(t.Root, "", false)
-}
-
-// Determines node is a leaf node
-func (t *binaryTree[T]) isNil(node *Node[T]) bool {
-	return node == t.NIL
-}
-
-func (t *binaryTree[T]) searchTreeHelper(node *Node[T], key T) (*Node[T], bool) {
-	if node == nil || t.isNil(node) {
+func searchTreeHelper[T constraints.Ordered](node, nilNode Node[T], key T) (Node[T], bool) {
+	if node == nilNode {
 		return node, false
 	}
 
-	if key == node.Key {
+	if key == node.Key() {
 		return node, true
 	}
-
-	if key < node.Key {
-		return t.searchTreeHelper(node.Left, key)
+	if key < node.Key() {
+		return searchTreeHelper(node.Left(), nilNode, key)
 	}
-	return t.searchTreeHelper(node.Right, key)
+	return searchTreeHelper(node.Right(), nilNode, key)
 }
 
-// The iterative inorder;
-// The recursive way is similar to the preOrderRecursive
-func (t *binaryTree[T]) inOrderHelper(node *Node[T]) []T {
-	var stack []*Node[T]
+func inOrderHelper[T constraints.Ordered](node, nilNode Node[T]) []T {
+	var stack []Node[T]
 	var ret []T
 
-	for !t.isNil(node) || len(stack) > 0 {
-		for !t.isNil(node) {
+	for node != nilNode || len(stack) > 0 {
+		for node != nilNode {
 			stack = append(stack, node)
-			node = node.Left
+			node = node.Left()
 		}
 
 		node = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		ret = append(ret, node.Key)
-		node = node.Right
+		ret = append(ret, node.Key())
+		node = node.Right()
 	}
 
 	return ret
 }
 
-func (t *binaryTree[T]) preOrderRecursive(n *Node[T], traversal *[]T) {
-	if t.isNil(n) {
+func preOrderRecursive[T constraints.Ordered](n, nilNode Node[T], traversal *[]T) {
+	if n == nilNode {
 		return
 	}
 
-	*traversal = append(*traversal, n.Key)
-	t.preOrderRecursive(n.Left, traversal)
-	t.preOrderRecursive(n.Right, traversal)
+	*traversal = append(*traversal, n.Key())
+	preOrderRecursive(n.Left(), nilNode, traversal)
+	preOrderRecursive(n.Right(), nilNode, traversal)
+
 }
 
-func (t *binaryTree[T]) postOrderRecursive(n *Node[T], traversal *[]T) {
-	if t.isNil(n) {
+func postOrderRecursive[T constraints.Ordered](n, nilNode Node[T], traversal *[]T) {
+	if n == nilNode {
 		return
 	}
 
-	t.postOrderRecursive(n.Left, traversal)
-	t.postOrderRecursive(n.Right, traversal)
-	*traversal = append(*traversal, n.Key)
+	postOrderRecursive(n.Left(), nilNode, traversal)
+	postOrderRecursive(n.Right(), nilNode, traversal)
+	*traversal = append(*traversal, n.Key())
 }
 
-func (t *binaryTree[T]) calculateDepth(n *Node[T], depth int) int {
-	if t.isNil(n) {
+func calculateDepth[T constraints.Ordered](n, nilNode Node[T], depth int) int {
+	if n == nilNode {
 		return depth
 	}
 
-	return max.Int(t.calculateDepth(n.Left, depth+1), t.calculateDepth(n.Right, depth+1))
+	return max.Int(calculateDepth(n.Left(), nilNode, depth+1), calculateDepth(n.Right(), nilNode, depth+1))
 }
 
-// Returns the minimum value of node of the tree
-func (t *binaryTree[T]) minimum(node *Node[T]) *Node[T] {
-	if t.isNil(node) {
+func minimum[T constraints.Ordered](node, nilNode Node[T]) Node[T] {
+	if node == nilNode {
 		return node
 	}
 
-	for !t.isNil(node.Left) {
-		node = node.Left
+	for node.Left() != nilNode {
+		node = node.Left()
 	}
 	return node
 }
 
-// Returns the maximum value of node of the tree
-func (t *binaryTree[T]) maximum(node *Node[T]) *Node[T] {
-	if t.isNil(node) {
+func maximum[T constraints.Ordered](node, nilNode Node[T]) Node[T] {
+	if node == nilNode {
 		return node
 	}
 
-	for !t.isNil(node.Right) {
-		node = node.Right
+	for node.Right() != nilNode {
+		node = node.Right()
 	}
 	return node
 }
 
-func (t *binaryTree[T]) levelOrderHelper(root *Node[T], traversal *[]T) {
-	var q []*Node[T] // queue
-	var tmp *Node[T]
+func levelOrderHelper[T constraints.Ordered](root, nilNode Node[T], traversal *[]T) {
+	var q []Node[T] // queue
+	var tmp Node[T]
 
 	q = append(q, root)
 
 	for len(q) != 0 {
 		tmp, q = q[0], q[1:]
-		*traversal = append(*traversal, tmp.Key)
-		if !t.isNil(tmp.Left) {
-			q = append(q, tmp.Left)
+		*traversal = append(*traversal, tmp.Key())
+		if tmp.Left() != nilNode {
+			q = append(q, tmp.Left())
 		}
 
-		if !t.isNil(tmp.Right) {
-			q = append(q, tmp.Right)
+		if tmp.Right() != nilNode {
+			q = append(q, tmp.Right())
 		}
 	}
 }
 
-// Reference: https://stackoverflow.com/a/51730733/15437172
-func (t *binaryTree[T]) printHelper(root *Node[T], indent string, isLeft bool) {
-	if t.isNil(root) {
-		return
+func predecessorHelper[T constraints.Ordered](node, nilNode Node[T]) (T, bool) {
+	if node.Left() != nilNode {
+		return maximum(node.Left(), nilNode).Key(), true
 	}
 
-	fmt.Print(indent)
-	if isLeft {
-		fmt.Print("├──")
-		indent += "│  "
-	} else {
-		fmt.Print("└──")
-		indent += "   "
+	p := node.Parent()
+	for p != nilNode && node == p.Left() {
+		node = p
+		p = p.Parent()
 	}
 
-	if t.isRBTree() {
-		color := "Black"
-		if root.Color == Red {
-			color = "Red"
-		}
-
-		fmt.Println(root.Key, "(", color, ")")
-	} else {
-		fmt.Println(root.Key)
+	if p == nilNode {
+		var dft T
+		return dft, false
 	}
-
-	t.printHelper(root.Left, indent, true)
-	t.printHelper(root.Right, indent, false)
+	return p.Key(), true
 }
 
-// Determines the tree is RB
-func (t *binaryTree[T]) isRBTree() bool {
-	return t.NIL != nil
+func successorHelper[T constraints.Ordered](node, nilNode Node[T]) (T, bool) {
+	if node.Right() != nilNode {
+		return minimum(node.Right(), nilNode).Key(), true
+	}
+
+	p := node.Parent()
+	for p != nilNode && node == p.Right() {
+		node = p
+		p = p.Parent()
+	}
+
+	if p == nilNode {
+		var dft T
+		return dft, false
+	}
+	return p.Key(), true
 }

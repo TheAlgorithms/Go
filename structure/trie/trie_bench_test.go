@@ -22,7 +22,7 @@ func BenchmarkTrie_Insert(b *testing.B) {
 	}
 }
 
-func BenchmarkTrie_Find_non_existant(b *testing.B) {
+func BenchmarkTrie_Find_non_existent(b *testing.B) {
 
 	insert := make([]string, 3000)
 	for i := 0; i < len(insert); i++ {
@@ -37,7 +37,7 @@ func BenchmarkTrie_Find_non_existant(b *testing.B) {
 	}
 }
 
-func BenchmarkTrie_Find_existant(b *testing.B) {
+func BenchmarkTrie_Find_existent(b *testing.B) {
 	insert := make([]string, 3000)
 	for i := 0; i < len(insert); i++ {
 		insert[i] = fmt.Sprintf("%f", rand.Float64())

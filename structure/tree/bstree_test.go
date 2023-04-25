@@ -1,7 +1,10 @@
 package tree_test
 
 import (
+	"math/rand"
+	"sort"
 	"testing"
+	"time"
 
 	bt "github.com/TheAlgorithms/Go/structure/tree"
 )
@@ -13,15 +16,15 @@ func TestPush(t *testing.T) {
 	bst.Push(80)
 	bst.Push(100)
 
-	if bst.Root.Key != 90 {
+	if bst.Root.Key() != 90 {
 		t.Errorf("Root should have value = 90")
 	}
 
-	if bst.Root.Left.Key != 80 {
+	if bst.Root.Left().Key() != 80 {
 		t.Errorf("Left child should have value = 80")
 	}
 
-	if bst.Root.Right.Key != 100 {
+	if bst.Root.Right().Key() != 100 {
 		t.Errorf("Right child should have value = 100")
 	}
 
@@ -36,6 +39,7 @@ func TestDelete(t *testing.T) {
 
 		bst.Push(90)
 		bst.Push(80)
+		bst.Push(80)
 		bst.Push(100)
 
 		if !bst.Delete(100) {
@@ -47,15 +51,15 @@ func TestDelete(t *testing.T) {
 		}
 
 		root := bst.Root
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Left.Key != 80 {
+		if root.Left().Key() != 80 {
 			t.Errorf("Left child should have value = 80")
 		}
 
-		if root.Right != nil {
+		if root.Right().(*bt.BSNode[int]) != nil {
 			t.Errorf("Right child should have value = nil")
 		}
 
@@ -65,11 +69,11 @@ func TestDelete(t *testing.T) {
 
 		bst.Delete(80)
 
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Left != nil {
+		if root.Left().(*bt.BSNode[int]) != nil {
 			t.Errorf("Left child should have value = nil")
 		}
 
@@ -95,15 +99,15 @@ func TestDelete(t *testing.T) {
 		}
 
 		root := bst.Root
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Right.Key != 100 {
+		if root.Right().Key() != 100 {
 			t.Errorf("Right child should have value = 100")
 		}
 
-		if root.Left.Key != 70 {
+		if root.Left().Key() != 70 {
 			t.Errorf("Left child should have value = 70")
 		}
 
@@ -130,20 +134,59 @@ func TestDelete(t *testing.T) {
 		}
 
 		root := bst.Root
-		if root.Key != 90 {
+		if root.Key() != 90 {
 			t.Errorf("Root should have value = 90")
 		}
 
-		if root.Left.Key != 85 {
+		if root.Left().Key() != 85 {
 			t.Errorf("Left child should have value = 85")
 		}
 
-		if root.Right.Key != 100 {
+		if root.Right().Key() != 100 {
 			t.Errorf("Right child should have value = 100")
 		}
 
 		if bst.Depth() != 3 {
 			t.Errorf("Depth should have value = 3")
+		}
+	})
+
+	t.Run("Random Test", func(t *testing.T) {
+		tests := []int{100, 500, 1000, 10_000}
+		for _, n := range tests {
+			rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
+			tree := bt.NewBinarySearch[int]()
+			nums := rnd.Perm(n)
+			tree.Push(nums...)
+
+			rets := tree.InOrder()
+			if !sort.IntsAreSorted(rets) {
+				t.Error("Error with Push")
+			}
+
+			if res, ok := tree.Min(); !ok || res != rets[0] {
+				t.Errorf("Error with Min, get %d, want: %d", res, rets[0])
+			}
+
+			if res, ok := tree.Max(); !ok || res != rets[n-1] {
+				t.Errorf("Error with Max, get %d, want: %d", res, rets[n-1])
+			}
+
+			for i := 0; i < n-1; i++ {
+				if ret, ok := tree.Successor(rets[0]); ret != rets[1] || !ok {
+					t.Error("Error with Successor")
+				}
+
+				if ret, ok := tree.Predecessor(rets[1]); ret != rets[0] || !ok {
+					t.Error("Error with Predecessor")
+				}
+
+				ok := tree.Delete(nums[i])
+				rets = tree.InOrder()
+				if !ok || !sort.IntsAreSorted(rets) {
+					t.Errorf("Error With Delete")
+				}
+			}
 		}
 	})
 }
