@@ -14,7 +14,7 @@ func Cycle[T constraints.Number](arr []T) []T {
 	if len <= 1 {
 		return arr
 	}
-	
+
 	for cycle = 0; cycle < len-1; cycle++ {
 		elem := arr[cycle]
 		// Find total smaller elements to right
