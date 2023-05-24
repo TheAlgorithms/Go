@@ -2,29 +2,29 @@ package conversion
 
 import "testing"
 
-func TestIntToRoman(t *testing.T) {
+func TestIntegerToRoman(t *testing.T) {
 	for expected, input := range romanTestCases {
-		out, err := IntToRoman(input)
+		out, err := IntegerToRoman(input)
 		if err != nil {
-			t.Errorf("IntToRoman(%d) returned an error %s", input, err.Error())
+			t.Errorf("IntegerToRoman(%d) returned an error %s", input, err.Error())
 		}
 		if out != expected {
-			t.Errorf("IntToRoman(%d) = %s; want %s", input, out, expected)
+			t.Errorf("IntegerToRoman(%d) = %s; want %s", input, out, expected)
 		}
 	}
-	_, err := IntToRoman(100000)
+	_, err := IntegerToRoman(100000)
 	if err == nil {
-		t.Errorf("IntToRoman(%d) expected an error", 100000)
+		t.Errorf("IntegerToRoman(%d) expected an error", 100000)
 	}
-	_, err = IntToRoman(0)
+	_, err = IntegerToRoman(0)
 	if err == nil {
-		t.Errorf("IntToRoman(%d) expected an error", 0)
+		t.Errorf("IntegerToRoman(%d) expected an error", 0)
 	}
 }
 
-func BenchmarkIntToRoman(b *testing.B) {
+func BenchmarkIntegerToRoman(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		_, _ = IntToRoman(3999)
+		_, _ = IntegerToRoman(3999)
 	}
 }
