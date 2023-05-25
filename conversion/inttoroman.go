@@ -12,9 +12,9 @@ var (
 	r3 = []string{"", "M", "MM", "MMM"}                                       // 1,000 - 3,000
 )
 
-// IntegerToRoman converts an integer value to a roman numeral string. An error is
+// IntToRoman converts an integer value to a roman numeral string. An error is
 // returned if the integer is not between 1 and 3999.
-func IntegerToRoman(n int) (string, error) {
+func IntToRoman(n int) (string, error) {
 	if n < 1 || n > 3999 {
 		return "", errors.New("integer must be between 1 and 3999")
 	}
