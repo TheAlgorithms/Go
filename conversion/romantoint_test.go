@@ -21,33 +21,33 @@ var romanTestCases = map[string]int{
 	"MMCMXCIX": 2999, "MMM": 3000, "MMMCMLXXIX": 3979, "MMMCMXCIX": 3999,
 }
 
-func TestRomanToInteger(t *testing.T) {
+func TestRomanToInt(t *testing.T) {
 	for input, expected := range romanTestCases {
-		out, err := RomanToInteger(input)
+		out, err := RomanToInt(input)
 		if err != nil {
-			t.Errorf("RomanToInteger(%s) returned an error %s", input, err.Error())
+			t.Errorf("RomanToInt(%s) returned an error %s", input, err.Error())
 		}
 		if out != expected {
-			t.Errorf("RomanToInteger(%s) = %d; want %d", input, out, expected)
+			t.Errorf("RomanToInt(%s) = %d; want %d", input, out, expected)
 		}
 	}
-	_, err := RomanToInteger("IVCMXCIX")
+	_, err := RomanToInt("IVCMXCIX")
 	if err == nil {
-		t.Error("RomanToInteger(IVCMXCIX) expected an error")
+		t.Error("RomanToInt(IVCMXCIX) expected an error")
 	}
 
-	val, err := RomanToInteger("")
+	val, err := RomanToInt("")
 	if val != 0 {
-		t.Errorf("RomanToInteger(\"\") = %d; want 0", val)
+		t.Errorf("RomanToInt(\"\") = %d; want 0", val)
 	}
 	if err != nil {
-		t.Errorf("RomanToInteger(\"\") returned an error %s", err.Error())
+		t.Errorf("RomanToInt(\"\") returned an error %s", err.Error())
 	}
 }
 
-func BenchmarkRomanToInteger(b *testing.B) {
+func BenchmarkRomanToInt(b *testing.B) {
 	b.ReportAllocs()
 	for i := 0; i < b.N; i++ {
-		_, _ = RomanToInteger("MMMCMXCIX")
+		_, _ = RomanToInt("MMMCMXCIX")
 	}
 }

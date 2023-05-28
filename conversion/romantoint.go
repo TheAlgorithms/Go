@@ -34,10 +34,10 @@ var nums = []numeral{
 	{1, "I"},
 }
 
-// RomanToInteger converts a roman numeral string to an integer. Roman numerals for numbers
+// RomanToInt converts a roman numeral string to an integer. Roman numerals for numbers
 // outside the range 1 to 3,999 will return an error. Nil or empty string return 0
 // with no error thrown.
-func RomanToInteger(input string) (int, error) {
+func RomanToInt(input string) (int, error) {
 	if input == "" {
 		return 0, nil
 	}
