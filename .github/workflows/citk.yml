@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: "^1.18"
+      - name: Checkout branch
+        run: |
+          git fetch origin master:master
       - name: Install citk tool
         run: |
           go install github.com/tjgurwara99/citk@latest
