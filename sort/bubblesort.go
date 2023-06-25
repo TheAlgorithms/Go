@@ -19,3 +19,8 @@ func Bubble[T constraints.Ordered](arr []T) []T {
 	}
 	return arr
 }
+
+// Bubble_Sort is a test function to test citk against
+func Bubble_Sort(arr []int) []int {
+	return arr
+}
