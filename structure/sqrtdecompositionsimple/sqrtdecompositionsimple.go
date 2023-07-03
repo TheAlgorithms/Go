@@ -1,20 +1,18 @@
-/*
-Sqrt (or Square Root) Decomposition is a technique used for query an array and perform updates
-Inside this package is described its most simple data structure, you can find more at: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
-
-Formally, You can use SqrtDecompositionSimple only if:
-
-Given a function $Query:E_1,...,E_n\rightarrow Q$
-
-if $\exist unionQ:Q,Q\rightarrow Q$
-
-s.t.
-
-- $\forall n\in \N > 1, 1\le i<n, E_1,..., E_n\in E \\ query(E_1,..., E_n)=unionQ(query(E_1,..., E_i), query(E_{i+1},...,E_n))$
-
-- (Only if you want use $update$ function)
-$\forall n\in \N > 0, E_1,..., E_n\in E \\ query(E_1,...,E_{new},..., E_n)=updateQ(query(E_1,...,E_{old},...,E_n), indexof(E_{old}), E_{new})$
-*/
+// Sqrt (or Square Root) Decomposition is a technique used for query an array and perform updates
+// Inside this package is described its most simple data structure, you can find more at: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
+//
+// Formally, You can use SqrtDecompositionSimple only if:
+//
+// Given a function $Query:E_1,...,E_n\rightarrow Q$
+//
+// if $\exist unionQ:Q,Q\rightarrow Q$
+//
+// s.t.
+//
+// - $\forall n\in \N > 1, 1\le i<n, E_1,..., E_n\in E \\ query(E_1,..., E_n)=unionQ(query(E_1,..., E_i), query(E_{i+1},...,E_n))$
+//
+// - (Only if you want use $update$ function)
+// $\forall n\in \N > 0, E_1,..., E_n\in E \\ query(E_1,...,E_{new},..., E_n)=updateQ(query(E_1,...,E_{old},...,E_n), indexof(E_{old}), E_{new})$
 package sqrtdecompositionsimple
 
 import "math"
