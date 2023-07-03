@@ -1,6 +1,7 @@
-package sqrtdecompositionsimple
+package sqrt_test
 
 import (
+	"github.com/TheAlgorithms/Go/sqrt"
 	"testing"
 )
 
@@ -15,8 +16,8 @@ type update struct {
 	value int
 }
 
-func TestSqrtSqrtDecompositionSimple(t *testing.T) {
-	var sqrtSqrtDecompositionSimpleTestData = []struct {
+func TestSqrtDecomposition(t *testing.T) {
+	var sqrtSqrtDecompositionTestData = []struct {
 		description string
 		array       []int
 		updates     []update
@@ -53,9 +54,9 @@ func TestSqrtSqrtDecompositionSimple(t *testing.T) {
 			expected: []int{4, 1, 11, 18},
 		},
 	}
-	for _, test := range sqrtSqrtDecompositionSimpleTestData {
+	for _, test := range sqrtSqrtDecompositionTestData {
 		t.Run(test.description, func(t *testing.T) {
-			s := NewSqrtDecompositionSimple(test.array,
+			s := sqrt.NewSqrtDecomposition(test.array,
 				func(e int) int { return e },
 				func(q1, q2 int) int { return q1 + q2 },
 				func(q, a, b int) int { return q - a + b },
