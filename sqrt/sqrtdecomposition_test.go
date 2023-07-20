@@ -17,7 +17,7 @@ type update struct {
 }
 
 func TestSqrtDecomposition(t *testing.T) {
-	var sqrtSqrtDecompositionTestData = []struct {
+	var sqrtDecompositionTestData = []struct {
 		description string
 		array       []int
 		updates     []update
@@ -54,7 +54,7 @@ func TestSqrtDecomposition(t *testing.T) {
 			expected: []int{4, 1, 11, 18},
 		},
 	}
-	for _, test := range sqrtSqrtDecompositionTestData {
+	for _, test := range sqrtDecompositionTestData {
 		t.Run(test.description, func(t *testing.T) {
 			s := sqrt.NewSqrtDecomposition(test.array,
 				func(e int) int { return e },
