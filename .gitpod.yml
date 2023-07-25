@@ -4,4 +4,4 @@ image:
 
 tasks:
   - init: |
-      go test ./...
+      echo "Welcome to TheAlgorithms/Go"
