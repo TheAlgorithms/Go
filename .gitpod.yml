@@ -1,0 +1,7 @@
+---
+image:
+  file: .gitpod.dockerfile
+
+tasks:
+  - init: |
+      go test ./...
