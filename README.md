@@ -592,12 +592,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package math is a package that contains mathematical algorithms and its different implementations. filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go
+#####  filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go Package math is a package that contains mathematical algorithms and its different implementations.
 
 ---
 ##### Functions:
 
-1. [`Abs`](./math/abs.go#L10):  Abs returns absolute value
+1. [`Abs`](./math/abs.go#L11):  Abs returns absolute value
 2. [`AliquotSum`](./math/aliquotsum.go#L14):  This function returns s(n) for given number
 3. [`Combinations`](./math/binomialcoefficient.go#L20):  C is Binomial Coefficient function This function returns C(n, k) for given n and k
 4. [`Cos`](./math/cos.go#L10):  Cos  returns the cosine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine) [Based on the idea of Bhaskara approximation of cos(x)](https://math.stackexchange.com/questions/3886552/bhaskara-approximation-of-cosx)
