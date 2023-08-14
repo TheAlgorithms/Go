@@ -14,6 +14,7 @@ func TestSin(t *testing.T) {
 	}{
 		{"sin(0)", 0, 0},
 		{"sin(3π/2)", (3 * stdmath.Pi) / 2, -1},
+		{"sin(180)", stdmath.Pi, 0},
 		{"sin(π/2)", stdmath.Pi / 2, 1},
 		{"sin(π/6)", stdmath.Pi / 6, 0.5},
 		{"sin(90)", 90, 0.893996663600558},
