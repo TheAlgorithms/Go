@@ -7,6 +7,7 @@
 
 package math
 
+//Test
 // Abs returns absolute value
 func Abs(n int) int {
 	if n < 0 {
