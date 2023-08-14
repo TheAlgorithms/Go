@@ -597,7 +597,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Abs`](./math/abs.go#L11):  Abs returns absolute value
+1. [`Abs`](./math/abs.go#L11): Test Abs returns absolute value
 2. [`AliquotSum`](./math/aliquotsum.go#L14):  This function returns s(n) for given number
 3. [`Combinations`](./math/binomialcoefficient.go#L20):  C is Binomial Coefficient function This function returns C(n, k) for given n and k
 4. [`Cos`](./math/cos.go#L10):  Cos  returns the cosine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine) [Based on the idea of Bhaskara approximation of cos(x)](https://math.stackexchange.com/questions/3886552/bhaskara-approximation-of-cosx)
@@ -980,6 +980,25 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Types
 
 1. [`MaxHeap`](./sort/heapsort.go#L5): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> sqrt </strong> </summary>	
+
+---
+
+#####  Package sqrt contains algorithms and data structures that contains a √n in their complexity
+
+---
+##### Functions:
+
+1. [`NewSqrtDecomposition`](./sqrt/sqrtdecomposition.go#L34):  Create a new SqrtDecomposition instance with the parameters as specified by SqrtDecomposition comment Assumptions:   - len(elements) > 0
+
+---
+##### Types
+
+1. [`SqrtDecomposition`](./sqrt/sqrtdecomposition.go#L21): No description provided.
 
 
 ---
