@@ -6,6 +6,7 @@
 // see abs_test.go
 
 package math
+
 // Abs returns absolute value
 func Abs(n int) int {
 	if n < 0 {
