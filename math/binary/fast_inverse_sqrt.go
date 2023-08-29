@@ -1,5 +1,6 @@
 // Calculating the inverse square root
 // [See more](https://en.wikipedia.org/wiki/Fast_inverse_square_root)
+
 package binary
 
 import (
