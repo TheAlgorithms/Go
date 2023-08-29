@@ -7,7 +7,7 @@ import (
 	"math"
 )
 
-// Assumes that number always positive
+// FastInverseSqrt assumes that number always positive
 // You don't want to deal with complex numbers
 // "magic" number 0x5f3759df from base 16 to base 10 is equal to 1597463007
 // math.Float32bits is alias to *(*uint32)(unsafe.Pointer(&f))
