@@ -7,12 +7,11 @@ import (
 	"math"
 )
 
-// FastInverseSqrt assumes that number always positive
-// You don't want to deal with complex numbers
-// "magic" number 0x5f3759df from base 16 to base 10 is equal to 1597463007
-// math.Float32bits is alias to *(*uint32)(unsafe.Pointer(&f))
-// and math.Float32frombits to *(*float32)(unsafe.Pointer(&b))
-// 4 >> 1 = 2 bitwise shift to the right by one divides the number by 2
+// FastInverseSqrt assumes that argument is always positive,
+// and it does not deal with negative numbers.
+// The "magic" number 0x5f3759df is hex for 1597463007 in decimals.
+// The math.Float32bits is alias to *(*uint32)(unsafe.Pointer(&f))
+// and math.Float32frombits is to *(*float32)(unsafe.Pointer(&b)).
 func FastInverseSqrt(number float32) float32 {
 	var i uint32
 	var y, x2 float32
