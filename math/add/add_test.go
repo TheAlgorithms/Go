@@ -12,6 +12,7 @@ func TestAdd(t *testing.T) {
 		{-2, 7, 5},
 		{0, 0, 0},
 		{10, -5, 5},
+		{1, 1, 2},
 	}
 
 	// Iterate over the test cases
