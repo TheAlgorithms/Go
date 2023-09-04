@@ -26,9 +26,7 @@ func DepthFirstSearchHelper(start, end int, nodes []int, edges [][]bool, showrou
 	for len(stack) > 0 {
 		now := stack[len(stack)-1]
 		route = append(route, nodes[now])
-		if len(stack) > 1 {
-			stack = stack[:len(stack)-1]
-		}
+		stack = stack[:len(stack)-1]
 		for i := 0; i < len(edges[now]); i++ {
 			if edges[now][i] && NotExist(i, stack) {
 				stack = append(stack, i)
