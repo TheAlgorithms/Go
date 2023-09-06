@@ -27,6 +27,43 @@ jobs:
           args: -E gofmt
       - name: Run tests
         run: go test ./...
+  golang_coverage:
+    name: Code coverage
+    strategy:
+      matrix:
+        go: [1.19]
+        os: [ubuntu-latest]
+      fail-fast: false
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        id: checkout
+        with:
+          fetch-depth: 10
+
+      - name: Setup go environment
+        uses: actions/setup-go@v3
+        id: setup
+        with: 
+          go-version: ${{ matrix.go }}
+
+      - run: go version
+          
+      - name: Generate coverage doc
+        uses: gwatts/go-coverage-action@v1
+        id: coverage
+        with:
+          coverage-threshold: 85
+      
+      - name: Upload coverage doc as an artefact
+        uses: actions/upload-artifact@v3
+        id: artifact-upload
+        if: always()
+        with: 
+          path: ${{ steps.coverage.outputs.report-pathname }}
+          if-no-files-found: error
   codespell:
     name: Check for spelling errors
     runs-on: ubuntu-latest
