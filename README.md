@@ -70,15 +70,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Abs`](./math/binary/abs.go#L10):  Abs returns absolute value using binary operation Principle of operation: 1) Get the mask by right shift by the base 2) Base is the size of an integer variable in bits, for example, for int32 it will be 32, for int64 it will be 64 3) For negative numbers, above step sets mask as 1 1 1 1 1 1 1 1 and 0 0 0 0 0 0 0 0 for positive numbers. 4) Add the mask to the given number. 5) XOR of mask + n and mask gives the absolute value.
 2. [`BitCounter`](./math/binary/bitcounter.go#L11):  BitCounter - The function returns the number of set bits for an unsigned integer number
-3. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L21):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:	  10...0	& 01...1	  00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
-4. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L28):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
-5. [`LogBase2`](./math/binary/logarithm.go#L7):  LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
-6. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
-7. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
-8. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
-9. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
-10. [`Sqrt`](./math/binary/sqrt.go#L16): No description provided.
-11. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
+3. [`FastInverseSqrt`](./math/binary/fast_inverse_sqrt.go#L15):  FastInverseSqrt assumes that argument is always positive, and it does not deal with negative numbers. The "magic" number 0x5f3759df is hex for 1597463007 in decimals. The math.Float32bits is alias to *(*uint32)(unsafe.Pointer(&f)) and math.Float32frombits is to *(*float32)(unsafe.Pointer(&b)).
+4. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L21):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:	  10...0	& 01...1	  00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
+5. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L28):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
+6. [`LogBase2`](./math/binary/logarithm.go#L7):  LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
+7. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
+8. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
+9. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
+10. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
+11. [`Sqrt`](./math/binary/sqrt.go#L10): No description provided.
+12. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
 
 ---
 </details><details>
@@ -592,7 +593,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go Package math is a package that contains mathematical algorithms and its different implementations.
+#####  Package math is a package that contains mathematical algorithms and its different implementations. filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go
 
 ---
 ##### Functions:
@@ -980,6 +981,25 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Types
 
 1. [`MaxHeap`](./sort/heapsort.go#L5): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> sqrt </strong> </summary>	
+
+---
+
+#####  Package sqrt contains algorithms and data structures that contains a √n in their complexity
+
+---
+##### Functions:
+
+1. [`NewSqrtDecomposition`](./sqrt/sqrtdecomposition.go#L34):  Create a new SqrtDecomposition instance with the parameters as specified by SqrtDecomposition comment Assumptions:   - len(elements) > 0
+
+---
+##### Types
+
+1. [`SqrtDecomposition`](./sqrt/sqrtdecomposition.go#L21): No description provided.
 
 
 ---
