@@ -1,11 +1,12 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"math/rand"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -79,6 +80,11 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 
 func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
+}
+
+func TestBogo(t *testing.T) {
+	t.Skip("Skipping test for Bogo Sort, as it uses a lot of resource.")
+	testFramework(t, sort.Bogo[int])
 }
 
 func TestBucketSort(t *testing.T) {
@@ -216,6 +222,11 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
+}
+
+func BenchmarkBogo(b *testing.B) {
+	b.Skip("Skipping benchmark for Bogo Sort, as it uses a lot of resource.")
+	benchmarkFramework(b, sort.Bogo[int])
 }
 
 func BenchmarkBucketSort(b *testing.B) {
