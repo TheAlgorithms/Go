@@ -15,14 +15,14 @@ func New[T comparable](items ...T) Set[T] {
 }
 
 // Set is an interface of possible methods on 'set'.
-type Set [T comparable] interface {
+type Set[T comparable] interface {
 	// Add: adds new element to the set
 	Add(item T)
 	// Delete: deletes the passed element from the set if present
 	Delete(item T)
 	// Len: gives the length of the set (total no. of elements in set)
 	Len() int
-	// GetItems: gives the array( []any ) of elements of the set.
+	// GetItems: gives the array( []T ) of elements of the set.
 	GetItems() []T
 	// In: checks whether item is present in set or not.
 	In(item T) bool
