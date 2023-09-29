@@ -9,31 +9,45 @@
 
 package stack
 
-var stackArray []any
-
-// stackPush push to first index of array
-func stackPush(n any) {
-	stackArray = append([]any{n}, stackArray...)
+type StackArray struct {
+    elements []interface{}
 }
 
-// stackLength return length of array
-func stackLength() int {
-	return len(stackArray)
+// NewStack creates and returns a new stack.
+func NewStack() *StackArray {
+    return &StackArray{}
 }
 
-// stackPeak return last input of array
-func stackPeak() any {
-	return stackArray[0]
+// Push adds an element to the top of the stack.
+func (s *StackArray) push(value interface{}) {
+    s.elements = append(s.elements, value)
 }
 
-// stackEmpty check array is empty or not
-func stackEmpty() bool {
-	return len(stackArray) == 0
+// Size returns the number of elements in the stack.
+func (s *StackArray) length() int {
+    return len(s.elements)
 }
 
-// stackPop return last input and remove it in array
-func stackPop() any {
-	pop := stackArray[0]
-	stackArray = stackArray[1:]
-	return pop
+// Peek returns the top element of the stack without removing it.
+func (s *StackArray) peek() interface{} {
+    if s.isEmpty() {
+        return nil // Stack is empty
+    }
+    return s.elements[len(s.elements)-1]
+}
+
+// IsEmpty returns true if the stack is empty, false otherwise.
+func (s *StackArray) isEmpty() bool {
+    return len(s.elements) == 0
+}
+
+// Pop removes and returns the top element from the stack.
+func (s *StackArray) pop() interface{} {
+    if s.isEmpty() {
+        return nil // Stack is empty
+    }
+    index := len(s.elements) - 1
+    popped := s.elements[index]
+    s.elements = s.elements[:index]
+    return popped
 }
