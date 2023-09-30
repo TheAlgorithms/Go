@@ -108,8 +108,10 @@ func TestDeque(t *testing.T) {
 	if val != 1 {
 		t.Errorf("Expected front value to be 1, but got %v", val)
 	}
-	d.deQueueFront()
-
+	_, err = d.deQueueFront()
+	if err != nil {
+		t.Errorf("Expected no error, but got %v", err)
+	}
 	// Test getRear
 	_, err = d.getRear()
 	if err == nil {
@@ -123,8 +125,10 @@ func TestDeque(t *testing.T) {
 	if val != 1 {
 		t.Errorf("Expected rear value to be 1, but got %v", val)
 	}
-	d.deQueueRear()
-
+	_, err = d.deQueueRear()
+	if err != nil {
+		t.Errorf("Expected no error, but got %v", err)
+	}
 	// Test empty deque
 	if !d.isEmpty() {
 		t.Errorf("Expected deque to be empty, but it's not")
