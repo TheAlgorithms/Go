@@ -1,11 +1,12 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"math/rand"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -83,6 +84,10 @@ func TestBubble(t *testing.T) {
 
 func TestBucketSort(t *testing.T) {
 	testFramework(t, sort.Bucket[int])
+}
+
+func TestCocktailSort(t *testing.T) {
+	testFramework(t, sort.Cocktail[int])
 }
 
 func TestExchange(t *testing.T) {
