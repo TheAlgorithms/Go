@@ -50,7 +50,7 @@ type Set[T comparable] interface {
 	SymmetricDifference(set2 Set[T]) Set[T]
 }
 
-type set [T comparable]struct {
+type set[T comparable] struct {
 	elements map[T]bool
 }
 
