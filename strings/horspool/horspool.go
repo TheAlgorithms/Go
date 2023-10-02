@@ -23,7 +23,7 @@ func horspool(t, p []rune) (int, error) {
 		if pos+len(p) >= len(t) {
 			// because the remaining length of the input string
 			// is the same as the length of the pattern
-			// and it does mot match the pattern
+			// and it does not match the pattern
 			// it is impossible to find the pattern
 			break
 		}
