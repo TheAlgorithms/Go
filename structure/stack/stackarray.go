@@ -10,44 +10,44 @@
 package stack
 
 type StackArray struct {
-    elements []interface{}
+	elements []interface{}
 }
 
 // NewStack creates and returns a new stack.
 func NewStack() *StackArray {
-    return &StackArray{}
+	return &StackArray{}
 }
 
 // Push adds an element to the top of the stack.
 func (s *StackArray) push(value interface{}) {
-    s.elements = append(s.elements, value)
+	s.elements = append(s.elements, value)
 }
 
 // Size returns the number of elements in the stack.
 func (s *StackArray) length() int {
-    return len(s.elements)
+	return len(s.elements)
 }
 
 // Peek returns the top element of the stack without removing it.
 func (s *StackArray) peek() interface{} {
-    if s.isEmpty() {
-        return nil // Stack is empty
-    }
-    return s.elements[len(s.elements)-1]
+	if s.isEmpty() {
+		return nil // Stack is empty
+	}
+	return s.elements[len(s.elements)-1]
 }
 
 // IsEmpty returns true if the stack is empty, false otherwise.
 func (s *StackArray) isEmpty() bool {
-    return len(s.elements) == 0
+	return len(s.elements) == 0
 }
 
 // Pop removes and returns the top element from the stack.
 func (s *StackArray) pop() interface{} {
-    if s.isEmpty() {
-        return nil // Stack is empty
-    }
-    index := len(s.elements) - 1
-    popped := s.elements[index]
-    s.elements = s.elements[:index]
-    return popped
+	if s.isEmpty() {
+		return nil // Stack is empty
+	}
+	index := len(s.elements) - 1
+	popped := s.elements[index]
+	s.elements = s.elements[:index]
+	return popped
 }

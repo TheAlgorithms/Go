@@ -67,7 +67,7 @@ func TestStackLinkedList(t *testing.T) {
 
 // TestStackArray for testing Stack with Array
 func TestStackArray(t *testing.T) {
-	newStack := NewStack() 
+	newStack := NewStack()
 	t.Run("Stack With Array", func(t *testing.T) {
 
 		newStack.push(2)
