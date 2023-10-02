@@ -1,31 +1,37 @@
-package matrix
+package matrix_test
 
 import (
-	"fmt"
 	"math/rand"
-	"os"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
-// Example usage of the matrix multiplication function
-func Example() {
-	matrixA := [][]int{
+func TestExample(t *testing.T) {
+	matrixA := [][]int8{
 		{1, 2},
 		{3, 4},
 	}
 
-	matrixB := [][]int{
+	matrixB := [][]int8{
 		{5, 6},
 		{7, 8},
 	}
+	expected := [][]int8{
+		{19, 22},
+		{43, 50},
+	}
 
-	result := strassenMatrixMultiply(matrixA, matrixB)
-	printMatrix(result)
-
-	// Output:
-	// [19 22]
-	// [43 50]
+	result := matrix.StrassenMatrixMultiply(matrixA, matrixB)
+	// Check if the result matches the expected result
+	for i := 0; i < 2; i++ {
+		for j := 0; j < 2; j++ {
+			if result[i][j] != expected[i][j] {
+				t.Errorf("Mismatch at position (%d, %d). Expected %d, but got %d.", i, j, expected[i][j], result[i][j])
+			}
+		}
+	}
 }
 
 // TestMatrixMultiplication performs a test on matrix multiplication.
@@ -33,15 +39,15 @@ func TestMatrixMultiplication(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
 	// Generate random matrices for testing
-	size := 4
+	size :=  1<<(rand.Intn(10) + 1)
 	matrixA := makeRandomMatrix(size)
 	matrixB := makeRandomMatrix(size)
 
 	// Calculate the expected result using the standard multiplication
-	expected := standardMatrixMultiply(matrixA, matrixB)
+	expected, _ := matrix.MultiplyMatrices(matrixA, matrixB)
 
 	// Calculate the result using the Strassen algorithm
-	result := strassenMatrixMultiply(matrixA, matrixB)
+	result := matrix.StrassenMatrixMultiply(matrixA, matrixB)
 
 	// Check if the result matches the expected result
 	for i := 0; i < size; i++ {
@@ -59,19 +65,13 @@ func makeRandomMatrix(size int) [][]int {
 	for i := 0; i < size; i++ {
 		matrix[i] = make([]int, size)
 		for j := 0; j < size; j++ {
-			matrix[i][j] = rand.Intn(10) // Generate random integers between 0 and 9
+			matrix[i][j] = rand.Intn(1000) // Generate random integers between 0 and 1000
 		}
 	}
 	return matrix
 }
 
-func TestMain(m *testing.M) {
-	// Run the tests
-	code := m.Run()
-	os.Exit(code)
-}
-
-// BenchmarkStrassenMatrixMultiply benchmarks the strassenMatrixMultiply function.
+// BenchmarkStrassenMatrixMultiply benchmarks the StrassenMatrixMultiply function.
 func BenchmarkStrassenMatrixMultiply(b *testing.B) {
 	size := 128 // Change the size as needed for your benchmark
 	matrixA := makeRandomMatrix(size)
@@ -79,13 +79,6 @@ func BenchmarkStrassenMatrixMultiply(b *testing.B) {
 
 	b.ResetTimer() // Reset the benchmark timer before the actual benchmark
 	for i := 0; i < b.N; i++ {
-		_ = strassenMatrixMultiply(matrixA, matrixB)
-	}
-}
-
-// Print a matrix
-func printMatrix(matrix [][]int) {
-	for _, row := range matrix {
-		fmt.Println(row)
+		_ = matrix.StrassenMatrixMultiply(matrixA, matrixB)
 	}
 }
