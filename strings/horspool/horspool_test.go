@@ -18,6 +18,8 @@ func TestLHorspool(t *testing.T) {
 		{"Xaaab", "X", 0},
 		{"XYaab", "XY", 0},
 		{"abcefghXYZ", "XYZ", 7},
+		{"abcefgh€YZ⌘", "€YZ", 7},
+		{"⌘bcefgh€YZ⌘", "€YZ", 7},
 		{"abc", "abc", 0},
 		{"", "", 0},
 		{"a", "", 0},
@@ -49,6 +51,8 @@ func TestLHorspoolNotExisintPattern(t *testing.T) {
 		{"aaaaaaaXaXaaaa", "XXX"},
 		{"aaaaaaaXaX", "XXX"},
 		{"XaX", "XXX"},
+		{"XaX", "XXX"},
+		{"\xe2\x8c\x98", "\x98"},
 	}
 	for _, tc := range testCases {
 		t.Run(fmt.Sprint("test with ", tc.input, " ", tc.pattern), func(t *testing.T) {
