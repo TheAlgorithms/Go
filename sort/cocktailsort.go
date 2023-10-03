@@ -14,14 +14,24 @@ func Cocktail[T constraints.Integer](arr []T) []T {
 	swapped := false // true if swapped two or more elements in the last loop
 	// if it loops through the array without swapping, the array is sorted
 
-	for ok := true; ok; ok = swapped { // exits when swapped == false
+	// start and end indexes, this will be updated excluding already sorted elements
+	start := 0
+	end := len(arr) - 1
 
-		for i := 0; i < len(arr)-1; i++ { // first loop, from array's beginning to end
+	for {
+		swapped = false
+		var new_start int
+		var new_end int
+
+		for i := start; i < end; i++ { // first loop, from start to end
 			if arr[i] > arr[i+1] { // if current and next elements are unordered
 				arr[i], arr[i+1] = arr[i+1], arr[i] // swap two elements
+				new_end = i
 				swapped = true
 			}
 		}
+
+		end = new_end
 
 		if !swapped { // early exit, skipping the second loop
 			break
@@ -29,11 +39,18 @@ func Cocktail[T constraints.Integer](arr []T) []T {
 
 		swapped = false
 
-		for i := len(arr) - 1; i > 0; i-- { // second loop, from array's end to beginning
+		for i := end; i > start; i-- { // second loop, from end to start
 			if arr[i] < arr[i-1] { // same process of the first loop, now going 'backwards'
 				arr[i], arr[i-1] = arr[i-1], arr[i]
+				new_start = i
 				swapped = true
 			}
+		}
+
+		start = new_start
+
+		if !swapped {
+			break
 		}
 	}
 
