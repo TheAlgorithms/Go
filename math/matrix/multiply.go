@@ -2,10 +2,12 @@ package matrix
 
 import (
 	"errors"
+
+	"github.com/TheAlgorithms/Go/constraints"
 )
 
 // MultiplyMatrices multiplies two matrices of compatible types.
-func MultiplyMatrices[T Number](matrix1, matrix2 [][]T) ([][]T, error) {
+func Multiply[T constraints.Integer](matrix1, matrix2 [][]T) ([][]T, error) {
 	// Check if the matrices are compatible for multiplication.
 	if len(matrix1[0]) == len(matrix2[0]) && len(matrix1[0]) == 0 {
 		return make([][]T, len(matrix1)), nil

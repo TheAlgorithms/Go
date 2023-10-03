@@ -8,8 +8,10 @@
 // See strassenmatrixmultiply_test.go for test cases
 package matrix
 
+import "github.com/TheAlgorithms/Go/constraints"
+
 // Perform matrix multiplication using Strassen's algorithm
-func StrassenMatrixMultiply[T Number](A, B [][]T) [][]T {
+func StrassenMatrixMultiply[T constraints.Integer](A, B [][]T) [][]T {
 	n := len(A)
 
 	// Check if matrices are 2x2 or smaller
@@ -58,17 +60,17 @@ func StrassenMatrixMultiply[T Number](A, B [][]T) [][]T {
 		}
 
 		// Calculate result addmatrices
-		A1, _ := AddMatrices(A11, A22)
-		A2, _ := AddMatrices(B11, B22)
-		A3, _ := AddMatrices(A21, A22)
-		A4, _ := AddMatrices(A11, A12)
-		A5, _ := AddMatrices(B11, B12)
-		A6, _ := AddMatrices(B21, B22)
+		A1, _ := Add(A11, A22)
+		A2, _ := Add(B11, B22)
+		A3, _ := Add(A21, A22)
+		A4, _ := Add(A11, A12)
+		A5, _ := Add(B11, B12)
+		A6, _ := Add(B21, B22)
 		//
-		S1, _ := SubtractMatrices(B12, B22)
-		S2, _ := SubtractMatrices(B21, B11)
-		S3, _ := SubtractMatrices(A21, A11)
-		S4, _ := SubtractMatrices(A12, A22)
+		S1, _ := Subtract(B12, B22)
+		S2, _ := Subtract(B21, B11)
+		S3, _ := Subtract(A21, A11)
+		S4, _ := Subtract(A12, A22)
 		// Recursive steps
 		M1 := StrassenMatrixMultiply(A1, A2)
 		M2 := StrassenMatrixMultiply(A3, B11)
@@ -78,32 +80,19 @@ func StrassenMatrixMultiply[T Number](A, B [][]T) [][]T {
 		M6 := StrassenMatrixMultiply(S3, A5)
 		M7 := StrassenMatrixMultiply(S4, A6)
 		//
-		A7, _ := AddMatrices(M1, M4)
-		A8, _ := AddMatrices(A7, M7)
-		A9, _ := AddMatrices(M1, M3)
-		A10, _ := AddMatrices(A9, M6)
+		A7, _ := Add(M1, M4)
+		A8, _ := Add(A7, M7)
+		A9, _ := Add(M1, M3)
+		A10, _ := Add(A9, M6)
 		// Calculate result submatrices
-		C11, _ := SubtractMatrices(A8, M5)
-		C12, _ := AddMatrices(M3, M5)
-		C21, _ := AddMatrices(M2, M4)
-		C22, _ := SubtractMatrices(A10, M2)
+		C11, _ := Subtract(A8, M5)
+		C12, _ := Add(M3, M5)
+		C21, _ := Add(M2, M4)
+		C22, _ := Subtract(A10, M2)
 
-		// Combine submatrices into the result matrix
+		// Combine subMatrices into the result matrix
 		C := make([][]T, n)
-		// for i := 0; i < n; i++ {
-		// 	C[i] = make([]T, n)
-		// 	for j := 0; j < n; j++ {
-		// 		if i < mid && j < mid {
-		// 			C[i][j] = C11[i][j]
-		// 		} else if i < mid && j >= mid {
-		// 			C[i][j] = C12[i][j-mid]
-		// 		} else if i >= mid && j < mid {
-		// 			C[i][j] = C21[i-mid][j]
-		// 		} else {
-		// 			C[i][j] = C22[i-mid][j-mid]
-		// 		}
-		// 	}
-		// }
+
 		for i := 0; i < mid; i++ {
 			C[i] = make([]T, n)
 			C[i+mid] = make([]T, n)

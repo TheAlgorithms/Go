@@ -39,12 +39,12 @@ func TestMatrixMultiplication(t *testing.T) {
 	rand.Seed(time.Now().UnixNano())
 
 	// Generate random matrices for testing
-	size :=  1<<(rand.Intn(10) + 1)
+	size := 1 << (rand.Intn(8) + 1) // tests for matrix with n as power of 2
 	matrixA := makeRandomMatrix(size)
 	matrixB := makeRandomMatrix(size)
 
 	// Calculate the expected result using the standard multiplication
-	expected, _ := matrix.MultiplyMatrices(matrixA, matrixB)
+	expected, _ := matrix.Multiply(matrixA, matrixB)
 
 	// Calculate the result using the Strassen algorithm
 	result := matrix.StrassenMatrixMultiply(matrixA, matrixB)

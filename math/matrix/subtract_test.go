@@ -1,7 +1,6 @@
 package matrix_test
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math/matrix"
@@ -23,14 +22,17 @@ func TestSubtractMatricesInt(t *testing.T) {
 		{30, 39, 48},
 	}
 
-	result, err := matrix.SubtractMatrices(matrix1, matrix2)
+	result, err := matrix.Subtract(matrix1, matrix2)
 	if err != nil {
-		t.Errorf("Error: %v", err)
+		t.Errorf("Expected no error, got %v", err)
+	} else {
+		if equal, err := matrix.CheckEqual(result, expectedResult); err != nil {
+			t.Errorf("Error: %v", err)
+		} else if !equal {
+			t.Errorf("Result matrix does not match the expected result.")
+		}
 	}
 
-	if !reflect.DeepEqual(result, expectedResult) {
-		t.Errorf("Result matrix does not match the expected result.")
-	}
 	// null matrix  test
 	matrix3 := [][]int{{}}
 
@@ -38,14 +40,17 @@ func TestSubtractMatricesInt(t *testing.T) {
 
 	expectedResult1 := [][]int{{}}
 
-	result1, err1 := matrix.SubtractMatrices(matrix3, matrix4)
-	if err != nil {
+	result1, err1 := matrix.Subtract(matrix3, matrix4)
+	if err1 != nil {
 		t.Errorf("Error: %v", err1)
+	} else {
+		if equal, err := matrix.CheckEqual(result1, expectedResult1); err != nil {
+			t.Errorf("Error: %v", err)
+		} else if !equal {
+			t.Errorf("Result matrix does not match the expected result.")
+		}
 	}
 
-	if !reflect.DeepEqual(result1, expectedResult1) {
-		t.Errorf("Result matrix does not match the expected result.")
-	}
 }
 
 func TestSubtractMatricesIncompatibleDimensions(t *testing.T) {
@@ -59,7 +64,7 @@ func TestSubtractMatricesIncompatibleDimensions(t *testing.T) {
 		{4, 5, 6},
 	}
 
-	result, err := matrix.SubtractMatrices(matrix1, matrix2)
+	result, err := matrix.Subtract(matrix1, matrix2)
 	if err == nil {
 		t.Error("Expected an error for incompatible matrix dimensions, but got nil.")
 	}

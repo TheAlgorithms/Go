@@ -2,17 +2,19 @@ package matrix
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type Number interface {
-	constraints.Integer
-}
-
-func AddMatrices[T Number](matrix1, matrix2 [][]T) ([][]T, error) {
+func Add[T constraints.Integer](matrix1, matrix2 [][]T) ([][]T, error) {
 	// Check if the matrices have the same dimensions.
-	if len(matrix1) != len(matrix2) || len(matrix1[0]) != len(matrix2[0]) {
+	sameDimensions, err := SameDimensions(matrix1, matrix2)
+	if err != nil {
+		return nil, fmt.Errorf("invalid matrices: %v", err)
+	}
+
+	if sameDimensions == 0 {
 		return nil, errors.New("matrices are not compatible for addition")
 	}
 
