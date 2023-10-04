@@ -1,9 +1,9 @@
 package parenthesis
 
-// Parenthesis algorithm checks if every opened parenthesis 
-// is closed correctly. Parcounter is less than 0 when a closing 
+// Parenthesis algorithm checks if every opened parenthesis
+// is closed correctly. Parcounter is less than 0 when a closing
 // parenthesis is detected without an opening parenthesis
-// that surrounds it and parcounter will be 0 if all 
+// that surrounds it and parcounter will be 0 if all
 // open parenthesis are closed correctly
 func Parenthesis(text string) bool {
 	parcounter := 0
