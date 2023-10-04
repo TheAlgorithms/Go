@@ -7,23 +7,24 @@
 // author [Milad](https://github.com/miraddo)
 // see stackarray.go, stacklinkedlist.go, stacklinkedlistwithlist.go
 
-package stack
+package stack_test
 
 import (
 	"container/list"
+	st "github.com/TheAlgorithms/Go/structure/stack"
 	"reflect"
 	"testing"
 )
 
 // TestStackLinkedList for testing Stack with LinkedList
 func TestStackLinkedList(t *testing.T) {
-	var newStack Stack
+	var newStack st.Stack
 
-	newStack.push(1)
-	newStack.push(2)
+	newStack.Push(1)
+	newStack.Push(2)
 
 	t.Run("Stack Push", func(t *testing.T) {
-		result := newStack.show()
+		result := newStack.Show()
 		expected := []any{2, 1}
 		for x := range result {
 			if result[x] != expected[x] {
@@ -33,20 +34,20 @@ func TestStackLinkedList(t *testing.T) {
 	})
 
 	t.Run("Stack isEmpty", func(t *testing.T) {
-		if newStack.isEmpty() {
-			t.Error("Stack isEmpty is returned true but expected false", newStack.isEmpty())
+		if newStack.IsEmpty() {
+			t.Error("Stack isEmpty is returned true but expected false", newStack.IsEmpty())
 		}
 
 	})
 
 	t.Run("Stack Length", func(t *testing.T) {
-		if newStack.len() != 2 {
-			t.Error("Stack Length should be 2 but got", newStack.len())
+		if newStack.Length() != 2 {
+			t.Error("Stack Length should be 2 but got", newStack.Length())
 		}
 	})
 
-	newStack.pop()
-	pop := newStack.pop()
+	newStack.Pop()
+	pop := newStack.Pop()
 
 	t.Run("Stack Pop", func(t *testing.T) {
 		if pop != 1 {
@@ -55,64 +56,73 @@ func TestStackLinkedList(t *testing.T) {
 
 	})
 
-	newStack.push(52)
-	newStack.push(23)
-	newStack.push(99)
-	t.Run("Stack Peak", func(t *testing.T) {
-		if newStack.peak() != 99 {
-			t.Error("Stack Peak should return 99 but got ", newStack.peak())
+	newStack.Push(52)
+	newStack.Push(23)
+	newStack.Push(99)
+	t.Run("Stack Peek", func(t *testing.T) {
+		if newStack.Peek() != 99 {
+			t.Error("Stack Peak should return 99 but got ", newStack.Peek())
 		}
 	})
 }
 
 // TestStackArray for testing Stack with Array
 func TestStackArray(t *testing.T) {
-	newStack := NewStack()
+	newStack := st.NewStack()
 	t.Run("Stack With Array", func(t *testing.T) {
 
-		newStack.push(2)
-		newStack.push(3)
+		newStack.Push(2)
+		newStack.Push(3)
 
 		t.Run("Stack Push", func(t *testing.T) {
-			if !reflect.DeepEqual([]any{2, 3}, newStack.elements) {
-				t.Errorf("Stack Push is not work we expected %v but got %v", []any{2, 3}, newStack)
+			var stackElements []any
+			for i := 0; i < 2; i++ {
+				poppedElement := newStack.Pop()
+				stackElements = append(stackElements, poppedElement)
 			}
+
+			if !reflect.DeepEqual([]any{3, 2}, stackElements) {
+				t.Errorf("Stack Push is not work we expected %v but got %v", []any{3, 2}, newStack)
+			}
+
+			newStack.Push(2)
+			newStack.Push(3)
 		})
 
-		pop := newStack.pop()
+		pop := newStack.Pop()
 
 		t.Run("Stack Pop", func(t *testing.T) {
-			if newStack.length() == 2 && pop != 3 {
+			if newStack.Length() == 2 && pop != 3 {
 				t.Errorf("Stack Pop is not work we expected %v but got %v", 3, pop)
 			}
 		})
 
-		newStack.push(2)
-		newStack.push(83)
+		newStack.Push(2)
+		newStack.Push(83)
 
 		t.Run("Stack Peak", func(t *testing.T) {
-			if newStack.peek() != 83 {
-				t.Errorf("Stack Peek is not work we expected %v but got %v", 83, newStack.peek())
+			if newStack.Peek() != 83 {
+				t.Errorf("Stack Peek is not work we expected %v but got %v", 83, newStack.Peek())
 			}
 		})
 
 		t.Run("Stack Length", func(t *testing.T) {
-			if newStack.length() != 3 {
-				t.Errorf("Stack Length is not work we expected %v but got %v", 3, newStack.length())
+			if newStack.Length() != 3 {
+				t.Errorf("Stack Length is not work we expected %v but got %v", 3, newStack.Length())
 			}
 		})
 
 		t.Run("Stack Empty", func(t *testing.T) {
-			if newStack.isEmpty() == true {
-				t.Errorf("Stack Empty is not work we expected %v but got %v", false, newStack.isEmpty())
+			if newStack.IsEmpty() == true {
+				t.Errorf("Stack Empty is not work we expected %v but got %v", false, newStack.IsEmpty())
 			}
 
-			newStack.pop()
-			newStack.pop()
-			newStack.pop()
+			newStack.Pop()
+			newStack.Pop()
+			newStack.Pop()
 
-			if newStack.isEmpty() == false {
-				t.Errorf("Stack Empty is not work we expected %v but got %v", true, newStack.isEmpty())
+			if newStack.IsEmpty() == false {
+				t.Errorf("Stack Empty is not work we expected %v but got %v", true, newStack.IsEmpty())
 			}
 		})
 	})
@@ -120,8 +130,8 @@ func TestStackArray(t *testing.T) {
 
 // TestStackLinkedListWithList for testing Stack with Container/List Library (STL)
 func TestStackLinkedListWithList(t *testing.T) {
-	stackList := &SList{
-		stack: list.New(),
+	stackList := &st.SList{
+		Stack: list.New(),
 	}
 
 	t.Run("Stack Push", func(t *testing.T) {
@@ -146,7 +156,7 @@ func TestStackLinkedListWithList(t *testing.T) {
 
 		stackList.Push(2)
 		stackList.Push(83)
-		peak, _ := stackList.Peak()
+		peak, _ := stackList.Peek()
 		if peak != 83 {
 			t.Errorf("Stack Peak is not work we expected %v but got %v", 83, peak)
 		}
@@ -159,8 +169,8 @@ func TestStackLinkedListWithList(t *testing.T) {
 	})
 
 	t.Run("Stack Empty", func(t *testing.T) {
-		if stackList.Empty() == true {
-			t.Errorf("Stack Empty is not work we expected %v but got %v", false, stackList.Empty())
+		if stackList.IsEmpty() == true {
+			t.Errorf("Stack Empty is not work we expected %v but got %v", false, stackList.IsEmpty())
 		}
 
 		d1, err := stackList.Pop()
@@ -171,8 +181,8 @@ func TestStackLinkedListWithList(t *testing.T) {
 			t.Errorf("got an unexpected error %v, pop1: %v, pop2: %v, pop3: %v", err, d1, d2, d3)
 		}
 
-		if stackList.Empty() == false {
-			t.Errorf("Stack Empty is not work we expected %v but got %v", true, stackList.Empty())
+		if stackList.IsEmpty() == false {
+			t.Errorf("Stack Empty is not work we expected %v but got %v", true, stackList.IsEmpty())
 		}
 	})
 }
