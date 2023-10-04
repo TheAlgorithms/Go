@@ -1,45 +1,61 @@
 package matrix_test
 
 import (
+	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
 func TestCheckEqual(t *testing.T) {
-	// Test case 1: Equal matrices
-	mat1 := [][]int{{1, 2}, {3, 4}}
-	mat2 := [][]int{{1, 2}, {3, 4}}
-	expected1 := true
-	result1, err1 := matrix.CheckEqual(mat1, mat2)
-	if err1 != nil {
-		t.Errorf("Unexpected error for test case 1: %v", err1)
+	// Create two matrices with the same dimensions and equal values
+	matrix1 := matrix.New(2, 2, 0)
+	matrix2 := matrix.New(2, 2, 0)
+
+	// Test case 1: Matrices are equal
+	equal, err := matrix.CheckEqual(matrix1, matrix2)
+	if err != nil {
+		t.Errorf("CheckEqual(matrix1, matrix2) returned an error: %v, expected no error", err)
 	}
-	if result1 != expected1 {
-		t.Errorf("Test case 1 failed. Expected %v, got %v", expected1, result1)
+	if !equal {
+		t.Errorf("CheckEqual(matrix1, matrix2) returned false, expected true (matrices are equal)")
 	}
 
-	// Test case 2: Matrices with different values
-	mat3 := [][]int{{1, 2}, {3, 4}}
-	mat4 := [][]int{{1, 2}, {3, 5}}
-	expected2 := false
-	result2, err2 := matrix.CheckEqual(mat3, mat4)
+	// Create two matrices with the same dimensions but different values
+	matrix3 := matrix.New(2, 2, 1)
+	matrix4 := matrix.New(2, 2, 0)
+
+	// Test case 2: Matrices are not equal
+	equal2, err2 := matrix.CheckEqual(matrix3, matrix4)
 	if err2 != nil {
-		t.Errorf("Unexpected error for test case 2: %v", err2)
+		t.Errorf("CheckEqual(matrix3, matrix4) returned an error: %v, expected no error", err2)
 	}
-	if result2 != expected2 {
-		t.Errorf("Test case 2 failed. Expected %v, got %v", expected2, result2)
+	if equal2 {
+		t.Errorf("CheckEqual(matrix3, matrix4) returned true, expected false (matrices are not equal)")
 	}
 
-	// Test case 3: Matrices with different dimensions
-	mat5 := [][]int{{1, 2, 3}, {4, 5, 6}}
-	mat6 := [][]int{{1, 2}, {3, 4}}
-	expected3 := false
-	result3, err3 := matrix.CheckEqual(mat5, mat6)
-	if err3 == nil {
-		t.Errorf("Expected error for test case 3, but got none")
+	// Create two matrices with different dimensions
+	matrix5 := matrix.New(2, 2, 0)
+	matrix6 := matrix.New(2, 3, 0)
+
+	// Test case 3: Matrices have different dimensions
+	_, err3 := matrix.CheckEqual(matrix5, matrix6)
+	expectedError3 := fmt.Errorf("invalid matrices: %v", errors.New("matrices have different dimensions: rows=2 vs columns=2"))
+	if err3 == nil || err3.Error() != expectedError3.Error() {
+		t.Errorf("CheckEqual(matrix5, matrix6) returned error: %v, expected error: %v", err3, expectedError3)
 	}
-	if result3 != expected3 {
-		t.Errorf("Test case 3 failed. Expected %v, got %v", expected3, result3)
+}
+
+func TestCheckEqual_ErrorHandling(t *testing.T) {
+	// Create two matrices with different dimensions
+	matrix1 := matrix.New(2, 2, 0)
+	matrix2 := matrix.New(3, 3, 0)
+
+	// Test case: Invalid matrices, expect an error
+	_, err := matrix.CheckEqual(matrix1, matrix2)
+	expectedError := fmt.Errorf("invalid matrices: %v", errors.New("matrices have different dimensions: rows=2 vs columns=2"))
+	if err == nil || err.Error() != expectedError.Error() {
+		t.Errorf("CheckEqual(matrix1, matrix2) returned error: %v, expected error: %v", err, expectedError)
 	}
 }

@@ -1,20 +1,15 @@
 package matrix
 
-import "errors"
-
-// IsValid checks if a matrix is valid, meaning all rows have the same number of columns.
-func IsValid[T any](matrix [][]T) error {
-	if len(matrix) == 0 {
-		return nil // an empty matrix is considered valid
+// IsValid checks if the input matrix has consistent row lengths.
+func IsValid[T any](elements [][]T) bool {
+	if len(elements) == 0 {
+		return true
 	}
-
-	columns := len(matrix[0]) // Number of columns in the first row.
-
-	for _, row := range matrix {
+	columns := len(elements[0])
+	for _, row := range elements {
 		if len(row) != columns {
-			return errors.New("invalid matrix: rows have different numbers of columns")
+			return false
 		}
 	}
-
-	return nil
+	return true
 }

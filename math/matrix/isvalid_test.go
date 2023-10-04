@@ -6,29 +6,44 @@ import (
 	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
-func TestIsValidMatrix(t *testing.T) {
-	validMatrices := [][][]float32{
-		{{1, 2, 3}, {4, 5, 6}},
-		{{7, 8}, {9, 10}},
-		{{7.2, 8.2}, {9.3, 10.1}},
+func TestIsValid(t *testing.T) {
+	// Test case 1: Valid matrix with consistent row lengths
+	validMatrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+	result1 := matrix.IsValid(validMatrix)
+	if !result1 {
+		t.Errorf("IsValid(validMatrix) returned false, expected true (valid matrix)")
+	}
+
+	// Test case 2: Valid matrix with empty rows (no inconsistency)
+	validMatrixEmptyRows := [][]int{
 		{},
-		{nil},
+		{},
+		{},
+	}
+	result2 := matrix.IsValid(validMatrixEmptyRows)
+	if !result2 {
+		t.Errorf("IsValid(validMatrixEmptyRows) returned false, expected true (valid matrix with empty rows)")
 	}
 
-	invalidMatrices := [][][]int{
-		{{1, 2, 3}, {4, 5}},
-		{{7, 9}, {10}},
+	// Test case 3: Invalid matrix with inconsistent row lengths
+	invalidMatrix := [][]int{
+		{1, 2, 3},
+		{4, 5},
+		{6, 7, 8},
+	}
+	result3 := matrix.IsValid(invalidMatrix)
+	if result3 {
+		t.Errorf("IsValid(invalidMatrix) returned true, expected false (invalid matrix with inconsistent row lengths)")
 	}
 
-	for _, m := range validMatrices {
-		if matrix.IsValid(m) != nil {
-			t.Errorf("Expected valid matrix, but got invalid: %v", m)
-		}
-	}
-
-	for _, m := range invalidMatrices {
-		if matrix.IsValid(m) == nil {
-			t.Errorf("Expected invalid matrix, but got valid: %v", m)
-		}
+	// Test case 4: Invalid matrix with inconsistent row lengths
+	invalidMatrix1 := [][]string{{"12", "21", "2"}}
+	result4 := matrix.IsValid(invalidMatrix1)
+	if !result4 {
+		t.Errorf("IsValid(invalidMatrix) returned true, expected false(invalid matrix with inconsistent row lengths)")
 	}
 }

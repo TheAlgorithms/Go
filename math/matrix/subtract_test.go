@@ -1,75 +1,38 @@
 package matrix_test
 
 import (
+	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
-func TestSubtractMatricesInt(t *testing.T) {
-	matrix1 := [][]int{
-		{10, 20, 30},
-		{40, 50, 60},
-	}
+func TestSubtract(t *testing.T) {
+	// Create two matrices with the same dimensions for addition
+	matrix1 := matrix.New(2, 2, 1)
+	matrix2 := matrix.New(2, 2, 2)
 
-	matrix2 := [][]int{
-		{7, 8, 9},
-		{10, 11, 12},
-	}
-
-	expectedResult := [][]int{
-		{3, 12, 21},
-		{30, 39, 48},
-	}
-
-	result, err := matrix.Subtract(matrix1, matrix2)
+	// Test case 1: Valid matrix addition
+	subMatrix, err := matrix.Subtract(matrix1, matrix2)
 	if err != nil {
-		t.Errorf("Expected no error, got %v", err)
-	} else {
-		if equal, err := matrix.CheckEqual(result, expectedResult); err != nil {
-			t.Errorf("Error: %v", err)
-		} else if !equal {
-			t.Errorf("Result matrix does not match the expected result.")
-		}
+		t.Errorf("Add(matrix1, matrix2) returned an error: %v, expected no error", err)
+	}
+	expectedMatrix := matrix.New(2, 2, -1)
+	res, _ := matrix.CheckEqual(subMatrix, expectedMatrix)
+	if !res {
+		t.Errorf("Add(matrix1, matrix2) returned incorrect result:\n%v\nExpected:\n%v", subMatrix, expectedMatrix)
 	}
 
-	// null matrix  test
-	matrix3 := [][]int{{}}
+	// Create two matrices with different dimensions for addition
+	matrix3 := matrix.New(2, 2, 1)
+	matrix4 := matrix.New(2, 3, 2)
 
-	matrix4 := [][]int{{}}
-
-	expectedResult1 := [][]int{{}}
-
-	result1, err1 := matrix.Subtract(matrix3, matrix4)
-	if err1 != nil {
-		t.Errorf("Error: %v", err1)
-	} else {
-		if equal, err := matrix.CheckEqual(result1, expectedResult1); err != nil {
-			t.Errorf("Error: %v", err)
-		} else if !equal {
-			t.Errorf("Result matrix does not match the expected result.")
-		}
+	// Test case 2: Matrices with different dimensions
+	_, err2 := matrix.Subtract(matrix3, matrix4)
+	expectedError2 := fmt.Errorf("invalid matrices: %v", errors.New("matrices have different dimensions: rows=2 vs columns=2"))
+	if err2 == nil || err2.Error() != expectedError2.Error() {
+		t.Errorf("Add(matrix3, matrix4) returned error: %v, expected error: %v", err2, expectedError2)
 	}
 
-}
-
-func TestSubtractMatricesIncompatibleDimensions(t *testing.T) {
-	matrix1 := [][]int{
-		{1, 2},
-		{3, 4},
-	}
-
-	matrix2 := [][]int{
-		{1, 2, 3},
-		{4, 5, 6},
-	}
-
-	result, err := matrix.Subtract(matrix1, matrix2)
-	if err == nil {
-		t.Error("Expected an error for incompatible matrix dimensions, but got nil.")
-	}
-
-	if result != nil {
-		t.Error("Result matrix should be nil when dimensions are incompatible.")
-	}
 }

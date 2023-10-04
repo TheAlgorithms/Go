@@ -1,74 +1,38 @@
 package matrix_test
 
 import (
+	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
-func TestAddMatricesInt(t *testing.T) {
-	matrix1 := [][]int{
-		{1, 2, 3},
-		{4, 5, 6},
-	}
+func TestAdd(t *testing.T) {
+	// Create two matrices with the same dimensions for addition
+	matrix1 := matrix.New(2, 2, 1)
+	matrix2 := matrix.New(2, 2, 2)
 
-	matrix2 := [][]int{
-		{7, 8, 9},
-		{10, 11, 12},
-	}
-
-	expectedResult := [][]int{
-		{8, 10, 12},
-		{14, 16, 18},
-	}
-
-	result, err := matrix.Add(matrix1, matrix2)
+	// Test case 1: Valid matrix addition
+	addedMatrix, err := matrix.Add(matrix1, matrix2)
 	if err != nil {
-		t.Errorf("Error: %v", err)
-	} else {
-		if equal, err := matrix.CheckEqual(result, expectedResult); err != nil {
-			t.Errorf("Error: %v", err)
-		} else if !equal {
-			t.Errorf("Result matrix does not match the expected result.")
-		}
+		t.Errorf("Add(matrix1, matrix2) returned an error: %v, expected no error", err)
+	}
+	expectedMatrix := matrix.New(2, 2, 3)
+	res, _ := matrix.CheckEqual(addedMatrix, expectedMatrix)
+	if !res {
+		t.Errorf("Add(matrix1, matrix2) returned incorrect result:\n%v\nExpected:\n%v", addedMatrix, expectedMatrix)
 	}
 
-	// null matrix  test
-	matrix3 := [][]int{{}}
+	// Create two matrices with different dimensions for addition
+	matrix3 := matrix.New(2, 2, 1)
+	matrix4 := matrix.New(2, 3, 2)
 
-	matrix4 := [][]int{{}}
-
-	expectedResult1 := [][]int{{}}
-
-	result1, err1 := matrix.Add(matrix3, matrix4)
-	if err1 != nil {
-		t.Errorf("Error: %v", err1)
-	} else {
-		if equal, err := matrix.CheckEqual(result1, expectedResult1); err != nil {
-			t.Errorf("Error: %v", err)
-		} else if !equal {
-			t.Errorf("Result matrix does not match the expected result.")
-		}
-	}
-}
-
-func TestAddMatricesIncompatibleDimensions(t *testing.T) {
-	matrix1 := [][]int{
-		{1, 2},
-		{3, 4},
+	// Test case 2: Matrices with different dimensions
+	_, err2 := matrix.Add(matrix3, matrix4)
+	expectedError2 := fmt.Errorf("invalid matrices: %v", errors.New("matrices have different dimensions: rows=2 vs columns=2"))
+	if err2 == nil || err2.Error() != expectedError2.Error() {
+		t.Errorf("Add(matrix3, matrix4) returned error: %v, expected error: %v", err2, expectedError2)
 	}
 
-	matrix2 := [][]int{
-		{1, 2, 3},
-		{4, 5, 6},
-	}
-
-	result, err := matrix.Add(matrix1, matrix2)
-	if err == nil {
-		t.Error("Expected an error for incompatible matrix dimensions, but got nil.")
-	}
-
-	if result != nil {
-		t.Error("Result matrix should be nil when dimensions are incompatible.")
-	}
 }

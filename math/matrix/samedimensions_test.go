@@ -1,148 +1,37 @@
 package matrix_test
 
 import (
-	"errors"
+	"fmt"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
-func TestSameDimensions(t *testing.T) {
-	type matrixTest struct {
-		name     string
-		matrix1  interface{}
-		matrix2  interface{}
-		expected int
-		err      error
+func TestMatrixSameDimensions(t *testing.T) {
+	// Create two matrices with the same dimensions
+	matrix1 := matrix.New(2, 3, 0)
+	matrix2 := matrix.New(2, 3, 0)
+
+	// Test case 1: Same dimensions
+	result1, err1 := matrix1.SameDimensions(matrix2)
+	if err1 != nil {
+		t.Errorf("matrix1.SameDimensions(matrix2) returned an error: %v, expected no error", err1)
 	}
-	tests := []matrixTest{
-		{
-			name: "EqualDimensionsInt",
-			matrix1: [][]int{
-				{1, 2, 3},
-				{4, 5, 6},
-			},
-			matrix2: [][]int{
-				{7, 8, 9},
-				{10, 11, 12},
-			},
-			expected: 1,
-			err:      nil,
-		},
-		{
-			name: "DifferentRowDimensionsInt",
-			matrix1: [][]int{
-				{1, 2, 3},
-				{4, 5, 6},
-			},
-			matrix2: [][]int{
-				{7, 8, 9},
-			},
-			expected: 0,
-			err:      errors.New("matrices have different dimensions: <nil>"),
-		},
-		{
-			name: "DifferentColumnDimensionsInt",
-			matrix1: [][]int{
-				{1, 2, 3},
-				{4, 5, 6},
-			},
-			matrix2: [][]int{
-				{7, 8},
-				{9, 10},
-			},
-			expected: 0,
-			err:      errors.New("matrices have different dimensions: <nil>"),
-		},
-		{
-			name:     "BothEmptyMatricesInt",
-			matrix1:  [][]int{},
-			matrix2:  [][]int{},
-			expected: 1,
-			err:      nil,
-		},
-		{
-			name:    "EmptyMatrixAndNonEmptyMatrixInt",
-			matrix1: [][]int{},
-			matrix2: [][]int{
-				{1, 2, 3},
-				{4, 5, 6},
-			},
-			expected: 0,
-			err:      errors.New("matrices have different dimensions: <nil>"),
-		},
-		{
-			name: "EqualDimensionsString",
-			matrix1: [][]string{
-				{"apple", "banana"},
-				{"cherry", "date"},
-			},
-			matrix2: [][]string{
-				{"dog", "elephant"},
-				{"fox", "goat"},
-			},
-			expected: 1,
-			err:      nil,
-		},
-		{
-			name: "DifferentRowDimensionsString",
-			matrix1: [][]string{
-				{"apple", "banana"},
-				{"cherry", "date"},
-			},
-			matrix2: [][]string{
-				{"dog", "elephant"},
-			},
-			expected: 0,
-			err:      errors.New("matrices have different dimensions: <nil>"),
-		},
-		{
-			name: "DifferentColumnDimensionsString",
-			matrix1: [][]string{
-				{"apple", "banana"},
-				{"cherry", "date"},
-			},
-			matrix2: [][]string{
-				{"dog"},
-				{"elephant", "fox"},
-			},
-			expected: 0,
-			err:      errors.New("invalid matrix: rows have different numbers of columns"),
-		},
-		{
-			name:    "EmptyMatrixAndNonEmptyMatrixString",
-			matrix1: [][]string{},
-			matrix2: [][]string{
-				{"dog", "elephant"},
-				{"fox", "goat"},
-			},
-			expected: 0,
-			err:      errors.New("matrices have different dimensions: <nil>"),
-		},
+	if !result1 {
+		t.Errorf("matrix1.SameDimensions(matrix2) returned %t, expected 1 (same dimensions)", result1)
 	}
 
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			switch m1 := tt.matrix1.(type) {
-			case [][]int:
-				switch m2 := tt.matrix2.(type) {
-				case [][]int:
-					result, err := matrix.SameDimensions(m1, m2)
-					CheckResult(t, tt.name, result, err, tt.expected, tt.err)
-				default:
-					t.Errorf("Unsupported matrix2 type: %T", m2)
-				}
-			case [][]string:
-				switch m2 := tt.matrix2.(type) {
-				case [][]string:
-					result, err := matrix.SameDimensions(m1, m2)
-					CheckResult(t, tt.name, result, err, tt.expected, tt.err)
-				default:
-					t.Errorf("Unsupported matrix2 type: %T", m2)
-				}
-			default:
-				t.Errorf("Unsupported matrix1 type: %T", m1)
-			}
-		})
+	// Create two matrices with different dimensions
+	matrix3 := matrix.New(2, 3, 0)
+	matrix4 := matrix.New(3, 2, 0)
+
+	// Test case 2: Different dimensions
+	result2, err2 := matrix3.SameDimensions(matrix4)
+	expectedError2 := fmt.Errorf("matrices have different dimensions: rows=%d vs columns=%d", 2, 3)
+	if err2 == nil || err2.Error() != expectedError2.Error() {
+		t.Errorf("matrix3.SameDimensions(matrix4) returned error: %v, expected error: %v", err2, expectedError2)
+	}
+	if result2 {
+		t.Errorf("matrix3.SameDimensions(matrix4) returned %t, expected 0 (different dimensions)", result2)
 	}
 }

@@ -7,24 +7,30 @@ import (
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-// Subtract subtracts two matrices of compatible types.
-func Subtract[T constraints.Integer](matrix1, matrix2 [][]T) ([][]T, error) {
+// Subtract subtracts the elements of the matrix (m1) from another matrix (m2) element-wise and returns a new matrix.
+// The two matrices must have the same dimensions.
+// If the matrices have different dimensions or if an error occurs during subtraction, an error is returned.
+func Subtract[T constraints.Integer](matrix1, matrix2 *Matrix[T]) (*Matrix[T], error) {
 	// Check if the matrices have the same dimensions.
-	sameDimensions, err := SameDimensions(matrix1, matrix2)
+	sameDimensions, err := matrix1.SameDimensions(matrix2)
 	if err != nil {
 		return nil, fmt.Errorf("invalid matrices: %v", err)
 	}
 
-	if sameDimensions==0 {
-		return nil, errors.New("matrices are not compatible for subtraction")
+	if !sameDimensions {
+		return nil, errors.New("matrices are not compatible for addition")
 	}
 
-	result := make([][]T, len(matrix1))
-	for i := range result {
-		result[i] = make([]T, len(matrix1[i]))
-		for j := range result[i] {
-			result[i][j] = matrix1[i][j] - matrix2[i][j]
+	// Create a new matrix to store the result.
+	var zeroVal T // zero value for default values
+	result := New(matrix1.rows, matrix1.columns, zeroVal)
+	for i := range matrix1.elements {
+		for j := range matrix1.elements[i] {
+			// Perform addition element-wise and set the result in the new matrix.
+			sum := matrix1.elements[i][j] - matrix2.elements[i][j]
+			result.Set(i, j, sum)
 		}
 	}
+
 	return result, nil
 }
