@@ -11,14 +11,14 @@ func Cocktail[T constraints.Integer](arr []T) []T {
 		return arr
 	}
 
-	swapped := false // true if swapped two or more elements in the last loop
+	swapped := true // true if swapped two or more elements in the last loop
 	// if it loops through the array without swapping, the array is sorted
 
 	// start and end indexes, this will be updated excluding already sorted elements
 	start := 0
 	end := len(arr) - 1
 
-	for {
+	for swapped {
 		swapped = false
 		var new_start int
 		var new_end int
@@ -48,10 +48,6 @@ func Cocktail[T constraints.Integer](arr []T) []T {
 		}
 
 		start = new_start
-
-		if !swapped {
-			break
-		}
 	}
 
 	return arr
