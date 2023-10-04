@@ -28,7 +28,7 @@ type PopulationItem struct {
 	Value float64
 }
 
-// Conf stands for cofigurations set provided to GeneticString function.
+// Conf stands for configurations set provided to GeneticString function.
 type Conf struct {
 	// Maximum size of the population.
 	// Bigger could be faster but more memory expensive.
