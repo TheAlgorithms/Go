@@ -138,3 +138,46 @@ func TestMatrixSet(t *testing.T) {
 		t.Errorf("matrix.Get(10, 10) returned error: %v, expected error: %v", err3, expectedError3)
 	}
 }
+
+func TestMatrixRows(t *testing.T) {
+	// Create a sample matrix
+	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	matrix, _ := matrix.NewFromElements(data)
+
+	// Check the number of rows
+	expectedRows := len(data)
+	rows := matrix.Rows()
+	if rows != expectedRows {
+		t.Errorf("Expected %d rows, but got %d", expectedRows, rows)
+	}
+}
+
+func TestMatrixColumns(t *testing.T) {
+	// Create a sample matrix
+	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	matrix, _ := matrix.NewFromElements(data)
+
+	// Check the number of columns
+	expectedColumns := len(data[0])
+	columns := matrix.Columns()
+	if columns != expectedColumns {
+		t.Errorf("Expected %d columns, but got %d", expectedColumns, columns)
+	}
+}
+
+func TestMatrixEmptyRowsAndColumns(t *testing.T) {
+	// Create an empty matrix
+	emptyMatrix := matrix.New(0, 0, 0)
+
+	// Check the number of rows and columns for an empty matrix
+	rows := emptyMatrix.Rows()
+	columns := emptyMatrix.Columns()
+
+	if rows != 0 {
+		t.Errorf("Expected 0 rows for an empty matrix, but got %d", rows)
+	}
+
+	if columns != 0 {
+		t.Errorf("Expected 0 columns for an empty matrix, but got %d", columns)
+	}
+}

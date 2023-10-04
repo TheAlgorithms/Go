@@ -1,0 +1,76 @@
+package matrix_test
+
+import (
+	"testing"
+
+	"github.com/TheAlgorithms/Go/math/matrix"
+)
+
+func TestMatrixCopy(t *testing.T) {
+	// Create a sample matrix
+	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	matrix, _ := matrix.NewFromElements(data)
+
+	// Make a copy of the matrix
+	copyMatrix := matrix.Copy()
+
+	// Ensure that the copy is not the same as the original
+	if matrix == copyMatrix {
+		t.Errorf("Copy did not create a new matrix.")
+	}
+
+	// Check if the copy has the same values as the original
+	for i := 0; i < matrix.Rows(); i++ {
+		for j := 0; j < matrix.Columns(); j++ {
+			val1, _ := matrix.Get(i, j)
+			val2, _ := copyMatrix.Get(i, j)
+			if val1 != val2 {
+				t.Errorf("Copy did not preserve the values at row %d, column %d. Expected %v, got %v", i, j, val1, val2)
+			}
+		}
+	}
+}
+
+func TestMatrixCopyEmpty(t *testing.T) {
+	// Create an empty matrix
+	emptyMatrix := matrix.New(0,0,0)
+
+	// Make a copy of the empty matrix
+	copyMatrix := emptyMatrix.Copy()
+
+	// Ensure that the copy is not the same as the original
+	if emptyMatrix == copyMatrix {
+		t.Errorf("Copy did not create a new matrix for an empty matrix.")
+	}
+
+	// Check if the copy is also empty
+	if copyMatrix.Rows() != 0 || copyMatrix.Columns() != 0 {
+		t.Errorf("Copy of an empty matrix should also be empty.")
+	}
+}
+
+func TestMatrixCopyWithDefaultValues(t *testing.T) {
+	// Create a matrix with default values (zeroes)
+	rows, columns := 3, 3
+	defaultValue := 0
+	defaultMatrix := matrix.New(rows, columns, defaultValue)
+
+	// Make a copy of the matrix
+	copyMatrix := defaultMatrix.Copy()
+
+	// Ensure that the copy is not the same as the original
+	if defaultMatrix == copyMatrix {
+		t.Errorf("Copy did not create a new matrix for default values.")
+	}
+
+	// Check if the copy has the same values as the original (all zeroes)
+	for i := 0; i < defaultMatrix.Rows(); i++ {
+		for j := 0; j < defaultMatrix.Columns(); j++ {
+			val1, _ := defaultMatrix.Get(i, j)
+			val2, _ := copyMatrix.Get(i, j)
+			if val1 != val2 || val1 != defaultValue || val2 != defaultValue {
+				t.Errorf("Copy did not preserve default values at row %d, column %d. Expected %v, got %v", i, j, defaultValue, val2)
+			}
+		}
+	}
+}

@@ -72,3 +72,14 @@ func (m *Matrix[T]) Set(row, col int, val T) error {
 	m.elements[row][col] = val
 	return nil
 }
+
+func (m *Matrix[T]) Rows() int {
+	return len(m.elements)
+}
+
+func (m *Matrix[T]) Columns() int {
+	if len(m.elements) == 0 {
+		return 0
+	}
+	return len(m.elements[0])
+}
