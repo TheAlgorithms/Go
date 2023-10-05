@@ -2,13 +2,7 @@
 
 package deque
 
-import (
-	"testing"
-)
-
-// Zero values
-var zeroInt int
-var zeroString string
+import "testing"
 
 type QueryStructure[T any] struct {
 	queryType      string
@@ -31,37 +25,27 @@ func TestDeque(t *testing.T) {
 			queries: []QueryStructure[int]{
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroInt,
 					expectedResult: true,
 					expectedError:  nil,
 				},
 				{
-					queryType:      "Front",
-					parameter:      zeroInt,
-					expectedResult: zeroInt,
-					expectedError:  ErrEmptyDeQueue,
+					queryType:     "Front",
+					expectedError: ErrEmptyDeQueue,
 				},
 				{
-					queryType:      "Rear",
-					parameter:      zeroInt,
-					expectedResult: zeroInt,
-					expectedError:  ErrEmptyDeQueue,
+					queryType:     "Rear",
+					expectedError: ErrEmptyDeQueue,
 				},
 				{
-					queryType:      "DeQueueFront",
-					parameter:      zeroInt,
-					expectedResult: zeroInt,
-					expectedError:  ErrEmptyDeQueue,
+					queryType:     "DeQueueFront",
+					expectedError: ErrEmptyDeQueue,
 				},
 				{
-					queryType:      "DeQueueRear",
-					parameter:      zeroInt,
-					expectedResult: zeroInt,
-					expectedError:  ErrEmptyDeQueue,
+					queryType:     "DeQueueRear",
+					expectedError: ErrEmptyDeQueue,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroInt,
 					expectedResult: 0,
 					expectedError:  nil,
 				},
@@ -71,50 +55,42 @@ func TestDeque(t *testing.T) {
 			description: "Test deque with one element",
 			queries: []QueryStructure[int]{
 				{
-					queryType:      "EnQueueFront",
-					parameter:      1,
-					expectedResult: zeroInt,
-					expectedError:  nil,
+					queryType:     "EnQueueFront",
+					parameter:     1,
+					expectedError: nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroInt,
 					expectedResult: false,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Front",
-					parameter:      zeroInt,
 					expectedResult: 1,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Rear",
-					parameter:      zeroInt,
 					expectedResult: 1,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroInt,
 					expectedResult: 1,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "DeQueueFront",
-					parameter:      zeroInt,
 					expectedResult: 1,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroInt,
 					expectedResult: true,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroInt,
 					expectedResult: 0,
 					expectedError:  nil,
 				},
@@ -124,74 +100,62 @@ func TestDeque(t *testing.T) {
 			description: "Test deque with multiple elements",
 			queries: []QueryStructure[int]{
 				{
-					queryType:      "EnQueueFront",
-					parameter:      1,
-					expectedResult: zeroInt,
-					expectedError:  nil,
+					queryType:     "EnQueueFront",
+					parameter:     1,
+					expectedError: nil,
 				},
 				{
-					queryType:      "EnQueueFront",
-					parameter:      2,
-					expectedResult: zeroInt,
-					expectedError:  nil,
+					queryType:     "EnQueueFront",
+					parameter:     2,
+					expectedError: nil,
 				},
 				{
-					queryType:      "EnQueueRear",
-					parameter:      3,
-					expectedResult: zeroInt,
-					expectedError:  nil,
+					queryType:     "EnQueueRear",
+					parameter:     3,
+					expectedError: nil,
 				},
 				{
-					queryType:      "EnQueueRear",
-					parameter:      4,
-					expectedResult: zeroInt,
-					expectedError:  nil,
+					queryType:     "EnQueueRear",
+					parameter:     4,
+					expectedError: nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroInt,
 					expectedResult: false,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Front",
-					parameter:      zeroInt,
 					expectedResult: 2,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Rear",
-					parameter:      zeroInt,
 					expectedResult: 4,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroInt,
 					expectedResult: 4,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "DeQueueFront",
-					parameter:      zeroInt,
 					expectedResult: 2,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "DeQueueRear",
-					parameter:      zeroInt,
 					expectedResult: 4,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroInt,
 					expectedResult: false,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroInt,
 					expectedResult: 2,
 					expectedError:  nil,
 				},
@@ -205,50 +169,42 @@ func TestDeque(t *testing.T) {
 			description: "Test one element deque",
 			queries: []QueryStructure[string]{
 				{
-					queryType:      "EnQueueFront",
-					parameter:      "a",
-					expectedResult: zeroString,
-					expectedError:  nil,
+					queryType:     "EnQueueFront",
+					parameter:     "a",
+					expectedError: nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroString,
 					expectedResult: false,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Front",
-					parameter:      zeroString,
 					expectedResult: "a",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Rear",
-					parameter:      zeroString,
 					expectedResult: "a",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroString,
 					expectedResult: 1,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "DeQueueFront",
-					parameter:      zeroString,
 					expectedResult: "a",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroString,
 					expectedResult: true,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroString,
 					expectedResult: 0,
 					expectedError:  nil,
 				},
@@ -258,74 +214,62 @@ func TestDeque(t *testing.T) {
 			description: "Test multiple elements deque",
 			queries: []QueryStructure[string]{
 				{
-					queryType:      "EnQueueFront",
-					parameter:      "a",
-					expectedResult: zeroString,
-					expectedError:  nil,
+					queryType:     "EnQueueFront",
+					parameter:     "a",
+					expectedError: nil,
 				},
 				{
-					queryType:      "EnQueueFront",
-					parameter:      "b",
-					expectedResult: zeroString,
-					expectedError:  nil,
+					queryType:     "EnQueueFront",
+					parameter:     "b",
+					expectedError: nil,
 				},
 				{
-					queryType:      "EnQueueRear",
-					parameter:      "c",
-					expectedResult: zeroString,
-					expectedError:  nil,
+					queryType:     "EnQueueRear",
+					parameter:     "c",
+					expectedError: nil,
 				},
 				{
-					queryType:      "EnQueueRear",
-					parameter:      "d",
-					expectedResult: zeroString,
-					expectedError:  nil,
+					queryType:     "EnQueueRear",
+					parameter:     "d",
+					expectedError: nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroString,
 					expectedResult: false,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Front",
-					parameter:      zeroString,
 					expectedResult: "b",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Rear",
-					parameter:      zeroString,
 					expectedResult: "d",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroString,
 					expectedResult: 4,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "DeQueueFront",
-					parameter:      zeroString,
 					expectedResult: "b",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "DeQueueRear",
-					parameter:      zeroString,
 					expectedResult: "d",
 					expectedError:  nil,
 				},
 				{
 					queryType:      "IsEmpty",
-					parameter:      zeroString,
 					expectedResult: false,
 					expectedError:  nil,
 				},
 				{
 					queryType:      "Length",
-					parameter:      zeroString,
 					expectedResult: 2,
 					expectedError:  nil,
 				},
@@ -345,35 +289,35 @@ func TestDeque(t *testing.T) {
 					dq.EnQueueRear(query.parameter)
 				case "DeQueueFront":
 					result, err := dq.DeQueueFront()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "DeQueueRear":
 					result, err := dq.DeQueueRear()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "Front":
 					result, err := dq.Front()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v, %v", query.expectedResult, result, testCase.description)
 					}
 				case "Rear":
 					result, err := dq.Rear()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "IsEmpty":
 					result := dq.Empty()
@@ -402,35 +346,35 @@ func TestDeque(t *testing.T) {
 					dq.EnQueueRear(query.parameter)
 				case "DeQueueFront":
 					result, err := dq.DeQueueFront()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "DeQueueRear":
 					result, err := dq.DeQueueRear()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "Front":
 					result, err := dq.Front()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v, %v", query.expectedResult, result, testCase.description)
 					}
 				case "Rear":
 					result, err := dq.Rear()
-					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
-					}
 					if err != query.expectedError {
 						t.Errorf("Expected %v, got %v", query.expectedError, err)
+					}
+					if err == nil && result != query.expectedResult {
+						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "IsEmpty":
 					result := dq.Empty()
