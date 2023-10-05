@@ -10,30 +10,31 @@ import (
 func TestNewMatrix(t *testing.T) {
 
 	nullMatrix := matrix.New(0, 0, 0)
-	if nullMatrix == nil {
+	if nullMatrix.Rows() != 0 || nullMatrix.Columns() != 0 {
 		t.Errorf("matrix.New( 0, 0, 0) returned nil, expected a matrix")
 	}
 	// Test creating a matrix of integers
 	intMatrix := matrix.New(3, 4, 0)
-	if intMatrix == nil {
+	if intMatrix.Rows() != 3 || intMatrix.Columns() != 4 {
 		t.Errorf("matrix.New( 3, 4, 0) returned nil, expected a matrix")
 	}
 
 	// Test creating a matrix of floats
 	floatMatrix := matrix.New(2, 2, 1.0)
-	if floatMatrix == nil {
+	if floatMatrix.Rows() != 2 || floatMatrix.Columns() != 2 {
 		t.Errorf("matrix.New(t64, 2, 2, 1.0) returned nil, expected a matrix")
 	}
 
 	// Test creating a matrix of strings
 	stringMatrix := matrix.New(2, 3, "hello")
-	if stringMatrix == nil {
+	if stringMatrix.Rows() != 2 || stringMatrix.Columns() != 3 {
 		t.Errorf("matrix.New(ng, 2, 3, 'hello') returned nil, expected a matrix")
 	}
 
 	// Test creating a matrix of boolean values
 	boolMatrix := matrix.New(2, 1, false)
-	if boolMatrix == nil {
+	if boolMatrix.Rows() != 2 || boolMatrix.Columns() != 1 {
+
 		t.Errorf("matrix.New(ng, 2, 3, 'hello') returned nil, expected a matrix")
 	}
 
@@ -48,7 +49,10 @@ func TestNewFromElements(t *testing.T) {
 	expectedMatrix1 := matrix.New(2, 3, 0)
 	for i := 0; i < len(validElements); i++ {
 		for j := 0; j < len(validElements[0]); j++ {
-			expectedMatrix1.Set(i, j, validElements[i][j])
+			err := expectedMatrix1.Set(i, j, validElements[i][j])
+			if err != nil {
+				panic("copyMatrix.Set error: " + err.Error())
+			}
 		}
 	}
 
@@ -78,7 +82,7 @@ func TestNewFromElements(t *testing.T) {
 	if err3 != nil {
 		t.Errorf("NewFromElements(emptyElements) returned an error: %v", err3)
 	}
-	if matrix3 != nil {
+	if matrix3.Rows() != 0 || matrix3.Columns() != 0 {
 		t.Errorf("NewFromElements(emptyElements) returned %v, expected nil", matrix3)
 	}
 }
@@ -86,8 +90,10 @@ func TestNewFromElements(t *testing.T) {
 func TestMatrixGet(t *testing.T) {
 	// Create a sample matrix for testing
 	matrix := matrix.New(3, 3, 0)
-	matrix.Set(1, 1, 42) // Set a specific value for testing
-
+	err := matrix.Set(1, 1, 42) // Set a specific value for testing
+	if err != nil {
+		panic("copyMatrix.Set error: " + err.Error())
+	}
 	// Test case 1: Valid Get
 	val1, err1 := matrix.Get(1, 1)
 	if err1 != nil {
@@ -179,5 +185,78 @@ func TestMatrixEmptyRowsAndColumns(t *testing.T) {
 
 	if columns != 0 {
 		t.Errorf("Expected 0 columns for an empty matrix, but got %d", columns)
+	}
+}
+
+// BenchmarkNew benchmarks the New function.
+func BenchmarkNew(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = matrix.New(100, 100, 0) // Change the arguments to match your use case
+	}
+}
+
+// BenchmarkNewFromElements benchmarks the NewFromElements function.
+func BenchmarkNewFromElements(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	elements := make([][]int, rows)
+	for i := range elements {
+		elements[i] = make([]int, columns)
+		for j := range elements[i] {
+			elements[i][j] = i*columns + j // Some arbitrary values
+		}
+	}
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix.NewFromElements(elements)
+	}
+}
+
+// BenchmarkGet benchmarks the Get method.
+func BenchmarkGet(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	matrix := matrix.New(rows, columns, 0)
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix.Get(50, 50) // Change the row and column indices as needed
+	}
+}
+
+// BenchmarkSet benchmarks the Set method.
+func BenchmarkSet(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	matrix := matrix.New(rows, columns, 0)
+
+	for i := 0; i < b.N; i++ {
+		_ = matrix.Set(50, 50, 42) // Change the row, column, and value as needed
+	}
+}
+
+// BenchmarkRows benchmarks the Rows method.
+func BenchmarkRows(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	matrix := matrix.New(rows, columns, 0)
+
+	for i := 0; i < b.N; i++ {
+		_ = matrix.Rows()
+	}
+}
+
+// BenchmarkColumns benchmarks the Columns method.
+func BenchmarkColumns(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	matrix := matrix.New(rows, columns, 0)
+
+	for i := 0; i < b.N; i++ {
+		_ = matrix.Columns()
 	}
 }

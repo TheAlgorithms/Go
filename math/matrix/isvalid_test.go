@@ -47,3 +47,24 @@ func TestIsValid(t *testing.T) {
 		t.Errorf("IsValid(invalidMatrix) returned true, expected false(invalid matrix with inconsistent row lengths)")
 	}
 }
+
+func BenchmarkIsValid(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	elements := make([][]int, rows)
+	for i := range elements {
+		elements[i] = make([]int, columns)
+		for j := range elements[i] {
+			elements[i][j] = i*columns + j // Some arbitrary values
+		}
+	}
+
+	// Reset the benchmark timer
+	b.ResetTimer()
+
+	// Run the benchmark
+	for i := 0; i < b.N; i++ {
+		_ = matrix.IsValid(elements)
+	}
+}

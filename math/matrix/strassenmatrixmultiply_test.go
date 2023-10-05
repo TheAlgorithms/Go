@@ -52,8 +52,8 @@ func TestMatrixMultiplication(t *testing.T) {
 
 	// Generate random matrices for testing
 	size := 1 << (rand.Intn(8) + 1) // tests for matrix with n as power of 2
-	matrixA := makeRandomMatrix[int](size, size)
-	matrixB := makeRandomMatrix[int](size, size)
+	matrixA := MakeRandomMatrix[int](size, size)
+	matrixB := MakeRandomMatrix[int](size, size)
 
 	// Calculate the expected result using the standard multiplication
 	expected, _ := matrix.Multiply(matrixA, matrixB)
@@ -73,7 +73,7 @@ func TestMatrixMultiplication(t *testing.T) {
 	}
 }
 
-func makeRandomMatrix[T constraints.Integer](rows, columns int) *matrix.Matrix[T] {
+func MakeRandomMatrix[T constraints.Integer](rows, columns int) matrix.Matrix[T] {
 	rand.Seed(time.Now().UnixNano())
 
 	matrixData := make([][]T, rows)
@@ -86,4 +86,17 @@ func makeRandomMatrix[T constraints.Integer](rows, columns int) *matrix.Matrix[T
 
 	randomMatrix, _ := matrix.NewFromElements(matrixData)
 	return randomMatrix
+}
+
+// BenchmarkStrassenMatrixMultiply benchmarks the StrassenMatrixMultiply function.
+func BenchmarkStrassenMatrixMultiply(b *testing.B) {
+	// Create sample matrices for benchmarking
+	rows := 64 // it is large enough for multiplication
+	columns := 64
+	matrix1 := matrix.New(rows, columns, 2) // Replace with appropriate values
+	matrix2 := matrix.New(rows, columns, 3) // Replace with appropriate values
+
+	for i := 0; i < b.N; i++ {
+		_ = matrix.StrassenMatrixMultiply(matrix1, matrix2)
+	}
 }

@@ -11,39 +11,35 @@ type Matrix[T any] struct {
 }
 
 // NewMatrix creates a new Matrix based on the provided arguments.
-func New[T any](rows, columns int, initial T) *Matrix[T] {
+func New[T any](rows, columns int, initial T) Matrix[T] {
 	if rows < 0 || columns < 0 {
-		return nil // Invalid dimensions
+		return Matrix[T]{} // Invalid dimensions, return an empty matrix
 	}
 
-	matrix := &Matrix[T]{
-		elements: make([][]T, rows),
-		rows:     rows,    // Set the rows field
-		columns:  columns, // Set the columns field
-	}
-
-	for i := range matrix.elements {
-		matrix.elements[i] = make([]T, columns)
-		for j := range matrix.elements[i] {
-			matrix.elements[i][j] = initial
+	// Initialize the matrix with the specified dimensions and fill it with the initial value.
+	elements := make([][]T, rows)
+	for i := range elements {
+		elements[i] = make([]T, columns)
+		for j := range elements[i] {
+			elements[i][j] = initial
 		}
 	}
 
-	return matrix
+	return Matrix[T]{elements, rows, columns}
 }
 
 // NewFromElements creates a new Matrix from the given elements.
-func NewFromElements[T any](elements [][]T) (*Matrix[T], error) {
+func NewFromElements[T any](elements [][]T) (Matrix[T], error) {
 	if !IsValid(elements) {
-		return nil, errors.New("rows have different numbers of columns")
+		return Matrix[T]{}, errors.New("rows have different numbers of columns")
 	}
 	rows := len(elements)
 	if rows == 0 {
-		return nil, nil // Empty matrix
+		return Matrix[T]{}, nil // Empty matrix
 	}
 
 	columns := len(elements[0])
-	matrix := &Matrix[T]{
+	matrix := Matrix[T]{
 		elements: make([][]T, rows),
 		rows:     rows,    // Set the rows field
 		columns:  columns, // Set the columns field
@@ -56,7 +52,7 @@ func NewFromElements[T any](elements [][]T) (*Matrix[T], error) {
 	return matrix, nil
 }
 
-func (m *Matrix[T]) Get(row, col int) (T, error) {
+func (m Matrix[T]) Get(row, col int) (T, error) {
 	if row < 0 || row >= m.rows || col < 0 || col >= m.columns {
 		var zeroVal T
 		return zeroVal, errors.New("index out of range")
@@ -64,7 +60,7 @@ func (m *Matrix[T]) Get(row, col int) (T, error) {
 	return m.elements[row][col], nil
 }
 
-func (m *Matrix[T]) Set(row, col int, val T) error {
+func (m Matrix[T]) Set(row, col int, val T) error {
 	if row < 0 || row >= m.rows || col < 0 || col >= m.columns {
 		return errors.New("index out of bounds")
 	}
@@ -73,11 +69,11 @@ func (m *Matrix[T]) Set(row, col int, val T) error {
 	return nil
 }
 
-func (m *Matrix[T]) Rows() int {
+func (m Matrix[T]) Rows() int {
 	return len(m.elements)
 }
 
-func (m *Matrix[T]) Columns() int {
+func (m Matrix[T]) Columns() int {
 	if len(m.elements) == 0 {
 		return 0
 	}

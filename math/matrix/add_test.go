@@ -36,3 +36,24 @@ func TestAdd(t *testing.T) {
 	}
 
 }
+
+func BenchmarkAddSmallMatrix(b *testing.B) {
+	matrix1 := matrix.New(10, 10, 0) // Create a 10x10 matrix with all zeros
+	matrix2 := matrix.New(10, 10, 1) // Create a 10x10 matrix with all ones
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix.Add(matrix1, matrix2)
+	}
+}
+
+func BenchmarkAddLargeMatrix(b *testing.B) {
+	size := 1000 // Choose an appropriate size for your large matrix
+	matrix1 := MakeRandomMatrix[int](size, size)
+	matrix2 := MakeRandomMatrix[int](size, size)
+
+	b.ResetTimer() // Reset the timer to exclude setup time
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix.Add(matrix1, matrix2)
+	}
+}

@@ -3,7 +3,7 @@ package matrix
 import "fmt"
 
 // SameDimensions checks if two matrices have the same dimensions.
-func (m *Matrix[T]) SameDimensions(matrix2 *Matrix[T]) (bool, error) {
+func (m *Matrix[T]) SameDimensions(matrix2 Matrix[T]) (bool, error) {
 	rows1 := m.rows
 	rows2 := matrix2.rows
 

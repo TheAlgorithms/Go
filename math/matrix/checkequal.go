@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func CheckEqual[T comparable](matrix1, matrix2 *Matrix[T]) (bool, error) {
+func CheckEqual[T comparable](matrix1, matrix2 Matrix[T]) (bool, error) {
 	sameDimensions, err := matrix1.SameDimensions(matrix2)
 	if err != nil {
 		return false, fmt.Errorf("invalid matrices: %v", err)

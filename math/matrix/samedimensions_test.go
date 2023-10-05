@@ -35,3 +35,16 @@ func TestMatrixSameDimensions(t *testing.T) {
 		t.Errorf("matrix3.SameDimensions(matrix4) returned %t, expected 0 (different dimensions)", result2)
 	}
 }
+
+// BenchmarkSameDimensions benchmarks the SameDimensions method.
+func BenchmarkSameDimensions(b *testing.B) {
+	// Create sample matrices for benchmarking
+	rows := 100
+	columns := 100
+	matrix1 := matrix.New(rows, columns, 0) // Replace with appropriate values
+	matrix2 := matrix.New(rows, columns, 0) // Replace with appropriate values
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix1.SameDimensions(matrix2)
+	}
+}

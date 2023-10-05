@@ -62,3 +62,20 @@ func TestMatrixInvalidSubMatrix(t *testing.T) {
 		t.Errorf("Expected error message '%s', but got '%s'", expectedErrorMessage, err.Error())
 	}
 }
+
+// BenchmarkSubMatrix benchmarks the SubMatrix function.
+func BenchmarkSubMatrix(b *testing.B) {
+	// Create a sample matrix for benchmarking
+	rows := 100
+	columns := 100
+	matrix := matrix.New(rows, columns, 2) // Replace with appropriate values
+
+	rowStart := 10
+	colStart := 10
+	numRows := 20
+	numCols := 20
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix.SubMatrix(rowStart, colStart, numRows, numCols)
+	}
+}

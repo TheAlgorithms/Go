@@ -2,14 +2,15 @@ package matrix
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
-func Multiply[T constraints.Integer](matrix1, matrix2 *Matrix[T]) (*Matrix[T], error) {
+func Multiply[T constraints.Integer](matrix1, matrix2 Matrix[T]) (Matrix[T], error) {
 	// Check if the matrices can be multiplied.
 	if matrix1.columns != matrix2.rows {
-		return nil, errors.New("matrices cannot be multiplied: column count of the first matrix must match row count of the second matrix")
+		return Matrix[T]{}, errors.New("matrices cannot be multiplied: column count of the first matrix must match row count of the second matrix")
 	}
 
 	// Create a new matrix to store the result.
@@ -23,7 +24,10 @@ func Multiply[T constraints.Integer](matrix1, matrix2 *Matrix[T]) (*Matrix[T], e
 			for k := 0; k < matrix1.columns; k++ {
 				dotProduct += matrix1.elements[i][k] * matrix2.elements[k][j]
 			}
-			result.Set(i, j, dotProduct)
+			err := result.Set(i, j, dotProduct)
+			if err != nil {
+				return Matrix[T]{}, fmt.Errorf("invalid matrices: %v", err)
+			}
 		}
 	}
 

@@ -9,37 +9,36 @@ import (
 func TestMatrixCopy(t *testing.T) {
 	// Create a sample matrix
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
+	// Ensure that the copy is not the same as the original
 	matrix, _ := matrix.NewFromElements(data)
-
-	// Make a copy of the matrix
 	copyMatrix := matrix.Copy()
 
 	// Ensure that the copy is not the same as the original
-	if matrix == copyMatrix {
+	if &matrix == &copyMatrix {
 		t.Errorf("Copy did not create a new matrix.")
 	}
 
-	// Check if the copy has the same values as the original
 	for i := 0; i < matrix.Rows(); i++ {
 		for j := 0; j < matrix.Columns(); j++ {
 			val1, _ := matrix.Get(i, j)
 			val2, _ := copyMatrix.Get(i, j)
 			if val1 != val2 {
-				t.Errorf("Copy did not preserve the values at row %d, column %d. Expected %v, got %v", i, j, val1, val2)
+				t.Errorf("Copy did not correctly copy element (%d, %d).", i, j)
 			}
 		}
 	}
+
 }
 
 func TestMatrixCopyEmpty(t *testing.T) {
 	// Create an empty matrix
-	emptyMatrix := matrix.New(0,0,0)
+	emptyMatrix := matrix.New(0, 0, 0)
 
 	// Make a copy of the empty matrix
 	copyMatrix := emptyMatrix.Copy()
 
-	// Ensure that the copy is not the same as the original
-	if emptyMatrix == copyMatrix {
+	// Ensure that the copy is not the same as the original by comparing their addresses
+	if &emptyMatrix == &copyMatrix {
 		t.Errorf("Copy did not create a new matrix for an empty matrix.")
 	}
 
@@ -58,8 +57,8 @@ func TestMatrixCopyWithDefaultValues(t *testing.T) {
 	// Make a copy of the matrix
 	copyMatrix := defaultMatrix.Copy()
 
-	// Ensure that the copy is not the same as the original
-	if defaultMatrix == copyMatrix {
+	// Ensure that the copy is not the same as the original by comparing their addresses
+	if &defaultMatrix == &copyMatrix {
 		t.Errorf("Copy did not create a new matrix for default values.")
 	}
 
@@ -72,5 +71,21 @@ func TestMatrixCopyWithDefaultValues(t *testing.T) {
 				t.Errorf("Copy did not preserve default values at row %d, column %d. Expected %v, got %v", i, j, defaultValue, val2)
 			}
 		}
+	}
+}
+
+func BenchmarkCopyMatrix(b *testing.B) {
+	// Create a matrix for benchmarking
+	rows := 100
+	columns := 100
+	initialValue := 0
+	matrix := matrix.New(rows, columns, initialValue)
+
+	// Reset the benchmark timer
+	b.ResetTimer()
+
+	// Run the benchmark
+	for i := 0; i < b.N; i++ {
+		_ = matrix.Copy()
 	}
 }

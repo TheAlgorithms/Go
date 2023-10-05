@@ -74,3 +74,16 @@ func TestMultiplyIncompatibleMatrix(t *testing.T) {
 		}
 	})
 }
+
+// BenchmarkMultiply benchmarks the Multiply function.
+func BenchmarkMultiply(b *testing.B) {
+	// Create sample matrices for benchmarking
+	rows := 100
+	columns := 100
+	matrix1 := matrix.New(rows, columns, 2) // Replace with appropriate values
+	matrix2 := matrix.New(rows, columns, 3) // Replace with appropriate values
+
+	for i := 0; i < b.N; i++ {
+		_, _ = matrix.Multiply(matrix1, matrix2)
+	}
+}

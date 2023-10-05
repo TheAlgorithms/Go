@@ -13,7 +13,7 @@ import (
 )
 
 // Perform matrix multiplication using Strassen's algorithm
-func StrassenMatrixMultiply[T constraints.Integer](A, B *Matrix[T]) *Matrix[T] {
+func StrassenMatrixMultiply[T constraints.Integer](A, B Matrix[T]) Matrix[T] {
 	n := A.rows
 	// Check if matrices are 2x2 or smaller
 	if n == 1 {
@@ -75,19 +75,29 @@ func StrassenMatrixMultiply[T constraints.Integer](A, B *Matrix[T]) *Matrix[T] {
 			for j := 0; j < mid; j++ {
 				val, _ := C11.Get(i, j)
 
-				C.Set(i, j, val)
+				err := C.Set(i, j, val)
+				if err != nil {
+					panic("copyMatrix.Set error: " + err.Error())
+				}
 
 				val, _ = C12.Get(i, j)
 
-				C.Set(i, j+mid, val)
-
+				err1 := C.Set(i, j+mid, val)
+				if err1 != nil {
+					panic("copyMatrix.Set error: " + err1.Error())
+				}
 				val, _ = C21.Get(i, j)
 
-				C.Set(i+mid, j, val)
-
+				err2 := C.Set(i+mid, j, val)
+				if err2 != nil {
+					panic("copyMatrix.Set error: " + err2.Error())
+				}
 				val, _ = C22.Get(i, j)
 
-				C.Set(i+mid, j+mid, val)
+				err3 := C.Set(i+mid, j+mid, val)
+				if err3 != nil {
+					panic("copyMatrix.Set error: " + err3.Error())
+				}
 			}
 		}
 

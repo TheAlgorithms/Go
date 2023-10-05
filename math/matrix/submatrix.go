@@ -1,15 +1,18 @@
 package matrix
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 // Submatrix extracts a submatrix from the current matrix.
-func (m *Matrix[T]) SubMatrix(rowStart, colStart, numRows, numCols int) (*Matrix[T], error) {
+func (m Matrix[T]) SubMatrix(rowStart, colStart, numRows, numCols int) (Matrix[T], error) {
 	if rowStart < 0 || colStart < 0 || numRows < 0 || numCols < 0 {
-		return nil, errors.New("negative dimensions are not allowed")
+		return Matrix[T]{}, errors.New("negative dimensions are not allowed")
 	}
 
 	if rowStart+numRows > m.rows || colStart+numCols > m.columns {
-		return nil, errors.New("submatrix dimensions exceed matrix bounds")
+		return Matrix[T]{}, errors.New("submatrix dimensions exceed matrix bounds")
 	}
 
 	var zeroVal T
@@ -22,9 +25,12 @@ func (m *Matrix[T]) SubMatrix(rowStart, colStart, numRows, numCols int) (*Matrix
 		for j := 0; j < numCols; j++ {
 			val, err := m.Get(rowStart+i, colStart+j)
 			if err != nil {
-				return nil, err
+				return Matrix[T]{}, err
 			}
-			subMatrix.Set(i, j, val)
+			err1 := subMatrix.Set(i, j, val)
+			if err1 != nil {
+				return Matrix[T]{}, fmt.Errorf("invalid matrices: %v", err1)
+			}
 		}
 	}
 
