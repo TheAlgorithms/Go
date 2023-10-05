@@ -76,6 +76,9 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 }
 
 //BEGIN TESTS
+func TestBinaryInsertion(t *testing.T) {
+	testFramework(t, sort.BinaryInsertion[int])
+}
 
 func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
@@ -213,6 +216,10 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 }
 
 //BEGIN BENCHMARKS
+
+func BenchmarkBinaryInsertion(b *testing.B) {
+	benchmarkFramework(b, sort.BinaryInsertion[int])
+}
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
