@@ -9,42 +9,44 @@
 
 package stack
 
-type StackArray struct {
-	elements []interface{}
+type Array[T any] struct {
+	elements []T
 }
 
 // NewStack creates and returns a new stack.
-func NewStack() *StackArray {
-	return &StackArray{}
+func NewStack[T any]() *Array[T] {
+	return &Array[T]{}
 }
 
 // Push adds an element to the top of the stack.
-func (s *StackArray) Push(value interface{}) {
+func (s *Array[T]) Push(value T) {
 	s.elements = append(s.elements, value)
 }
 
 // Size returns the number of elements in the stack.
-func (s *StackArray) Length() int {
+func (s *Array[T]) Length() int {
 	return len(s.elements)
 }
 
 // Peek returns the top element of the stack without removing it.
-func (s *StackArray) Peek() interface{} {
+func (s *Array[T]) Peek() T {
 	if s.IsEmpty() {
-		return nil // Stack is empty
+		var zeroValue T
+		return zeroValue // Stack is empty
 	}
 	return s.elements[len(s.elements)-1]
 }
 
 // IsEmpty returns true if the stack is empty, false otherwise.
-func (s *StackArray) IsEmpty() bool {
+func (s *Array[T]) IsEmpty() bool {
 	return len(s.elements) == 0
 }
 
 // Pop removes and returns the top element from the stack.
-func (s *StackArray) Pop() interface{} {
+func (s *Array[T]) Pop() T {
 	if s.IsEmpty() {
-		return nil // Stack is empty
+		var zeroValue T
+		return zeroValue // Stack is empty
 	}
 	index := len(s.elements) - 1
 	popped := s.elements[index]

@@ -11,14 +11,14 @@ package stack_test
 
 import (
 	"container/list"
-	st "github.com/TheAlgorithms/Go/structure/stack"
+	"github.com/TheAlgorithms/Go/structure/stack"
 	"reflect"
 	"testing"
 )
 
 // TestStackLinkedList for testing Stack with LinkedList
 func TestStackLinkedList(t *testing.T) {
-	var newStack st.Stack
+	var newStack stack.Stack
 
 	newStack.Push(1)
 	newStack.Push(2)
@@ -68,7 +68,7 @@ func TestStackLinkedList(t *testing.T) {
 
 // TestStackArray for testing Stack with Array
 func TestStackArray(t *testing.T) {
-	newStack := st.NewStack()
+	newStack := stack.NewStack[int]()
 	t.Run("Stack With Array", func(t *testing.T) {
 
 		newStack.Push(2)
@@ -130,7 +130,7 @@ func TestStackArray(t *testing.T) {
 
 // TestStackLinkedListWithList for testing Stack with Container/List Library (STL)
 func TestStackLinkedListWithList(t *testing.T) {
-	stackList := &st.SList{
+	stackList := &stack.SList{
 		Stack: list.New(),
 	}
 
