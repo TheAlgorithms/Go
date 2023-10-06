@@ -33,8 +33,6 @@ type TestCaseData[T any] struct {
 	queries     []QueryStructure[T]
 }
 
-var ErrEmptyDeQueue = deque.ErrEmptyDeQueue
-
 func TestDeque(t *testing.T) {
 
 	// Test cases with ints as params
@@ -49,19 +47,19 @@ func TestDeque(t *testing.T) {
 				},
 				{
 					queryType:     "Front",
-					expectedError: ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDeQueue,
 				},
 				{
 					queryType:     "Rear",
-					expectedError: ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDeQueue,
 				},
 				{
 					queryType:     "DeQueueFront",
-					expectedError: ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDeQueue,
 				},
 				{
 					queryType:     "DeQueueRear",
-					expectedError: ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDeQueue,
 				},
 				{
 					queryType:      "Length",
