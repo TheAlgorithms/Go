@@ -1,8 +1,25 @@
-// Tests for the deque package.
+//
+// Package deque provides a double-ended queue data structure implementation.
+// This file contains unit tests for the deque package.
+//
+// The tests cover the following scenarios:
+// - Empty deque
+// - Deque with one element
+// - Deque with multiple elements
+//
+// The tests are parameterized with int and string types.
+// Each test case is defined with a description and a list of queries to be executed on the deque.
+// The expected results and errors are also defined for each query.
+//
+// To run the tests, execute the TestDeque function.
 
-package deque
+package deque_test
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/TheAlgorithms/Go/structure/deque"
+)
 
 type QueryStructure[T any] struct {
 	queryType      string
@@ -15,6 +32,8 @@ type TestCaseData[T any] struct {
 	description string
 	queries     []QueryStructure[T]
 }
+
+var ErrEmptyDeQueue = deque.ErrEmptyDeQueue
 
 func TestDeque(t *testing.T) {
 
@@ -280,7 +299,7 @@ func TestDeque(t *testing.T) {
 	// Run tests with ints
 	for _, testCase := range testCasesInt {
 		t.Run(testCase.description, func(t *testing.T) {
-			dq := NewDeque[int]()
+			dq := deque.NewDeque[int]()
 			for _, query := range testCase.queries {
 				switch query.queryType {
 				case "EnQueueFront":
@@ -290,7 +309,7 @@ func TestDeque(t *testing.T) {
 				case "DeQueueFront":
 					result, err := dq.DeQueueFront()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
@@ -298,7 +317,7 @@ func TestDeque(t *testing.T) {
 				case "DeQueueRear":
 					result, err := dq.DeQueueRear()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
@@ -306,7 +325,7 @@ func TestDeque(t *testing.T) {
 				case "Front":
 					result, err := dq.Front()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v, %v", query.expectedResult, result, testCase.description)
@@ -314,7 +333,7 @@ func TestDeque(t *testing.T) {
 				case "Rear":
 					result, err := dq.Rear()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
@@ -322,7 +341,7 @@ func TestDeque(t *testing.T) {
 				case "IsEmpty":
 					result := dq.Empty()
 					if result != query.expectedResult {
-						t.Errorf("Expected %v, got %v", query.expectedResult, result)
+						t.Errorf("Expected error: %v, got : %v", query.expectedResult, result)
 					}
 				case "Length":
 					result := dq.Length()
@@ -337,7 +356,7 @@ func TestDeque(t *testing.T) {
 	// Run tests with strings
 	for _, testCase := range testCasesString {
 		t.Run(testCase.description, func(t *testing.T) {
-			dq := NewDeque[string]()
+			dq := deque.NewDeque[string]()
 			for _, query := range testCase.queries {
 				switch query.queryType {
 				case "EnQueueFront":
@@ -347,7 +366,7 @@ func TestDeque(t *testing.T) {
 				case "DeQueueFront":
 					result, err := dq.DeQueueFront()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
@@ -355,7 +374,7 @@ func TestDeque(t *testing.T) {
 				case "DeQueueRear":
 					result, err := dq.DeQueueRear()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
@@ -363,7 +382,7 @@ func TestDeque(t *testing.T) {
 				case "Front":
 					result, err := dq.Front()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v, %v", query.expectedResult, result, testCase.description)
@@ -371,7 +390,7 @@ func TestDeque(t *testing.T) {
 				case "Rear":
 					result, err := dq.Rear()
 					if err != query.expectedError {
-						t.Errorf("Expected %v, got %v", query.expectedError, err)
+						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
 					if err == nil && result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
