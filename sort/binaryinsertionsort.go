@@ -4,6 +4,7 @@
 // Insertion sort in which proper location to
 // insert the selected element is found using the
 // Binary search algorithm.
+// ref: https://www.geeksforgeeks.org/binary-insertion-sort
 
 package sort
 
@@ -16,7 +17,7 @@ func BinaryInsertion[T constraints.Ordered](arr []T) []T {
 		high := currentIndex - 1
 
 		for low <= high {
-			mid := low + (high - low) / 2
+			mid := low + (high-low)/2
 			if arr[mid] > temporary {
 				high = mid - 1
 			} else {

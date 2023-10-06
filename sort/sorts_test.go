@@ -75,7 +75,7 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
-//BEGIN TESTS
+// BEGIN TESTS
 func TestBinaryInsertion(t *testing.T) {
 	testFramework(t, sort.BinaryInsertion[int])
 }
