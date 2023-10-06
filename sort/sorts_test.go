@@ -227,6 +227,10 @@ func BenchmarkBucketSort(b *testing.B) {
 	benchmarkFramework(b, sort.Bucket[int])
 }
 
+func BenchmarkCocktailSort(b *testing.B) {
+	benchmarkFramework(b, sort.Cocktail[int])
+}
+
 func BenchmarkExchange(b *testing.B) {
 	benchmarkFramework(b, sort.Exchange[int])
 }
