@@ -22,6 +22,7 @@ func TestFieldsN(t *testing.T) {
 		{name: "Test 2", args: args{s: "A B C D\nE", n: 2}, want: []string{"A", "B", "C D\nE"}},
 		{name: "Test 3", args: args{s: "A B C D\nE", n: 3}, want: []string{"A", "B", "C", "D\nE"}},
 		{name: "Test 4", args: args{s: "A B C D\nE", n: 4}, want: []string{"A", "B", "C", "D", "E"}},
+		{name: "Test 5", args: args{s: "A B C D\nE", n: -24}, want: []string{"A", "B", "C", "D", "E"}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

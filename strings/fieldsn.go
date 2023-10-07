@@ -4,7 +4,9 @@
 // see fields_test.go
 package strings
 
-import "strings"
+import (
+	"unicode"
+)
 
 // FieldsN splits a string into n fields.
 // It is similar to strings.Fields, but it splits the string into n fields.
@@ -13,25 +15,24 @@ import "strings"
 // If n is -1, it will behave like strings.Fields.
 func FieldsN(s string, n int) []string {
 	if n < 0 {
-		return strings.Fields(s)
+		n = len(s)
 	}
 	a := make([]string, n+1)
-	b := strings.Builder{}
+	b := ""
 	index := 0
 	for _, c := range s {
 		if index+1 > n {
-			b.WriteRune(c)
+			b += string(c)
 			continue
 		}
-		switch c {
-		case '\n', '\t', '\f', '\r', ' ':
-			a[index] = b.String()
-			index++
-			b.Reset()
+		if !unicode.IsSpace(c) {
+			b += string(c)
 			continue
 		}
-		b.WriteRune(c)
+		a[index] = b
+		index++
+		b = ""
 	}
-	a[index] = b.String()
+	a[index] = b
 	return a[:index+1]
 }
