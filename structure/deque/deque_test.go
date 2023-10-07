@@ -1,12 +1,10 @@
 //
 // Package deque provides a double-ended queue data structure implementation.
 // This file contains unit tests for the deque package.
-//
 // The tests cover the following scenarios:
 // - Empty deque
 // - Deque with one element
 // - Deque with multiple elements
-//
 // The tests are parameterized with int and string types.
 // Each test case is defined with a description and a list of queries to be executed on the deque.
 // The expected results and errors are also defined for each query.
@@ -337,7 +335,7 @@ func TestDeque(t *testing.T) {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "IsEmpty":
-					result := dq.Empty()
+					result := dq.IsEmpty()
 					if result != query.expectedResult {
 						t.Errorf("Expected error: %v, got : %v", query.expectedResult, result)
 					}
@@ -394,7 +392,7 @@ func TestDeque(t *testing.T) {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "IsEmpty":
-					result := dq.Empty()
+					result := dq.IsEmpty()
 					if result != query.expectedResult {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}

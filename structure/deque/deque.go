@@ -1,54 +1,48 @@
-/*
-Package deque implements a Double Ended Queue data structure.
+// description: Double Ended Queue is a generalized version of Queue data structure that allows insert and delete at both ends.
+// basic Operations:
+//	EnQueueFront(): Adds an item at the front of Deque.
+//	EnQueueRear(): Adds an item at the rear of Deque.
+//	DeQueueFront(): Deletes an item from front of Deque.
+//	DeQueueRear(): Deletes an item from rear of Deque.
+//	Front(): Gets the front item from queue.
+//	Rear(): Gets the last item from queue.
+//	IsEmpty(): Checks whether Deque is empty or not.
+//	Length(): Gets the length of Deque.
+// References:
+//	Wikipedia : https://en.wikipedia.org/wiki/Double-ended_queue
+//	Github: https://www.geeksforgeeks.org/deque-set-1-introduction-applications/
+// author [Sayan](https://github.com/bose-sayan)
 
-Description:
-	Double Ended Queue is a generalized version of Queue data structure
-	that allows insert and delete at both ends.
-
-Basic Operations:
-	enQueueFront(): Adds an item at the front of Deque.
-	enQueueRear(): Adds an item at the rear of Deque.
-	deQueueFront(): Deletes an item from front of Deque.
-	deQueueRear(): Deletes an item from rear of Deque.
-	getFront(): Gets the front item from queue.
-	getRear(): Gets the last item from queue.
-	isEmpty(): Checks whether Deque is empty or not.
-	getLength(): Gets the length of Deque.
-
-References:
-	Wikipedia : https://en.wikipedia.org/wiki/Double-ended_queue
-	Github: https://www.geeksforgeeks.org/deque-set-1-introduction-applications/
-
-Author: [Sayan](https://github.com/bose-sayan)
-*/
-
+// Package deque implements a Double Ended Queue data structure.
 package deque
 
 import (
 	"errors"
 )
 
+// Custom error for handling cases when some dequeing operation is performed on an empty deque.
 var ErrEmptyDeQueue = errors.New("DoublyEnded queue is empty, so can't perform this operation")
 
 type DoublyEndedQueue[T any] struct {
 	deque []T
 }
 
+// NewDeque returns a new DoublyEndedQueue.
 func NewDeque[T any]() *DoublyEndedQueue[T] {
 	return &DoublyEndedQueue[T]{deque: make([]T, 0)}
 }
 
-// enQueueFront adds an item at the front of Deque.
+// EnQueueFront adds an item at the front of Deque.
 func (dq *DoublyEndedQueue[T]) EnQueueFront(item T) {
 	dq.deque = append([]T{item}, dq.deque...)
 }
 
-// enQueueRear adds an item at the rear of Deque.
+// EnQueueRear adds an item at the rear of Deque.
 func (dq *DoublyEndedQueue[T]) EnQueueRear(item T) {
 	dq.deque = append(dq.deque, item)
 }
 
-// deQueueFront deletes an item from front of Deque and returns it.
+// DeQueueFront deletes an item from front of Deque and returns it.
 func (dq *DoublyEndedQueue[T]) DeQueueFront() (T, error) {
 	if len(dq.deque) == 0 {
 		var zeroVal T
@@ -59,7 +53,7 @@ func (dq *DoublyEndedQueue[T]) DeQueueFront() (T, error) {
 	return frontElement, nil
 }
 
-// deQueueRear deletes an item from rear of Deque and returns it.
+// DeQueueRear deletes an item from rear of Deque and returns it.
 func (dq *DoublyEndedQueue[T]) DeQueueRear() (T, error) {
 	if len(dq.deque) == 0 {
 		var zeroVal T
@@ -70,7 +64,7 @@ func (dq *DoublyEndedQueue[T]) DeQueueRear() (T, error) {
 	return rearElement, nil
 }
 
-// getFront gets the front item from queue.
+// Front gets the front item from queue.
 func (dq *DoublyEndedQueue[T]) Front() (T, error) {
 	if (len(dq.deque)) == 0 {
 		var zeroVal T
@@ -79,7 +73,7 @@ func (dq *DoublyEndedQueue[T]) Front() (T, error) {
 	return dq.deque[0], nil
 }
 
-// getRear gets the last item from queue.
+// Rear gets the last item from queue.
 func (dq *DoublyEndedQueue[T]) Rear() (T, error) {
 	if (len(dq.deque)) == 0 {
 		var zeroVal T
@@ -88,12 +82,12 @@ func (dq *DoublyEndedQueue[T]) Rear() (T, error) {
 	return dq.deque[len(dq.deque)-1], nil
 }
 
-// isEmpty checks whether Deque is empty or not.
-func (dq *DoublyEndedQueue[T]) Empty() bool {
+// IsEmpty checks whether Deque is empty or not.
+func (dq *DoublyEndedQueue[T]) IsEmpty() bool {
 	return len(dq.deque) == 0
 }
 
-// getLength gets the length of Deque.
+// Length gets the length of Deque.
 func (dq *DoublyEndedQueue[T]) Length() int {
 	return len(dq.deque)
 }
