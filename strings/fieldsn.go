@@ -21,11 +21,7 @@ func FieldsN(s string, n int) []string {
 	b := ""
 	index := 0
 	for _, c := range s {
-		if index+1 > n {
-			b += string(c)
-			continue
-		}
-		if !unicode.IsSpace(c) {
+		if index >= n || !unicode.IsSpace(c) {
 			b += string(c)
 			continue
 		}
