@@ -20,7 +20,7 @@ import (
 	"errors"
 )
 
-// Custom error for handling cases when some dequeing operation is performed on an empty deque.
+// Custom error for handling cases when some dequeuing operation is performed on an empty deque.
 var ErrEmptyDeQueue = errors.New("DoublyEnded queue is empty, so can't perform this operation")
 
 type DoublyEndedQueue[T any] struct {
