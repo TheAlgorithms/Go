@@ -125,7 +125,7 @@ func TestBellmanford(t *testing.T) {
 			if resIsReachable != test.isReachable {
 				t.Errorf("Reachable, Expected: %t, Computed: %t", test.isReachable, resIsReachable)
 			}
-			if resError != test.err {
+			if !errors.Is(test.err, resError) {
 				if resError == nil || test.err == nil {
 					t.Errorf("Reachable, Expected: %s, Computed: %s", test.err, resError)
 				} else if resError.Error() != test.err.Error() {
