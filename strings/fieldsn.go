@@ -20,14 +20,20 @@ func FieldsN(s string, n int) []string {
 	a := make([]string, n+1)
 	b := ""
 	index := 0
+	wf := false
 	for _, c := range s {
 		if index >= n || !unicode.IsSpace(c) {
 			b += string(c)
+			wf = false
+			continue
+		}
+		if wf {
 			continue
 		}
 		a[index] = b
 		index++
 		b = ""
+		wf = true
 	}
 	a[index] = b
 	return a[:index+1]
