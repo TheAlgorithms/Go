@@ -1,13 +1,4 @@
 // description: Double Ended Queue is a generalized version of Queue data structure that allows insert and delete at both ends.
-// basic Operations:
-//	EnQueueFront(): Adds an item at the front of Deque.
-//	EnQueueRear(): Adds an item at the rear of Deque.
-//	DeQueueFront(): Deletes an item from front of Deque.
-//	DeQueueRear(): Deletes an item from rear of Deque.
-//	Front(): Gets the front item from queue.
-//	Rear(): Gets the last item from queue.
-//	IsEmpty(): Checks whether Deque is empty or not.
-//	Length(): Gets the length of Deque.
 // References:
 //	Wikipedia : https://en.wikipedia.org/wiki/Double-ended_queue
 //	Github: https://www.geeksforgeeks.org/deque-set-1-introduction-applications/
