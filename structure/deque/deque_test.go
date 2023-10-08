@@ -9,7 +9,6 @@
 // Each test case is defined with a description and a list of queries to be executed on the deque.
 // The expected results and errors are also defined for each query.
 //
-// To run the tests, execute the TestDeque function.
 
 package deque_test
 
