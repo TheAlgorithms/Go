@@ -616,7 +616,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package math is a package that contains mathematical algorithms and its different implementations. filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go
+#####  filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go Package math is a package that contains mathematical algorithms and its different implementations.
 
 ---
 ##### Functions:
@@ -1032,13 +1032,20 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+##### Functions:
+
+1. [`NewStack`](./structure/stack/stackarray.go#L17):  NewStack creates and returns a new stack.
+
+---
 ##### Types
 
-1. [`Node`](./structure/stack/stacklinkedlist.go#L13): No description provided.
+1. [`Array`](./structure/stack/stackarray.go#L12): No description provided.
 
-2. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
+2. [`Node`](./structure/stack/stacklinkedlist.go#L13): No description provided.
 
-3. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
+3. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
+
+4. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
 
 
 ---
