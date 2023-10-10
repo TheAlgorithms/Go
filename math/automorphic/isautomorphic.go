@@ -7,26 +7,26 @@
 // space complexity: O(1)
 // author: [SilverDragonOfR](https://github.com/SilverDragonOfR)
 
-// Package sumofdigits provides method to determine whether a number is automorphic or not.
+// Package automorphic provides method to determine whether a number is automorphic or not.
 package automorphic
 
-func IsAutomorphic(n int) bool {
+// constraints package: to work with any type of signed/unsigned integer
+import (
+	f "github.com/TheAlgorithms/Go/constraints"
+)
+
+func IsAutomorphic[T f.Integer](n T) bool {
 
 	// handling the negetive number case
 	if n < 0 {
 		return false
 	}
 
-	var n_sq int = n * n
-
+	n_sq := n * n
 	for n > 0 {
-
-		// checking whether the number and it's square have same rightMost digit
 		if (n % 10) != (n_sq % 10) {
 			return false
 		}
-
-		// update the number and it's square by removing the rightMost digit
 		n /= 10
 		n_sq /= 10
 	}
