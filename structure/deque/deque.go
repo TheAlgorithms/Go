@@ -19,7 +19,7 @@ type DoublyEndedQueue[T any] struct {
 }
 
 // NewDeque returns a new DoublyEndedQueue.
-func NewDeque[T any]() *DoublyEndedQueue[T] {
+func New[T any]() *DoublyEndedQueue[T] {
 	return &DoublyEndedQueue[T]{deque: make([]T, 0)}
 }
 
