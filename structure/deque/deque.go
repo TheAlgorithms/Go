@@ -18,23 +18,23 @@ type DoublyEndedQueue[T any] struct {
 	deque []T
 }
 
-// NewDeque returns a new DoublyEndedQueue.
+// New returns a new DoublyEndedQueue.
 func New[T any]() *DoublyEndedQueue[T] {
 	return &DoublyEndedQueue[T]{deque: make([]T, 0)}
 }
 
-// EnQueueFront adds an item at the front of Deque.
-func (dq *DoublyEndedQueue[T]) EnQueueFront(item T) {
+// EnqueueFront adds an item at the front of Deque.
+func (dq *DoublyEndedQueue[T]) EnqueueFront(item T) {
 	dq.deque = append([]T{item}, dq.deque...)
 }
 
-// EnQueueRear adds an item at the rear of Deque.
-func (dq *DoublyEndedQueue[T]) EnQueueRear(item T) {
+// EnqueueRear adds an item at the rear of Deque.
+func (dq *DoublyEndedQueue[T]) EnqueueRear(item T) {
 	dq.deque = append(dq.deque, item)
 }
 
-// DeQueueFront deletes an item from front of Deque and returns it.
-func (dq *DoublyEndedQueue[T]) DeQueueFront() (T, error) {
+// DequeueFront deletes an item from front of Deque and returns it.
+func (dq *DoublyEndedQueue[T]) DequeueFront() (T, error) {
 	if len(dq.deque) == 0 {
 		var zeroVal T
 		return zeroVal, ErrEmptyDeQueue
@@ -44,8 +44,8 @@ func (dq *DoublyEndedQueue[T]) DeQueueFront() (T, error) {
 	return frontElement, nil
 }
 
-// DeQueueRear deletes an item from rear of Deque and returns it.
-func (dq *DoublyEndedQueue[T]) DeQueueRear() (T, error) {
+// DequeueRear deletes an item from rear of Deque and returns it.
+func (dq *DoublyEndedQueue[T]) DequeueRear() (T, error) {
 	if len(dq.deque) == 0 {
 		var zeroVal T
 		return zeroVal, ErrEmptyDeQueue

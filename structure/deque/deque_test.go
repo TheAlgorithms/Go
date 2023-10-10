@@ -294,15 +294,15 @@ func TestDeque(t *testing.T) {
 	// Run tests with ints
 	for _, testCase := range testCasesInt {
 		t.Run(testCase.description, func(t *testing.T) {
-			dq := deque.NewDeque[int]()
+			dq := deque.New[int]()
 			for _, query := range testCase.queries {
 				switch query.queryType {
 				case "EnQueueFront":
-					dq.EnQueueFront(query.parameter)
+					dq.EnqueueFront(query.parameter)
 				case "EnQueueRear":
-					dq.EnQueueRear(query.parameter)
+					dq.EnqueueRear(query.parameter)
 				case "DeQueueFront":
-					result, err := dq.DeQueueFront()
+					result, err := dq.DequeueFront()
 					if err != query.expectedError {
 						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
@@ -310,7 +310,7 @@ func TestDeque(t *testing.T) {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "DeQueueRear":
-					result, err := dq.DeQueueRear()
+					result, err := dq.DequeueRear()
 					if err != query.expectedError {
 						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
@@ -351,15 +351,15 @@ func TestDeque(t *testing.T) {
 	// Run tests with strings
 	for _, testCase := range testCasesString {
 		t.Run(testCase.description, func(t *testing.T) {
-			dq := deque.NewDeque[string]()
+			dq := deque.New[string]()
 			for _, query := range testCase.queries {
 				switch query.queryType {
 				case "EnQueueFront":
-					dq.EnQueueFront(query.parameter)
+					dq.EnqueueFront(query.parameter)
 				case "EnQueueRear":
-					dq.EnQueueRear(query.parameter)
+					dq.EnqueueRear(query.parameter)
 				case "DeQueueFront":
-					result, err := dq.DeQueueFront()
+					result, err := dq.DequeueFront()
 					if err != query.expectedError {
 						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
@@ -367,7 +367,7 @@ func TestDeque(t *testing.T) {
 						t.Errorf("Expected %v, got %v", query.expectedResult, result)
 					}
 				case "DeQueueRear":
-					result, err := dq.DeQueueRear()
+					result, err := dq.DequeueRear()
 					if err != query.expectedError {
 						t.Errorf("Expected error: %v, got : %v", query.expectedError, err)
 					}
