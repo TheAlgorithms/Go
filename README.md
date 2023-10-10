@@ -59,6 +59,19 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> automorphic </strong> </summary>	
+
+---
+
+#####  Package sumofdigits provides method to determine whether a number is automorphic or not. Package sumofdigits provides method to determine whether a number is automorphic or not.
+
+---
+##### Functions:
+
+1. [`IsAutomorphic`](./math/automorphic/isautomorphic.go#L13): No description provided.
+
+---
+</details><details>
 	<summary> <strong> binary </strong> </summary>	
 
 ---
@@ -1041,19 +1054,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`CountChars`](./strings/charoccurrence.go#L12):  CountChars counts the number of a times a character has occurred in the provided string argument and returns a map with `rune` as keys and the count as value.
 2. [`IsIsogram`](./strings/isisogram.go#L34): No description provided.
-
----
-</details><details>
-	<summary> <strong> sumofdigits </strong> </summary>	
-
----
-
-#####  Package sumofdigits provides method to find the sum of didits of a whole number
-
----
-##### Functions:
-
-1. [`Sumofdigits`](./math/sumofdigits/sumofdigits.go#L13): No description provided.
 
 ---
 </details><details>
