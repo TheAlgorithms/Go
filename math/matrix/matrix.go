@@ -2,16 +2,18 @@ package matrix
 
 import (
 	"errors"
+
+	"github.com/TheAlgorithms/Go/constraints"
 )
 
-type Matrix[T any] struct {
+type Matrix[T constraints.Integer] struct {
 	elements [][]T
 	rows     int
 	columns  int
 }
 
 // NewMatrix creates a new Matrix based on the provided arguments.
-func New[T any](rows, columns int, initial T) Matrix[T] {
+func New[T constraints.Integer](rows, columns int, initial T) Matrix[T] {
 	if rows < 0 || columns < 0 {
 		return Matrix[T]{} // Invalid dimensions, return an empty matrix
 	}
@@ -29,7 +31,7 @@ func New[T any](rows, columns int, initial T) Matrix[T] {
 }
 
 // NewFromElements creates a new Matrix from the given elements.
-func NewFromElements[T any](elements [][]T) (Matrix[T], error) {
+func NewFromElements[T constraints.Integer](elements [][]T) (Matrix[T], error) {
 	if !IsValid(elements) {
 		return Matrix[T]{}, errors.New("rows have different numbers of columns")
 	}

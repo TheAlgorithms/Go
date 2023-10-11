@@ -3,26 +3,35 @@ package matrix
 import (
 	"errors"
 	"fmt"
-
-	"github.com/TheAlgorithms/Go/constraints"
 )
 
-func Multiply[T constraints.Integer](matrix1, matrix2 Matrix[T]) (Matrix[T], error) {
+// Multiply multiplies the current matrix (m1) with another matrix (m2) and returns the result as a new matrix.
+// The two matrices must have compatible dimensions for multiplication, i.e., the number of columns in the first matrix
+// must match the number of rows in the second matrix.
+func (m1 Matrix[T]) Multiply(m2 Matrix[T]) (Matrix[T], error) {
 	// Check if the matrices can be multiplied.
-	if matrix1.columns != matrix2.rows {
+	if m1.Columns() != m2.Rows() {
 		return Matrix[T]{}, errors.New("matrices cannot be multiplied: column count of the first matrix must match row count of the second matrix")
 	}
 
 	// Create a new matrix to store the result.
 	var zeroVal T
-	result := New(matrix1.rows, matrix2.columns, zeroVal)
+	result := New(m1.Rows(), m2.Columns(), zeroVal)
 
-	for i := 0; i < matrix1.rows; i++ {
-		for j := 0; j < matrix2.columns; j++ {
+	for i := 0; i < m1.Rows(); i++ {
+		for j := 0; j < m2.Columns(); j++ {
 			// Compute the dot product of the row from the first matrix and the column from the second matrix.
 			dotProduct := zeroVal
-			for k := 0; k < matrix1.columns; k++ {
-				dotProduct += matrix1.elements[i][k] * matrix2.elements[k][j]
+			for k := 0; k < m1.Columns(); k++ {
+				val1, err := m1.Get(i, k)
+				if err != nil {
+					return Matrix[T]{}, fmt.Errorf("invalid matrices: %v", err)
+				}
+				val2, err := m2.Get(k, j)
+				if err != nil {
+					return Matrix[T]{}, fmt.Errorf("invalid matrices: %v", err)
+				}
+				dotProduct += val1 * val2
 			}
 			err := result.Set(i, j, dotProduct)
 			if err != nil {

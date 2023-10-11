@@ -1,7 +1,6 @@
 package matrix_test
 
 import (
-	"errors"
 	"fmt"
 	"testing"
 
@@ -9,30 +8,30 @@ import (
 )
 
 func TestSubtract(t *testing.T) {
-	// Create two matrices with the same dimensions for addition
-	matrix1 := matrix.New(2, 2, 1)
-	matrix2 := matrix.New(2, 2, 2)
+	// Create two matrices with the same dimensions for Subtraction
+	m1 := matrix.New(2, 2, 1)
+	m2 := matrix.New(2, 2, 2)
 
-	// Test case 1: Valid matrix addition
-	subMatrix, err := matrix.Subtract(matrix1, matrix2)
+	// Test case 1: Valid matrix Subtraction
+	subMatrix, err := m1.Subtract(m2)
 	if err != nil {
-		t.Errorf("Add(matrix1, matrix2) returned an error: %v, expected no error", err)
+		t.Errorf("Add(m1, m2) returned an error: %v, expected no error", err)
 	}
 	expectedMatrix := matrix.New(2, 2, -1)
-	res, _ := matrix.CheckEqual(subMatrix, expectedMatrix)
+	res := subMatrix.CheckEqual(expectedMatrix)
 	if !res {
-		t.Errorf("Add(matrix1, matrix2) returned incorrect result:\n%v\nExpected:\n%v", subMatrix, expectedMatrix)
+		t.Errorf("Add(m1, m2) returned incorrect result:\n%v\nExpected:\n%v", subMatrix, expectedMatrix)
 	}
 
-	// Create two matrices with different dimensions for addition
-	matrix3 := matrix.New(2, 2, 1)
-	matrix4 := matrix.New(2, 3, 2)
+	// Create two matrices with different dimensions for Subtraction
+	m3 := matrix.New(2, 2, 1)
+	m4 := matrix.New(2, 3, 2)
 
 	// Test case 2: Matrices with different dimensions
-	_, err2 := matrix.Subtract(matrix3, matrix4)
-	expectedError2 := fmt.Errorf("invalid matrices: %v", errors.New("matrices have different dimensions: rows=2 vs columns=2"))
+	_, err2 := m3.Subtract(m4)
+	expectedError2 := fmt.Errorf("matrices are not compatible for addition")
 	if err2 == nil || err2.Error() != expectedError2.Error() {
-		t.Errorf("Add(matrix3, matrix4) returned error: %v, expected error: %v", err2, expectedError2)
+		t.Errorf("Add(m3, m4) returned error: %v, expected error: %v", err2, expectedError2)
 	}
 
 }
@@ -42,10 +41,10 @@ func BenchmarkSubtract(b *testing.B) {
 	// Create sample matrices for benchmarking
 	rows := 100
 	columns := 100
-	matrix1 := matrix.New(rows, columns, 2) // Replace with appropriate values
-	matrix2 := matrix.New(rows, columns, 3) // Replace with appropriate values
+	m1 := matrix.New(rows, columns, 2) // Replace with appropriate values
+	m2 := matrix.New(rows, columns, 3) // Replace with appropriate values
 
 	for i := 0; i < b.N; i++ {
-		_, _ = matrix.Subtract(matrix1, matrix2)
+		_, _ = m1.Subtract(m2)
 	}
 }

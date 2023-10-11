@@ -40,12 +40,6 @@ func TestIsValid(t *testing.T) {
 		t.Errorf("IsValid(invalidMatrix) returned true, expected false (invalid matrix with inconsistent row lengths)")
 	}
 
-	// Test case 4: Invalid matrix with inconsistent row lengths
-	invalidMatrix1 := [][]string{{"12", "21", "2"}}
-	result4 := matrix.IsValid(invalidMatrix1)
-	if !result4 {
-		t.Errorf("IsValid(invalidMatrix) returned true, expected false(invalid matrix with inconsistent row lengths)")
-	}
 }
 
 func BenchmarkIsValid(b *testing.B) {

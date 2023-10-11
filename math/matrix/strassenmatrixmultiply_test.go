@@ -17,10 +17,10 @@ func TestStrassenMatrixMultiply(t *testing.T) {
 	matrixB, _ := matrix.NewFromElements(dataB)
 
 	// Perform matrix multiplication using Strassen's algorithm
-	resultMatrix := matrix.StrassenMatrixMultiply(matrixA, matrixB)
+	resultMatrix := matrixA.StrassenMatrixMultiply(matrixB)
 
 	// Expected result
-	expectedData, _ := matrix.Multiply(matrixA, matrixB)
+	expectedData, _ := matrixA.Multiply(matrixB)
 
 	// Check the dimensions of the result matrix
 	expectedRows := expectedData.Rows()
@@ -56,10 +56,10 @@ func TestMatrixMultiplication(t *testing.T) {
 	matrixB := MakeRandomMatrix[int](size, size)
 
 	// Calculate the expected result using the standard multiplication
-	expected, _ := matrix.Multiply(matrixA, matrixB)
+	expected, _ := matrixA.Multiply(matrixB)
 
 	// Calculate the result using the Strassen algorithm
-	result := matrix.StrassenMatrixMultiply(matrixA, matrixB)
+	result := matrixA.StrassenMatrixMultiply(matrixB)
 
 	// Check if the result matches the expected result
 	for i := 0; i < size; i++ {
@@ -93,10 +93,10 @@ func BenchmarkStrassenMatrixMultiply(b *testing.B) {
 	// Create sample matrices for benchmarking
 	rows := 64 // it is large enough for multiplication
 	columns := 64
-	matrix1 := matrix.New(rows, columns, 2) // Replace with appropriate values
-	matrix2 := matrix.New(rows, columns, 3) // Replace with appropriate values
+	m1 := matrix.New(rows, columns, 2) // Replace with appropriate values
+	m2 := matrix.New(rows, columns, 3) // Replace with appropriate values
 
 	for i := 0; i < b.N; i++ {
-		_ = matrix.StrassenMatrixMultiply(matrix1, matrix2)
+		_ = m1.StrassenMatrixMultiply(m2)
 	}
 }

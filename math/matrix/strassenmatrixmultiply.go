@@ -8,12 +8,8 @@
 // See strassenmatrixmultiply_test.go for test cases
 package matrix
 
-import (
-	"github.com/TheAlgorithms/Go/constraints"
-)
-
 // Perform matrix multiplication using Strassen's algorithm
-func StrassenMatrixMultiply[T constraints.Integer](A, B Matrix[T]) Matrix[T] {
+func (A Matrix[T]) StrassenMatrixMultiply(B Matrix[T]) Matrix[T] {
 	n := A.rows
 	// Check if matrices are 2x2 or smaller
 	if n == 1 {
@@ -37,35 +33,35 @@ func StrassenMatrixMultiply[T constraints.Integer](A, B Matrix[T]) Matrix[T] {
 		B22, _ := B.SubMatrix(mid, mid, n-mid, n-mid)
 
 		// Calculate result submatrices
-		A1, _ := Add(A11, A22)
-		A2, _ := Add(B11, B22)
-		A3, _ := Add(A21, A22)
-		A4, _ := Add(A11, A12)
-		A5, _ := Add(B11, B12)
-		A6, _ := Add(B21, B22)
+		A1, _ := A11.Add(A22)
+		A2, _ := B11.Add(B22)
+		A3, _ := A21.Add(A22)
+		A4, _ := A11.Add(A12)
+		A5, _ := B11.Add(B12)
+		A6, _ := B21.Add(B22)
 		//
-		S1, _ := Subtract(B12, B22)
-		S2, _ := Subtract(B21, B11)
-		S3, _ := Subtract(A21, A11)
-		S4, _ := Subtract(A12, A22)
+		S1, _ := B12.Subtract(B22)
+		S2, _ := B21.Subtract(B11)
+		S3, _ := A21.Subtract(A11)
+		S4, _ := A12.Subtract(A22)
 		// Recursive steps
-		M1 := StrassenMatrixMultiply(A1, A2)
-		M2 := StrassenMatrixMultiply(A3, B11)
-		M3 := StrassenMatrixMultiply(A11, S1)
-		M4 := StrassenMatrixMultiply(A22, S2)
-		M5 := StrassenMatrixMultiply(A4, B22)
-		M6 := StrassenMatrixMultiply(S3, A5)
-		M7 := StrassenMatrixMultiply(S4, A6)
+		M1 := A1.StrassenMatrixMultiply(A2)
+		M2 := A3.StrassenMatrixMultiply(B11)
+		M3 := A11.StrassenMatrixMultiply(S1)
+		M4 := A22.StrassenMatrixMultiply(S2)
+		M5 := A4.StrassenMatrixMultiply(B22)
+		M6 := S3.StrassenMatrixMultiply(A5)
+		M7 := S4.StrassenMatrixMultiply(A6)
 		//
-		A7, _ := Add(M1, M4)
-		A8, _ := Add(A7, M7)
-		A9, _ := Add(M1, M3)
-		A10, _ := Add(A9, M6)
+		A7, _ := M1.Add(M4)
+		A8, _ := A7.Add(M7)
+		A9, _ := M1.Add(M3)
+		A10, _ := A9.Add(M6)
 		// Calculate result submatrices
-		C11, _ := Subtract(A8, M5)
-		C12, _ := Add(M3, M5)
-		C21, _ := Add(M2, M4)
-		C22, _ := Subtract(A10, M2)
+		C11, _ := A8.Subtract(M5)
+		C12, _ := M3.Add(M5)
+		C21, _ := M2.Add(M4)
+		C22, _ := A10.Subtract(M2)
 
 		// Combine subMatrices into the result matrix
 		var zeroVal T
@@ -100,8 +96,6 @@ func StrassenMatrixMultiply[T constraints.Integer](A, B Matrix[T]) Matrix[T] {
 				}
 			}
 		}
-
 		return C
-
 	}
 }

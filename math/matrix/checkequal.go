@@ -1,26 +1,19 @@
 package matrix
 
-import (
-	"errors"
-	"fmt"
-)
-
-func CheckEqual[T comparable](matrix1, matrix2 Matrix[T]) (bool, error) {
-	sameDimensions, err := matrix1.SameDimensions(matrix2)
-	if err != nil {
-		return false, fmt.Errorf("invalid matrices: %v", err)
+// CheckEqual checks if the current matrix is equal to another matrix (m2).
+// Two matrices are considered equal if they have the same dimensions and
+// all their elements are equal.
+func (m1 Matrix[T]) CheckEqual(m2 Matrix[T]) bool {
+	if !m1.MatchDimensions(m2) {
+		return false
 	}
 
-	if !sameDimensions {
-		return false, errors.New("matrices are not compatible for comparison")
-	}
-
-	for i := range matrix1.elements {
-		for j := range matrix1.elements[i] {
-			if matrix1.elements[i][j] != matrix2.elements[i][j] {
-				return false, nil
+	for i := range m1.elements {
+		for j := range m1.elements[i] {
+			if m1.elements[i][j] != m2.elements[i][j] {
+				return false
 			}
 		}
 	}
-	return true, nil
+	return true
 }

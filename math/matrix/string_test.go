@@ -2,6 +2,7 @@ package matrix_test
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"os"
 	"testing"
@@ -9,33 +10,20 @@ import (
 	"github.com/TheAlgorithms/Go/math/matrix"
 )
 
-func TestMatrixPrint(t *testing.T) {
+func TestMatrixString(t *testing.T) {
 	// Create a sample matrix for testing
-	matrix1 := matrix.New(2, 2, 0)
-	err := matrix1.Set(0, 0, 1)
+	m1, err := matrix.NewFromElements([][]int{{1, 2}, {3, 4}})
 	if err != nil {
-		panic("copyMatrix.Set error: " + err.Error())
+		t.Errorf("Error creating matrix: %v", err)
 	}
-	err1 := matrix1.Set(0, 1, 2)
-	if err1 != nil {
-		panic("copyMatrix.Set error: " + err1.Error())
-	}
-	err2 := matrix1.Set(1, 0, 3)
-	if err2 != nil {
-		panic("copyMatrix.Set error: " + err2.Error())
-	}
-	err3 := matrix1.Set(1, 1, 4)
-	if err3 != nil {
-		panic("copyMatrix.Set error: " + err3.Error())
-	}
-	// matrix1 := matrix.New(0, 0, 0)
-	// Redirect stdout to capture printed output
+
+	// Redirect stdout to capture Stringed output
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 
-	// Call the Print method
-	matrix1.Print()
+	// Call the String method
+	fmt.Print(m1)
 
 	// Reset stdout
 	w.Close()
@@ -43,15 +31,14 @@ func TestMatrixPrint(t *testing.T) {
 
 	// Read the captured output
 	var buf bytes.Buffer
-	_, err4 := io.Copy(&buf, r)
-	if err4 != nil {
-		panic("copyMatrix.Set error: " + err4.Error())
+	_, err = io.Copy(&buf, r)
+	if err != nil {
+		t.Errorf("Error copying output: %v", err)
 	}
 	capturedOutput := buf.String()
 
 	// Define the expected output
 	expectedOutput := "1 2 \n3 4 \n"
-	// expectedOutput := ""
 
 	// Compare the captured output with the expected output
 	if capturedOutput != expectedOutput {
@@ -59,16 +46,16 @@ func TestMatrixPrint(t *testing.T) {
 	}
 }
 
-func TestNullMatrixPrint(t *testing.T) {
+func TestNullMatrixString(t *testing.T) {
 
-	matrix1 := matrix.New(0, 0, 0)
-	// Redirect stdout to capture printed output
+	m1 := matrix.New(0, 0, 0)
+	// Redirect stdout to capture Stringed output
 	old := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 
-	// Call the Print method
-	matrix1.Print()
+	// Call the String method
+	fmt.Print(m1)
 
 	// Reset stdout
 	w.Close()
@@ -78,7 +65,7 @@ func TestNullMatrixPrint(t *testing.T) {
 	var buf bytes.Buffer
 	_, err := io.Copy(&buf, r)
 	if err != nil {
-		panic("copyMatrix.Set error: " + err.Error())
+		t.Errorf("Error copying output: %v", err)
 	}
 	capturedOutput := buf.String()
 
@@ -91,14 +78,13 @@ func TestNullMatrixPrint(t *testing.T) {
 	}
 }
 
-// BenchmarkPrint benchmarks the Print method.
-func BenchmarkPrint(b *testing.B) {
+func BenchmarkString(b *testing.B) {
 	// Create a sample matrix for benchmarking
 	rows := 100
 	columns := 100
-	matrix := matrix.New(rows, columns, 0) // Replace with appropriate values
+	m := matrix.New(rows, columns, 0) // Replace with appropriate values
 
 	for i := 0; i < b.N; i++ {
-		matrix.Print()
+		_ = m.String()
 	}
 }

@@ -19,25 +19,6 @@ func TestNewMatrix(t *testing.T) {
 		t.Errorf("matrix.New( 3, 4, 0) returned nil, expected a matrix")
 	}
 
-	// Test creating a matrix of floats
-	floatMatrix := matrix.New(2, 2, 1.0)
-	if floatMatrix.Rows() != 2 || floatMatrix.Columns() != 2 {
-		t.Errorf("matrix.New(t64, 2, 2, 1.0) returned nil, expected a matrix")
-	}
-
-	// Test creating a matrix of strings
-	stringMatrix := matrix.New(2, 3, "hello")
-	if stringMatrix.Rows() != 2 || stringMatrix.Columns() != 3 {
-		t.Errorf("matrix.New(ng, 2, 3, 'hello') returned nil, expected a matrix")
-	}
-
-	// Test creating a matrix of boolean values
-	boolMatrix := matrix.New(2, 1, false)
-	if boolMatrix.Rows() != 2 || boolMatrix.Columns() != 1 {
-
-		t.Errorf("matrix.New(ng, 2, 3, 'hello') returned nil, expected a matrix")
-	}
-
 }
 
 func TestNewFromElements(t *testing.T) {
@@ -46,23 +27,23 @@ func TestNewFromElements(t *testing.T) {
 		{1, 2, 3},
 		{4, 5, 6},
 	}
-	expectedMatrix1 := matrix.New(2, 3, 0)
+	expectedm1 := matrix.New(2, 3, 0)
 	for i := 0; i < len(validElements); i++ {
 		for j := 0; j < len(validElements[0]); j++ {
-			err := expectedMatrix1.Set(i, j, validElements[i][j])
+			err := expectedm1.Set(i, j, validElements[i][j])
 			if err != nil {
 				panic("copyMatrix.Set error: " + err.Error())
 			}
 		}
 	}
 
-	matrix1, err1 := matrix.NewFromElements(validElements)
+	m1, err1 := matrix.NewFromElements(validElements)
 	if err1 != nil {
 		t.Errorf("NewFromElements(validElements) returned an error: %v", err1)
 	}
-	res, err := matrix.CheckEqual(matrix1, expectedMatrix1)
-	if err != nil || res != true {
-		t.Errorf("NewFromElements(validElements) returned %v, expected %v", matrix1, expectedMatrix1)
+	res := m1.CheckEqual(expectedm1)
+	if res != true {
+		t.Errorf("NewFromElements(validElements) returned %v, expected %v", m1, expectedm1)
 	}
 
 	// Test case 2: Invalid matrix with different column counts
@@ -78,12 +59,12 @@ func TestNewFromElements(t *testing.T) {
 
 	// Test case 3: Empty matrix
 	emptyElements := [][]int{}
-	matrix3, err3 := matrix.NewFromElements(emptyElements)
+	m3, err3 := matrix.NewFromElements(emptyElements)
 	if err3 != nil {
 		t.Errorf("NewFromElements(emptyElements) returned an error: %v", err3)
 	}
-	if matrix3.Rows() != 0 || matrix3.Columns() != 0 {
-		t.Errorf("NewFromElements(emptyElements) returned %v, expected nil", matrix3)
+	if m3.Rows() != 0 || m3.Columns() != 0 {
+		t.Errorf("NewFromElements(emptyElements) returned %v, expected nil", m3)
 	}
 }
 
