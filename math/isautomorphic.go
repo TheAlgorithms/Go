@@ -7,8 +7,7 @@
 // space complexity: O(1)
 // author: [SilverDragonOfR](https://github.com/SilverDragonOfR)
 
-// Package automorphic provides method to determine whether a number is automorphic or not.
-package automorphic
+package math
 
 // constraints package: to work with any type of signed/unsigned integer
 import (

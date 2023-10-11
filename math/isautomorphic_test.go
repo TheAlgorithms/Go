@@ -1,7 +1,6 @@
 // isautomorphic_test.go
 
-// Package sumofdigits provides method to determine whether a number is automorphic or not.
-package automorphic
+package math
 
 // testing package: to easily perform testing
 import (
