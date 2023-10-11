@@ -44,19 +44,19 @@ func TestDeque(t *testing.T) {
 				},
 				{
 					queryType:     "Front",
-					expectedError: deque.ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDequeue,
 				},
 				{
 					queryType:     "Rear",
-					expectedError: deque.ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDequeue,
 				},
 				{
 					queryType:     "DeQueueFront",
-					expectedError: deque.ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDequeue,
 				},
 				{
 					queryType:     "DeQueueRear",
-					expectedError: deque.ErrEmptyDeQueue,
+					expectedError: deque.ErrEmptyDequeue,
 				},
 				{
 					queryType:      "Length",

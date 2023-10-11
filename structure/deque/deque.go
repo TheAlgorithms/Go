@@ -37,7 +37,7 @@ func (dq *DoublyEndedQueue[T]) EnqueueRear(item T) {
 func (dq *DoublyEndedQueue[T]) DequeueFront() (T, error) {
 	if len(dq.deque) == 0 {
 		var zeroVal T
-		return zeroVal, ErrEmptyDeQueue
+		return zeroVal, ErrEmptyDequeue
 	}
 	frontElement := dq.deque[0]
 	dq.deque = dq.deque[1:]
@@ -48,7 +48,7 @@ func (dq *DoublyEndedQueue[T]) DequeueFront() (T, error) {
 func (dq *DoublyEndedQueue[T]) DequeueRear() (T, error) {
 	if len(dq.deque) == 0 {
 		var zeroVal T
-		return zeroVal, ErrEmptyDeQueue
+		return zeroVal, ErrEmptyDequeue
 	}
 	rearElement := dq.deque[len(dq.deque)-1]
 	dq.deque = dq.deque[:len(dq.deque)-1]
@@ -59,7 +59,7 @@ func (dq *DoublyEndedQueue[T]) DequeueRear() (T, error) {
 func (dq *DoublyEndedQueue[T]) Front() (T, error) {
 	if (len(dq.deque)) == 0 {
 		var zeroVal T
-		return zeroVal, ErrEmptyDeQueue
+		return zeroVal, ErrEmptyDequeue
 	}
 	return dq.deque[0], nil
 }
@@ -68,7 +68,7 @@ func (dq *DoublyEndedQueue[T]) Front() (T, error) {
 func (dq *DoublyEndedQueue[T]) Rear() (T, error) {
 	if (len(dq.deque)) == 0 {
 		var zeroVal T
-		return zeroVal, ErrEmptyDeQueue
+		return zeroVal, ErrEmptyDequeue
 	}
 	return dq.deque[len(dq.deque)-1], nil
 }
