@@ -63,12 +63,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  Package sumofdigits provides method to determine whether a number is automorphic or not. Package sumofdigits provides method to determine whether a number is automorphic or not.
+#####  Package automorphic provides method to determine whether a number is automorphic or not. Package sumofdigits provides method to determine whether a number is automorphic or not.
 
 ---
 ##### Functions:
 
-1. [`IsAutomorphic`](./math/automorphic/isautomorphic.go#L13): No description provided.
+1. [`IsAutomorphic`](./math/automorphic/isautomorphic.go#L18): No description provided.
 
 ---
 </details><details>
@@ -616,7 +616,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go Package math is a package that contains mathematical algorithms and its different implementations.
+#####  Package math is a package that contains mathematical algorithms and its different implementations. filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go
 
 ---
 ##### Functions:
@@ -742,7 +742,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Parenthesis`](./strings/parenthesis/parenthesis.go#L12):  parcounter will be 0 if all open parenthesis are closed correctly
+1. [`Parenthesis`](./strings/parenthesis/parenthesis.go#L8):  Parenthesis algorithm checks if every opened parenthesis is closed correctly. When parcounter is less than 0 when a closing parenthesis is detected without an opening parenthesis that surrounds it and parcounter will be 0 if all open parenthesis are closed correctly.
 
 ---
 </details><details>
@@ -977,29 +977,31 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
-2. [`Bucket`](./sort/bucketsort.go#L7):  Bucket sorts a slice. It is mainly useful when input is uniformly distributed over a range.
-3. [`Cocktail`](./sort/cocktailsort.go#L9):  Cocktail sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning)
-4. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
-5. [`Count`](./sort/countingsort.go#L11): No description provided.
-6. [`Cycle`](./sort/cyclesort.go#L10):  Cycle sort is an in-place, unstable sorting algorithm that is particularly useful when sorting arrays containing elements with a small range of values. It is theoretically optimal in terms of the total number of writes to the original array.
-7. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
-8. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
-9. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-10. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
-11. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
-12. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
-13. [`Pancake`](./sort/pancakesort.go#L8):  Pancake sorts a slice using flip operations, where flip refers to the idea of reversing the slice from index `0` to `i`.
-14. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
-15. [`Partition`](./sort/quicksort.go#L12): No description provided.
-16. [`Patience`](./sort/patiencesort.go#L13): No description provided.
-17. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
-18. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
-19. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
-20. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
-21. [`Selection`](./sort/selectionsort.go#L5): No description provided.
-22. [`Shell`](./sort/shellsort.go#L5): No description provided.
-23. [`Simple`](./sort/simplesort.go#L13): No description provided.
+1. [`BinaryInsertion`](./sort/binaryinsertionsort.go#L13): No description provided.
+2. [`Bogo`](./sort/bogosort.go#L32): No description provided.
+3. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
+4. [`Bucket`](./sort/bucketsort.go#L7):  Bucket sorts a slice. It is mainly useful when input is uniformly distributed over a range.
+5. [`Cocktail`](./sort/cocktailsort.go#L9):  Cocktail sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning)
+6. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+7. [`Count`](./sort/countingsort.go#L11): No description provided.
+8. [`Cycle`](./sort/cyclesort.go#L10):  Cycle sort is an in-place, unstable sorting algorithm that is particularly useful when sorting arrays containing elements with a small range of values. It is theoretically optimal in terms of the total number of writes to the original array.
+9. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
+10. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
+11. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+12. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
+13. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
+14. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
+15. [`Pancake`](./sort/pancakesort.go#L8):  Pancake sorts a slice using flip operations, where flip refers to the idea of reversing the slice from index `0` to `i`.
+16. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
+17. [`Partition`](./sort/quicksort.go#L12): No description provided.
+18. [`Patience`](./sort/patiencesort.go#L13): No description provided.
+19. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
+20. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+21. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+22. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
+23. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+24. [`Shell`](./sort/shellsort.go#L5): No description provided.
+25. [`Simple`](./sort/simplesort.go#L13): No description provided.
 
 ---
 ##### Types
