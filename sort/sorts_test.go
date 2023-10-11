@@ -76,7 +76,10 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
-//BEGIN TESTS
+// BEGIN TESTS
+func TestBinaryInsertion(t *testing.T) {
+	testFramework(t, sort.BinaryInsertion[int])
+}
 
 func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
@@ -89,6 +92,10 @@ func TestBogo(t *testing.T) {
 
 func TestBucketSort(t *testing.T) {
 	testFramework(t, sort.Bucket[int])
+}
+
+func TestCocktailSort(t *testing.T) {
+	testFramework(t, sort.Cocktail[int])
 }
 
 func TestExchange(t *testing.T) {
@@ -220,6 +227,10 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 
 //BEGIN BENCHMARKS
 
+func BenchmarkBinaryInsertion(b *testing.B) {
+	benchmarkFramework(b, sort.BinaryInsertion[int])
+}
+
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
 }
@@ -231,6 +242,10 @@ func BenchmarkBogo(b *testing.B) {
 
 func BenchmarkBucketSort(b *testing.B) {
 	benchmarkFramework(b, sort.Bucket[int])
+}
+
+func BenchmarkCocktailSort(b *testing.B) {
+	benchmarkFramework(b, sort.Cocktail[int])
 }
 
 func BenchmarkExchange(b *testing.B) {
