@@ -9,13 +9,11 @@
 
 package math
 
-// constraints package: to work with any type of signed/unsigned integer
 import (
-	f "github.com/TheAlgorithms/Go/constraints"
+	"github.com/TheAlgorithms/Go/constraints"
 )
 
-func IsAutomorphic[T f.Integer](n T) bool {
-
+func IsAutomorphic[T constraints.Integer](n T) bool {
 	// handling the negetive number case
 	if n < 0 {
 		return false

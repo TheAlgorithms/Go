@@ -1,16 +1,13 @@
-// isautomorphic_test.go
-
 package math
 
-// testing package: to easily perform testing
 import (
 	"testing"
 )
 
 var testCases = []struct {
-	name     string // test description
-	input    int    // user input
-	expected bool   // expected return
+	name     string
+	input    int
+	expected bool
 }{
 	{
 		"negetive number: not Automorphic",
