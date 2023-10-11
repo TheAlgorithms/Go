@@ -954,6 +954,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ##### Functions:
 
 1. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
+1. [`Bogo`](./sort/bogosort.go#L32):  Bogo generates random permutations until it guesses the correct one.
 2. [`Bucket`](./sort/bucketsort.go#L7):  Bucket sorts a slice. It is mainly useful when input is uniformly distributed over a range.
 3. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
 4. [`Count`](./sort/countingsort.go#L11): No description provided.

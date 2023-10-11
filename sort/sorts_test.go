@@ -85,6 +85,11 @@ func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
 }
 
+func TestBogo(t *testing.T) {
+	t.Skip("Skipping test for Bogo Sort, as it uses a lot of resource.")
+	testFramework(t, sort.Bogo[int])
+}
+
 func TestBucketSort(t *testing.T) {
 	testFramework(t, sort.Bucket[int])
 }
@@ -228,6 +233,11 @@ func BenchmarkBinaryInsertion(b *testing.B) {
 
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
+}
+
+func BenchmarkBogo(b *testing.B) {
+	b.Skip("Skipping benchmark for Bogo Sort, as it uses a lot of resource.")
+	benchmarkFramework(b, sort.Bogo[int])
 }
 
 func BenchmarkBucketSort(b *testing.B) {
