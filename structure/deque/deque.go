@@ -11,8 +11,8 @@ import (
 	"errors"
 )
 
-// ErrEmptyDeQueue is a custom error for handling cases when some dequeuing operation is performed on an empty deque.
-var ErrEmptyDeQueue = errors.New("DoublyEnded queue is empty, so can't perform this operation")
+// ErrEmptyDequeue is a custom error for handling cases when some dequeuing operation is performed on an empty deque.
+var ErrEmptyDequeue = errors.New("DoublyEnded queue is empty, so can't perform this operation")
 
 type DoublyEndedQueue[T any] struct {
 	deque []T
