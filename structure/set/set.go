@@ -4,9 +4,9 @@
 package set
 
 // New gives new set.
-func New(items ...any) Set {
-	st := set{
-		elements: make(map[any]bool),
+func New[T comparable](items ...T) Set[T] {
+	st := set[T]{
+		elements: make(map[T]bool),
 	}
 	for _, item := range items {
 		st.Add(item)
@@ -15,73 +15,73 @@ func New(items ...any) Set {
 }
 
 // Set is an interface of possible methods on 'set'.
-type Set interface {
+type Set[T comparable] interface {
 	// Add: adds new element to the set
-	Add(item any)
+	Add(item T)
 	// Delete: deletes the passed element from the set if present
-	Delete(item any)
+	Delete(item T)
 	// Len: gives the length of the set (total no. of elements in set)
 	Len() int
-	// GetItems: gives the array( []any ) of elements of the set.
-	GetItems() []any
+	// GetItems: gives the array( []T ) of elements of the set.
+	GetItems() []T
 	// In: checks whether item is present in set or not.
-	In(item any) bool
+	In(item T) bool
 	// IsSubsetOf: checks whether set is subset of set2 or not.
-	IsSubsetOf(set2 Set) bool
+	IsSubsetOf(set2 Set[T]) bool
 	// IsProperSubsetOf: checks whether set is proper subset of set2 or not.
 	// ex: [1,2,3] proper subset of [1,2,3,4] -> true
-	IsProperSubsetOf(set2 Set) bool
+	IsProperSubsetOf(set2 Set[T]) bool
 	// IsSupersetOf: checks whether set is superset of set2 or not.
-	IsSupersetOf(set2 Set) bool
+	IsSupersetOf(set2 Set[T]) bool
 	// IsProperSupersetOf: checks whether set is proper superset of set2 or not.
 	// ex: [1,2,3,4] proper superset of [1,2,3] -> true
-	IsProperSupersetOf(set2 Set) bool
+	IsProperSupersetOf(set2 Set[T]) bool
 	// Union: gives new union set of both sets.
 	// ex: [1,2,3] union [3,4,5] -> [1,2,3,4,5]
-	Union(set2 Set) Set
+	Union(set2 Set[T]) Set[T]
 	// Intersection: gives new intersection set of both sets.
 	// ex: [1,2,3] Intersection [3,4,5] -> [3]
-	Intersection(set2 Set) Set
+	Intersection(set2 Set[T]) Set[T]
 	// Difference: gives new difference set of both sets.
 	// ex: [1,2,3] Difference [3,4,5] -> [1,2]
-	Difference(set2 Set) Set
+	Difference(set2 Set[T]) Set[T]
 	// SymmetricDifference: gives new symmetric difference set of both sets.
 	// ex: [1,2,3] SymmetricDifference [3,4,5] -> [1,2,4,5]
-	SymmetricDifference(set2 Set) Set
+	SymmetricDifference(set2 Set[T]) Set[T]
 }
 
-type set struct {
-	elements map[any]bool
+type set[T comparable] struct {
+	elements map[T]bool
 }
 
-func (st *set) Add(value any) {
+func (st *set[T]) Add(value T) {
 	st.elements[value] = true
 }
 
-func (st *set) Delete(value any) {
+func (st *set[T]) Delete(value T) {
 	delete(st.elements, value)
 }
 
-func (st *set) GetItems() []any {
-	keys := make([]any, 0, len(st.elements))
+func (st *set[T]) GetItems() []T {
+	keys := make([]T, 0, len(st.elements))
 	for k := range st.elements {
 		keys = append(keys, k)
 	}
 	return keys
 }
 
-func (st *set) Len() int {
+func (st *set[T]) Len() int {
 	return len(st.elements)
 }
 
-func (st *set) In(value any) bool {
+func (st *set[T]) In(value T) bool {
 	if _, in := st.elements[value]; in {
 		return true
 	}
 	return false
 }
 
-func (st *set) IsSubsetOf(superSet Set) bool {
+func (st *set[T]) IsSubsetOf(superSet Set[T]) bool {
 	if st.Len() > superSet.Len() {
 		return false
 	}
@@ -94,26 +94,26 @@ func (st *set) IsSubsetOf(superSet Set) bool {
 	return true
 }
 
-func (st *set) IsProperSubsetOf(superSet Set) bool {
+func (st *set[T]) IsProperSubsetOf(superSet Set[T]) bool {
 	if st.Len() == superSet.Len() {
 		return false
 	}
 	return st.IsSubsetOf(superSet)
 }
 
-func (st *set) IsSupersetOf(subSet Set) bool {
+func (st *set[T]) IsSupersetOf(subSet Set[T]) bool {
 	return subSet.IsSubsetOf(st)
 }
 
-func (st *set) IsProperSupersetOf(subSet Set) bool {
+func (st *set[T]) IsProperSupersetOf(subSet Set[T]) bool {
 	if st.Len() == subSet.Len() {
 		return false
 	}
 	return st.IsSupersetOf(subSet)
 }
 
-func (st *set) Union(st2 Set) Set {
-	unionSet := New()
+func (st *set[T]) Union(st2 Set[T]) Set[T] {
+	unionSet := New[T]()
 	for _, item := range st.GetItems() {
 		unionSet.Add(item)
 	}
@@ -123,9 +123,9 @@ func (st *set) Union(st2 Set) Set {
 	return unionSet
 }
 
-func (st *set) Intersection(st2 Set) Set {
-	intersectionSet := New()
-	var minSet, maxSet Set
+func (st *set[T]) Intersection(st2 Set[T]) Set[T] {
+	intersectionSet := New[T]()
+	var minSet, maxSet Set[T]
 	if st.Len() > st2.Len() {
 		minSet = st2
 		maxSet = st
@@ -141,8 +141,8 @@ func (st *set) Intersection(st2 Set) Set {
 	return intersectionSet
 }
 
-func (st *set) Difference(st2 Set) Set {
-	differenceSet := New()
+func (st *set[T]) Difference(st2 Set[T]) Set[T] {
+	differenceSet := New[T]()
 	for _, item := range st.GetItems() {
 		if !st2.In(item) {
 			differenceSet.Add(item)
@@ -151,9 +151,9 @@ func (st *set) Difference(st2 Set) Set {
 	return differenceSet
 }
 
-func (st *set) SymmetricDifference(st2 Set) Set {
-	symmetricDifferenceSet := New()
-	dropSet := New()
+func (st *set[T]) SymmetricDifference(st2 Set[T]) Set[T] {
+	symmetricDifferenceSet := New[T]()
+	dropSet := New[T]()
 	for _, item := range st.GetItems() {
 		if st2.In(item) {
 			dropSet.Add(item)
