@@ -11,7 +11,10 @@ func TestMatrixCopy(t *testing.T) {
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
 	// Ensure that the copy is not the same as the original
 	matrix, _ := matrix.NewFromElements(data)
-	copyMatrix := matrix.Copy()
+	copyMatrix, err := matrix.Copy()
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 
 	// Ensure that the copy is not the same as the original
 	if &matrix == &copyMatrix {
@@ -35,7 +38,10 @@ func TestMatrixCopyEmpty(t *testing.T) {
 	emptyMatrix := matrix.New(0, 0, 0)
 
 	// Make a copy of the empty matrix
-	copyMatrix := emptyMatrix.Copy()
+	copyMatrix, err := emptyMatrix.Copy()
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 
 	// Ensure that the copy is not the same as the original by comparing their addresses
 	if &emptyMatrix == &copyMatrix {
@@ -55,7 +61,10 @@ func TestMatrixCopyWithDefaultValues(t *testing.T) {
 	defaultMatrix := matrix.New(rows, columns, defaultValue)
 
 	// Make a copy of the matrix
-	copyMatrix := defaultMatrix.Copy()
+	copyMatrix, err := defaultMatrix.Copy()
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 
 	// Ensure that the copy is not the same as the original by comparing their addresses
 	if &defaultMatrix == &copyMatrix {
@@ -84,8 +93,8 @@ func BenchmarkCopyMatrix(b *testing.B) {
 	// Reset the benchmark timer
 	b.ResetTimer()
 
-	// Run the benchmark
+	// Run the benchmarks
 	for i := 0; i < b.N; i++ {
-		_ = matrix.Copy()
+		_, _ = matrix.Copy()
 	}
 }

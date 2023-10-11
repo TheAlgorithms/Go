@@ -1,39 +1,52 @@
 package matrix
 
 import (
+	"context"
 	"errors"
-	"fmt"
-	"sync"
+
+	"golang.org/x/sync/errgroup"
 )
 
-// Subtract subtracts the elements of the matrix (m1) from another matrix (m2) element-wise and returns a new matrix.
-// The two matrices must have the same dimensions.
-// If the matrices have different dimensions or if an error occurs during subtraction, an error is returned.
+// Subtract subtracts two matrices.
 func (m1 Matrix[T]) Subtract(m2 Matrix[T]) (Matrix[T], error) {
 	// Check if the matrices have the same dimensions.
 	if !m1.MatchDimensions(m2) {
-		return Matrix[T]{}, errors.New("matrices are not compatible for addition")
+		return Matrix[T]{}, errors.New("matrices are not compatible for subtraction")
 	}
 
-	var zeroVal T // zero value for default values
 	// Create a new matrix to store the result.
-	result := New(m1.rows, m1.columns, zeroVal)
-	var wg sync.WaitGroup
+	var zeroVal T
+	result := New(m1.Rows(), m1.Columns(), zeroVal)
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel() // Make sure it's called to release resources even if no errors
+
+	var eg errgroup.Group
+
 	for i := 0; i < m1.rows; i++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
+		i := i // Capture the loop variable for the goroutine
+		eg.Go(func() error {
 			for j := 0; j < m1.columns; j++ {
-				sum := m1.elements[i][j] - m2.elements[i][j]
-				err := result.Set(i, j, sum)
+				select {
+				case <-ctx.Done():
+					return nil // Context canceled; return without an error
+				default:
+				}
+
+				diff := m1.elements[i][j] - m2.elements[i][j]
+				err := result.Set(i, j, diff)
 				if err != nil {
-					fmt.Println("Error:", err)
-					return
+					cancel() // Cancel the context on error
+					return err
 				}
 			}
-		}(i)
+			return nil
+		})
 	}
 
-	wg.Wait()
+	if err := eg.Wait(); err != nil {
+		return Matrix[T]{}, err
+	}
+
 	return result, nil
 }

@@ -2,6 +2,7 @@ package matrix
 
 import (
 	"errors"
+	"sync"
 
 	"github.com/TheAlgorithms/Go/constraints"
 )
@@ -20,12 +21,20 @@ func New[T constraints.Integer](rows, columns int, initial T) Matrix[T] {
 
 	// Initialize the matrix with the specified dimensions and fill it with the initial value.
 	elements := make([][]T, rows)
+	var wg sync.WaitGroup
+	wg.Add(rows)
+
 	for i := range elements {
-		elements[i] = make([]T, columns)
-		for j := range elements[i] {
-			elements[i][j] = initial
-		}
+		go func(i int) {
+			defer wg.Done()
+			elements[i] = make([]T, columns)
+			for j := range elements[i] {
+				elements[i][j] = initial
+			}
+		}(i)
 	}
+
+	wg.Wait()
 
 	return Matrix[T]{elements, rows, columns}
 }

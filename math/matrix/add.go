@@ -1,14 +1,13 @@
 package matrix
 
 import (
+	"context"
 	"errors"
-	"fmt"
-	"sync"
+
+	"golang.org/x/sync/errgroup"
 )
 
-// Add adds the elements of the current matrix (m1) to another matrix (m2) element-wise and returns a new matrix.
-// The two matrices must have the same dimensions.
-// If the matrices have different dimensions or if an error occurs during addition, an error is returned.
+// Add adds two matrices.
 func (m1 Matrix[T]) Add(m2 Matrix[T]) (Matrix[T], error) {
 	// Check if the matrices have the same dimensions.
 	if !m1.MatchDimensions(m2) {
@@ -18,22 +17,36 @@ func (m1 Matrix[T]) Add(m2 Matrix[T]) (Matrix[T], error) {
 	// Create a new matrix to store the result.
 	var zeroVal T
 	result := New(m1.Rows(), m1.Columns(), zeroVal)
-	var wg sync.WaitGroup
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel() // Make sure it's called to release resources even if no errors
+
+	var eg errgroup.Group
+
 	for i := 0; i < m1.rows; i++ {
-		wg.Add(1)
-		go func(i int) {
-			defer wg.Done()
+		i := i // Capture the loop variable for the goroutine
+		eg.Go(func() error {
 			for j := 0; j < m1.columns; j++ {
+				select {
+				case <-ctx.Done():
+					return nil // Context canceled; return without an error
+				default:
+				}
+
 				sum := m1.elements[i][j] + m2.elements[i][j]
 				err := result.Set(i, j, sum)
 				if err != nil {
-					fmt.Println("Error:", err)
-					return
+					cancel() // Cancel the context on error
+					return err
 				}
 			}
-		}(i)
+			return nil
+		})
 	}
 
-	wg.Wait()
+	if err := eg.Wait(); err != nil {
+		return Matrix[T]{}, err
+	}
+
 	return result, nil
 }

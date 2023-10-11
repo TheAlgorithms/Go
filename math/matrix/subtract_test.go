@@ -29,9 +29,9 @@ func TestSubtract(t *testing.T) {
 
 	// Test case 2: Matrices with different dimensions
 	_, err2 := m3.Subtract(m4)
-	expectedError2 := fmt.Errorf("matrices are not compatible for addition")
+	expectedError2 := fmt.Errorf("matrices are not compatible for subtraction")
 	if err2 == nil || err2.Error() != expectedError2.Error() {
-		t.Errorf("Add(m3, m4) returned error: %v, expected error: %v", err2, expectedError2)
+		t.Errorf("m3.Subtract(m4) returned error: %v, expected error: %v", err2, expectedError2)
 	}
 
 }
