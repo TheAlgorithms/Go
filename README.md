@@ -59,19 +59,6 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
-	<summary> <strong> automorphic </strong> </summary>	
-
----
-
-#####  Package automorphic provides method to determine whether a number is automorphic or not. Package sumofdigits provides method to determine whether a number is automorphic or not.
-
----
-##### Functions:
-
-1. [`IsAutomorphic`](./math/automorphic/isautomorphic.go#L18): No description provided.
-
----
-</details><details>
 	<summary> <strong> binary </strong> </summary>	
 
 ---
@@ -628,20 +615,21 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 5. [`DefaultPolynomial`](./math/pollard.go#L16):  DefaultPolynomial is the commonly used polynomial g(x) = (x^2 + 1) mod n
 6. [`FindKthMax`](./math/kthnumber.go#L11):  FindKthMax returns the kth large element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
 7. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
-8. [`IsKrishnamurthyNumber`](./math/krishnamurthy.go#L12):  IsKrishnamurthyNumber returns if the provided number n is a Krishnamurthy number or not.
-9. [`IsPerfectNumber`](./math/perfectnumber.go#L34):  Checks if inNumber is a perfect number
-10. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-11. [`Lerp`](./math/lerp.go#L5):  Lerp or Linear interpolation This function will return new value in 't' percentage  between 'v0' and 'v1'
-12. [`LiouvilleLambda`](./math/liouville.go#L24):  Lambda is the liouville function This function returns λ(n) for given number
-13. [`Mean`](./math/mean.go#L7): No description provided.
-14. [`Median`](./math/median.go#L12): No description provided.
-15. [`Mode`](./math/mode.go#L19): No description provided.
-16. [`Mu`](./math/mobius.go#L21):  Mu is the Mobius function This function returns μ(n) for given number
-17. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
-18. [`PollardsRhoFactorization`](./math/pollard.go#L29):  PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm using the default parameters x = y = 2
-19. [`PronicNumber`](./math/pronicnumber.go#L15):  PronicNumber returns true if argument passed to the function is pronic and false otherwise.
-20. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
-21. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
+8. [`IsAutomorphic`](./math/isautomorphic.go#L17): No description provided.
+9. [`IsKrishnamurthyNumber`](./math/krishnamurthy.go#L12):  IsKrishnamurthyNumber returns if the provided number n is a Krishnamurthy number or not.
+10. [`IsPerfectNumber`](./math/perfectnumber.go#L34):  Checks if inNumber is a perfect number
+11. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
+12. [`Lerp`](./math/lerp.go#L5):  Lerp or Linear interpolation This function will return new value in 't' percentage  between 'v0' and 'v1'
+13. [`LiouvilleLambda`](./math/liouville.go#L24):  Lambda is the liouville function This function returns λ(n) for given number
+14. [`Mean`](./math/mean.go#L7): No description provided.
+15. [`Median`](./math/median.go#L12): No description provided.
+16. [`Mode`](./math/mode.go#L19): No description provided.
+17. [`Mu`](./math/mobius.go#L21):  Mu is the Mobius function This function returns μ(n) for given number
+18. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+19. [`PollardsRhoFactorization`](./math/pollard.go#L29):  PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm using the default parameters x = y = 2
+20. [`PronicNumber`](./math/pronicnumber.go#L15):  PronicNumber returns true if argument passed to the function is pronic and false otherwise.
+21. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
+22. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
 
 ---
 </details><details>
