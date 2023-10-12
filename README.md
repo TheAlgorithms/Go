@@ -235,6 +235,38 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> deque </strong> </summary>	
+
+---
+
+#####  Package deque implements a Double Ended Queue data structure.
+
+---
+##### Functions:
+
+1. [`New`](./structure/deque/deque.go#L22):  New returns a new DoublyEndedQueue.
+
+---
+##### Types
+
+1. [`DoublyEndedQueue`](./structure/deque/deque.go#L17): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> deque_test </strong> </summary>	
+
+---
+
+##### Types
+
+1. [`QueryStructure`](./structure/deque/deque_test.go#L20): No description provided.
+
+2. [`TestCaseData`](./structure/deque/deque_test.go#L27): No description provided.
+
+
+---
+</details><details>
 	<summary> <strong> diffiehellman </strong> </summary>	
 
 ---
@@ -603,7 +635,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go Package math is a package that contains mathematical algorithms and its different implementations.
+#####  Package math is a package that contains mathematical algorithms and its different implementations. filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go
 
 ---
 ##### Functions:
