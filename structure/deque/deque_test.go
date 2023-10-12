@@ -1,5 +1,4 @@
 //
-// Package deque provides a double-ended queue data structure implementation.
 // This file contains unit tests for the deque package.
 // The tests cover the following scenarios:
 // - Empty deque
