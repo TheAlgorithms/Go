@@ -61,7 +61,7 @@ func TestFenwickTree(t *testing.T) {
 
 			for i := 0; i < len(test.queries); i++ {
 
-				result := -1
+				var result int
 
 				if test.queries[i].queryType == "point" {
 					result = fenwickTree.PrefixSum(test.queries[i].firstIndex)
