@@ -13,14 +13,26 @@ func TestStrassenMatrixMultiply(t *testing.T) {
 	// Create two sample matrices
 	dataA := [][]int{{1, 2}, {4, 5}}
 	dataB := [][]int{{9, 8}, {6, 5}}
-	matrixA, _ := matrix.NewFromElements(dataA)
-	matrixB, _ := matrix.NewFromElements(dataB)
+	matrixA, err := matrix.NewFromElements(dataA)
+	if err != nil {
+		t.Error("copyMatrix.Set error: " + err.Error())
+	}
+	matrixB, err := matrix.NewFromElements(dataB)
+	if err != nil {
+		t.Error("copyMatrix.Set error: " + err.Error())
+	}
 
 	// Perform matrix multiplication using Strassen's algorithm
-	resultMatrix := matrixA.StrassenMatrixMultiply(matrixB)
+	resultMatrix, err := matrixA.StrassenMatrixMultiply(matrixB)
+	if err != nil {
+		t.Error("copyMatrix.Set error: " + err.Error())
+	}
 
 	// Expected result
-	expectedData, _ := matrixA.Multiply(matrixB)
+	expectedData, err := matrixA.Multiply(matrixB)
+	if err != nil {
+		t.Error("copyMatrix.Set error: " + err.Error())
+	}
 
 	// Check the dimensions of the result matrix
 	expectedRows := expectedData.Rows()
@@ -56,16 +68,27 @@ func TestMatrixMultiplication(t *testing.T) {
 	matrixB := MakeRandomMatrix[int](size, size)
 
 	// Calculate the expected result using the standard multiplication
-	expected, _ := matrixA.Multiply(matrixB)
-
+	expected, err := matrixA.Multiply(matrixB)
+	if err != nil {
+		t.Error("copyMatrix.Set error: " + err.Error())
+	}
 	// Calculate the result using the Strassen algorithm
-	result := matrixA.StrassenMatrixMultiply(matrixB)
+	result, err := matrixA.StrassenMatrixMultiply(matrixB)
+	if err != nil {
+		t.Error("copyMatrix.Set error: " + err.Error())
+	}
 
 	// Check if the result matches the expected result
 	for i := 0; i < size; i++ {
 		for j := 0; j < size; j++ {
-			val, _ := result.Get(i, j)
-			exp, _ := expected.Get(i, j)
+			val, err := result.Get(i, j)
+			if err != nil {
+				t.Error("copyMatrix.Set error: " + err.Error())
+			}
+			exp, err := expected.Get(i, j)
+			if err != nil {
+				t.Error("copyMatrix.Set error: " + err.Error())
+			}
 			if val != exp {
 				t.Errorf("Mismatch at position (%d, %d). Expected %d, but got %d.", i, j, exp, val)
 			}
@@ -97,6 +120,6 @@ func BenchmarkStrassenMatrixMultiply(b *testing.B) {
 	m2 := matrix.New(rows, columns, 3) // Replace with appropriate values
 
 	for i := 0; i < b.N; i++ {
-		_ = m1.StrassenMatrixMultiply(m2)
+		_, _ = m1.StrassenMatrixMultiply(m2)
 	}
 }

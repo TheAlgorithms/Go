@@ -9,59 +9,173 @@
 package matrix
 
 // Perform matrix multiplication using Strassen's algorithm
-func (A Matrix[T]) StrassenMatrixMultiply(B Matrix[T]) Matrix[T] {
+func (A Matrix[T]) StrassenMatrixMultiply(B Matrix[T]) (Matrix[T], error) {
 	n := A.rows
 	// Check if matrices are 2x2 or smaller
 	if n == 1 {
-		a1, _ := A.Get(0, 0)
-		b1, _ := B.Get(0, 0)
+		a1, err := A.Get(0, 0)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		b1, err := B.Get(0, 0)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 		result := New(1, 1, a1*b1)
-		return result
+		return result, nil
 	} else {
 		// Calculate the size of submatrices
 		mid := n / 2
 
 		// Create submatrices
-		A11, _ := A.SubMatrix(0, 0, mid, mid)
-		A12, _ := A.SubMatrix(0, mid, mid, n-mid)
-		A21, _ := A.SubMatrix(mid, 0, n-mid, mid)
-		A22, _ := A.SubMatrix(mid, mid, n-mid, n-mid)
+		A11, err := A.SubMatrix(0, 0, mid, mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		A12, err := A.SubMatrix(0, mid, mid, n-mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		A21, err := A.SubMatrix(mid, 0, n-mid, mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		A22, err := A.SubMatrix(mid, mid, n-mid, n-mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 
-		B11, _ := B.SubMatrix(0, 0, mid, mid)
-		B12, _ := B.SubMatrix(0, mid, mid, n-mid)
-		B21, _ := B.SubMatrix(mid, 0, n-mid, mid)
-		B22, _ := B.SubMatrix(mid, mid, n-mid, n-mid)
+		B11, err := B.SubMatrix(0, 0, mid, mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		B12, err := B.SubMatrix(0, mid, mid, n-mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		B21, err := B.SubMatrix(mid, 0, n-mid, mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		B22, err := B.SubMatrix(mid, mid, n-mid, n-mid)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 
 		// Calculate result submatrices
-		A1, _ := A11.Add(A22)
-		A2, _ := B11.Add(B22)
-		A3, _ := A21.Add(A22)
-		A4, _ := A11.Add(A12)
-		A5, _ := B11.Add(B12)
-		A6, _ := B21.Add(B22)
+		A1, err := A11.Add(A22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+
+		A2, err := B11.Add(B22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+
+		A3, err := A21.Add(A22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+
+		A4, err := A11.Add(A12)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+
+		A5, err := B11.Add(B12)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+
+		A6, err := B21.Add(B22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 		//
-		S1, _ := B12.Subtract(B22)
-		S2, _ := B21.Subtract(B11)
-		S3, _ := A21.Subtract(A11)
-		S4, _ := A12.Subtract(A22)
+		S1, err := B12.Subtract(B22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		S2, err := B21.Subtract(B11)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		S3, err := A21.Subtract(A11)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		S4, err := A12.Subtract(A22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 		// Recursive steps
-		M1 := A1.StrassenMatrixMultiply(A2)
-		M2 := A3.StrassenMatrixMultiply(B11)
-		M3 := A11.StrassenMatrixMultiply(S1)
-		M4 := A22.StrassenMatrixMultiply(S2)
-		M5 := A4.StrassenMatrixMultiply(B22)
-		M6 := S3.StrassenMatrixMultiply(A5)
-		M7 := S4.StrassenMatrixMultiply(A6)
-		//
-		A7, _ := M1.Add(M4)
-		A8, _ := A7.Add(M7)
-		A9, _ := M1.Add(M3)
-		A10, _ := A9.Add(M6)
+		M1, err := A1.StrassenMatrixMultiply(A2)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		M2, err := A3.StrassenMatrixMultiply(B11)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		M3, err := A11.StrassenMatrixMultiply(S1)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		M4, err := A22.StrassenMatrixMultiply(S2)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		M5, err := A4.StrassenMatrixMultiply(B22)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		M6, err := S3.StrassenMatrixMultiply(A5)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		M7, err := S4.StrassenMatrixMultiply(A6)
+
+		if err != nil {
+			return Matrix[T]{}, err
+		} //
+		A7, err := M1.Add(M4)
+
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		A8, err := A7.Add(M7)
+
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		A9, err := M1.Add(M3)
+
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		A10, err := A9.Add(M6)
+
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 		// Calculate result submatrices
-		C11, _ := A8.Subtract(M5)
-		C12, _ := M3.Add(M5)
-		C21, _ := M2.Add(M4)
-		C22, _ := A10.Subtract(M2)
+		C11, err := A8.Subtract(M5)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		C12, err := M3.Add(M5)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		C21, err := M2.Add(M4)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
+		C22, err := A10.Subtract(M2)
+		if err != nil {
+			return Matrix[T]{}, err
+		}
 
 		// Combine subMatrices into the result matrix
 		var zeroVal T
@@ -69,26 +183,38 @@ func (A Matrix[T]) StrassenMatrixMultiply(B Matrix[T]) Matrix[T] {
 
 		for i := 0; i < mid; i++ {
 			for j := 0; j < mid; j++ {
-				val, _ := C11.Get(i, j)
-
-				err := C.Set(i, j, val)
+				val, err := C11.Get(i, j)
 				if err != nil {
 					panic("copyMatrix.Set error: " + err.Error())
 				}
 
-				val, _ = C12.Get(i, j)
+				err = C.Set(i, j, val)
+				if err != nil {
+					panic("copyMatrix.Set error: " + err.Error())
+				}
+
+				val, err = C12.Get(i, j)
+				if err != nil {
+					panic("copyMatrix.Set error: " + err.Error())
+				}
 
 				err1 := C.Set(i, j+mid, val)
 				if err1 != nil {
 					panic("copyMatrix.Set error: " + err1.Error())
 				}
-				val, _ = C21.Get(i, j)
+				val, err = C21.Get(i, j)
+				if err != nil {
+					panic("copyMatrix.Set error: " + err.Error())
+				}
 
 				err2 := C.Set(i+mid, j, val)
 				if err2 != nil {
 					panic("copyMatrix.Set error: " + err2.Error())
 				}
-				val, _ = C22.Get(i, j)
+				val, err = C22.Get(i, j)
+				if err != nil {
+					panic("copyMatrix.Set error: " + err.Error())
+				}
 
 				err3 := C.Set(i+mid, j+mid, val)
 				if err3 != nil {
@@ -96,6 +222,6 @@ func (A Matrix[T]) StrassenMatrixMultiply(B Matrix[T]) Matrix[T] {
 				}
 			}
 		}
-		return C
+		return C, nil
 	}
 }
