@@ -1,6 +1,9 @@
 package search
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func TestBinary(t *testing.T) {
 	for _, test := range searchTests {
@@ -8,7 +11,7 @@ func TestBinary(t *testing.T) {
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
-		if actualError != test.expectedError {
+		if !errors.Is(test.expectedError, actualError) {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected error '%s', get error '%s'", test.name, test.data, test.key, test.expectedError, actualError)
 		}
 	}
@@ -20,7 +23,7 @@ func TestBinaryIterative(t *testing.T) {
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
-		if actualError != test.expectedError {
+		if !errors.Is(test.expectedError, actualError) {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected error '%s', get error '%s'", test.name, test.data, test.key, test.expectedError, actualError)
 		}
 	}
@@ -32,7 +35,7 @@ func TestLowerBound(t *testing.T) {
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
-		if actualError != test.expectedError {
+		if !errors.Is(test.expectedError, actualError) {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected error '%s', get error '%s'", test.name, test.data, test.key, test.expectedError, actualError)
 		}
 	}
@@ -44,7 +47,7 @@ func TestUpperBound(t *testing.T) {
 		if actualValue != test.expected {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected '%d', get '%d'", test.name, test.data, test.key, test.expected, actualValue)
 		}
-		if actualError != test.expectedError {
+		if !errors.Is(test.expectedError, actualError) {
 			t.Errorf("test '%s' failed: input array '%v' with key '%d', expected error '%s', get error '%s'", test.name, test.data, test.key, test.expectedError, actualError)
 		}
 	}

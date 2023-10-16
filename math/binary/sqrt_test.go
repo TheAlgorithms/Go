@@ -10,7 +10,7 @@ import (
 	"testing"
 )
 
-const epsilon = 0.2
+const epsilon = 0.001
 
 func TestSquareRootCalculation(t *testing.T) {
 	tests := []struct {
