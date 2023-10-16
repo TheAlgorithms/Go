@@ -48,7 +48,7 @@ func TestMatrixCopyEmpty(t *testing.T) {
 
 	// Make a copy of the empty matrix
 	copyMatrix, err := emptyMatrix.Copy()
-	if err != nil {
+	if err != nil { // as empty matrix
 		t.Fatalf("Failed to copy matrix: %v", err)
 	}
 

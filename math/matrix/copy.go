@@ -3,8 +3,12 @@ package matrix
 import "sync"
 
 func (m Matrix[T]) Copy() (Matrix[T], error) {
+
 	rows := m.Rows()
 	columns := m.Columns()
+	if rows == 0 || columns == 0 {
+		return Matrix[T]{}, nil
+	}
 	zeroVal, err := m.Get(0, 0) // Get the zero value of the element type
 	if err != nil {
 		return Matrix[T]{}, err
