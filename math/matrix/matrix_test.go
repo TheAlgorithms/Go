@@ -32,7 +32,7 @@ func TestNewFromElements(t *testing.T) {
 		for j := 0; j < len(validElements[0]); j++ {
 			err := expectedm1.Set(i, j, validElements[i][j])
 			if err != nil {
-				panic("copyMatrix.Set error: " + err.Error())
+				t.Errorf("copyMatrix.Set error: " + err.Error())
 			}
 		}
 	}
@@ -73,7 +73,7 @@ func TestMatrixGet(t *testing.T) {
 	matrix := matrix.New(3, 3, 0)
 	err := matrix.Set(1, 1, 42) // Set a specific value for testing
 	if err != nil {
-		panic("copyMatrix.Set error: " + err.Error())
+		t.Errorf("copyMatrix.Set error: " + err.Error())
 	}
 	// Test case 1: Valid Get
 	val1, err1 := matrix.Get(1, 1)
@@ -107,7 +107,10 @@ func TestMatrixSet(t *testing.T) {
 	if err1 != nil {
 		t.Errorf("matrix.Set(1, 1, 42) returned an error: %v, expected no error", err1)
 	}
-	val1, _ := matrix.Get(1, 1)
+	val1, err := matrix.Get(1, 1)
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	if val1 != 42 {
 		t.Errorf("matrix.Set(1, 1, 42) did not set the value correctly, expected 42, got %v", val1)
 	}
@@ -129,8 +132,10 @@ func TestMatrixSet(t *testing.T) {
 func TestMatrixRows(t *testing.T) {
 	// Create a sample matrix
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-	matrix, _ := matrix.NewFromElements(data)
-
+	matrix, err := matrix.NewFromElements(data)
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	// Check the number of rows
 	expectedRows := len(data)
 	rows := matrix.Rows()
@@ -142,8 +147,10 @@ func TestMatrixRows(t *testing.T) {
 func TestMatrixColumns(t *testing.T) {
 	// Create a sample matrix
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-	matrix, _ := matrix.NewFromElements(data)
-
+	matrix, err := matrix.NewFromElements(data)
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	// Check the number of columns
 	expectedColumns := len(data[0])
 	columns := matrix.Columns()

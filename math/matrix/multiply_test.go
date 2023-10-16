@@ -25,10 +25,19 @@ func TestMultiplyMatrix(t *testing.T) {
 	t.Run("Compatible Matrices", func(t *testing.T) {
 		mat1 := [][]int{{1, 2, 3}, {4, 5, 6}}
 		mat2 := [][]int{{7, 8}, {9, 10}, {11, 12}}
-		m1, _ := matrix.NewFromElements(mat1)
-		m2, _ := matrix.NewFromElements(mat2)
+		m1, err := matrix.NewFromElements(mat1)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
+		m2, err := matrix.NewFromElements(mat2)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
 		exp := [][]int{{58, 64}, {139, 154}}
-		expected, _ := matrix.NewFromElements(exp)
+		expected, err := matrix.NewFromElements(exp)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
 		result, err := m1.Multiply(m2)
 		if err != nil {
 			t.Errorf("Expected no error, got %v", err)
@@ -45,10 +54,16 @@ func TestMultiplyIncompatibleMatrix(t *testing.T) {
 	t.Run("Incompatible Matrices", func(t *testing.T) {
 		mat1 := [][]int{{1, 2, 3}, {4, 5, 6}}
 		mat2 := [][]int{{7, 8}, {9, 10}}
-		m1, _ := matrix.NewFromElements(mat1)
-		m2, _ := matrix.NewFromElements(mat2)
+		m1, err := matrix.NewFromElements(mat1)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
+		m2, err := matrix.NewFromElements(mat2)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
 
-		_, err := m1.Multiply(m2)
+		_, err = m1.Multiply(m2)
 		if err == nil {
 			t.Error("Expected an error, but got none")
 		}
@@ -57,9 +72,15 @@ func TestMultiplyIncompatibleMatrix(t *testing.T) {
 	t.Run("Incompatible Matrices", func(t *testing.T) {
 		mat1 := [][]int{{1, 2}}
 		mat2 := [][]int{{}}
-		m1, _ := matrix.NewFromElements(mat1)
-		m2, _ := matrix.NewFromElements(mat2)
-		_, err := m1.Multiply(m2)
+		m1, err := matrix.NewFromElements(mat1)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
+		m2, err := matrix.NewFromElements(mat2)
+		if err != nil {
+			t.Fatalf("Failed to copy matrix: %v", err)
+		}
+		_, err = m1.Multiply(m2)
 
 		if err == nil {
 			t.Error("Expected an error, but got none")

@@ -51,8 +51,14 @@ func TestStrassenMatrixMultiply(t *testing.T) {
 	// Check the values in the result matrix
 	for i := 0; i < expectedRows; i++ {
 		for j := 0; j < expectedColumns; j++ {
-			val, _ := resultMatrix.Get(i, j)
-			expVal, _ := expectedData.Get(i, j)
+			val, err := resultMatrix.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
+			expVal, err := expectedData.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
 			if val != expVal {
 				t.Errorf("Expected value %d at (%d, %d) in result matrix, but got %d", expVal, i, j, val)
 			}

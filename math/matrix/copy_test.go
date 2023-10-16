@@ -10,7 +10,10 @@ func TestMatrixCopy(t *testing.T) {
 	// Create a sample matrix
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
 	// Ensure that the copy is not the same as the original
-	matrix, _ := matrix.NewFromElements(data)
+	matrix, err := matrix.NewFromElements(data)
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	copyMatrix, err := matrix.Copy()
 	if err != nil {
 		t.Fatalf("Failed to copy matrix: %v", err)
@@ -23,8 +26,14 @@ func TestMatrixCopy(t *testing.T) {
 
 	for i := 0; i < matrix.Rows(); i++ {
 		for j := 0; j < matrix.Columns(); j++ {
-			val1, _ := matrix.Get(i, j)
-			val2, _ := copyMatrix.Get(i, j)
+			val1, err := matrix.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
+			val2, err := copyMatrix.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
 			if val1 != val2 {
 				t.Errorf("Copy did not correctly copy element (%d, %d).", i, j)
 			}
@@ -74,8 +83,14 @@ func TestMatrixCopyWithDefaultValues(t *testing.T) {
 	// Check if the copy has the same values as the original (all zeroes)
 	for i := 0; i < defaultMatrix.Rows(); i++ {
 		for j := 0; j < defaultMatrix.Columns(); j++ {
-			val1, _ := defaultMatrix.Get(i, j)
-			val2, _ := copyMatrix.Get(i, j)
+			val1, err := defaultMatrix.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
+			val2, err := copyMatrix.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
 			if val1 != val2 || val1 != defaultValue || val2 != defaultValue {
 				t.Errorf("Copy did not preserve default values at row %d, column %d. Expected %v, got %v", i, j, defaultValue, val2)
 			}

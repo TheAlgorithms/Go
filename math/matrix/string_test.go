@@ -19,7 +19,10 @@ func TestMatrixString(t *testing.T) {
 
 	// Redirect stdout to capture Stringed output
 	old := os.Stdout
-	r, w, _ := os.Pipe()
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	os.Stdout = w
 
 	// Call the String method
@@ -51,7 +54,10 @@ func TestNullMatrixString(t *testing.T) {
 	m1 := matrix.New(0, 0, 0)
 	// Redirect stdout to capture Stringed output
 	old := os.Stdout
-	r, w, _ := os.Pipe()
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	os.Stdout = w
 
 	// Call the String method
@@ -63,7 +69,7 @@ func TestNullMatrixString(t *testing.T) {
 
 	// Read the captured output
 	var buf bytes.Buffer
-	_, err := io.Copy(&buf, r)
+	_, err = io.Copy(&buf, r)
 	if err != nil {
 		t.Errorf("Error copying output: %v", err)
 	}

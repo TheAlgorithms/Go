@@ -185,40 +185,40 @@ func (A Matrix[T]) StrassenMatrixMultiply(B Matrix[T]) (Matrix[T], error) {
 			for j := 0; j < mid; j++ {
 				val, err := C11.Get(i, j)
 				if err != nil {
-					panic("copyMatrix.Set error: " + err.Error())
+					return Matrix[T]{}, err
 				}
 
 				err = C.Set(i, j, val)
 				if err != nil {
-					panic("copyMatrix.Set error: " + err.Error())
+					return Matrix[T]{}, err
 				}
 
 				val, err = C12.Get(i, j)
 				if err != nil {
-					panic("copyMatrix.Set error: " + err.Error())
+					return Matrix[T]{}, err
 				}
 
 				err1 := C.Set(i, j+mid, val)
 				if err1 != nil {
-					panic("copyMatrix.Set error: " + err1.Error())
+					return Matrix[T]{}, err1
 				}
 				val, err = C21.Get(i, j)
 				if err != nil {
-					panic("copyMatrix.Set error: " + err.Error())
+					return Matrix[T]{}, err
 				}
 
 				err2 := C.Set(i+mid, j, val)
 				if err2 != nil {
-					panic("copyMatrix.Set error: " + err2.Error())
+					return Matrix[T]{}, err2
 				}
 				val, err = C22.Get(i, j)
 				if err != nil {
-					panic("copyMatrix.Set error: " + err.Error())
+					return Matrix[T]{}, err
 				}
 
 				err3 := C.Set(i+mid, j+mid, val)
 				if err3 != nil {
-					panic("copyMatrix.Set error: " + err3.Error())
+					return Matrix[T]{}, err3
 				}
 			}
 		}

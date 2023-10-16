@@ -9,8 +9,10 @@ import (
 func TestMatrixSubMatrix(t *testing.T) {
 	// Create a sample matrix
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-	matrix, _ := matrix.NewFromElements(data)
-
+	matrix, err := matrix.NewFromElements(data)
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	// Extract a submatrix
 	subMatrix, err := matrix.SubMatrix(1, 1, 2, 2)
 	if err != nil {
@@ -35,7 +37,10 @@ func TestMatrixSubMatrix(t *testing.T) {
 	expectedData := [][]int{{5, 6}, {8, 9}}
 	for i := 0; i < expectedRows; i++ {
 		for j := 0; j < expectedColumns; j++ {
-			val, _ := subMatrix.Get(i, j)
+			val, err := subMatrix.Get(i, j)
+			if err != nil {
+				t.Fatalf("Failed to copy matrix: %v", err)
+			}
 			if val != expectedData[i][j] {
 				t.Errorf("Expected value %d at (%d, %d) in submatrix, but got %d", expectedData[i][j], i, j, val)
 			}
@@ -46,10 +51,12 @@ func TestMatrixSubMatrix(t *testing.T) {
 func TestMatrixInvalidSubMatrix(t *testing.T) {
 	// Create a sample matrix
 	data := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-	matrix, _ := matrix.NewFromElements(data)
-
+	matrix, err := matrix.NewFromElements(data)
+	if err != nil {
+		t.Fatalf("Failed to copy matrix: %v", err)
+	}
 	// Attempt to extract an invalid submatrix
-	_, err := matrix.SubMatrix(1, 1, 3, 3)
+	_, err = matrix.SubMatrix(1, 1, 3, 3)
 
 	// Check if an error is returned
 	if err == nil {
