@@ -1,0 +1,28 @@
+# https://github.com/golangci/golangci-lint
+name: CI tool kit
+on:
+  pull_request:
+
+jobs:
+  CITK:
+    name: Code style and tests
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: "^1.18"
+      - name: Checkout branch
+        run: |
+          git fetch origin master:master
+      - name: Install citk tool
+        run: |
+          go install github.com/tjgurwara99/citk@latest
+      - name: Run citk tool
+        run: |
+          citk check -l go -b master
