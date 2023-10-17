@@ -13,7 +13,6 @@ func TestUnionFind(t *testing.T){
 	u = u.Union(4,5)
 	u = u.Union(6,7)
 	
-}
 
 // test finding the parent of specific elements
 t.Run("Test Find", func(t *testing.T){
@@ -32,3 +31,4 @@ t.Run("Test Find after union", func(t *testing.T){
 		t.Error("Union operation not functioning correctly")
 	}
 })
+}
