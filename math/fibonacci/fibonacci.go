@@ -45,3 +45,13 @@ func Formula(n uint) uint {
 	powPhi := math.Pow(phi, float64(n))
 	return uint(powPhi/sqrt5 + 0.5)
 }
+
+// Recursive calculates the n-th fibonacci number recursively by adding the previous two Fibonacci numbers.
+// This algorithm is extremely slow for bigger numbers, but provides a simpler implementation.
+func Recursive(n uint) uint {
+	if n <= 1 {
+		return n
+	}
+
+	return Recursive(n-1) + Recursive(n-2)
+}
