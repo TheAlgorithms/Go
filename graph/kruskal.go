@@ -6,108 +6,120 @@ package graph
 
 import (
 	"sort"
+	"fmt"
 )
 
 type Vertex int
 
-// Edge describes the edge of a weighted graph
-type Edge struct {
-	Start  Vertex
-	End    Vertex
-	Weight int
+// Defining the union-find data structure
+type UnionFind struct {
+	parent []int
+	size []int 
 }
 
-// DisjointSetUnionElement describes what an element of DSU looks like
-type DisjointSetUnionElement struct {
-	Parent Vertex
-	Rank   int
+
+// Initialise a new union find data structure with s nodes
+func NewUnionFind(s int) UnionFind {
+	parent := make([]int, s)
+	size := make([]int, s)
+	for k := 0; k < s; k++ {
+		parent[k] = k
+		size[k] = 1
+	}
+	return UnionFind{parent, size}
 }
 
-// DisjointSetUnion is a data structure that treats its elements as separate sets
-// and provides fast operations for set creation, merging sets, and finding the parent
-// of the given element of a set.
-type DisjointSetUnion []DisjointSetUnionElement
 
-// NewDSU will return an initialised DSU using the value of n
-// which will be treated as the number of elements out of which
-// the DSU is being made
-func NewDSU(n int) *DisjointSetUnion {
-
-	dsu := DisjointSetUnion(make([]DisjointSetUnionElement, n))
-	return &dsu
+// to find the root of the set to which the given element belongs, the Find function serves the purpose
+func (u UnionFind) Find(q int) int {
+	for q != u.parent[q] {
+		q = u.parent[q]
+	}
+	return q
 }
 
-// MakeSet will create a set in the DSU for the given node
-func (dsu DisjointSetUnion) MakeSet(node Vertex) {
 
-	dsu[node].Parent = node
-	dsu[node].Rank = 0
-}
+// to merge two sets to which the given elements belong, the Union function serves the purpose
+func (u UnionFind) Union(a, b int) UnionFind {
+	rootP := u.Find(a)
+	rootQ := u.Find(b)
 
-// FindSetRepresentative will return the parent element of the set the given node
-// belongs to. Since every single element in the path from node to parent
-// has the same parent, we store the parent value for each element in the
-// path. This reduces consequent function calls and helps in going from O(n)
-// to O(log n). This is known as path compression technique.
-func (dsu DisjointSetUnion) FindSetRepresentative(node Vertex) Vertex {
-
-	if node == dsu[node].Parent {
-		return node
+	if rootP == rootQ {
+		return u
 	}
 
-	dsu[node].Parent = dsu.FindSetRepresentative(dsu[node].Parent)
-	return dsu[node].Parent
-}
-
-// unionSets will merge two given sets. The naive implementation of this
-// always combines the secondNode's tree with the firstNode's tree. This can lead
-// to creation of trees of length O(n) so we optimize by attaching the node with
-// smaller rank to the node with bigger rank. Rank represents the upper bound depth of the tree.
-func (dsu DisjointSetUnion) UnionSets(firstNode Vertex, secondNode Vertex) {
-
-	firstNode = dsu.FindSetRepresentative(firstNode)
-	secondNode = dsu.FindSetRepresentative(secondNode)
-
-	if firstNode != secondNode {
-
-		if dsu[firstNode].Rank < dsu[secondNode].Rank {
-			firstNode, secondNode = secondNode, firstNode
-		}
-		dsu[secondNode].Parent = firstNode
-
-		if dsu[firstNode].Rank == dsu[secondNode].Rank {
-			dsu[firstNode].Rank++
-		}
+	if u.size[rootP] < u.size[rootQ] {
+		u.parent[rootP] = rootQ
+		u.size[rootQ] += u.size[rootP]
+	} else {
+		u.parent[rootQ] = rootP
+		u.size[rootP] += u.size[rootQ]
 	}
+	return u
 }
 
-// KruskalMST will return a minimum spanning tree along with its total cost
-// to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is
-// the number of edges in the graph and n is number of nodes in it.
 func KruskalMST(n int, edges []Edge) ([]Edge, int) {
+	// Initialize variables to store the minimum spanning tree and its total cost
+	var mst []Edge
+	var cost int
 
-	var mst []Edge // The resultant minimum spanning tree
-	var cost int = 0
+	// Create a new UnionFind data structure with 'n' nodes
+	u := NewUnionFind(n)
 
-	dsu := NewDSU(n)
-
+	// Initialize each node in the UnionFind data structure
 	for i := 0; i < n; i++ {
-		dsu.MakeSet(Vertex(i))
+		u.parent[i] = Vertex(i)
+		u.size[i] = 1
 	}
 
+	// Sort the edges in non-decreasing order based on their weights
 	sort.SliceStable(edges, func(i, j int) bool {
 		return edges[i].Weight < edges[j].Weight
 	})
 
+	// Iterate through the sorted edges
 	for _, edge := range edges {
-
-		if dsu.FindSetRepresentative(edge.Start) != dsu.FindSetRepresentative(edge.End) {
-
+		// Check if adding the current edge forms a cycle or not
+		if u.Find(edge.Start) != u.Find(edge.End) {
+			// Add the edge to the minimum spanning tree
 			mst = append(mst, edge)
+			// Add the weight of the edge to the total cost
 			cost += edge.Weight
-			dsu.UnionSets(edge.Start, edge.End)
+			// Merge the sets containing the start and end vertices of the current edge
+			u = u.Union(edge.Start, edge.End)
 		}
 	}
 
+	// Return the minimum spanning tree and its total cost
 	return mst, cost
+}
+
+// The main function sets up a sample graph and finds its minimum spanning tree using Kruskal's algorithm
+func main() {
+	// Define the number of vertices in the graph
+	n := 5
+
+	// Define the edges of the graph
+	edges := []Edge{
+		{Start: 0, End: 1, Weight: 4},
+		{Start: 0, End: 2, Weight: 13},
+		{Start: 0, End: 3, Weight: 7},
+		{Start: 0, End: 4, Weight: 7},
+		{Start: 1, End: 2, Weight: 9},
+		{Start: 1, End: 3, Weight: 3},
+		{Start: 1, End: 4, Weight: 7},
+		{Start: 2, End: 3, Weight: 10},
+		{Start: 2, End: 4, Weight: 14},
+		{Start: 3, End: 4, Weight: 4},
+	}
+
+	// Find the minimum spanning tree and its cost using Kruskal's algorithm
+	mst, cost := KruskalMST(n, edges)
+
+	// Print the edges in the minimum spanning tree and the total cost
+	fmt.Println("Minimum Spanning Tree:")
+	for _, edge := range mst {
+		fmt.Printf("Start: %d, End: %d, Weight: %d\n", edge.Start, edge.End, edge.Weight)
+	}
+	fmt.Println("Total cost:", cost)
 }
