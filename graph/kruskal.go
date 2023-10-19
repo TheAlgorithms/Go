@@ -1,15 +1,9 @@
 // KRUSKAL'S ALGORITHM
-
 // Reference: Kruskal's Algorithm: https://www.scaler.com/topics/data-structures/kruskal-algorithm/
-
 // Reference: Union Find Algorithm: https://www.scaler.com/topics/data-structures/disjoint-set/
-
 // Author: Author: Mugdha Behere[https://github.com/MugdhaBehere]
-
 // Worst Case Time Complexity: O(E log E), where E is the number of edges.
-
 // Worst Case Space Complexity: O(V + E), where V is the number of vertices and E is the number of edges.
-
 // see kruskal.go, kruskal_test.go
 
 package graph
