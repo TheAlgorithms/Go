@@ -1,9 +1,14 @@
+// cycle.go
+// this file handle algorithm that related to cycle in graph
+// reference: https://en.wikipedia.org/wiki/Cycle_(graph_theory)
+// [kiarash hajian](https://github.com/kiarash8112)
+
 package graph
 
 import "strconv"
 
 func (g *Graph) HasCycle() bool {
-
+	//this implimetation refered as 3-color too
 	all := map[int]struct{}{}
 	visiting := map[int]struct{}{}
 	visited := map[int]struct{}{}
@@ -58,7 +63,8 @@ func (g *Graph) FindAllCycles() []string {
 
 		if foundCycle {
 			foundCycleFromCurrent := false
-
+			//this loop remove additional vertex from detected cycle
+			//using foundCycleFromCurrent bool to make sure after removing vertex we still have cycle
 			for i := len(parents) - 1; i > 0; i-- {
 				if parents[i][1] == parents[0][0] {
 					parents = parents[:i+1]
