@@ -1,5 +1,7 @@
 package graph
 
+import "strconv"
+
 func (g *Graph) HasCycle() bool {
 
 	all := map[int]struct{}{}
@@ -37,4 +39,75 @@ func (g Graph) HasCycleHelper(v int, all, visiting, visited map[int]struct{}) bo
 	delete(visiting, v)
 	visited[v] = struct{}{}
 	return false
+}
+
+// this function can do HasCycle() job but it is slower
+func (g *Graph) FindAllCycles() []string {
+	all := map[int]struct{}{}
+	visiting := map[int]struct{}{}
+	visited := map[int]struct{}{}
+
+	allCycles := []string{}
+
+	for v := range g.edges {
+		all[v] = struct{}{}
+	}
+
+	for current := range all {
+		foundCycle, parents := g.FindAllCyclesHelper(current, all, visiting, visited)
+
+		if foundCycle {
+			foundCycleFromCurrent := false
+
+			for i := len(parents) - 1; i > 0; i-- {
+				if parents[i][1] == parents[0][0] {
+					parents = parents[:i+1]
+					foundCycleFromCurrent = true
+				}
+			}
+			if foundCycleFromCurrent {
+				allCycles = append(allCycles, ConvertToString(parents))
+			}
+
+		}
+
+	}
+
+	return allCycles
+
+}
+
+func (g Graph) FindAllCyclesHelper(current int, all, visiting, visited map[int]struct{}) (bool, [][]int) {
+	parents := [][]int{}
+
+	delete(all, current)
+	visiting[current] = struct{}{}
+
+	neighbors := g.edges[current]
+	for v := range neighbors {
+		if _, ok := visited[v]; ok {
+			continue
+		} else if _, ok := visiting[v]; ok {
+			parents = append(parents, []int{v, current})
+			return true, parents
+		} else if ok, savedParents := g.FindAllCyclesHelper(v, all, visiting, visited); ok {
+			parents = append(parents, savedParents...)
+			parents = append(parents, []int{v, current})
+			return true, parents
+		}
+	}
+	delete(visiting, current)
+	visited[current] = struct{}{}
+	return false, parents
+}
+
+func ConvertToString(parents [][]int) string {
+	path := ""
+	for i := len(parents) - 1; i >= 0; i-- {
+		path += strconv.Itoa(parents[i][0]) + " -> "
+	}
+
+	path += strconv.Itoa(parents[len(parents)-1][0])
+
+	return path
 }
