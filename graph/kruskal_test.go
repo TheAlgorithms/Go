@@ -5,11 +5,6 @@ import (
 	"testing"
 )
 
-type Edge struct {
-	Start  Vertex
-	End    Vertex
-	Weight int
-}
 
 func TestKruskalMST(t *testing.T) {
 	// Define test cases with inputs, expected outputs, and sample graphs

@@ -26,8 +26,6 @@
 
 package graph
 
-import "fmt"
-
 // Defining the union-find data structure
 type UnionFind struct {
 	parent []int

@@ -16,8 +16,7 @@ package graph
 
 import (
 	"sort"
-	
-	)
+)
 
 type Vertex int
 
@@ -49,13 +48,13 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	// Iterate through the sorted edges
 	for _, edge := range edges {
 		// Check if adding the current edge forms a cycle or not
-		if u.Find(edge.Start) != u.Find(edge.End) {
+		if u.Find(int(edge.Start)) != u.Find(int(edge.End)) {
 			// Add the edge to the minimum spanning tree
 			mst = append(mst, edge)
 			// Add the weight of the edge to the total cost
 			cost += edge.Weight
 			// Merge the sets containing the start and end vertices of the current edge
-			u = u.Union(edge.Start, edge.End)
+			u = u.Union(int(edge.Start), int(edge.End))
 		}
 	}
 
