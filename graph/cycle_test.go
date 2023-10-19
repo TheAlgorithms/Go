@@ -21,3 +21,26 @@ func TestHasCycle(t *testing.T) {
 		t.Error("answer of hasCycle is not correct")
 	}
 }
+
+func TestFindAllCycles(t *testing.T) {
+	graph := Graph{Directed: true}
+	edges := [][]int{{0, 4}, {1, 3}, {2, 3}, {3, 4}, {4, 7}, {5, 2}, {6, 3}, {7, 3}}
+	for _, edge := range edges {
+		graph.AddEdge(edge[0], edge[1])
+	}
+
+	res := graph.FindAllCycles()
+
+	if len(res) != 1 {
+		t.Error("number of cycles is not correct")
+	}
+
+	firstCycle := res[0]
+	startOfCycle := firstCycle[0]
+	endOfCycle := firstCycle[len(res)-1]
+
+	if startOfCycle != endOfCycle {
+		t.Error("cycle is not correct")
+	}
+
+}
