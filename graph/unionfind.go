@@ -76,24 +76,3 @@ func (u UnionFind) Union(a, b int) UnionFind {
 }
 
 
-func main() {
-	n := 10
-	u := NewUnionFind(n)
-
-	// Performing union operations on different elements
-	u.Union(0, 1)
-	u.Union(2, 3)
-	u.Union(4, 5)
-	u.Union(6, 7)
-
-	// Printing the roots of specific elements after union operations
-	fmt.Println("Parent of 0:", u.Find(0))
-	fmt.Println("Parent of 3:", u.Find(3))
-
-	u.Union(1, 5)
-	u.Union(3, 7)
-
-	// Printing the roots of specific elements after more union operations
-	fmt.Println("Parent of 0 after union:", u.Find(0))
-	fmt.Println("Parent of 6 after union:", u.Find(6))
-}

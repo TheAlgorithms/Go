@@ -57,32 +57,3 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	return mst, cost
 }
 
-// The main function sets up a sample graph and finds its minimum spanning tree using Kruskal's algorithm
-func main() {
-	// Define the number of vertices in the graph
-	n := 5
-
-	// Define the edges of the graph
-	edges := []Edge{
-		{Start: 0, End: 1, Weight: 4},
-		{Start: 0, End: 2, Weight: 13},
-		{Start: 0, End: 3, Weight: 7},
-		{Start: 0, End: 4, Weight: 7},
-		{Start: 1, End: 2, Weight: 9},
-		{Start: 1, End: 3, Weight: 3},
-		{Start: 1, End: 4, Weight: 7},
-		{Start: 2, End: 3, Weight: 10},
-		{Start: 2, End: 4, Weight: 14},
-		{Start: 3, End: 4, Weight: 4},
-	}
-
-	// Find the minimum spanning tree and its cost using Kruskal's algorithm
-	mst, cost := KruskalMST(n, edges)
-
-	// Print the edges in the minimum spanning tree and the total cost
-	fmt.Println("Minimum Spanning Tree:")
-	for _, edge := range mst {
-		fmt.Printf("Start: %d, End: %d, Weight: %d\n", edge.Start, edge.End, edge.Weight)
-	}
-	fmt.Println("Total cost:", cost)
-}
