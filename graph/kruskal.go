@@ -16,10 +16,16 @@ package graph
 
 import (
 	"sort"
-	"fmt"
+	
 	)
 
 type Vertex int
+
+type Edge struct {
+	Start  Vertex
+	End    Vertex
+	Weight int
+}
 
 func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	// Initialize variables to store the minimum spanning tree and its total cost
