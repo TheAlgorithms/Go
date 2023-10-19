@@ -17,56 +17,9 @@ package graph
 import (
 	"sort"
 	"fmt"
-)
+	)
 
 type Vertex int
-
-// Defining the union-find data structure
-type UnionFind struct {
-	parent []int
-	size []int 
-}
-
-
-// Initialise a new union find data structure with s nodes
-func NewUnionFind(s int) UnionFind {
-	parent := make([]int, s)
-	size := make([]int, s)
-	for k := 0; k < s; k++ {
-		parent[k] = k
-		size[k] = 1
-	}
-	return UnionFind{parent, size}
-}
-
-
-// to find the root of the set to which the given element belongs, the Find function serves the purpose
-func (u UnionFind) Find(q int) int {
-	for q != u.parent[q] {
-		q = u.parent[q]
-	}
-	return q
-}
-
-
-// to merge two sets to which the given elements belong, the Union function serves the purpose
-func (u UnionFind) Union(a, b int) UnionFind {
-	rootP := u.Find(a)
-	rootQ := u.Find(b)
-
-	if rootP == rootQ {
-		return u
-	}
-
-	if u.size[rootP] < u.size[rootQ] {
-		u.parent[rootP] = rootQ
-		u.size[rootQ] += u.size[rootP]
-	} else {
-		u.parent[rootQ] = rootP
-		u.size[rootP] += u.size[rootQ]
-	}
-	return u
-}
 
 func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 	// Initialize variables to store the minimum spanning tree and its total cost
