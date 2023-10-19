@@ -36,7 +36,7 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 
 	// Initialize each node in the UnionFind data structure
 	for i := 0; i < n; i++ {
-		u.parent[i] = Vertex(i)
+		u.parent[i] = int(Vertex(i))
 		u.size[i] = 1
 	}
 
