@@ -113,6 +113,11 @@ func (s *SegmentTree) Build(node int, left int, right int) {
 	}
 }
 
+// Returns a new instance of a SegmentTree with lazy propogation, 
+// a data structure for efficient range queries on an array of integers. 
+// It takes an input array of integers, initializes and builds the 
+// SegmentTree in O(N log N) time. It can update the elements in a range 
+// to a new value and query the sum of any range in O(log N) time. 
 func NewSegmentTree(Array []int) *SegmentTree {
 	if len(Array) == 0 {
 		return nil
