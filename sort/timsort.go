@@ -43,13 +43,14 @@ func insertionSortRuns[T constraints.Ordered](data []T, runSize int) {
 
 func insertionSortRun[T constraints.Ordered](data []T) {
 	for i := 1; i < len(data); i++ {
-		temp := data[i]
+		value := data[i]
 		j := i
 		for ; j > 0 && data[j-1] > temp; j-- {
+		for ; j > 0 && data[j-1] > value; j-- {
 			data[j] = data[j-1]
 		}
 
-		data[j] = temp
+		data[j] = value
 	}
 }
 
