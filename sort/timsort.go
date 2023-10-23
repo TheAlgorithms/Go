@@ -4,8 +4,6 @@
 package sort
 
 import (
-	"fmt"
-
 	"github.com/TheAlgorithms/Go/constraints"
 )
 
@@ -56,7 +54,6 @@ func insertionSortRun[T constraints.Ordered](data []T) {
 }
 
 func mergeRuns[T constraints.Ordered](data []T, runSize int) {
-	fmt.Println(runSize)
 	for size := runSize; size < len(data); size *= 2 {
 		for lowerBound := 0; lowerBound < len(data); lowerBound += size * 2 {
 			middleBound := lowerBound + size - 1
