@@ -19,10 +19,9 @@ type FenwickTree struct {
 // the values of the array. Note that the queries and updates should have
 // one based indexing.
 func NewFenwickTree(array []int) *FenwickTree {
-	n := len(array)
 	newArray := []int{0} // Appending a 0 to the beginning as this implementation uses 1 based indexing
 	fenwickTree := &FenwickTree{
-		n:     n,
+		n:     len(array),
 		array: append(newArray, array...),
 		bit:   append(newArray, array...),
 	}
