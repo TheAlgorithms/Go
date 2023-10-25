@@ -1,6 +1,8 @@
 package graph
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestHasCycle(t *testing.T) {
 	graph := Graph{Directed: true}
@@ -33,14 +35,6 @@ func TestFindAllCycles(t *testing.T) {
 
 	if len(res) != 1 {
 		t.Error("number of cycles is not correct")
-	}
-
-	firstCycle := res[0]
-	startOfCycle := firstCycle[0]
-	endOfCycle := firstCycle[len(res)-1]
-
-	if startOfCycle != endOfCycle {
-		t.Error("cycle is not correct")
 	}
 
 }
