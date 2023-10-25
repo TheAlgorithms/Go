@@ -61,10 +61,8 @@ func mergeRuns[T constraints.Ordered](data []T, runSize int) {
 
 // mergeRun uses merge sort to sort adjacent data runs.
 func mergeRun[T constraints.Ordered](data []T, lower, mid, upper int) {
-	left := make([]T, mid-lower+1)
-	right := make([]T, upper-mid)
-	copy(left, data[lower:mid+1])
-	copy(right, data[mid+1:upper+1])
+	left := data[lower : mid+1]
+	right := data[mid+1 : upper+1]
 	merged := merge(left, right)
 	// rewrite original data slice values with sorted values from merged slice
 	for i, value := range merged {
