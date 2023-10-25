@@ -13,14 +13,14 @@ import (
 
 const emptyLazyNode = 0
 
-//SegmentTree represents the data structure of a segment tree with lazy propogation
+// SegmentTree represents the data structure of a segment tree with lazy propagation
 type SegmentTree struct {
 	Array       []int // The original array
 	SegmentTree []int // Stores the sum of different ranges
-	LazyTree    []int // Stores the values of lazy propogation
+	LazyTree    []int // Stores the values of lazy propagation
 }
 
-// Propagate propogates the lazy updates to the child nodes
+// Propagate propagates the lazy updates to the child nodes
 func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
 	if s.LazyTree[node] != emptyLazyNode {
 		//add lazy node value multiplied by (right-left+1), which represents all interval
