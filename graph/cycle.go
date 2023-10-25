@@ -83,7 +83,7 @@ func (g *Graph) FindAllCycles() []string {
 
 }
 
-func (g Graph) FindAllCyclesHelper(current int, all, visiting, visited map[int]struct{}) (bool, [][]int) {
+func (g Graph) findAllCyclesHelper(current int, all, visiting, visited map[int]struct{}) (bool, [][]int) {
 	parents := [][]int{}
 
 	delete(all, current)
