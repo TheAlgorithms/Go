@@ -37,4 +37,17 @@ func TestFindAllCycles(t *testing.T) {
 		t.Error("number of cycles is not correct")
 	}
 
+	firstCycle := res[0]
+	if len(firstCycle.edges) != 3 {
+		t.Error("number of vertex in cycle is not correct")
+	}
+	if _, ok := firstCycle.edges[3][4]; !ok {
+		t.Error("connection in cycle is not correct")
+	}
+	if _, ok := firstCycle.edges[4][7]; !ok {
+		t.Error("connection in cycle is not correct")
+	}
+	if _, ok := firstCycle.edges[7][3]; !ok {
+		t.Error("connection in cycle is not correct")
+	}
 }
