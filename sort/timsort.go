@@ -65,32 +65,9 @@ func mergeRun[T constraints.Ordered](data []T, lower, mid, upper int) {
 	right := make([]T, upper-mid)
 	copy(left, data[lower:mid+1])
 	copy(right, data[mid+1:upper+1])
-	i, j, k := 0, 0, lower
-	// checks the top of left and right slice, chooses the smallest value
-	// and increments proper slice index until one reaches the slice's length
-	for i < len(left) && j < len(right) {
-		if left[i] <= right[j] {
-			data[k] = left[i]
-			i++
-		} else {
-			data[k] = right[j]
-			j++
-		}
-
-		k++
-	}
-
-	// completes the merge sort with left-over values from left slice
-	for i < len(left) {
-		data[k] = left[i]
-		k++
-		i++
-	}
-
-	// completes the merge sort with left-over values from right slice
-	for j < len(right) {
-		data[k] = right[j]
-		k++
-		j++
+	merged := merge(left, right)
+	// rewrite original data slice values with sorted values from merged slice
+	for i, value := range merged {
+		data[lower+i] = value
 	}
 }
