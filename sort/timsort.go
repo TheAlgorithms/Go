@@ -40,22 +40,7 @@ func insertionSortRuns[T constraints.Ordered](data []T, runSize int) {
 			upper = len(data)
 		}
 
-		insertionSortRun(data[lower:upper])
-	}
-}
-
-// insertionSortRuns runs insertion sort on a single data run slice.
-func insertionSortRun[T constraints.Ordered](data []T) {
-	for i := 1; i < len(data); i++ {
-		value := data[i]
-		j := i
-		// return to the sorted part of slice by decrementing the j index and stop
-		// upon reaching a smaller value
-		for ; j > 0 && data[j-1] > value; j-- {
-			data[j] = data[j-1]
-		}
-
-		data[j] = value
+		Insertion(data[lower:upper])
 	}
 }
 
