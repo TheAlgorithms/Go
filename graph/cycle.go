@@ -27,7 +27,7 @@ func (g *Graph) HasCycle() bool {
 
 }
 
-func (g Graph) HasCycleHelper(v int, all, visiting, visited map[int]struct{}) bool {
+func (g Graph) hasCycleHelper(v int, all, visiting, visited map[int]struct{}) bool {
 	delete(all, v)
 	visiting[v] = struct{}{}
 
