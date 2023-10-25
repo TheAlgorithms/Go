@@ -3,8 +3,7 @@ package matrix
 import (
 	"context"
 	"errors"
-
-	"golang.org/x/sync/errgroup"
+	"sync"
 )
 
 // Add adds two matrices.
@@ -21,15 +20,18 @@ func (m1 Matrix[T]) Add(m2 Matrix[T]) (Matrix[T], error) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel() // Make sure it's called to release resources even if no errors
 
-	var eg errgroup.Group
+	var wg sync.WaitGroup
+	errCh := make(chan error, 1)
 
 	for i := 0; i < m1.rows; i++ {
 		i := i // Capture the loop variable for the goroutine
-		eg.Go(func() error {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
 			for j := 0; j < m1.columns; j++ {
 				select {
 				case <-ctx.Done():
-					return nil // Context canceled; return without an error
+					return // Context canceled; return without an error
 				default:
 				}
 
@@ -37,14 +39,24 @@ func (m1 Matrix[T]) Add(m2 Matrix[T]) (Matrix[T], error) {
 				err := result.Set(i, j, sum)
 				if err != nil {
 					cancel() // Cancel the context on error
-					return err
+					select {
+					case errCh <- err:
+					default:
+					}
+					return
 				}
 			}
-			return nil
-		})
+		}()
 	}
 
-	if err := eg.Wait(); err != nil {
+	// Wait for all goroutines to finish
+	go func() {
+		wg.Wait()
+		close(errCh)
+	}()
+
+	// Check for any errors
+	if err := <-errCh; err != nil {
 		return Matrix[T]{}, err
 	}
 
