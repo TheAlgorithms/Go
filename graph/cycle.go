@@ -6,7 +6,7 @@
 package graph
 
 func (g *Graph) HasCycle() bool {
-	//this implimetation refered as 3-color too
+	//this implimetation referred as 3-color too
 	all := map[int]struct{}{}
 	visiting := map[int]struct{}{}
 	visited := map[int]struct{}{}
