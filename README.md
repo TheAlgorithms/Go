@@ -349,7 +349,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Formula`](./math/fibonacci/fibonacci.go#L42):  Formula This function calculates the n-th fibonacci number using the [formula](https://en.wikipedia.org/wiki/Fibonacci_number#Relation_to_the_golden_ratio) Attention! Tests for large values fall due to rounding error of floating point numbers, works well, only on small numbers
 2. [`Matrix`](./math/fibonacci/fibonacci.go#L15):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
-3. [`Recursive`](./math/fibonacci/fibonacci.go#L51):  Recursive calculates the n-th fibonacci number recursively by adding the previous two numbers. [See](https://en.wikipedia.org/wiki/Fibonacci_sequence#Definition)
+3. [`Recursive`](./math/fibonacci/fibonacci.go#L51):  Recursive calculates the n-th fibonacci number recursively by adding the previous two Fibonacci numbers. This algorithm is extremely slow for bigger numbers, but provides a simpler implementation.
 
 ---
 </details><details>
@@ -449,34 +449,32 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 4. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
 5. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 6. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
-7. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
+7. [`KruskalMST`](./graph/kruskal.go#L23): No description provided.
 8. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
 9. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-10. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-11. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+10. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+11. [`NewUnionFind`](./graph/unionfind.go#L24):  Initialise a new union find data structure with s nodes
 12. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
 13. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
 ---
 ##### Types
 
-1. [`DisjointSetUnion`](./graph/kruskal.go#L29): No description provided.
+1. [`Edge`](./graph/kruskal.go#L17): No description provided.
 
-2. [`DisjointSetUnionElement`](./graph/kruskal.go#L21): No description provided.
+2. [`Graph`](./graph/graph.go#L9): No description provided.
 
-3. [`Edge`](./graph/kruskal.go#L14): No description provided.
+3. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-4. [`Graph`](./graph/graph.go#L9): No description provided.
+4. [`Query`](./graph/lowestcommonancestor_test.go#L9): No description provided.
 
-5. [`Item`](./graph/dijkstra.go#L5): No description provided.
+5. [`Tree`](./graph/lowestcommonancestor.go#L25): No description provided.
 
-6. [`Query`](./graph/lowestcommonancestor_test.go#L9): No description provided.
+6. [`TreeEdge`](./graph/lowestcommonancestor.go#L12): No description provided.
 
-7. [`Tree`](./graph/lowestcommonancestor.go#L25): No description provided.
+7. [`UnionFind`](./graph/unionfind.go#L18): No description provided.
 
-8. [`TreeEdge`](./graph/lowestcommonancestor.go#L12): No description provided.
-
-9. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
+8. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
 
 
 ---
@@ -663,6 +661,37 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 20. [`PronicNumber`](./math/pronicnumber.go#L15):  PronicNumber returns true if argument passed to the function is pronic and false otherwise.
 21. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
 22. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
+
+---
+</details><details>
+	<summary> <strong> matrix </strong> </summary>	
+
+---
+
+#####  filename: strassenmatrixmultiply.go description: Implements matrix multiplication using the Strassen algorithm. details: This program takes two matrices as input and performs matrix multiplication using the Strassen algorithm, which is an optimized divide-and-conquer approach. It allows for efficient multiplication of large matrices. author(s): Mohit Raghav(https://github.com/mohit07raghav19) See strassenmatrixmultiply_test.go for test cases
+
+---
+##### Functions:
+
+1. [`IsValid`](./math/matrix/isvalid.go#L6):  IsValid checks if the input matrix has consistent row lengths.
+2. [`New`](./math/matrix/matrix.go#L17):  NewMatrix creates a new Matrix based on the provided arguments.
+3. [`NewFromElements`](./math/matrix/matrix.go#L43):  NewFromElements creates a new Matrix from the given elements.
+
+---
+##### Types
+
+1. [`Matrix`](./math/matrix/matrix.go#L10): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> matrix_test </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`MakeRandomMatrix`](./math/matrix/strassenmatrixmultiply_test.go#L105): No description provided.
 
 ---
 </details><details>
@@ -1084,6 +1113,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`CountChars`](./strings/charoccurrence.go#L12):  CountChars counts the number of a times a character has occurred in the provided string argument and returns a map with `rune` as keys and the count as value.
 2. [`IsIsogram`](./strings/isisogram.go#L34): No description provided.
+3. [`IsSubsequence`](./strings/issubsequence.go#L10):  Returns true if s is subsequence of t, otherwise return false.
 
 ---
 </details><details>
