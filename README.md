@@ -70,15 +70,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Abs`](./math/binary/abs.go#L10):  Abs returns absolute value using binary operation Principle of operation: 1) Get the mask by right shift by the base 2) Base is the size of an integer variable in bits, for example, for int32 it will be 32, for int64 it will be 64 3) For negative numbers, above step sets mask as 1 1 1 1 1 1 1 1 and 0 0 0 0 0 0 0 0 for positive numbers. 4) Add the mask to the given number. 5) XOR of mask + n and mask gives the absolute value.
 2. [`BitCounter`](./math/binary/bitcounter.go#L11):  BitCounter - The function returns the number of set bits for an unsigned integer number
-3. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L21):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:	  10...0	& 01...1	  00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
-4. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L28):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
-5. [`LogBase2`](./math/binary/logarithm.go#L7):  LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
-6. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
-7. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
-8. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
-9. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
-10. [`Sqrt`](./math/binary/sqrt.go#L16): No description provided.
-11. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
+3. [`FastInverseSqrt`](./math/binary/fast_inverse_sqrt.go#L15):  FastInverseSqrt assumes that argument is always positive, and it does not deal with negative numbers. The "magic" number 0x5f3759df is hex for 1597463007 in decimals. The math.Float32bits is alias to *(*uint32)(unsafe.Pointer(&f)) and math.Float32frombits is to *(*float32)(unsafe.Pointer(&b)).
+4. [`IsPowerOfTwo`](./math/binary/checkisnumberpoweroftwo.go#L21):  IsPowerOfTwo This function uses the fact that powers of 2 are represented like 10...0 in binary, and numbers one less than the power of 2 are represented like 11...1. Therefore, using the and function:	  10...0	& 01...1	  00...0 -> 0 This is also true for 0, which is not a power of 2, for which we have to add and extra condition.
+5. [`IsPowerOfTwoLeftShift`](./math/binary/checkisnumberpoweroftwo.go#L28):  IsPowerOfTwoLeftShift This function takes advantage of the fact that left shifting a number by 1 is equivalent to multiplying by 2. For example, binary 00000001 when shifted by 3 becomes 00001000, which in decimal system is 8 or = 2 * 2 * 2
+6. [`LogBase2`](./math/binary/logarithm.go#L7):  LogBase2 Finding the exponent of n = 2**x using bitwise operations (logarithm in base 2 of n) [See more](https://en.wikipedia.org/wiki/Logarithm)
+7. [`MeanUsingAndXor`](./math/binary/arithmeticmean.go#L12):  MeanUsingAndXor This function finds arithmetic mean using "AND" and "XOR" operations
+8. [`MeanUsingRightShift`](./math/binary/arithmeticmean.go#L17):  MeanUsingRightShift This function finds arithmetic mean using right shift
+9. [`ReverseBits`](./math/binary/reversebits.go#L14):  ReverseBits This function initialized the result by 0 (all bits 0) and process the given number starting from its least significant bit. If the current bit is 1, set the corresponding most significant bit in the result and finally move on to the next bit in the input number. Repeat this till all its bits are processed.
+10. [`SequenceGrayCode`](./math/binary/rbc.go#L11):  SequenceGrayCode The function generates an "Gray code" sequence of length n
+11. [`Sqrt`](./math/binary/sqrt.go#L10): No description provided.
+12. [`XorSearchMissingNumber`](./math/binary/xorsearch.go#L11):  XorSearchMissingNumber This function finds a missing number in a sequence
 
 ---
 </details><details>
@@ -234,6 +235,38 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> deque </strong> </summary>	
+
+---
+
+#####  Package deque implements a Double Ended Queue data structure.
+
+---
+##### Functions:
+
+1. [`New`](./structure/deque/deque.go#L22):  New returns a new DoublyEndedQueue.
+
+---
+##### Types
+
+1. [`DoublyEndedQueue`](./structure/deque/deque.go#L17): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> deque_test </strong> </summary>	
+
+---
+
+##### Types
+
+1. [`QueryStructure`](./structure/deque/deque_test.go#L20): No description provided.
+
+2. [`TestCaseData`](./structure/deque/deque_test.go#L27): No description provided.
+
+
+---
+</details><details>
 	<summary> <strong> diffiehellman </strong> </summary>	
 
 ---
@@ -316,6 +349,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`Formula`](./math/fibonacci/fibonacci.go#L42):  Formula This function calculates the n-th fibonacci number using the [formula](https://en.wikipedia.org/wiki/Fibonacci_number#Relation_to_the_golden_ratio) Attention! Tests for large values fall due to rounding error of floating point numbers, works well, only on small numbers
 2. [`Matrix`](./math/fibonacci/fibonacci.go#L15):  Matrix This function calculates the n-th fibonacci number using the matrix method. [See](https://en.wikipedia.org/wiki/Fibonacci_number#Matrix_form)
+3. [`Recursive`](./math/fibonacci/fibonacci.go#L51):  Recursive calculates the n-th fibonacci number recursively by adding the previous two Fibonacci numbers. This algorithm is extremely slow for bigger numbers, but provides a simpler implementation.
 
 ---
 </details><details>
@@ -415,34 +449,32 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 4. [`DepthFirstSearchHelper`](./graph/depthfirstsearch.go#L21): No description provided.
 5. [`FloydWarshall`](./graph/floydwarshall.go#L15):  FloydWarshall Returns all pair's shortest path using Floyd Warshall algorithm
 6. [`GetIdx`](./graph/depthfirstsearch.go#L3): No description provided.
-7. [`KruskalMST`](./graph/kruskal.go#L87):  KruskalMST will return a minimum spanning tree along with its total cost to using Kruskal's algorithm. Time complexity is O(m * log (n)) where m is the number of edges in the graph and n is number of nodes in it.
+7. [`KruskalMST`](./graph/kruskal.go#L23): No description provided.
 8. [`LowestCommonAncestor`](./graph/lowestcommonancestor.go#L111):  For each node, we will precompute its ancestor above him, its ancestor two nodes above, its ancestor four nodes above, etc. Let's call `jump[j][u]` is the `2^j`-th ancestor above the node `u` with `u` in range `[0, numbersVertex)`, `j` in range `[0,MAXLOG)`. These information allow us to jump from any node to any ancestor above it in `O(MAXLOG)` time.
 9. [`New`](./graph/graph.go#L16):  Constructor functions for graphs (undirected by default)
-10. [`NewDSU`](./graph/kruskal.go#L34):  NewDSU will return an initialised DSU using the value of n which will be treated as the number of elements out of which the DSU is being made
-11. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+10. [`NewTree`](./graph/lowestcommonancestor.go#L84): No description provided.
+11. [`NewUnionFind`](./graph/unionfind.go#L24):  Initialise a new union find data structure with s nodes
 12. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
-13. [`Topological`](./graph/topological.go#L7):  Assumes that graph given is valid and possible to get a topo ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+13. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
 
 ---
 ##### Types
 
-1. [`DisjointSetUnion`](./graph/kruskal.go#L29): No description provided.
+1. [`Edge`](./graph/kruskal.go#L17): No description provided.
 
-2. [`DisjointSetUnionElement`](./graph/kruskal.go#L21): No description provided.
+2. [`Graph`](./graph/graph.go#L9): No description provided.
 
-3. [`Edge`](./graph/kruskal.go#L14): No description provided.
+3. [`Item`](./graph/dijkstra.go#L5): No description provided.
 
-4. [`Graph`](./graph/graph.go#L9): No description provided.
+4. [`Query`](./graph/lowestcommonancestor_test.go#L9): No description provided.
 
-5. [`Item`](./graph/dijkstra.go#L5): No description provided.
+5. [`Tree`](./graph/lowestcommonancestor.go#L25): No description provided.
 
-6. [`Query`](./graph/lowestcommonancestor_test.go#L9): No description provided.
+6. [`TreeEdge`](./graph/lowestcommonancestor.go#L12): No description provided.
 
-7. [`Tree`](./graph/lowestcommonancestor.go#L25): No description provided.
+7. [`UnionFind`](./graph/unionfind.go#L18): No description provided.
 
-8. [`TreeEdge`](./graph/lowestcommonancestor.go#L12): No description provided.
-
-9. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
+8. [`WeightedGraph`](./graph/floydwarshall.go#L9): No description provided.
 
 
 ---
@@ -508,6 +540,16 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 	Methods:
 	1. [`Less`](./structure/heap/heap_test.go#L20): No description provided.
+
+---
+</details><details>
+	<summary> <strong> horspool </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`Horspool`](./strings/horspool/horspool.go#L10): No description provided.
 
 ---
 </details><details>
@@ -592,7 +634,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go Package math is a package that contains mathematical algorithms and its different implementations.
+#####  Package math is a package that contains mathematical algorithms and its different implementations. filename : krishnamurthy.go description: A program which contains the function that returns true if a given number is Krishnamurthy number or not. details: A number is a Krishnamurthy number if the sum of all the factorials of the digits is equal to the number. Ex: 1! = 1, 145 = 1! + 4! + 5! author(s): [GooMonk](https://github.com/GooMonk) see krishnamurthy_test.go
 
 ---
 ##### Functions:
@@ -604,20 +646,52 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 5. [`DefaultPolynomial`](./math/pollard.go#L16):  DefaultPolynomial is the commonly used polynomial g(x) = (x^2 + 1) mod n
 6. [`FindKthMax`](./math/kthnumber.go#L11):  FindKthMax returns the kth large element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
 7. [`FindKthMin`](./math/kthnumber.go#L19):  FindKthMin returns kth small element given an integer slice with nil `error` if found and returns -1 with `error` `search.ErrNotFound` if not found. NOTE: The `nums` slice gets mutated in the process.
-8. [`IsKrishnamurthyNumber`](./math/krishnamurthy.go#L12):  IsKrishnamurthyNumber returns if the provided number n is a Krishnamurthy number or not.
-9. [`IsPerfectNumber`](./math/perfectnumber.go#L34):  Checks if inNumber is a perfect number
-10. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
-11. [`Lerp`](./math/lerp.go#L5):  Lerp or Linear interpolation This function will return new value in 't' percentage  between 'v0' and 'v1'
-12. [`LiouvilleLambda`](./math/liouville.go#L24):  Lambda is the liouville function This function returns λ(n) for given number
-13. [`Mean`](./math/mean.go#L7): No description provided.
-14. [`Median`](./math/median.go#L12): No description provided.
-15. [`Mode`](./math/mode.go#L19): No description provided.
-16. [`Mu`](./math/mobius.go#L21):  Mu is the Mobius function This function returns μ(n) for given number
-17. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
-18. [`PollardsRhoFactorization`](./math/pollard.go#L29):  PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm using the default parameters x = y = 2
-19. [`PronicNumber`](./math/pronicnumber.go#L15):  PronicNumber returns true if argument passed to the function is pronic and false otherwise.
-20. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
-21. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
+8. [`IsAutomorphic`](./math/isautomorphic.go#L16): No description provided.
+9. [`IsKrishnamurthyNumber`](./math/krishnamurthy.go#L12):  IsKrishnamurthyNumber returns if the provided number n is a Krishnamurthy number or not.
+10. [`IsPerfectNumber`](./math/perfectnumber.go#L34):  Checks if inNumber is a perfect number
+11. [`IsPowOfTwoUseLog`](./math/checkisnumberpoweroftwo.go#L10):  IsPowOfTwoUseLog This function checks if a number is a power of two using the logarithm. The limiting degree can be from 0 to 63. See alternatives in the binary package.
+12. [`Lerp`](./math/lerp.go#L5):  Lerp or Linear interpolation This function will return new value in 't' percentage  between 'v0' and 'v1'
+13. [`LiouvilleLambda`](./math/liouville.go#L24):  Lambda is the liouville function This function returns λ(n) for given number
+14. [`Mean`](./math/mean.go#L7): No description provided.
+15. [`Median`](./math/median.go#L12): No description provided.
+16. [`Mode`](./math/mode.go#L19): No description provided.
+17. [`Mu`](./math/mobius.go#L21):  Mu is the Mobius function This function returns μ(n) for given number
+18. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
+19. [`PollardsRhoFactorization`](./math/pollard.go#L29):  PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm using the default parameters x = y = 2
+20. [`PronicNumber`](./math/pronicnumber.go#L15):  PronicNumber returns true if argument passed to the function is pronic and false otherwise.
+21. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
+22. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
+
+---
+</details><details>
+	<summary> <strong> matrix </strong> </summary>	
+
+---
+
+#####  filename: strassenmatrixmultiply.go description: Implements matrix multiplication using the Strassen algorithm. details: This program takes two matrices as input and performs matrix multiplication using the Strassen algorithm, which is an optimized divide-and-conquer approach. It allows for efficient multiplication of large matrices. author(s): Mohit Raghav(https://github.com/mohit07raghav19) See strassenmatrixmultiply_test.go for test cases
+
+---
+##### Functions:
+
+1. [`IsValid`](./math/matrix/isvalid.go#L6):  IsValid checks if the input matrix has consistent row lengths.
+2. [`New`](./math/matrix/matrix.go#L17):  NewMatrix creates a new Matrix based on the provided arguments.
+3. [`NewFromElements`](./math/matrix/matrix.go#L43):  NewFromElements creates a new Matrix from the given elements.
+
+---
+##### Types
+
+1. [`Matrix`](./math/matrix/matrix.go#L10): No description provided.
+
+
+---
+</details><details>
+	<summary> <strong> matrix_test </strong> </summary>	
+
+---
+
+##### Functions:
+
+1. [`MakeRandomMatrix`](./math/matrix/strassenmatrixmultiply_test.go#L105): No description provided.
 
 ---
 </details><details>
@@ -718,7 +792,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`Parenthesis`](./strings/parenthesis/parenthesis.go#L12):  parcounter will be 0 if all open parenthesis are closed correctly
+1. [`Parenthesis`](./strings/parenthesis/parenthesis.go#L8):  Parenthesis algorithm checks if every opened parenthesis is closed correctly. When parcounter is less than 0 when a closing parenthesis is detected without an opening parenthesis that surrounds it and parcounter will be 0 if all open parenthesis are closed correctly.
 
 ---
 </details><details>
@@ -925,7 +999,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
-#####  package set implements a Set using generics and a golang map with comparable interface key. This implies that only the types that are accepted as valid map keys can be used as set elements
+#####  package set implements a Set using a golang map. This implies that only the types that are accepted as valid map keys can be used as set elements. For instance, do not try to Add a slice, or the program will panic.
 
 ---
 ##### Functions:
@@ -953,28 +1027,31 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
-2. [`Bucket`](./sort/bucketsort.go#L7):  Bucket sorts a slice. It is mainly useful when input is uniformly distributed over a range.
-3. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
-4. [`Count`](./sort/countingsort.go#L11): No description provided.
-5. [`Cycle`](./sort/cyclesort.go#L10):  Cycle sort is an in-place, unstable sorting algorithm that is particularly useful when sorting arrays containing elements with a small range of values. It is theoretically optimal in terms of the total number of writes to the original array.
-6. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
-7. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
-8. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
-9. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
-10. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
-11. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
-12. [`Pancake`](./sort/pancakesort.go#L8):  Pancake sorts a slice using flip operations, where flip refers to the idea of reversing the slice from index `0` to `i`.
-13. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
-14. [`Partition`](./sort/quicksort.go#L12): No description provided.
-15. [`Patience`](./sort/patiencesort.go#L13): No description provided.
-16. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
-17. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
-18. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
-19. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
-20. [`Selection`](./sort/selectionsort.go#L5): No description provided.
-21. [`Shell`](./sort/shellsort.go#L5): No description provided.
-22. [`Simple`](./sort/simplesort.go#L13): No description provided.
+1. [`BinaryInsertion`](./sort/binaryinsertionsort.go#L13): No description provided.
+2. [`Bogo`](./sort/bogosort.go#L32): No description provided.
+3. [`Bubble`](./sort/bubblesort.go#L9):  Bubble is a simple generic definition of Bubble sort algorithm.
+4. [`Bucket`](./sort/bucketsort.go#L7):  Bucket sorts a slice. It is mainly useful when input is uniformly distributed over a range.
+5. [`Cocktail`](./sort/cocktailsort.go#L9):  Cocktail sort is a variation of bubble sort, operating in two directions (beginning to end, end to beginning)
+6. [`Comb`](./sort/combSort.go#L17):  Comb is a simple sorting algorithm which is an improvement of the bubble sorting algorithm.
+7. [`Count`](./sort/countingsort.go#L11): No description provided.
+8. [`Cycle`](./sort/cyclesort.go#L10):  Cycle sort is an in-place, unstable sorting algorithm that is particularly useful when sorting arrays containing elements with a small range of values. It is theoretically optimal in terms of the total number of writes to the original array.
+9. [`Exchange`](./sort/exchangesort.go#L8): No description provided.
+10. [`HeapSort`](./sort/heapsort.go#L116): No description provided.
+11. [`ImprovedSimple`](./sort/simplesort.go#L27):  ImprovedSimple is a improve SimpleSort by skipping an unnecessary comparison of the first and last. This improved version is more similar to implementation of insertion sort
+12. [`Insertion`](./sort/insertionsort.go#L5): No description provided.
+13. [`Merge`](./sort/mergesort.go#L41):  Merge Perform merge sort on a slice
+14. [`MergeIter`](./sort/mergesort.go#L55): No description provided.
+15. [`Pancake`](./sort/pancakesort.go#L8):  Pancake sorts a slice using flip operations, where flip refers to the idea of reversing the slice from index `0` to `i`.
+16. [`ParallelMerge`](./sort/mergesort.go#L66):  ParallelMerge Perform merge sort on a slice using goroutines
+17. [`Partition`](./sort/quicksort.go#L12): No description provided.
+18. [`Patience`](./sort/patiencesort.go#L13): No description provided.
+19. [`Pigeonhole`](./sort/pigeonholesort.go#L15):  Pigeonhole sorts a slice using pigeonhole sorting algorithm. NOTE: To maintain time complexity O(n + N), this is the reason for having only Integer constraint instead of Ordered.
+20. [`Quicksort`](./sort/quicksort.go#L39):  Quicksort Sorts the entire array
+21. [`QuicksortRange`](./sort/quicksort.go#L26):  QuicksortRange Sorts the specified range within the array
+22. [`RadixSort`](./sort/radixsort.go#L43): No description provided.
+23. [`Selection`](./sort/selectionsort.go#L5): No description provided.
+24. [`Shell`](./sort/shellsort.go#L5): No description provided.
+25. [`Simple`](./sort/simplesort.go#L13): No description provided.
 
 ---
 ##### Types
@@ -984,17 +1061,43 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details><details>
+	<summary> <strong> sqrt </strong> </summary>	
+
+---
+
+#####  Package sqrt contains algorithms and data structures that contains a √n in their complexity
+
+---
+##### Functions:
+
+1. [`NewSqrtDecomposition`](./sqrt/sqrtdecomposition.go#L34):  Create a new SqrtDecomposition instance with the parameters as specified by SqrtDecomposition comment Assumptions:   - len(elements) > 0
+
+---
+##### Types
+
+1. [`SqrtDecomposition`](./sqrt/sqrtdecomposition.go#L21): No description provided.
+
+
+---
+</details><details>
 	<summary> <strong> stack </strong> </summary>	
 
 ---
 
+##### Functions:
+
+1. [`NewStack`](./structure/stack/stackarray.go#L17):  NewStack creates and returns a new stack.
+
+---
 ##### Types
 
-1. [`Node`](./structure/stack/stacklinkedlist.go#L13): No description provided.
+1. [`Array`](./structure/stack/stackarray.go#L12): No description provided.
 
-2. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
+2. [`Node`](./structure/stack/stacklinkedlist.go#L13): No description provided.
 
-3. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
+3. [`SList`](./structure/stack/stacklinkedlistwithlist.go#L18): No description provided.
+
+4. [`Stack`](./structure/stack/stacklinkedlist.go#L19): No description provided.
 
 
 ---
@@ -1010,6 +1113,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`CountChars`](./strings/charoccurrence.go#L12):  CountChars counts the number of a times a character has occurred in the provided string argument and returns a map with `rune` as keys and the count as value.
 2. [`IsIsogram`](./strings/isisogram.go#L34): No description provided.
+3. [`IsSubsequence`](./strings/issubsequence.go#L10):  Returns true if s is subsequence of t, otherwise return false.
 
 ---
 </details><details>
