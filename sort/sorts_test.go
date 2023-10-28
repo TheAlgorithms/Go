@@ -186,7 +186,11 @@ func TestCycle(t *testing.T) {
 	testFramework(t, sort.Cycle[int])
 }
 
-//END TESTS
+func TestTimsort(t *testing.T) {
+	testFramework(t, sort.Timsort[int])
+}
+
+// END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	var sortTests = []struct {
@@ -319,4 +323,8 @@ func BenchmarkPatience(b *testing.B) {
 
 func BenchmarkCycle(b *testing.B) {
 	benchmarkFramework(b, sort.Cycle[int])
+}
+
+func BenchmarkTimsort(b *testing.B) {
+	benchmarkFramework(b, sort.Timsort[int])
 }
