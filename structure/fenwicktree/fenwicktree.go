@@ -1,21 +1,20 @@
-//Fenwick Tree Data Structure for Range Queries. Also known as Binary Indexed Tree
-//Build: O(N)
-//Query: O(log(N))
-//Update: O(log(N))
-//reference: https://brilliant.org/wiki/fenwick-tree/
-
+// Fenwick Tree Data Structure for efficient range queries on an array of integers.
+// Also known as Binary Indexed Tree. It can query the sum of any range of the array and
+// can update the array at a specific position by adding a value to it (point update).
+// Build: O(N)
+// Query: O(log(N))
+// Update: O(log(N))
+// reference: https://brilliant.org/wiki/fenwick-tree/
 package fenwicktree
 
-// n: Size of the input array.
-// array: the input array on which queries are made.
-// bit: store the sum of ranges.
+// FenwickTree represents the data structure of the Fenwick Tree
 type FenwickTree struct {
-	n     int
-	array []int
-	bit   []int
+	n     int   // n: Size of the input array.
+	array []int // array: the input array on which queries are made.
+	bit   []int // bit: store the sum of ranges.
 }
 
-// This function creates a new Fenwick tree, initialized array and bit with
+// NewFenwickTree creates a new Fenwick tree, initializes bit with
 // the values of the array. Note that the queries and updates should have
 // one based indexing.
 func NewFenwickTree(array []int) *FenwickTree {
@@ -34,7 +33,7 @@ func NewFenwickTree(array []int) *FenwickTree {
 	return fenwickTree
 }
 
-// Returns the sum of the prefix ending at position pos.
+// PrefixSum returns the sum of the prefix ending at position pos.
 func (f *FenwickTree) PrefixSum(pos int) int {
 	if pos > f.n {
 		return 0
@@ -46,13 +45,13 @@ func (f *FenwickTree) PrefixSum(pos int) int {
 	return prefixSum
 }
 
-// Returns the sum of the elements in the range l to r
+// RangeSum returns the sum of the elements in the range l to r
 // both inclusive.
 func (f *FenwickTree) RangeSum(l int, r int) int {
 	return f.PrefixSum(r) - f.PrefixSum(l-1)
 }
 
-// Adds value to the element at position pos of the array
+// Add Adds value to the element at position pos of the array
 // and recomputes the range sums.
 func (f *FenwickTree) Add(pos int, value int) {
 	for i := pos; i <= f.n; i += (i & -i) {

@@ -1,6 +1,7 @@
-package fenwicktree
+package fenwicktree_test
 
 import (
+	"github.com/TheAlgorithms/Go/structure/fenwicktree"
 	"testing"
 )
 
@@ -53,7 +54,7 @@ func TestFenwickTree(t *testing.T) {
 
 	for _, test := range fenwickTreeTestData {
 		t.Run(test.description, func(t *testing.T) {
-			fenwickTree := NewFenwickTree(test.array)
+			fenwickTree := fenwicktree.NewFenwickTree(test.array)
 
 			for i := 0; i < len(test.updates); i++ {
 				fenwickTree.Add(test.updates[i].pos, test.updates[i].value)
