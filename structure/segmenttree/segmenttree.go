@@ -43,7 +43,7 @@ func (s *SegmentTree) Propagate(node int, leftNode int, rightNode int) {
 }
 
 // Query returns the sum of elements of the array in the interval [firstIndex, leftIndex].
-// node, leftNode and rightNode always should start with 1, 0 and len(Array)-1, respectively.
+// node, leftNode and rightNode should always start with 1, 0 and len(Array)-1, respectively.
 func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex int, lastIndex int) int {
 	if (firstIndex > lastIndex) || (leftNode > rightNode) {
 		//outside the interval
@@ -69,7 +69,7 @@ func (s *SegmentTree) Query(node int, leftNode int, rightNode int, firstIndex in
 
 // Update updates the elements of the array in the range [firstIndex, lastIndex]
 // with the new value provided and recomputes the sum of different ranges.
-// node, leftNode and rightNode always should start with 1, 0 and len(Array)-1, respectively.
+// node, leftNode and rightNode should always start with 1, 0 and len(Array)-1, respectively.
 func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex int, lastIndex int, value int) {
 	//propagate lazy tree
 	s.Propagate(node, leftNode, rightNode)
@@ -96,7 +96,7 @@ func (s *SegmentTree) Update(node int, leftNode int, rightNode int, firstIndex i
 }
 
 // Build builds the SegmentTree by computing the sum of different ranges.
-// node, leftNode and rightNode always should start with 1, 0 and len(Array)-1, respectively.
+// node, leftNode and rightNode should always start with 1, 0 and len(Array)-1, respectively.
 func (s *SegmentTree) Build(node int, left int, right int) {
 	if left == right {
 		//leaf node
