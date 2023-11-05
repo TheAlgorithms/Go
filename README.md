@@ -91,15 +91,14 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`NewLRU`](./cache/lru.go#L22): NewLRU represent initiate lru cache with capacity
 2. [`NewLFU`](./cache/lfu.go#L33): NewLFU represent initiate lfu cache with capacity
-3. [`InitItem`](./cache/lfu.go#L44): InitItem to insert item for LFU
-4. [`Get`](./cache/lfu.go#L52): Get the key in LFU cache
-5. [`Put`](./cache/lfu.go#L66): Put the key in LFU cache
+3. [`Get`](./cache/lfu.go#L52): Get the value by key from LFU cache
+4. [`Put`](./cache/lfu.go#L66): Put the key and value in LFU cache
 
 ---
 ##### Types
 
 1. [`LRU`](./cache/lru.go#L15): Default the struct of lru cache algorithm.
-2. [`LFU`](./cache/lru.go#L19): Default the struct of lfu cache algorithm.
+2. [`LFU`](./cache/lfu.go#L19): Default the struct of lfu cache algorithm.
 
 
 ---

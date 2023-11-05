@@ -40,8 +40,8 @@ func NewLFU(capacity int) LFU {
 	}
 }
 
-// InitItem to insert item for LFU
-func InitItem(k string, v any, f int) item {
+// initItem to init item for LFU
+func initItem(k string, v any, f int) item {
 	return item{
 		key:   k,
 		value: v,
@@ -72,7 +72,7 @@ func (c *LFU) Put(key string, value any) {
 		c.increaseFreq(e)
 	} else {
 		// if key not existed
-		obj := InitItem(key, value, 1)
+		obj := initItem(key, value, 1)
 		// if the length of item gets to the top line
 		// remove the least frequently operated element
 		if c.len == c.cap {
