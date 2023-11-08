@@ -1,11 +1,12 @@
 package sort_test
 
 import (
-	"github.com/TheAlgorithms/Go/sort"
 	"math/rand"
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/TheAlgorithms/Go/sort"
 )
 
 func testFramework(t *testing.T, sortingFunction func([]int) []int) {
@@ -75,14 +76,26 @@ func testFramework(t *testing.T, sortingFunction func([]int) []int) {
 	}
 }
 
-//BEGIN TESTS
+// BEGIN TESTS
+func TestBinaryInsertion(t *testing.T) {
+	testFramework(t, sort.BinaryInsertion[int])
+}
 
 func TestBubble(t *testing.T) {
 	testFramework(t, sort.Bubble[int])
 }
 
+func TestBogo(t *testing.T) {
+	t.Skip("Skipping test for Bogo Sort, as it uses a lot of resource.")
+	testFramework(t, sort.Bogo[int])
+}
+
 func TestBucketSort(t *testing.T) {
 	testFramework(t, sort.Bucket[int])
+}
+
+func TestCocktailSort(t *testing.T) {
+	testFramework(t, sort.Cocktail[int])
 }
 
 func TestExchange(t *testing.T) {
@@ -173,7 +186,11 @@ func TestCycle(t *testing.T) {
 	testFramework(t, sort.Cycle[int])
 }
 
-//END TESTS
+func TestTimsort(t *testing.T) {
+	testFramework(t, sort.Timsort[int])
+}
+
+// END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 	var sortTests = []struct {
@@ -214,12 +231,25 @@ func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
 
 //BEGIN BENCHMARKS
 
+func BenchmarkBinaryInsertion(b *testing.B) {
+	benchmarkFramework(b, sort.BinaryInsertion[int])
+}
+
 func BenchmarkBubble(b *testing.B) {
 	benchmarkFramework(b, sort.Bubble[int])
 }
 
+func BenchmarkBogo(b *testing.B) {
+	b.Skip("Skipping benchmark for Bogo Sort, as it uses a lot of resource.")
+	benchmarkFramework(b, sort.Bogo[int])
+}
+
 func BenchmarkBucketSort(b *testing.B) {
 	benchmarkFramework(b, sort.Bucket[int])
+}
+
+func BenchmarkCocktailSort(b *testing.B) {
+	benchmarkFramework(b, sort.Cocktail[int])
 }
 
 func BenchmarkExchange(b *testing.B) {
@@ -293,4 +323,8 @@ func BenchmarkPatience(b *testing.B) {
 
 func BenchmarkCycle(b *testing.B) {
 	benchmarkFramework(b, sort.Cycle[int])
+}
+
+func BenchmarkTimsort(b *testing.B) {
+	benchmarkFramework(b, sort.Timsort[int])
 }
