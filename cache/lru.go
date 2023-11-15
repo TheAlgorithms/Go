@@ -7,6 +7,9 @@ import (
 type item struct {
 	key   string
 	value any
+
+	// the frequency of key
+	freq int
 }
 
 type LRU struct {
