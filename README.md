@@ -89,16 +89,15 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ##### Functions:
 
-1. [`NewLRU`](./cache/lru.go#L22): NewLRU represent initiate lru cache with capacity
-2. [`NewLFU`](./cache/lfu.go#L33): NewLFU represent initiate lfu cache with capacity
-3. [`Get`](./cache/lfu.go#L52): Get the value by key from LFU cache
-4. [`Put`](./cache/lfu.go#L66): Put the key and value in LFU cache
+1. [`NewLFU`](./cache/lfu.go#L33):  NewLFU init the LFU cache with capacity
+2. [`NewLRU`](./cache/lru.go#L23):  NewLRU represent initiate lru cache with capacity
 
 ---
 ##### Types
 
-1. [`LRU`](./cache/lru.go#L15): Default the struct of lru cache algorithm.
-2. [`LFU`](./cache/lfu.go#L19): Default the struct of lfu cache algorithm.
+1. [`LFU`](./cache/lfu.go#L19): No description provided.
+
+2. [`LRU`](./cache/lru.go#L15): No description provided.
 
 
 ---
@@ -663,8 +662,10 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 18. [`Phi`](./math/eulertotient.go#L5):  Phi is the Euler totient function. This function computes the number of numbers less then n that are coprime with n.
 19. [`PollardsRhoFactorization`](./math/pollard.go#L29):  PollardsRhoFactorization is an implementation of Pollard's rho factorization algorithm using the default parameters x = y = 2
 20. [`PronicNumber`](./math/pronicnumber.go#L15):  PronicNumber returns true if argument passed to the function is pronic and false otherwise.
-21. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
-22. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
+21. [`SimpsonsOneThirdInteg`](./math/numericalintegration.go#L22): SimpsonsOneThirdInteg function implements Simpson's 1/3rd rule of integration to find the approximate area under thecurve of a function f between teh limits a and b. The last aprameter n is the number of intervals to use.Higher the value of n, more is the accuracy of the result, but more will be the time taken to evaluate the area.n has to be even. If odd number is provided, it will be incremented.https://en.wikipedia.org/wiki/Simpson%27s_ruleSample usage: area:=SimpsonsOneThirdInteg(func(x float64) float64 { return x * x }, 0, 1, 200)
+22. [`Sin`](./math/sin.go#L9):  Sin returns the sine of the radian argument x. [See more](https://en.wikipedia.org/wiki/Sine_and_cosine)
+23. [`SumOfProperDivisors`](./math/perfectnumber.go#L17):  Returns the sum of proper divisors of inNumber.
+24. [`TrapezoidalInteg`](./math/numericalintegration.go#L8): No description provided.
 
 ---
 </details><details>
@@ -987,9 +988,12 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 
+#####  Segment Tree Data Structure for efficient range queries on an array of integers. It can query the sum and update the elements to a new value of any range of the array. Build: O(n*log(n)) Query: O(log(n)) Update: O(log(n)) reference: https://cp-algorithms.com/data_structures/segment_tree.html
+
+---
 ##### Functions:
 
-1. [`NewSegmentTree`](./structure/segmenttree/segmenttree.go#L116): No description provided.
+1. [`NewSegmentTree`](./structure/segmenttree/segmenttree.go#L117):  NewSegmentTree returns a new instance of a SegmentTree. It takes an input array of integers representing Array, initializes and builds the SegmentTree.
 
 ---
 ##### Types
@@ -1056,6 +1060,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 23. [`Selection`](./sort/selectionsort.go#L5): No description provided.
 24. [`Shell`](./sort/shellsort.go#L5): No description provided.
 25. [`Simple`](./sort/simplesort.go#L13): No description provided.
+26. [`Timsort`](./sort/timsort.go#L13):  Timsort is a simple generic implementation of Timsort algorithm.
 
 ---
 ##### Types
