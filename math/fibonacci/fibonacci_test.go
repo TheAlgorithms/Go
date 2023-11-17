@@ -64,6 +64,19 @@ func TestFormula(t *testing.T) {
 	}
 }
 
+func TestRecursive(t *testing.T) {
+	tests := getTests()
+	for _, test := range tests {
+		if test.n <= 10 {
+			t.Run(test.name, func(t *testing.T) {
+				if got := Recursive(test.n); got != test.want {
+					t.Errorf("Return value = %v, want %v", got, test.want)
+				}
+			})
+		}
+	}
+}
+
 func BenchmarkNthFibonacci(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		dynamic.NthFibonacci(90)
