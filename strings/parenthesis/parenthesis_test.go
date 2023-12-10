@@ -15,17 +15,17 @@ var parenthesisTestCases = []struct {
 		true,
 	},
 	{
-		"three nested pharentesis with three deep level",
+		"three nested parenthesis with three deep level",
 		"(-1*(5+2^(3-4)*(7.44-12)+6.66/(3.43-(1+2)))*(sqrt(3-4)))",
 		true,
 	},
 	{
-		"one opened pharentesis without be closed",
+		"one opened parenthesis without be closed",
 		"(2*9-17)*((7+3/3)*2*(-1+4)",
 		false,
 	},
 	{
-		"one open pharentesis for each close one but not in pairs",
+		"one open parenthesis for each close one but not in pairs",
 		"(4*(39.22-7.4)/6.77))(",
 		false,
 	},
@@ -35,7 +35,7 @@ var parenthesisTestCases = []struct {
 		true,
 	},
 	{
-		"inverted pharentesis",
+		"inverted parenthesis",
 		")()()()()(",
 		false,
 	},
