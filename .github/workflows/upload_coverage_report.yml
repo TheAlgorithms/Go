@@ -1,0 +1,31 @@
+---
+name: upload_coverage_report
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+
+env:
+  REPORT_NAME: "coverage.out"
+
+jobs:
+  upload_coverage_report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '^1.18'
+      - name: Generate code coverage
+        run: |
+          go test -coverprofile="${{ env.REPORT_NAME }}" ./...
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v3
+        with:
+          files: "${{ env.REPORT_NAME }}"
+          fail_ci_if_error: true
+...
