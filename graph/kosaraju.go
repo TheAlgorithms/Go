@@ -37,6 +37,7 @@ func dfs(node int, adj [][]int, visited map[int]bool, currentSCC *[]int) {
 	}
 }
 
+// Get Strongly Connected Components using Kosaraju Algorithm
 func GetStronglyConnectedComponents(n int, adj [][]int) [][]int {
 	transposeGraph := getTransposeGraph(n, adj)
 	sortedNodes := []int{}
