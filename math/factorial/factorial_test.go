@@ -1,81 +1,75 @@
 // factorial_test.go
 // description: Test for calculating factorial
-// author(s) [red_byte](https://github.com/i-redbyte)
 // see factorial.go
 
 package factorial
 
 import "testing"
+import "fmt"
 
-func getTests() []struct {
-	name   string
-	n      int
-	result int
+type factorialFun func(int) (int, error)
+
+func implementations() map[string]factorialFun {
+	return map[string]factorialFun{
+		"Iterative": Iterative,
+		"Recursive": Recursive,
+		"UsingTree": UsingTree,
+	}
+}
+
+func testCases() []struct {
+	n        int
+	expected int
 } {
-	var tests = []struct {
-		name   string
-		n      int
-		result int
+	return []struct {
+		n        int
+		expected int
 	}{
-		{"5!", 5, 120},
-		{"3!", 3, 6},
-		{"6!", 6, 720},
-		{"12!", 12, 479001600},
-		{"1!", 1, 1},
+		{0, 1},
+		{1, 1},
+		{2, 2},
+		{3, 6},
+		{4, 24},
+		{5, 120},
+		{6, 720},
+		{7, 5040},
+		{8, 40320},
+		{9, 362880},
+		{10, 3628800},
+		{11, 39916800},
+		{12, 479001600},
 	}
-	return tests
 }
-
-func TestBruteForceFactorial(t *testing.T) {
-	tests := getTests()
-	for _, tv := range tests {
-		t.Run(tv.name, func(t *testing.T) {
-			result := Iterative(tv.n)
-			if result != tv.result {
-				t.Errorf("Wrong result! Expected:%d, returned:%d ", tv.result, result)
+func TestFactorial(t *testing.T) {
+	for implName, implFunction := range implementations() {
+		t.Run(implName+"_errors_for_negative_input", func(t *testing.T) {
+			_, error := implFunction(-1)
+			if error != InputMustBeNonnegative {
+				t.Errorf("No error captured for negative input")
 			}
 		})
+		for _, tc := range testCases() {
+			t.Run(fmt.Sprintf("%s_with_input_%d", implName, tc.n), func(t *testing.T) {
+				actual, err := implFunction(tc.n)
+				if err != nil {
+					t.Errorf("Unexpected error captured")
+				}
+				if actual != tc.expected {
+					t.Errorf("Expected: %d, got: %d", tc.expected, actual)
+				}
+			})
+		}
 	}
 }
 
-func TestRecursiveFactorial(t *testing.T) {
-	tests := getTests()
-	for _, tv := range tests {
-		t.Run(tv.name, func(t *testing.T) {
-			result := Recursive(tv.n)
-			if result != tv.result {
-				t.Errorf("Wrong result! Expected:%d, returned:%d ", tv.result, result)
-			}
-		})
-	}
-}
-
-func TestCalculateFactorialUseTree(t *testing.T) {
-	tests := getTests()
-	for _, tv := range tests {
-		t.Run(tv.name, func(t *testing.T) {
-			result := UsingTree(tv.n)
-			if result != tv.result {
-				t.Errorf("Wrong result! Expected:%d, returned:%d ", tv.result, result)
-			}
-		})
-	}
-}
-
-func BenchmarkBruteForceFactorial(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		Iterative(10)
-	}
-}
-
-func BenchmarkRecursiveFactorial(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		Recursive(10)
-	}
-}
-
-func BenchmarkCalculateFactorialUseTree(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		Recursive(10)
+func BenchmarkFactorial(b *testing.B) {
+	for _, input := range []int{5, 10, 15} {
+		for implName, implFunction := range implementations() {
+			b.Run(fmt.Sprintf("%s_%d", implName, input), func(b *testing.B) {
+				for i := 0; i < b.N; i++ {
+					_, _ = implFunction(input)
+				}
+			})
+		}
 	}
 }
