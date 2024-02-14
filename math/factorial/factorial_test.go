@@ -42,17 +42,17 @@ func testCases() []struct {
 }
 func TestFactorial(t *testing.T) {
 	for implName, implFunction := range implementations() {
-		t.Run(implName+"_errors_for_negative_input", func(t *testing.T) {
+		t.Run(implName+" errors for negative input", func(t *testing.T) {
 			_, error := implFunction(-1)
 			if error != InputMustBeNonnegative {
 				t.Errorf("No error captured for negative input")
 			}
 		})
 		for _, tc := range testCases() {
-			t.Run(fmt.Sprintf("%s_with_input_%d", implName, tc.n), func(t *testing.T) {
+			t.Run(fmt.Sprintf("%s with input %d", implName, tc.n), func(t *testing.T) {
 				actual, err := implFunction(tc.n)
 				if err != nil {
-					t.Errorf("Unexpected error captured")
+					t.Errorf("unexpected error captured")
 				}
 				if actual != tc.expected {
 					t.Errorf("Expected: %d, got: %d", tc.expected, actual)
