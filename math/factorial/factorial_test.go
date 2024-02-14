@@ -9,46 +9,40 @@ import "fmt"
 
 type factorialFun func(int) (int, error)
 
-func implementations() map[string]factorialFun {
-	return map[string]factorialFun{
-		"Iterative": Iterative,
-		"Recursive": Recursive,
-		"UsingTree": UsingTree,
-	}
+var implementations = map[string]factorialFun{
+	"Iterative": Iterative,
+	"Recursive": Recursive,
+	"UsingTree": UsingTree,
 }
 
-func testCases() []struct {
+var testCases = []struct {
 	n        int
 	expected int
-} {
-	return []struct {
-		n        int
-		expected int
-	}{
-		{0, 1},
-		{1, 1},
-		{2, 2},
-		{3, 6},
-		{4, 24},
-		{5, 120},
-		{6, 720},
-		{7, 5040},
-		{8, 40320},
-		{9, 362880},
-		{10, 3628800},
-		{11, 39916800},
-		{12, 479001600},
-	}
+}{
+	{0, 1},
+	{1, 1},
+	{2, 2},
+	{3, 6},
+	{4, 24},
+	{5, 120},
+	{6, 720},
+	{7, 5040},
+	{8, 40320},
+	{9, 362880},
+	{10, 3628800},
+	{11, 39916800},
+	{12, 479001600},
 }
+
 func TestFactorial(t *testing.T) {
-	for implName, implFunction := range implementations() {
+	for implName, implFunction := range implementations {
 		t.Run(implName+" errors for negative input", func(t *testing.T) {
 			_, error := implFunction(-1)
 			if error != ErrNegativeArgument {
 				t.Errorf("No error captured for negative input")
 			}
 		})
-		for _, tc := range testCases() {
+		for _, tc := range testCases {
 			t.Run(fmt.Sprintf("%s with input %d", implName, tc.n), func(t *testing.T) {
 				actual, err := implFunction(tc.n)
 				if err != nil {
@@ -64,7 +58,7 @@ func TestFactorial(t *testing.T) {
 
 func BenchmarkFactorial(b *testing.B) {
 	for _, input := range []int{5, 10, 15} {
-		for implName, implFunction := range implementations() {
+		for implName, implFunction := range implementations {
 			b.Run(fmt.Sprintf("%s_%d", implName, input), func(b *testing.B) {
 				for i := 0; i < b.N; i++ {
 					_, _ = implFunction(input)
