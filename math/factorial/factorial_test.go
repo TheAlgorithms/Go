@@ -44,7 +44,7 @@ func TestFactorial(t *testing.T) {
 	for implName, implFunction := range implementations() {
 		t.Run(implName+" errors for negative input", func(t *testing.T) {
 			_, error := implFunction(-1)
-			if error != InputMustBeNonnegative {
+			if error != ErrNegativeArgument {
 				t.Errorf("No error captured for negative input")
 			}
 		})
