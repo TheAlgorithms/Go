@@ -37,7 +37,7 @@ func NewBTree[T constraints.Ordered](maxKeys int) *BTree[T] {
 		panic("Must be >= 3 keys")
 	}
 	return &BTree[T]{
-		root:    NewBTreeNode[T](maxKeys, true),
+		root:    nil,
 		maxKeys: maxKeys,
 	}
 }
@@ -72,6 +72,9 @@ func (node *BTreeNode[T]) Search(key T) bool {
 }
 
 func (tree *BTree[T]) Search(key T) bool {
+	if tree.root == nil {
+		return false;
+	}
 	return tree.root.Search(key)
 }
 
@@ -342,6 +345,9 @@ func (node *BTreeNode[T]) Delete(tree *BTree[T], key T) {
 }
 
 func (tree *BTree[T]) Delete(key T) {
+	if tree.root == nil {
+		return
+	}
 	tree.root.Delete(tree, key)
 	if tree.root.numKeys == 0 {
 		tree.root = tree.root.children[0]
