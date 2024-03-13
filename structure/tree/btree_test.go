@@ -13,7 +13,7 @@ func TestBTreeIncreasing(t *testing.T) {
 		for _, size := range sizes {
 			tree := bt.NewBTree[int](maxKeys)
 			if tree.Search(0) {
-					t.Errorf("Tree expected to contain 0")
+				t.Errorf("Tree expected to contain 0")
 			}
 			for i := 0; i < size; i++ {
 				tree.Insert(i)
@@ -49,7 +49,7 @@ func TestBTreeDecreasing(t *testing.T) {
 		for _, size := range sizes {
 			tree := bt.NewBTree[int](maxKeys)
 			if tree.Search(0) {
-					t.Errorf("Tree expected to contain 0")
+				t.Errorf("Tree expected to contain 0")
 			}
 			for i := size - 1; i >= 0; i-- {
 				tree.Insert(i)
@@ -87,7 +87,7 @@ func TestBTreeRandom(t *testing.T) {
 			tree := bt.NewBTree[int](maxKeys)
 			nums := rnd.Perm(size)
 			if tree.Search(0) {
-					t.Errorf("Tree expected to contain 0")
+				t.Errorf("Tree expected to contain 0")
 			}
 			for i := 0; i < size; i++ {
 				tree.Insert(nums[i])

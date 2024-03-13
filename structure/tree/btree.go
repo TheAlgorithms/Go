@@ -73,7 +73,7 @@ func (node *BTreeNode[T]) Search(key T) bool {
 
 func (tree *BTree[T]) Search(key T) bool {
 	if tree.root == nil {
-		return false;
+		return false
 	}
 	return tree.root.Search(key)
 }
