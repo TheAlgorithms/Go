@@ -13,12 +13,11 @@ import (
 )
 
 var ErrNegativeArgument = errors.New("input argument must be non-negative integer")
-var erroredResult = -1
 
 // Iterative returns the iteratively brute forced factorial of n
 func Iterative(n int) (int, error) {
 	if n < 0 {
-		return erroredResult, ErrNegativeArgument
+		return 0, ErrNegativeArgument
 	}
 	result := 1
 	for i := 2; i <= n; i++ {
@@ -30,7 +29,7 @@ func Iterative(n int) (int, error) {
 // Recursive This function recursively computes the factorial of a number
 func Recursive(n int) (int, error) {
 	if n < 0 {
-		return erroredResult, ErrNegativeArgument
+		return 0, ErrNegativeArgument
 	}
 	if n <= 1 {
 		return 1, nil
@@ -42,7 +41,7 @@ func Recursive(n int) (int, error) {
 // UsingTree This function finds the factorial of a number using a binary tree
 func UsingTree(n int) (int, error) {
 	if n < 0 {
-		return erroredResult, ErrNegativeArgument
+		return 0, ErrNegativeArgument
 	}
 	if n == 0 {
 		return 1, nil
