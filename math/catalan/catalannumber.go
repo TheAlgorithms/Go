@@ -12,7 +12,15 @@ import (
 	f "github.com/TheAlgorithms/Go/math/factorial"
 )
 
+func factorial(n int) int {
+	result, error := f.Iterative(n)
+	if error != nil {
+		panic(error)
+	}
+	return result
+}
+
 // CatalanNumber This function returns the `nth` Catalan number
 func CatalanNumber(n int) int {
-	return f.Iterative(n*2) / (f.Iterative(n) * f.Iterative(n+1))
+	return factorial(n*2) / (factorial(n) * factorial(n+1))
 }

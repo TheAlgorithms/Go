@@ -8,36 +8,48 @@
 // Package factorial describes algorithms Factorials calculations.
 package factorial
 
+import (
+	"errors"
+)
+
+var ErrNegativeArgument = errors.New("input argument must be non-negative integer")
+
 // Iterative returns the iteratively brute forced factorial of n
-func Iterative(n int) int {
+func Iterative(n int) (int, error) {
+	if n < 0 {
+		return 0, ErrNegativeArgument
+	}
 	result := 1
 	for i := 2; i <= n; i++ {
 		result *= i
 	}
-	return result
+	return result, nil
 }
 
 // Recursive This function recursively computes the factorial of a number
-func Recursive(n int) int {
-	if n == 1 {
-		return 1
-	} else {
-		return n * Recursive(n-1)
+func Recursive(n int) (int, error) {
+	if n < 0 {
+		return 0, ErrNegativeArgument
 	}
+	if n <= 1 {
+		return 1, nil
+	}
+	prev, _ := Recursive(n - 1)
+	return n * prev, nil
 }
 
 // UsingTree This function finds the factorial of a number using a binary tree
-func UsingTree(n int) int {
+func UsingTree(n int) (int, error) {
 	if n < 0 {
-		return 0
+		return 0, ErrNegativeArgument
 	}
 	if n == 0 {
-		return 1
+		return 1, nil
 	}
 	if n == 1 || n == 2 {
-		return n
+		return n, nil
 	}
-	return prodTree(2, n)
+	return prodTree(2, n), nil
 }
 
 func prodTree(l int, r int) int {
