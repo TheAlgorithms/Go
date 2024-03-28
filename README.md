@@ -462,6 +462,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 12. [`NewUnionFind`](./graph/unionfind.go#L24):  Initialise a new union find data structure with s nodes
 13. [`NotExist`](./graph/depthfirstsearch.go#L12): No description provided.
 14. [`Topological`](./graph/topological.go#L7):  Topological assumes that graph given is valid and that its possible to get a topological ordering. constraints are array of []int{a, b}, representing an edge going from a to b
+15. [`Edmond-Karp`](./graph/edmondkarp.go#L43): Computes the maximum possible flow between a pair of s-t vertices in a weighted graph
 
 ---
 ##### Types
