@@ -314,7 +314,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 17. [`Max`](./dynamic/knapsack.go#L11):  Max function - possible duplicate
 18. [`NthCatalanNumber`](./dynamic/catalan.go#L13):  NthCatalan returns the n-th Catalan Number Complexity: O(n²)
 19. [`NthFibonacci`](./dynamic/fibonacci.go#L6):  NthFibonacci returns the nth Fibonacci Number
-
+20. [`TrapRainWater`](./dynamic/traprainwater.go#L17): Calculate the amount of trapped rainwater between bars represented by an elevation map using dynamic programming.
 ---
 </details><details>
 	<summary> <strong> dynamicarray </strong> </summary>	
