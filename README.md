@@ -1201,4 +1201,17 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 ---
 </details>
+
+#####  Package railfence is a classical type of transposition cipher ref : https://en.wikipedia.org/wiki/Rail_fence_cipher
+
+---
+##### Functions:
+
+1. [`Encrypt`](.cipher/railfence/railfence.go#L7):  Encrypt encrypts a message using rail fence cipher
+2. [`Decrypt`](.cipher/railfence/railfence.go#L44):  decrypt decrypts a message using rail fence cipher
+3. [`TestEncrypt`](.cipher/railfence/railfence_test.go#L7) Test function for Encrypt
+4. [`TestDecrypt`](.cipher/railfence/railfence_test.go#L50) Test function for Decrypt
+
+---
+</details>
 <!--- GODOCMD END --->
