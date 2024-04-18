@@ -13,7 +13,7 @@ func TestUniquePaths(t *testing.T) {
 		"negative sizes":               {-1, -1, 0},
 		"empty matrix both dimensions": {0, 0, 0},
 		"empty matrix one dimension":   {0, 1, 0},
-		"one elements":                 {1, 1, 1},
+		"one element":                  {1, 1, 1},
 		"small matrix":                 {2, 2, 2},
 		"stress test":                  {1000, 1000, 2874513998398909184},
 	}
