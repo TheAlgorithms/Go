@@ -1202,7 +1202,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 </details>
 
-#####  Package railfence is a classical type of transposition cipher ref : https://en.wikipedia.org/wiki/Rail_fence_cipher
+#####  Package rail fence is a classical type of transposition cipher ref : https://en.wikipedia.org/wiki/Rail_fence_cipher
 
 ---
 ##### Functions:
