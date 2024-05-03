@@ -834,6 +834,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
 1. [`GenerateElementSet`](./math/permutation/heaps.go#L37): No description provided.
 2. [`Heaps`](./math/permutation/heaps.go#L8):  Heap's Algorithm for generating all permutations of n objects
+3. [`NextPermutation`](./math/permutation/next_permutation.go#8): A solution to find next permutation of an integer array in constant memory
 
 ---
 </details><details>
