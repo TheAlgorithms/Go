@@ -1,6 +1,6 @@
 // factorial.go
 // description: Calculating factorial
-// details:
+// details:7
 // The factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n - [Factorial](https://en.wikipedia.org/wiki/Factorial)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see factorial_test.go
