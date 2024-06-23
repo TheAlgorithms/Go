@@ -1,6 +1,6 @@
 /*
 rlecoding.go
-descrption: run length encoding and decoding
+description: run length encoding and decoding
 details:
 Run-length encoding (RLE) is a simple form of data compression in which runs of data are stored as a single data value and count, rather than as the original run. This is useful when the data contains many repeated values. For example, the data "WWWWWWWWWWWWBWWWWWWWWWWWWBBB" can be compressed to "12W1B12W3B". The algorithm is simple and can be implemented in a few lines of code.
 author(s) [ddaniel27](https://github.com/ddaniel27)
