@@ -7,7 +7,7 @@ import (
 	"github.com/TheAlgorithms/Go/compression"
 )
 
-func TestCompression_RLEncode(t *testing.T) {
+func TestCompressionRLEncode(t *testing.T) {
 	tests := []struct {
 		name string
 		data string
@@ -39,7 +39,7 @@ func TestCompression_RLEncode(t *testing.T) {
 	}
 }
 
-func TestCompression_RLEdecode(t *testing.T) {
+func TestCompressionRLEDecode(t *testing.T) {
 	tests := []struct {
 		name string
 		data string
@@ -71,7 +71,7 @@ func TestCompression_RLEdecode(t *testing.T) {
 	}
 }
 
-func TestCompression_RLEncodebytes(t *testing.T) {
+func TestCompressionRLEncodeBytes(t *testing.T) {
 	tests := []struct {
 		name string
 		data []byte
@@ -103,7 +103,7 @@ func TestCompression_RLEncodebytes(t *testing.T) {
 	}
 }
 
-func TestCompression_RLEdecodebytes(t *testing.T) {
+func TestCompressionRLEDecodeBytes(t *testing.T) {
 	tests := []struct {
 		name string
 		data []byte
@@ -142,19 +142,19 @@ func BenchmarkRLEncode(b *testing.B) {
 	}
 }
 
-func BenchmarkRLEdecode(b *testing.B) {
+func BenchmarkRLEDecode(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = compression.RLEdecode("12W1B12W3B")
 	}
 }
 
-func BenchmarkRLEncodebytes(b *testing.B) {
+func BenchmarkRLEncodeBytes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = compression.RLEncodebytes([]byte("WWWWWWWWWWWWBWWWWWWWWWWWWBBB"))
 	}
 }
 
-func BenchmarkRLEdecodebytes(b *testing.B) {
+func BenchmarkRLEDecodeBytes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = compression.RLEdecodebytes([]byte{12, 'W', 1, 'B', 12, 'W', 3, 'B'})
 	}
