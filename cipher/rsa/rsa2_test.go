@@ -12,11 +12,11 @@ func TestRSA(t *testing.T) {
 		message string
 	}{
 		{
-			name:    "Encrypt letter 'a'",
+			name:    "Encrypt letter 'a' and decrypt it back",
 			message: "a",
 		},
 		{
-			name:    "Encrypt 'Hello, World!'",
+			name:    "Encrypt 'Hello, World!' and decrypt it back",
 			message: "Hello, World!",
 		},
 	}
@@ -30,5 +30,20 @@ func TestRSA(t *testing.T) {
 				t.Errorf("expected %s, got %s", tt.message, decrypted)
 			}
 		})
+	}
+}
+
+func BenchmarkRSAEncryption(b *testing.B) {
+	rsa := rsa.InitRSA()
+	for i := 0; i < b.N; i++ {
+		rsa.EncryptString("Hello, World!")
+	}
+}
+
+func BenchmarkRSADecryption(b *testing.B) {
+	rsa := rsa.InitRSA()
+	encrypted := rsa.EncryptString("Hello, World!")
+	for i := 0; i < b.N; i++ {
+		rsa.DecryptString(encrypted)
 	}
 }

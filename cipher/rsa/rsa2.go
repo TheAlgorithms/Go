@@ -1,13 +1,24 @@
+/*
+rsa2.go
+description: RSA encryption and decryption including key generation
+details: [RSA wiki](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+author(s): [ddaniel27](https://github.com/ddaniel27)
+*/
 package rsa
 
 import (
 	"encoding/binary"
 	"fmt"
 	"math/big"
+	"math/rand"
 
 	"github.com/TheAlgorithms/Go/math/gcd"
+	"github.com/TheAlgorithms/Go/math/lcm"
+	"github.com/TheAlgorithms/Go/math/modular"
+	"github.com/TheAlgorithms/Go/math/prime"
 )
 
+// rsa struct contains the public key, private key and modulus
 type rsa struct {
 	publicKey  uint64
 	privateKey uint64
@@ -23,17 +34,17 @@ func InitRSA() *rsa {
 }
 
 // KeyGen generates a key for encryption and decryption with RSA
-// 1. Choose two large prime numbers, p and q and compute n = p * q
+// 1. Choose two large prime numbers (p and q) and compute n = p * q
 // 2. Compute the totient of n, lcm(p-1, q-1) = (p-1) * (q-1)
 // 3. Choose an integer e such that 1 < e < lcm(p-1, q-1) and gcd(e, lcm(p-1, q-1)) = 1
 // 4. Compute d such that d * e ≡ 1 (mod lcm(p-1, q-1))
 func (rsa *rsa) keyGen() {
 	// 1. Choose two large prime numbers, p and q and compute n = p * q
-	p, q := uint64(173), uint64(479) // prime numbers
-	modulus := p * q                 // n stands for common number
+	p, q := randomPrime() // p and q stands for prime numbers
+	modulus := p * q      // n stands for common number
 
-	// 2. Compute the totient of n, lcm(p-1, q-1) = (p-1) * (q-1)
-	totient := (p - 1) * (q - 1)
+	// 2. Compute the totient of n, lcm(p-1, q-1)
+	totient := uint64(lcm.Lcm(int64(p-1), int64(q-1)))
 
 	// 3. Choose an integer e such that 1 < e < totient(n) and gcd(e, totient(n)) = 1
 	publicKey := uint64(2) // e stands for encryption key (public key)
@@ -45,10 +56,8 @@ func (rsa *rsa) keyGen() {
 	}
 
 	// 4. Compute d such that d * e ≡ 1 (mod totient(n))
-	// d*e = 1 + k * totient
-	// d = (1 + k * totient) / e
-	k := uint64(5)                                // constant
-	privateKey := (1 + (k * totient)) / publicKey // d stands for decryption key (private key)
+	inv, _ := modular.Inverse(int64(publicKey), int64(totient))
+	privateKey := uint64(inv)
 
 	rsa.publicKey = publicKey
 	rsa.privateKey = privateKey
@@ -105,4 +114,18 @@ func (rsa *rsa) GetPrivateKey() uint64 {
 func encryptDecryptInt(e, n, data uint64) uint64 {
 	pow := new(big.Int).Exp(big.NewInt(int64(data)), big.NewInt(int64(e)), big.NewInt(int64(n)))
 	return pow.Uint64()
+}
+
+// randomPrime returns two random prime numbers
+func randomPrime() (uint64, uint64) {
+	sieve := prime.SieveEratosthenes(1000)
+	sieve = sieve[10:] // remove first 10 prime numbers (small numbers)
+	index1 := rand.Intn(len(sieve) - 10)
+	index2 := rand.Intn(len(sieve) - 10)
+
+	for index1 == index2 {
+		index2 = rand.Intn(len(sieve))
+	}
+
+	return uint64(sieve[index1]), uint64(sieve[index2])
 }
