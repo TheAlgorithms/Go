@@ -35,7 +35,7 @@ func InitRSA() *rsa {
 
 // KeyGen generates a key for encryption and decryption with RSA
 // 1. Choose two large prime numbers (p and q) and compute n = p * q
-// 2. Compute the totient of n, lcm(p-1, q-1) = (p-1) * (q-1)
+// 2. Compute the totient of n, lcm(p-1, q-1)
 // 3. Choose an integer e such that 1 < e < lcm(p-1, q-1) and gcd(e, lcm(p-1, q-1)) = 1
 // 4. Compute d such that d * e ≡ 1 (mod lcm(p-1, q-1))
 func (rsa *rsa) keyGen() {
