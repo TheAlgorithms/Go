@@ -25,20 +25,12 @@ type rsa struct {
 	modulus    uint64
 }
 
-// InitRSA initializes the RSA algorithm
+// New initializes the RSA algorithm
 // returns the RSA object
-func InitRSA() *rsa {
+func New() *rsa {
 	rsa := new(rsa)
-	rsa.keyGen()
-	return rsa
-}
 
-// KeyGen generates a key for encryption and decryption with RSA
-// 1. Choose two large prime numbers (p and q) and compute n = p * q
-// 2. Compute the totient of n, lcm(p-1, q-1)
-// 3. Choose an integer e such that 1 < e < lcm(p-1, q-1) and gcd(e, lcm(p-1, q-1)) = 1
-// 4. Compute d such that d * e ≡ 1 (mod lcm(p-1, q-1))
-func (rsa *rsa) keyGen() {
+	// The following code generates keys for RSA encryption/decryption
 	// 1. Choose two large prime numbers, p and q and compute n = p * q
 	p, q := randomPrime() // p and q stands for prime numbers
 	modulus := p * q      // n stands for common number
@@ -62,6 +54,8 @@ func (rsa *rsa) keyGen() {
 	rsa.publicKey = publicKey
 	rsa.privateKey = privateKey
 	rsa.modulus = modulus
+
+	return rsa
 }
 
 // EncryptString encrypts the data using RSA algorithm

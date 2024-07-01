@@ -23,7 +23,7 @@ func TestRSA(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			rsa := rsa.InitRSA()
+			rsa := rsa.New()
 			encrypted := rsa.EncryptString(tt.message)
 			decrypted := rsa.DecryptString(encrypted)
 			if decrypted != tt.message {
@@ -34,14 +34,14 @@ func TestRSA(t *testing.T) {
 }
 
 func BenchmarkRSAEncryption(b *testing.B) {
-	rsa := rsa.InitRSA()
+	rsa := rsa.New()
 	for i := 0; i < b.N; i++ {
 		rsa.EncryptString("Hello, World!")
 	}
 }
 
 func BenchmarkRSADecryption(b *testing.B) {
-	rsa := rsa.InitRSA()
+	rsa := rsa.New()
 	encrypted := rsa.EncryptString("Hello, World!")
 	for i := 0; i < b.N; i++ {
 		rsa.DecryptString(encrypted)
