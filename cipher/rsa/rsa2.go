@@ -28,8 +28,6 @@ type rsa struct {
 // New initializes the RSA algorithm
 // returns the RSA object
 func New() *rsa {
-	rsa := new(rsa)
-
 	// The following code generates keys for RSA encryption/decryption
 	// 1. Choose two large prime numbers, p and q and compute n = p * q
 	p, q := randomPrime() // p and q stands for prime numbers
@@ -51,11 +49,11 @@ func New() *rsa {
 	inv, _ := modular.Inverse(int64(publicKey), int64(totient))
 	privateKey := uint64(inv)
 
-	rsa.publicKey = publicKey
-	rsa.privateKey = privateKey
-	rsa.modulus = modulus
-
-	return rsa
+	return &rsa{
+		publicKey:  publicKey,
+		privateKey: privateKey,
+		modulus:    modulus,
+	}
 }
 
 // EncryptString encrypts the data using RSA algorithm
@@ -114,8 +112,8 @@ func encryptDecryptInt(e, n, data uint64) uint64 {
 func randomPrime() (uint64, uint64) {
 	sieve := prime.SieveEratosthenes(1000)
 	sieve = sieve[10:] // remove first 10 prime numbers (small numbers)
-	index1 := rand.Intn(len(sieve) - 10)
-	index2 := rand.Intn(len(sieve) - 10)
+	index1 := rand.Intn(len(sieve))
+	index2 := rand.Intn(len(sieve))
 
 	for index1 == index2 {
 		index2 = rand.Intn(len(sieve))
