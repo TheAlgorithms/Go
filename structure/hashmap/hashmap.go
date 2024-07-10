@@ -13,14 +13,14 @@ type node struct {
 	next  *node
 }
 
-// HashMap is golang implementation of hashmap
+// HashMap is a Golang implementation of a hashmap
 type HashMap struct {
 	capacity uint64
 	size     uint64
 	table    []*node
 }
 
-// New return new HashMap instance
+// New returns a new HashMap instance
 func New() *HashMap {
 	return &HashMap{
 		capacity: defaultCapacity,
@@ -28,104 +28,85 @@ func New() *HashMap {
 	}
 }
 
-// Make creates a new HashMap instance with input size and capacity
-func Make(size, capacity uint64) HashMap {
-	return HashMap{
+// Make creates a new HashMap instance with the specified size and capacity
+func Make(size, capacity uint64) *HashMap {
+	return &HashMap{
 		size:     size,
 		capacity: capacity,
 		table:    make([]*node, capacity),
 	}
 }
 
-// Get returns value associated with given key
+// Get returns the value associated with the given key
 func (hm *HashMap) Get(key any) any {
-	node := hm.getNodeByHash(hm.hash(key))
-
+	node := hm.getNodeByKey(key)
 	if node != nil {
 		return node.value
 	}
-
 	return nil
 }
 
-// Put puts new key value in hashmap
-func (hm *HashMap) Put(key any, value any) any {
-	return hm.putValue(hm.hash(key), key, value)
-}
-
-// Contains checks if given key is stored in hashmap
-func (hm *HashMap) Contains(key any) bool {
-	node := hm.getNodeByHash(hm.hash(key))
-	return node != nil
-}
-
-func (hm *HashMap) putValue(hash uint64, key any, value any) any {
-	if hm.capacity == 0 {
-		hm.capacity = defaultCapacity
-		hm.table = make([]*node, defaultCapacity)
-	}
-
-	node := hm.getNodeByHash(hash)
-
-	if node == nil {
-		hm.table[hash] = newNode(key, value)
-
-	} else if node.key == key {
-		hm.table[hash] = newNodeWithNext(key, value, node)
-		return value
-
+// Put inserts a new key-value pair into the hashmap
+func (hm *HashMap) Put(key, value any) {
+	index := hm.hash(key)
+	if hm.table[index] == nil {
+		hm.table[index] = &node{key: key, value: value}
 	} else {
-		hm.resize()
-		return hm.putValue(hash, key, value)
-	}
-
-	hm.size++
-
-	return value
-
-}
-
-func (hm *HashMap) getNodeByHash(hash uint64) *node {
-	return hm.table[hash]
-}
-
-func (hm *HashMap) resize() {
-	hm.capacity <<= 1
-
-	tempTable := hm.table
-
-	hm.table = make([]*node, hm.capacity)
-
-	for i := 0; i < len(tempTable); i++ {
-		node := tempTable[i]
-		if node == nil {
-			continue
+		current := hm.table[index]
+		for {
+			if current.key == key {
+				current.value = value
+				return
+			}
+			if current.next == nil {
+				break
+			}
+			current = current.next
 		}
-
-		hm.table[hm.hash(node.key)] = node
+		current.next = &node{key: key, value: value}
+	}
+	hm.size++
+	if float64(hm.size)/float64(hm.capacity) > 0.75 {
+		hm.resize()
 	}
 }
 
-func newNode(key any, value any) *node {
-	return &node{
-		key:   key,
-		value: value,
+// Contains checks if the given key is stored in the hashmap
+func (hm *HashMap) Contains(key any) bool {
+	return hm.getNodeByKey(key) != nil
+}
+
+// getNodeByKey finds the node associated with the given key
+func (hm *HashMap) getNodeByKey(key any) *node {
+	index := hm.hash(key)
+	current := hm.table[index]
+	for current != nil {
+		if current.key == key {
+			return current
+		}
+		current = current.next
+	}
+	return nil
+}
+
+// resize doubles the capacity of the hashmap and rehashes all existing entries
+func (hm *HashMap) resize() {
+	oldTable := hm.table
+	hm.capacity <<= 1
+	hm.table = make([]*node, hm.capacity)
+	hm.size = 0
+
+	for _, head := range oldTable {
+		for current := head; current != nil; current = current.next {
+			hm.Put(current.key, current.value)
+		}
 	}
 }
 
-func newNodeWithNext(key any, value any, next *node) *node {
-	return &node{
-		key:   key,
-		value: value,
-		next:  next,
-	}
-}
-
+// hash generates a hash value for the given key
 func (hm *HashMap) hash(key any) uint64 {
 	h := fnv.New64a()
 	_, _ = h.Write([]byte(fmt.Sprintf("%v", key)))
-
 	hashValue := h.Sum64()
-
 	return (hm.capacity - 1) & (hashValue ^ (hashValue >> 16))
 }
