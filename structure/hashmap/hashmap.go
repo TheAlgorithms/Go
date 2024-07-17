@@ -20,16 +20,16 @@ type HashMap struct {
 	table    []*node
 }
 
-// New returns a new HashMap instance
-func New() *HashMap {
+// DefaultNew returns a new HashMap instance with default values
+func DefaultNew() *HashMap {
 	return &HashMap{
 		capacity: defaultCapacity,
 		table:    make([]*node, defaultCapacity),
 	}
 }
 
-// Make creates a new HashMap instance with the specified size and capacity
-func Make(size, capacity uint64) *HashMap {
+// New creates a new HashMap instance with the specified size and capacity
+func New(size, capacity uint64) *HashMap {
 	return &HashMap{
 		size:     size,
 		capacity: capacity,
