@@ -7,8 +7,7 @@ import (
 )
 
 func TestHashMap(t *testing.T) {
-
-	mp := hashmap.New()
+	mp := hashmap.DefaultNew()
 
 	t.Run("Test 1: Put(10) and checking if Get() is correct", func(t *testing.T) {
 		mp.Put("test", 10)
@@ -67,7 +66,7 @@ func TestHashMap(t *testing.T) {
 	})
 
 	t.Run("Test 8: Resizing a map", func(t *testing.T) {
-		mp := hashmap.Make(4, 4)
+		mp := hashmap.New(4, 4)
 
 		for i := 0; i < 20; i++ {
 			mp.Put(i, 40)
