@@ -190,6 +190,10 @@ func TestTimsort(t *testing.T) {
 	testFramework(t, sort.Timsort[int])
 }
 
+func TestCircle(t *testing.T) {
+	testFramework(t, sort.Circle[int])
+}
+
 // END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -327,4 +331,8 @@ func BenchmarkCycle(b *testing.B) {
 
 func BenchmarkTimsort(b *testing.B) {
 	benchmarkFramework(b, sort.Timsort[int])
+}
+
+func BenchmarkCircle(b *testing.B) {
+	benchmarkFramework(b, sort.Circle[int])
 }
