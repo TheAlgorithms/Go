@@ -16,11 +16,21 @@ func TestCircularQueue(t *testing.T) {
 			t.Errorf("Expected size: %v, got: %v\n", expectedSize, gotSize)
 		}
 
-		queue.Enqueue(1)
-		queue.Enqueue(2)
-		queue.Enqueue(3)
-		queue.Enqueue(4)
-		queue.Enqueue(5)
+		if err := queue.Enqueue(1); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(2); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(3); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(4); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(5); err != nil {
+			t.Error(err)
+		}
 
 		err = queue.Enqueue(6)
 		if err == nil {
@@ -33,8 +43,12 @@ func TestCircularQueue(t *testing.T) {
 			t.Errorf("Expected size: %v, got: %v\n", expectedSize, gotSize)
 		}
 
-		queue.Dequeue()
-		queue.Dequeue()
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
 
 		err = queue.Enqueue(6)
 		if err != nil {
@@ -50,9 +64,15 @@ func TestCircularQueue(t *testing.T) {
 	t.Run("Enqueue", func(t *testing.T) {
 		queue, _ := NewCircularQueue[int](10)
 
-		queue.Enqueue(1)
-		queue.Enqueue(2)
-		queue.Enqueue(3)
+		if err := queue.Enqueue(1); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(2); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(3); err != nil {
+			t.Error(err)
+		}
 
 		expected := 1
 		got, err := queue.Peek()
@@ -66,9 +86,15 @@ func TestCircularQueue(t *testing.T) {
 	t.Run("Dequeue", func(t *testing.T) {
 		queue, _ := NewCircularQueue[string](10)
 
-		queue.Enqueue("one")
-		queue.Enqueue("two")
-		queue.Enqueue("three")
+		if err := queue.Enqueue("one"); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue("two"); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue("three"); err != nil {
+			t.Error(err)
+		}
 
 		expected := "one"
 		got, err := queue.Dequeue()
@@ -91,14 +117,30 @@ func TestCircularQueue(t *testing.T) {
 	t.Run("Circularity", func(t *testing.T) {
 		queue, _ := NewCircularQueue[int](10)
 
-		queue.Enqueue(1)
-		queue.Enqueue(2)
-		queue.Enqueue(3)
-		queue.Dequeue()
-		queue.Dequeue()
-		queue.Enqueue(4)
-		queue.Enqueue(5)
-		queue.Dequeue()
+		if err := queue.Enqueue(1); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(2); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(3); err != nil {
+			t.Error(err)
+		}
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(4); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(5); err != nil {
+			t.Error(err)
+		}
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
 
 		expected := 4
 		got, err := queue.Peek()
@@ -111,8 +153,12 @@ func TestCircularQueue(t *testing.T) {
 	})
 	t.Run("IsFull", func(t *testing.T) {
 		queue, _ := NewCircularQueue[bool](2)
-		queue.Enqueue(false)
-		queue.Enqueue(true)
+		if err := queue.Enqueue(false); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue(true); err != nil {
+			t.Error(err)
+		}
 
 		expected := true
 		got := queue.IsFull()
@@ -120,8 +166,12 @@ func TestCircularQueue(t *testing.T) {
 			t.Errorf("Expected: %v got: %v\n", expected, got)
 		}
 
-		queue.Dequeue()
-		queue.Dequeue()
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
+		if _, err := queue.Dequeue(); err != nil {
+			t.Error(err)
+		}
 
 		expected = false
 		got = queue.IsFull()
@@ -138,7 +188,9 @@ func TestCircularQueue(t *testing.T) {
 			t.Errorf("Expected: %v got: %v\n", expected, got)
 		}
 
-		queue.Enqueue(1.0)
+		if err := queue.Enqueue(1.0); err != nil {
+			t.Error(err)
+		}
 
 		expected = false
 		got = queue.IsEmpty()
@@ -150,9 +202,15 @@ func TestCircularQueue(t *testing.T) {
 	t.Run("Peak", func(t *testing.T) {
 		queue, _ := NewCircularQueue[rune](10)
 
-		queue.Enqueue('a')
-		queue.Enqueue('b')
-		queue.Enqueue('c')
+		if err := queue.Enqueue('a'); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue('b'); err != nil {
+			t.Error(err)
+		}
+		if err := queue.Enqueue('c'); err != nil {
+			t.Error(err)
+		}
 
 		expected := 'a'
 		got, err := queue.Peek()
@@ -171,29 +229,39 @@ func BenchmarkCircularQueue(b *testing.B) {
 	b.Run("Enqueue", func(b *testing.B) {
 		queue, _ := NewCircularQueue[int](1000)
 		for i := 0; i < b.N; i++ {
-			queue.Enqueue(i)
+			if err := queue.Enqueue(i); err != nil {
+				b.Error(err)
+			}
 		}
 	})
 
 	b.Run("Dequeue", func(b *testing.B) {
 		queue, _ := NewCircularQueue[int](1000)
 		for i := 0; i < 1000; i++ {
-			queue.Enqueue(i)
+			if err := queue.Enqueue(i); err != nil {
+				b.Error(err)
+			}
 		}
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			queue.Dequeue()
+			if _, err := queue.Dequeue(); err != nil {
+				b.Error(err)
+			}
 		}
 	})
 
 	b.Run("Peek", func(b *testing.B) {
 		queue, _ := NewCircularQueue[int](1000)
 		for i := 0; i < 1000; i++ {
-			queue.Enqueue(i)
+			if err := queue.Enqueue(i); err != nil {
+				b.Error(err)
+			}
 		}
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
-			queue.Peek()
+			if _, err := queue.Peek(); err != nil {
+				b.Error(err)
+			}
 		}
 	})
 }
