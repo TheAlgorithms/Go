@@ -10,14 +10,14 @@ import (
 // Test different matrix contents
 func TestMatrixDeterminant(t *testing.T) {
 	// Find Determinant of a 2 by 2 matrix.
-	matrix, err := matrix.NewFromElements([][]int{
+	matrix1, err := matrix.NewFromElements([][]int{
 		{3, 8},
 		{4, 6},
 	})
 	if err != nil {
 		t.Fatalf("Error creating 3 by 3 matrix: %v", err)
 	}
-	determinant, err := matrix.Determinant()
+	determinant, err := matrix1.Determinant()
 	if err != nil {
 		t.Fatalf("Error returned from 3 by 3 matrix: %v", err)
 	}
@@ -35,6 +35,10 @@ func TestEmptyMatrix(t *testing.T) {
 	}
 
 	determinant, err := matrix.Determinant()
+
+	if err != nil {
+		t.Fatalf("Determinant returned an error for empty matrix: %v", err)
+	}
 
 	// Check that 0 is returned from an empty matrix.
 	expectedValue := 0
