@@ -2,6 +2,8 @@ package matrix_test
 
 import (
 	"errors"
+	"math"
+	"math/rand"
 	"testing"
 
 	"github.com/TheAlgorithms/Go/math/matrix"
@@ -24,6 +26,23 @@ func TestMatrixDeterminant(t *testing.T) {
 	if determinant != -14 {
 		t.Fatalf("Determinant returned for a 3 by 3 matrix was %d; wanted -14", determinant)
 	}
+
+	// Find Dertminant of a 1 by 1 matrix
+	expectedValue := rand.Intn(math.MaxInt)
+	matrix2, err := matrix.NewFromElements([][]int{
+		{expectedValue},
+	})
+	if err != nil {
+		t.Fatalf("Error creating 1 by 1 matrix: %v", err)
+	}
+	determinant, err = matrix2.Determinant()
+	if err != nil {
+		t.Fatalf("Error returned from 1 by 1 matrix: %v", err)
+	}
+	if determinant != expectedValue {
+		t.Fatalf("Determinant returned for a 1 by 1 matrix was %d; wanted %d", determinant, expectedValue)
+	}
+
 }
 
 func TestEmptyMatrix(t *testing.T) {
