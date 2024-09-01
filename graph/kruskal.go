@@ -42,7 +42,7 @@ func KruskalMST(n int, edges []Edge) ([]Edge, int) {
 			// Add the weight of the edge to the total cost
 			cost += edge.Weight
 			// Merge the sets containing the start and end vertices of the current edge
-			u = u.Union(int(edge.Start), int(edge.End))
+			u.Union(int(edge.Start), int(edge.End))
 		}
 	}
 
