@@ -102,6 +102,10 @@ func TestExchange(t *testing.T) {
 	testFramework(t, sort.Exchange[int])
 }
 
+func TestGnome(t *testing.T) {
+	testFramework(t, sort.Gnome[int])
+}
+
 func TestInsertion(t *testing.T) {
 	testFramework(t, sort.Insertion[int])
 }
@@ -258,6 +262,10 @@ func BenchmarkCocktailSort(b *testing.B) {
 
 func BenchmarkExchange(b *testing.B) {
 	benchmarkFramework(b, sort.Exchange[int])
+}
+
+func BenchmarkGnome(b *testing.B) {
+	benchmarkFramework(b, sort.Gnome[int])
 }
 
 func BenchmarkInsertion(b *testing.B) {
