@@ -28,7 +28,7 @@ func Reverse(str string) string {
 }
 
 // DecimalToBinary() function that will take Decimal number as int,
-// and return it's Binary equivalent as string.
+// and return its Binary equivalent as a string.
 func DecimalToBinary(num int) (string, error) {
 	if num < 0 {
 		return "", errors.New("integer must have +ve value")

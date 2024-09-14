@@ -21,7 +21,7 @@ import (
 var isValid = regexp.MustCompile("^[0-1]{1,}$").MatchString
 
 // BinaryToDecimal() function that will take Binary number as string,
-// and return it's Decimal equivalent as integer.
+// and return its Decimal equivalent as an integer.
 func BinaryToDecimal(binary string) (int, error) {
 	if !isValid(binary) {
 		return -1, errors.New("not a valid binary string")
