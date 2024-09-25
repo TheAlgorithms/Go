@@ -5,6 +5,8 @@
 
 package graph
 
+// Worst Case Time Complexity: O(V + E)
+// Auxiliary Space: O(V)
 func (g *Graph) HasCycle() bool {
 	//this implimetation referred as 3-color too
 	all := map[int]struct{}{}
@@ -45,6 +47,8 @@ func (g Graph) hasCycleHelper(v int, all, visiting, visited map[int]struct{}) bo
 }
 
 // this function can do HasCycle() job but it is slower
+// Worst Case Time Complexity: O(V + E)
+// Auxiliary Space: O(V)
 func (g *Graph) FindAllCycles() []Graph {
 	all := map[int]struct{}{}
 	visiting := map[int]struct{}{}

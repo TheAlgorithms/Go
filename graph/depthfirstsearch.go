@@ -1,3 +1,6 @@
+// Worst Case Time Complexity: O(V + E)
+// Auxiliary Space: O(V)
+
 package graph
 
 func GetIdx(target int, nodes []int) int {
