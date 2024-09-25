@@ -3,6 +3,8 @@
 // It is slower than Dijkstra but capable of handling negative edge weights.
 // https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm
 // Implementation is based on the book 'Introduction to Algorithms' (CLRS)
+// Worst Case Time Complexity: O(V * E)
+// Auxiliary Space: O(V)
 
 package graph
 
