@@ -1,5 +1,7 @@
 // distance.go
 // Find Euclidean distance between two points
+// time complexity: O(n) where n is the number of dimensions
+// space complexity: O(1)
 // author(s) [Chetan Patil](https://github.com/Chetan07j)
 
 // Package geometry contains geometric algorithms

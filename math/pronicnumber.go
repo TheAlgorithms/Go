@@ -4,6 +4,8 @@
 //  Pronic number: For any integer n, if there exists integer m
 //  such that n = m * (m + 1) then n is called a pronic number.
 // wikipedia: https://en.wikipedia.org/wiki/Pronic_number
+// time complexity: O(1)
+// space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see pronicnumber_test.go
 

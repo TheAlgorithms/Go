@@ -4,6 +4,8 @@
 // For any integer n, twin prime is (n + 2)
 // if and only if both n and (n + 2) both are prime
 // wikipedia: https://en.wikipedia.org/wiki/Twin_prime
+// time complexity: O(log n)
+// space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see twin_test.go
 

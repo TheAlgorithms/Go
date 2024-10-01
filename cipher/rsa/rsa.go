@@ -6,6 +6,8 @@
 // thus both the Encrypt and Decrypt are not a production
 // ready implementation. The OpenSSL implementation of RSA
 // also adds a padding which is not present in this algorithm.
+// time complexity: O(n)
+// space complexity: O(n)
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see rsa_test.go
 

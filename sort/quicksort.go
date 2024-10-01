@@ -2,6 +2,9 @@
 // description: Implementation of in-place quicksort algorithm
 // details:
 // A simple in-place quicksort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Quicksort)
+// worst time complexity: O(n^2)
+// average time complexity: O(n log n)
+// space complexity: O(log n)
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see sort_test.go for a test implementation, test function TestQuickSort.
 

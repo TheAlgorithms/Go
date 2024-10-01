@@ -1,3 +1,9 @@
+// longestincreasingsubsequence.go
+// description: Implementation of the Longest Increasing Subsequence using dynamic programming
+// reference: https://en.wikipedia.org/wiki/Longest_increasing_subsequence
+// time complexity: O(n^2)
+// space complexity: O(n)
+
 package dynamic
 
 import (

@@ -1,6 +1,8 @@
 // matrix chain multiplication problem
 // https://en.wikipedia.org/wiki/Matrix_chain_multiplication
 // www.geeksforgeeks.org/dynamic_programming-set-8-matrix-chain-multiplication/
+// time complexity: O(n^3)
+// space complexity: O(n^2)
 
 package dynamic
 

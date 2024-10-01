@@ -3,6 +3,8 @@ package prime
 // A primality test is an algorithm for determining whether an input number is prime. Among other
 // fields of mathematics, it is used for cryptography. Unlike integer factorization, primality
 // tests do not generally give prime factors, only stating whether the input number is prime or not.
+// time complexity: O(sqrt(n))
+// space complexity: O(1)
 // Source - Wikipedia https://en.wikipedia.org/wiki/Primality_test
 
 // TrialDivision tests whether a number is prime by trying to divide it by the numbers less than it.

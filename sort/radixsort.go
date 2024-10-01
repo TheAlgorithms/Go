@@ -2,6 +2,9 @@
 // description: Implementation of in-place radixsort algorithm
 // details:
 // A simple in-place quicksort algorithm implementation. [Wikipedia](https://en.wikipedia.org/wiki/Radix_sort)
+// worst time complexity: O(n * k) where n is the number of elements in the input array and k is the number of digits in the largest number
+// average time complexity: O(n * k) where n is the number of elements in the input array and k is the number of digits in the largest number
+// space complexity: O(n)
 
 package sort
 
