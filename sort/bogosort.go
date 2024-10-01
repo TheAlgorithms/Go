@@ -1,7 +1,8 @@
 // This is a pure Go implementation of the bogosort algorithm,
 // also known as permutation sort, stupid sort, slowsort, shotgun sort, or monkey sort.
 // Bogosort generates random permutations until it guesses the correct one.
-
+// worst-case time complexity: O((n+1)!)
+// best-case time complexity: O(n)
 // More info on: https://en.wikipedia.org/wiki/Bogosort
 
 package sort

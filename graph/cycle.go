@@ -1,5 +1,7 @@
 // cycle.go
 // this file handle algorithm that related to cycle in graph
+// time complexity: O(V+E) where V is the number of vertices and E is the number of edges in the graph
+// space complexity: O(V) where V is the number of vertices in the graph
 // reference: https://en.wikipedia.org/wiki/Cycle_(graph_theory)
 // [kiarash hajian](https://github.com/kiarash8112)
 

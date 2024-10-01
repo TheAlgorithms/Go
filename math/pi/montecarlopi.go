@@ -2,6 +2,8 @@
 // description: Calculating pi by the Monte Carlo method
 // details:
 // implementations of Monte Carlo Algorithm for the calculating of Pi - [Monte Carlo method](https://en.wikipedia.org/wiki/Monte_Carlo_method)
+// time complexity: O(n)
+// space complexity: O(1)
 // author(s): [red_byte](https://github.com/i-redbyte), [Paul Leydier] (https://github.com/paul-leydier)
 // see montecarlopi_test.go
 

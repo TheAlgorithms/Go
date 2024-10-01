@@ -7,6 +7,8 @@
 //   μ(n) = −1 if n is a square-free positive integer with an odd number of prime factors.
 //   μ(n) = 0 if n has a squared prime factor.
 // wikipedia: https://en.wikipedia.org/wiki/M%C3%B6bius_function
+// time complexity: O(n)
+// space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see mobius_test.go
 

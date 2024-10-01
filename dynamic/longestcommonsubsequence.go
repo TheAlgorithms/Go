@@ -1,6 +1,9 @@
 // LONGEST COMMON SUBSEQUENCE
 // DP - 4
 // https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/
+// https://leetcode.com/problems/longest-common-subsequence/
+// time complexity: O(m*n) where m and n are lengths of the strings
+// space complexity: O(m*n) where m and n are lengths of the strings
 
 package dynamic
 

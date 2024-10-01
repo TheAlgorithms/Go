@@ -1,3 +1,9 @@
+// depthfirstsearch.go
+// description: this file contains the implementation of the depth first search algorithm
+// details: Depth-first search (DFS) is an algorithm for traversing or searching tree or graph data structures. The algorithm starts at the root node and explores as far as possible along each branch before backtracking.
+// time complexity: O(n)
+// space complexity: O(n)
+
 package graph
 
 func GetIdx(target int, nodes []int) int {

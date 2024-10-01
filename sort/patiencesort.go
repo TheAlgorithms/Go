@@ -4,6 +4,9 @@
 // GeeksForGeeks article : https://www.geeksforgeeks.org/patience-sorting/
 // Wikipedia article: https://en.wikipedia.org/wiki/Patience_sorting
 // authors [guuzaa](https://github.com/guuzaa)
+// worst-case time complexity: O(n log n)
+// average time complexity: O(n log n)
+// space complexity: O(n)
 // see patiencesort.go
 
 package sort
