@@ -1,3 +1,9 @@
+// bipartite.go
+// description: Implementation of the Bipartite graph coloring algorithm
+// details: A bipartite graph is a graph whose vertices can be divided into two disjoint sets U and V such that every edge connects a vertex in U to one in V. The Bipartite graph coloring algorithm is used to determine if a graph is bipartite or not.
+// time complexity: O(V+E) where V is the number of vertices and E is the number of edges in the graph
+// space complexity: O(V) where V is the number of vertices in the graph
+
 package coloring
 
 func (g *Graph) TryBipartiteColoring() map[int]Color {

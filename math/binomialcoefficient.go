@@ -4,6 +4,8 @@
 // a binomial coefficient C(n,k) gives number ways
 // in which k objects can be chosen from n objects.
 // wikipedia: https://en.wikipedia.org/wiki/Binomial_coefficient
+// time complexity: O(k) or O(n-k) whichever is smaller (O(n) in worst case) 
+// space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see binomialcoefficient_test.go
 

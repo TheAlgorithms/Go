@@ -1,6 +1,8 @@
 // Solution to Rod cutting problem
 // https://en.wikipedia.org/wiki/Cutting_stock_problem
 // http://www.geeksforgeeks.org/dynamic-programming-set-13-cutting-a-rod/
+// time complexity: O(n^2)
+// space complexity: O(n)
 
 package dynamic
 

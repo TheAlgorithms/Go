@@ -1,4 +1,8 @@
 // Package diffiehellman implements Diffie-Hellman Key Exchange Algorithm
+// description: Diffie-Hellman key exchange
+// details : Diffie-Hellman key exchange is a method of securely exchanging cryptographic keys over a public channel by combining private keys of two parties to generate a shared secret key. 
+// time complexity: O(log(n))
+// space complexity: O(1)
 // for more information watch : https://www.youtube.com/watch?v=NmM9HA2MQGI
 package diffiehellman
 

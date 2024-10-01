@@ -3,6 +3,8 @@
 // details:
 // A cyclic redundancy check (CRC) is an error-detecting code commonly used in digital networks
 // and storage devices to detect accidental changes to raw data.
+// time complexity: O(n)
+// space complexity: O(1)
 // See more [CRC](https://en.wikipedia.org/wiki/Cyclic_redundancy_check)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see crc8_test.go

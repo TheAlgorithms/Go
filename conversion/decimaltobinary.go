@@ -8,6 +8,8 @@ Date: 14-Oct-2021
 // https://en.wikipedia.org/wiki/Binary_number
 // Function receives a integer as a Decimal number and returns the Binary number.
 // Supported integer value range is 0 to 2^(31 -1).
+// time complexity: O(log(n))
+// space complexity: O(1)
 
 package conversion
 

@@ -2,6 +2,8 @@
 // description: Pollard's rho algorithm
 // details:
 // implementation of Pollard's rho algorithm for integer factorization-[Pollard's rho algorithm](https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm)
+// time complexity: O(n^(1/4))
+// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see pollard_test.go
 
