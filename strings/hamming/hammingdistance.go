@@ -13,9 +13,7 @@ Output: distance between both strings */
 
 package hamming
 
-import (
-	"errors"
-)
+import "errors"
 
 func Distance(str1, str2 string) (int, error) {
 	if len(str1) != len(str2) {
