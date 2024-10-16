@@ -21,7 +21,7 @@ jobs:
         with:
           go-version: '^1.18'
       - name: Run Golang CI Lint
-        uses: golangci/golangci-lint-action@v3
+        uses: golangci/golangci-lint-action@v6
         with:
           version: latest
           args: -E gofmt
