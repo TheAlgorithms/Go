@@ -1,3 +1,8 @@
+// primefactorization.go
+// description: Prime factorization of a number
+// time complexity: O(sqrt(n))
+// space complexity: O(sqrt(n))
+
 package prime
 
 // Factorize is a function that computes the exponents

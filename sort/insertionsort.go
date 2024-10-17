@@ -1,3 +1,9 @@
+// insertionsort.go
+// description: Implementation of insertion sort algorithm
+// worst-case time complexity: O(n^2)
+// average-case time complexity: O(n^2)
+// space complexity: O(1)
+
 package sort
 
 import "github.com/TheAlgorithms/Go/constraints"

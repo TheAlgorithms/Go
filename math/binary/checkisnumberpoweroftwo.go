@@ -2,6 +2,8 @@
 // description: Is the number a power of two
 // details:
 // Checks if a number is a power of two- [Power of two](https://en.wikipedia.org/wiki/Power_of_two)
+// time complexity: O(1)
+// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see checkisnumberpoweroftwo_test.go
 

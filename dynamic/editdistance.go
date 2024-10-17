@@ -1,4 +1,6 @@
 // EDIT DISTANCE PROBLEM
+// time complexity: O(m * n) where m and n are lengths of the strings, first and second respectively.
+// space complexity: O(m * n) where m and n are lengths of the strings, first and second respectively.
 // https://www.geeksforgeeks.org/edit-distance-dp-5/
 // https://leetcode.com/problems/edit-distance/
 
