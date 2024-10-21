@@ -1,5 +1,7 @@
 /* sieve2.go - Sieve of Eratosthenes
  * Algorithm to generate prime numbers up to a limit
+ * time complexity: O(n log log n)
+ * space complexity: O(n)
  * Author: ddaniel27
  */
 package prime

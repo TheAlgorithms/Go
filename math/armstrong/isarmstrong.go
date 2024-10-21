@@ -1,6 +1,8 @@
 // isarmstrong.go
 // description: Checks if the given number is armstrong number or not
 // details: An Armstrong number is a n-digit number that is equal to the sum of each of its digits taken to the nth power.
+// time complexity: O(log(n))
+// space complexity: O(1)
 // ref: https://mathlair.allfunandgames.ca/armstrong.php
 // author: Kavitha J
 

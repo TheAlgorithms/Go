@@ -5,6 +5,9 @@
 // An improved version is included with slight changes to make the sort slightly more efficient
 // reference: https://arxiv.org/abs/2110.01111v1
 // see sort_test.go for a test implementation, test function TestSimple and TestImprovedSimple
+// worst-case time complexity: O(n^2)
+// average-case time complexity: O(n^2)
+// space complexity: O(1)
 
 package sort
 

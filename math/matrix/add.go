@@ -1,3 +1,8 @@
+// add.go
+// description: Add two matrices
+// time complexity: O(n^2)
+// space complexity: O(n^2)
+
 package matrix
 
 import (

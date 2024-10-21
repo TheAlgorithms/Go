@@ -1,3 +1,8 @@
+// abs.go
+// description: returns absolute value using binary operation
+// time complexity: O(1)
+// space complexity: O(1)
+
 package binary
 
 // Abs returns absolute value using binary operation

@@ -1,3 +1,10 @@
+// topological.go
+// description: Topological sort
+// details: Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge u v, vertex u comes before v in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.
+// time complexity: O(V+E) where V is the number of vertices and E is the number of edges in the graph
+// space complexity: O(V) where V is the number of vertices in the graph
+// reference: https://en.wikipedia.org/wiki/Topological_sorting
+
 package graph
 
 // Topological assumes that graph given is valid and that its
