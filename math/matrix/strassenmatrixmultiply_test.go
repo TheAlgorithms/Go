@@ -66,7 +66,7 @@ func TestStrassenMatrixMultiply(t *testing.T) {
 	}
 }
 func TestMatrixMultiplication(t *testing.T) {
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	// Generate random matrices for testing
 	size := 1 << (rand.Intn(8) + 1) // tests for matrix with n as power of 2
@@ -103,7 +103,7 @@ func TestMatrixMultiplication(t *testing.T) {
 }
 
 func MakeRandomMatrix[T constraints.Integer](rows, columns int) matrix.Matrix[T] {
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
 
 	matrixData := make([][]T, rows)
 	for i := 0; i < rows; i++ {

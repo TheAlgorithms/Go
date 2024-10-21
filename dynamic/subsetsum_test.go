@@ -1,9 +1,6 @@
 package dynamic
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
 func TestSubsetSum(t *testing.T) {
 
@@ -74,7 +71,7 @@ func TestSubsetSum(t *testing.T) {
 
 	for i := range subsetSumTestData {
 
-		t.Run(fmt.Sprintf(subsetSumTestData[i].description), func(t *testing.T) {
+		t.Run(subsetSumTestData[i].description, func(t *testing.T) {
 			array := subsetSumTestData[i].array
 			sum := subsetSumTestData[i].sum
 
