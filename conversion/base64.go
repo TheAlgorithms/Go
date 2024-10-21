@@ -1,8 +1,6 @@
 // base64.go
 // description: The base64 encoding algorithm as defined in the RFC4648 standard.
 // author: [Paul Leydier] (https://github.com/paul-leydier)
-// time complexity: O(n)
-// space complexity: O(n)
 // ref: https://datatracker.ietf.org/doc/html/rfc4648#section-4
 // ref: https://en.wikipedia.org/wiki/Base64
 // see base64_test.go

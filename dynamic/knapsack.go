@@ -2,9 +2,6 @@ package dynamic
 
 // Knapsack Problem
 // https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
-// https://en.wikipedia.org/wiki/Knapsack_problem
-// time complexity: O(n*maxWeight)
-// space complexity: O(n*maxWeight)
 
 import (
 	"math"

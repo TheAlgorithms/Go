@@ -2,8 +2,6 @@
 // description: Counts the number of set bits in a number
 // details:
 // For unsigned integer number N, return the number of bits set to 1 - [Bit numbering](https://en.wikipedia.org/wiki/Bit_numbering)
-// time complexity: O(log(n))
-// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see bitcounter_test.go
 

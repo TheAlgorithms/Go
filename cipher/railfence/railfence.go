@@ -1,9 +1,3 @@
-// railfence.go
-// description: Rail Fence Cipher
-// details: The rail fence cipher is a an encryption algorithm that uses a rail fence pattern to encode a message. it is a type of transposition cipher that rearranges the characters of the plaintext to form the ciphertext. 
-// time complexity: O(n)
-// space complexity: O(n)
-// ref: https://en.wikipedia.org/wiki/Rail_fence_cipher
 package railfence
 
 import (

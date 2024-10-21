@@ -2,8 +2,7 @@
 // One of the implementations is deterministic and the other is probabilistic.
 // The Miller-Rabin test is one of the simplest and fastest known primality
 // tests and is widely used.
-// time complexity: O(k * log(n)^3)
-// space complexity: O(1)
+//
 // Authors:
 // [Taj](https://github.com/tjgurwara99)
 // [Rak](https://github.com/raklaptudirm)

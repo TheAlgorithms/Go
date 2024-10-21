@@ -1,7 +1,5 @@
 // mode.go
 // author(s): [CalvinNJK] (https://github.com/CalvinNJK)
-// time complexity: O(n)
-// space complexity: O(n)
 // description: Finding Mode Value In an Array
 // see mode.go
 

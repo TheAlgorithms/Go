@@ -6,8 +6,6 @@
 //   λ(n) = +1 if n is a positive integer with an even number of prime factors.
 //   λ(n) = −1 if n is a positive integer with an odd number of prime factors.
 // wikipedia: https://en.wikipedia.org/wiki/Liouville_function
-// time complexity: O(log n)
-// space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see liouville_test.go
 

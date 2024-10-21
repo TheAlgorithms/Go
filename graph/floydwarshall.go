@@ -1,6 +1,4 @@
 // Floyd-Warshall algorithm
-// time complexity: O(V^3) where V is the number of vertices in the graph
-// space complexity: O(V^2) where V is the number of vertices in the graph
 // https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
 
 package graph

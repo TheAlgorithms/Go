@@ -1,8 +1,6 @@
 // lunh.go
 // description: Luhn algorithm
 // details: is a simple checksum formula used to validate a variety of identification numbers, such as credit card numbers, IMEI numbers, etc [Lunh](https://en.wikipedia.org/wiki/Luhn_algorithm)
-// time complexity: O(n)
-// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see lunh_test.go
 

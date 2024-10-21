@@ -3,9 +3,6 @@
 // This length is not fixed if you generate multiple passwords for the same range
 
 // Package password contains functions to help generate random passwords
-// time complexity: O(n)
-// space complexity: O(n)
-
 package password
 
 import (

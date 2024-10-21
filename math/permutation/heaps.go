@@ -1,8 +1,3 @@
-// heaps.go
-// description: Implementation of Heap's Algorithm for generating all permutations of n objects
-// time complexity: O(n!)
-// space complexity: O(n)
-
 package permutation
 
 import (

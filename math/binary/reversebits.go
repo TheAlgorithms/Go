@@ -2,8 +2,6 @@
 // description: Reverse bits
 // details:
 // Reverse the bits of an integer number
-// time complexity: O(log(n))
-// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see reversebits_test.go
 

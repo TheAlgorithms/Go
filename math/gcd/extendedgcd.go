@@ -1,8 +1,3 @@
-// extendedgcd.go
-// description: Implementation of Extended GCD Algorithm
-// time complexity: O(log(min(a, b))) where a and b are the two numbers
-// space complexity: O(log(min(a, b))) where a and b are the two numbers
-
 package gcd
 
 // ExtendedRecursive finds and returns gcd(a, b), x, y satisfying a*x + b*y = gcd(a, b).

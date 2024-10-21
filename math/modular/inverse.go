@@ -2,8 +2,6 @@
 // description: Implementation of Modular Inverse Algorithm
 // details:
 // A simple implementation of Modular Inverse - [Modular Inverse wiki](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
-// time complexity: O(log(min(a, b))) where a and b are the two numbers
-// space complexity: O(1)
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see inverse_test.go
 

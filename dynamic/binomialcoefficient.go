@@ -1,8 +1,3 @@
-// binomialcoefficient.go
-// description: Implementation of the binomial coefficient using dynamic programming
-// details: The binomial coefficient C(n, k) is the number of ways to choose a subset of k elements from a set of n elements. The binomial coefficient is calculated using the formula C(n, k) = C(n-1, k-1) + C(n-1, k) with base cases C(n, 0) = C(n, n) = 1.
-// time complexity: O(n*k) where n is the number of elements and k is the number of elements to choose
-// space complexity: O(n*k) where n is the number of elements and k is the number of elements to choose
 package dynamic
 
 import "github.com/TheAlgorithms/Go/math/min"

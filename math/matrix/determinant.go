@@ -2,8 +2,6 @@
 // description: This method finds the determinant of a matrix.
 // details: For a theoretical explanation as for what the determinant
 // represents, see the [Wikipedia Article](https://en.wikipedia.org/wiki/Determinant)
-// time complexity: O(n!) where n is the number of rows and columns in the matrix.
-// space complexity: O(n^2) where n is the number of rows and columns in the matrix.
 // author [Carter907](https://github.com/Carter907)
 // see determinant_test.go
 

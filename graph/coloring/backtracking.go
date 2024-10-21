@@ -1,6 +1,4 @@
 // This file contains the graph coloring implementation using backtracking
-// time complexity: O(V^V) where V is the number of vertices in the graph
-// space complexity: O(V) where V is the number of vertices in the graph
 // Author(s): [Shivam](https://github.com/Shivam010)
 
 package coloring

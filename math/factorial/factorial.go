@@ -2,8 +2,6 @@
 // description: Calculating factorial
 // details:
 // The factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n - [Factorial](https://en.wikipedia.org/wiki/Factorial)
-// time complexity: O(n)
-// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see factorial_test.go
 

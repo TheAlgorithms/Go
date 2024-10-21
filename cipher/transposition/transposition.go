@@ -2,8 +2,6 @@
 // description: Transposition cipher
 // details:
 // Implementation "Transposition cipher" is a method of encryption by which the positions held by units of plaintext (which are commonly characters or groups of characters) are shifted according to a regular system, so that the ciphertext constitutes a permutation of the plaintext [Transposition cipher](https://en.wikipedia.org/wiki/Transposition_cipher)
-// time complexity: O(n)
-// space complexity: O(n)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see transposition_test.go
 

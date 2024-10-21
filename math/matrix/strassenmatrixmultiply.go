@@ -4,8 +4,6 @@
 // This program takes two matrices as input and performs matrix multiplication
 // using the Strassen algorithm, which is an optimized divide-and-conquer
 // approach. It allows for efficient multiplication of large matrices.
-// time complexity: O(n^2.81)
-// space complexity: O(n^2)
 // author(s): Mohit Raghav(https://github.com/mohit07raghav19)
 // See strassenmatrixmultiply_test.go for test cases
 package matrix

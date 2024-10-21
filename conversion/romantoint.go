@@ -3,8 +3,6 @@
 // Function receives a string as a roman number and outputs an integer
 // Maximum output will be 3999
 // Only standard form is supported
-// time complexity: O(n)
-// space complexity: O(1)
 
 package conversion
 

@@ -1,7 +1,5 @@
 // The Moser-de Bruijn sequence is the sequence obtained by
 // adding up the distinct powers of the number 4 (For example 1, 4, 16, 64, etc).
-// time complexity: O(n)
-// space complexity: O(n)
 // You can get more details on https://en.wikipedia.org/wiki/Moser%E2%80%93de_Bruijn_sequence.
 
 package moserdebruijnsequence

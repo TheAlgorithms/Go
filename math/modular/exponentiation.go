@@ -2,8 +2,6 @@
 // description: Implementation of Modular Exponentiation Algorithm
 // details:
 // A simple implementation of Modular Exponentiation - [Modular Exponenetation wiki](https://en.wikipedia.org/wiki/Modular_exponentiation)
-// time complexity: O(log(n)) where n is the exponent
-// space complexity: O(1)
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see exponentiation_test.go
 

@@ -7,8 +7,6 @@
 // A number is called perfect, if it is a sum of its proper divisors,
 // cf. https://en.wikipedia.org/wiki/Perfect_number,
 // https://mathworld.wolfram.com/PerfectNumber.html
-// time complexity: O(sqrt(n))
-// space complexity: O(1)
 // https://oeis.org/A000396
 // author(s) [Piotr Idzik](https://github.com/vil02)
 // see perfectnumber_test.go

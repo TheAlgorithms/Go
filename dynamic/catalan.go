@@ -1,7 +1,5 @@
 //The Catalan numbers are a sequence of positive integers that appear in many counting
-// problems in combinatorics.
-// time complexity: O(n²)
-// space complexity: O(n)
+//problems in combinatorics.
 //reference: https://brilliant.org/wiki/catalan-numbers/
 
 package dynamic

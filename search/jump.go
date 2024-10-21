@@ -5,8 +5,6 @@
 // before performing a linear search
 // reference: https://en.wikipedia.org/wiki/Jump_search
 // see jump_test.go for a test implementation, test function TestJump
-// time complexity: O(sqrt(n))
-// space complexity: O(1)
 
 package search
 

@@ -16,8 +16,6 @@
 //1 10 45 120 210 252 210 120 45 10 1
 //...
 // author(s) [red_byte](https://github.com/i-redbyte)
-// time complexity: O(n^2)
-// space complexity: O(n^2)
 // see pascaltriangle_test.go
 
 package pascal

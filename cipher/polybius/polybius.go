@@ -1,8 +1,4 @@
 // Package polybius is encrypting method with polybius square
-// description: Polybius square
-// details : The Polybius algorithm is a simple algorithm that is used to encode a message by converting each letter to a pair of numbers.
-// time complexity: O(n)
-// space complexity: O(n)
 // ref: https://en.wikipedia.org/wiki/Polybius_square#Hybrid_Polybius_Playfair_Cipher
 package polybius
 

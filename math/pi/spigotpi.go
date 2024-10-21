@@ -2,8 +2,6 @@
 // description: A Spigot Algorithm for the Digits of Pi
 // details:
 // implementation of Spigot Algorithm for the Digits of Pi - [Spigot algorithm](https://en.wikipedia.org/wiki/Spigot_algorithm)
-// time complexity: O(n)
-// space complexity: O(n)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see spigotpi_test.go
 

@@ -1,8 +1,4 @@
 // Package xor is an encryption algorithm that operates the exclusive disjunction(XOR)
-// description: XOR encryption
-// details: The XOR encryption is an algorithm that operates the exclusive disjunction(XOR) on each character of the plaintext with a given key
-// time complexity: O(n)
-// space complexity: O(n)
 // ref: https://en.wikipedia.org/wiki/XOR_cipher
 package xor
 

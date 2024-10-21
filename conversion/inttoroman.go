@@ -1,9 +1,3 @@
-// inttoroman.go
-// description: Convert an integer to a roman numeral
-// details: This program converts an integer to a roman numeral. The program uses a lookup array to convert the integer to a roman numeral.
-// time complexity: O(1)
-// space complexity: O(1)
-
 package conversion
 
 import (

@@ -2,8 +2,6 @@
 // description: Get the nth Fibonacci Number
 // details:
 // In mathematics, the Fibonacci numbers, commonly denoted Fn, form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. [Fibonacci number](https://en.wikipedia.org/wiki/Fibonacci_number)
-// time complexity: O(log n)
-// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see fibonacci_test.go
 

@@ -1,8 +1,3 @@
-// multiply.go
-// description: Implementation of matrix multiplication
-// time complexity: O(n^3) where n is the number of rows in the first matrix
-// space complexity: O(n^2) where n is the number of rows in the first matrix 
-
 package matrix
 
 import (

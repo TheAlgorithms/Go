@@ -1,7 +1,5 @@
 // rgbhex.go
 // description: convert hex input to red, green and blue and vice versa
-// time complexity: O(1)
-// space complexity: O(1)
 // author(s) [darmiel](https://github.com/darmiel)
 // see rgbhex_test.go
 

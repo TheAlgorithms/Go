@@ -5,8 +5,6 @@
 // It uses dynamic programming to precompute the maximum height of bars to the left and right of each position.
 // Then, it iterates through the array to calculate the amount of trapped rainwater at each position based on the minimum of the left and right maximum heights.
 // Finally, it sums up the trapped rainwater for all positions and returns the total amount.
-// time complexity: O(n)
-// space complexity: O(n)
 // author(s) [TruongNhanNguyen (SOZEL)](https://github.com/TruongNhanNguyen)
 package dynamic
 

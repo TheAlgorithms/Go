@@ -1,6 +1,4 @@
 // This file contains the graph coloring implementation using BFS
-// time complexity: O(V+E) where V is the number of vertices and E is the number of edges in the graph
-// space complexity: O(V) where V is the number of vertices in the graph
 // Author(s): [Shivam](https://github.com/Shivam010)
 
 package coloring

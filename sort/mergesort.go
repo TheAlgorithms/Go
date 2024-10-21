@@ -1,9 +1,3 @@
-// mergesort.go
-// description: Implementation of merge sort algorithm
-// worst-case time complexity: O(n log n)
-// average-case time complexity: O(n log n)
-// space complexity: O(n)
-
 package sort
 
 import (

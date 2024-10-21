@@ -1,6 +1,4 @@
 // Calculating the inverse square root
-// time complexity: O(1)
-// space complexity: O(1)
 // [See more](https://en.wikipedia.org/wiki/Fast_inverse_square_root)
 
 package binary

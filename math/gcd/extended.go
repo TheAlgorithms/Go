@@ -3,8 +3,6 @@
 // details:
 // A simple implementation of Extended GCD algorithm, that returns GCD, a and b
 // which solves ax + by = gcd(a, b)
-// time complexity: O(log(min(a, b))) where a and b are the two numbers
-// space complexity: O(log(min(a, b))) where a and b are the two numbers
 // author(s) [Taj](https://github.com/tjgurwara99)
 // see extended_test.go
 
