@@ -32,7 +32,7 @@ func TestNewFromElements(t *testing.T) {
 		for j := 0; j < len(validElements[0]); j++ {
 			err := expectedm1.Set(i, j, validElements[i][j])
 			if err != nil {
-				t.Errorf("copyMatrix.Set error: " + err.Error())
+				t.Errorf("copyMatrix.Set error: %s", err.Error())
 			}
 		}
 	}
@@ -73,7 +73,7 @@ func TestMatrixGet(t *testing.T) {
 	matrix := matrix.New(3, 3, 0)
 	err := matrix.Set(1, 1, 42) // Set a specific value for testing
 	if err != nil {
-		t.Errorf("copyMatrix.Set error: " + err.Error())
+		t.Errorf("copyMatrix.Set error: %s", err.Error())
 	}
 	// Test case 1: Valid Get
 	val1, err1 := matrix.Get(1, 1)
