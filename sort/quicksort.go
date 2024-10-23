@@ -24,10 +24,6 @@ func Partition[T constraints.Ordered](arr []T, low, high int) int {
 
 // QuicksortRange Sorts the specified range within the array
 func QuicksortRange[T constraints.Ordered](arr []T, low, high int) {
-	if len(arr) <= 1 {
-		return
-	}
-
 	if low < high {
 		pivot := Partition(arr, low, high)
 		QuicksortRange(arr, low, pivot-1)
@@ -37,6 +33,9 @@ func QuicksortRange[T constraints.Ordered](arr []T, low, high int) {
 
 // Quicksort Sorts the entire array
 func Quicksort[T constraints.Ordered](arr []T) []T {
-	QuicksortRange(arr, 0, len(arr)-1)
+	if len(arr) > 1 {
+		QuicksortRange(arr, 0, len(arr)-1)
+	}
+
 	return arr
 }
