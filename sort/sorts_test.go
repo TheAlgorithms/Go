@@ -194,6 +194,15 @@ func TestCircle(t *testing.T) {
 	testFramework(t, sort.Circle[int])
 }
 
+func TestSleepSort(t *testing.T) {
+	t.Skip("Skipping test for Sleep Sort, as it is not a normal sort algorithm and it doesn't support negative values.")
+	//testFramework(t, sort.SleepSort)
+}
+
+func TestOddEvenSort(t *testing.T) {
+	testFramework(t, sort.OddEvenSort[int])
+}
+
 // END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
