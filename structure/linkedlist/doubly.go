@@ -87,7 +87,7 @@ func (ll *Doubly[T]) DelAtBeg() (T, bool) {
 	return val, true
 }
 
-// DetAtEnd Delete a node at the end of the linkedlist
+// DelAtEnd Delete a node at the end of the linkedlist
 func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 	// no item
 	if ll.Head.Prev == nil {

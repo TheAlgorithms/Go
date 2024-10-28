@@ -55,7 +55,7 @@ func (ll *Stack) Length() int {
 	return ll.length
 }
 
-// peak return last input value
+// peek return last input value
 func (ll *Stack) Peek() any {
 	return ll.top.Val
 }

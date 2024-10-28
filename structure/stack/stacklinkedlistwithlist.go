@@ -24,7 +24,7 @@ func (sl *SList) Push(val any) {
 	sl.Stack.PushFront(val)
 }
 
-// Peak is return last value that insert into our stack
+// Peek is return last value that insert into our stack
 func (sl *SList) Peek() (any, error) {
 	if !sl.IsEmpty() {
 		element := sl.Stack.Front()
