@@ -11,13 +11,13 @@
 
 package math
 
-import stdMath "math"
+import "math"
 
 // PronicNumber returns true if argument passed to the function is pronic and false otherwise.
 func PronicNumber(n int) bool {
 	if n < 0 || n%2 == 1 {
 		return false
 	}
-	x := int(stdMath.Sqrt(float64(n)))
+	x := int(math.Sqrt(float64(n)))
 	return n == x*(x+1)
 }

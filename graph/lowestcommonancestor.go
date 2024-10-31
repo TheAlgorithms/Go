@@ -4,7 +4,7 @@
 // Let `T` be a tree. The LCA of `u` and `v` in T is the shared ancestor of `u` and `v`
 // that is located farthest from the root.
 // time complexity: O(n log n) where n is the number of vertices in the tree
-// space complexity: O(n log n) where n is the number of vertices in the tree 
+// space complexity: O(n log n) where n is the number of vertices in the tree
 // references: [cp-algorithms](https://cp-algorithms.com/graph/lca_binary_lifting.html)
 // author(s) [Dat](https://github.com/datbeohbbh)
 // see lowestcommonancestor_test.go for a test implementation.

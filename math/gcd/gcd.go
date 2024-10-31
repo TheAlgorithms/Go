@@ -1,5 +1,5 @@
-// time complexity: O(log(min(a, b))) where a and b are the two numbers 
-// space complexity: O(1) 
+// time complexity: O(log(min(a, b))) where a and b are the two numbers
+// space complexity: O(1)
 
 package gcd
 

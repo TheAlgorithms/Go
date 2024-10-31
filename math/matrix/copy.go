@@ -1,4 +1,4 @@
-// copy.go 
+// copy.go
 // description: Copy a matrix
 // details: This function creates a new matrix with the same dimensions as the original matrix and copies all the elements from the original matrix to the new matrix.
 // time complexity: O(n*m) where n and m are the dimensions of the matrix

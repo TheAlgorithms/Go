@@ -1,6 +1,6 @@
 // See https://leetcode.com/problems/unique-paths/
 // time complexity: O(m*n) where m and n are the dimensions of the grid
-// space complexity: O(m*n) where m and n are the dimensions of the grid 
+// space complexity: O(m*n) where m and n are the dimensions of the grid
 // author: Rares Mateizer (https://github.com/rares985)
 package dynamic
 
