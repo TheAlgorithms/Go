@@ -14,7 +14,6 @@ package conversion
 import (
 	"fmt"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -39,10 +38,19 @@ func hexToDecimal(hexStr string) (int64, error) {
 		return 0, fmt.Errorf("invalid hexadecimal string")
 	}
 
-	// Convert the hexadecimal string to a decimal integer
-	decimalValue, err := strconv.ParseInt(hexStr, 16, 64)
-	if err != nil {
-		return 0, fmt.Errorf("invalid hexadecimal string: %v", err)
+	var decimalValue int64
+	for _, char := range hexStr {
+		var digit int64
+		if char >= '0' && char <= '9' {
+			digit = int64(char - '0')
+		} else if char >= 'A' && char <= 'F' {
+			digit = int64(char - 'A' + 10)
+		} else if char >= 'a' && char <= 'f' {
+			digit = int64(char - 'a' + 10)
+		} else {
+			return 0, fmt.Errorf("invalid character in hexadecimal string: %c", char)
+		}
+		decimalValue = decimalValue*16 + digit
 	}
 
 	return decimalValue, nil

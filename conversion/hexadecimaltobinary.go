@@ -14,7 +14,6 @@ package conversion
 import (
 	"errors"
 	"regexp"
-	"strconv"
 	"strings"
 )
 
@@ -37,12 +36,43 @@ func hexToBinary(hex string) (string, error) {
 	}
 
 	// Parse the hexadecimal string to an integer
-	decimal, err := strconv.ParseInt(hex, 16, 64)
-	if err != nil {
-		return "", errors.New("failed to parse hexadecimal string " + hex + ": " + err.Error())
+	var decimal int64
+	for i := 0; i < len(hex); i++ {
+		char := hex[i]
+		var value int64
+		if char >= '0' && char <= '9' {
+			value = int64(char - '0')
+		} else if char >= 'A' && char <= 'F' {
+			value = int64(char - 'A' + 10)
+		} else if char >= 'a' && char <= 'f' {
+			value = int64(char - 'a' + 10)
+		} else {
+			return "", errors.New("invalid character in hexadecimal string: " + string(char))
+		}
+		decimal = decimal*16 + value
 	}
 
-	// Convert the integer to a binary string
-	binary := strconv.FormatInt(decimal, 2)
-	return binary, nil
+	// Convert the integer to a binary string without using predefined functions
+	var binaryBuilder strings.Builder
+	if decimal == 0 {
+		binaryBuilder.WriteString("0")
+	} else {
+		for decimal > 0 {
+			bit := decimal % 2
+			if bit == 0 {
+				binaryBuilder.WriteString("0")
+			} else {
+				binaryBuilder.WriteString("1")
+			}
+			decimal = decimal / 2
+		}
+	}
+
+	// Reverse the binary string since the bits are added in reverse order
+	binaryRunes := []rune(binaryBuilder.String())
+	for i, j := 0, len(binaryRunes)-1; i < j; i, j = i+1, j-1 {
+		binaryRunes[i], binaryRunes[j] = binaryRunes[j], binaryRunes[i]
+	}
+
+	return string(binaryRunes), nil
 }
