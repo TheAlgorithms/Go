@@ -1,5 +1,7 @@
 // Pigeonhole algorithm's working at wikipedia.
 // https://en.wikipedia.org/wiki/Pigeonhole_sort
+// time complexity: O(n + N) where n is the number of elements in the array and N is the range of input
+// space complexity: O(N)
 
 package sort
 

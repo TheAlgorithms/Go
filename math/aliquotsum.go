@@ -5,6 +5,8 @@
 // is the sum of all proper divisors of n,
 // that is, all divisors of n other than n itself
 // wikipedia: https://en.wikipedia.org/wiki/Aliquot_sum
+// time complexity: O(n)
+// space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see aliquotsum_test.go
 

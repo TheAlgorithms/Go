@@ -1,6 +1,9 @@
 // countingsort.go
 // description: Implementation of counting sort algorithm
 // details: A simple counting sort algorithm implementation
+// worst-case time complexity: O(n + k) where n is the number of elements in the input array and k is the range of the input
+// average-case time complexity: O(n + k) where n is the number of elements in the input array and k is the range of the input
+// space complexity: O(n + k)
 // author [Phil](https://github.com/pschik)
 // see sort_test.go for a test implementation, test function TestQuickSort
 
