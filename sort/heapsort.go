@@ -1,3 +1,9 @@
+// heapsort.go
+// description: Implementation of heap sort algorithm
+// worst-case time complexity: O(n log n)
+// average-case time complexity: O(n log n)
+// space complexity: O(1)
+
 package sort
 
 import "github.com/TheAlgorithms/Go/constraints"

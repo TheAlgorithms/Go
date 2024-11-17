@@ -1,4 +1,6 @@
 // author(s) [red_byte](https://github.com/i-redbyte)
+// time complexity: O(1)
+// space complexity: O(1)
 // see logarithm_test.go
 
 package binary

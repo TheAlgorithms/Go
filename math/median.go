@@ -1,5 +1,7 @@
 // author(s) [jo3zeph](https://github.com/jo3zeph)
 // description: Find the median from a set of values
+// time complexity: O(n log n)
+// space complexity: O(1)
 // see median_test.go
 
 package math

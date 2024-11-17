@@ -1,4 +1,6 @@
 // longest palindromic subsequence
+// time complexity: O(n^2)
+// space complexity: O(n^2)
 // http://www.geeksforgeeks.org/dynamic-programming-set-12-longest-palindromic-subsequence/
 
 package dynamic
