@@ -1,6 +1,8 @@
 // A practice to find lexicographically next greater permutation of the given array of integers.
 // If there does not exist any greater permutation, then print the lexicographically smallest permutation of the given array.
 // The implementation below, finds the next permutation in linear time and constant memory and returns in place
+// time complexity: O(n)
+// space complexity: O(1)
 // Useful reference: https://www.geeksforgeeks.org/next-permutation/
 
 package permutation

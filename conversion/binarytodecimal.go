@@ -9,6 +9,8 @@ Date: 19-Oct-2021
 // https://en.wikipedia.org/wiki/Decimal
 // Function receives a Binary Number as string and returns the Decimal number as integer.
 // Supported Binary number range is 0 to 2^(31-1).
+// time complexity: O(n)
+// space complexity: O(1)
 
 package conversion
 

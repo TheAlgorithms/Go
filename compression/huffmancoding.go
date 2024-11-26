@@ -3,6 +3,8 @@
 // details:
 // We implement the linear-time 2-queue method described here https://en.wikipedia.org/wiki/Huffman_coding.
 // It assumes that the list of symbol-frequencies is sorted.
+// time complexity: O(n)
+// space complexity: O(n)
 // author(s) [pedromsrocha](https://github.com/pedromsrocha)
 // see also huffmancoding_test.go
 

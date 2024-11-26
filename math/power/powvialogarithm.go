@@ -2,6 +2,8 @@
 // description: Powers in terms of logarithms
 // details:
 // implementation of exponentiation using exponent and logarithm, without using loops  - [Powers via logarithms wiki](https://en.wikipedia.org/wiki/Exponentiation#Powers_via_logarithms)
+// time complexity: O(1)
+// space complexity: O(1)
 // author(s) [red_byte](https://github.com/i-redbyte)
 // see powvialogarithm_test.go
 
