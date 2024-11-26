@@ -1,4 +1,7 @@
 // Implementation of comb sort algorithm, an improvement of bubble sort
+// average time complexity: O(n^2 / 2^p) where p is the number of increments
+// worst time complexity: O(n^2)
+// space complexity: O(1)
 // Reference: https://www.geeksforgeeks.org/comb-sort/
 
 package sort

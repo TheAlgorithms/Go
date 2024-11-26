@@ -1,3 +1,10 @@
+// lru.go
+// description : Least Recently Used (LRU) cache
+// details : A Least Recently Used (LRU) cache is a type of cache algorithm used to manage memory within a computer. The LRU algorithm is designed to remove the least recently used items first when the cache reaches its limit.
+// time complexity : O(1)
+// space complexity : O(n)
+// ref : https://en.wikipedia.org/wiki/Cache_replacement_policies#Least_recently_used_(LRU)
+
 package cache
 
 import (

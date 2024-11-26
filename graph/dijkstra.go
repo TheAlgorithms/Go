@@ -1,3 +1,10 @@
+// dijkstra.go
+// description: this file contains the implementation of the Dijkstra algorithm
+// details: Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published three years later. The algorithm exists in many variants; Dijkstra's original variant found the shortest path between two nodes, but a more common variant fixes a single node as the "source" node and finds shortest paths from the source to all other nodes in the graph, producing a shortest-path tree.
+// time complexity: O((V+E) log V) where V is the number of vertices and E is the number of edges in the graph
+// space complexity: O(V) where V is the number of vertices in the graph
+// reference: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
 package graph
 
 import "github.com/TheAlgorithms/Go/sort"
