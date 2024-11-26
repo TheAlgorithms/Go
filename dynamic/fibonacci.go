@@ -1,3 +1,7 @@
+// fibonacci.go
+// description: Implementation of the Fibonacci sequence using dynamic programming
+// time complexity: O(n)
+// space complexity: O(1)
 package dynamic
 
 // https://www.geeksforgeeks.org/program-for-nth-fibonacci-number/

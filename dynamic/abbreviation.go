@@ -11,6 +11,8 @@
 //	 Given a = "ABcde" and b = "ABCD"
 //   We can capitalize "c" and "d" in a to get "ABCde" then delete all the lowercase letters (which is only "e") in a to get "ABCD" which equals b.
 // Author: [duongoku](https://github.com/duongoku)
+// Time Complexity: O(n*m) where n is the length of a and m is the length of b
+// Space Complexity: O(n*m) where n is the length of a and m is the length of b
 // See abbreviation_test.go for test cases
 
 package dynamic
