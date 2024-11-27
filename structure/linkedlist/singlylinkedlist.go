@@ -125,14 +125,14 @@ func (ll *Singly[T]) Count() int {
 
 // Reverse reverses the list.
 func (ll *Singly[T]) Reverse() {
-	var prev, Next *Node[T]
+	var prev, next *Node[T]
 	cur := ll.Head
 
 	for cur != nil {
-		Next = cur.Next
+		next = cur.Next
 		cur.Next = prev
 		prev = cur
-		cur = Next
+		cur = next
 	}
 
 	ll.Head = prev
