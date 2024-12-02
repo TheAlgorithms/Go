@@ -1,4 +1,8 @@
 // Package caesar is the shift cipher
+// description: Caesar cipher
+// details : Caesar cipher is a type of substitution cipher in which each letter in the plaintext is shifted a certain number of places down the alphabet.
+// time complexity: O(n)
+// space complexity: O(n)
 // ref: https://en.wikipedia.org/wiki/Caesar_cipher
 package caesar
 

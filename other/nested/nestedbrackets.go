@@ -17,6 +17,9 @@ package nested
 // **Note** Providing characters other then brackets would return false,
 // despite brackets sequence in the string. Make sure to filter
 // input before usage.
+// time complexity: O(n)
+// space complexity: O(n)
+
 func IsBalanced(input string) bool {
 	if len(input) == 0 {
 		return true

@@ -194,6 +194,10 @@ func TestCircle(t *testing.T) {
 	testFramework(t, sort.Circle[int])
 }
 
+func TestOddEvenSort(t *testing.T) {
+	testFramework(t, sort.OddEvenSort[int])
+}
+
 // END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {

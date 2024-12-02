@@ -2,6 +2,8 @@
 rsa2.go
 description: RSA encryption and decryption including key generation
 details: [RSA wiki](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
+time complexity: O(n)
+space complexity: O(1)
 author(s): [ddaniel27](https://github.com/ddaniel27)
 */
 package rsa
