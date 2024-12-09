@@ -897,7 +897,7 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 3. [`GenerateChannel`](./math/prime/sieve.go#L9):  Generate generates the sequence of integers starting at 2 and sends it to the channel `ch`
 4. [`MillerRabinDeterministic`](./math/prime/millerrabintest.go#L121):  MillerRabinDeterministic is a Deterministic version of the Miller-Rabin test, which returns correct results for all valid int64 numbers.
 5. [`MillerRabinProbabilistic`](./math/prime/millerrabintest.go#L101):  MillerRabinProbabilistic is a probabilistic test for primality of an integer based of the algorithm devised by Miller and Rabin.
-6. [`MillerRandomTest`](./math/prime/millerrabintest.go#L77):  MillerRandomTest This is the intermediate step that repeats within the miller rabin primality test for better probabilitic chances of receiving the correct result with random witnesses.
+6. [`MillerRandomTest`](./math/prime/millerrabintest.go#L77):  MillerRandomTest This is the intermediate step that repeats within the miller rabin primality test for better probabilistic chances of receiving the correct result with random witnesses.
 7. [`MillerTest`](./math/prime/millerrabintest.go#L49):  MillerTest tests whether num is a strong probable prime to a witness. Formally: a^d ≡ 1 (mod n) or a^(2^r * d) ≡ -1 (mod n), 0 <= r <= s
 8. [`MillerTestMultiple`](./math/prime/millerrabintest.go#L84):  MillerTestMultiple is like MillerTest but runs the test for multiple witnesses.
 9. [`OptimizedTrialDivision`](./math/prime/primecheck.go#L26):  OptimizedTrialDivision checks primality of an integer using an optimized trial division method. The optimizations include not checking divisibility by the even numbers and only checking up to the square root of the given number.
@@ -1208,10 +1208,10 @@ Read our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 ---
 ##### Functions:
 
-1. [`Encrypt`](.cipher/railfence/railfence.go#L7):  Encrypt encrypts a message using rail fence cipher
-2. [`Decrypt`](.cipher/railfence/railfence.go#L44):  decrypt decrypts a message using rail fence cipher
-3. [`TestEncrypt`](.cipher/railfence/railfence_test.go#L7) Test function for Encrypt
-4. [`TestDecrypt`](.cipher/railfence/railfence_test.go#L50) Test function for Decrypt
+1. [`Encrypt`](./cipher/railfence/railfence.go#L7):  Encrypt encrypts a message using rail fence cipher
+2. [`Decrypt`](./cipher/railfence/railfence.go#L44):  decrypt decrypts a message using rail fence cipher
+3. [`TestEncrypt`](./cipher/railfence/railfence_test.go#L7) Test function for Encrypt
+4. [`TestDecrypt`](./cipher/railfence/railfence_test.go#L50) Test function for Decrypt
 
 ---
 </details>
