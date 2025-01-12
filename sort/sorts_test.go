@@ -198,6 +198,10 @@ func TestOddEvenSort(t *testing.T) {
 	testFramework(t, sort.OddEvenSort[int])
 }
 
+func TestStooge(t *testing.T) {
+	testFramework(t, sort.Stooge[int])
+}
+
 // END TESTS
 
 func benchmarkFramework(b *testing.B, f func(arr []int) []int) {
@@ -339,4 +343,8 @@ func BenchmarkTimsort(b *testing.B) {
 
 func BenchmarkCircle(b *testing.B) {
 	benchmarkFramework(b, sort.Circle[int])
+}
+
+func BenchmarkStooge(b *testing.B) {
+	benchmarkFramework(b, sort.Stooge[int])
 }
