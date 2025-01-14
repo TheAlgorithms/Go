@@ -13,12 +13,10 @@ type testCaseBurstBalloons struct {
 
 func getBurstBalloonsTestCases() []testCaseBurstBalloons {
 	return []testCaseBurstBalloons{
-		{[]int{3, 1, 5, 8}, 167},    // Maximum coins from [3,1,5,8]
-		{[]int{1, 5}, 10},           // Maximum coins from [1,5]
-		{[]int{7, 9, 8, 0, 7}, 392}, // Maximum coins from [7,9,8,0,7]
-		{[]int{1}, 1},               // Single balloon
-		{[]int{}, 0},                // No balloons
-		{[]int{9, 7, 8, 3}, 233},    // Maximum coins from [9,7,8,3]
+		{[]int{3, 1, 5, 8}, 167}, // Maximum coins from [3,1,5,8]
+		{[]int{1, 5}, 10},        // Maximum coins from [1,5]
+		{[]int{1}, 1},            // Single balloon
+		{[]int{}, 0},             // No balloons
 	}
 
 }

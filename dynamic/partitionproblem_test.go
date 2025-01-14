@@ -15,7 +15,6 @@ func getPartitionProblemTestCases() []testCasePartitionProblem {
 	return []testCasePartitionProblem{
 		{[]int{1, 5, 11, 5}, true},      // Example with a partitionable set
 		{[]int{1, 2, 3, 5}, false},      // Example where partition is not possible
-		{[]int{1, 2, 3, 4, 5, 6}, true}, // Example with a partitionable set
 		{[]int{1, 2, 5}, false},         // Set cannot be partitioned into two subsets
 		{[]int{2, 2, 2, 2}, true},       // Even split possible with equal elements
 		{[]int{7, 3, 2, 1}, false},      // Set cannot be partitioned

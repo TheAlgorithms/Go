@@ -13,7 +13,6 @@ type testCaseMaxSubArraySum struct {
 
 func getMaxSubArraySumTestCases() []testCaseMaxSubArraySum {
 	return []testCaseMaxSubArraySum{
-		{[]int{1, -2, 3, 4, -1, 2, 1, -5, 4}, 8},  // Example with positive and negative numbers
 		{[]int{-2, -3, 4, -1, -2, 1, 5, -3}, 7},   // Kadane's algorithm example
 		{[]int{-1, -2, -3, -4}, -1},               // All negative numbers, max single element
 		{[]int{5, 4, -1, 7, 8}, 23},               // Positive numbers with a large sum

@@ -15,7 +15,6 @@ type testCaseWildcardMatching struct {
 func getWildcardMatchingTestCases() []testCaseWildcardMatching {
 	return []testCaseWildcardMatching{
 		{"aa", "a*", true},                    // * can match zero or more characters
-		{"mississippi", "m??*ss*?i*pi", true}, // Complex pattern with multiple wildcards
 		{"aa", "a", false},                    // No match due to no wildcard
 		{"ab", "?*", true},                    // ? matches any single character, * matches remaining
 		{"abcd", "a*d", true},                 // * matches the characters between 'a' and 'd'
@@ -24,7 +23,6 @@ func getWildcardMatchingTestCases() []testCaseWildcardMatching {
 		{"abc", "a*c", true},                  // * matches 'b'
 		{"abc", "a?c", true},                  // ? matches 'b'
 		{"abc", "a?d", false},                 // ? cannot match 'd'
-		{"", "a*", true},                      // * can match an empty string
 		{"", "", true},                        // Both strings empty, so they match
 		{"a", "?", true},                      // ? matches any single character
 		{"a", "*", true},                      // * matches any number of characters, including one

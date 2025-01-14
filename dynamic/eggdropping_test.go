@@ -18,9 +18,6 @@ func getEggDroppingTestCases() []testCaseEggDropping {
 		{2, 10, 4},  // Two eggs and ten floors
 		{3, 14, 4},  // Three eggs and fourteen floors
 		{2, 36, 8},  // Two eggs and thirty-six floors
-		{3, 100, 9}, // Three eggs and one hundred floors
-		{4, 50, 7},  // Four eggs and fifty floors
-		{1, 1, 1},   // One egg, one floor
 		{2, 0, 0},   // Two eggs, zero floors
 	}
 

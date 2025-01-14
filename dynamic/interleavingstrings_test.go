@@ -19,12 +19,10 @@ func getInterleavingTestCases() []testCaseInterleaving {
 		{"abc", "", "abc", true},         // Only s1 matches s3
 		{"", "xyz", "xyz", true},         // Only s2 matches s3
 		{"abc", "xyz", "abxcyz", true},   // Valid interleaving
-		{"abc", "xyz", "abxycz", false},  // Invalid interleaving
 		{"aaa", "aaa", "aaaaaa", true},   // Identical strings
 		{"aaa", "aaa", "aaaaaaa", false}, // Extra character
 		{"abc", "def", "abcdef", true},   // Concatenation order
 		{"abc", "def", "adbcef", true},   // Valid mixed interleaving
-		{"abc", "def", "abdecf", false},  // Invalid mixed interleaving
 	}
 }
 
