@@ -30,7 +30,7 @@ func getDiceThrowTestCases() []testCaseDiceThrow {
 }
 
 // TestDiceThrow tests the DiceThrow function with basic test cases
-func TestDiceThrow_BasicCases(t *testing.T) {
+func TestDiceThrow(t *testing.T) {
 	t.Run("Basic test cases", func(t *testing.T) {
 		for _, tc := range getDiceThrowTestCases() {
 			actual := dynamic.DiceThrow(tc.numDice, tc.numFaces, tc.targetSum)
