@@ -5,9 +5,7 @@ package set
 
 // New gives new set.
 func New[T comparable](items ...T) Set[T] {
-	st := set[T]{
-		elements: make(map[T]bool),
-	}
+	st := set[T]{make(map[T]struct{})}
 	for _, item := range items {
 		st.Add(item)
 	}
@@ -51,11 +49,11 @@ type Set[T comparable] interface {
 }
 
 type set[T comparable] struct {
-	elements map[T]bool
+	elements map[T]struct{}
 }
 
 func (st *set[T]) Add(value T) {
-	st.elements[value] = true
+	st.elements[value] = struct{}{}
 }
 
 func (st *set[T]) Delete(value T) {
@@ -75,7 +73,7 @@ func (st *set[T]) Len() int {
 }
 
 func (st *set[T]) In(value T) bool {
-	if _, in := st.elements[value]; in {
+	if _, ok := st.elements[value]; ok {
 		return true
 	}
 	return false
