@@ -7,6 +7,7 @@ package trie
 type Node struct {
 	children map[rune]*Node // map children nodes
 	isLeaf   bool           // current node value
+	total    int            // total words in the Trie
 }
 
 // NewNode creates a new Trie node with initialized
@@ -20,6 +21,9 @@ func NewNode() *Node {
 
 // insert a single word at a Trie node.
 func (n *Node) insert(s string) {
+	if len(s) == 0 {
+		return
+	}
 	curr := n
 	for _, c := range s {
 		next, ok := curr.children[c]
@@ -29,7 +33,10 @@ func (n *Node) insert(s string) {
 		}
 		curr = next
 	}
-	curr.isLeaf = true
+	if !curr.isLeaf {
+		curr.isLeaf = true
+		n.total++
+	}
 }
 
 // Insert zero, one or more words at a Trie node.
@@ -62,14 +69,15 @@ func (n *Node) Capacity() int {
 
 // Size returns the number of words in the Trie
 func (n *Node) Size() int {
-	r := 0
-	for _, c := range n.children {
-		r += c.Size()
-	}
-	if n.isLeaf {
-		r++
-	}
-	return r
+	//r := 0
+	//for _, c := range n.children {
+	//	r += c.Size()
+	//}
+	//if n.isLeaf {
+	//	r++
+	//}
+	//return r
+	return n.total
 }
 
 // remove lazily a word from the Trie node, no node is actually removed.
@@ -85,7 +93,13 @@ func (n *Node) remove(s string) {
 			return
 		}
 	}
+	if !next.isLeaf {
+		return
+	}
 	next.isLeaf = false
+	if n.total > 0 {
+		n.total--
+	}
 }
 
 // Remove zero, one or more words lazily from the Trie, no node is actually removed.

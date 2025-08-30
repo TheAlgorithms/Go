@@ -125,6 +125,111 @@ func TestTrieRemove(t *testing.T) {
 	n.verifySizeCapa(t, 0, 1) // no words, only the root node left
 }
 
+// Test inserting empty string
+func TestTrieInsertEmptyString(t *testing.T) {
+	root := NewNode()
+	root.Insert("")
+
+	check := map[string]bool{
+		"": false,
+	}
+	root.verify(t, check)
+	root.verifySizeCapa(t, 0, root.Capacity())
+}
+
+// Test inserting words with shared prefix
+func TestTrieInsertSharedPrefix(t *testing.T) {
+	root := NewNode()
+	root.Insert("abc", "abcd", "abcde")
+
+	check := map[string]bool{
+		"abc":   true,
+		"abcd":  true,
+		"abcde": true,
+		"ab":    false,
+	}
+	root.verify(t, check)
+
+	root.verifySizeCapa(t, 3, root.Capacity())
+}
+
+// Test removing non-existent words
+func TestTrieRemoveNonExistentEdge(t *testing.T) {
+	root := NewNode()
+	root.Insert("abc", "def")
+
+	root.Remove("xyz") // does not exist
+
+	check := map[string]bool{
+		"abc": true,
+		"def": true,
+		"xyz": false,
+	}
+	root.verify(t, check)
+	root.verifySizeCapa(t, 2, root.Capacity())
+}
+
+// Test inserting duplicates multiple times
+func TestTrieInsertDuplicatesMultiple(t *testing.T) {
+	root := NewNode()
+	root.Insert("abc", "abc", "abc")
+
+	check := map[string]bool{
+		"abc": true,
+	}
+	root.verify(t, check)
+
+	// Size should count only once
+	root.verifySizeCapa(t, 1, root.Capacity())
+}
+
+// Test removing all words sequentially
+func TestTrieRemoveAllSequential(t *testing.T) {
+	root := NewNode()
+	root.Insert("a", "b", "c")
+
+	root.Remove("a")
+	root.Remove("b")
+	root.Remove("c")
+
+	check := map[string]bool{
+		"a": false,
+		"b": false,
+		"c": false,
+	}
+	root.verify(t, check)
+
+	// Size should be zero
+	root.verifySizeCapa(t, 0, root.Capacity())
+}
+
+// Test inserting substrings and removing middle one
+func TestTrieInsertSubstringsRemoveMiddle(t *testing.T) {
+	root := NewNode()
+	root.Insert("a", "ab", "abc")
+
+	root.Remove("ab")
+
+	check := map[string]bool{
+		"a":   true,
+		"ab":  false,
+		"abc": true,
+	}
+	root.verify(t, check)
+
+	// Size should be 2
+	root.verifySizeCapa(t, 2, root.Capacity())
+}
+
+// Test Compact on empty Trie
+func TestTrieCompactEmptyTrie(t *testing.T) {
+	root := NewNode()
+	if !root.Compact() {
+		t.Fatal("Empty Trie root should be removable after compaction")
+	}
+	root.verifySizeCapa(t, 0, 1) // only root remains
+}
+
 // --------------- helper functions ---------------------------
 
 // verify if provided words are present

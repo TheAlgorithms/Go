@@ -79,3 +79,17 @@ func BenchmarkTrie_Remove_and_Compact(b *testing.B) {
 		n.Compact()
 	}
 }
+
+func BenchmarkTrie_Size(b *testing.B) {
+	insert := make([]string, 3000)
+	for i := 0; i < len(insert); i++ {
+		insert[i] = fmt.Sprintf("%f", rand.Float64())
+	}
+	n := NewNode()
+	n.Insert(insert...)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = n.Size()
+	}
+}
