@@ -63,8 +63,32 @@ func TestSingly(t *testing.T) {
 		}
 	})
 
+	list.AddAtEnd(4)
+	list.AddAtEnd(6)
+	t.Run("Test DelByePos() failed", func(t *testing.T) {
+		want := any(0)
+		got, ok := list.DelByPos(5)
+		if ok {
+			t.Error("unexpected ok")
+		}
+		if got != want {
+			t.Errorf("got: %v, want: %v", got, want)
+		}
+	})
+
+	t.Run("Test DelByePos() succes", func(t *testing.T) {
+		want := any(6)
+		got, ok := list.DelByPos(4)
+		if !ok {
+			t.Error("unexpected not-ok")
+		}
+		if got != want {
+			t.Errorf("got: %v, want: %v", got, want)
+		}
+	})
+
 	t.Run("Test Count()", func(t *testing.T) {
-		want := 2
+		want := any(3)
 		got := list.Count()
 		if got != want {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -98,7 +122,6 @@ func TestSingly(t *testing.T) {
 		want := []any{1, 5, 4, 3, 2, 6}
 		got := []any{}
 		err := list2.ReversePartition(2, 5)
-
 		if err != nil {
 			t.Errorf("Incorrect boundary conditions entered%v", err)
 		}

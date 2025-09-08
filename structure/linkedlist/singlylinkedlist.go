@@ -81,7 +81,6 @@ func (ll *Singly[T]) DelAtEnd() (T, bool) {
 	cur.Next = nil
 	ll.length--
 	return retval, true
-
 }
 
 // DelByPos deletes the node at the middle based on position in the list
@@ -91,12 +90,12 @@ func (ll *Singly[T]) DelByPos(pos int) (T, bool) {
 	case ll.Head == nil:
 		var r T
 		return r, false
-	case pos-1 > ll.length:
+	case pos > ll.length || pos < 1:
 		var r T
 		return r, false
 	case pos-1 == 0:
 		return ll.DelAtBeg()
-	case pos-1 == ll.Count():
+	case pos == ll.Count():
 		return ll.DelAtEnd()
 	}
 
@@ -160,6 +159,7 @@ func (ll *Singly[T]) ReversePartition(left, right int) error {
 	ll.Head = tmpNode.Next
 	return nil
 }
+
 func (ll *Singly[T]) CheckRangeFromIndex(left, right int) error {
 	if left > right {
 		return errors.New("left boundary must smaller than right")
