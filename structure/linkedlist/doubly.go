@@ -87,7 +87,7 @@ func (ll *Doubly[T]) DelAtBeg() (T, bool) {
 	return val, true
 }
 
-// DetAtEnd Delete a node at the end of the linkedlist
+// DelAtEnd Delete a node at the end of the linkedlist
 func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 	// no item
 	if ll.Head.Prev == nil {
@@ -104,7 +104,6 @@ func (ll *Doubly[T]) DelAtEnd() (T, bool) {
 // DelByPos deletes node at middle based on position in list
 // and returns value. If empty or position of node is less than linked list length, returns false
 func (ll *Doubly[T]) DelByPos(pos int) (T, bool) {
-
 	switch {
 	case ll.Head == nil:
 		var r T
