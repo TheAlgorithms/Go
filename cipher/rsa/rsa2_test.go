@@ -19,6 +19,10 @@ func TestRSA(t *testing.T) {
 			name:    "Encrypt 'Hello, World!' and decrypt it back",
 			message: "Hello, World!",
 		},
+		{
+			name: "Encrypt an unicode string and decrypt it back",
+			message: "こんにちは世界",
+		},
 	}
 
 	for _, tt := range tests {

@@ -10,9 +10,9 @@ package rsa
 
 import (
 	"encoding/binary"
-	"fmt"
 	"math/big"
 	"math/rand"
+	"strings"
 
 	"github.com/TheAlgorithms/Go/math/gcd"
 	"github.com/TheAlgorithms/Go/math/lcm"
@@ -61,24 +61,24 @@ func New() *rsa {
 // EncryptString encrypts the data using RSA algorithm
 // returns the encrypted string
 func (rsa *rsa) EncryptString(data string) string {
-	var nums []byte
+	var result strings.Builder
 
-	for _, char := range data {
+	for i := 0; i < len(data); i++ {
 		slice := make([]byte, 8)
 		binary.BigEndian.PutUint64( // convert uint64 to byte slice
 			slice,
-			encryptDecryptInt(rsa.publicKey, rsa.modulus, uint64(char)), // encrypt each character
+			encryptDecryptInt(rsa.publicKey, rsa.modulus, uint64(data[i])), // encrypt each byte
 		)
-		nums = append(nums, slice...)
+		result.Write(slice)
 	}
 
-	return string(nums)
+	return result.String()
 }
 
 // DecryptString decrypts the data using RSA algorithm
 // returns the decrypted string
 func (rsa *rsa) DecryptString(data string) string {
-	result := ""
+	var result strings.Builder
 	middle := []byte(data)
 
 	for i := 0; i < len(middle); i += 8 {
@@ -86,12 +86,12 @@ func (rsa *rsa) DecryptString(data string) string {
 			break
 		}
 
-		slice := middle[i : i+8]
+		slice := middle[i : i+8] // temp slice
 		num := binary.BigEndian.Uint64(slice) // convert byte slice to uint64
-		result += fmt.Sprintf("%c", encryptDecryptInt(rsa.privateKey, rsa.modulus, num))
+		result.WriteByte(byte(encryptDecryptInt(rsa.privateKey, rsa.modulus, num)))
 	}
 
-	return result
+	return result.String()
 }
 
 // GetPublicKey returns the public key and modulus
