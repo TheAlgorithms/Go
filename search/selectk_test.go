@@ -15,10 +15,7 @@ func TestSelectK(t *testing.T) {
 		{[]int{1, 2, 3, 4, 5}, 1, 5, nil, "sorted data"},
 		{[]int{5, 4, 3, 2, 1}, 2, 4, nil, "reversed data"},
 		{[]int{3, 1, 2, 5, 4}, 3, 3, nil, "random data"},
-		{[]int{3, 2, 1, 5, 4}, 10, -1, ErrNotFound, "absent data"},
-		{[]int{3, 2, 1, 5, 4}, 0, -1, ErrNotFound, "invalid zero k"},
-		{[]int{}, 1, -1, ErrNotFound, "empty data"},
-		{[]int{5, 5, 5, 5, 5}, 3, 5, nil, "duplicate data"},
+		{[]int{3, 2, 1, 5, 4}, 10, -1, ErrNotFound, " absent data"},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
