@@ -10,12 +10,16 @@
 
 package math
 
-import "errors"
+import (
+	"errors"
+)
+
+var ErrNonPositiveCost = errors.New("costOfInvestment must be greater than 0")
 
 // ReturnOnInvestment calculates the return on investment as a percentage.
 func ReturnOnInvestment(gainFromInvestment, costOfInvestment float64) (float64, error) {
 	if costOfInvestment <= 0 {
-		return 0, errors.New("costOfInvestment must be greater than 0")
+		return 0, ErrNonPositiveCost
 	}
 	return (gainFromInvestment - costOfInvestment) / costOfInvestment * 100, nil
 }
