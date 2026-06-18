@@ -20,12 +20,20 @@ const Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 // at https://datatracker.ietf.org/doc/html/rfc4648#section-4
 func Base64Encode(input []byte) string {
 	var sb strings.Builder
-	// If not 24 bits (3 bytes) multiple, pad with 0 value bytes, and with "=" for the output
+	// If not a 24-bit (3-byte) multiple, the final group is zero-padded and the
+	// output is padded with "=". The zero bytes are read locally below so the
+	// caller's slice (and its backing array) is never modified.
 	var padding string
 	for i := len(input) % 3; i > 0 && i < 3; i++ {
-		var zeroByte byte
-		input = append(input, zeroByte)
 		padding += "="
+	}
+
+	// byteAt returns input[i], or 0 when i is past the end of the final group.
+	byteAt := func(i int) byte {
+		if i < len(input) {
+			return input[i]
+		}
+		return 0
 	}
 
 	// encode 24 bits per 24 bits (3 bytes per 3 bytes)
@@ -34,10 +42,10 @@ func Base64Encode(input []byte) string {
 		// the literal 0x3F corresponds to the byte "0011 1111"
 		// the operation "byte & 0x3F" masks the two left-most bits
 		group := [4]byte{
-			input[i] >> 2,
-			(input[i]<<4)&0x3F + input[i+1]>>4,
-			(input[i+1]<<2)&0x3F + input[i+2]>>6,
-			input[i+2] & 0x3F,
+			byteAt(i) >> 2,
+			(byteAt(i)<<4)&0x3F + byteAt(i+1)>>4,
+			(byteAt(i+1)<<2)&0x3F + byteAt(i+2)>>6,
+			byteAt(i+2) & 0x3F,
 		}
 
 		// translate each group into a char using the static map
@@ -60,8 +68,13 @@ func Base64Decode(input string) []byte {
 	padding := strings.Count(input, "=") // Number of bytes which will be ignored
 	var decoded []byte
 
+	// A base64 payload is always a multiple of 4 characters. Iterate over whole
+	// 4-character groups only, so a malformed input of another length is ignored
+	// at the tail instead of indexing past the end of the string and panicking.
+	groups := len(input) / 4 * 4
+
 	// select 4 6-bit input groups, and re-arrange them into 3 8-bit groups
-	for i := 0; i < len(input); i += 4 {
+	for i := 0; i < groups; i += 4 {
 		// translate each group into a byte using the static map
 		byteInput := [4]byte{
 			byte(strings.IndexByte(Alphabet, input[i])),

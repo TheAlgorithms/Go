@@ -121,3 +121,41 @@ func FuzzBase64Encode(f *testing.F) {
 		}
 	})
 }
+
+func TestBase64DecodeMalformedLength(t *testing.T) {
+	// A base64 payload is always a multiple of 4 characters. An input of any
+	// other length must not index past the end of the string and panic.
+	testCases := []struct {
+		in       string
+		expected string
+	}{
+		{"SGVsbG8h", "Hello!"}, // well-formed control case
+		{"ABCDE", "\x00\x10\x83"},
+		{"A", ""},
+		{"AB", ""},
+		{"ABC", ""},
+	}
+
+	for _, tc := range testCases {
+		result := string(Base64Decode(tc.in))
+		if result != tc.expected {
+			t.Fatalf("Base64Decode(%q) = %q, want %q", tc.in, result, tc.expected)
+		}
+	}
+}
+
+func TestBase64EncodeDoesNotMutateInput(t *testing.T) {
+	// Encoding a slice whose capacity exceeds its length must not write padding
+	// bytes into the caller's backing array.
+	backing := []byte{1, 2, 3, 4, 5, 6}
+	arg := backing[:4] // len 4, cap 6; 4 % 3 == 1 triggers padding
+
+	Base64Encode(arg)
+
+	want := []byte{1, 2, 3, 4, 5, 6}
+	for i := range want {
+		if backing[i] != want[i] {
+			t.Fatalf("Base64Encode mutated caller backing array: got %v, want %v", backing, want)
+		}
+	}
+}
