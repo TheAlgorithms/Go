@@ -21,6 +21,8 @@ func TestAliquotSum(t *testing.T) {
 		{"n = 10", 10, 8, nil},
 		{"n = 11", 11, 1, nil},
 		{"n = 1", 1, 0, nil},
+		{"n = 28", 28, 28, nil},
+		{"n = 36", 36, 55, nil},
 		{"n = -1", -1, 0, math.ErrPosArgsOnly},
 		{"n = 0", 0, 0, math.ErrNonZeroArgsOnly},
 	}

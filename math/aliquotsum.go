@@ -5,14 +5,14 @@
 // is the sum of all proper divisors of n,
 // that is, all divisors of n other than n itself
 // wikipedia: https://en.wikipedia.org/wiki/Aliquot_sum
-// time complexity: O(n)
+// time complexity: O(sqrt(n))
 // space complexity: O(1)
 // author: Akshay Dubey (https://github.com/itsAkshayDubey)
 // see aliquotsum_test.go
 
 package math
 
-// This function returns s(n) for given number
+// AliquotSum returns the sum of all proper divisors of n.
 func AliquotSum(n int) (int, error) {
 	switch {
 	case n < 0:
@@ -20,10 +20,19 @@ func AliquotSum(n int) (int, error) {
 	case n == 0:
 		return 0, ErrNonZeroArgsOnly
 	default:
-		var sum int
-		for i := 1; i <= n/2; i++ {
-			if n%i == 0 {
-				sum += i
+		if n == 1 {
+			return 0, nil
+		}
+
+		sum := 1
+		for divisor := 2; divisor <= n/divisor; divisor++ {
+			if n%divisor == 0 {
+				sum += divisor
+
+				pairedDivisor := n / divisor
+				if pairedDivisor != divisor {
+					sum += pairedDivisor
+				}
 			}
 		}
 		return sum, nil
