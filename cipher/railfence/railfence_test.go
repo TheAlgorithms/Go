@@ -2,6 +2,7 @@ package railfence
 
 import (
 	"testing"
+	"unicode/utf8"
 )
 
 func TestEncrypt(t *testing.T) {
@@ -34,6 +35,30 @@ func TestEncrypt(t *testing.T) {
 			"hi",
 			100,
 			"hi",
+		},
+		{
+			"Encrypt with Unicode runes",
+			"café crème",
+			3,
+			"c maécèefr",
+		},
+		{
+			"Encrypt with negative rails",
+			"hello",
+			-1,
+			"hello",
+		},
+		{
+			"Encrypt with zero rails",
+			"hello",
+			0,
+			"hello",
+		},
+		{
+			"Encrypt with empty string",
+			"",
+			3,
+			"",
 		},
 	}
 
@@ -78,6 +103,30 @@ func TestDecrypt(t *testing.T) {
 			100,
 			"hi",
 		},
+		{
+			"Decrypt with Unicode runes",
+			"c maécèefr",
+			3,
+			"café crème",
+		},
+		{
+			"Decrypt with negative rails",
+			"hello",
+			-1,
+			"hello",
+		},
+		{
+			"Decrypt with zero rails",
+			"hello",
+			0,
+			"hello",
+		},
+		{
+			"Decrypt with empty string",
+			"",
+			3,
+			"",
+		},
 	}
 
 	for _, test := range railFenceTestData {
@@ -88,4 +137,38 @@ func TestDecrypt(t *testing.T) {
 			}
 		})
 	}
+}
+
+func FuzzRailFence(f *testing.F) {
+	seeds := []struct {
+		input string
+		rails int
+	}{
+		{"hello", 2},
+		{"hello world", 3},
+		{"hello", 1},
+		{"hi", 100},
+		{"café crème", 3},
+		{"the quick brown fox jumps over the lazy dog", 4},
+		{"1234567890", 2},
+		{"", 3},
+		{"a", 2},
+		{"hello", -1},
+		{"hello", 0},
+	}
+
+	for _, seed := range seeds {
+		f.Add(seed.input, seed.rails)
+	}
+
+	f.Fuzz(func(t *testing.T, input string, rails int) {
+		if !utf8.ValidString(input) {
+			return
+		}
+		encrypted := Encrypt(input, rails)
+		decrypted := Decrypt(encrypted, rails)
+		if decrypted != input {
+			t.Fatalf("round-trip failed: original=%q, rails=%d, encrypted=%q, decrypted=%q", input, rails, encrypted, decrypted)
+		}
+	})
 }
