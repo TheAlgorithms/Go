@@ -2,6 +2,7 @@ package railfence
 
 import (
 	"testing"
+	"unicode/utf8"
 )
 
 func TestEncrypt(t *testing.T) {
@@ -34,6 +35,24 @@ func TestEncrypt(t *testing.T) {
 			"hi",
 			100,
 			"hi",
+		},
+		{
+			"Encrypt with Unicode characters",
+			"Hello, 世界!",
+			2,
+			"Hlo 界el,世!",
+		},
+		{
+			"Encrypt with edge case: 0 rails",
+			"hello",
+			0,
+			"hello",
+		},
+		{
+			"Encrypt with edge case: negative rails",
+			"hello",
+			-5,
+			"hello",
 		},
 	}
 
@@ -78,6 +97,24 @@ func TestDecrypt(t *testing.T) {
 			100,
 			"hi",
 		},
+		{
+			"Decrypt with Unicode characters",
+			"Hlo 界el,世!",
+			2,
+			"Hello, 世界!",
+		},
+		{
+			"Decrypt with edge case: 0 rails",
+			"hello",
+			0,
+			"hello",
+		},
+		{
+			"Decrypt with edge case: negative rails",
+			"hello",
+			-5,
+			"hello",
+		},
 	}
 
 	for _, test := range railFenceTestData {
@@ -88,4 +125,42 @@ func TestDecrypt(t *testing.T) {
 			}
 		})
 	}
+}
+
+func FuzzRailfence(f *testing.F) {
+	testCases := []struct {
+		input string
+		rails int
+	}{
+		{"hello", 2},
+		{"hello world", 3},
+		{"hello", 1},
+		{"hi", 100},
+		{"Hello, 世界!", 2},
+		{"The Quick Brown Fox Jumps Over The Lazy Dog", 4},
+	}
+
+	for _, tc := range testCases {
+		f.Add(tc.input, tc.rails)
+	}
+
+	f.Fuzz(func(t *testing.T, input string, rails int) {
+		if !utf8.ValidString(input) {
+			return
+		}
+		if rails <= 0 {
+			if Encrypt(input, rails) != input {
+				t.Errorf("Encrypt with rails <= 0 should return input unmodified")
+			}
+			if Decrypt(input, rails) != input {
+				t.Errorf("Decrypt with rails <= 0 should return input unmodified")
+			}
+			return
+		}
+		encrypted := Encrypt(input, rails)
+		decrypted := Decrypt(encrypted, rails)
+		if decrypted != input {
+			t.Fatalf("With input: %q and rails: %d\n\tExpected: %q\n\tGot: %q", input, rails, input, decrypted)
+		}
+	})
 }

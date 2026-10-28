@@ -11,57 +11,51 @@ import (
 )
 
 func Encrypt(text string, rails int) string {
-	if rails == 1 {
+	runes := []rune(text)
+	if rails <= 1 || rails >= len(runes) {
 		return text
 	}
 
-	// Create a matrix for the rail fence pattern
-	matrix := make([][]rune, rails)
-	for i := range matrix {
-		matrix[i] = make([]rune, len(text))
-	}
+	rows := make([][]rune, rails)
 
-	// Fill the matrix
 	dirDown := false
-	row, col := 0, 0
-	for _, char := range text {
+	row := 0
+	for _, char := range runes {
+		rows[row] = append(rows[row], char)
 		if row == 0 || row == rails-1 {
 			dirDown = !dirDown
 		}
-		matrix[row][col] = char
-		col++
 		if dirDown {
 			row++
 		} else {
 			row--
 		}
 	}
+
 	var result strings.Builder
-	for _, line := range matrix {
-		for _, char := range line {
-			if char != 0 {
-				result.WriteRune(char)
-			}
-		}
+	for _, r := range rows {
+		result.WriteString(string(r))
 	}
 
 	return result.String()
 }
+
 func Decrypt(cipherText string, rails int) string {
-	if rails == 1 || rails >= len(cipherText) {
+	runes := []rune(cipherText)
+	if rails <= 1 || rails >= len(runes) {
 		return cipherText
 	}
 
 	// Placeholder for the decrypted message
-	decrypted := make([]rune, len(cipherText))
+	decrypted := make([]rune, len(runes))
 
 	// Calculate the zigzag pattern and place characters accordingly
 	index := 0
 	for rail := 0; rail < rails; rail++ {
 		position := rail
 		down := true // Direction flag
-		for position < len(cipherText) {
-			decrypted[position] = rune(cipherText[index])
+		for position < len(runes) {
+			decrypted[position] = runes[index]
 			index++
 
 			// Determine the next position based on the current rail and direction
