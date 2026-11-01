@@ -1,4 +1,3 @@
-
 package dynamic
 
 // MaxNonAdjacentSum finds the maximum sum of non-adjacent elements
@@ -14,23 +13,23 @@ package dynamic
 // an empty slice or a slice containing only negative numbers.
 
 func MaxNonAdjacentSum(nums []int) int {
-    if len(nums) == 0 {
-        return 0
-    }
+	if len(nums) == 0 {
+		return 0
+	}
 
-    prevTwo := 0
-    prevOne := 0
+	prevTwo := 0
+	prevOne := 0
 
-    for _, num := range nums {
-        current := prevOne
+	for _, num := range nums {
+		current := prevOne
 
-        if prevTwo+num > current {
-            current = prevTwo + num
-        }
+		if prevTwo+num > current {
+			current = prevTwo + num
+		}
 
-        prevTwo = prevOne
-        prevOne = current
-    }
+		prevTwo = prevOne
+		prevOne = current
+	}
 
-    return prevOne
+	return prevOne
 }
