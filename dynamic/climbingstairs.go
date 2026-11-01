@@ -12,7 +12,6 @@ package dynamic
 // Returns 1 for n = 0 and 0 for negative values of n.
 //
 // Note: The result may overflow int for sufficiently large n.
-
 func ClimbingStairs(n int) int {
 	if n < 0 {
 		return 0

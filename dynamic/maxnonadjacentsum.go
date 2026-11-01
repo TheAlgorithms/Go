@@ -11,7 +11,6 @@ package dynamic
 //
 // The empty subset is allowed, so the function returns 0 for
 // an empty slice or a slice containing only negative numbers.
-
 func MaxNonAdjacentSum(nums []int) int {
 	if len(nums) == 0 {
 		return 0
@@ -22,7 +21,6 @@ func MaxNonAdjacentSum(nums []int) int {
 
 	for _, num := range nums {
 		current := prevOne
-
 		if prevTwo+num > current {
 			current = prevTwo + num
 		}
