@@ -55,5 +55,9 @@ func RomanToInt(input string) (int, error) {
 	if len(input) > 0 {
 		return 0, errors.New("invalid roman numeral")
 	}
+	// Only standard form in the range 1 to 3999 is supported.
+	if output > 3999 {
+		return 0, errors.New("roman numeral must be in range 1 to 3999")
+	}
 	return output, nil
 }
