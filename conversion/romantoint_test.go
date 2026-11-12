@@ -43,6 +43,11 @@ func TestRomanToInt(t *testing.T) {
 	if err != nil {
 		t.Errorf("RomanToInt(\"\") returned an error %s", err.Error())
 	}
+
+	// MMMM is 4000, which is outside the supported 1-3999 range.
+	if _, err := RomanToInt("MMMM"); err == nil {
+		t.Error("RomanToInt(MMMM) expected an error")
+	}
 }
 
 func BenchmarkRomanToInt(b *testing.B) {
