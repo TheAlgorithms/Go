@@ -22,6 +22,12 @@ func Bucket[T constraints.Number](arr []T) []T {
 		}
 	}
 
+	// all elements are equal, so arr is already sorted
+	// (and max - min below would be zero)
+	if max == min {
+		return arr
+	}
+
 	// create an empty bucket for each element in arr
 	bucket := make([][]T, len(arr))
 
